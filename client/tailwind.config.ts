@@ -28,6 +28,17 @@ const config: Config = {
       fontSize: {
         xs: "0.75rem",
       },
+      animation: {
+        hero: "fadeImages 5s ease-in-out infinite",
+      },
+      keyframes: () => ({
+        fadeImages: {
+          "0%": { backgroundImage: 'url("/images/coming-soon/hero_1.png")' },
+          "33%": { backgroundImage: 'url("/images/coming-soon/hero_2.png")' },
+          "66%": { backgroundImage: 'url("/images/coming-soon/hero_3.png")' },
+          "100%": { backgroundImage: 'url("/images/coming-soon/hero_1.png")' },
+        },
+      }),
     },
   },
   plugins: [],
