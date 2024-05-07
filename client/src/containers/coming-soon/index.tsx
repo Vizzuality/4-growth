@@ -21,15 +21,8 @@ export default function ComingSoon() {
       </section>
 
       <section className="grid lg:grid-cols-4 gap-0.5 mb-0.5">
-        <div className="col-span-2 rounded-2xl">
-          <Image
-            src={"/images/coming-soon/dron.jpg"}
-            alt="Drone"
-            width={200}
-            height={200}
-            className="rounded-2xl w-full h-full object-cover"
-          />
-        </div>
+        <div className="col-span-2 rounded-2xl bg-[url('/images/coming-soon/dron.jpg')] bg-cover bg-center" />
+
         <div className="col-span-2 bg-blue-800 rounded-2xl py-16 px-8 space-y-4">
           <h3 className="text-white leading-9 text-2xl lg:text-[32px] font-bold">
             Analyse, understand <br /> and visualise
@@ -72,15 +65,7 @@ export default function ComingSoon() {
             </div>
           </div>
         </div>
-        <div className="col-span-2 rounded-2xl">
-          <Image
-            src={"/images/coming-soon/work.jpg"}
-            alt="Work"
-            width={200}
-            height={200}
-            className="rounded-2xl w-full h-full object-cover"
-          />
-        </div>
+        <div className="col-span-2 rounded-2xl bg-[url('/images/coming-soon/work.jpg')] bg-cover bg-center" />
       </section>
 
       <section className="bg-[url('/images/coming-soon/gradient.jpg')] bg-cover bg-no-repeat rounded-2xl flex flex-col space-y-8 items-center py-16">
@@ -88,13 +73,7 @@ export default function ComingSoon() {
           <h2 className="font-bold uppercase text-xl">Coming soon</h2>
           <h3 className="font-bold text-4xl lg:text-[56px]">Stay tunned!</h3>
         </div>
-        <Image
-          src={"/images/coming-soon/mockup.png"}
-          alt="4Growth"
-          width={200}
-          height={200}
-          className="h-64 lg:h-72 w-auto rounded-3xl px-2 lg:px-0"
-        />
+        <div className="bg-[url('/images/coming-soon/mockup.png')] bg-cover bg-center h-56 w-96 md:h-[330px] md:w-[580px] rounded-3xl px-2 lg:px-0" />
       </section>
 
       <section className="col-span-4 flex flex-col items-center w-full py-20 space-y-4">

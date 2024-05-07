@@ -29,7 +29,7 @@ const config: Config = {
         xs: "0.75rem",
       },
       animation: {
-        hero: "fadeImages 5s ease-in-out infinite",
+        hero: "fadeImages 8s ease-in-out infinite",
       },
       keyframes: () => ({
         fadeImages: {
