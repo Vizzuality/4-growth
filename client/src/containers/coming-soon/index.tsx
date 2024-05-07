@@ -7,7 +7,7 @@ import Wrapper from "@/containers/wrapper";
 export default function ComingSoon() {
   return (
     <Wrapper className="lg:px-24 pt-0.5 lg:pt-20">
-      <section className="animate-hero bg-cover bg-center mb-0.5 flex flex-col items-center lg:col-span-4 rounded-2xl lg:px-44 py-20 space-y-4">
+      <section className="animate-hero bg-cover bg-center mb-0.5 flex flex-col items-center lg:col-span-4 rounded-2xl lg:px-44 pt-[90px] pb-28 space-y-4">
         <Image
           src={"/images/4Growth_logo.png"}
           alt="4Growth"
