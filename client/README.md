@@ -6,7 +6,7 @@ The 4Growth project is centered on enhancing the understanding of digital and da
 
 Requirements:
 
-* NodeJs v20
+* NodeJS `v22`
 * Pnpm
 
 ## Project implementation
@@ -31,7 +31,7 @@ In order to start modifying the app, please make sure to correctly configure you
 8. Start the client with:
 
 ```bash
-pnpm client dev
+pnpm client:dev
 ```
 
 You can access a hot-reloaded version of the app on [http://localhost:3000](http://localhost:3000).
