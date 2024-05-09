@@ -58,4 +58,3 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Contribution rules
 
 Please, **create a PR** for any improvement or feature you want to add. Try not to commit anything directly on the `main` branch.
-
