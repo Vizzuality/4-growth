@@ -7,7 +7,7 @@ The 4Growth project is centered on enhancing the understanding of digital and da
 Requirements:
 
 * NodeJs v20
-* Yarn
+* Pnpm
 
 ## Project implementation
 
@@ -27,18 +27,18 @@ In order to start modifying the app, please make sure to correctly configure you
 4. Configure your text editor with the [Prettier](https://prettier.io/), [ESLint](https://eslint.org/), [EditorConfig](https://editorconfig.org/), [Tailwind CSS](https://tailwindcss.com/docs/plugins) (recommended) and [Headwind](https://github.com/heybourn/headwind) (recommended) plugins
 5. (Optional) Configure your editor to “format [code] on save” with ESLint and Prettier **(1)**
 6. Use the correct Node.js version for this app by running `nvm use`; if you didn't install NVM (step 2), then manually install the Node.js version described in `.nvmrc`
-7. Install the dependencies: `yarn`
+7. Install the dependencies: `pnpm i`
 8. Start the client with:
 
 ```bash
-yarn client dev
+pnpm client dev
 ```
 
 You can access a hot-reloaded version of the app on [http://localhost:3000](http://localhost:3000).
 
 <!-- ## Testing
 
-To run e2e tests: `yarn cypress:open` and choose e2e configuration -->
+To run e2e tests: `pnpm cypress:open` and choose e2e configuration -->
 
 ## Deploy on Vercel
 
@@ -59,7 +59,6 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Please, **create a PR** for any improvement or feature you want to add. Try not to commit anything directly on the `main` branch.
 
-## Vulnerability mitigation
 
 [Dependabot's vulnerability security alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts) are configured in this repository and are displayed to the administrators.
 
@@ -69,13 +68,12 @@ Here's a step-by-step guide on how to address vulnerabilities found in productio
 
 1. Go to the Dependabot alerts page and locate the front-end vulnerability to address
 2. Identify if the vulnerability affects production code:
-	- To do so run `yarn npm audit --recursive --environment production`
+	- To do so run `pnpm npm audit --recursive --environment production`
 	- If the dependency is _not_ listed by this command, then the vulnerability only affects the development code. You can dismiss the alert on GitHub as “Vulnerable code is not actually used” in the top right corner of the vulnerability page.
 	- If the dependency _is_ listed, follow the steps below.
 3. On the vulnerability page, click the “Create Dependabot security update” button
 	- This will create a Pull Request with a fix for the vulnerability. If GitHub can generate this PR, then you can merge and the security alert will disappear.
 	- If the vulnerability can't be patched automatically, follow the steps below.
-4. If the action fails, then you can semi-automatically update the vulnerable dependency by running `npm_config_yes=true npx yarn-audit-fix --only prod`
-	- `yarn-audit-fix` (see [repository](https://github.com/antongolub/yarn-audit-fix)) is a tool that applies the fixes from `npm audit fix` to Yarn installations
+4. If the action fails, then you can semi-automatically update the vulnerable dependency by running `npm_config_yes=true npx pnpm-audit-fix --only prod`
 	- The tool might also not be able to fix the vulnerability. If so, continue with the steps below.
 5. If the action fails, then you will have to manually update the dependencies until the vulnerability is solved
