@@ -1,0 +1,9 @@
+{
+  "name": "4-growth",
+  "private": true,
+  "scripts": {
+    "install": "pnpm install",
+    "start:api": "pnpm --filter 4-growth-api run start",
+    "start:client": "pnpm --filter 4-growth-client run dev"
+  }
+}
