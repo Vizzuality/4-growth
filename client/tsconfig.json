@@ -12,6 +12,7 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
@@ -31,6 +32,7 @@
   },
   "include": [
     "src/**/*",
+    "tests/**/*",
     ".next/types/**/*.ts"
   ],
   "exclude": [
