@@ -1,0 +1,36 @@
+name: API Tests
+
+on:
+  push:
+    paths:
+      - 'api/**'
+      - '.github/workflows/api-tests.yml'
+
+  workflow_dispatch:
+
+
+jobs:
+  api-tests-e2e:
+    name: API E2E Tests
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20.10
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: 'api/.nvmrc'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install API dependencies
+        working-directory: api
+        run: pnpm install
+
+      - name: Run API E2E tests
+        working-directory: api
+        run: pnpm test:e2e
