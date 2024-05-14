@@ -1,0 +1,45 @@
+variable "aws_profile" {
+  type        = string
+  description = "AWS profile to use to perform TF operations"
+}
+
+
+
+variable "aws_region" {
+  type        = string
+  description = "AWS region"
+  default     = "eu-west-3"
+}
+
+variable "allowed_account_id" {
+  type        = string
+  description = "AWS account id"
+}
+
+variable "project_name" {
+  type        = string
+  description = "Short name of the project, will be used to prefix created resources"
+}
+
+
+#variable "repo_name" {
+#  type        = string
+#  description = "Name of the Github repository where the code is hosted"
+#}
+
+##
+## Elastic Beanstalk configuration
+## concepts: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.html
+##
+#variable "beanstalk_platform" {
+#  type        = string
+#  description = "The Elastic Beanstalk platform to use. This needs to be a Docker platform (Linux, not ECS). If upgrade is available please ensure the EC2 AMI and deployment strategy is compatible. https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.docker"
+#  default     = "64bit Amazon Linux 2 v3.6.0 running Docker"
+#}
+#
+#variable "beanstalk_tier" {
+#  type        = string
+#  description = "The Elastic Beanstalk tier to use. This needs to be WebServer"
+#  default     = "WebServer"
+#}
+
