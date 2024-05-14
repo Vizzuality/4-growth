@@ -22,3 +22,7 @@ build/
 # Ignore OS specific files
 .DS_Store
 Thumbs.db
+
+# Infra
+/infrastructure/vars/local.tfvars
+/infrastructure/.terraform/
