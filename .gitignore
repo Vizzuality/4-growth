@@ -1,0 +1,24 @@
+# Ignore all node_modules directories
+node_modules/
+
+# Ignore all .env files
+.env
+.env.local
+.env.*.local
+
+# Ignore all .log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore all transpiled files
+dist/
+build/
+
+# Ignore all IDE specific files
+.vscode/
+.idea/
+
+# Ignore OS specific files
+.DS_Store
+Thumbs.db
