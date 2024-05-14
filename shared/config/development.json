@@ -1,0 +1,10 @@
+{
+  "client": {
+    "url": "localhost"
+  },
+  "db" : {
+    "username": "4growth",
+    "password": "4growth"
+  }
+}
+

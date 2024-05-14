@@ -1,9 +1,19 @@
 {
   "moduleFileExtensions": ["js", "json", "ts"],
-  "rootDir": ".",
+  "rootDir": "../",
+  "roots": [
+    "<rootDir>/src/",
+    "<rootDir>/test/"
+  ],
   "testEnvironment": "node",
-  "testRegex": ".e2e-spec.ts$",
+  "testRegex": ".spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
+  },
+
+  "moduleNameMapper": {
+    "^@api/(.*)$": "<rootDir>/src/$1",
+    "^@client/(.*)$": "<rootDir>/../client/src/$1",
+    "^@shared/(.*)$": "<rootDir>/../shared/$1"
   }
 }
