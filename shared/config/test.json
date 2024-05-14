@@ -1,0 +1,10 @@
+{
+  "client": {
+    "url": "test",
+    "secret": "melapela"
+  },
+  "db" : {
+    "username": "test",
+    "password": "test"
+  }
+}

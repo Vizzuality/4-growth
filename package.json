@@ -1,10 +1,9 @@
 {
   "name": "4-growth",
-  "private": true,
+  "version": "1.0.0",
+  "description": "4-growth mono-repo",
   "scripts": {
-    "install": "pnpm install",
-    "start:api": "pnpm --filter 4-growth-api run start",
-    "start:client": "pnpm --filter 4-growth-client run dev"
-  },
-  "packageManager": "pnpm@9.1.1"
+    "start:api": "pnpm --filter api run start:dev",
+    "start:client": "pnpm --filter client run dev"
+  }
 }
