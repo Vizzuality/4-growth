@@ -2,7 +2,8 @@ import Image from "next/image";
 
 import { BarChartHorizontal, Filter } from "lucide-react";
 
-import Wrapper from "@client/src/containers/wrapper";
+import Wrapper from "@/containers/wrapper";
+
 export default function ComingSoon() {
   return (
     <Wrapper className="lg:px-24 pt-0.5 lg:pt-20">

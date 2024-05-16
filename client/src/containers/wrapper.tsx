@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { cn } from "@client/src/utils/cn";
+import { cn } from "@/utils/cn";
 
 const Wrapper = ({
   children,
