@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "4-growth mono-repo",
   "scripts": {
-    "start:api": "pnpm --filter api run start:dev",
-    "start:client": "pnpm --filter client run dev"
+    "start:api:dev": "pnpm --filter api run start:dev",
+    "start:client:dev": "pnpm --filter client run dev",
+    "install:client": "pnpm --filter client install",
+    "install:api": "pnpm --filter api install",
+    "build:client": "pnpm --filter client run build",
+    "build:api": "pnpm --filter api run build",
+    "start:client:prod": "pnpm --filter client run start",
+    "start:api:prod": "pnpm --filter api run start:prod",
+    "start:prod": "pnpm run build:client && pnpm run build:api && pnpm run start:client:prod & pnpm run start:api:prod"
   }
 }
