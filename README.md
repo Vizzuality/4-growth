@@ -20,15 +20,15 @@ We use `pnpm` for managing packages in this project. This allows us to efficient
 
 Here are the npm scripts that you can run:
 
-- `pnpm start:api:dev`: Starts the backend application in development mode.
-- `pnpm start:client:dev`: Starts the frontend application in development mode.
-- `pnpm install:client`: Installs the client application dependencies.
-- `pnpm install:api`: Installs the API application dependencies.
-- `pnpm build:client`: Builds the client application for production.
-- `pnpm build:api`: Builds the API application for production.
-- `pnpm start:client:prod`: Starts the client application in production mode.
-- `pnpm start:api:prod`: Starts the API application in production mode.
-- `pnpm start:prod`: Builds and starts both applications in production mode.
+- `pnpm api:dev`: Starts the backend application in development mode.
+- `pnpm client:dev`: Starts the frontend application in development mode.
+- `pnpm client:deps`: Installs the client application dependencies.
+- `pnpm api:deps`: Installs the API application dependencies.
+- `pnpm client:build`: Builds the client application for production.
+- `pnpm api:build`: Builds the API application for production.
+- `pnpm client:prod`: Starts the client application in production mode.
+- `pnpm api:prod`: Starts the API application in production mode.
+- `pnpm all:prod`: Builds and starts both applications in production mode.
 
 ## TypeScript Configuration
 
