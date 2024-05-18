@@ -5,11 +5,15 @@ on:
     paths:
       - 'api/**'
       - '.github/workflows/api-tests.yml'
+      - '/*'               # include changes in root
+      - '!client/**'       # exclude client folder
+      - '!infrastructure/**'  # exclude infra folder
 
   workflow_dispatch:
 
 
 jobs:
+
   api-tests-e2e:
     name: API E2E Tests
     runs-on: ubuntu-22.04

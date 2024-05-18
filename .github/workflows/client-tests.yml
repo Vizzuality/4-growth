@@ -3,8 +3,11 @@ name: Client Tests
 on:
   push:
     paths:
-      - 'api/**'
-      - '.github/workflows/client-tests.yml'
+      - 'client/**'
+      - '.github/workflows/api-tests.yml'
+      - '/*'               # include changes in root
+      - '!api/**'       # exclude client folder
+      - '!infrastructure/**'  # exclude infra folder
 
   workflow_dispatch:
 
