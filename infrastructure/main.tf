@@ -28,3 +28,15 @@ module state {
   aws_region = var.aws_region
   aws_profile = var.aws_profile
 }
+
+module client_ecr {
+  source = "./modules/ecr"
+  project_name = var.project_name
+  repo_name = "client"
+}
+
+module api_ecr {
+  source = "./modules/ecr"
+  project_name = var.project_name
+  repo_name = "api"
+}
