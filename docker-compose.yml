@@ -7,8 +7,6 @@ services:
       dockerfile: api/Dockerfile
     ports:
       - "4000:4000"
-    environment:
-      - NODE_ENV=production
     networks:
       - 4-growth-docker-network
 
@@ -18,8 +16,6 @@ services:
       dockerfile: client/Dockerfile
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=production
     networks:
       - 4-growth-docker-network
 
