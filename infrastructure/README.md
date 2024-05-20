@@ -16,6 +16,10 @@ The Terraform state is stored in an S3 bucket named `4growth-terraform-state`. T
 
 The ECR repositories are created using the `ecr` module. This module creates an ECR repository and a lifecycle policy for each application. The lifecycle policy specifies rules for retaining and expiring images based on their tags.
 
+## IAM
+
+The configuration creates a specific user for the deployment pipeline, right now with permissions to push / pull images to the ECR repositories. The user is created using the `iam` module.
+
 ## TODO
 
 There are several aspects of the infrastructure that still need to be documented:
