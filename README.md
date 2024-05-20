@@ -40,6 +40,26 @@ Each application also has its own `tsconfig.json` file that extends the root con
 
 Please refer to the TypeScript documentation for more details on the various compiler options and how to use them.
 
+## Dockerisation
+
+The applications in this project are containerized using Docker. Each application has its own `Dockerfile` that specifies how to build a Docker image for the application.
+There is also a `docker-compose.yml` file that defines a multi-container setup for running the applications together.
+
+Since the project is a monorepo setup, it's important to run your commands from the root, for the Dockerfiles to have the correct context.
+
+To build the Docker images for the applications, you can use the following commands:
+
+- `docker build -t <image_name> -f api/Dockerfile .`: Builds a Docker image for the API application.
+- `docker build -t <image_name> -f client/Dockerfile .`: Builds a Docker image for the client application.
+
+To run the apps using the `docker-compose` file, you can use the following command:
+
+- `docker-compose up`: Starts the applications in a multi-container setup.
+- `docker-compose down`: Stops and removes the containers.
+- `docker-compose up --build`: Rebuilds the images and starts the containers.
+- `docker-compose up -d api --build`: Starts only the API application in detached mode and rebuilds the image.
+- `docker-compose up -d client --build`: Starts only the client application in detached mode and rebuilds the image.
+
 ## TODO
 
 There are several aspects of the project that still need to be documented:
