@@ -59,6 +59,7 @@ To run the apps using the `docker-compose` file, you can use the following comma
 - `docker-compose up --build`: Rebuilds the images and starts the containers.
 - `docker-compose up -d api --build`: Starts only the API application in detached mode and rebuilds the image.
 - `docker-compose up -d client --build`: Starts only the client application in detached mode and rebuilds the image.
+- `docker-compose up -d postgres`: Starts only the database in detached mode and rebuilds the image.
 
 ## TODO
 
