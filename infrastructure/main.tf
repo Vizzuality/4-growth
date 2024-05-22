@@ -57,5 +57,6 @@ module "github" {
         TF_PIPELINE_USER_SECRET_ACCESS_KEY = module.iam.pipeline_user_access_key_secret
         TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
         TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
+        TF_AWS_REGION                      = var.aws_region
     }
 }
