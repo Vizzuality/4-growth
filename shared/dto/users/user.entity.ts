@@ -1,13 +1,18 @@
 import {
   Column,
   CreateDateColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Country } from '@shared/dto/countries/country.entity';
+
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
+  @ManyToOne(() => Country, (country) => country.users)
+  country: Country[];
 
   @Column()
   username: string;
