@@ -1,5 +1,6 @@
 # 4GROWTH
 
+
 The 4Growth project is centered on enhancing the understanding of digital and data technology adoption in agriculture and forestry, aiming to shed light on the patterns of uptake and the factors influencing it.
 
 ## Installation & development
