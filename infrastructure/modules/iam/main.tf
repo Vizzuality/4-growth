@@ -17,23 +17,25 @@ resource "aws_iam_user_policy_attachment" "eb_managed_updates_customer_user_poli
   policy_arn = "arn:aws:iam::aws:policy/AWSElasticBeanstalkManagedUpdatesCustomerRolePolicy"
 }
 
-# resource "aws_iam_user_policy" "get_ecr_token_policy" {
-#   name = "get_ecr_token_policy"
-#   user = aws_iam_user.pipeline_user.name
-#
-#   policy = jsonencode({
-#     Version = "2012-10-17"
-#     Statement = [
-#       {
-#         Action = [
-#           "ecr:GetAuthorizationToken"
-#         ]
-#         Effect   = "Allow"
-#         Resource = "*"
-#       },
-#     ]
-#   })
-# }
+## Below policies are needed to login through GitHub Actions
+
+resource "aws_iam_user_policy" "get_ecr_token_policy" {
+  name = "get_ecr_token_policy"
+  user = aws_iam_user.pipeline_user.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ecr:GetAuthorizationToken"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
 
 resource "aws_iam_user_policy" "ecr_push_pull_policy" {
   name = "ecr_push_pull_policy"
