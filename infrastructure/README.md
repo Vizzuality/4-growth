@@ -8,6 +8,13 @@ The infrastructure for the 4-GROWTH project is managed using Terraform. The main
 
 The infrastructure is divided into several modules, each responsible for a specific part of the infrastructure. The `state` module manages the state of the infrastructure, while the `client_ecr` and `api_ecr` modules manage the Elastic Container Registry (ECR) repositories for the client and API applications, respectively.
 
+## Working with Terraform
+
+To be able to plan / apply changes to the infrastructure, you need to have Terraform in its specified version installed. Please refer to the [official documentation](https://learn.hashicorp.com/tutorials/terraform/install-cli) for instructions on how to install Terraform.
+
+The configuration requires you to have a AWS profile named `4-growth` configured in your `aws` cli. The profile should have the necessary permissions to create the resources specified in the configuration, but the name should match.
+
+
 ## Terraform State
 
 The Terraform state is stored in an S3 bucket named `4growth-terraform-state`. The state is locked using a DynamoDB table named `4growth-terraform-state-lock` to prevent concurrent modifications.
