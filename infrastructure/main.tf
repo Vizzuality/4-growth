@@ -40,3 +40,7 @@ module api_ecr {
   project_name = var.project_name
   repo_name = "api"
 }
+
+module "iam" {
+  source = "./modules/iam"
+}
