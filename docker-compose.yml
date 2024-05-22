@@ -19,6 +19,17 @@ services:
     networks:
       - 4-growth-docker-network
 
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: 4growth
+      POSTGRES_PASSWORD: 4growth
+      POSTGRES_DB: 4growth
+    ports:
+      - "5432:5432"
+    networks:
+      - 4-growth-docker-network
+
 
 networks:
   4-growth-docker-network:
