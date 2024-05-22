@@ -12,7 +12,7 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
   @ManyToOne(() => Country, (country) => country.users)
-  country: Country[];
+  country: Country;
 
   @Column()
   username: string;

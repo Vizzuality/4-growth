@@ -18,6 +18,16 @@ jobs:
     name: API E2E Tests
     runs-on: ubuntu-22.04
 
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: 4growth
+          POSTGRES_PASSWORD: 4growth
+          POSTGRES_DB: 4growth
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
