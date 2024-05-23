@@ -174,11 +174,13 @@ jobs:
           echo "services:" >> docker-compose.yml
           echo "  client:" >> docker-compose.yml
           echo "    image: $ECR_REGISTRY/$ECR_REPOSITORY_CLIENT:$IMAGE_TAG" >> docker-compose.yml
+          echo "    container_name: client >> docker-compose.yml
           echo "    restart: always" >> docker-compose.yml
           echo "    ports:" >> docker-compose.yml
           echo "      - 3000:3000" >> docker-compose.yml
           echo "  api:" >> docker-compose.yml
           echo "    image: $ECR_REGISTRY/$ECR_REPOSITORY_API:$IMAGE_TAG" >> docker-compose.yml
+          echo "    container_name: api >> docker-compose.yml
           echo "    restart: always" >> docker-compose.yml
           echo "    ports:" >> docker-compose.yml
           echo "      - 4000:4000" >> docker-compose.yml
