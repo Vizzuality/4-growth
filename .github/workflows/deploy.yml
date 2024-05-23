@@ -195,10 +195,22 @@ jobs:
           echo "      - api" >> docker-compose.yml
           echo "      - client" >> docker-compose.yml
 
+      - name: Upload Docker Compose File as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: docker-compose-file
+          path: infrastructure/source_bundle/docker-compose.yml
+
       - name: Generate zip file
         working-directory: infrastructure/source_bundle
         run: |
           zip -r deploy.zip * .[^.]*
+
+      - name: Upload Zip File as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: deploy-zip
+          path: infrastructure/source_bundle/deploy.zip
 
       - name: Deploy to Amazon EB
         uses: einaregilsson/beanstalk-deploy@v21
