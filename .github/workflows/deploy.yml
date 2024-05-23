@@ -26,6 +26,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - uses: dorny/paths-filter@v3
+        id: client-changes
+        with:
+          filters: |
+            client:
+              - 'client/**'
+              - '.github/workflows/**
+
       - name: Extract branch name
         if: ${{ github.event_name == 'workflow_dispatch' || steps.client-changes.outputs.client == 'true' }}
         run: |
@@ -52,7 +60,7 @@ jobs:
           mask-password: 'true'
 
       - name: Set up Docker Buildx
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.cms-changes.outputs.cms == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
         uses: docker/setup-buildx-action@v3
 
       - name: Build, tag, and push Client image to Amazon ECR
@@ -75,6 +83,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - uses: dorny/paths-filter@v3
+        id: api-changes
+        with:
+          filters: |
+            api:
+              - 'cms/**'
+              - '.github/workflows/**'
+
       - name: Extract branch name
         if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
         run: |
@@ -101,7 +117,7 @@ jobs:
           mask-password: 'true'
 
       - name: Set up Docker Buildx
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.cms-changes.outputs.cms == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
         uses: docker/setup-buildx-action@v3
 
       - name: Build, tag, and push API image to Amazon ECR
@@ -116,3 +132,81 @@ jobs:
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_API_REPOSITORY_NAME }}:${{ github.sha }}
             ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_API_REPOSITORY_NAME }}:${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
+            
+
+  deploy:
+    name: Deploy Services to Amazon EBS
+    needs: [build_client, build_api]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.TF_PIPELINE_USER_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TF_PIPELINE_USER_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.TF_AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Extract branch name
+        run: |
+          {
+            branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+            echo "branch=${branch}"
+            echo "branch_upper=${branch^^}"
+          } >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Generate docker compose file
+        working-directory: infrastructure/source_bundle
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY_CLIENT: ${{ secrets.TF_CLIENT_REPOSITORY_NAME }}
+          ECR_REPOSITORY_API: ${{ secrets.TF_API_REPOSITORY_NAME }}
+          IMAGE_TAG: ${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
+        run: |
+          echo "version: '3.3'" > docker-compose.yml
+          echo "services:" >> docker-compose.yml
+          echo "  client:" >> docker-compose.yml
+          echo "    image: $ECR_REGISTRY/$ECR_REPOSITORY_CLIENT:$IMAGE_TAG" >> docker-compose.yml
+          echo "    restart: always" >> docker-compose.yml
+          echo "    ports:" >> docker-compose.yml
+          echo "      - 3000:3000" >> docker-compose.yml
+          echo "  api:" >> docker-compose.yml
+          echo "    image: $ECR_REGISTRY/$ECR_REPOSITORY_API:$IMAGE_TAG" >> docker-compose.yml
+          echo "    restart: always" >> docker-compose.yml
+          echo "    ports:" >> docker-compose.yml
+          echo "      - 4000:4000" >> docker-compose.yml
+          echo "  nginx:" >> docker-compose.yml
+          echo "    image: nginx" >> docker-compose.yml
+          echo "    restart: always" >> docker-compose.yml
+          echo "    volumes:" >> docker-compose.yml
+          echo "      - ./proxy/conf.d:/etc/nginx/conf.d" >> docker-compose.yml
+          echo "      - \"\${EB_LOG_BASE_DIR}/nginx:/var/log/nginx\"" >> docker-compose.yml
+          echo "    ports:" >> docker-compose.yml
+          echo "      - 80:80" >> docker-compose.yml
+          echo "    depends_on:" >> docker-compose.yml
+          echo "      - api" >> docker-compose.yml
+          echo "      - client" >> docker-compose.yml
+
+      - name: Generate zip file
+        working-directory: infrastructure/source_bundle
+        run: |
+          zip -r deploy.zip * .[^.]*
+
+      - name: Deploy to Amazon EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.TF_PIPELINE_USER_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.TF_PIPELINE_USER_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.TF_PROJECT_NAME}}-${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
+          environment_name: ${{ secrets.TF_PROJECT_NAME}}-${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}-environment
+          region: ${{ vars.TF_AWS_REGION }}
+          version_label: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          deployment_package: infrastructure/source_bundle/deploy.zip
