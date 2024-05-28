@@ -21,4 +21,24 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect('Hello World!');
   });
+
+  it('/countries (GET)', () => {
+    const mockCountries = [
+      {
+        id: 1,
+        name: 'Italy',
+        iso: 'IT',
+      },
+      {
+        id: 2,
+        name: 'France',
+        iso: 'FRA',
+      },
+    ];
+
+    return request(app.getHttpServer())
+      .get('/countries')
+      .expect(200)
+      .expect(mockCountries);
+  });
 });
