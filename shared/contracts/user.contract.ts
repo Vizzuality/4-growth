@@ -4,6 +4,7 @@ import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 
 import * as z from 'zod';
+import { DeleteUserDto } from '@shared/dto/users/delete-user.dto';
 
 const contract = initContract();
 export const userContract = contract.router({
@@ -25,6 +26,15 @@ export const userContract = contract.router({
     body: contract.type<UpdateUserDto>(),
     summary: 'Update an existing user',
   },
+  deleteUser: {
+    method: 'DELETE',
+    path: '/users/:id',
+    responses: {
+      200: contract.type<string>(),
+    },
+    body: contract.type<DeleteUserDto>(),
+    summary: 'Delete an existing user',
+  },
   getUsers: {
     method: 'GET',
     path: '/users',
@@ -37,5 +47,13 @@ export const userContract = contract.router({
       search: z.string().optional(),
     }),
     summary: 'Get all users',
+  },
+  getUser: {
+    method: 'GET',
+    path: '/users/:id',
+    responses: {
+      200: contract.type<User>(),
+    },
+    summary: 'Get a user by id',
   },
 });

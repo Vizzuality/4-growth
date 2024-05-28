@@ -12,6 +12,7 @@ import { User } from '@shared/dto/users/user.entity';
 export class Country {
   @PrimaryGeneratedColumn()
   id: number;
+
   @OneToMany(() => User, (user) => user.country)
   users: User[];
 
