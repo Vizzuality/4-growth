@@ -124,7 +124,7 @@ resource "aws_iam_service_linked_role" "elasticbeanstalk" {
 
 module "dev" {
   source                                        = "./modules/env"
-  domain                                        = "4-growth.dev.vizzuality.com"
+  domain                                        = "4-growth-dev.dev-vizzuality.com"
   project                                       = var.project_name
   environment                                   = "dev"
   aws_region                                    = var.aws_region
