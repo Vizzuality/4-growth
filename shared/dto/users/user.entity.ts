@@ -1,6 +1,7 @@
 import {
   Column,
   CreateDateColumn,
+  Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -8,6 +9,7 @@ import {
 
 import { Country } from '@shared/dto/countries/country.entity';
 
+@Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
