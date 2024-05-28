@@ -1,12 +1,14 @@
 import {
   Column,
   CreateDateColumn,
+  Entity,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '@shared/dto/users/user.entity';
 
+@Entity()
 export class Country {
   @PrimaryGeneratedColumn()
   id: number;
