@@ -4,7 +4,6 @@ import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 
 import * as z from 'zod';
-import { DeleteUserDto } from '@shared/dto/users/delete-user.dto';
 
 const contract = initContract();
 export const userContract = contract.router({
@@ -13,33 +12,17 @@ export const userContract = contract.router({
     path: '/users',
     responses: {
       201: contract.type<CreateUserDto>(),
+      400: contract.type<{ message: string }>(),
     },
     body: contract.type<User>(),
     summary: 'Create a new user',
-  },
-  updateUser: {
-    method: 'PUT',
-    path: '/users/:id',
-    responses: {
-      200: contract.type<User>(),
-    },
-    body: contract.type<UpdateUserDto>(),
-    summary: 'Update an existing user',
-  },
-  deleteUser: {
-    method: 'DELETE',
-    path: '/users/:id',
-    responses: {
-      200: contract.type<string>(),
-    },
-    body: contract.type<DeleteUserDto>(),
-    summary: 'Delete an existing user',
   },
   getUsers: {
     method: 'GET',
     path: '/users',
     responses: {
       200: contract.type<User[]>(),
+      400: contract.type<{ message: string }>(),
     },
     query: z.object({
       take: z.string().transform(Number).optional(),
@@ -51,9 +34,39 @@ export const userContract = contract.router({
   getUser: {
     method: 'GET',
     path: '/users/:id',
+    pathParams: z.object({
+      id: z.coerce.string(),
+    }),
     responses: {
       200: contract.type<User>(),
+      400: contract.type<{ message: string }>(),
     },
     summary: 'Get a user by id',
+  },
+  updateUser: {
+    method: 'PUT',
+    path: '/users/:id',
+    pathParams: z.object({
+      id: z.coerce.string(),
+    }),
+    responses: {
+      200: contract.type<User>(),
+      400: contract.type<{ message: string }>(),
+    },
+    body: contract.type<UpdateUserDto>(),
+    summary: 'Update an existing user',
+  },
+  deleteUser: {
+    method: 'DELETE',
+    path: '/users/:id',
+    pathParams: z.object({
+      id: z.coerce.string(),
+    }),
+    responses: {
+      200: contract.type<User['id']>(),
+      400: contract.type<{ message: string }>(),
+    },
+    body: contract.type<User['id']>(),
+    summary: 'Delete an existing user',
   },
 });
