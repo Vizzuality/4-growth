@@ -7,7 +7,7 @@ import Wrapper from "@/containers/wrapper";
 export default function ComingSoon() {
   return (
     <Wrapper className="px-2 lg:px-24 pt-0.5 md:pt-6 lg:pt-20">
-      <section className="animate-hero bg-blue-800 bg-cover bg-center mb-0.5 flex flex-col items-center md:col-span-4 rounded-2xl md:px-44 pt-[90px] pb-28 space-y-4">
+      <section className="animate-hero bg-blue-800 bg-cover bg-center md:mb-[2px] flex flex-col items-center md:col-span-4 rounded-2xl md:px-44 pt-[90px] pb-28 space-y-4">
         <Image
           src={"/images/4Growth_logo.png"}
           alt="4Growth"
@@ -73,7 +73,7 @@ export default function ComingSoon() {
           <h2 className="font-bold uppercase text-xl">Coming soon</h2>
           <h3 className="font-bold text-4xl md:text-[56px]">Stay tunned!</h3>
         </div>
-        <div className="bg-[url('/images/coming-soon/mockup.png')] bg-cover bg-center h-56 w-96 md:h-[330px] md:w-[580px] rounded-3xl px-2 md:px-0" />
+        <div className="bg-[url('/images/coming-soon/mockup.png')] bg-cover bg-center h-44 w-80 md:h-[330px] md:w-[580px] rounded-3xl px-2 md:px-0" />
       </section>
 
       <section className="col-span-4 flex flex-col items-center w-full py-20 space-y-4">
