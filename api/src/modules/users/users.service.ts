@@ -1,43 +1,51 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Module, NotFoundException } from '@nestjs/common';
 import { User } from '@shared/dto/users/user.entity';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+
 
 @Injectable()
+
 export class UsersService {
-  constructor(private userRepository: Repository<User>) {}
-  private readonly user: User[] = [];
+  constructor(@InjectRepository(User) private userRepository: Repository<User>) {}
 
-  create(user: CreateUserDto) {
-    this.userRepository.save(user);
+  async save(createUserDto: CreateUserDto) {
+    return this.userRepository.save(createUserDto);
   }
 
-  findAll(): User[] {
-    return this.userRepository.findAll();
+  async find(): Promise<User[]> {
+    return this.userRepository.find();
   }
 
-  findOne(id: number) {
-    return this.userRepository.findOne((user) => user.id === id);
+  async findOneBy(id: string) {
+    return this.userRepository.findOne({
+      where: { id },
+    });
   }
 
-  update(id: number) {
-    const index = this.userRepository.findIndex((user) => user.id === id);
-    if (index === -1) {
-      return 'User not found';
+  async update(id: string) {
+    const found = this.userRepository.findOne({
+      where: { id },
+    });
+    if (!found) {
+      throw new NotFoundException(`User with ID "${id}" not found`);
     }
-    this.userRepository[index] = {
-      ...this.userRepository[index],
-      name: 'User updated',
-    };
-    return 'User updated';
+
+    return found;
   }
 
-  remove(id: number) {
-    const index = this.userRepository.findIndex((user) => user.id === id);
-    if (index === -1) {
-      return 'User not found';
+  async remove(id: string) {
+    const found = await this.userRepository.findOneBy({
+      id: id,
+    });
+    if (!found) {
+      throw new NotFoundException(`Country with ID "${id}" not found`);
     }
-    this.userRepository.splice(index, 1);
-    return 'User removed';
+    if (found) {
+      return this.userRepository.remove(found);
+    }
+
   }
 }
+

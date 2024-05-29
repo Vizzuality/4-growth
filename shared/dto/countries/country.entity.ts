@@ -10,8 +10,8 @@ import { User } from '@shared/dto/users/user.entity';
 
 @Entity()
 export class Country {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @OneToMany(() => User, (user) => user.country)
   users: User[];
