@@ -11,8 +11,8 @@ import { Country } from '@shared/dto/countries/country.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
   @ManyToOne(() => Country, (country) => country.users)
   country: Country;
 
