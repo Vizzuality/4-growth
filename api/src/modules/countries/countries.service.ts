@@ -1,47 +1,45 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Country } from '@shared/dto/countries/country.entity';
 import { CreateCountryDto } from '@shared/dto/countries/create-country.dto';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class CountriesService {
-  constructor(private countryRepository: Repository<Country>) {}
-  private readonly country: Country[] = [];
+  constructor(@InjectRepository(Country)  private countryRepository: Repository<Country>) {}
 
-  create(country: CreateCountryDto) {
-    this.countryRepository.save(country);
+  async save(createCountryDto: CreateCountryDto) {
+    return this.countryRepository.save(createCountryDto);
   }
 
-  findAll(): Country[] {
-    return this.countryRepository.findAll();
+  async find(): Promise<Country[]> {
+    return this.countryRepository.find();
   }
 
-  findOne(id: number) {
-    return this.countryRepository.findOne((country) => country.id === id);
+  async findOneBy(id: string) {
+    return this.countryRepository.findOne({
+      where: { id },
+    });
   }
 
-  update(id: number) {
-    const index = this.countryRepository.findIndex(
-      (country) => country.id === id,
-    );
-    if (index === -1) {
-      return 'Country not found';
+  async update(body, id: string) {
+    const countryToUpdate = await this.countryRepository.findOneBy({
+      id: id ,
+    });
+
+    return this.countryRepository.save(countryToUpdate)
+  }
+
+  async remove(id: string) {
+    const found = await this.countryRepository.findOneBy({
+      id: id,
+    });
+    if (!found) {
+      throw new NotFoundException(`Country with ID "${id}" not found`);
     }
-    this.countryRepository[index] = {
-      ...this.countryRepository[index],
-      name: 'Country updated',
-    };
-    return 'Country updated';
-  }
-
-  remove(id: number) {
-    const index = this.countryRepository.findIndex(
-      (country) => country.id === id,
-    );
-    if (index === -1) {
-      return 'Country not found';
+    if (found) {
+      return this.countryRepository.remove(found);
     }
-    this.countryRepository.splice(index, 1);
-    return 'Country removed';
+
   }
 }
