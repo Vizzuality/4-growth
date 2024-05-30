@@ -1,0 +1,11 @@
+{
+  "db" : {
+    "type": "postgres",
+    "username": "4growth",
+    "password": "4growth",
+    "database": "4growth",
+    "host": "localhost",
+    "port": 5432
+  }
+}
+
