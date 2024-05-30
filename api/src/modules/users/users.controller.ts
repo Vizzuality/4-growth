@@ -17,7 +17,7 @@ export class UsersController {
 
   @Post()
   async save(@Body() createUserDto: CreateUserDto) {
-    this.usersService.save(createUserDto);
+    return this.usersService.save(createUserDto);
   }
 
   @Get()
