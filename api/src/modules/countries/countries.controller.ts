@@ -10,6 +10,7 @@ import {
 import { CountriesService } from './countries.service';
 import { Country } from '@shared/dto/countries/country.entity';
 import { CreateCountryDto } from '@shared/dto/countries/create-country.dto';
+import { UpdateCountryDto } from '@shared/dto/countries/update-country.dto';
 
 @Controller('countries')
 export class CountriesController {
@@ -31,8 +32,8 @@ export class CountriesController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string) {
-    return this.countriesService.update(id);
+  async update(@Param('id') id: string, @Body() dto: UpdateCountryDto) {
+    return this.countriesService.update(id, dto);
   }
 
   @Delete(':id')
