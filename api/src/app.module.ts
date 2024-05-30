@@ -8,14 +8,14 @@ import { Country } from '@shared/dto/countries/country.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as config from '@shared/config/development.json';
 
+// TODO: refactor the conf to use
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      // username: config.db.username,
-      // password: config.db.password,
       username: 'postgres',
       password: 'postgres',
       database: config.db.database,
