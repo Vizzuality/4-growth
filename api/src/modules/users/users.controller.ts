@@ -10,6 +10,7 @@ import {
 import { UsersService } from './users.service';
 import { User } from '@shared/dto/users/user.entity';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
+import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -31,8 +32,8 @@ export class UsersController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string) {
-    return this.usersService.update(id);
+  async update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
+    return this.usersService.update(id, dto);
   }
 
   @Delete(':id')
