@@ -16,12 +16,6 @@ export class UsersService {
   }
 
   async find(): Promise<User[]> {
-    const res = await this.userRepository.save({
-      username: 'test',
-      email: 'test',
-      password: 'test',
-    });
-    return this.dataSource.getRepository(User).find();
     return this.userRepository.find();
   }
 
