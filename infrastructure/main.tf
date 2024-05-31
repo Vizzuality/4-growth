@@ -154,6 +154,22 @@ module "staging" {
   repo_name                                     = var.project_name
 }
 
+module "production" {
+  source                                        = "./modules/env"
+  domain                                        = "4-growth.dev-vizzuality.com"
+  project                                       = var.project_name
+  environment                                   = "production"
+  aws_region                                    = var.aws_region
+  vpc                                           = data.aws_vpc.default_vpc
+  subnet_ids                                    = local.subnets_with_ec2_instance_type_offering_ids
+  availability_zones                            = data.aws_availability_zones.azs_with_ec2_instance_type_offering.names
+  beanstalk_platform                            = "64bit Amazon Linux 2023 v4.3.2 running Docker"
+  beanstalk_tier                                = "WebServer"
+  ec2_instance_type                             = "m5a.large"
+  elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
+  repo_name                                     = var.project_name
+}
+
 
 
 
