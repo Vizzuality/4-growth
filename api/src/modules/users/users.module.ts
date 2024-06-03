@@ -8,7 +8,6 @@ import { User } from '@shared/dto/users/user.entity';
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
   providers: [UsersService],
+  exports: [UsersService],
 })
 export class UsersModule {}
-
-
