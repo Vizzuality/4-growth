@@ -26,3 +26,11 @@ Thumbs.db
 # Infra
 /infrastructure/vars/local.tfvars
 /infrastructure/.terraform/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# e2e
+/e2e/dist
+/e2e/test-results

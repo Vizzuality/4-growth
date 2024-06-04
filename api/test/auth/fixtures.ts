@@ -1,8 +1,8 @@
 import { TestManager } from '../utils/test-manager';
 import * as request from 'supertest';
 import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
-import { createUser } from '../utils/entity-mocks';
 import { User } from '@shared/dto/users/user.entity';
+import { createUser } from '@shared/lib/entity-mocks';
 
 export class AuthFixtures {
   testManager: TestManager<any>;
