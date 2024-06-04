@@ -46,6 +46,19 @@ resource "aws_ecr_lifecycle_policy" "ecr_lifecycle_policy" {
             }
         },
         {
+            "rulePriority": 3,
+            "description": "Keep dev image",
+            "selection": {
+                "tagStatus": "tagged",
+                "tagPrefixList": ["dev"],
+                "countType": "imageCountMoreThan",
+                "countNumber": 1
+            },
+            "action": {
+                "type": "expire"
+            }
+        },
+        {
             "rulePriority": 100,
             "description": "Delete older than n latest images",
             "selection": {
