@@ -2,7 +2,7 @@ import { initContract } from '@ts-rest/core';
 import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
 
 const contract = initContract();
-export const countryContract = contract.router({
+export const authContract = contract.router({
   signUp: {
     method: 'POST',
     path: '/auth/sign-up',
