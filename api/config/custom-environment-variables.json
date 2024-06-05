@@ -4,6 +4,10 @@
     "password": "DB_PASSWORD",
     "database": "DB_NAME",
     "host": "DB_HOST"
+  },
+  "jwt": {
+    "secret": "JWT_SECRET",
+    "expiresIn": "JWT_EXPIRES_IN"
   }
 }
 

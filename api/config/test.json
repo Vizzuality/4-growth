@@ -3,6 +3,10 @@
     "username": "4growth",
     "password": "4growth",
     "database": "4growth"
+  },
+  "jwt": {
+    "secret": "mysupersecretfortests",
+    "expiresIn": "1d"
   }
 }
 
