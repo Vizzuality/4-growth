@@ -51,5 +51,21 @@ describe('Authentication (e2e)', () => {
       // TODO: The expected result for this test will change when we add a Auth global guard
       fixtures.ThenIShouldReceiveAUnauthorizedError(response);
     });
+    test(`it should throw an error if password is incorrect`, async () => {
+      const user = await fixtures.GivenThereIsUserRegistered();
+      const response = await fixtures.WhenISingIn({
+        email: user.email,
+        password: 'wrongpassword',
+      });
+      fixtures.ThenIShouldReceiveAUnauthorizedError(response);
+    });
+    test(`it should sign in a user`, async () => {
+      const user = await fixtures.GivenThereIsUserRegistered();
+      const response = await fixtures.WhenISingIn({
+        email: user.email,
+        password: '12345678',
+      });
+      fixtures.ThenIShouldReceiveAValidToken(response);
+    });
   });
 });
