@@ -19,7 +19,7 @@ services:
     networks:
       - 4-growth-docker-network
 
-  postgres:
+  database:
     image: postgres:13
     environment:
       POSTGRES_USER: 4growth
