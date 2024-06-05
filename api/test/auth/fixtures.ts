@@ -3,6 +3,8 @@ import * as request from 'supertest';
 import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
 import { createUser } from '../utils/entity-mocks';
 import { User } from '@shared/dto/users/user.entity';
+import { SignInDto } from '@shared/dto/auth/sign-in.dto';
+import * as bcrypt from 'bcrypt';
 
 export class AuthFixtures {
   testManager: TestManager<any>;
@@ -14,6 +16,7 @@ export class AuthFixtures {
   async GivenThereIsUserRegistered(): Promise<User> {
     const user = await createUser(this.testManager.getDataSource(), {
       email: 'test@email.com',
+      password: await bcrypt.hash('12345678', await bcrypt.genSalt()),
     });
     return user;
   }
@@ -62,5 +65,21 @@ export class AuthFixtures {
       });
     expect(user.id).toBeDefined();
     expect(user.email).toEqual(newUser.email);
+  }
+
+  async WhenISingIn(dto: SignInDto): Promise<request.Response> {
+    return request(this.testManager.getApp().getHttpServer())
+      .post('/auth/sign-in')
+      .send(dto);
+  }
+
+  ThenIShouldReceiveAUnauthorizedError(response: request.Response) {
+    console.log(response.body);
+    expect(response.status).toBe(404);
+    expect(response.body).toEqual({
+      message: 'User with email non-existing@user.com not found',
+      error: 'Not Found',
+      statusCode: 404,
+    });
   }
 }
