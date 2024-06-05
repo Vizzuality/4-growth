@@ -1,6 +1,6 @@
 import { User } from '@shared/dto/users/user.entity';
 
 export interface IAccessToken {
-  user: Partial<User>;
+  user: Omit<User, 'password'>;
   accessToken: string;
 }
