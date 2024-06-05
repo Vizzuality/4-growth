@@ -9,6 +9,11 @@ type APP_DB_CONFIG = {
   database: string;
 };
 
+type APP_JWT_CONFIG = {
+  secret: string;
+  expiresIn: string;
+};
+
 /**
  * Utility functions related to app configuration.
  */
@@ -99,5 +104,9 @@ export class AppConfig {
 
   static getDbConfig(): APP_DB_CONFIG {
     return this.get<APP_DB_CONFIG>('db');
+  }
+
+  static getJWTConfig(): APP_JWT_CONFIG {
+    return this.get<APP_JWT_CONFIG>('auth.jwt');
   }
 }

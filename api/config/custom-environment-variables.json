@@ -3,6 +3,10 @@
     "username": "DB_USERNAME",
     "password": "DB_PASSWORD",
     "database": "DB_NAME"
+  },
+  "jwt": {
+    "secret": "JWT_SECRET",
+    "expiresIn": "JWT_EXPIRES_IN"
   }
 }
 
