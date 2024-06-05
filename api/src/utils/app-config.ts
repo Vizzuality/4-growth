@@ -107,6 +107,6 @@ export class AppConfig {
   }
 
   static getJWTConfig(): APP_JWT_CONFIG {
-    return this.get<APP_JWT_CONFIG>('auth.jwt');
+    return this.get<APP_JWT_CONFIG>('jwt');
   }
 }
