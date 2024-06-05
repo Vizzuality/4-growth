@@ -75,11 +75,17 @@ export class AuthFixtures {
 
   ThenIShouldReceiveAUnauthorizedError(response: request.Response) {
     console.log(response.body);
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(401);
     expect(response.body).toEqual({
-      message: 'User with email non-existing@user.com not found',
-      error: 'Not Found',
-      statusCode: 404,
+      message: 'Please check your login credentials',
+      error: 'Unauthorized',
+      statusCode: 401,
     });
+  }
+
+  ThenIShouldReceiveAValidToken(response: request.Response) {
+    expect(response.status).toBe(201);
+    expect(response.body.accessToken).toBeDefined();
+    expect(response.body.user.email).toEqual('test@email.com');
   }
 }

@@ -26,6 +26,10 @@ export class AuthService {
 
   async signIn(dto: SignInDto): Promise<IAccessToken> {
     const user = await this.usersService.findByEmail(dto.email);
+    // TODO: Remove this logic when we apply global Auth guard
+    if (!user) {
+      throw new UnauthorizedException('Please check your login credentials');
+    }
     const isPasswordValid = await this.crypto.comparePassword(
       dto.password,
       user.password,
@@ -35,7 +39,8 @@ export class AuthService {
     }
     const payload: JwtPayload = { email: user.email };
     const accessToken: string = this.jwtService.sign(payload);
-    return { user, accessToken };
+    const { password, ...userWithoutPassword } = user;
+    return { user: { ...userWithoutPassword }, accessToken };
   }
 
   async userAlreadyExists(email: string): Promise<boolean> {
