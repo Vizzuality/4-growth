@@ -37,4 +37,13 @@ export class AuthService {
     const accessToken: string = this.jwtService.sign(payload);
     return { user, accessToken };
   }
+
+  async userAlreadyExists(email: string): Promise<boolean> {
+    try {
+      await this.usersService.findByEmail(email);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

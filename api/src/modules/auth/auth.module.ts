@@ -6,6 +6,7 @@ import { CryptService } from '@api/modules/auth/crypt/crypt.service';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { AppConfig } from '@api/utils/app-config';
+import { JwtStrategy } from '@api/modules/auth/strategies/jwt.strategy';
 
 const jwtConfig = AppConfig.getJWTConfig();
 
@@ -18,7 +19,7 @@ const jwtConfig = AppConfig.getJWTConfig();
     }),
     UsersModule,
   ],
-  providers: [AuthService, CryptService],
+  providers: [AuthService, CryptService, JwtStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}
