@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     services:
-      postgres:
+      database:
         image: postgres:13
         ports:
           - 5432:5432

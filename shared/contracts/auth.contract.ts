@@ -8,6 +8,7 @@ const contract = initContract();
 export const authContract = contract.router({
   signUp: {
     method: 'POST',
+    // TODO: move routes to a single place so API and contract can reference them
     path: '/auth/sign-up',
     responses: {
       201: contract.type<null>(),
