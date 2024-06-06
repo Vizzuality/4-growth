@@ -1,6 +1,11 @@
 import { IAccessToken } from "@shared/dto/auth/access-token.interface";
-import { isAxiosError } from "axios";
-import NextAuth, { CredentialsSignin } from "next-auth";
+import type {
+  GetServerSidePropsContext,
+  NextApiRequest,
+  NextApiResponse,
+} from "next";
+import { getServerSession, NextAuthOptions } from "next-auth";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 
@@ -9,31 +14,25 @@ import { client } from "@/lib/queryClient";
 import { signInSchema } from "@/containers/auth/signin/form/schema";
 
 declare module "next-auth" {
-  /**
-   * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-   */
   interface Session {
     user: IAccessToken["user"];
+    accessToken: IAccessToken["accessToken"];
   }
 
   interface User extends IAccessToken {}
 }
 
-// The `JWT` interface can be found in the `next-auth/jwt` submodule
-
 declare module "next-auth/jwt" {
-  /**
-   * Returned by the `jwt` callback and `auth`, when using JWT sessions
-   */
   interface JWT {
     user: IAccessToken["user"];
     accessToken: IAccessToken["accessToken"];
   }
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const config = {
   providers: [
     Credentials({
+      // @ts-expect-error - why is so hard to type this?
       authorize: async (credentials) => {
         let access: IAccessToken | null = null;
 
@@ -52,7 +51,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (!access) {
           if (response.status === 401) {
-            throw new CredentialsSignin(response.body.message);
+            throw new Error(
+              response.body.errors?.[0]?.title || "unknown error",
+            );
           }
         }
 
@@ -78,7 +79,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   pages: {
     signIn: "/auth/signin",
-    newUser: "/profile",
-    error: "/auth/error",
   },
-});
+} as NextAuthOptions;
+
+export function auth(
+  ...args:
+    | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
+    | [NextApiRequest, NextApiResponse]
+    | []
+) {
+  return getServerSession(...args, config);
+}

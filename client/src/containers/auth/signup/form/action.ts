@@ -5,7 +5,7 @@ import { client } from "@/lib/queryClient";
 import { signUpSchema } from "./schema";
 
 export type FormState = {
-  message: string | string[];
+  message: string | string[] | undefined;
 };
 
 export async function signUpAction(
@@ -21,10 +21,8 @@ export async function signUpAction(
     };
   }
 
-  let response;
-
   try {
-    response = await client.auth.signUp.mutation({
+    const response = await client.auth.signUp.mutation({
       body: {
         username: parsed.data.username,
         email: parsed.data.email,
@@ -32,16 +30,17 @@ export async function signUpAction(
       },
     });
 
-    // ? move to an utils function
     if (response.status === 400) {
       return {
-        message: response.body.message,
+        message:
+          response.body.errors?.map(({ title }) => title) ?? "unknown error",
       };
     }
 
     if (response.status === 409) {
       return {
-        message: response.body.message,
+        message:
+          response.body.errors?.map(({ title }) => title) ?? "unknown error",
       };
     }
   } catch (error: Error | unknown) {

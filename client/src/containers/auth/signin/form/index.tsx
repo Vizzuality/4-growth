@@ -1,11 +1,13 @@
 "use client";
 
-import { FC, useRef } from "react";
+import { FC, FormEvent, useCallback, useRef, useState } from "react";
 
-import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
 
+import { useSearchParams, useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -19,13 +21,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { signInAction } from "./action";
 import { signInSchema } from "./schema";
 
 const SignInForm: FC = () => {
-  const [state, formAction] = useFormState(signInAction, {
-    message: "",
-  });
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>("");
   const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -35,27 +36,41 @@ const SignInForm: FC = () => {
     },
   });
 
+  const handleSignIn = useCallback(
+    (evt: FormEvent<HTMLFormElement>) => {
+      evt.preventDefault();
+      form.handleSubmit(async (formValues) => {
+        try {
+          const response = await signIn("credentials", {
+            ...formValues,
+            redirect: false,
+          });
+
+          if (response?.ok) {
+            router.push(searchParams.get("callbackUrl") ?? "/profile");
+          }
+
+          if (!response?.ok) {
+            setErrorMessage(response?.error ?? "unknown error");
+          }
+        } catch (err) {
+          if (err instanceof Error) {
+            setErrorMessage(err.message ?? "unknown error");
+          }
+        }
+      })(evt);
+    },
+    [form, router, searchParams],
+  );
+
   return (
     <>
-      {Array.isArray(state?.message) && (
-        <>
-          {state.message.map((message, index) => (
-            <div key={index}>{message}</div>
-          ))}
-        </>
-      )}
-      {!Array.isArray(state?.message) && <div>{state?.message}</div>}
+      {errorMessage && <div>{errorMessage}</div>}
       <Form {...form}>
         <form
           ref={formRef}
-          action={formAction}
           className="space-y-8 w-[375px]"
-          onSubmit={(evt) => {
-            evt.preventDefault();
-            form.handleSubmit(() => {
-              formAction(new FormData(formRef.current!));
-            })(evt);
-          }}
+          onSubmit={handleSignIn}
         >
           <FormField
             control={form.control}
