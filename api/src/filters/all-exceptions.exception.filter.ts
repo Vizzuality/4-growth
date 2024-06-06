@@ -1,5 +1,6 @@
 import {
   ArgumentsHost,
+  BadRequestException,
   Catch,
   ExceptionFilter,
   HttpException,
@@ -26,33 +27,34 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const response: any = ctx.getResponse();
     const request: any = ctx.getRequest();
 
-    const status: number =
-      exception instanceof HttpException
-        ? exception.getStatus()
-        : HttpStatus.INTERNAL_SERVER_ERROR;
-
-    /**
-     * Core error data.
-     */
-    const errorData: JSONAPIErrorOptions = {
-      status: status.toString(10),
-      title: exception.message,
-      meta: {
-        timestamp: new Date().toISOString(),
-        path: request.url,
-        type: Object.getPrototypeOf(exception)?.name,
-      },
-    };
-
-    if (['development', 'test'].includes(config.util.getEnv('NODE_ENV'))) {
-      errorData.meta.rawError = exception;
-      errorData.meta.stack = exception.stack;
+    let status: number;
+    const errors: JSONAPIErrorOptions[] = [];
+    if (exception instanceof HttpException) {
+      status = exception.getStatus();
+      const exceptionResponse: any = exception.getResponse();
+      const errorMessages = this.handleExceptionMessages(exceptionResponse);
+      for (const message of errorMessages) {
+        const errorData: JSONAPIErrorOptions = {
+          status: status.toString(10),
+          title: message,
+          meta: {
+            timestamp: new Date().toISOString(),
+            path: request.url,
+            type: Object.getPrototypeOf(exception)?.name,
+          },
+        };
+        if (['development', 'test'].includes(config.util.getEnv('NODE_ENV'))) {
+          errorData.meta.rawError = exception;
+          errorData.meta.stack = exception.stack;
+        }
+        errors.push(errorData);
+      }
     }
 
     if (status >= 500) {
-      Logger.error(errorData);
+      Logger.error(errors);
     } else {
-      Logger.warn(errorData);
+      Logger.warn(errors);
     }
 
     /**
@@ -65,9 +67,16 @@ export class AllExceptionsFilter implements ExceptionFilter {
      * issues without having to look at logs.
      */
     const errorDataForResponse: JSONAPIError = new JSONAPISerializer.Error(
-      errorData,
+      errors,
     );
 
     response.status(status).json(errorDataForResponse);
+  }
+
+  handleExceptionMessages(exceptionResponse: any): string[] {
+    const messages = Array.isArray(exceptionResponse.message)
+      ? exceptionResponse.message
+      : [exceptionResponse.message];
+    return messages;
   }
 }
