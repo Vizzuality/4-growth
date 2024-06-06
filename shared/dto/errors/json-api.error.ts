@@ -1,5 +1,5 @@
 export interface JSONAPIError {
-  errors: any[];
+  errors: JSONAPIErrorOptions[];
 }
 
 export interface JSONAPIErrorOptions {

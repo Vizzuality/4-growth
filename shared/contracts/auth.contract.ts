@@ -11,7 +11,6 @@ export const authContract = contract.router({
     path: '/auth/sign-up',
     responses: {
       201: contract.type<null>(),
-      // TODO: Define a global error type
       401: contract.type<JSONAPIError>(),
     },
     body: contract.type<SignUpDto>(),
@@ -21,7 +20,6 @@ export const authContract = contract.router({
     path: '/auth/sign-in',
     responses: {
       201: contract.type<IAccessToken>(),
-      // TODO: Define a global error type
       401: contract.type<JSONAPIError>(),
     },
     body: contract.type<SignInDto>(),

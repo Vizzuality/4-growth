@@ -31,23 +31,18 @@ export class AuthFixtures {
 
   ThenIShouldReceiveValidationErrors(response: request.Response): void {
     expect(response.status).toBe(400);
-    expect(response.body).toEqual({
-      message: [
-        'email must be an email',
-        'password must be longer than or equal to 8 characters',
-      ],
-      error: 'Bad Request',
-      statusCode: 400,
-    });
+    expect(response.body.errors).toHaveLength(2);
+    expect(response.body.errors[0].title).toEqual('email must be an email');
+    expect(response.body.errors[1].title).toEqual(
+      'password must be longer than or equal to 8 characters',
+    );
   }
 
   ThenIShouldReceiveAEmailAlreadyExistError(response: request.Response) {
     expect(response.status).toBe(409);
-    expect(response.body).toEqual({
-      message: 'Email test@email.com already exists',
-      error: 'Conflict',
-      statusCode: 409,
-    });
+    expect(response.body.errors[0].title).toEqual(
+      'Email test@email.com already exists',
+    );
   }
 
   async WhenISignUpANewUser(signUpDto: SignUpDto): Promise<request.Response> {
@@ -75,11 +70,9 @@ export class AuthFixtures {
 
   ThenIShouldReceiveAUnauthorizedError(response: request.Response) {
     expect(response.status).toBe(401);
-    expect(response.body).toEqual({
-      message: 'Please check your login credentials',
-      error: 'Unauthorized',
-      statusCode: 401,
-    });
+    expect(response.body.errors[0].title).toEqual(
+      'Please check your login credentials',
+    );
   }
 
   ThenIShouldReceiveAValidToken(response: request.Response) {
