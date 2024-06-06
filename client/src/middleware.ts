@@ -1,12 +1,3 @@
-import { auth } from "@/auth";
+export { default } from "next-auth/middleware";
 
-export default auth((req) => {
-  if (!req.auth && req.nextUrl.pathname !== "/auth/signin") {
-    const newUrl = new URL("/auth/signin", req.nextUrl.origin);
-    return Response.redirect(newUrl);
-  }
-});
-
-export const config = {
-  matcher: ["/profile"],
-};
+export const config = { matcher: ["/profile"] };
