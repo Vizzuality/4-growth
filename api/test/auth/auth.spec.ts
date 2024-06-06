@@ -48,7 +48,6 @@ describe('Authentication (e2e)', () => {
         email: 'non-existing@user.com',
         password: '12345567',
       });
-      // TODO: The expected result for this test will change when we add a Auth global guard
       fixtures.ThenIShouldReceiveAUnauthorizedError(response);
     });
     test(`it should throw an error if password is incorrect`, async () => {
