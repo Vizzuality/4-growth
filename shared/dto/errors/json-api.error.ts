@@ -6,7 +6,7 @@ export interface JSONAPIErrorOptions {
   id?: string | undefined;
   status?: string | undefined;
   code?: string | undefined;
-  title?: string | undefined;
+  title: string;
   detail?: string | undefined;
   source?:
     | {

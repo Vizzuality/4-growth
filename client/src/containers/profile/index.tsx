@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { auth } from "@/app/api/auth/[...nextauth]/config";
 
 export default async function Profile() {
   const session = await auth();

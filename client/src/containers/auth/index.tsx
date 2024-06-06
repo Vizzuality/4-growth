@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, Suspense, useState } from "react";
 
 import SignInForm from "./signin/form";
 import SignUpForm from "./signup/form";
@@ -14,7 +14,13 @@ const UserAuth: FC = () => {
       <p className="text-lg mb-8">
         Please {authMode === "signin" ? "sign in" : "sign up"} to continue.
       </p>
-      {authMode === "signin" ? <SignInForm /> : <SignUpForm />}
+      {authMode === "signin" ? (
+        <Suspense>
+          <SignInForm />
+        </Suspense>
+      ) : (
+        <SignUpForm />
+      )}
       <button
         className="text-blue-500 underline mt-4"
         onClick={() =>
