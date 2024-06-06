@@ -11,7 +11,8 @@ export const authContract = contract.router({
     path: '/auth/sign-up',
     responses: {
       201: contract.type<null>(),
-      401: contract.type<JSONAPIError>(),
+      400: contract.type<JSONAPIError>(),
+      409: contract.type<JSONAPIError>(),
     },
     body: contract.type<SignUpDto>(),
   },
