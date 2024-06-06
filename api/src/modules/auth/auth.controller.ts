@@ -3,7 +3,7 @@ import { AuthService } from '@api/modules/auth/auth.service';
 import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
 import { SignInDto } from '@shared/dto/auth/sign-in.dto';
 import { IAccessToken } from '@shared/dto/auth/access-token.interface';
-import { Public } from '../../../decorators/is-public.decorator';
+import { Public } from '@api/decorators/is-public.decorator';
 
 @Controller('auth')
 export class AuthController {
