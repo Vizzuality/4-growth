@@ -16,6 +16,6 @@ resource "aws_acm_certificate" "acm_certificate" {
   }
 }
 
-resource "aws_acm_certificate_validation" "domain_certificate_validation" {
-  certificate_arn = aws_acm_certificate.acm_certificate.arn
-}
+# resource "aws_acm_certificate_validation" "domain_certificate_validation" {
+#   certificate_arn = aws_acm_certificate.acm_certificate.arn
+# }
