@@ -1,10 +1,10 @@
 import { genSalt, hash } from 'bcrypt';
-import { DataSource, DeepPartial, BaseEntity } from 'typeorm';
+import { DataSource, DeepPartial } from 'typeorm';
 import { User } from '@shared/dto/users/user.entity';
 
 export const createUser = async (
   dataSource: DataSource,
-  additionalData: Partial<User>,
+  additionalData?: Partial<User>,
 ) => {
   const salt = await genSalt();
   const defaultData: DeepPartial<User> = {
