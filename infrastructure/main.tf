@@ -102,6 +102,7 @@ module "iam" {
   source = "./modules/iam"
 }
 
+// TODO: make this dynamic for all available envs with prefixed names per env
 
 module "github" {
     source = "./modules/github"
@@ -115,6 +116,10 @@ module "github" {
         TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
         TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
         TF_AWS_REGION                      = var.aws_region
+
+    }
+    variable_map = {
+      NEXT_PUBLIC_API_URL                = "https://dev.4-growth.dev-vizzuality.com/api"
     }
 }
 
