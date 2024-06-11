@@ -5,13 +5,19 @@
     "@ts-rest/core": "^3.45.2",
     "@typescript-eslint/eslint-plugin": "7.9.0",
     "@typescript-eslint/parser": "7.9.0",
+    "bcrypt": "5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
+    "lodash": "4.17.21",
     "pg": "8.11.5",
     "typeorm": "^0.3.20",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "5.0.2",
+    "@types/lodash": "4.17.4"
   }
 }

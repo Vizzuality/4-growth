@@ -2,7 +2,7 @@ import { AppModule } from '@api/app.module';
 import { Test } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { clearTestDataFromDatabase } from './db-helpers';
+import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 
 /**
  * @description: Abstraction for NestJS testing workflow. For now its a basic implementation to create a test app, but can be extended to encapsulate
