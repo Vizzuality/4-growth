@@ -182,6 +182,8 @@ jobs:
           echo "  api:" >> docker-compose.yml
           echo "    image: $ECR_REGISTRY/$ECR_REPOSITORY_API:$IMAGE_TAG" >> docker-compose.yml
           echo "    restart: always" >> docker-compose.yml
+          echo "    environment:" >> docker-compose.yml
+          echo "      - DB_HOST=postgres" >> docker-compose.yml
           echo "    ports:" >> docker-compose.yml
           echo "      - 4000:4000" >> docker-compose.yml
           echo "    depends_on:" >> docker-compose.yml
