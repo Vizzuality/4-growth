@@ -312,7 +312,7 @@ importers:
         version: 8.11.5
       typeorm:
         specifier: ^0.3.20
-        version: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
+        version: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -5281,7 +5281,7 @@ snapshots:
       '@nestjs/core': 10.3.8(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.8)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       reflect-metadata: 0.2.2
       rxjs: 7.8.1
-      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
+      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
       uuid: 9.0.1
 
   '@next/env@14.2.3': {}
@@ -9430,7 +9430,7 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)):
+  typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5)):
     dependencies:
       '@sqltools/formatter': 1.2.5
       app-root-path: 3.1.0
