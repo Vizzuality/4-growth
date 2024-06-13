@@ -10,7 +10,7 @@ test.beforeAll(async () => {
     testManager = await E2eTestManager.load();
 });
 
-test.beforeEach(async () => {
+test.afterEach(async () => {
     await testManager.clearDatabase();
 });
 
