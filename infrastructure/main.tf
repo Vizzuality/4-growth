@@ -116,10 +116,12 @@ module "github" {
         TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
         TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
         TF_AWS_REGION                      = var.aws_region
+        NEXTAUTH_SECRET                    = var.next_auth_secret
 
     }
     variable_map = {
       NEXT_PUBLIC_API_URL                = "https://dev.4-growth.dev-vizzuality.com/api"
+      NEXTAUTH_URL                       = "https://dev.4-growth.dev-vizzuality.com"
     }
 }
 
