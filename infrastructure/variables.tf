@@ -31,6 +31,11 @@ variable "github_token" {
   description = "Github token to access the repository"
 }
 
+variable "next_auth_secret" {
+  type        = string
+  description = "Next Auth secret"
+}
+
 
 
 
