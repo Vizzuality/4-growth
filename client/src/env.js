@@ -7,7 +7,13 @@ export const env = createEnv({
    * Will throw if you access these variables on the client.
    */
   server: {
-    NEXTAUTH_URL: z.string().min(1).url(),
+    NEXTAUTH_URL: z.preprocess(
+      // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
+      // Since NextAuth automatically uses the VERCEL_URL if present.
+      (str) => process.env.VERCEL_URL ?? str,
+      // VERCEL_URL doesnt include `https` so it cant be validated as a URL
+      process.env.VERCEL ? z.string() : z.string().url().min(1),
+    ),
     NEXTAUTH_SECRET: z.string().min(1),
   },
   /*
