@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 import { getServerSession } from "next-auth";
 
-import { config } from "@/app/api/auth/[...nextauth]/config";
+import { config } from "@/app/auth/[...nextauth]/config";
 
 import LayoutProviders from "./providers";
 
