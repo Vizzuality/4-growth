@@ -11,6 +11,12 @@ export const createUser = async (
     email: 'test@user.com',
     password: await hash('12345678', salt),
   };
+
   const user = { ...defaultData, ...additionalData };
+
+  if (additionalData?.password) {
+    user.password = await hash(additionalData.password, salt);
+  }
+
   return dataSource.getRepository(User).save(user);
 };
