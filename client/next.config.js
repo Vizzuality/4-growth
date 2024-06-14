@@ -6,6 +6,15 @@ const jiti = createJiti(fileURLToPath(import.meta.url));
 jiti("./src/env");
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    async rewrites() {
+        return [
+          {
+            source: '/api/auth/:path*',
+            destination: '/auth/:path*',
+          },
+        ]
+      },
+};
 
 export default nextConfig;
