@@ -6,8 +6,6 @@ on:
       - 'e2e/**'
       - '.github/workflows/e2e-tests.yml'
       - '/*'               # include changes in root
-      - '!api/**'       # exclude api folder
-      - '!client/**'       # exclude client folder
       - '!infrastructure/**'  # exclude infra folder
 
   workflow_dispatch:
