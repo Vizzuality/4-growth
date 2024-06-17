@@ -8,6 +8,16 @@ The infrastructure for the 4-GROWTH project is managed using Terraform. The main
 
 The infrastructure is divided into several modules, each responsible for a specific part of the infrastructure. The `state` module manages the state of the infrastructure, while the `client_ecr` and `api_ecr` modules manage the Elastic Container Registry (ECR) repositories for the client and API applications, respectively.
 
+## Architecture
+
+The infrastructure architecture is based on the following components:
+
+1. ElasticBeanStalk environment and application, to host the Frontend, API and Database.
+2. Elastic Container Registry (ECR) repositories for the client and API applications.
+3. Load Balancer with HTTPS listener.
+4. NGINX reverse proxy to distribute requests to the Frontend and API.
+
+
 ## Working with Terraform
 
 To be able to plan / apply changes to the infrastructure, you need to have Terraform in its specified version installed. Please refer to the [official documentation](https://learn.hashicorp.com/tutorials/terraform/install-cli) for instructions on how to install Terraform.
@@ -27,9 +37,11 @@ The ECR repositories are created using the `ecr` module. This module creates an 
 
 The configuration creates a specific user for the deployment pipeline, right now with permissions to push / pull images to the ECR repositories. The user is created using the `iam` module.
 
-## TODO
+## Deployment
 
-There are several aspects of the infrastructure that still need to be documented:
+The deployment is done using GitHub Actions. The deployment pipeline is defined in the `.github/workflows/deploy.yml` file. The pipeline consists of the following steps:
 
-- **Deployment Procedures**: 
-- **Additional Documentation**: 
+1. Builds the Docker images for the client and API applications.
+2. Pushes the images to the ECR repositories.
+3. Deploys the images to the ElasticBeanstalk environment, using the credentials for the specific IAM user created for the deployment pipeline.
+
