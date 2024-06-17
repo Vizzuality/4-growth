@@ -61,14 +61,16 @@ To run the apps using the `docker-compose` file, you can use the following comma
 - `docker-compose up -d client --build`: Starts only the client application in detached mode and rebuilds the image.
 - `docker-compose up -d postgres`: Starts only the database in detached mode and rebuilds the image.
 
-## TODO
+## Testing
 
-There are several aspects of the project that still need to be documented:
+There are several layers of testing in this project:
 
-- **Testing Procedures**: Explain how to run unit tests, integration tests, and end-to-end tests. Include information about any testing frameworks or libraries used.
-
-- **Deployment Procedures**: Describe the steps to deploy the applications in different environments (development, staging, production). Include any necessary commands, environment variables, or configuration files.
-
-- **Infrastructure Setup**: Provide details about the infrastructure that supports the applications. This could include servers, databases, cloud services, and networking components. Include instructions for setting up and managing these resources.
-
-- **Additional Documentation**: There may be other aspects of the project that are not yet fully documented. Identify these areas and add them to the list of tasks.
+- API tests: The API application has unit tests and integration tests that can be run using the `pnpm api:test` command.
+- Client tests: The client application has component tests that can be run using the `pnpm client:test` command.
+- End-to-end tests:
+  - There is an additional package in the repo called `e2e`. This package contains end-to-end tests that can be run using the `pnpm test` command. This command will take care of spinning up the API and Client applications
+    before running the tests, and will take care of setting up and tearing down any preconditions for the tests, using the `E2ETestManager` class stored in the `shared` package.
+  - Additionally, you can run e2e test using the UI mode by running `pnpm test:ui` command. This will open the Playwright UI where you can run the tests and see the results.
+  - *NOTE*: To run the tests locally, an up and running database is required, with the specified connection parameters specified both for the API and the `E2ETestManager` class. 
+            Due to current limitations of Playwright, a previous Typescript code transpilation is required before running the tests. Both running commands available in the `package.json` file will take care of this before running the tests.
+  
