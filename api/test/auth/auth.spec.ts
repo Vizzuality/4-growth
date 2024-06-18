@@ -28,9 +28,9 @@ describe('Authentication (e2e)', () => {
       const user = await fixtures.GivenThereIsUserRegistered();
       const response = await fixtures.WhenISignUpANewUserWithWrongPayload({
         email: user.email,
-        password: '12345678',
+        password: user.password,
       });
-      fixtures.ThenIShouldReceiveAEmailAlreadyExistError(response);
+      fixtures.ThenIShouldReceiveAEmailAlreadyExistError(response, user.email);
     });
     test(`it should sign up a new user`, async () => {
       const newUser = {
@@ -38,7 +38,7 @@ describe('Authentication (e2e)', () => {
         password: '12345678',
         username: 'test',
       };
-      const response = await fixtures.WhenISignUpANewUser(newUser);
+      await fixtures.WhenISignUpANewUser(newUser);
       await fixtures.ThenANewUserAShouldBeCreated(newUser);
     });
   });
@@ -62,7 +62,7 @@ describe('Authentication (e2e)', () => {
       const user = await fixtures.GivenThereIsUserRegistered();
       const response = await fixtures.WhenISingIn({
         email: user.email,
-        password: '12345678',
+        password: user.password,
       });
       fixtures.ThenIShouldReceiveAValidToken(response);
     });
