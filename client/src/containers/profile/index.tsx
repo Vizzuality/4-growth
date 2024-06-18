@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth/[...nextauth]/config";
+import { auth } from "@/app/auth/api/[...nextauth]/config";
 
 export default async function Profile() {
   const session = await auth();
@@ -6,7 +6,6 @@ export default async function Profile() {
   return (
     <ul>
       <li>{session?.user?.email}</li>
-      <li>{session?.user?.username}</li>
     </ul>
   );
 }

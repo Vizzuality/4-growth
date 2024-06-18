@@ -1,14 +1,19 @@
 "use client";
 
-import { FC, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 
 import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Label } from "@radix-ui/react-label";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -16,6 +21,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
@@ -23,90 +29,118 @@ import { signUpAction } from "./action";
 import { signUpSchema } from "./schema";
 
 const SignUpForm: FC = () => {
-  const [state, formAction] = useFormState(signUpAction, {
+  const { push } = useRouter();
+  const [status, formAction] = useFormState(signUpAction, {
+    ok: undefined,
     message: "",
   });
   const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
+      privacyPolicy: false,
     },
-    mode: "onBlur",
+    mode: "onSubmit",
   });
 
+  useEffect(() => {
+    if (status.ok) {
+      push("/auth/signin");
+    }
+  }, [status, push]);
+
   return (
-    <>
-      {Array.isArray(state?.message) && (
-        <>
-          {state.message.map((message, index) => (
-            <div key={index}>{message}</div>
-          ))}
-        </>
-      )}
-      {!Array.isArray(state?.message) && <div>{state?.message}</div>}
-      <Form {...form}>
-        <form
-          ref={formRef}
-          action={formAction}
-          className="space-y-8 w-[375px]"
-          onSubmit={(evt) => {
-            evt.preventDefault();
-            form.handleSubmit(() => {
-              formAction(new FormData(formRef.current!));
-            })(evt);
-          }}
-        >
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder="lorem ipsum" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="lorem@ipsum.com" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="*******"
-                    type="password"
-                    autoComplete={field.name}
+    <Form {...form}>
+      <form
+        ref={formRef}
+        action={formAction}
+        className="w-full space-y-4"
+        onSubmit={(evt) => {
+          evt.preventDefault();
+          form.handleSubmit(() => {
+            formAction(new FormData(formRef.current!));
+          })(evt);
+        }}
+      >
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input autoFocus placeholder="Enter your email" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field, fieldState }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Create a password"
+                  type="password"
+                  autoComplete={field.name}
+                  {...field}
+                />
+              </FormControl>
+              {!fieldState.invalid && (
+                <FormDescription>
+                  Password must contain at least 8 characters.
+                </FormDescription>
+              )}
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="privacyPolicy"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <div className="flex items-center space-x-2 px-8">
+                  <Checkbox
                     {...field}
+                    value="privacyPolicy"
+                    onCheckedChange={field.onChange}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Submit</Button>
-        </form>
-      </Form>
-    </>
+                  <Label
+                    htmlFor={field.name}
+                    className="text-xs text-muted-foreground"
+                  >
+                    I agree with 4Growth&apos;s{" "}
+                    <Link
+                      href="/privacy-policy"
+                      className="underline underline-offset-[3px]"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Privacy Policy
+                    </Link>
+                    .
+                  </Label>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="!mt-10 px-8">
+          <Button variant="secondary" type="submit" className="w-full">
+            Sign up
+          </Button>
+        </div>
+      </form>
+    </Form>
   );
 };
 
