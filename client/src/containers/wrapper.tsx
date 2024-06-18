@@ -12,7 +12,7 @@ const Wrapper = ({
   return (
     <div
       className={cn({
-        "mx-auto flex w-full flex-grow flex-col container": true,
+        "container mx-auto flex w-full flex-grow flex-col": true,
         [`${className}`]: className !== undefined,
       })}
     >
