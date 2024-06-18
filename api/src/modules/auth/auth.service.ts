@@ -20,7 +20,6 @@ export class AuthService {
     await this.usersService.createUser({
       email: dto.email,
       password: passwordHash,
-      username: dto.username,
     });
   }
 

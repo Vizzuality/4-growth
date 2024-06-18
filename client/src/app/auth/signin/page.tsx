@@ -1,5 +1,5 @@
-import UserAuth from "@/containers/auth";
+import SignIn from "@/containers/auth/signin";
 
-export default async function AuthPage() {
-  return <UserAuth />;
+export default async function SignInPage() {
+  return <SignIn />;
 }

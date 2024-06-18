@@ -14,7 +14,7 @@ export default function LayoutProviders({
 
   return (
     <>
-      <SessionProvider session={session} basePath="/auth">
+      <SessionProvider session={session} basePath="/auth/api">
         <QueryClientProvider client={queryClient}>
           {children}
         </QueryClientProvider>
