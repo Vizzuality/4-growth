@@ -5,11 +5,12 @@ import { User } from '@shared/dto/users/user.entity';
 export const createUser = async (
   dataSource: DataSource,
   additionalData?: Partial<User>,
-) => {
+): Promise<User> => {
   const salt = await genSalt();
+  const usedPassword = additionalData?.password ?? '12345678';
   const defaultData: DeepPartial<User> = {
     email: 'test@user.com',
-    password: await hash('12345678', salt),
+    password: await hash(usedPassword, salt),
   };
 
   const user = { ...defaultData, ...additionalData };
@@ -18,5 +19,6 @@ export const createUser = async (
     user.password = await hash(additionalData.password, salt);
   }
 
-  return dataSource.getRepository(User).save(user);
+  await dataSource.getRepository(User).save(user);
+  return { ...user, password: usedPassword } as User;
 };

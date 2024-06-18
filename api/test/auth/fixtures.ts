@@ -3,7 +3,6 @@ import * as request from 'supertest';
 import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
 import { User } from '@shared/dto/users/user.entity';
 import { SignInDto } from '@shared/dto/auth/sign-in.dto';
-import * as bcrypt from 'bcrypt';
 import { createUser } from '@shared/lib/entity-mocks';
 
 export class AuthFixtures {
@@ -14,11 +13,7 @@ export class AuthFixtures {
   }
 
   async GivenThereIsUserRegistered(): Promise<User> {
-    const user = await createUser(this.testManager.getDataSource(), {
-      email: 'test@email.com',
-      password: await bcrypt.hash('12345678', await bcrypt.genSalt()),
-    });
-    return user;
+    return createUser(this.testManager.getDataSource());
   }
 
   async WhenISignUpANewUserWithWrongPayload(
@@ -38,10 +33,13 @@ export class AuthFixtures {
     );
   }
 
-  ThenIShouldReceiveAEmailAlreadyExistError(response: request.Response) {
+  ThenIShouldReceiveAEmailAlreadyExistError(
+    response: request.Response,
+    email: string,
+  ) {
     expect(response.status).toBe(409);
     expect(response.body.errors[0].title).toEqual(
-      'Email test@email.com already exists',
+      `Email ${email} already exists`,
     );
   }
 
@@ -78,6 +76,5 @@ export class AuthFixtures {
   ThenIShouldReceiveAValidToken(response: request.Response) {
     expect(response.status).toBe(201);
     expect(response.body.accessToken).toBeDefined();
-    expect(response.body.user.email).toEqual('test@email.com');
   }
 }

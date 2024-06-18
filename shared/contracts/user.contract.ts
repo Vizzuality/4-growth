@@ -4,6 +4,8 @@ import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 
 import * as z from 'zod';
+import { API_ROUTES } from '@shared/contracts/routes';
+import { JSONAPIError } from '@shared/dto/errors/json-api.error';
 
 const contract = initContract();
 export const userContract = contract.router({
@@ -30,6 +32,14 @@ export const userContract = contract.router({
       search: z.string().optional(),
     }),
     summary: 'Get all users',
+  },
+  findMe: {
+    method: 'GET',
+    path: API_ROUTES.users.handlers.me.getRoute(),
+    responses: {
+      200: contract.type<User>(),
+      401: contract.type<JSONAPIError>(),
+    },
   },
   getUser: {
     method: 'GET',
