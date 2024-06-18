@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 import { getServerSession } from "next-auth";
 
-import { config } from "@/app/auth/[...nextauth]/config";
+import { config } from "@/app/auth/api/[...nextauth]/config";
 
 import LayoutProviders from "./providers";
 
@@ -25,7 +25,7 @@ export default async function RootLayout({
   return (
     <LayoutProviders session={session}>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={`${inter.className} h-lvh`}>{children}</body>
       </html>
     </LayoutProviders>
   );

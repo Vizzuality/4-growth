@@ -22,10 +22,12 @@ const config = {
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
+        ring: {
+          DEFAULT: "hsl(var(--ring))",
+          foreground: "hsl(var(--ring-foreground))",
+        },
         background: "hsl(var(--background))",
-        // foreground: "hsl(var(--foreground))",
-        foreground: "#AFB5D3",
+        foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -54,20 +56,16 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-
-        blue: {
-          700: "#39447D",
+        magenta: {
+          500: "#C00B62",
+        },
+        navy: {
+          700: "#334492",
           800: "#1D2757",
           900: "#050D35",
         },
-        green: {
-          600: "#3FAA55",
-        },
-        pink: {
-          700: "#C00B62",
-        },
-        yellow: {
-          700: "#F6BA5A",
+        "bluish-gray": {
+          500: "#AFB5D3",
         },
       },
       fontSize: {
@@ -77,6 +75,9 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      backgroundImage: {
+        logo: 'url("/images/4growth-logo.svg")',
       },
       keyframes: {
         "accordion-down": {

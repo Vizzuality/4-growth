@@ -1,7 +1,6 @@
 import {
   IsEmail,
   IsNotEmpty,
-  IsOptional,
   IsString,
   MaxLength,
   MinLength,
@@ -18,8 +17,4 @@ export class SignUpDto {
   @MinLength(8)
   @MaxLength(32)
   password!: string;
-
-  @IsOptional()
-  @IsString()
-  username?: string;
 }

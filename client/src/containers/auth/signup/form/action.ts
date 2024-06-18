@@ -5,6 +5,7 @@ import { client } from "@/lib/queryClient";
 import { signUpSchema } from "./schema";
 
 export type FormState = {
+  ok: boolean | undefined;
   message: string | string[] | undefined;
 };
 
@@ -13,10 +14,11 @@ export async function signUpAction(
   data: FormData,
 ): Promise<FormState> {
   const formData = Object.fromEntries(data);
-  const parsed = signUpSchema.safeParse(formData);
+  const parsed = signUpSchema.omit({ privacyPolicy: true }).safeParse(formData);
 
   if (!parsed.success) {
     return {
+      ok: false,
       message: "Invalid form data",
     };
   }
@@ -24,7 +26,6 @@ export async function signUpAction(
   try {
     const response = await client.auth.signUp.mutation({
       body: {
-        username: parsed.data.username,
         email: parsed.data.email,
         password: parsed.data.password,
       },
@@ -32,6 +33,7 @@ export async function signUpAction(
 
     if (response.status === 400) {
       return {
+        ok: false,
         message:
           response.body.errors?.map(({ title }) => title) ?? "unknown error",
       };
@@ -39,6 +41,7 @@ export async function signUpAction(
 
     if (response.status === 409) {
       return {
+        ok: false,
         message:
           response.body.errors?.map(({ title }) => title) ?? "unknown error",
       };
@@ -46,12 +49,14 @@ export async function signUpAction(
   } catch (error: Error | unknown) {
     if (error instanceof Error) {
       return {
+        ok: false,
         message: error.message,
       };
     }
   }
 
   return {
-    message: "Unknown error",
+    ok: true,
+    message: "",
   };
 }
