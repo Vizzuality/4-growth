@@ -8,7 +8,7 @@ type RouteConfig = {
   handlers: Record<string, RouteHandler>;
 };
 
-type RouteKeys = 'auth';
+type RouteKeys = 'auth' | 'users';
 
 const createRouteHandler = (
   controller: string,
@@ -24,6 +24,12 @@ export const API_ROUTES: Record<RouteKeys, RouteConfig> = {
     handlers: {
       signUp: createRouteHandler('/auth', '/sign-up'),
       signIn: createRouteHandler('/auth', '/sign-in'),
+    },
+  },
+  users: {
+    controller: '/users/',
+    handlers: {
+      me: createRouteHandler('/users', '/me'),
     },
   },
 };
