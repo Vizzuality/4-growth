@@ -22,10 +22,6 @@ const config = {
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
-        ring: {
-          DEFAULT: "hsl(var(--ring))",
-          foreground: "hsl(var(--ring-foreground))",
-        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -69,7 +65,11 @@ const config = {
         },
       },
       fontSize: {
-        xs: "0.75rem",
+        '2xs': ["0.625rem", "0.875rem"],
+        base: ["1rem", "1.25rem"],
+        lg: ["2rem", "2.5rem"],
+        xl: ["2.5rem", "3rem"],
+        '2xl': ["3.5rem", "4rem"]
       },
       borderRadius: {
         lg: "var(--radius)",
