@@ -77,9 +77,6 @@ export const config = {
       };
     },
   },
-  pages: {
-    // signOut: "/auth/signin",
-  },
 } as NextAuthOptions;
 
 export function auth(

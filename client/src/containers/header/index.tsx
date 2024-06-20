@@ -13,7 +13,7 @@ import Menu from "./menu";
 const Header: FC = () => {
   return (
     <header className="flex items-center justify-between rounded-2xl bg-accent p-4">
-      <h1 className="space-y-3 overflow-hidden whitespace-nowrap bg-logo bg-no-repeat indent-[100%] text-xl text-white">
+      <h1 className="space-y-3 overflow-hidden whitespace-nowrap bg-logo bg-no-repeat indent-[100%] text-xl leading-none text-white">
         4Growth Visualization Platform
       </h1>
 
