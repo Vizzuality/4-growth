@@ -1,4 +1,5 @@
 "use client";
+
 import { FC } from "react";
 
 import Link from "next/link";
@@ -13,7 +14,9 @@ import { classes } from "../";
 const Menu: FC = () => {
   const { data: session, status } = useSession();
 
-  const x = session?.user?.email.substring(0, 1)?.toUpperCase();
+  const initialEmailLetter = session?.user?.email
+    .substring(0, 1)
+    ?.toUpperCase();
 
   return (
     <ul className="overflow-hidden pt-2">
@@ -25,7 +28,7 @@ const Menu: FC = () => {
           >
             <Avatar className="h-8 w-8">
               <AvatarFallback className="bg-magenta-500 text-foreground">
-                {x}
+                {initialEmailLetter}
               </AvatarFallback>
             </Avatar>
             <span>Profile</span>
