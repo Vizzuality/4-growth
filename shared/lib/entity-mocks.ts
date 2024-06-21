@@ -15,10 +15,6 @@ export const createUser = async (
 
   const user = { ...defaultData, ...additionalData };
 
-  if (additionalData?.password) {
-    user.password = await hash(additionalData.password, salt);
-  }
-
   await dataSource.getRepository(User).save(user);
   return { ...user, password: usedPassword } as User;
 };
