@@ -6,7 +6,6 @@ let testManager: E2eTestManager;
 
 test.beforeAll(async () => {
     testManager = await E2eTestManager.load();
-    await testManager.clearDatabase();
 });
 
 test.beforeEach(async () => {
