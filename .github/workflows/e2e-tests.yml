@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'e2e/**'
+      - 'shared/**'
+      - 'api/**'
+      - 'client/**'
       - '.github/workflows/e2e-tests.yml'
       - '/*'               # include changes in root
       - '!infrastructure/**'  # exclude infra folder
