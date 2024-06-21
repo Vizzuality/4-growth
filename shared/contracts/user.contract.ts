@@ -6,6 +6,7 @@ import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 import * as z from 'zod';
 import { API_ROUTES } from '@shared/contracts/routes';
 import { JSONAPIError } from '@shared/dto/errors/json-api.error';
+import { UserDto } from '@shared/dto/users/user.dto';
 
 const contract = initContract();
 export const userContract = contract.router({
@@ -37,7 +38,7 @@ export const userContract = contract.router({
     method: 'GET',
     path: API_ROUTES.users.handlers.me.getRoute(),
     responses: {
-      200: contract.type<User>(),
+      200: contract.type<UserDto>(),
       401: contract.type<JSONAPIError>(),
     },
   },
