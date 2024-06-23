@@ -30,6 +30,11 @@ export const API_ROUTES: Record<RouteKeys, RouteConfig> = {
     controller: '/users/',
     handlers: {
       me: createRouteHandler('/users', '/me'),
+      createUser: createRouteHandler('/users', '/'),
+      getUsers: createRouteHandler('/users', '/'),
+      getUser: createRouteHandler('/users', '/:id'),
+      updateUser: createRouteHandler('/users', '/:id'),
+      deleteUser: createRouteHandler('/users', '/:id'),
     },
   },
 };
