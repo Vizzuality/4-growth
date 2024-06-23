@@ -12,7 +12,7 @@ const contract = initContract();
 export const userContract = contract.router({
   createUser: {
     method: 'POST',
-    path: '/users',
+    path: API_ROUTES.users.handlers.createUser.getRoute(),
     responses: {
       201: contract.type<CreateUserDto>(),
       400: contract.type<{ message: string }>(),
@@ -22,16 +22,11 @@ export const userContract = contract.router({
   },
   getUsers: {
     method: 'GET',
-    path: '/users',
+    path: API_ROUTES.users.handlers.getUsers.getRoute(),
     responses: {
       200: contract.type<User[]>(),
       400: contract.type<{ message: string }>(),
     },
-    query: z.object({
-      take: z.string().transform(Number).optional(),
-      skip: z.string().transform(Number).optional(),
-      search: z.string().optional(),
-    }),
     summary: 'Get all users',
   },
   findMe: {
@@ -44,40 +39,43 @@ export const userContract = contract.router({
   },
   getUser: {
     method: 'GET',
-    path: '/users/:id',
+    path: API_ROUTES.users.handlers.getUser.getRoute(),
     pathParams: z.object({
       id: z.coerce.string(),
     }),
     responses: {
-      200: contract.type<User>(),
-      400: contract.type<{ message: string }>(),
+      200: contract.type<UserDto>(),
+      400: contract.type<JSONAPIError>(),
+      401: contract.type<JSONAPIError>(),
     },
     summary: 'Get a user by id',
   },
   updateUser: {
-    method: 'PUT',
-    path: '/users/:id',
+    method: 'PATCH',
+    path: API_ROUTES.users.handlers.updateUser.getRoute(),
     pathParams: z.object({
       id: z.coerce.string(),
     }),
     responses: {
-      200: contract.type<User>(),
-      400: contract.type<{ message: string }>(),
+      200: contract.type<UserDto>(),
+      400: contract.type<JSONAPIError>(),
+      401: contract.type<JSONAPIError>(),
     },
     body: contract.type<UpdateUserDto>(),
     summary: 'Update an existing user',
   },
   deleteUser: {
     method: 'DELETE',
-    path: '/users/:id',
+    path: API_ROUTES.users.handlers.deleteUser.getRoute(),
     pathParams: z.object({
       id: z.coerce.string(),
     }),
     responses: {
-      200: contract.type<User['id']>(),
-      400: contract.type<{ message: string }>(),
+      200: null,
+      400: contract.type<JSONAPIError>(),
+      401: contract.type<JSONAPIError>(),
     },
-    body: contract.type<User['id']>(),
+    body: null,
     summary: 'Delete an existing user',
   },
 });
