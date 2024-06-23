@@ -36,18 +36,20 @@ export class UsersService {
   }
 
   async update(id: string, dto: UpdateUserDto) {
-    return this.userRepository.update(id, dto);
+    return this.userRepository
+      .update(id, dto)
+      .then(() => this.userRepository.findOneByOrFail({ id }));
   }
 
-  async remove(id: string) {
+  async delete(id: string) {
     const found = await this.userRepository.findOneBy({
       id: id,
     });
     if (!found) {
-      throw new NotFoundException(`Country with ID "${id}" not found`);
+      throw new NotFoundException(`User with ID "${id}" not found`);
     }
     if (found) {
-      return this.userRepository.remove(found);
+      await this.userRepository.remove(found);
     }
   }
 

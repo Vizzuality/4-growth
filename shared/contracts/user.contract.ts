@@ -14,17 +14,17 @@ export const userContract = contract.router({
     method: 'POST',
     path: API_ROUTES.users.handlers.createUser.getRoute(),
     responses: {
-      201: contract.type<CreateUserDto>(),
+      201: contract.type<UserDto>(),
       400: contract.type<{ message: string }>(),
     },
-    body: contract.type<User>(),
+    body: contract.type<CreateUserDto>(),
     summary: 'Create a new user',
   },
   getUsers: {
     method: 'GET',
     path: API_ROUTES.users.handlers.getUsers.getRoute(),
     responses: {
-      200: contract.type<User[]>(),
+      200: contract.type<UserDto[]>(),
       400: contract.type<{ message: string }>(),
     },
     summary: 'Get all users',

@@ -1,12 +1,15 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
   Param,
+  ParseUUIDPipe,
+  Patch,
   Post,
-  Put,
   UnauthorizedException,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from '@shared/dto/users/user.entity';
@@ -15,6 +18,7 @@ import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { GetUser } from '@api/decorators/get-user.decorator';
 
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
@@ -38,17 +42,20 @@ export class UsersController {
   }
 
   @Get(':id')
-  async findOneBy(@Param('id') id: string) {
+  async findOneBy(@Param('id', ParseUUIDPipe) id: string) {
     return this.usersService.findOneBy(id);
   }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
+  @Patch(':id')
+  async update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() dto: UpdateUserDto,
+  ) {
     return this.usersService.update(id, dto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
+  async remove(@Param('id', ParseUUIDPipe) id: string) {
+    await this.usersService.delete(id);
   }
 }
