@@ -1,14 +1,11 @@
 import {
   ArgumentsHost,
-  BadRequestException,
   Catch,
   ExceptionFilter,
   HttpException,
-  HttpStatus,
   Logger,
 } from '@nestjs/common';
 import * as config from 'config';
-
 import * as JSONAPISerializer from 'jsonapi-serializer';
 import { JSONAPIError, JSONAPIErrorOptions } from 'jsonapi-serializer';
 import { HttpArgumentsHost } from '@nestjs/common/interfaces';
@@ -49,6 +46,15 @@ export class AllExceptionsFilter implements ExceptionFilter {
         }
         errors.push(errorData);
       }
+    } else {
+      status = 500;
+      errors.push({
+        status: status.toString(10),
+        title: exception.message,
+        meta: {
+          timestamp: new Date().toISOString(),
+        },
+      });
     }
 
     if (status >= 500) {
