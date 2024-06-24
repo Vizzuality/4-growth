@@ -16,11 +16,17 @@ import { User } from '@shared/dto/users/user.entity';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { GetUser } from '@api/decorators/get-user.decorator';
+import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
+import { API_ROUTES } from '@shared/contracts/routes';
+import { AuthService } from '@api/modules/auth/auth.service';
 
 @Controller('users')
 @UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService,
+  ) {}
 
   @Post()
   async save(@Body() createUserDto: CreateUserDto) {
@@ -32,13 +38,21 @@ export class UsersController {
     return this.usersService.find();
   }
 
-  @Get('/me')
+  @Get(API_ROUTES.users.handlers.me.path)
   async findMe(@GetUser() user: User): Promise<User> {
     const foundUser = await this.usersService.findOneBy(user.id);
     if (!foundUser) {
       throw new UnauthorizedException();
     }
     return foundUser;
+  }
+
+  @Patch(API_ROUTES.users.handlers.updatePassword.path)
+  async updatePassword(
+    @Body() dto: UpdateUserPasswordDto,
+    @GetUser() user: User,
+  ) {
+    return this.authService.updatePassword(user.id, dto);
   }
 
   @Get(':id')

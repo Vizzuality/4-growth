@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
-export class CryptService {
-  constructor(private readonly jwt: JwtService) {}
+export class PasswordService {
+  constructor() {}
   async genSalt(): Promise<string> {
     return bcrypt.genSalt();
   }
