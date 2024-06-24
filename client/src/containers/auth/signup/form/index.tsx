@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 
 import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@radix-ui/react-label";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,7 @@ const SignUpForm: FC = () => {
     ok: undefined,
     message: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -84,12 +86,27 @@ const SignUpForm: FC = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Create a password"
-                  type="password"
-                  autoComplete={field.name}
-                  {...field}
-                />
+                <div className="relative flex items-center">
+                  <Input
+                    placeholder="Create a password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete={field.name}
+                    {...field}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowPassword((prev) => !prev);
+                    }}
+                    className="absolute right-20 text-muted-foreground"
+                  >
+                    {showPassword ? (
+                      <EyeIcon className="h-4 w-4" strokeWidth={2} />
+                    ) : (
+                      <EyeOffIcon className="h-4 w-4" strokeWidth={2} />
+                    )}
+                  </button>
+                </div>
               </FormControl>
               {!fieldState.invalid && (
                 <FormDescription>
@@ -110,6 +127,7 @@ const SignUpForm: FC = () => {
                 <div className="flex items-center space-x-2 px-8">
                   <Checkbox
                     {...field}
+                    id={field.name}
                     value="privacyPolicy"
                     onCheckedChange={field.onChange}
                   />
