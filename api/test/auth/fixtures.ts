@@ -68,9 +68,7 @@ export class AuthFixtures {
 
   ThenIShouldReceiveAUnauthorizedError(response: request.Response) {
     expect(response.status).toBe(401);
-    expect(response.body.errors[0].title).toEqual(
-      'Please check your login credentials',
-    );
+    expect(response.body.errors[0].title).toEqual('Invalid credentials');
   }
 
   ThenIShouldReceiveAValidToken(response: request.Response) {
