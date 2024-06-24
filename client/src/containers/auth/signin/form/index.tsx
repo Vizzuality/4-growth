@@ -77,7 +77,7 @@ const SignInForm: FC = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input autoFocus placeholder="lorem@ipsum.com" {...field} />
+                <Input autoFocus placeholder="Enter your email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

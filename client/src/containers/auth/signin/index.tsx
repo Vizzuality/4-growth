@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 
 import SignInForm from "./form";
 
-const SignUp: FC = () => {
+const SignIn: FC = () => {
   return (
     <div className="flex flex-col">
       <h2 className="mb-4 px-8 text-4xl font-semibold">Log in</h2>
@@ -28,4 +28,4 @@ const SignUp: FC = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;
