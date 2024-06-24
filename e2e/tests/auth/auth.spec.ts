@@ -29,7 +29,7 @@ test('an user signs up successfully', async ({ page }) => {
     await page.goto('/auth/signup');
 
     await page.getByLabel('Email').fill(user.email);
-    await page.getByLabel('Password').fill(user.password);
+    await page.locator('input[type="password"]').fill(user.password);
     await page.getByRole('checkbox').check();
     
     await page.getByRole('button', { name: /sign up/i }).click();
