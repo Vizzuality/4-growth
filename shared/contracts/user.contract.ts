@@ -78,4 +78,14 @@ export const userContract = contract.router({
     body: null,
     summary: 'Delete an existing user',
   },
+  deleteMe: {
+    method: 'DELETE',
+    path: API_ROUTES.users.handlers.deleteMe.getRoute(),
+    responses: {
+      200: null,
+      400: contract.type<JSONAPIError>(),
+      401: contract.type<JSONAPIError>(),
+    },
+    body: null,
+  },
 });
