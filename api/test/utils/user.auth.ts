@@ -16,7 +16,7 @@ export async function logUserIn(
 
   return {
     jwtToken: response.body.accessToken,
-    user: response.body.user,
+    user: user as User,
     password: user.password,
   };
 }
