@@ -1,6 +1,7 @@
 import { UserFixtures } from './fixtures';
 import { TestManager } from '../utils/test-manager';
 import { JwtService } from '@nestjs/jwt';
+import { v4 as uuidv4 } from 'uuid';
 
 describe('Users (e2e)', () => {
   let userTestFixtures: UserFixtures;
@@ -22,7 +23,7 @@ describe('Users (e2e)', () => {
       userTestFixtures.ThenIShouldReceiveMyUserInformation(response, user);
     });
     it('should return unauthorized error when a registered user cannot be found with the token', async () => {
-      const signedToken = jwtService.sign({ email: 'nonexisting@user.com' });
+      const signedToken = jwtService.sign({ id: uuidv4() });
       const response =
         await userTestFixtures.WhenIQueryTheMeEndpoint(signedToken);
       userTestFixtures.ThenIShouldReceiveAUnauthorizedError(response);

@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   async signIn(user: User): Promise<IAccessToken> {
-    const payload: JwtPayload = { email: user.email };
+    const payload: JwtPayload = { id: user.id };
     const accessToken: string = this.jwtService.sign(payload);
     const { password, ...userWithoutPassword } = user;
     return { user: { ...userWithoutPassword }, accessToken };
