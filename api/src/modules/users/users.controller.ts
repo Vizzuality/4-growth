@@ -68,8 +68,8 @@ export class UsersController {
     return this.usersService.update(id, dto);
   }
 
-  @Delete(':id')
-  async remove(@Param('id', ParseUUIDPipe) id: string) {
-    await this.usersService.delete(id);
+  @Delete(API_ROUTES.users.handlers.me.path)
+  async deleteMe(@GetUser() user: User) {
+    return this.usersService.delete(user.id);
   }
 }
