@@ -36,7 +36,6 @@ describe('Authentication (e2e)', () => {
       const newUser = {
         email: 'user@test.email.com',
         password: '12345678',
-        username: 'test',
       };
       await fixtures.WhenISignUpANewUser(newUser);
       await fixtures.ThenANewUserAShouldBeCreated(newUser);
