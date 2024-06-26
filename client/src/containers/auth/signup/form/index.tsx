@@ -90,7 +90,7 @@ const SignUpForm: FC = () => {
                   <Input
                     placeholder="Create a password"
                     type={showPassword ? "text" : "password"}
-                    autoComplete={field.name}
+                    autoComplete="new-password"
                     {...field}
                   />
                   <button

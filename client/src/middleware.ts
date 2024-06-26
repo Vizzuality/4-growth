@@ -1,13 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { withAuth } from "next-auth/middleware";
 
-import { getToken } from "next-auth/jwt";
+export const config = { matcher: ["/profile"] };
 
-export const config = { matcher: ["/auth/signin", "/profile"] };
-
-export async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request });
-
-  if (token && request.nextUrl.pathname.startsWith("/auth/signin")) {
-    return NextResponse.redirect(new URL("/profile", request.url));
-  }
-}
+export default withAuth({
+  pages: {
+    signIn: "/auth/signin",
+  },
+});

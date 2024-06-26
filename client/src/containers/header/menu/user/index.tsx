@@ -23,7 +23,7 @@ const Menu: FC = () => {
       {status === "authenticated" ? (
         <li className="border-t border-border">
           <Link
-            href="/auth/signin"
+            href="/profile"
             className={`${classes.link} flex items-center space-x-2`}
           >
             <Avatar className="h-8 w-8">
@@ -49,7 +49,7 @@ const Menu: FC = () => {
         <li className={classes.link}>
           <button
             type="button"
-            onClick={() => signOut()}
+            onClick={() => signOut({ callbackUrl: "/auth/signin" })}
             className="flex items-center space-x-2"
           >
             <LogOutIcon />
