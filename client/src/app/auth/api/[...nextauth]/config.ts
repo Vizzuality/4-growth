@@ -62,11 +62,16 @@ export const config = {
     }),
   ],
   callbacks: {
-    jwt({ token, user: access }) {
+    jwt({ token, user: access, trigger, session }) {
       if (access) {
         token.user = access.user;
         token.accessToken = access.accessToken;
       }
+
+      if (trigger === "update") {
+        token.user.email = session.email;
+      }
+
       return token;
     },
     session({ session, token }) {
@@ -76,6 +81,9 @@ export const config = {
         accessToken: token.accessToken,
       };
     },
+  },
+  pages: {
+    signIn: "/auth/signin",
   },
 } as NextAuthOptions;
 

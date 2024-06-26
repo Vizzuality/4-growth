@@ -6,6 +6,7 @@ import * as z from 'zod';
 import { API_ROUTES } from '@shared/contracts/routes';
 import { JSONAPIError } from '@shared/dto/errors/json-api.error';
 import { UserDto } from '@shared/dto/users/user.dto';
+import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
 
 const contract = initContract();
 export const userContract = contract.router({
@@ -35,6 +36,17 @@ export const userContract = contract.router({
       200: contract.type<UserDto>(),
       401: contract.type<JSONAPIError>(),
     },
+  },
+  updatePassword: {
+    method: 'PATCH',
+    path: API_ROUTES.users.handlers.updatePassword.getRoute(),
+    responses: {
+      200: contract.type<UserDto>(),
+      400: contract.type<JSONAPIError>(),
+      401: contract.type<JSONAPIError>(),
+    },
+    body: contract.type<UpdateUserPasswordDto>(),
+    summary: 'Update password of the user',
   },
   getUser: {
     method: 'GET',

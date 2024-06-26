@@ -6,16 +6,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center  justify-center whitespace-nowrap rounded-2xl text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:text-slate-400 disabled:bg-slate-300",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-2xl text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:text-slate-400 disabled:bg-slate-300",
   {
     variants: {
       variant: {
         default: "bg-secondary text-foreground hover:bg-primary",
-        secondary: "bg-white text-secondary-foreground hover:bg-slate-200",
+        secondary:
+          "bg-white text-secondary-foreground hover:bg-slate-200 disabled:bg-foreground/20",
         destructive:
-          "bg-secondary text-foreground hover:bg-slate-200 text-destructive",
+          "bg-transparent border border-destructive text-foreground hover:border-red-600 text-destructive hover:text-red-600",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-bluish-gray-500/35 bg-transparent hover:border-bluish-gray-500 disabled:border-bluish-gray-500/35 disabled:text-foreground/20 disabled:bg-transparent",
+        "outline-alt":
+          "border border-bluish-gray-500/35 text-primary bg-transparent hover:border-bluish-gray-500 disabled:border-bluish-gray-500/35 disabled:text-primary/20 disabled:bg-transparent",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-foreground underline-offset-[3px] underline",
       },
