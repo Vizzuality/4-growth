@@ -1,5 +1,4 @@
 import { initContract } from '@ts-rest/core';
-import { User } from '@shared/dto/users/user.entity';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 
@@ -63,20 +62,6 @@ export const userContract = contract.router({
     },
     body: contract.type<UpdateUserDto>(),
     summary: 'Update an existing user',
-  },
-  deleteUser: {
-    method: 'DELETE',
-    path: API_ROUTES.users.handlers.deleteUser.getRoute(),
-    pathParams: z.object({
-      id: z.coerce.string(),
-    }),
-    responses: {
-      200: null,
-      400: contract.type<JSONAPIError>(),
-      401: contract.type<JSONAPIError>(),
-    },
-    body: null,
-    summary: 'Delete an existing user',
   },
   deleteMe: {
     method: 'DELETE',

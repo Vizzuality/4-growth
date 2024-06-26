@@ -50,4 +50,15 @@ describe('Users (e2e)', () => {
       });
     });
   });
+  describe('Delete me', () => {
+    it('should delete my user', async () => {
+      const { jwtToken, user } = await userTestFixtures.GivenImLoggedIn();
+      await userTestFixtures.WhenIQueryTheDeleteMeEndpoint(jwtToken);
+      await userTestFixtures.ThenIShouldNotBeAbleToLoginInWithMyCredentials({
+        email: user.email,
+        password: user.password,
+      });
+      await userTestFixtures.AndMyUserShouldBeDeleted(user.id);
+    });
+  });
 });

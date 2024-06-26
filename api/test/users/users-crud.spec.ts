@@ -53,22 +53,6 @@ describe('Users CRUD (e2e)', () => {
     expect(response.body.id).toEqual(user.id);
     expect(response.body.email).toEqual(user.email);
   });
-  it('should delete a user', async () => {
-    const user = await createUser(testManager.getDataSource(), {
-      email: 'user@email.com',
-    });
-    const response = await testManager
-      .request()
-      .delete(API_ROUTES.users.controller + user.id)
-      .set('Authorization', `Bearer ${authToken}`);
-    const deletedUser = await testManager
-      .getDataSource()
-      .getRepository(User)
-      .findOne({ where: { id: user.id } });
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({});
-    expect(deletedUser).toBeNull();
-  });
   it('should update a user', async () => {
     const user = await createUser(testManager.getDataSource(), {
       email: 'user@test.com',

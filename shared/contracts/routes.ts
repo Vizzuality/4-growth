@@ -34,8 +34,8 @@ export const API_ROUTES: Record<RouteKeys, RouteConfig> = {
       getUsers: createRouteHandler('/users', '/'),
       getUser: createRouteHandler('/users', '/:id'),
       updateUser: createRouteHandler('/users', '/:id'),
-      deleteUser: createRouteHandler('/users', '/:id'),
       updatePassword: createRouteHandler('/users', '/me/password'),
+      deleteMe: createRouteHandler('/users', '/me'),
     },
   },
 };
