@@ -94,7 +94,7 @@ const SignInForm: FC = () => {
                   <Input
                     placeholder="*******"
                     type={showPassword ? "text" : "password"}
-                    autoComplete={field.name}
+                    autoComplete="current-password"
                     {...field}
                   />
                   <button
