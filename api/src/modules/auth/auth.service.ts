@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '@api/modules/users/users.service';
 import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
-import { PasswordService } from '@api/modules/auth/crypt/password.service';
+import { PasswordService } from '@api/modules/auth/password/password.service';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from '@api/modules/auth/jwt-payload.interface';
 import { IAccessToken } from '@shared/dto/auth/access-token.interface';
