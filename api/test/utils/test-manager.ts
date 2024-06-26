@@ -7,6 +7,7 @@ import { createUser } from '@shared/lib/entity-mocks';
 import { logUserIn } from './user.auth';
 import { Type } from '@nestjs/common/interfaces';
 import * as request from 'supertest';
+import { User } from '@shared/dto/users/user.entity';
 
 /**
  * @description: Abstraction for NestJS testing workflow. For now its a basic implementation to create a test app, but can be extended to encapsulate
@@ -67,6 +68,10 @@ export class TestManager<FixtureType> {
 
   async setUpTestUser() {
     const user = await createUser(this.getDataSource());
+    return logUserIn(this, user);
+  }
+
+  async logUserIn(user: Partial<User>) {
     return logUserIn(this, user);
   }
 
