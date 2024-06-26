@@ -59,17 +59,6 @@ export class UserFixtures {
     );
   }
 
-  async ThenIShouldBeAbleToLoginWithMyNewPassword(dto: SignInDto) {
-    const { email, password } = dto;
-    const response = await this.testManager
-      .request()
-      .post(API_ROUTES.auth.handlers.signIn.getRoute())
-      .send({ email, password });
-    expect(response.status).toBe(201);
-    expect(response.body.accessToken).toBeDefined();
-    expect(response.body.user.email).toEqual(email);
-  }
-
   async AndIShouldNotBeAbleToLoginWithMyOldPassword(dto: SignInDto) {
     const { email, password } = dto;
     const response = await this.testManager
@@ -107,15 +96,5 @@ export class UserFixtures {
     expect(response.status).toBe(201);
     expect(response.body.accessToken).toBeDefined();
     expect(response.body.user.email).toEqual(email);
-  }
-
-  async AndIShouldNotBeAbleToLoginWithMyOldPassword(dto: SignInDto) {
-    const { email, password } = dto;
-    const response = await this.testManager
-      .request()
-      .post(API_ROUTES.auth.handlers.signIn.getRoute())
-      .send({ email, password });
-    expect(response.status).toBe(401);
-    expect(response.body.errors[0].title).toEqual('Invalid credentials');
   }
 }
