@@ -57,3 +57,9 @@ variable "repo_name" {
   type        = string
   description = "Name of the Github repository where the code is hosted"
 }
+
+variable "cname_prefix" {
+    type        = string
+    description = "The CNAME prefix to use for the environment"
+    default = null
+}
