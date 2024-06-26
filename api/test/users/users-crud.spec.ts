@@ -73,13 +73,24 @@ describe('Users CRUD (e2e)', () => {
     const user = await createUser(testManager.getDataSource(), {
       email: 'user@test.com',
     });
+
+    const { jwtToken } = await testManager.logUserIn(user);
     const updatedUser = { email: 'new@mail.com' };
     const response = await testManager
       .request()
       .patch(API_ROUTES.users.controller + user.id)
       .send(updatedUser)
-      .set('Authorization', `Bearer ${authToken}`);
+      .set('Authorization', `Bearer ${jwtToken}`);
     expect(response.status).toBe(200);
     expect(response.body.email).toEqual(updatedUser.email);
+
+    // Previous token should work after updating the user's email
+    const userMeResponse = await testManager
+      .request()
+      .get(API_ROUTES.users.handlers.me.getRoute())
+      .set('Authorization', `Bearer ${jwtToken}`);
+
+    expect(userMeResponse.status).toBe(200);
+    expect(userMeResponse.body.email).toEqual(updatedUser.email);
   });
 });
