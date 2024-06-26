@@ -17,7 +17,7 @@ terraform {
 
 
 
-  required_version = "~> 1.3.2"
+  required_version = "~> 1.8.5"
 }
 
 data "aws_vpc" "default_vpc" {
@@ -121,7 +121,7 @@ module "github" {
     }
     variable_map = {
       NEXT_PUBLIC_API_URL                = "https://dev.4-growth.dev-vizzuality.com/api"
-      NEXTAUTH_URL                       = "https://dev.4-growth.dev-vizzuality.com"
+      NEXTAUTH_URL                       = "https://dev.4-growth.dev-vizzuality.com/auth/api"
     }
 }
 
@@ -155,11 +155,12 @@ module "staging" {
   vpc                                           = data.aws_vpc.default_vpc
   subnet_ids                                    = local.subnets_with_ec2_instance_type_offering_ids
   availability_zones                            = data.aws_availability_zones.azs_with_ec2_instance_type_offering.names
-  beanstalk_platform                            = "64bit Amazon Linux 2023 v4.3.2 running Docker"
+  beanstalk_platform                            = "64bit Amazon Linux 2023 v4.3.3 running Docker"
   beanstalk_tier                                = "WebServer"
-  ec2_instance_type                             = "t4g.small"
+  ec2_instance_type                             = "t3.medium"
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
+  cname_prefix                                  = "4-growth-staging-environment"
 }
 
 module "production" {
@@ -177,3 +178,4 @@ module "production" {
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
 }
+
