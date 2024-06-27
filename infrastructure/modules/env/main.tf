@@ -19,3 +19,22 @@ module "beanstalk" {
   elasticbeanstalk_iam_service_linked_role_name = var.elasticbeanstalk_iam_service_linked_role_name
   cname_prefix                                  = var.cname_prefix
 }
+
+module "postgresql" {
+  source = "../postgresql"
+  log_retention_period        = var.rds_log_retention_period
+  subnet_ids                  = var.subnet_ids
+  project                     = var.project
+  environment                 = var.environment
+  rds_backup_retention_period = var.rds_backup_retention_period
+  rds_user_name               = "postgres"
+  rds_engine_version          = var.rds_engine_version
+  rds_instance_class          = var.rds_instance_class
+  rds_instance_count          = var.rds_instance_count
+  tags                        = var.tags
+  vpc_id                      = var.vpc.id
+  rds_port                    = 5432
+  vpc_cidr_block              = var.vpc.cidr_block
+  availability_zones          = var.availability_zones
+  database_name               = var.project
+}
