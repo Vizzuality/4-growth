@@ -19,10 +19,18 @@ on:
 
 
 jobs:
+
   build_client:
+    environment:
+      name: ${{ github.ref_name == 'main' && 'production' || github.ref_name }}
     runs-on: ubuntu-latest
     name: Build Client image and push to Amazon ECR
     steps:
+      - name: Print environment
+        run: echo "$test"
+        env:
+          test: ${{ github.ref_name == 'main' && 'production' || github.ref_name }}
+
       - name: Checkout code
         uses: actions/checkout@v4
 

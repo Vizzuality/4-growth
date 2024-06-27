@@ -17,7 +17,7 @@ terraform {
 
 
 
-  required_version = "~> 1.8.5"
+  required_version = "~> 1.9.0"
 }
 
 data "aws_vpc" "default_vpc" {
@@ -104,26 +104,6 @@ module "iam" {
 
 // TODO: make this dynamic for all available envs with prefixed names per env
 
-module "github" {
-    source = "./modules/github"
-    repo_name = var.project_name
-    github_owner = var.github_owner
-    github_token = var.github_token
-    secret_map = {
-        TF_PROJECT_NAME                    = var.project_name
-        TF_PIPELINE_USER_ACCESS_KEY_ID     = module.iam.pipeline_user_access_key_id
-        TF_PIPELINE_USER_SECRET_ACCESS_KEY = module.iam.pipeline_user_access_key_secret
-        TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
-        TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
-        TF_AWS_REGION                      = var.aws_region
-        NEXTAUTH_SECRET                    = var.next_auth_secret
-
-    }
-    variable_map = {
-      NEXT_PUBLIC_API_URL                = "https://dev.4-growth.dev-vizzuality.com/api"
-      NEXTAUTH_URL                       = "https://dev.4-growth.dev-vizzuality.com/auth/api"
-    }
-}
 
 resource "aws_iam_service_linked_role" "elasticbeanstalk" {
   aws_service_name = "elasticbeanstalk.amazonaws.com"
@@ -144,6 +124,9 @@ module "dev" {
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
   cname_prefix                                  = "4-growth-dev-environment"
+  github_owner = var.github_owner
+  github_token = var.github_token
+  create_env = true
 }
 
 
@@ -162,6 +145,8 @@ module "staging" {
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
   cname_prefix                                  = "4-growth-staging-environment"
+  github_owner = var.github_owner
+  github_token = var.github_token
 }
 
 module "production" {
@@ -178,6 +163,22 @@ module "production" {
   ec2_instance_type                             = "t3.small"
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
-  cname_prefix                                  = "4-growth-production-environment"
+  github_owner = var.github_owner
+  github_token = var.github_token
+}
+
+module "github" {
+  source       = "./modules/github"
+  repo_name    = var.project_name
+  github_owner = var.github_owner
+  github_token = var.github_token
+  global_secret_map = {
+    TF_PROJECT_NAME                    = var.project_name
+    TF_PIPELINE_USER_ACCESS_KEY_ID     = module.iam.pipeline_user_access_key_id
+    TF_PIPELINE_USER_SECRET_ACCESS_KEY = module.iam.pipeline_user_access_key_secret
+    TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
+    TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
+    TF_AWS_REGION                      = var.aws_region
+  }
 }
 
