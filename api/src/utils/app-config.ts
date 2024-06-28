@@ -14,6 +14,11 @@ type APP_JWT_CONFIG = {
   expiresIn: string;
 };
 
+type API_CONFIG = {
+  port: number;
+  host: string;
+};
+
 /**
  * Utility functions related to app configuration.
  */
@@ -108,5 +113,9 @@ export class AppConfig {
 
   static getJWTConfig(): APP_JWT_CONFIG {
     return this.get<APP_JWT_CONFIG>('jwt');
+  }
+
+  static getApiConfig(): API_CONFIG {
+    return this.get<API_CONFIG>('api');
   }
 }

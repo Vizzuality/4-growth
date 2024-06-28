@@ -7,6 +7,10 @@
   "jwt": {
     "secret": "mysupersecretfortests",
     "expiresIn": "1d"
+  },
+  "api": {
+    "port": 4000,
+    "host": "localhost"
   }
 }
 

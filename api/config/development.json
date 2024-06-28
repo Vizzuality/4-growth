@@ -3,6 +3,10 @@
     "username": "4growth",
     "password": "4growth",
     "database": "4growth"
+  },
+  "api": {
+    "port": 4000,
+    "host": "localhost"
   }
 }
 

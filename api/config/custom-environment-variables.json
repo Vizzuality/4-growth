@@ -8,6 +8,10 @@
   "jwt": {
     "secret": "JWT_SECRET",
     "expiresIn": "JWT_EXPIRES_IN"
+  },
+  "api": {
+    "port": "API_PORT",
+    "host": "API_HOST"
   }
 }
 

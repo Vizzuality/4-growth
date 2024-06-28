@@ -4,10 +4,10 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import { createUser } from '@shared/lib/entity-mocks';
-import { logUserIn } from './user.auth';
 import { Type } from '@nestjs/common/interfaces';
 import * as request from 'supertest';
 import { User } from '@shared/dto/users/user.entity';
+import { logUserIn } from '@shared/lib/log-user-in';
 
 /**
  * @description: Abstraction for NestJS testing workflow. For now its a basic implementation to create a test app, but can be extended to encapsulate
@@ -68,11 +68,11 @@ export class TestManager<FixtureType> {
 
   async setUpTestUser() {
     const user = await createUser(this.getDataSource());
-    return logUserIn(this, user);
+    return this.logUserIn(user);
   }
 
   async logUserIn(user: Partial<User>) {
-    return logUserIn(this, user);
+    return logUserIn(this.getApp().getHttpServer(), user);
   }
 
   request() {
