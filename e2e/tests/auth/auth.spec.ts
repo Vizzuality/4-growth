@@ -42,8 +42,7 @@ test('an user signs up successfully', async ({ page }) => {
     await page.getByRole('button', { name: /log in/i }).click();
 
     await page.waitForURL('/profile')
-
-    await expect(page.getByText(user.email)).toHaveText(user.email);
+    await expect(await page.locator('input[type="email"]')).toHaveValue(user.email);
 });
 
 test('an user signs in successfully', async ({ page }) => {
@@ -60,5 +59,5 @@ test('an user signs in successfully', async ({ page }) => {
     await page.getByRole('button', { name: /log in/i }).click();
 
     await page.waitForURL('/profile')
-    await expect(page.getByText(user.email)).toHaveText(user.email);
+    await expect(await page.locator('input[type="email"]')).toHaveValue(user.email);
 })
