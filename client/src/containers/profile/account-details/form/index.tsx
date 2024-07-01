@@ -120,6 +120,7 @@ const AccountDetailsForm: FC = () => {
               <FormControl>
                 <div className="relative flex items-center">
                   <Input
+                    type="email"
                     autoComplete={field.name}
                     readOnly={!isEditing}
                     onKeyDown={handleEnterKey}
