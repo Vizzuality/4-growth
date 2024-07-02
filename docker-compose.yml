@@ -18,7 +18,7 @@ services:
       dockerfile: client/Dockerfile
       args:
         NEXT_PUBLIC_API_URL: "http://api:4000"
-        NEXTAUTH_SECRET: "7YWG6xGr8PzPWGpZteadxdqGjm/uyu/Qi48ArBpG4ag="
+        NEXTAUTH_SECRET: "mysupersecret"
         NEXTAUTH_URL: "http://client:3000/auth/api"
     ports:
       - "3000:3000"
