@@ -43,6 +43,9 @@ export class CustomChart {
   @Column({ type: 'enum', enum: INDICATORS })
   indicator: INDICATORS;
 
+  @Column({ type: 'boolean', name: 'is_public', default: false })
+  isPublic: boolean;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
