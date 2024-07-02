@@ -15,14 +15,9 @@ export default defineConfig({
             reuseExistingServer: !process.env.CI,
         },
         {
-            command: 'pnpm --filter client run build && pnpm --filter client run start',
+            command: 'NODE_ENV=test pnpm --filter client run build && NODE_ENV=test pnpm --filter client run start',
             url: APP_URL,
             reuseExistingServer: !process.env.CI,
-            env: {
-                NEXTAUTH_SECRET: '7YWG6xGr8PzPWGpZteadxdqGjm/uyu/Qi48ArBpG4ag=',
-                NEXTAUTH_URL: `${APP_URL}/auth/api`,
-                NEXT_PUBLIC_API_URL: API_URL
-            },
         },
     ],
     testDir: './tests',
