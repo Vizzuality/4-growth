@@ -2,6 +2,7 @@ import { DataSource } from 'typeorm';
 import { User } from '@shared/dto/users/user.entity';
 import { createUser } from '@shared/lib/entity-mocks';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
+import { DB_ENTITIES } from '@shared/lib/db-entities';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -10,7 +11,7 @@ const AppDataSource = new DataSource({
   username: '4growth',
   password: '4growth',
   database: '4growth',
-  entities: [User],
+  entities: DB_ENTITIES,
 });
 
 export class E2eTestManager {
