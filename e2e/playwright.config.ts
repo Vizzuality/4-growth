@@ -10,7 +10,7 @@ export default defineConfig({
     /* Run your local dev server before starting the tests */
     webServer: [
         {
-            command: 'pnpm --filter api run build && pnpm --filter api run start:prod',
+            command: 'pnpm --filter api run build && NODE_ENV=test pnpm --filter api run start:prod',
             url: API_URL,
             reuseExistingServer: !process.env.CI,
         },
