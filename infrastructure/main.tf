@@ -104,26 +104,6 @@ module "iam" {
 
 // TODO: make this dynamic for all available envs with prefixed names per env
 
-module "github" {
-    source = "./modules/github"
-    repo_name = var.project_name
-    github_owner = var.github_owner
-    github_token = var.github_token
-    secret_map = {
-        TF_PROJECT_NAME                    = var.project_name
-        TF_PIPELINE_USER_ACCESS_KEY_ID     = module.iam.pipeline_user_access_key_id
-        TF_PIPELINE_USER_SECRET_ACCESS_KEY = module.iam.pipeline_user_access_key_secret
-        TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
-        TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
-        TF_AWS_REGION                      = var.aws_region
-        NEXTAUTH_SECRET                    = var.next_auth_secret
-
-    }
-    variable_map = {
-      NEXT_PUBLIC_API_URL                = "https://dev.4-growth.dev-vizzuality.com/api"
-      NEXTAUTH_URL                       = "https://dev.4-growth.dev-vizzuality.com/auth/api"
-    }
-}
 
 resource "aws_iam_service_linked_role" "elasticbeanstalk" {
   aws_service_name = "elasticbeanstalk.amazonaws.com"
@@ -144,6 +124,11 @@ module "dev" {
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
   cname_prefix                                  = "4-growth-dev-environment"
+  rds_instance_class                            = "db.t3.medium"
+  rds_engine_version                            = "15.5"
+  rds_backup_retention_period                   = 7
+  github_owner = var.github_owner
+  github_token = var.github_token
 }
 
 
@@ -162,6 +147,8 @@ module "staging" {
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
   cname_prefix                                  = "4-growth-staging-environment"
+  github_owner = var.github_owner
+  github_token = var.github_token
 }
 
 module "production" {
@@ -173,11 +160,12 @@ module "production" {
   vpc                                           = data.aws_vpc.default_vpc
   subnet_ids                                    = local.subnets_with_ec2_instance_type_offering_ids
   availability_zones                            = data.aws_availability_zones.azs_with_ec2_instance_type_offering.names
-  beanstalk_platform                            = "64bit Amazon Linux 2023 v4.3.3 running Docker"
+  beanstalk_platform                            = "64bit Amazon Linux 2023 v4.3.2 running Docker"
   beanstalk_tier                                = "WebServer"
-  ec2_instance_type                             = "t3.small"
+  ec2_instance_type                             = "m5a.large"
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
-  cname_prefix                                  = "4-growth-production-environment"
+  github_owner = var.github_owner
+  github_token = var.github_token
 }
 

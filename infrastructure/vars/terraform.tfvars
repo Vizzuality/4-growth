@@ -5,3 +5,6 @@ project_name="4-growth"
 github_owner="Vizzuality"
 github_token=""
 next_auth_secret=""
+rds_engine_version = "15.5"
+rds_instance_class = "db.t3.micro"
+staging_rds_backup_retention_period = 3

@@ -38,3 +38,23 @@ module "postgresql" {
   availability_zones          = var.availability_zones
   database_name               = var.project
 }
+
+module "github" {
+  source = "../github"
+  repo_name = var.project_name
+  github_owner = var.github_owner
+  github_token = var.github_token
+  secret_map = {
+    TF_PROJECT_NAME                    = var.project_name
+    TF_PIPELINE_USER_ACCESS_KEY_ID     = module.iam.pipeline_user_access_key_id
+    TF_PIPELINE_USER_SECRET_ACCESS_KEY = module.iam.pipeline_user_access_key_secret
+    TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
+    TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
+    TF_AWS_REGION                      = var.aws_region
+    NEXTAUTH_SECRET                    = var.next_auth_secret
+  }
+  variable_map = {
+    NEXT_PUBLIC_API_URL                = "https://dev.4-growth.dev-vizzuality.com/api"
+    NEXTAUTH_URL                       = "https://dev.4-growth.dev-vizzuality.com/auth/api"
+  }
+}
