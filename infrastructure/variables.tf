@@ -67,6 +67,10 @@ variable "rds_backup_retention_period" {
   description = "Time in days to keep db backups"
 }
 
+variable "auth_credentials" {
+  type        = string
+  description = "Basic Auth credentials"
+}
 
 
 
