@@ -74,6 +74,7 @@ jobs:
             NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}
             NEXTAUTH_URL=${{ vars.NEXTAUTH_URL }}
             NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
+            AUTH_CREDENTIALS=${{ secrets.TF_AUTH_CREDENTIALS }}
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max

@@ -179,6 +179,7 @@ module "github" {
     TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
     TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
     TF_AWS_REGION                      = var.aws_region
+    TF_AUTH_CREDENTIALS                = var.auth_credentials
   }
 }
 

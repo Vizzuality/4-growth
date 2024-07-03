@@ -15,6 +15,7 @@ export const env = createEnv({
       process.env.VERCEL ? z.string() : z.string().url().min(1),
     ),
     NEXTAUTH_SECRET: z.string().min(1),
+    AUTH_CREDENTIALS: z.string().min(3).includes(":").optional(),
   },
   /*
    * Environment variables available on the client (and server).
@@ -33,6 +34,7 @@ export const env = createEnv({
   runtimeEnv: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    AUTH_CREDENTIALS: process.env.AUTH_CREDENTIALS,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
 });
