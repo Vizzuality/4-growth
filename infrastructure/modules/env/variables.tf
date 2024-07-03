@@ -78,11 +78,13 @@ variable "github_token" {
 variable "rds_instance_class" {
   type        = string
   description = "Instance type of Aurora PostgreSQL server"
+  default = null
 }
 
 variable "rds_engine_version" {
   type        = string
   description = "RDS Database engine version"
+  default = null
 }
 
 variable "rds_instance_count" {
@@ -101,4 +103,9 @@ variable "rds_backup_retention_period" {
   type        = number
   default     = 7
   description = "Time in days to keep db backups"
+}
+
+variable "create_env"{
+    type = bool
+    default = false
 }

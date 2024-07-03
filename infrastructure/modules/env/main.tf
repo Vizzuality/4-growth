@@ -1,4 +1,7 @@
-
+resource "random_string" "next_auth_secret"{
+  length = 64
+  special = true
+}
 
 module "beanstalk" {
   source = "../beanstalk"
@@ -20,7 +23,9 @@ module "beanstalk" {
   cname_prefix                                  = var.cname_prefix
 }
 
+
 module "postgresql" {
+  count = var.rds_instance_class == null ? 0 : 1
   source = "../postgresql"
   log_retention_period        = var.rds_log_retention_period
   subnet_ids                  = var.subnet_ids
@@ -41,20 +46,17 @@ module "postgresql" {
 
 module "github" {
   source = "../github"
-  repo_name = var.project_name
+  repo_name    = var.project
   github_owner = var.github_owner
   github_token = var.github_token
-  secret_map = {
-    TF_PROJECT_NAME                    = var.project_name
-    TF_PIPELINE_USER_ACCESS_KEY_ID     = module.iam.pipeline_user_access_key_id
-    TF_PIPELINE_USER_SECRET_ACCESS_KEY = module.iam.pipeline_user_access_key_secret
-    TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
-    TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
-    TF_AWS_REGION                      = var.aws_region
-    NEXTAUTH_SECRET                    = var.next_auth_secret
+  github_environment = var.environment
+  environment_secret_map = {
+    NEXTAUTH_SECRET = random_string.next_auth_secret.result
   }
-  variable_map = {
-    NEXT_PUBLIC_API_URL                = "https://dev.4-growth.dev-vizzuality.com/api"
-    NEXTAUTH_URL                       = "https://dev.4-growth.dev-vizzuality.com/auth/api"
+  // TODO: we need to pass a optional custom value per env
+  environment_variable_map = {
+    NEXT_PUBLIC_API_URL = "https://${var.environment}.4-growth.dev-vizzuality.com/api"
+    NEXTAUTH_URL        = "https://${var.environment}.dev.4-growth.dev-vizzuality.com/auth/api"
   }
 }
+

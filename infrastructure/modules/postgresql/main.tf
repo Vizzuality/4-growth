@@ -81,14 +81,13 @@ resource "aws_secretsmanager_secret_version" "postgresql-admin" {
   })
 }
 
-data "template_file" "secrets_postgresql-writer" {
-  template = file("${path.module}/iam_policy_secrets_read.json.tpl")
-  vars     = {
+locals {
+  secrets_postgresql_writer = templatefile("${path.module}/iam_policy_secrets_read.json.tpl", {
     secret_arn = aws_secretsmanager_secret.postgresql-admin.arn
-  }
+  })
 }
 
 resource "aws_iam_policy" "secrets_postgresql-writer" {
   name   = "${var.project}-${var.environment}-secrets-postgresql-writer"
-  policy = data.template_file.secrets_postgresql-writer.rendered
+  policy = local.secrets_postgresql_writer
 }
