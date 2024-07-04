@@ -130,6 +130,13 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
         uses: docker/build-push-action@v5
         with:
+          build-args: |
+            DB_HOST=${{ secrets.DB_HOST }}
+            DB_PORT=${{ secrets.DB_PORT }}
+            DB_NAME=${{ secrets.DB_NAME }}
+            DB_USERNAME=${{ secrets.DB_USERNAME }}
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max
