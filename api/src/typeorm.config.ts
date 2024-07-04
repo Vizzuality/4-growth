@@ -17,4 +17,10 @@ export const typeOrmConfig: DataSourceOptions = {
   database: dbConfig.database,
   entities: DB_ENTITIES,
   synchronize: true,
+  extra: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 };
