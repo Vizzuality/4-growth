@@ -14,10 +14,6 @@ on:
       - '.github/workflows/*'
       - 'infrastructure/**'
 
-## TODO: Add jobs to configure env vars for both client and api
-
-
-
 jobs:
 
   build_client:
@@ -85,6 +81,8 @@ jobs:
             ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_CLIENT_REPOSITORY_NAME }}:${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
 
   build_api:
+    environment:
+      name: ${{ github.ref_name == 'main' && 'production' || github.ref_name }}
     runs-on: ubuntu-latest
     name: Build API image and push to Amazon ECR
     steps:
@@ -146,6 +144,8 @@ jobs:
     name: Deploy Services to Amazon EBS
     needs: [build_client, build_api]
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref_name == 'main' && 'production' || github.ref_name }}
 
     steps:
       - name: Checkout code
