@@ -105,7 +105,3 @@ variable "rds_backup_retention_period" {
   description = "Time in days to keep db backups"
 }
 
-variable "create_env"{
-    type = bool
-    default = false
-}
