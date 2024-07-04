@@ -195,12 +195,8 @@ jobs:
           echo "  api:" >> docker-compose.yml
           echo "    image: $ECR_REGISTRY/$ECR_REPOSITORY_API:$IMAGE_TAG" >> docker-compose.yml
           echo "    restart: always" >> docker-compose.yml
-          echo "    environment:" >> docker-compose.yml
-          echo "      - DB_HOST=postgres" >> docker-compose.yml
           echo "    ports:" >> docker-compose.yml
           echo "      - 4000:4000" >> docker-compose.yml
-          echo "    depends_on:" >> docker-compose.yml
-          echo "      - postgres" >> docker-compose.yml
           echo "  nginx:" >> docker-compose.yml
           echo "    image: nginx" >> docker-compose.yml
           echo "    restart: always" >> docker-compose.yml
@@ -212,14 +208,6 @@ jobs:
           echo "    depends_on:" >> docker-compose.yml
           echo "      - api" >> docker-compose.yml
           echo "      - client" >> docker-compose.yml
-          echo "  postgres:" >> docker-compose.yml
-          echo "    image: postgres:13" >> docker-compose.yml
-          echo "    ports:" >> docker-compose.yml
-          echo "      - 5432:5432" >> docker-compose.yml
-          echo "    environment:" >> docker-compose.yml
-          echo "      - POSTGRES_USER=4growth" >> docker-compose.yml
-          echo "      - POSTGRES_PASSWORD=4growth" >> docker-compose.yml
-          echo "      - POSTGRES_DB=4growth" >> docker-compose.yml
 
       - name: Upload Docker Compose File as Artifact
         uses: actions/upload-artifact@v2
