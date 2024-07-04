@@ -1,7 +1,4 @@
-resource "random_string" "next_auth_secret"{
-  length = 64
-  special = true
-}
+
 
 module "beanstalk" {
   source = "../beanstalk"
@@ -50,13 +47,8 @@ module "github" {
   github_owner = var.github_owner
   github_token = var.github_token
   github_environment = var.environment
-  environment_secret_map = {
-    NEXTAUTH_SECRET = random_string.next_auth_secret.result
-  }
+  environment_secret_map = merge(local.api_secret_env_vars, local.client_secret_env_vars)
   // TODO: we need to pass a optional custom value per env
-  environment_variable_map = {
-    NEXT_PUBLIC_API_URL = "https://${var.environment}.4-growth.dev-vizzuality.com/api"
-    NEXTAUTH_URL        = "https://${var.environment}.dev.4-growth.dev-vizzuality.com/auth/api"
-  }
+  environment_variable_map = merge(local.api_env_vars, local.client_env_vars)
 }
 
