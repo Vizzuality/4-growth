@@ -39,15 +39,15 @@ variable "next_auth_secret" {
 #
 # RDS configuration
 #
-variable "rds_instance_class" {
-  type        = string
-  description = "Instance type of Aurora PostgreSQL server"
-}
-
-variable "rds_engine_version" {
-  type        = string
-  description = "RDS Database engine version"
-}
+# variable "rds_instance_class" {
+#   type        = string
+#   description = "Instance type of Aurora PostgreSQL server"
+# }
+#
+# variable "rds_engine_version" {
+#   type        = string
+#   description = "RDS Database engine version"
+# }
 
 variable "rds_instance_count" {
   type        = number
