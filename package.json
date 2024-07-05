@@ -6,7 +6,7 @@
     "api:deps": "pnpm --filter api install",
     "api:dev": "pnpm --filter api run start:dev",
     "api:build": "pnpm --filter api run build",
-    "api:prod": "pnpm --filter api run start:prod",
+    "api:prod": "NODE_ENV=production pnpm --filter api run start:prod",
     "client:deps": "pnpm --filter client install",
     "client:dev": "pnpm --filter client run dev",
     "client:build": "pnpm --filter client run build",
