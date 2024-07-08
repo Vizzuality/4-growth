@@ -8,12 +8,21 @@ import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
+import { AppBaseService } from '@api/utils/app-base.service';
+import { AppInfoDTO } from '@api/utils/info.dto';
 
 @Injectable()
-export class UsersService {
+export class UsersService extends AppBaseService<
+  User,
+  CreateUserDto,
+  UpdateUserDto,
+  AppInfoDTO
+> {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
-  ) {}
+  ) {
+    super(userRepository);
+  }
 
   async createUser(createUserDto: CreateUserDto) {
     const existingUser = await this.findByEmail(createUserDto.email);
