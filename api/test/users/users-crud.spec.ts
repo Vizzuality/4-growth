@@ -31,9 +31,10 @@ describe('Users CRUD (e2e)', () => {
       .request()
       .get(API_ROUTES.users.handlers.getUsers.getRoute())
       .set('Authorization', `Bearer ${authToken}`);
+
     expect(response.status).toBe(200);
-    expect(response.body).toHaveLength(4); // + 1 for the test user
-    expect(response.body).toEqual(
+    expect(response.body.data).toHaveLength(4); // + 1 for the test user
+    expect(response.body.data).toEqual(
       expect.arrayContaining(
         createdUsers.map((user) =>
           expect.objectContaining({ id: user.id, email: user.email }),
