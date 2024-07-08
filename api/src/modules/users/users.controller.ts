@@ -19,6 +19,10 @@ import { GetUser } from '@api/decorators/get-user.decorator';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
 import { API_ROUTES } from '@shared/contracts/routes';
 import { AuthService } from '@api/modules/auth/auth.service';
+import {
+  FetchSpecification,
+  ProcessFetchSpecification,
+} from 'nestjs-base-service';
 
 @Controller('users')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -34,8 +38,11 @@ export class UsersController {
   }
 
   @Get()
-  async find(): Promise<User[]> {
-    return this.usersService.find();
+  async find(
+    @ProcessFetchSpecification({ allowedFilters: ['test'] })
+    fetchSpecificacion: FetchSpecification,
+  ) {
+    return this.usersService.findAllPaginated(fetchSpecificacion);
   }
 
   @Get(API_ROUTES.users.handlers.me.path)
