@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
-    <div className="grid h-full grid-cols-12 space-x-0.5">
-      <div className="col-span-2 flex h-full flex-col space-y-0.5">
+    <div className="grid h-full grid-cols-12 gap-0.5">
+      <div className="col-span-2 flex h-full flex-col gap-0.5">
         <Header />
         <div className="h-full rounded-2xl bg-[url('/images/profile.avif')] bg-cover bg-center bg-no-repeat" />
       </div>

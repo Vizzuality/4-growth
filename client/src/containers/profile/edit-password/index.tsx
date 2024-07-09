@@ -6,7 +6,7 @@ import EditPasswordForm from "./form";
 
 const EditPassword: FC = () => {
   return (
-    <Card className="px-0">
+    <Card className="h-full px-0">
       <CardTitle className="pl-8">Edit Password</CardTitle>
       <div className="flex flex-col">
         <EditPasswordForm />
