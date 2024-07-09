@@ -1,10 +1,8 @@
 import { genSalt, hash } from 'bcrypt';
 import { DataSource, DeepPartial } from 'typeorm';
 import { User } from '@shared/dto/users/user.entity';
-import {
-  CustomChart,
-  INDICATORS,
-} from '@shared/dto/custom-charts/custom-chart.entity';
+import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
+import { INDICATORS } from '@shared/dto/custom-charts/custom-chart.constants';
 import {
   CHART_FILTER_ATTRIBUTES,
   ChartFilter,

@@ -11,19 +11,7 @@ import {
 import { User } from '@shared/dto/users/user.entity';
 import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
 
-export enum CUSTOM_CHART_TYPE {
-  MAP = 'map',
-  BAR = 'bar',
-  DOUGHNUT = 'doughnut',
-  STACKED_BAR = 'stacked_bar',
-}
-
-// TODO: We don't really know if this will be a enum, a table, or where to get the values from
-
-export enum INDICATORS {
-  DIGITAL_TECHNOLOGIES = 'digital_technologies',
-  GOALS_OR_CHALLENGES = 'goals_or_challenges',
-}
+import { INDICATORS, CUSTOM_CHART_TYPE } from './custom-chart.constants';
 
 @Entity({ name: 'custom_charts' })
 export class CustomChart {

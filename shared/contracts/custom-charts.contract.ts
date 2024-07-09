@@ -46,7 +46,7 @@ export const customChartsContract = contract.router({
     pathParams: contract.type<{ id: string }>(),
     body: null,
     responses: {
-      201: contract.type<null>(),
+      200: contract.type<null>(),
       400: contract.type<JSONAPIError>(),
     },
   },
