@@ -7,6 +7,8 @@ import { API_ROUTES } from '@shared/contracts/routes';
 import { JSONAPIError } from '@shared/dto/errors/json-api.error';
 import { UserDto } from '@shared/dto/users/user.dto';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
+import { FetchSpecification } from 'nestjs-base-service';
+import { ApiResponse } from '@shared/dto/global/api-response.dto';
 
 const contract = initContract();
 export const userContract = contract.router({
@@ -24,10 +26,11 @@ export const userContract = contract.router({
     method: 'GET',
     path: API_ROUTES.users.handlers.getUsers.getRoute(),
     responses: {
-      200: contract.type<UserDto[]>(),
+      200: contract.type<ApiResponse<UserDto>>(),
       400: contract.type<{ message: string }>(),
     },
     summary: 'Get all users',
+    query: contract.type<FetchSpecification>(),
   },
   findMe: {
     method: 'GET',
