@@ -2,12 +2,9 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
-  Delete,
-  Get,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
-  Patch,
-  Post,
   UnauthorizedException,
   UseInterceptors,
 } from '@nestjs/common';
@@ -17,14 +14,15 @@ import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { GetUser } from '@api/decorators/get-user.decorator';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
-import { API_ROUTES } from '@shared/contracts/routes';
 import { AuthService } from '@api/modules/auth/auth.service';
 import {
   FetchSpecification,
   ProcessFetchSpecification,
 } from 'nestjs-base-service';
+import { tsRestHandler, TsRestHandler } from '@ts-rest/nest';
+import { userContract as c } from '@shared/contracts/user.contract';
 
-@Controller('users')
+@Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(
@@ -32,51 +30,82 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
-  @Post()
-  async save(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.createUser(createUserDto);
+  @TsRestHandler(c.createUser)
+  async createUser(@Body() createUserDto: CreateUserDto): Promise<any> {
+    return tsRestHandler(c.createUser, async () => {
+      const user = await this.usersService.createUser(createUserDto);
+      return { body: { data: user }, status: HttpStatus.CREATED };
+    });
   }
 
-  @Get()
-  async find(
-    @ProcessFetchSpecification()
-    fetchSpecificacion: FetchSpecification,
-  ) {
-    return this.usersService.findAllPaginated(fetchSpecificacion);
+  @TsRestHandler(c.getUsers)
+  async getUsers(
+    @ProcessFetchSpecification() fetchSpecificacion: FetchSpecification,
+  ): Promise<any> {
+    return tsRestHandler(c.getUsers, async () => {
+      const users =
+        await this.usersService.findAllPaginated(fetchSpecificacion);
+      return { body: users, status: HttpStatus.OK };
+    });
   }
 
-  @Get(API_ROUTES.users.handlers.me.path)
-  async findMe(@GetUser() user: User) {
-    const foundUser = await this.usersService.getById(user.id);
-    if (!foundUser) {
-      throw new UnauthorizedException();
-    }
-    return foundUser;
+  @TsRestHandler(c.findMe)
+  async findMe(@GetUser() user: User): Promise<any> {
+    return tsRestHandler(c.findMe, async ({ query }) => {
+      const foundUser = await this.usersService.getById(user.id, query);
+      if (!foundUser) {
+        throw new UnauthorizedException();
+      }
+      return { body: { data: foundUser }, status: HttpStatus.OK };
+    });
   }
 
-  @Patch(API_ROUTES.users.handlers.updatePassword.path)
+  @TsRestHandler(c.updatePassword)
   async updatePassword(
     @Body() dto: UpdateUserPasswordDto,
     @GetUser() user: User,
-  ) {
-    return this.authService.updatePassword(user.id, dto);
+  ): Promise<any> {
+    return tsRestHandler(c.updatePassword, async () => {
+      const updatedUser = await this.authService.updatePassword(user.id, dto);
+      return { body: { data: updatedUser }, status: HttpStatus.OK };
+    });
   }
 
-  @Get(':id')
-  async findOneBy(@Param('id', ParseUUIDPipe) id: string) {
-    return this.usersService.getById(id);
+  @TsRestHandler(c.getUser)
+  async getUser(@Param('id', ParseUUIDPipe) id: string): Promise<any> {
+    return tsRestHandler(c.getUser, async ({ query }) => {
+      const user = await this.usersService.getById(id, query);
+      return { body: user, status: HttpStatus.OK };
+    });
   }
 
-  @Patch(':id')
+  @TsRestHandler(c.updateUser)
   async update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: UpdateUserDto,
-  ) {
-    return this.usersService.update(id, dto);
+  ): Promise<any> {
+    return tsRestHandler(c.updateUser, async () => {
+      const user = await this.usersService.update(id, dto);
+      return { body: user, status: HttpStatus.CREATED };
+    });
   }
 
-  @Delete(API_ROUTES.users.handlers.me.path)
-  async deleteMe(@GetUser() user: User) {
-    return this.usersService.remove(user.id);
+  @TsRestHandler(c.deleteMe)
+  async deleteMe(@GetUser() user: User): Promise<any> {
+    return tsRestHandler(c.deleteMe, async () => {
+      await this.usersService.remove(user.id);
+      return { body: null, status: HttpStatus.OK };
+    });
+  }
+
+  @TsRestHandler(c.getUsersCustomCharts)
+  async getCustomChart(@Param('id', ParseUUIDPipe) id: string): Promise<any> {
+    return tsRestHandler(c.getUsersCustomCharts, async ({ query }) => {
+      const customChart = await this.usersService.getUsersCustomCharts(
+        id,
+        query,
+      );
+      return { body: customChart, status: HttpStatus.OK };
+    });
   }
 }

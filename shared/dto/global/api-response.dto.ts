@@ -27,5 +27,9 @@ export class PaginationMeta {
 
 export class ApiResponse<T> {
   data: T;
+}
+
+export class ApiPaginationResponse<T> {
+  data: Partial<T>[];
   meta?: PaginationMeta;
 }
