@@ -27,13 +27,14 @@ export abstract class AppBaseService<
 
   async findAllPaginated(
     fetchSpecification?: FetchSpecification,
+    extraOps?: Record<string, any>,
     info?: Info,
   ): Promise<{
     data: (Partial<Entity> | undefined)[];
     metadata: PaginationMeta | undefined;
   }> {
     const entitiesAndCount: [Partial<Entity>[], number] = await this.findAll(
-      fetchSpecification,
+      { ...fetchSpecification, ...extraOps },
       info,
     );
     return this._paginate(entitiesAndCount, fetchSpecification);

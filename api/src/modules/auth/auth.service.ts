@@ -45,7 +45,7 @@ export class AuthService {
   async updatePassword(
     userid: string,
     dto: UpdateUserPasswordDto,
-  ): Promise<void> {
+  ): Promise<User> {
     const user = await this.usersService.findOneBy(userid);
     const isPasswordValid = await this.passwordService.comparePassword(
       dto.currentPassword,
@@ -58,6 +58,6 @@ export class AuthService {
       dto.newPassword,
     );
     user.password = newPasswordHash;
-    await this.usersService.update(userid, user);
+    return this.usersService.update(userid, user);
   }
 }
