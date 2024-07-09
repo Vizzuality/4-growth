@@ -148,6 +148,12 @@ locals {
       namespace = "aws:elbv2:listener:443"
       name      = "SSLCertificateArns"
       value     = var.acm_certificate.arn
+    },
+    // Health check path
+    {
+      namespace = "aws:elasticbeanstalk:environment:process:default"
+      name      = "HealthCheckPath"
+      value     = "/health"
     }
   ]
 }
