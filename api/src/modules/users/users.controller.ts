@@ -39,15 +39,15 @@ export class UsersController {
 
   @Get()
   async find(
-    @ProcessFetchSpecification({ allowedFilters: ['test'] })
+    @ProcessFetchSpecification()
     fetchSpecificacion: FetchSpecification,
   ) {
     return this.usersService.findAllPaginated(fetchSpecificacion);
   }
 
   @Get(API_ROUTES.users.handlers.me.path)
-  async findMe(@GetUser() user: User): Promise<User> {
-    const foundUser = await this.usersService.findOneBy(user.id);
+  async findMe(@GetUser() user: User) {
+    const foundUser = await this.usersService.getById(user.id);
     if (!foundUser) {
       throw new UnauthorizedException();
     }
@@ -64,7 +64,7 @@ export class UsersController {
 
   @Get(':id')
   async findOneBy(@Param('id', ParseUUIDPipe) id: string) {
-    return this.usersService.findOneBy(id);
+    return this.usersService.getById(id);
   }
 
   @Patch(':id')
@@ -77,6 +77,6 @@ export class UsersController {
 
   @Delete(API_ROUTES.users.handlers.me.path)
   async deleteMe(@GetUser() user: User) {
-    return this.usersService.delete(user.id);
+    return this.usersService.remove(user.id);
   }
 }
