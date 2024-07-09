@@ -1,6 +1,6 @@
 {
   "name": "4-growth",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "4-growth platform",
   "scripts": {
     "api:deps": "pnpm --filter api install",
