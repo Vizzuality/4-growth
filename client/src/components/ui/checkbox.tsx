@@ -16,7 +16,7 @@ const checkboxVariants = cva(
         default:
           "border-bluish-gray-500 enabled:hover:border-white focus-visible:ring-offset-primary data-[state=checked]:bg-white data-[state=checked]:border-primary data-[state=checked]:text-primary focus-visible:ring-white",
         secondary:
-          "border-bluish-gray-500 enabled:hover:border-primary focus-visible:ring-offset-white data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-white focus-visible:ring-primary",
+          "border-bluish-gray-500 enabled:hover:border-primary focus-visible:ring-offset-white data-[state=checked]:bg-navy-700 data-[state=checked]:border-primary data-[state=checked]:text-white focus-visible:ring-primary",
       },
     },
     defaultVariants: {

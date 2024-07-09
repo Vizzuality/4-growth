@@ -24,9 +24,6 @@ COPY shared ./shared
 
 RUN pnpm client:deps
 
-
-
-
 RUN pnpm client:build
 
 EXPOSE 3000

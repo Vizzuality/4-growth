@@ -24,7 +24,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "flex grow break-inside-avoid flex-col overflow-hidden rounded-2xl bg-navy-800 p-8",
+        "flex grow break-inside-avoid flex-col overflow-hidden rounded-2xl bg-navy-900 p-8",
         className,
       )}
     >
