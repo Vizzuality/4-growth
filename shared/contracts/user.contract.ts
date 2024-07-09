@@ -1,22 +1,24 @@
 import { initContract } from '@ts-rest/core';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
-
 import * as z from 'zod';
-import { API_ROUTES } from '@shared/contracts/routes';
 import { JSONAPIError } from '@shared/dto/errors/json-api.error';
 import { UserDto } from '@shared/dto/users/user.dto';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
 import { FetchSpecification } from 'nestjs-base-service';
-import { ApiResponse } from '@shared/dto/global/api-response.dto';
+import {
+  ApiPaginationResponse,
+  ApiResponse,
+} from '@shared/dto/global/api-response.dto';
+import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 
 const contract = initContract();
 export const userContract = contract.router({
   createUser: {
     method: 'POST',
-    path: API_ROUTES.users.handlers.createUser.getRoute(),
+    path: '/users',
     responses: {
-      201: contract.type<UserDto>(),
+      201: contract.type<ApiResponse<UserDto>>(),
       400: contract.type<{ message: string }>(),
     },
     body: contract.type<CreateUserDto>(),
@@ -24,9 +26,9 @@ export const userContract = contract.router({
   },
   getUsers: {
     method: 'GET',
-    path: API_ROUTES.users.handlers.getUsers.getRoute(),
+    path: '/users',
     responses: {
-      200: contract.type<ApiResponse<UserDto>>(),
+      200: contract.type<ApiPaginationResponse<UserDto>>(),
       400: contract.type<{ message: string }>(),
     },
     summary: 'Get all users',
@@ -34,17 +36,18 @@ export const userContract = contract.router({
   },
   findMe: {
     method: 'GET',
-    path: API_ROUTES.users.handlers.me.getRoute(),
+    path: '/users/me',
     responses: {
-      200: contract.type<UserDto>(),
+      200: contract.type<ApiResponse<UserDto>>(),
       401: contract.type<JSONAPIError>(),
     },
+    query: contract.type<FetchSpecification>(),
   },
   updatePassword: {
     method: 'PATCH',
-    path: API_ROUTES.users.handlers.updatePassword.getRoute(),
+    path: '/users/me/password',
     responses: {
-      200: contract.type<UserDto>(),
+      200: contract.type<ApiResponse<UserDto>>(),
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
     },
@@ -53,7 +56,7 @@ export const userContract = contract.router({
   },
   getUser: {
     method: 'GET',
-    path: API_ROUTES.users.handlers.getUser.getRoute(),
+    path: '/users/:id',
     pathParams: z.object({
       id: z.coerce.string(),
     }),
@@ -62,16 +65,17 @@ export const userContract = contract.router({
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
     },
+    query: contract.type<FetchSpecification>(),
     summary: 'Get a user by id',
   },
   updateUser: {
     method: 'PATCH',
-    path: API_ROUTES.users.handlers.updateUser.getRoute(),
+    path: '/users/:id',
     pathParams: z.object({
       id: z.coerce.string(),
     }),
     responses: {
-      200: contract.type<UserDto>(),
+      200: contract.type<ApiResponse<UserDto>>(),
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
     },
@@ -80,12 +84,22 @@ export const userContract = contract.router({
   },
   deleteMe: {
     method: 'DELETE',
-    path: API_ROUTES.users.handlers.deleteMe.getRoute(),
+    path: '/users/me',
     responses: {
       200: null,
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
     },
     body: null,
+  },
+  getUsersCustomCharts: {
+    method: 'GET',
+    path: '/users/:id/custom-charts',
+    pathParams: z.object({ id: z.string() }),
+    query: contract.type<FetchSpecification>(),
+    responses: {
+      200: contract.type<ApiPaginationResponse<CustomChart>>(),
+      400: contract.type<JSONAPIError>(),
+    },
   },
 });

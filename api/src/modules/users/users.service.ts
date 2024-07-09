@@ -6,6 +6,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { AppBaseService } from '@api/utils/app-base.service';
 import { AppInfoDTO } from '@api/utils/info.dto';
+import { FetchSpecification } from 'nestjs-base-service';
+import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.service';
 
 @Injectable()
 export class UsersService extends AppBaseService<
@@ -16,6 +18,7 @@ export class UsersService extends AppBaseService<
 > {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
+    private readonly customChartService: CustomChartsService,
   ) {
     super(userRepository);
   }
@@ -27,7 +30,7 @@ export class UsersService extends AppBaseService<
         `Email ${createUserDto.email} already exists`,
       );
     }
-    await this.userRepository.save(createUserDto);
+    return this.userRepository.save(createUserDto);
   }
 
   async findOneBy(id: string) {
@@ -38,5 +41,9 @@ export class UsersService extends AppBaseService<
 
   async findByEmail(email: string): Promise<User | null> {
     return this.userRepository.findOne({ where: { email } });
+  }
+
+  async getUsersCustomCharts(userId: string, dto: FetchSpecification) {
+    return this.customChartService.findAllPaginated(dto, { userId });
   }
 }

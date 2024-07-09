@@ -1,18 +1,21 @@
 import { TestManager } from '../utils/test-manager';
 import { User } from '@shared/dto/users/user.entity';
 import { createUser } from '@shared/lib/entity-mocks';
-import { API_ROUTES } from '@shared/contracts/routes';
+import { userContract as c } from '@shared/contracts/user.contract';
+import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 
 describe('Users CRUD (e2e)', () => {
   let testManager: TestManager<any>;
   let authToken: string;
+  let testUser: User;
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager();
   });
   beforeEach(async () => {
-    const { jwtToken } = await testManager.setUpTestUser();
+    const { jwtToken, user } = await testManager.setUpTestUser();
     authToken = jwtToken;
+    testUser = user;
   });
   afterEach(async () => {
     await testManager.clearDatabase();
@@ -29,7 +32,7 @@ describe('Users CRUD (e2e)', () => {
     }
     const response = await testManager
       .request()
-      .get(API_ROUTES.users.handlers.getUsers.getRoute())
+      .get('/users')
       .set('Authorization', `Bearer ${authToken}`);
 
     expect(response.status).toBe(200);
@@ -48,7 +51,7 @@ describe('Users CRUD (e2e)', () => {
     });
     const response = await testManager
       .request()
-      .get(API_ROUTES.users.controller + user.id)
+      .get('/users/' + user.id)
       .set('Authorization', `Bearer ${authToken}`);
     expect(response.status).toBe(200);
     expect(response.body.id).toEqual(user.id);
@@ -63,19 +66,37 @@ describe('Users CRUD (e2e)', () => {
     const updatedUser = { email: 'new@mail.com' };
     const response = await testManager
       .request()
-      .patch(API_ROUTES.users.controller + user.id)
+      .patch('/users/' + user.id)
       .send(updatedUser)
       .set('Authorization', `Bearer ${jwtToken}`);
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(201);
     expect(response.body.email).toEqual(updatedUser.email);
 
     // Previous token should work after updating the user's email
     const userMeResponse = await testManager
       .request()
-      .get(API_ROUTES.users.handlers.me.getRoute())
+      .get('/users/me')
       .set('Authorization', `Bearer ${jwtToken}`);
 
     expect(userMeResponse.status).toBe(200);
     expect(userMeResponse.body.email).toEqual(updatedUser.email);
+  });
+  it('should include users custom charts', async () => {
+    const customCharts: CustomChart[] = [];
+    for (const n of Array(3).keys()) {
+      customCharts.push(
+        await testManager.mocks().createCustomChart(testUser, {
+          name: `Chart ${n}`,
+        }),
+      );
+    }
+
+    const response = await testManager
+      .request()
+      .get('/users/me')
+      .set('Authorization', `Bearer ${authToken}`)
+      .query({ 'include[]': 'customCharts' });
+
+    expect(response.body.data.customCharts).toHaveLength(customCharts.length);
   });
 });
