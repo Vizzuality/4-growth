@@ -20,12 +20,13 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+
 import { getAuthHeader } from "@/utils/auth-header";
 
 const DeleteAccount: FC = () => {
   const { data: session } = useSession();
   const { toast } = useToast();
-  client.user.getUsers.query({ query: {} });
+
   const onDeleteAccount = useCallback(async () => {
     try {
       const { status, body } = await client.user.deleteMe.mutation({

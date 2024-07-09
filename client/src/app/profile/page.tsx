@@ -6,9 +6,9 @@ import { queryKeys } from "@/lib/queryKeys";
 
 import Profile from "@/containers/profile";
 
-import { getAuthHeader } from "@/utils/auth-header";
-
 import { auth } from "../auth/api/[...nextauth]/config";
+
+import { getAuthHeader } from "@/utils/auth-header";
 
 export default async function ProfilePage() {
   const queryClient = new QueryClient();
@@ -23,9 +23,6 @@ export default async function ProfilePage() {
         },
         query: {},
       }),
-    // .then((res) => {
-    //   if (res.status === 200) return res.body;
-    // }),
   });
 
   return (

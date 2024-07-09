@@ -56,7 +56,7 @@ describe('Custom Charts CRUD', () => {
         .patch('/custom-charts/' + customChart.id)
         .set('Authorization', `Bearer ${authToken}`)
         .send({ name: 'Updated Name' });
-      expect(response.status).toBe(201);
+      expect(response.status).toBe(200);
       expect(response.body.data.name).toEqual('Updated Name');
     });
     it('should update multiple charts', async () => {
@@ -77,7 +77,7 @@ describe('Custom Charts CRUD', () => {
       });
       const responses = await Promise.all(promises);
       responses.forEach((response) => {
-        expect(response.status).toBe(201);
+        expect(response.status).toBe(200);
         expect(response.body.data.name).toEqual('Updated Name');
       });
     });
@@ -89,7 +89,7 @@ describe('Custom Charts CRUD', () => {
         .request()
         .delete('/custom-charts/' + customChart.id)
         .set('Authorization', `Bearer ${authToken}`);
-      expect(response.status).toBe(201);
+      expect(response.status).toBe(200);
       const getResponse = await testManager
         .request()
         .get('/custom-charts/' + customChart.id)
@@ -105,7 +105,7 @@ describe('Custom Charts CRUD', () => {
         .request()
         .delete('/custom-charts/' + customChart.id)
         .set('Authorization', `Bearer ${authToken}`);
-      expect(response.status).toBe(201);
+      expect(response.status).toBe(200);
       const chartFilters = await testManager
         .getDataSource()
         .getRepository(ChartFilter)

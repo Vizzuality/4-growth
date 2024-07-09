@@ -7,9 +7,8 @@ import {
 } from '@nestjs/common';
 import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.service';
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
-import { customChartsContract as c } from '@shared/contracts/custom-charts.contrac';
+import { customChartsContract as c } from '@shared/contracts/custom-charts.contract';
 import { UpdateCustomChartDto } from '@shared/dto/custom-charts/update-custom-chart.dto';
-import { Public } from '@api/decorators/is-public.decorator';
 
 @Controller()
 export class CustomChartsController {
@@ -41,7 +40,7 @@ export class CustomChartsController {
   ): Promise<any> {
     return tsRestHandler(c.updateCustomChart, async () => {
       const customChart = await this.customChartService.update(id, dto);
-      return { body: { data: customChart }, status: HttpStatus.CREATED };
+      return { body: { data: customChart }, status: HttpStatus.OK };
     });
   }
 
@@ -51,7 +50,7 @@ export class CustomChartsController {
   ): Promise<any> {
     return tsRestHandler(c.deleteCustomChart, async () => {
       await this.customChartService.remove(id);
-      return { body: null, status: HttpStatus.CREATED };
+      return { body: null, status: HttpStatus.OK };
     });
   }
 }
