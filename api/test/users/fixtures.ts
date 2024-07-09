@@ -1,7 +1,6 @@
 import { TestManager } from '../utils/test-manager';
 import * as request from 'supertest';
 import { User } from '@shared/dto/users/user.entity';
-import { API_ROUTES } from '@shared/contracts/routes';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
 import { SignInDto } from '@shared/dto/auth/sign-in.dto';
 
@@ -22,14 +21,14 @@ export class UserFixtures {
   ): Promise<request.Response> {
     return this.testManager
       .request()
-      .patch(API_ROUTES.users.handlers.updatePassword.getRoute())
+      .patch('/users/me/password')
       .set('Authorization', `Bearer ${token}`)
       .send(dto);
   }
 
   async WhenIQueryTheMeEndpoint(token: string): Promise<request.Response> {
     return request(this.testManager.getApp().getHttpServer())
-      .get(API_ROUTES.users.handlers.me.getRoute())
+      .get('/users/me')
       .set('Authorization', `Bearer ${token}`);
   }
 
@@ -37,7 +36,7 @@ export class UserFixtures {
     token: string,
   ): Promise<request.Response> {
     return request(this.testManager.getApp().getHttpServer())
-      .delete(API_ROUTES.users.handlers.me.getRoute())
+      .delete('/users/me')
       .set('Authorization', `Bearer ${token}`);
   }
 
@@ -63,7 +62,7 @@ export class UserFixtures {
     const { email, password } = dto;
     const response = await this.testManager
       .request()
-      .post(API_ROUTES.auth.handlers.signIn.getRoute())
+      .post('/auth/sign-in')
       .send({ email, password });
     expect(response.status).toBe(401);
     expect(response.body.errors[0].title).toEqual('Invalid credentials');
@@ -73,7 +72,7 @@ export class UserFixtures {
     const { email, password } = dto;
     const response = await this.testManager
       .request()
-      .post(API_ROUTES.auth.handlers.signIn.getRoute())
+      .post('/auth/sign-in')
       .send({ email, password });
     expect(response.status).toBe(401);
     expect(response.body.errors[0].title).toEqual('Invalid credentials');
@@ -91,7 +90,7 @@ export class UserFixtures {
     const { email, password } = dto;
     const response = await this.testManager
       .request()
-      .post(API_ROUTES.auth.handlers.signIn.getRoute())
+      .post('/auth/sign-in')
       .send({ email, password });
     expect(response.status).toBe(201);
     expect(response.body.accessToken).toBeDefined();
