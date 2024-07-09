@@ -1,8 +1,4 @@
-import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { User } from '@shared/dto/users/user.entity';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 import { Repository } from 'typeorm';
@@ -34,32 +30,10 @@ export class UsersService extends AppBaseService<
     await this.userRepository.save(createUserDto);
   }
 
-  async find(): Promise<User[]> {
-    return this.userRepository.find();
-  }
-
   async findOneBy(id: string) {
     return this.userRepository.findOne({
       where: { id },
     });
-  }
-
-  async update(id: string, dto: UpdateUserDto) {
-    return this.userRepository
-      .update(id, dto)
-      .then(() => this.userRepository.findOneByOrFail({ id }));
-  }
-
-  async delete(id: string) {
-    const found = await this.userRepository.findOneBy({
-      id: id,
-    });
-    if (!found) {
-      throw new NotFoundException(`User with ID "${id}" not found`);
-    }
-    if (found) {
-      await this.userRepository.remove(found);
-    }
   }
 
   async findByEmail(email: string): Promise<User | null> {
