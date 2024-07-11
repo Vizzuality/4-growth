@@ -45,7 +45,7 @@ export class UserFixtures {
     existingUser: User,
   ) {
     expect(response.status).toBe(200);
-    expect(response.body.email).toEqual(existingUser.email);
+    expect(response.body.data.email).toEqual(existingUser.email);
   }
 
   ThenIShouldReceiveAUnauthorizedError(

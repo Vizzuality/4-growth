@@ -86,7 +86,8 @@ export class UsersController {
   ): Promise<any> {
     return tsRestHandler(c.updateUser, async () => {
       const user = await this.usersService.update(id, dto);
-      return { body: user, status: HttpStatus.CREATED };
+      //return { body: { data: user }, status: HttpStatus.CREATED };
+      return { body: { data: user }, status: HttpStatus.CREATED };
     });
   }
 
