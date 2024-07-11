@@ -21,6 +21,7 @@ export default async function ProfilePage() {
         extraHeaders: {
           ...getAuthHeader(session?.accessToken),
         },
+        query: {},
       }),
     // .then((res) => {
     //   if (res.status === 200) return res.body;
