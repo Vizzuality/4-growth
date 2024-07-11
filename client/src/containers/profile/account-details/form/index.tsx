@@ -40,9 +40,10 @@ const AccountDetailsForm: FC = () => {
       extraHeaders: {
         ...getAuthHeader(session?.accessToken as string),
       },
+      query: {},
     },
     {
-      select: (data) => data.body,
+      select: (data) => data.body.data,
     },
   );
 
@@ -76,7 +77,7 @@ const AccountDetailsForm: FC = () => {
           updateSession(response.body);
 
           queryClient.invalidateQueries(
-            queryKeys.users.detail(response.body.id).queryKey,
+            queryKeys.users.detail(response.body.data.id).queryKey,
           );
 
           toast({
