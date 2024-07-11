@@ -8,9 +8,15 @@ import { AuthModule } from '@api/modules/auth/auth.module';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { AllExceptionsFilter } from '@api/filters/all-exceptions.exception.filter';
 import { JwtAuthGuard } from '@api/guards/jwt-auth.guard';
+import { TsRestModule } from '@ts-rest/nest';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(getTypeORMConfig()), UsersModule, AuthModule],
+  imports: [
+    TsRestModule.register({ isGlobal: true, validateRequestBody: true }),
+    TypeOrmModule.forRoot(getTypeORMConfig()),
+    UsersModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
