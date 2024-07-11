@@ -2,11 +2,7 @@ import Image from "next/image";
 
 import { BarChartHorizontal, Filter } from "lucide-react";
 
-const customChart = new CustomChart();
-
 import Wrapper from "@/containers/wrapper";
-
-import { CustomChart } from "@shared/dto/custom-charts/custom-chart.entity";
 
 export default function ComingSoon() {
   return (
