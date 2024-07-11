@@ -3,7 +3,7 @@ import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.se
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { customChartsContract as c } from '@shared/contracts/custom-charts.contrac';
 
-@Controller('custom-charts')
+@Controller()
 export class CustomChartsController {
   constructor(private readonly customChartService: CustomChartsService) {}
 
