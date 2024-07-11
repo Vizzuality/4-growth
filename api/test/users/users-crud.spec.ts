@@ -1,7 +1,6 @@
 import { TestManager } from '../utils/test-manager';
 import { User } from '@shared/dto/users/user.entity';
 import { createUser } from '@shared/lib/entity-mocks';
-import { userContract as c } from '@shared/contracts/user.contract';
 import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 
 describe('Users CRUD (e2e)', () => {
@@ -70,7 +69,7 @@ describe('Users CRUD (e2e)', () => {
       .send(updatedUser)
       .set('Authorization', `Bearer ${jwtToken}`);
     expect(response.status).toBe(201);
-    expect(response.body.email).toEqual(updatedUser.email);
+    expect(response.body.data.email).toEqual(updatedUser.email);
 
     // Previous token should work after updating the user's email
     const userMeResponse = await testManager
@@ -79,7 +78,7 @@ describe('Users CRUD (e2e)', () => {
       .set('Authorization', `Bearer ${jwtToken}`);
 
     expect(userMeResponse.status).toBe(200);
-    expect(userMeResponse.body.email).toEqual(updatedUser.email);
+    expect(userMeResponse.body.data.email).toEqual(updatedUser.email);
   });
   it('should include users custom charts', async () => {
     const customCharts: CustomChart[] = [];
