@@ -6,6 +6,7 @@ import {
   ApiPaginationResponse,
   ApiResponse,
 } from '@shared/dto/global/api-response.dto';
+import { UpdateCustomChartDto } from '@shared/dto/custom-charts/update-custom-chart.dto';
 
 const contract = initContract();
 export const customChartsContract = contract.router({
@@ -25,6 +26,26 @@ export const customChartsContract = contract.router({
     pathParams: contract.type<{ id: string }>(),
     responses: {
       200: contract.type<ApiResponse<CustomChart>>(),
+      400: contract.type<JSONAPIError>(),
+    },
+  },
+  updateCustomChar: {
+    method: 'PATCH',
+    path: '/custom-charts/:id',
+    pathParams: contract.type<{ id: string }>(),
+    body: contract.type<UpdateCustomChartDto>(),
+    responses: {
+      200: contract.type<ApiResponse<CustomChart>>(),
+      400: contract.type<JSONAPIError>(),
+    },
+  },
+  deleteCustomChart: {
+    method: 'DELETE',
+    path: '/custom-charts/:id',
+    pathParams: contract.type<{ id: string }>(),
+    body: null,
+    responses: {
+      201: contract.type<null>(),
       400: contract.type<JSONAPIError>(),
     },
   },
