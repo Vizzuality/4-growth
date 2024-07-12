@@ -1,7 +1,8 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Param, ParseUUIDPipe } from '@nestjs/common';
 import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.service';
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { customChartsContract as c } from '@shared/contracts/custom-charts.contrac';
+import { UpdateCustomChartDto } from '@shared/dto/custom-charts/update-custom-chart.dto';
 
 @Controller()
 export class CustomChartsController {
@@ -23,6 +24,27 @@ export class CustomChartsController {
         request.params.id,
       );
       return { body: { data: customChart }, status: 200 };
+    });
+  }
+
+  @TsRestHandler(c.updateCustomChart)
+  async updateCustomChart(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() dto: UpdateCustomChartDto,
+  ): Promise<any> {
+    return tsRestHandler(c.updateCustomChart, async () => {
+      const customChart = await this.customChartService.update(id, dto);
+      return { body: { data: customChart }, status: 201 };
+    });
+  }
+
+  @TsRestHandler(c.deleteCustomChart)
+  async deleteCustomChart(
+    @Param('id', ParseUUIDPipe) id: string,
+  ): Promise<any> {
+    return tsRestHandler(c.deleteCustomChart, async () => {
+      await this.customChartService.remove(id);
+      return { body: null, status: 201 };
     });
   }
 }
