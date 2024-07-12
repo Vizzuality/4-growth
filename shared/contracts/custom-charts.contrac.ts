@@ -29,7 +29,7 @@ export const customChartsContract = contract.router({
       400: contract.type<JSONAPIError>(),
     },
   },
-  updateCustomChar: {
+  updateCustomChart: {
     method: 'PATCH',
     path: '/custom-charts/:id',
     pathParams: contract.type<{ id: string }>(),
