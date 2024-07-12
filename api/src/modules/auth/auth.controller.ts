@@ -1,31 +1,36 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { AuthService } from '@api/modules/auth/auth.service';
-import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
-import { SignInDto } from '@shared/dto/auth/sign-in.dto';
-import { IAccessToken } from '@shared/dto/auth/access-token.interface';
 import { Public } from '@api/decorators/is-public.decorator';
-import { API_ROUTES } from '@shared/contracts/routes';
-import { LocalAuthGuard } from '@api/guards/local-auth.guard';
 import { GetUser } from '@api/decorators/get-user.decorator';
 import { User } from '@shared/dto/users/user.entity';
+import { tsRestHandler, TsRestHandler } from '@ts-rest/nest';
+import { authContract as c } from '@shared/contracts/auth.contract';
 
-@Controller(API_ROUTES.auth.controller)
+@Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
-  @Post(API_ROUTES.auth.handlers.signUp.path)
-  async signUp(@Body() dto: SignUpDto): Promise<void> {
-    return this.authService.signUp(dto);
+  @TsRestHandler(c.signUp)
+  async signUp(@GetUser() user: User): Promise<any> {
+    return tsRestHandler(c.signIn, async () => {
+      await this.authService.signUp(user);
+      return {
+        body: null,
+        status: 201,
+      };
+    });
   }
 
   @Public()
-  @UseGuards(LocalAuthGuard)
-  @Post(API_ROUTES.auth.handlers.signIn.path)
-  async signIn(
-    @Body() dto: SignInDto,
-    @GetUser() user: User,
-  ): Promise<IAccessToken> {
-    return this.authService.signIn(user);
+  @TsRestHandler(c.signIn)
+  async signIn(@GetUser() user: User): Promise<any> {
+    return tsRestHandler(c.signIn, async () => {
+      const userWithAccessToken = await this.authService.signIn(user);
+      return {
+        body: userWithAccessToken,
+        status: 201,
+      };
+    });
   }
 }
