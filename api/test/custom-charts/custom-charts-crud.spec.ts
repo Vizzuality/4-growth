@@ -19,26 +19,81 @@ describe('Custom Charts CRUD', () => {
     await testManager.clearDatabase();
   });
 
-  it('should get all custom charts', async () => {
-    const customCharts: CustomChart[] = [];
-    for (const n of Array(3).keys()) {
-      customCharts.push(await testManager.mocks().createCustomChart(testUser));
-    }
-    const response = await testManager
-      .request()
-      .get('/custom-charts')
-      .set('Authorization', `Bearer ${authToken}`);
+  describe('GET /custom-charts', () => {
+    it('should get all custom charts', async () => {
+      const customCharts: CustomChart[] = [];
+      for (const n of Array(3).keys()) {
+        customCharts.push(
+          await testManager
+            .mocks()
+            .createCustomChart(testUser, { name: `Chart ${n}` }),
+        );
+      }
+      const response = await testManager
+        .request()
+        .get('/custom-charts')
+        .set('Authorization', `Bearer ${authToken}`);
 
-    expect(response.status).toBe(200);
-    expect(response.body.data).toHaveLength(customCharts.length); // + 1 for the test user
+      expect(response.status).toBe(200);
+      expect(response.body.data).toHaveLength(customCharts.length); // + 1 for the test user
+    });
+    it('should get a custom chart by its ID', async () => {
+      const customChart = await testManager.mocks().createCustomChart(testUser);
+      const response = await testManager
+        .request()
+        .get('/custom-charts/' + customChart.id)
+        .set('Authorization', `Bearer ${authToken}`);
+      expect(response.status).toBe(200);
+      expect(response.body.data.id).toEqual(customChart.id);
+    });
   });
-  it('should get a custom chart by its ID', async () => {
-    const customChart = await testManager.mocks().createCustomChart(testUser);
-    const response = await testManager
-      .request()
-      .get('/custom-charts/' + customChart.id)
-      .set('Authorization', `Bearer ${authToken}`);
-    expect(response.status).toBe(200);
-    expect(response.body.data.id).toEqual(customChart.id);
+  describe('PATCH /custom-charts/:id', () => {
+    it('should update a custom chart', async () => {
+      const customChart = await testManager.mocks().createCustomChart(testUser);
+      const response = await testManager
+        .request()
+        .patch('/custom-charts/' + customChart.id)
+        .set('Authorization', `Bearer ${authToken}`)
+        .send({ name: 'Updated Name' });
+      expect(response.status).toBe(201);
+      expect(response.body.data.name).toEqual('Updated Name');
+    });
+    it('should update multiple charts', async () => {
+      const customCharts: CustomChart[] = [];
+      for (const n of Array(3).keys()) {
+        customCharts.push(
+          await testManager
+            .mocks()
+            .createCustomChart(testUser, { name: `Chart ${n}` }),
+        );
+      }
+      const promises = customCharts.map((chart) => {
+        return testManager
+          .request()
+          .patch('/custom-charts/' + chart.id)
+          .set('Authorization', `Bearer ${authToken}`)
+          .send({ name: 'Updated Name' });
+      });
+      const responses = await Promise.all(promises);
+      responses.forEach((response) => {
+        expect(response.status).toBe(201);
+        expect(response.body.data.name).toEqual('Updated Name');
+      });
+    });
+  });
+  describe('DELETE /custom-charts/:id', () => {
+    it('should delete a custom chart', async () => {
+      const customChart = await testManager.mocks().createCustomChart(testUser);
+      const response = await testManager
+        .request()
+        .delete('/custom-charts/' + customChart.id)
+        .set('Authorization', `Bearer ${authToken}`);
+      expect(response.status).toBe(201);
+      const getResponse = await testManager
+        .request()
+        .get('/custom-charts/' + customChart.id)
+        .set('Authorization', `Bearer ${authToken}`);
+      expect(getResponse.status).toBe(404);
+    });
   });
 });
