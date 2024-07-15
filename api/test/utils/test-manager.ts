@@ -3,12 +3,17 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
-import { createCustomChart, createUser } from '@shared/lib/entity-mocks';
+import {
+  createCustomChart,
+  createCustomFilter,
+  createUser,
+} from '@shared/lib/entity-mocks';
 import { logUserIn } from './user.auth';
 import { Type } from '@nestjs/common/interfaces';
 import * as request from 'supertest';
 import { User } from '@shared/dto/users/user.entity';
 import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
+import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
 
 /**
  * @description: Abstraction for NestJS testing workflow. For now its a basic implementation to create a test app, but can be extended to encapsulate
@@ -86,6 +91,10 @@ export class TestManager<FixtureType> {
         createUser(this.getDataSource(), additionalData),
       createCustomChart: (user: User, additionalData?: Partial<CustomChart>) =>
         createCustomChart(this.getDataSource(), user, additionalData),
+      createChartFilter: (
+        chart: CustomChart,
+        additionalData?: Partial<ChartFilter>,
+      ) => createCustomFilter(this.getDataSource(), chart, additionalData),
     };
   }
 }

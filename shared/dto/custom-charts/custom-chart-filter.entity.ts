@@ -19,7 +19,9 @@ export class ChartFilter {
   @Column({ type: 'varchar' })
   value: string;
 
-  @ManyToOne(() => CustomChart, (customChart) => customChart.chartFilters)
+  @ManyToOne(() => CustomChart, (customChart) => customChart.chartFilters, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'custom_chart_id' })
   customChart: CustomChart;
 }
