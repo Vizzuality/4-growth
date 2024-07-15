@@ -15,7 +15,6 @@ import { Public } from '@api/decorators/is-public.decorator';
 export class CustomChartsController {
   constructor(private readonly customChartService: CustomChartsService) {}
 
-  @Public()
   @TsRestHandler(c.getCustomCharts)
   async getCustomCharts(): Promise<any> {
     return tsRestHandler(c.getCustomCharts, async ({ query }) => {
