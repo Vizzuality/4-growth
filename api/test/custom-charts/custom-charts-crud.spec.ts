@@ -1,6 +1,7 @@
 import { TestManager } from '../utils/test-manager';
 import { User } from '@shared/dto/users/user.entity';
 import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
+import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
 
 describe('Custom Charts CRUD', () => {
   let testManager: TestManager<any>;
@@ -94,6 +95,23 @@ describe('Custom Charts CRUD', () => {
         .get('/custom-charts/' + customChart.id)
         .set('Authorization', `Bearer ${authToken}`);
       expect(getResponse.status).toBe(404);
+    });
+    it('should delete associated chart filters', async () => {
+      const customChart = await testManager.mocks().createCustomChart(testUser);
+      for (const n of Array(3).keys()) {
+        await testManager.mocks().createChartFilter(customChart);
+      }
+      const response = await testManager
+        .request()
+        .delete('/custom-charts/' + customChart.id)
+        .set('Authorization', `Bearer ${authToken}`);
+      expect(response.status).toBe(201);
+      const chartFilters = await testManager
+        .getDataSource()
+        .getRepository(ChartFilter)
+        .find();
+
+      expect(chartFilters).toHaveLength(0);
     });
   });
 });
