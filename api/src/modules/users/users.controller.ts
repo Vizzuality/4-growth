@@ -21,6 +21,7 @@ import {
 } from 'nestjs-base-service';
 import { tsRestHandler, TsRestHandler } from '@ts-rest/nest';
 import { userContract as c } from '@shared/contracts/user.contract';
+import { Public } from '@api/decorators/is-public.decorator';
 
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
@@ -37,7 +38,7 @@ export class UsersController {
       return { body: { data: user }, status: HttpStatus.CREATED };
     });
   }
-
+  @Public()
   @TsRestHandler(c.getUsers)
   async getUsers(
     @ProcessFetchSpecification() fetchSpecificacion: FetchSpecification,
