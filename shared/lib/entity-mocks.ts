@@ -5,6 +5,10 @@ import {
   CustomChart,
   INDICATORS,
 } from '@shared/dto/custom-charts/custom-chart.entity';
+import {
+  CHART_FILTER_ATTRIBUTES,
+  ChartFilter,
+} from '@shared/dto/custom-charts/custom-chart-filter.entity';
 
 export const createUser = async (
   dataSource: DataSource,
@@ -36,4 +40,19 @@ export const createCustomChart = async (
 
   const chart = { ...defaultData, ...additionalData };
   return dataSource.getRepository(CustomChart).save(chart);
+};
+
+export const createCustomFilter = async (
+  dataSource: DataSource,
+  customChart: CustomChart,
+  additionalData?: Partial<ChartFilter>,
+): Promise<ChartFilter> => {
+  const defaultData: DeepPartial<ChartFilter> = {
+    customChart,
+    value: 'test filter value',
+    attribute: CHART_FILTER_ATTRIBUTES.COUNTRY,
+  };
+
+  const chartFilter = { ...defaultData, ...additionalData };
+  return dataSource.getRepository(ChartFilter).save(chartFilter);
 };
