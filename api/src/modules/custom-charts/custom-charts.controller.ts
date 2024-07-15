@@ -1,19 +1,27 @@
-import { Body, Controller, Param, ParseUUIDPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpStatus,
+  Param,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.service';
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { customChartsContract as c } from '@shared/contracts/custom-charts.contrac';
 import { UpdateCustomChartDto } from '@shared/dto/custom-charts/update-custom-chart.dto';
+import { Public } from '@api/decorators/is-public.decorator';
 
 @Controller()
 export class CustomChartsController {
   constructor(private readonly customChartService: CustomChartsService) {}
 
+  @Public()
   @TsRestHandler(c.getCustomCharts)
   async getCustomCharts(): Promise<any> {
     return tsRestHandler(c.getCustomCharts, async ({ query }) => {
       const customCharts =
         await this.customChartService.findAllPaginated(query);
-      return { body: customCharts, status: 200 };
+      return { body: customCharts, status: HttpStatus.OK };
     });
   }
 
@@ -23,7 +31,7 @@ export class CustomChartsController {
       const customChart = await this.customChartService.getById(
         request.params.id,
       );
-      return { body: { data: customChart }, status: 200 };
+      return { body: { data: customChart }, status: HttpStatus.OK };
     });
   }
 
@@ -34,7 +42,7 @@ export class CustomChartsController {
   ): Promise<any> {
     return tsRestHandler(c.updateCustomChart, async () => {
       const customChart = await this.customChartService.update(id, dto);
-      return { body: { data: customChart }, status: 201 };
+      return { body: { data: customChart }, status: HttpStatus.CREATED };
     });
   }
 
@@ -44,7 +52,7 @@ export class CustomChartsController {
   ): Promise<any> {
     return tsRestHandler(c.deleteCustomChart, async () => {
       await this.customChartService.remove(id);
-      return { body: null, status: 201 };
+      return { body: null, status: HttpStatus.CREATED };
     });
   }
 }
