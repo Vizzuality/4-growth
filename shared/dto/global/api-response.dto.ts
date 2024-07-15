@@ -11,13 +11,19 @@ export class PaginationMeta {
   constructor(paginationMeta: {
     totalPages: number;
     totalItems: number;
-    size: number;
-    page: number;
+    size: number | string;
+    page: number | string;
   }) {
     this.totalItems = paginationMeta.totalItems;
     this.totalPages = paginationMeta.totalPages;
-    this.size = paginationMeta.size;
-    this.page = paginationMeta.page;
+    this.size =
+      typeof paginationMeta.size === 'string'
+        ? parseInt(paginationMeta.size)
+        : paginationMeta.size;
+    this.page =
+      typeof paginationMeta.page === 'string'
+        ? parseInt(paginationMeta.page)
+        : paginationMeta.page;
   }
 }
 
@@ -31,5 +37,5 @@ export class ApiResponse<T> {
 
 export class ApiPaginationResponse<T> {
   data: Partial<T>[];
-  meta?: PaginationMeta;
+  metadata?: PaginationMeta;
 }

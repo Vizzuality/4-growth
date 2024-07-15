@@ -17,6 +17,7 @@ export const customChartsContract = contract.router({
     pathParams: contract.type<{ id: string }>(),
     responses: {
       200: contract.type<ApiPaginationResponse<CustomChart>>(),
+      201: contract.type<{ test: string }>(),
       400: contract.type<JSONAPIError>(),
     },
   },
