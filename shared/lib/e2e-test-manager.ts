@@ -1,8 +1,14 @@
 import { DataSource } from 'typeorm';
 import { User } from '@shared/dto/users/user.entity';
-import { createUser } from '@shared/lib/entity-mocks';
+import {
+  createCustomChart,
+  createCustomFilter,
+  createUser,
+} from '@shared/lib/entity-mocks';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import { DB_ENTITIES } from '@shared/lib/db-entities';
+import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
+import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -33,7 +39,7 @@ export class E2eTestManager {
     await clearTestDataFromDatabase(this.dataSource);
   }
 
-  getDataSources() {
+  getDataSource() {
     return this.dataSource;
   }
 
@@ -48,6 +54,19 @@ export class E2eTestManager {
     return createUser(this.dataSource, additionalData);
   }
 
+  mocks() {
+    return {
+      createUser: (additionalData?: Partial<User>) =>
+        createUser(this.getDataSource(), additionalData),
+      createCustomChart: (user: User, additionalData?: Partial<CustomChart>) =>
+        createCustomChart(this.getDataSource(), user, additionalData),
+      createChartFilter: (
+        chart: CustomChart,
+        additionalData?: Partial<ChartFilter>,
+      ) => createCustomFilter(this.getDataSource(), chart, additionalData),
+    };
+  }
+
   getPage() {
     if (!this.page) throw new Error('Playwright Page is not initialized');
     return this.page;
@@ -55,7 +74,7 @@ export class E2eTestManager {
 
   async login(user?: User) {
     if (!user) {
-      user = await this.createUser();
+      user = await this.mocks().createUser();
     }
     await this.page.goto('/auth/signin');
     await this.page.getByLabel('Email').fill(user.email);
