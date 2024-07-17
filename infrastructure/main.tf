@@ -147,6 +147,9 @@ module "staging" {
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
   cname_prefix                                  = "4-growth-staging-environment"
+  rds_instance_class = "db.t3.micro"
+  rds_engine_version = "15.5"
+  rds_backup_retention_period = 3
   github_owner = var.github_owner
   github_token = var.github_token
 }
@@ -165,6 +168,9 @@ module "production" {
   ec2_instance_type                             = "t3.small"
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
+  rds_instance_class = "db.t3.micro"
+  rds_engine_version = "15.5"
+  rds_backup_retention_period = 3
   github_owner = var.github_owner
   github_token = var.github_token
 }
