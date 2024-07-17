@@ -13,9 +13,9 @@ export class AuthController {
 
   @Public()
   @TsRestHandler(c.signUp)
-  async signUp(@GetUser() user: User): Promise<any> {
-    return tsRestHandler(c.signIn, async () => {
-      await this.authService.signUp(user);
+  async signUp(): Promise<any> {
+    return tsRestHandler(c.signIn, async ({ body }) => {
+      await this.authService.signUp(body);
       return {
         body: null,
         status: 201,
