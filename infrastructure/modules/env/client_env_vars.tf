@@ -10,6 +10,6 @@ locals {
   }
   client_env_vars = {
     NEXT_PUBLIC_API_URL = "https://${var.environment}.4-growth.dev-vizzuality.com/api"
-    NEXTAUTH_URL        = "https://${var.environment}.dev.4-growth.dev-vizzuality.com/auth/api"
+    NEXTAUTH_URL        = "https://${var.environment}.4-growth.dev-vizzuality.com/auth/api"
   }
 }
