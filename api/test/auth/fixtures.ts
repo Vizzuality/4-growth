@@ -27,9 +27,9 @@ export class AuthFixtures {
   ThenIShouldReceiveValidationErrors(response: request.Response): void {
     expect(response.status).toBe(400);
     expect(response.body.errors).toHaveLength(2);
-    expect(response.body.errors[0].title).toEqual('email must be an email');
+    expect(response.body.errors[0].title).toEqual('Invalid email');
     expect(response.body.errors[1].title).toEqual(
-      'password must be longer than or equal to 8 characters',
+      'Password must be more than 8 characters',
     );
   }
 

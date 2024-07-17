@@ -10,14 +10,10 @@ import * as JSONAPISerializer from 'jsonapi-serializer';
 import { JSONAPIError, JSONAPIErrorOptions } from 'jsonapi-serializer';
 import { HttpArgumentsHost } from '@nestjs/common/interfaces';
 import { RequestValidationError } from '@ts-rest/nest';
-import { ZodError } from 'zod';
 
 /**
  * Catch-all exception filter. Output error data to logs, and send it as
  * response payload, serialized according to JSON:API spec.
- *
- * @debt The error handling logic for general cases should be moved to a utility
- * module, with option to extend it for specific per-service scenarios.
  */
 @Catch(Error)
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -102,7 +98,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
   handleZodValidationErrorMessages(
     exception: RequestValidationError,
   ): JSONAPIErrorOptions[] {
-    console.log(exception);
     const errors: JSONAPIErrorOptions[] = exception.body.issues.map(
       (issue): JSONAPIErrorOptions => {
         return {
