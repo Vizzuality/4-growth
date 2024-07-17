@@ -22,7 +22,6 @@ module "beanstalk" {
 
 
 module "postgresql" {
-  count = var.rds_instance_class == null ? 0 : 1
   source = "../postgresql"
   log_retention_period        = var.rds_log_retention_period
   subnet_ids                  = var.subnet_ids
@@ -48,7 +47,7 @@ module "github" {
   github_token = var.github_token
   github_environment = var.environment
   environment_secret_map = merge(local.api_secret_env_vars, local.client_secret_env_vars)
-  // TODO: we need to pass a optional custom value per env
+  // TODO: we need to pass a optional custom value per env, i.e to set a external non-code generated values
   environment_variable_map = merge(local.api_env_vars, local.client_env_vars)
 }
 

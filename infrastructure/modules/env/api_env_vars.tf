@@ -9,17 +9,14 @@ resource "random_password" "jwt_secret" {
 //       so the psql module becomes a list of objects. Once all environments are using a DB instance, we should remove the count argument and refactor this
 //       to use the module output directly
 
-locals {
-  postgresql = length(module.postgresql) > 0 ? module.postgresql[0] : {}
-}
 
 locals {
   api_secret_env_vars = {
-    DB_HOST = lookup(local.postgresql, "host", null)
-    DB_NAME = lookup(local.postgresql, "db_name", null)
-    DB_PASSWORD = lookup(local.postgresql, "password", null)
-    DB_USERNAME = lookup(local.postgresql, "username", null)
-    DB_PORT = lookup(local.postgresql, "port", null)
+    DB_HOST = module.postgresql.host
+    DB_NAME = module.postgresql.db_name
+    DB_PASSWORD = module.postgresql.password
+    DB_USERNAME = module.postgresql.username
+    DB_PORT = module.postgresql.port
     JWT_SECRET = random_password.jwt_secret.result
   }
   api_env_vars = {
