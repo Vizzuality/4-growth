@@ -1,20 +1,27 @@
 "use server";
+import { SignUpSchema } from "@shared/schemas/auth.schemas";
+import { z } from "zod";
 
 import { client } from "@/lib/queryClient";
-
-import { signUpSchema } from "./schema";
 
 export type FormState = {
   ok: boolean | undefined;
   message: string | string[] | undefined;
 };
 
+const PrivacyPolicy = z.object({
+  privacyPolicy: z.boolean().refine((value) => value === true, {
+    message: "Privacy policy must be accepted",
+  }),
+});
+
 export async function signUpAction(
   prevState: FormState,
   data: FormData,
 ): Promise<FormState> {
+  const mergedSchema = SignUpSchema.merge(PrivacyPolicy);
   const formData = Object.fromEntries(data);
-  const parsed = signUpSchema.omit({ privacyPolicy: true }).safeParse(formData);
+  const parsed = mergedSchema.omit({ privacyPolicy: true }).safeParse(formData);
 
   if (!parsed.success) {
     return {
