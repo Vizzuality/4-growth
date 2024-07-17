@@ -9,6 +9,8 @@ import * as config from 'config';
 import * as JSONAPISerializer from 'jsonapi-serializer';
 import { JSONAPIError, JSONAPIErrorOptions } from 'jsonapi-serializer';
 import { HttpArgumentsHost } from '@nestjs/common/interfaces';
+import { RequestValidationError } from '@ts-rest/nest';
+import { ZodError } from 'zod';
 
 /**
  * Catch-all exception filter. Output error data to logs, and send it as
@@ -26,7 +28,12 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
     let status: number;
     const errors: JSONAPIErrorOptions[] = [];
-    if (exception instanceof HttpException) {
+    if (this.isZodRequestValidationError(exception)) {
+      const errorDataForResponse: JSONAPIError = new JSONAPISerializer.Error(
+        this.handleZodValidationErrorMessages(exception),
+      );
+      return response.status(exception.getStatus()).json(errorDataForResponse);
+    } else if (exception instanceof HttpException) {
       status = exception.getStatus();
       const exceptionResponse: any = exception.getResponse();
       const errorMessages = this.handleExceptionMessages(exceptionResponse);
@@ -84,5 +91,30 @@ export class AllExceptionsFilter implements ExceptionFilter {
       ? exceptionResponse.message
       : [exceptionResponse.message];
     return messages;
+  }
+
+  isZodRequestValidationError(
+    exception: any,
+  ): exception is RequestValidationError {
+    return exception instanceof RequestValidationError;
+  }
+
+  handleZodValidationErrorMessages(
+    exception: RequestValidationError,
+  ): JSONAPIErrorOptions[] {
+    console.log(exception);
+    const errors: JSONAPIErrorOptions[] = exception.body.issues.map(
+      (issue): JSONAPIErrorOptions => {
+        return {
+          status: exception.getStatus().toString(10),
+          title: issue.message,
+          detail: JSON.stringify(issue),
+          meta: {
+            timestamp: new Date().toISOString(),
+          },
+        };
+      },
+    );
+    return errors;
   }
 }
