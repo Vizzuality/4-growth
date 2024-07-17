@@ -38,7 +38,6 @@ export class UsersController {
       return { body: { data: user }, status: HttpStatus.CREATED };
     });
   }
-  @Public()
   @TsRestHandler(c.getUsers)
   async getUsers(
     @ProcessFetchSpecification() fetchSpecificacion: FetchSpecification,
