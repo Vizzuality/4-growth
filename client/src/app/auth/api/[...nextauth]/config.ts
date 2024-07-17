@@ -1,4 +1,5 @@
 import { IAccessToken } from "@shared/dto/auth/access-token.interface";
+import { SignInSchema } from "@shared/schemas/auth.schemas";
 import type {
   GetServerSidePropsContext,
   NextApiRequest,
@@ -10,8 +11,6 @@ import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 
 import { client } from "@/lib/queryClient";
-
-import { signInSchema } from "@/containers/auth/signin/form/schema";
 
 declare module "next-auth" {
   interface Session {
@@ -36,7 +35,7 @@ export const config = {
       authorize: async (credentials) => {
         let access: IAccessToken | null = null;
 
-        const { email, password } = await signInSchema.parseAsync(credentials);
+        const { email, password } = await SignInSchema.parseAsync(credentials);
 
         const response = await client.auth.signIn.mutation({
           body: {

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@radix-ui/react-label";
+import { SignUpSchema } from "@shared/schemas/auth.schemas";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { z } from "zod";
 
@@ -27,7 +28,14 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { signUpAction } from "./action";
-import { signUpSchema } from "./schema";
+
+const PrivacyPolicy = z.object({
+  privacyPolicy: z.boolean().refine((value) => value === true, {
+    message: "Privacy policy must be accepted",
+  }),
+});
+
+const SignUpWithPrivacyPolicy = SignUpSchema.merge(PrivacyPolicy);
 
 const SignUpForm: FC = () => {
   const { push } = useRouter();
@@ -37,8 +45,8 @@ const SignUpForm: FC = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const form = useForm<z.infer<typeof signUpSchema>>({
-    resolver: zodResolver(signUpSchema),
+  const form = useForm<z.infer<typeof SignUpWithPrivacyPolicy>>({
+    resolver: zodResolver(SignUpWithPrivacyPolicy),
     defaultValues: {
       email: "",
       password: "",
