@@ -5,10 +5,9 @@ resource "random_password" "jwt_secret" {
   override_special = "!#%&*()-_=+[]{}<>:?"
 }
 
-// TODO: We are using the count meta-argument in the postgresql module call to create instances conditionally to save costs
-//       so the psql module becomes a list of objects. Once all environments are using a DB instance, we should remove the count argument and refactor this
-//       to use the module output directly
-
+resource "aws_iam_access_key" "email_user_access_key" {
+  user = module.email.iam_user.name
+}
 
 locals {
   api_secret_env_vars = {
@@ -18,6 +17,9 @@ locals {
     DB_USERNAME = module.postgresql.username
     DB_PORT = module.postgresql.port
     JWT_SECRET = random_password.jwt_secret.result
+    AWS_SES_ACCESS_KEY_ID = aws_iam_access_key.email_user_access_key.id
+    AWS_SES_ACCESS_KEY_SECRET = aws_iam_access_key.email_user_access_key.secret
+    AWS_REGION = var.aws_region
   }
   api_env_vars = {
   }
