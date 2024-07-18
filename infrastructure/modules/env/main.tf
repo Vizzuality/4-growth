@@ -20,7 +20,6 @@ module "beanstalk" {
   cname_prefix                                  = var.cname_prefix
 }
 
-
 module "postgresql" {
   source = "../postgresql"
   log_retention_period        = var.rds_log_retention_period
@@ -40,6 +39,12 @@ module "postgresql" {
   database_name               = var.project
 }
 
+module "email" {
+  source = "../email"
+  domain = var.domain
+  region = var.aws_region
+}
+
 module "github" {
   source = "../github"
   repo_name    = var.project
@@ -50,4 +55,6 @@ module "github" {
   // TODO: we need to pass a optional custom value per env, i.e to set a external non-code generated values
   environment_variable_map = merge(local.api_env_vars, local.client_env_vars)
 }
+
+
 
