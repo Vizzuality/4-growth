@@ -13,6 +13,7 @@ resource "aws_db_instance" "postgresql" {
   password                = random_password.postgresql_superuser.result
   backup_retention_period = 5
   allocated_storage       = 5
+  skip_final_snapshot = true
 
   maintenance_window = "Mon:00:00-Mon:03:00"
   backup_window      = "03:00-06:00"
