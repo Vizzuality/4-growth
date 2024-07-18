@@ -9,6 +9,7 @@ import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { AllExceptionsFilter } from '@api/filters/all-exceptions.exception.filter';
 import { JwtAuthGuard } from '@api/guards/jwt-auth.guard';
 import { TsRestModule } from '@ts-rest/nest';
+import { EmailModule } from './modules/email/email.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { TsRestModule } from '@ts-rest/nest';
     TypeOrmModule.forRoot(getTypeORMConfig()),
     UsersModule,
     AuthModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [
