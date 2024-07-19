@@ -1,6 +1,7 @@
 import { Logger } from '@nestjs/common';
 
 export class SendMailDTO {
+  from: string;
   to: string;
   subject: string;
   html: string;
