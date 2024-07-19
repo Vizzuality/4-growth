@@ -110,9 +110,6 @@ importers:
       '@types/nodemailer':
         specifier: 6.4.15
         version: 6.4.15
-      '@types/nodemailer-ses-transport':
-        specifier: 1.5.5
-        version: 1.5.5
       '@types/passport-jwt':
         specifier: 4.0.1
         version: 4.0.1
@@ -1964,9 +1961,6 @@ packages:
   '@types/aria-query@5.0.4':
     resolution: {integrity: sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==}
 
-  '@types/aws-sdk2-types@0.0.5':
-    resolution: {integrity: sha512-FIOe05YZpdvafyZxlAmflV5jStj2TJoyFBtLJvXJnQauxQGFSVrazauVws1mlLRwS0GnITlFipNh0kHWdnUU1g==}
-
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
 
@@ -2053,18 +2047,6 @@ packages:
 
   '@types/node@20.14.2':
     resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
-
-  '@types/nodemailer-direct-transport@1.0.35':
-    resolution: {integrity: sha512-D3CqXuU4WcHflbFF/ZMG4gXRU2OJKzv44XgPKX3FxLxU1nWz6l+hsAkN7dcBvBSu74muXUxd8EGioBW04iWZ5g==}
-
-  '@types/nodemailer-ses-transport@1.5.5':
-    resolution: {integrity: sha512-QL1SjkySMfpjnPEkPLZHY/wZleEboGsEruuZzDCI2dk/VDShoizX2smF859MDFLbtA/yHE/u7+7U/lkNgSe0Gg==}
-
-  '@types/nodemailer-smtp-transport@2.7.8':
-    resolution: {integrity: sha512-r+6LLaO4VtzP2FFLjOZGXpsm1Oz4wm5U9BdiMPfOFiIJhpPRmNKFXrzuBZUufRJoHhNi+NnS7Igy+m8ZyrADQg==}
-
-  '@types/nodemailer@3.1.14':
-    resolution: {integrity: sha512-8PYFpsjpGMOk3i4XRPM0piXa1OtGckjDjrvXAuKYZjXuvAI6XcrD/cN3f5MrqNVPDZGyxtlvQdhGzXo/D/uS/Q==}
 
   '@types/nodemailer@6.4.15':
     resolution: {integrity: sha512-0EBJxawVNjPkng1zm2vopRctuWVCxk34JcIlRuXSf54habUWdz1FB7wHDqOqvDa8Mtpt0Q3LTXQkAs2LNyK5jQ==}
@@ -6870,7 +6852,7 @@ snapshots:
       '@nestjs/core': 10.3.8(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.8)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       reflect-metadata: 0.2.2
       rxjs: 7.8.1
-      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
+      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       uuid: 9.0.1
 
   '@next/env@14.2.3': {}
@@ -7873,10 +7855,6 @@ snapshots:
 
   '@types/aria-query@5.0.4': {}
 
-  '@types/aws-sdk2-types@0.0.5':
-    dependencies:
-      '@types/node': 20.14.2
-
   '@types/babel__core@7.20.5':
     dependencies:
       '@babel/parser': 7.24.5
@@ -7989,27 +7967,6 @@ snapshots:
   '@types/node@20.14.2':
     dependencies:
       undici-types: 5.26.5
-
-  '@types/nodemailer-direct-transport@1.0.35':
-    dependencies:
-      '@types/nodemailer': 3.1.14
-
-  '@types/nodemailer-ses-transport@1.5.5':
-    dependencies:
-      '@types/aws-sdk2-types': 0.0.5
-      '@types/nodemailer': 3.1.14
-
-  '@types/nodemailer-smtp-transport@2.7.8':
-    dependencies:
-      '@types/node': 20.14.2
-      '@types/nodemailer': 3.1.14
-
-  '@types/nodemailer@3.1.14':
-    dependencies:
-      '@types/node': 20.14.2
-      '@types/nodemailer-direct-transport': 1.0.35
-      '@types/nodemailer-ses-transport': 1.5.5
-      '@types/nodemailer-smtp-transport': 2.7.8
 
   '@types/nodemailer@6.4.15':
     dependencies:
@@ -12081,6 +12038,29 @@ snapshots:
       possible-typed-array-names: 1.0.0
 
   typedarray@0.0.6: {}
+
+  typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)):
+    dependencies:
+      '@sqltools/formatter': 1.2.5
+      app-root-path: 3.1.0
+      buffer: 6.0.3
+      chalk: 4.1.2
+      cli-highlight: 2.1.11
+      dayjs: 1.11.11
+      debug: 4.3.4
+      dotenv: 16.4.5
+      glob: 10.3.16
+      mkdirp: 2.1.6
+      reflect-metadata: 0.2.2
+      sha.js: 2.4.11
+      tslib: 2.6.2
+      uuid: 9.0.1
+      yargs: 17.7.2
+    optionalDependencies:
+      pg: 8.11.5
+      ts-node: 10.9.2(@types/node@20.12.12)(typescript@5.4.5)
+    transitivePeerDependencies:
+      - supports-color
 
   typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5)):
     dependencies:

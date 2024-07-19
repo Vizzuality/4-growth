@@ -139,7 +139,7 @@ jobs:
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             JWT_SECRET=${{ secrets.JWT_SECRET }}
             AWS_SES_ACCESS_KEY_ID=${{ secrets.AWS_SES_ACCESS_KEY_ID }}
-            AWS_SES_ACCESS_KEY_ID=${{ secrets.AWS_SES_SECRET_ACCESS_KEY }}
+            AWS_SES_SECRET_ACCESS_KEY=${{ secrets.AWS_SES_SECRET_ACCESS_KEY }}
             AWS_REGION=${{ secrets.TF_AWS_REGION }}
           context: .
           cache-from: type=gha
