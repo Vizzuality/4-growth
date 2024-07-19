@@ -14,6 +14,12 @@ type APP_JWT_CONFIG = {
   expiresIn: string;
 };
 
+type APP_SES_MAIL_CONFIG = {
+  accessKeyId: string;
+  secretAccessKey: string;
+  region: string;
+};
+
 /**
  * Utility functions related to app configuration.
  */
@@ -108,5 +114,9 @@ export class AppConfig {
 
   static getJWTConfig(): APP_JWT_CONFIG {
     return this.get<APP_JWT_CONFIG>('jwt');
+  }
+
+  static getSESMailConfig(): APP_SES_MAIL_CONFIG {
+    return this.get<APP_SES_MAIL_CONFIG>('email.ses');
   }
 }

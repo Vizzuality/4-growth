@@ -7,8 +7,9 @@ import {
   IEmailServiceInterface,
   SendMailDTO,
 } from '@api/modules/email/email.service.interface';
-import nodemailer from 'nodemailer';
-import * as sesTransport from 'nodemailer-ses-transport';
+import * as nodemailer from 'nodemailer';
+import { AppConfig } from '@api/utils/app-config';
+import * as aws from '@aws-sdk/client-ses';
 
 @Injectable()
 export class NodemailerEmailService implements IEmailServiceInterface {
@@ -16,27 +17,37 @@ export class NodemailerEmailService implements IEmailServiceInterface {
   private transporter: nodemailer.Transporter;
 
   constructor() {
-    // TODO: Use AppConfig service for this, make a warning if env vars are missing
-    this.transporter = nodemailer.createTransport(
-      sesTransport({
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        region: process.env.AWS_REGION,
-      }),
-    );
+    const { accessKeyId, secretAccessKey, region } = this.getMailConfig();
+    const ses = new aws.SESClient({
+      region,
+      credentials: { accessKeyId, secretAccessKey },
+    });
+    this.transporter = nodemailer.createTransport({ SES: { ses, aws } });
   }
 
   async sendMail(sendMailDTO: SendMailDTO): Promise<any> {
     try {
-      return await this.transporter.sendMail({
+      return this.transporter.sendMail({
+        from: sendMailDTO.from,
         to: sendMailDTO.to,
         subject: sendMailDTO.subject,
         html: sendMailDTO.html,
         text: sendMailDTO.text,
       });
     } catch (e) {
-      this.logger.error(`Error sending email: ${e}`);
+      this.logger.error(`Error sending email: ${JSON.stringify(e)}`);
       throw new ServiceUnavailableException('Could not send email');
     }
+  }
+
+  private getMailConfig() {
+    const { accessKeyId, secretAccessKey, region } =
+      AppConfig.getSESMailConfig();
+    if (!accessKeyId || !secretAccessKey || !region) {
+      throw new ServiceUnavailableException(
+        'AWS SES credentials not found in the environment variables. Please provide them',
+      );
+    }
+    return { accessKeyId, secretAccessKey, region };
   }
 }
