@@ -8,6 +8,8 @@ import { AppBaseService } from '@api/utils/app-base.service';
 import { AppInfoDTO } from '@api/utils/info.dto';
 import { FetchSpecification } from 'nestjs-base-service';
 import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.service';
+import { AuthService } from '@api/modules/auth/auth.service';
+import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
 
 @Injectable()
 export class UsersService extends AppBaseService<
@@ -19,6 +21,7 @@ export class UsersService extends AppBaseService<
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
     private readonly customChartService: CustomChartsService,
+    private readonly authService: AuthService,
   ) {
     super(userRepository, UsersService.name);
   }
@@ -45,5 +48,9 @@ export class UsersService extends AppBaseService<
 
   async getUsersCustomCharts(userId: string, dto: FetchSpecification) {
     return this.customChartService.findAllPaginated(dto, { userId });
+  }
+
+  async updatePassword(userid: string, dto: UpdateUserPasswordDto) {
+    return this.authService.updatePassword(userid, dto);
   }
 }
