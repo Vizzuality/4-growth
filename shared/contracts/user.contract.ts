@@ -102,4 +102,14 @@ export const userContract = contract.router({
       400: contract.type<JSONAPIError>(),
     },
   },
+  recoverPassword: {
+    method: 'POST',
+    path: '/me/password/recover',
+    responses: {
+      200: contract.type<ApiResponse<UserDto>>(),
+      400: contract.type<JSONAPIError>(),
+    },
+    // TODO: Update this with a zod schema when zod validation PR is merged
+    body: contract.type<{ password: string }>(),
+  },
 });
