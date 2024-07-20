@@ -14,7 +14,6 @@ import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { GetUser } from '@api/decorators/get-user.decorator';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
-import { AuthService } from '@api/modules/auth/auth.service';
 import {
   FetchSpecification,
   ProcessFetchSpecification,
@@ -25,10 +24,7 @@ import { userContract as c } from '@shared/contracts/user.contract';
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
-  constructor(
-    private usersService: UsersService,
-    private authService: AuthService,
-  ) {}
+  constructor(private usersService: UsersService) {}
 
   @TsRestHandler(c.createUser)
   async createUser(@Body() createUserDto: CreateUserDto): Promise<any> {
@@ -65,7 +61,7 @@ export class UsersController {
     @GetUser() user: User,
   ): Promise<any> {
     return tsRestHandler(c.updatePassword, async () => {
-      const updatedUser = await this.authService.updatePassword(user.id, dto);
+      const updatedUser = await this.usersService.updatePassword(user.id, dto);
       return { body: { data: updatedUser }, status: HttpStatus.OK };
     });
   }
@@ -106,6 +102,13 @@ export class UsersController {
         query,
       );
       return { body: customChart, status: HttpStatus.OK };
+    });
+  }
+
+  @TsRestHandler(c.recoverPassword)
+  async recoverPassword(): Promise<any> {
+    return tsRestHandler(c.recoverPassword, async ({ body }) => {
+      return { body: null, status: HttpStatus.OK };
     });
   }
 }
