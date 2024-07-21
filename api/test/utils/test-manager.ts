@@ -45,8 +45,8 @@ export class TestManager<FixtureType> {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     })
-      .overrideProvider(IEmailServiceToken)
-      .useClass(MockEmailService)
+      // .overrideProvider(IEmailServiceToken)
+      // .useClass(MockEmailService)
       .compile();
     const dataSource = moduleFixture.get<DataSource>(DataSource);
     const testApp = moduleFixture.createNestApplication();
