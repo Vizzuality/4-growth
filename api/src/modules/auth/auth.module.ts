@@ -8,6 +8,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { AppConfig } from '@api/utils/app-config';
 import { JwtStrategy } from '@api/modules/auth/strategies/jwt.strategy';
 import { LocalStrategy } from '@api/modules/auth/strategies/local.strategy';
+import { PasswordRecoveryEmailService } from '@api/modules/auth/password/password-recovery-email.service';
+import { EmailModule } from '@api/modules/email/email.module';
 
 const jwtConfig = AppConfig.getJWTConfig();
 
@@ -19,8 +21,15 @@ const jwtConfig = AppConfig.getJWTConfig();
       signOptions: { expiresIn: jwtConfig.expiresIn },
     }),
     forwardRef(() => UsersModule),
+    EmailModule,
   ],
-  providers: [AuthService, PasswordService, JwtStrategy, LocalStrategy],
+  providers: [
+    AuthService,
+    PasswordService,
+    PasswordRecoveryEmailService,
+    JwtStrategy,
+    LocalStrategy,
+  ],
   controllers: [AuthController],
   exports: [AuthService],
 })

@@ -1,4 +1,9 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  forwardRef,
+  Inject,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { UsersService } from '@api/modules/users/users.service';
 import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
 import { PasswordService } from '@api/modules/auth/password/password.service';
@@ -7,12 +12,19 @@ import { JwtPayload } from '@api/modules/auth/jwt-payload.interface';
 import { IAccessToken } from '@shared/dto/auth/access-token.interface';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
 import { User } from '@shared/dto/users/user.entity';
+import {
+  PasswordRecovery,
+  PasswordRecoveryEmailService,
+} from '@api/modules/auth/password/password-recovery-email.service';
+import { AppConfig } from '@api/utils/app-config';
 
 @Injectable()
 export class AuthService {
   constructor(
+    @Inject(forwardRef(() => UsersService))
     private readonly usersService: UsersService,
     private readonly passwordService: PasswordService,
+    private readonly passwordMailer: PasswordRecoveryEmailService,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -59,5 +71,21 @@ export class AuthService {
     );
     user.password = newPasswordHash;
     return this.usersService.update(userid, user);
+  }
+
+  async recoverPassword(
+    passwordRecovery: Partial<PasswordRecovery>,
+    userId: string,
+  ): Promise<void> {
+    const payload: JwtPayload = { id: userId };
+    const { passwordRecoveryExpiresIn } = AppConfig.getJWTConfig();
+    const token = this.jwtService.sign(payload, {
+      expiresIn: passwordRecoveryExpiresIn,
+    });
+    await this.passwordMailer.sendPasswordRecoveryEmail({
+      email: passwordRecovery.email,
+      url: passwordRecovery.url,
+      token,
+    });
   }
 }

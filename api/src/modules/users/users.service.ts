@@ -8,6 +8,8 @@ import { AppBaseService } from '@api/utils/app-base.service';
 import { AppInfoDTO } from '@api/utils/info.dto';
 import { FetchSpecification } from 'nestjs-base-service';
 import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.service';
+import { AuthService } from '@api/modules/auth/auth.service';
+import { PasswordRecovery } from '@api/modules/auth/password/password-recovery-email.service';
 
 @Injectable()
 export class UsersService extends AppBaseService<
@@ -19,8 +21,9 @@ export class UsersService extends AppBaseService<
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
     private readonly customChartService: CustomChartsService,
+    private readonly authService: AuthService,
   ) {
-    super(userRepository);
+    super(userRepository, UsersService.name);
   }
 
   async createUser(createUserDto: CreateUserDto) {
@@ -45,5 +48,29 @@ export class UsersService extends AppBaseService<
 
   async getUsersCustomCharts(userId: string, dto: FetchSpecification) {
     return this.customChartService.findAllPaginated(dto, { userId });
+  }
+
+  async recoverPassword(passwordRecovery: Partial<PasswordRecovery>) {
+    const user = await this.findByEmail(passwordRecovery.email);
+    if (!user) {
+      this.logger.warn(
+        `User with email ${passwordRecovery.email} not found for password recovery`,
+      );
+      /**
+       * if user does not exist, we should not return anything
+       */
+      return;
+    }
+
+    await this.authService.recoverPassword(passwordRecovery, user.id);
+  }
+
+  async resetPassword(email: string) {
+    const user = await this.findByEmail(email);
+    if (!user) {
+      return;
+    }
+
+    return this.userRepository.save(user);
   }
 }

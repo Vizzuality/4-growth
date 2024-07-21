@@ -9,7 +9,8 @@
   },
   "jwt": {
     "secret": "defaultsecret",
-    "expiresIn": "1d"
+    "expiresIn": "1d",
+    "passwordRecoveryExpiresIn": "1d"
   }
 }
 

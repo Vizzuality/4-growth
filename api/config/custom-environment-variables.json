@@ -8,13 +8,15 @@
   },
   "jwt": {
     "secret": "JWT_SECRET",
-    "expiresIn": "JWT_EXPIRES_IN"
+    "expiresIn": "JWT_EXPIRES_IN",
+    "passwordRecoveryExpiresIn": "PASSWORD_RECOVERY_EXPIRES_IN"
   },
   "email": {
     "ses": {
       "accessKeyId": "AWS_SES_ACCESS_KEY_ID",
       "secretAccessKey": "AWS_SES_SECRET_ACCESS_KEY",
-        "region": "AWS_REGION"
+        "region": "AWS_REGION",
+              "domain": "AWS_SES_DOMAIN"
     }
   }
 

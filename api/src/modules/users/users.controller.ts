@@ -2,6 +2,7 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Headers,
   HttpStatus,
   Param,
   ParseUUIDPipe,
@@ -107,6 +108,18 @@ export class UsersController {
         query,
       );
       return { body: customChart, status: HttpStatus.OK };
+    });
+  }
+
+  @Public()
+  @TsRestHandler(c.recoverPassword)
+  async recoverPassword(@Headers('origin') origin: string): Promise<any> {
+    return tsRestHandler(c.recoverPassword, async ({ body }) => {
+      await this.usersService.recoverPassword({
+        email: body.email,
+        url: origin,
+      });
+      return { body: null, status: HttpStatus.OK };
     });
   }
 }
