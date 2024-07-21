@@ -12,12 +12,14 @@ type APP_DB_CONFIG = {
 type APP_JWT_CONFIG = {
   secret: string;
   expiresIn: string;
+  passwordRecoveryExpiresIn: string;
 };
 
 type APP_SES_MAIL_CONFIG = {
   accessKeyId: string;
   secretAccessKey: string;
   region: string;
+  domain: string;
 };
 
 /**

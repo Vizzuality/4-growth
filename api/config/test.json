@@ -11,7 +11,9 @@
   "email": {
     "ses": {
       "accessKeyId": "myaccesskeyid",
-      "secretAccessKey": "mysecretaccess"
+      "secretAccessKey": "mysecretaccess",
+        "region": "region",
+      "domain": "random.com"
     }
   }
 }
