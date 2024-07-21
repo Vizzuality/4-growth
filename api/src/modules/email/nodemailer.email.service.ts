@@ -15,20 +15,23 @@ import * as aws from '@aws-sdk/client-ses';
 export class NodemailerEmailService implements IEmailServiceInterface {
   logger: Logger = new Logger(NodemailerEmailService.name);
   private transporter: nodemailer.Transporter;
+  private readonly domain: string;
 
   constructor() {
-    const { accessKeyId, secretAccessKey, region } = this.getMailConfig();
+    const { accessKeyId, secretAccessKey, region, domain } =
+      this.getMailConfig();
     const ses = new aws.SESClient({
       region,
       credentials: { accessKeyId, secretAccessKey },
     });
     this.transporter = nodemailer.createTransport({ SES: { ses, aws } });
+    this.domain = domain;
   }
 
   async sendMail(sendMailDTO: SendMailDTO): Promise<any> {
     try {
-      return this.transporter.sendMail({
-        from: sendMailDTO.from,
+      await this.transporter.sendMail({
+        from: `${sendMailDTO.from}@${this.domain}`,
         to: sendMailDTO.to,
         subject: sendMailDTO.subject,
         html: sendMailDTO.html,
@@ -41,13 +44,13 @@ export class NodemailerEmailService implements IEmailServiceInterface {
   }
 
   private getMailConfig() {
-    const { accessKeyId, secretAccessKey, region } =
+    const { accessKeyId, secretAccessKey, region, domain } =
       AppConfig.getSESMailConfig();
-    if (!accessKeyId || !secretAccessKey || !region) {
+    if (!accessKeyId || !secretAccessKey || !region || !domain) {
       throw new ServiceUnavailableException(
         'AWS SES credentials not found in the environment variables. Please provide them',
       );
     }
-    return { accessKeyId, secretAccessKey, region };
+    return { accessKeyId, secretAccessKey, region, domain };
   }
 }
