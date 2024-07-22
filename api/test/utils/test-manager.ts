@@ -16,6 +16,7 @@ import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
 import { IEmailServiceToken } from '@api/modules/email/email.service.interface';
 import { MockEmailService } from './mocks/mock-email.service';
+import { getDataSourceToken } from '@nestjs/typeorm';
 
 /**
  * @description: Abstraction for NestJS testing workflow. For now its a basic implementation to create a test app, but can be extended to encapsulate
@@ -45,10 +46,11 @@ export class TestManager<FixtureType> {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     })
-      // .overrideProvider(IEmailServiceToken)
-      // .useClass(MockEmailService)
+      .overrideProvider(IEmailServiceToken)
+      .useClass(MockEmailService)
       .compile();
-    const dataSource = moduleFixture.get<DataSource>(DataSource);
+    const token = getDataSourceToken();
+    const dataSource = moduleFixture.get<DataSource>(token);
     const testApp = moduleFixture.createNestApplication();
     testApp.useGlobalPipes(new ValidationPipe());
     await testApp.init();
