@@ -29,13 +29,16 @@ import { Input } from "@/components/ui/input";
 
 import { signUpAction } from "./action";
 
-const PrivacyPolicy = z.object({
+export const PrivacyPolicySchema = z.object({
   privacyPolicy: z.boolean().refine((value) => value === true, {
     message: "Privacy policy must be accepted",
   }),
 });
 
-const SignUpWithPrivacyPolicy = SignUpSchema.merge(PrivacyPolicy);
+export const SignUpWithPrivacyPolicySchema = z.intersection(
+  SignUpSchema,
+  PrivacyPolicySchema,
+);
 
 const SignUpForm: FC = () => {
   const { push } = useRouter();
@@ -45,8 +48,8 @@ const SignUpForm: FC = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const form = useForm<z.infer<typeof SignUpWithPrivacyPolicy>>({
-    resolver: zodResolver(SignUpWithPrivacyPolicy),
+  const form = useForm<z.infer<typeof SignUpWithPrivacyPolicySchema>>({
+    resolver: zodResolver(SignUpWithPrivacyPolicySchema),
     defaultValues: {
       email: "",
       password: "",
