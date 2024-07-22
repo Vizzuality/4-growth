@@ -141,6 +141,7 @@ jobs:
             AWS_SES_ACCESS_KEY_ID=${{ secrets.AWS_SES_ACCESS_KEY_ID }}
             AWS_SES_SECRET_ACCESS_KEY=${{ secrets.AWS_SES_SECRET_ACCESS_KEY }}
             AWS_REGION=${{ secrets.TF_AWS_REGION }}
+            AWS_SES_DOMAIN=${{ secrets.AWS_SES_DOMAIN }}
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max
