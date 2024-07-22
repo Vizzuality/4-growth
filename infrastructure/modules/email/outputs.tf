@@ -18,7 +18,7 @@ output "mx_record_value" {
   value = "10 feedback-smtp.${var.region}.amazonses.com"
 }
 
-output "txt_record_name" {
+output "mail_from_domain" {
   value = aws_ses_domain_mail_from.mail_from.mail_from_domain
 }
 

@@ -19,7 +19,7 @@ locals {
     JWT_SECRET = random_password.jwt_secret.result
     AWS_SES_ACCESS_KEY_ID = aws_iam_access_key.email_user_access_key.id
     AWS_SES_ACCESS_KEY_SECRET = aws_iam_access_key.email_user_access_key.secret
-    AWS_REGION = var.aws_region
+    AWS_SES_DOMAIN = module.email.mail_from_domain
   }
   api_env_vars = {
   }
