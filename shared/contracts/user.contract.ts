@@ -11,6 +11,7 @@ import {
   ApiResponse,
 } from '@shared/dto/global/api-response.dto';
 import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
+import { PasswordSchema } from '@shared/schemas/auth.schemas';
 
 const contract = initContract();
 export const userContract = contract.router({
@@ -102,14 +103,13 @@ export const userContract = contract.router({
       400: contract.type<JSONAPIError>(),
     },
   },
-  recoverPassword: {
+  resetPassword: {
     method: 'POST',
-    path: '/me/password/recover',
+    path: '/me/password/reset',
     responses: {
       200: contract.type<ApiResponse<UserDto>>(),
       400: contract.type<JSONAPIError>(),
     },
-    // TODO: Update this with a zod schema when zod validation PR is merged
-    body: contract.type<{ password: string }>(),
+    body: PasswordSchema,
   },
 });
