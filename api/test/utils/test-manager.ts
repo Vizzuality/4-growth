@@ -49,8 +49,7 @@ export class TestManager<FixtureType> {
       .overrideProvider(IEmailServiceToken)
       .useClass(MockEmailService)
       .compile();
-    const token = getDataSourceToken();
-    const dataSource = moduleFixture.get<DataSource>(token);
+    const dataSource = moduleFixture.get<DataSource>(getDataSourceToken());
     const testApp = moduleFixture.createNestApplication();
     testApp.useGlobalPipes(new ValidationPipe());
     await testApp.init();
