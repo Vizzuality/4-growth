@@ -61,7 +61,7 @@ export class UsersController {
     @GetUser() user: User,
   ): Promise<any> {
     return tsRestHandler(c.updatePassword, async () => {
-      const updatedUser = await this.usersService.updatePassword(user.id, dto);
+      const updatedUser = await this.usersService.updatePassword(user, dto);
       return { body: { data: updatedUser }, status: HttpStatus.OK };
     });
   }
@@ -105,10 +105,14 @@ export class UsersController {
     });
   }
 
-  @TsRestHandler(c.recoverPassword)
-  async recoverPassword(): Promise<any> {
-    return tsRestHandler(c.recoverPassword, async ({ body }) => {
-      return { body: null, status: HttpStatus.OK };
-    });
+  @TsRestHandler(c.resetPassword)
+  async recoverPassword(@GetUser() user: User): Promise<any> {
+    return tsRestHandler(
+      c.resetPassword,
+      async ({ body: { password: newPassword } }) => {
+        await this.usersService.resetPassword(user, newPassword);
+        return { body: null, status: HttpStatus.OK };
+      },
+    );
   }
 }
