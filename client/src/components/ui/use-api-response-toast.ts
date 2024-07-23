@@ -5,12 +5,10 @@ import { useToast } from "@/components/ui/use-toast";
 export const useApiResponseToast = () => {
   const { toast } = useToast();
   const apiResponseToast = (
-    response: any,
+    response: Record<string, any>,
     options: { successMessage: string; customErrorMessage?: string },
   ) => {
-    console.log({ response });
     if (response.status >= 200 && response.status < 300) {
-      console.log("entra al toast de success");
       toast({ description: options.successMessage });
       return;
     }
