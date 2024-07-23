@@ -11,7 +11,6 @@ import {
   ApiResponse,
 } from '@shared/dto/global/api-response.dto';
 import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
-import { EmailSchema } from '@shared/schemas/auth.schemas';
 
 const contract = initContract();
 export const userContract = contract.router({
@@ -102,14 +101,5 @@ export const userContract = contract.router({
       200: contract.type<ApiPaginationResponse<CustomChart>>(),
       400: contract.type<JSONAPIError>(),
     },
-  },
-  recoverPassword: {
-    method: 'POST',
-    path: '/users/recover-password',
-    responses: {
-      200: null,
-      400: contract.type<JSONAPIError>(),
-    },
-    body: EmailSchema,
   },
 });
