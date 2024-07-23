@@ -5,7 +5,7 @@ import { useToast } from "@/components/ui/use-toast";
 export const useApiResponseToast = () => {
   const { toast } = useToast();
   const apiResponseToast = (
-    response: Record<string, any>,
+    response: any,
     options: { successMessage: string; customErrorMessage?: string },
   ) => {
     if (response.status >= 200 && response.status < 300) {
