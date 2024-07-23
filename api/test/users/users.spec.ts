@@ -61,4 +61,26 @@ describe('Users (e2e)', () => {
       await userTestFixtures.AndMyUserShouldBeDeleted(user.id);
     });
   });
+  describe('Reset Password', () => {
+    it('should reset a users password', async () => {
+      const user = await testManager
+        .mocks()
+        .createUser({ email: 'test@user.com' });
+      const updatePasswordToken = jwtService.sign({ id: user.id });
+      const response = await testManager
+        .request()
+        .post('/users/me/password/reset')
+        .send({ password: 'updatedpassword' })
+        .set('Authorization', `Bearer ${updatePasswordToken}`);
+
+      expect(response.body.data.id).toEqual(user.id);
+
+      const loginResponse = await testManager
+        .request()
+        .post('/auth/sign-in')
+        .send({ email: user.email, password: 'updatedpassword' });
+
+      expect(loginResponse.body.accessToken).toBeDefined();
+    });
+  });
 });
