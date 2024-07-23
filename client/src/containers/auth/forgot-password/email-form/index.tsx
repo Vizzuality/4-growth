@@ -20,7 +20,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
+import {
+  ApiResponseToast,
+  useApiResponseToast,
+} from "@/components/ui/use-api-response-toast";
 
 const ForgotPasswordEmailForm: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -41,7 +44,7 @@ const ForgotPasswordEmailForm: FC = () => {
           const response = await client.auth.recoverPassword.mutation({
             body: formValues,
           });
-          apiResponseToast(response, {
+          apiResponseToast(response as ApiResponseToast, {
             successMessage: "Check your inbox for a password reset link.",
           });
         } catch (err) {
