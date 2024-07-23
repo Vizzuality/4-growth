@@ -48,8 +48,8 @@ const NewPasswordForm: FC = () => {
 
       form.handleSubmit(async (formValues) => {
         try {
-          console.log(formValues);
           // todo: connect with API. If success, show a toast informing the user the password was changed successfully and redirect to the signin page after a few seconds.
+          // TODO: we need to merge the API reset password flow PR to be able to implement this.
         } catch (err) {
           // todo: error handling. Show toast with a explicit error message here. The user will read this.
         }
