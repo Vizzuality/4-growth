@@ -110,11 +110,8 @@ export class UsersController {
     return tsRestHandler(
       c.resetPassword,
       async ({ body: { password: newPassword } }) => {
-        const updatedUser = await this.usersService.resetPassword(
-          user,
-          newPassword,
-        );
-        return { body: { data: updatedUser }, status: HttpStatus.OK };
+        await this.usersService.resetPassword(user, newPassword);
+        return { body: null, status: HttpStatus.OK };
       },
     );
   }
