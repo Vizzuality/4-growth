@@ -53,11 +53,7 @@ export class AuthService {
     return { user, accessToken };
   }
 
-  async updatePassword(
-    userid: string,
-    dto: UpdateUserPasswordDto,
-  ): Promise<User> {
-    const user = await this.usersService.findOneBy(userid);
+  async updatePassword(user: User, dto: UpdateUserPasswordDto): Promise<User> {
     const isPasswordValid = await this.passwordService.comparePassword(
       dto.currentPassword,
       user.password,
@@ -66,7 +62,7 @@ export class AuthService {
       throw new UnauthorizedException('Current password is incorrect');
     }
     user.password = await this.passwordService.hashPassword(dto.newPassword);
-    return this.usersService.update(userid, user);
+    return this.usersService.update(user.id, user);
   }
 
   async recoverPassword(

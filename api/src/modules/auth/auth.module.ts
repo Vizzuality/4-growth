@@ -31,6 +31,6 @@ const jwtConfig = AppConfig.getJWTConfig();
     LocalStrategy,
   ],
   controllers: [AuthController],
-  exports: [AuthService],
+  exports: [AuthService, PasswordService],
 })
 export class AuthModule {}
