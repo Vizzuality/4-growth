@@ -5,7 +5,11 @@ import { FC, FormEvent, useCallback, useRef } from "react";
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { EmailSchema } from "@shared/schemas/auth.schemas";
 import { z } from "zod";
+
+import { useApiResponseToast } from "@/lib/apiResponseHandler";
+import { client } from "@/lib/queryClient";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,22 +22,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-// todo: use shared schema when https://github.com/Vizzuality/4-growth/pull/60 is merged
-const ForgotPasswordSchema = z.object({
-  email: z
-    .string({ message: "Email is required" })
-    .min(1, "Email is required")
-    .email("Invalid email"),
-});
-
 const ForgotPasswordEmailForm: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const form = useForm<z.infer<typeof ForgotPasswordSchema>>({
-    resolver: zodResolver(ForgotPasswordSchema),
+  const form = useForm<z.infer<typeof EmailSchema>>({
+    resolver: zodResolver(EmailSchema),
     defaultValues: {
       email: "",
     },
   });
+  const { apiResponseToast, toast } = useApiResponseToast();
 
   const handleForgotPassword = useCallback(
     (evt: FormEvent<HTMLFormElement>) => {
@@ -41,10 +38,17 @@ const ForgotPasswordEmailForm: FC = () => {
 
       form.handleSubmit(async (formValues) => {
         try {
-          console.log(formValues);
-          // todo: connect with API. If success, show a toast asking the user to check their inbox.
+          const response = await client.auth.recoverPassword.mutation({
+            body: formValues,
+          });
+          apiResponseToast(response, {
+            successMessage: "Check your inbox for a password reset link.",
+          });
         } catch (err) {
-          // todo: error handling. Show toast with a explicit error message here. The user will read this.
+          toast({
+            variant: "destructive",
+            description: "Something went wrong",
+          });
         }
       })(evt);
     },
