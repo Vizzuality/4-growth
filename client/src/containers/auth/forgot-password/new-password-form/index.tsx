@@ -4,10 +4,14 @@ import { FC, FormEvent, useCallback, useRef, useState } from "react";
 
 import { useForm } from "react-hook-form";
 
+import { useParams, useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PasswordSchema } from "@shared/schemas/auth.schemas";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { z } from "zod";
+
+import { client } from "@/lib/queryClient";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +24,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  ApiResponseToast,
+  useApiResponseToast,
+} from "@/components/ui/use-api-response-toast";
 
 const NewPasswordSchema = z
   .object({
@@ -41,6 +49,9 @@ const NewPasswordForm: FC = () => {
       repeatPassword: "",
     },
   });
+  const { apiResponseToast, toast } = useApiResponseToast();
+  const router = useRouter();
+  const params = useParams<{ token: string }>();
 
   const handleForgotPassword = useCallback(
     (evt: FormEvent<HTMLFormElement>) => {
@@ -48,11 +59,21 @@ const NewPasswordForm: FC = () => {
 
       form.handleSubmit(async (formValues) => {
         try {
-          console.log(formValues);
-          // todo: connect with API. If success, show a toast informing the user the password was changed successfully and redirect to the signin page after a few seconds.
-          // TODO: we need to merge the API reset password flow PR to be able to implement this.
+          const response = await client.user.resetPassword.mutation({
+            body: formValues,
+            extraHeaders: {
+              Authorization: `Bearer ${params.token}`,
+            },
+          });
+          apiResponseToast(response as ApiResponseToast, {
+            successMessage: "Password changed successfully.",
+          });
+          router.push("/auth/signin");
         } catch (err) {
-          // todo: error handling. Show toast with a explicit error message here. The user will read this.
+          toast({
+            variant: "destructive",
+            description: "Something went wrong",
+          });
         }
       })(evt);
     },
