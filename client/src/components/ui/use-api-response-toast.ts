@@ -2,10 +2,15 @@ import { JSONAPIErrorOptions } from "@shared/dto/errors/json-api.error";
 
 import { useToast } from "@/components/ui/use-toast";
 
+export type ApiResponseToast = {
+  status: number;
+  body?: { errors: JSONAPIErrorOptions[] };
+};
+
 export const useApiResponseToast = () => {
   const { toast } = useToast();
   const apiResponseToast = (
-    response: any,
+    response: ApiResponseToast,
     options: { successMessage: string; customErrorMessage?: string },
   ) => {
     if (response.status >= 200 && response.status < 300) {
@@ -18,7 +23,7 @@ export const useApiResponseToast = () => {
             variant: "destructive",
             description: options.customErrorMessage,
           })
-        : response.body.errors.forEach((error: JSONAPIErrorOptions) => {
+        : response.body?.errors.forEach((error: JSONAPIErrorOptions) => {
             toast({ description: error.title });
           });
       return;
