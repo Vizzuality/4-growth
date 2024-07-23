@@ -50,8 +50,7 @@ export class AuthService {
   async signIn(user: User): Promise<IAccessToken> {
     const payload: JwtPayload = { id: user.id };
     const accessToken: string = this.jwtService.sign(payload);
-    const { password, ...userWithoutPassword } = user;
-    return { user: { ...userWithoutPassword }, accessToken };
+    return { user, accessToken };
   }
 
   async updatePassword(
@@ -66,10 +65,7 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException('Current password is incorrect');
     }
-    const newPasswordHash = await this.passwordService.hashPassword(
-      dto.newPassword,
-    );
-    user.password = newPasswordHash;
+    user.password = await this.passwordService.hashPassword(dto.newPassword);
     return this.usersService.update(userid, user);
   }
 
