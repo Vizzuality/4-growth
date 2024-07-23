@@ -1,4 +1,11 @@
-import { Controller, Headers, HttpStatus, UseGuards } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  Controller,
+  Headers,
+  HttpStatus,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AuthService } from '@api/modules/auth/auth.service';
 import { Public } from '@api/decorators/is-public.decorator';
 import { GetUser } from '@api/decorators/get-user.decorator';
@@ -8,6 +15,7 @@ import { authContract as c } from '@shared/contracts/auth.contract';
 import { LocalAuthGuard } from '@api/guards/local-auth.guard';
 
 @Controller()
+@UseInterceptors(ClassSerializerInterceptor)
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
