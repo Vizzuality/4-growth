@@ -73,4 +73,27 @@ test.describe('Users E2E', () => {
       });
     });
   });
+  test.describe('Reset Password', () => {
+    let passwordResetToken: string;
+    let user: User;
+    test('user can reset the password', async () => {
+      await testManager.logout()
+      user = await testManager.createUser({ email: 'reset-password@user.com'});
+      passwordResetToken = await testManager.generateToken(user);
+      await testManager.page.goto(`/auth/forgot-password/${passwordResetToken}`);
+      const newPassword = 'newPassword123';
+      await page.locator('input[name="password"]').click();
+      await page.locator('input[name="password"]').fill(newPassword);
+      await page.locator('input[name="repeatPassword"]').click();
+      await page.locator('input[name="repeatPassword"]').fill(newPassword);
+      await page.getByRole('button', { name: 'Submit' }).click();
+      await page.getByPlaceholder('Enter your email').click();
+      await page.getByPlaceholder('Enter your email').fill(user.email);
+      await page.getByPlaceholder('*******').click();
+      await page.getByPlaceholder('*******').fill(newPassword);
+      await page.getByRole('button', { name: 'Log in' }).click();
+      await page.waitForURL('/profile');
+      await expect(page).toHaveURL('/profile');
+    });
+  });
 });

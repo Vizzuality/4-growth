@@ -9,6 +9,7 @@ import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import { DB_ENTITIES } from '@shared/lib/db-entities';
 import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
+import { sign } from 'jsonwebtoken';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -87,5 +88,10 @@ export class E2eTestManager {
   async logout() {
     await this.page.goto('/auth/api/signout');
     await this.page.getByRole('button', { name: 'Sign out' }).click();
+  }
+
+  async generateToken(user: User) {
+    // the secret must match the provided for the api when built for e2e tests
+    return sign({ id: user.id }, 'mysupersecretfortests');
   }
 }
