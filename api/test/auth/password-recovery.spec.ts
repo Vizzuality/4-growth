@@ -26,7 +26,7 @@ describe('Password Recovery', () => {
   it('an email should be sent if a user with provided email has been found', async () => {
     const response = await testManager
       .request()
-      .post(`/users/recover-password`)
+      .post(`/auth/recover-password`)
       .send({ email: testUser.email })
       .set('Authorization', `Bearer ${authToken}`);
 
@@ -36,7 +36,7 @@ describe('Password Recovery', () => {
   it('should return 200 if user has not been found but no mail should be sent', async () => {
     const response = await testManager
       .request()
-      .post(`/users/recover-password`)
+      .post(`/auth/recover-password`)
       .send({ email: 'no-user@test.com' })
       .set('Authorization', `Bearer ${authToken}`);
 
@@ -46,7 +46,7 @@ describe('Password Recovery', () => {
   it('should fail if a email is not provided', async () => {
     const responseNoEmailInBody = await testManager
       .request()
-      .post(`/users/recover-password`)
+      .post(`/auth/recover-password`)
       .set('Authorization', `Bearer ${authToken}`);
 
     expect(responseNoEmailInBody.status).toBe(400);
@@ -56,7 +56,7 @@ describe('Password Recovery', () => {
 
     const responseMalformedEmail = await testManager
       .request()
-      .post(`/users/recover-password`)
+      .post(`/auth/recover-password`)
       .send({ email: 'malformed-email' })
       .set('Authorization', `Bearer ${authToken}`);
 
