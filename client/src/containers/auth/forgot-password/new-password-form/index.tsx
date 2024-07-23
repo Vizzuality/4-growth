@@ -5,6 +5,7 @@ import { FC, FormEvent, useCallback, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { PasswordSchema } from "@shared/schemas/auth.schemas";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { z } from "zod";
 
@@ -20,14 +21,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-// todo: use shared schema when https://github.com/Vizzuality/4-growth/pull/60 is merged
-export const NewPasswordSchema = z.object({
-  password: z
-    .string({ message: "Password is required" })
-    .min(1, "Password is required")
-    .min(8, "Password must contain at least 8 characters")
-    .max(32, "Password must be less than 32 characters"),
-});
+const NewPasswordSchema = z
+  .object({
+    password: PasswordSchema.shape.password,
+    repeatPassword: PasswordSchema.shape.password,
+  })
+  .refine((data) => data.password === data.repeatPassword, {
+    message: "Passwords must match",
+    path: ["repeatPassword"],
+  });
 
 const NewPasswordForm: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,6 +38,7 @@ const NewPasswordForm: FC = () => {
     resolver: zodResolver(NewPasswordSchema),
     defaultValues: {
       password: "",
+      repeatPassword: "",
     },
   });
 
@@ -76,6 +79,44 @@ const NewPasswordForm: FC = () => {
             render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel>New password</FormLabel>
+                <FormControl>
+                  <div className="relative flex items-center">
+                    <Input
+                      placeholder="*******"
+                      type={showPassword ? "text" : "password"}
+                      autoComplete="new-password"
+                      {...field}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowPassword((prev) => !prev);
+                      }}
+                      className="absolute right-20 text-muted-foreground"
+                    >
+                      {showPassword ? (
+                        <EyeIcon className="h-4 w-4" strokeWidth={2} />
+                      ) : (
+                        <EyeOffIcon className="h-4 w-4" strokeWidth={2} />
+                      )}
+                    </button>
+                  </div>
+                </FormControl>
+                {!fieldState.invalid && (
+                  <FormDescription>
+                    Password must contain at least 8 characters.
+                  </FormDescription>
+                )}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="repeatPassword"
+            render={({ field, fieldState }) => (
+              <FormItem>
+                <FormLabel>Repeat password</FormLabel>
                 <FormControl>
                   <div className="relative flex items-center">
                     <Input
