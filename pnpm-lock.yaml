@@ -381,7 +381,7 @@ importers:
         version: 8.11.5
       typeorm:
         specifier: ^0.3.20
-        version: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
+        version: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -392,9 +392,15 @@ importers:
       '@types/bcrypt':
         specifier: 5.0.2
         version: 5.0.2
+      '@types/jsonwebtoken':
+        specifier: 9.0.6
+        version: 9.0.6
       '@types/lodash':
         specifier: 4.17.4
         version: 4.17.4
+      jsonwebtoken:
+        specifier: 9.0.2
+        version: 9.0.2
 
 packages:
 
@@ -2051,6 +2057,9 @@ packages:
 
   '@types/jsonwebtoken@9.0.5':
     resolution: {integrity: sha512-VRLSGzik+Unrup6BsouBeHsf4d1hOEgYWTm/7Nmw1sXoN1+tRly/Gy/po3yeahnP4jfnQWWAhQAqcNfH7ngOkA==}
+
+  '@types/jsonwebtoken@9.0.6':
+    resolution: {integrity: sha512-/5hndP5dCjloafCXns6SZyESp3Ldq7YjH3zwzwczYnjxIT0Fqzk5ROSYVGfFyczIue7IUEj8hkvLbPoLQ18vQw==}
 
   '@types/lodash@4.17.4':
     resolution: {integrity: sha512-wYCP26ZLxaT3R39kiN2+HcJ4kTd3U1waI/cY7ivWYqFP6pW3ZNpvi6Wd6PHZx7T/t8z0vlkXMg3QYLa7DZ/IJQ==}
@@ -6877,7 +6886,7 @@ snapshots:
       '@nestjs/core': 10.3.8(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.8)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       reflect-metadata: 0.2.2
       rxjs: 7.8.1
-      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
+      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       uuid: 9.0.1
 
   '@next/env@14.2.3': {}
@@ -7985,6 +7994,10 @@ snapshots:
   '@types/jsonapi-serializer@3.6.8': {}
 
   '@types/jsonwebtoken@9.0.5':
+    dependencies:
+      '@types/node': 20.14.2
+
+  '@types/jsonwebtoken@9.0.6':
     dependencies:
       '@types/node': 20.14.2
 
@@ -10895,7 +10908,7 @@ snapshots:
       express: 4.18.2
       lodash: 4.17.21
       nestjs-typeorm-paginate: 4.0.3(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5)))
-      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
+      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       typescript: 4.7.4
     transitivePeerDependencies:
       - supports-color
@@ -10903,7 +10916,7 @@ snapshots:
   nestjs-typeorm-paginate@4.0.3(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))):
     dependencies:
       '@nestjs/common': 10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
+      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
 
   next-auth@4.24.7(next@14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nodemailer@6.9.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -12078,7 +12091,7 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5)):
+  typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)):
     dependencies:
       '@sqltools/formatter': 1.2.5
       app-root-path: 3.1.0
