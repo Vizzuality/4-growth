@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { EmailSchema } from "@shared/schemas/auth.schemas";
 import { z } from "zod";
 
-import { useApiResponseToast } from "@/lib/apiResponseHandler";
 import { client } from "@/lib/queryClient";
 
 import { Button } from "@/components/ui/button";
@@ -21,6 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
 
 const ForgotPasswordEmailForm: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
