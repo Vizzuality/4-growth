@@ -1,4 +1,4 @@
-import { Controller, UseGuards } from '@nestjs/common';
+import { Controller, Headers, HttpStatus, UseGuards } from '@nestjs/common';
 import { AuthService } from '@api/modules/auth/auth.service';
 import { Public } from '@api/decorators/is-public.decorator';
 import { GetUser } from '@api/decorators/get-user.decorator';
@@ -33,6 +33,18 @@ export class AuthController {
         body: userWithAccessToken,
         status: 201,
       };
+    });
+  }
+
+  @Public()
+  @TsRestHandler(c.recoverPassword)
+  async recoverPassword(@Headers('origin') origin: string): Promise<any> {
+    return tsRestHandler(c.recoverPassword, async ({ body }) => {
+      await this.authService.recoverPassword({
+        email: body.email,
+        url: origin,
+      });
+      return { body: null, status: HttpStatus.OK };
     });
   }
 }

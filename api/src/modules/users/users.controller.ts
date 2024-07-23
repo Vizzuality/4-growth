@@ -2,7 +2,6 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
-  Headers,
   HttpStatus,
   Param,
   ParseUUIDPipe,
@@ -22,7 +21,6 @@ import {
 } from 'nestjs-base-service';
 import { tsRestHandler, TsRestHandler } from '@ts-rest/nest';
 import { userContract as c } from '@shared/contracts/user.contract';
-import { Public } from '@api/decorators/is-public.decorator';
 
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
@@ -108,18 +106,6 @@ export class UsersController {
         query,
       );
       return { body: customChart, status: HttpStatus.OK };
-    });
-  }
-
-  @Public()
-  @TsRestHandler(c.recoverPassword)
-  async recoverPassword(@Headers('origin') origin: string): Promise<any> {
-    return tsRestHandler(c.recoverPassword, async ({ body }) => {
-      await this.usersService.recoverPassword({
-        email: body.email,
-        url: origin,
-      });
-      return { body: null, status: HttpStatus.OK };
     });
   }
 }
