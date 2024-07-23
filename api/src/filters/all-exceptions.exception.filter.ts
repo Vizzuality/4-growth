@@ -28,6 +28,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       const errorDataForResponse: JSONAPIError = new JSONAPISerializer.Error(
         this.handleZodValidationErrorMessages(exception),
       );
+      Logger.error(errorDataForResponse);
       return response.status(exception.getStatus()).json(errorDataForResponse);
     } else if (exception instanceof HttpException) {
       status = exception.getStatus();

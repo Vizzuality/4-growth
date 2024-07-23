@@ -2,6 +2,7 @@ import {
   forwardRef,
   Inject,
   Injectable,
+  Logger,
   UnauthorizedException,
 } from '@nestjs/common';
 import { UsersService } from '@api/modules/users/users.service';
@@ -20,6 +21,7 @@ import { AppConfig } from '@api/utils/app-config';
 
 @Injectable()
 export class AuthService {
+  logger = new Logger(AuthService.name);
   constructor(
     @Inject(forwardRef(() => UsersService))
     private readonly usersService: UsersService,
@@ -70,6 +72,9 @@ export class AuthService {
   ): Promise<void> {
     const user = await this.usersService.findByEmail(passwordRecovery.email);
     if (!user) {
+      this.logger.warn(
+        `User with email ${passwordRecovery.email} not found when trying to recover password`,
+      );
       // if user does not exist, we should not return anything
       return;
     }
