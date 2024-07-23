@@ -73,7 +73,8 @@ describe('Users (e2e)', () => {
         .send({ password: 'updatedpassword' })
         .set('Authorization', `Bearer ${updatePasswordToken}`);
 
-      expect(response.body.data.id).toEqual(user.id);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual({});
 
       const loginResponse = await testManager
         .request()

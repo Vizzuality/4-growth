@@ -107,7 +107,7 @@ export const userContract = contract.router({
     method: 'POST',
     path: '/users/me/password/reset',
     responses: {
-      200: contract.type<ApiResponse<UserDto>>(),
+      200: contract.type<null>(),
       400: contract.type<JSONAPIError>(),
     },
     body: PasswordSchema,
