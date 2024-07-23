@@ -75,9 +75,13 @@ export class AuthService {
 
   async recoverPassword(
     passwordRecovery: Partial<PasswordRecovery>,
-    userId: string,
   ): Promise<void> {
-    const payload: JwtPayload = { id: userId };
+    const user = await this.usersService.findByEmail(passwordRecovery.email);
+    if (!user) {
+      // if user does not exist, we should not return anything
+      return;
+    }
+    const payload: JwtPayload = { id: user.id };
     const { passwordRecoveryExpiresIn } = AppConfig.getJWTConfig();
     const token = this.jwtService.sign(payload, {
       expiresIn: passwordRecoveryExpiresIn,
