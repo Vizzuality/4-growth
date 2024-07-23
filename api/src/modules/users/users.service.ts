@@ -57,8 +57,7 @@ export class UsersService extends AppBaseService<
   }
 
   async resetPassword(user: User, newPassword: string) {
-    const passwordHash = await this.passwordService.hashPassword(newPassword);
-    user.password = passwordHash;
+    user.password = await this.passwordService.hashPassword(newPassword);
     return this.userRepository.save(user);
   }
 }
