@@ -16,11 +16,11 @@ jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
   useParams: jest.fn(),
 }));
-jest.mock("../src/components/ui/use-api-response-toast", () => ({
+jest.mock("@/components/ui/use-api-response-toast", () => ({
   useApiResponseToast: jest.fn(),
 }));
 
-jest.mock("../src/lib/queryClient", () => ({
+jest.mock("@/lib/queryClient", () => ({
   client: {
     user: {
       resetPassword: {
