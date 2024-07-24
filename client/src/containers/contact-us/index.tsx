@@ -7,7 +7,10 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ContactUsSchema } from "@shared/schemas/contact.schema";
 import { z } from "zod";
+
+import { PrivacyPolicySchema } from "@/containers/auth/signup/form";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -23,27 +26,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-// todo: use shared schema when https://github.com/Vizzuality/4-growth/pull/60 is merged
-const ContactUsSchema = z.object({
-  name: z
-    .string({ message: "Name is required" })
-    .min(2, "Name must contain at least 2 characters"),
-  email: z
-    .string({ message: "Email is required" })
-    .min(1, "Email is required")
-    .email("Invalid email"),
-  message: z
-    .string({ message: "Message is required" })
-    .min(2, "Message is required"),
-  privacyPolicy: z.boolean().refine((value) => value === true, {
-    message: "Privacy policy must be accepted",
-  }),
-});
+export const ContactUsWithPrivacyPolicySchema =
+  ContactUsSchema.merge(PrivacyPolicySchema);
 
 const ContactUsForm: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const form = useForm<z.infer<typeof ContactUsSchema>>({
-    resolver: zodResolver(ContactUsSchema),
+  const form = useForm<z.infer<typeof ContactUsWithPrivacyPolicySchema>>({
+    resolver: zodResolver(ContactUsWithPrivacyPolicySchema),
+    // why omit privacyPolicy? The schema was instantiated with it.
     defaultValues: {
       name: "",
       email: "",
@@ -59,7 +49,7 @@ const ContactUsForm: FC = () => {
 
       form.handleSubmit(async (formValues) => {
         try {
-          const parsed = ContactUsSchema.omit({
+          const parsed = ContactUsWithPrivacyPolicySchema.omit({
             privacyPolicy: true,
           }).safeParse(formValues);
 
