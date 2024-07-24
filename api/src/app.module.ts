@@ -10,6 +10,7 @@ import { AllExceptionsFilter } from '@api/filters/all-exceptions.exception.filte
 import { JwtAuthGuard } from '@api/guards/jwt-auth.guard';
 import { TsRestModule } from '@ts-rest/nest';
 import { EmailModule } from './modules/email/email.module';
+import { ContactMailer } from '@api/contact.mailer';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { EmailModule } from './modules/email/email.module';
     AppService,
     { provide: APP_GUARD, useClass: JwtAuthGuard },
     { provide: APP_FILTER, useClass: AllExceptionsFilter },
+    ContactMailer,
   ],
 })
 export class AppModule {}
