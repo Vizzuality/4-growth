@@ -14,7 +14,8 @@
       "secretAccessKey": "mysecretaccess",
         "region": "region",
       "domain": "random.com"
-    }
+    },
+    "contactEmail": "contact@email.com"
   }
 }
 
