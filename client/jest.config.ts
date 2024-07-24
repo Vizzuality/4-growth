@@ -13,6 +13,10 @@ const createJestConfig = nextJest({
 
 const config: Config = {
   setupFilesAfterEnv: ["./jest.setup.ts"],
+  moduleNameMapper: {
+    "^@shared/(.*)$": "<rootDir>/../shared/$1",
+    "^@*/(.*)$": "<rootDir>/src/$1",
+  },
 
   // All imported modules in your tests should be mocked automatically
   // automock: false,
