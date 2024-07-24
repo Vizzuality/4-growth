@@ -7,7 +7,7 @@ import ForgotPasswordEmailForm from "@/containers/auth/forgot-password/email-for
 import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
 
 // Mocks
-jest.mock("../src/lib/queryClient", () => ({
+jest.mock("@/lib/queryClient", () => ({
   client: {
     auth: {
       recoverPassword: {
@@ -17,7 +17,7 @@ jest.mock("../src/lib/queryClient", () => ({
   },
 }));
 
-jest.mock("../src/components/ui/use-api-response-toast", () => ({
+jest.mock("@/components/ui/use-api-response-toast", () => ({
   useApiResponseToast: jest.fn(() => ({
     apiResponseToast: jest.fn(),
     toast: jest.fn(),
