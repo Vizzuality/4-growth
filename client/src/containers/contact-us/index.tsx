@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, FormEvent, useCallback, useRef } from "react";
+import { FC, FormEvent, useCallback, useRef, useState } from "react";
 
 import { useForm } from "react-hook-form";
 
@@ -9,6 +9,8 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactUsSchema } from "@shared/schemas/contact.schema";
 import { z } from "zod";
+
+import { client } from "@/lib/queryClient";
 
 import { PrivacyPolicySchema } from "@/containers/auth/signup/form";
 
@@ -25,11 +27,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/components/ui/use-toast";
 
 export const ContactUsWithPrivacyPolicySchema =
   ContactUsSchema.merge(PrivacyPolicySchema);
 
 const ContactUsForm: FC = () => {
+  const [isSending, setIsSending] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<z.infer<typeof ContactUsWithPrivacyPolicySchema>>({
     resolver: zodResolver(ContactUsWithPrivacyPolicySchema),
@@ -46,18 +50,29 @@ const ContactUsForm: FC = () => {
   const handleContactUs = useCallback(
     (evt: FormEvent<HTMLFormElement>) => {
       evt.preventDefault();
+      setIsSending(true);
 
       form.handleSubmit(async (formValues) => {
         try {
           const parsed = ContactUsWithPrivacyPolicySchema.omit({
             privacyPolicy: true,
           }).safeParse(formValues);
-
+          // todo: is this really required? the FormControl already validates the schema, and this is shared with the server, this might be redundant
           if (parsed.success) {
-            // todo: connect with API. If success, show a toast asking the user to check their inbox.
+            await client.contact.contact.mutation({
+              body: parsed.data,
+            });
+
+            toast({ variant: "default", description: "Message sent!" });
           }
         } catch (err) {
-          // todo: error handling. Show toast with a explicit error message here. The user will read this.
+          toast({
+            variant: "destructive",
+            description: "Something went wrong",
+          });
+        } finally {
+          setIsSending(false);
+          form.reset();
         }
       })(evt);
     },
@@ -160,7 +175,33 @@ const ContactUsForm: FC = () => {
           />
           <div className="space-y-2 px-6">
             <Button variant="secondary" type="submit" className="w-full">
-              Send
+              {isSending ? (
+                <div className="flex items-center justify-center">
+                  <svg
+                    className="mr-3 h-5 w-5 animate-spin text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v8z"
+                    ></path>
+                  </svg>
+                  Sending...
+                </div>
+              ) : (
+                "Send"
+              )}
             </Button>
           </div>
         </form>
