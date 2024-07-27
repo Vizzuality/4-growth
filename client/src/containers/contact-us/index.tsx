@@ -27,7 +27,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/use-toast";
+import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
 
 export const ContactUsWithPrivacyPolicySchema =
   ContactUsSchema.merge(PrivacyPolicySchema);
@@ -35,6 +35,7 @@ export const ContactUsWithPrivacyPolicySchema =
 const ContactUsForm: FC = () => {
   const [isSending, setIsSending] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const { apiResponseToast, toast } = useApiResponseToast();
   const form = useForm<z.infer<typeof ContactUsWithPrivacyPolicySchema>>({
     resolver: zodResolver(ContactUsWithPrivacyPolicySchema),
     // why omit privacyPolicy? The schema was instantiated with it.
@@ -50,21 +51,17 @@ const ContactUsForm: FC = () => {
   const handleContactUs = useCallback(
     (evt: FormEvent<HTMLFormElement>) => {
       evt.preventDefault();
-      setIsSending(true);
 
       form.handleSubmit(async (formValues) => {
+        setIsSending(true);
         try {
-          const parsed = ContactUsWithPrivacyPolicySchema.omit({
-            privacyPolicy: true,
-          }).safeParse(formValues);
-          // todo: is this really required? the FormControl already validates the schema, and this is shared with the server, this might be redundant
-          if (parsed.success) {
-            await client.contact.contact.mutation({
-              body: parsed.data,
-            });
-
-            toast({ variant: "default", description: "Message sent!" });
-          }
+          const { status, body } = await client.contact.contact.mutation({
+            body: formValues,
+          });
+          apiResponseToast(
+            { status, body },
+            { successMessage: "Message sent!" },
+          );
         } catch (err) {
           toast({
             variant: "destructive",
