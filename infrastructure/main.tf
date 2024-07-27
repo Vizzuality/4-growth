@@ -129,6 +129,7 @@ module "dev" {
   rds_backup_retention_period = 3
   github_owner = var.github_owner
   github_token = var.github_token
+  contact_email = var.contact_email
 }
 
 

@@ -142,6 +142,7 @@ jobs:
             AWS_SES_ACCESS_KEY_SECRET=${{ secrets.AWS_SES_ACCESS_KEY_SECRET }}
             AWS_REGION=${{ secrets.TF_AWS_REGION }}
             AWS_SES_DOMAIN=${{ secrets.AWS_SES_DOMAIN }}
+            CONTACT_EMAIL=${{ secrets.CONTACT_EMAIL }}
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max
