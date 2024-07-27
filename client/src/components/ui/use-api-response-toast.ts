@@ -2,17 +2,14 @@ import { JSONAPIErrorOptions } from "@shared/dto/errors/json-api.error";
 
 import { useToast } from "@/components/ui/use-toast";
 
-type ApiResponse<T = unknown> = {
-  headers: Headers;
-  status: number;
-  body: { errors?: JSONAPIErrorOptions[] } | T;
-};
-
 export const useApiResponseToast = () => {
   const { toast } = useToast();
 
-  const apiResponseToast = <T>(
-    response: ApiResponse<T>,
+  const apiResponseToast = (
+    response: {
+      status: number;
+      body?: { errors?: JSONAPIErrorOptions[] } | unknown;
+    },
     options: { successMessage: string; customErrorMessage?: string },
   ) => {
     if (response.status >= 200 && response.status < 300) {
