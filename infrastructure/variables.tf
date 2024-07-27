@@ -36,6 +36,12 @@ variable "next_auth_secret" {
   description = "Next Auth secret"
 }
 
+variable "contact_email" {
+  type        = string
+  description = "Email address where contact form submissions will be sent"
+
+}
+
 #
 # RDS configuration
 #
