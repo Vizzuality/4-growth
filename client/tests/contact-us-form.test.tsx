@@ -7,15 +7,8 @@ import { client } from "@/lib/queryClient";
 
 import ContactUsForm from "@/containers/contact-us";
 
-import { toast } from "@/components/ui/use-toast";
-
 // Mocks
-// TODO: refactor to use alias when https://github.com/Vizzuality/4-growth/pull/63 is merged
-jest.mock("../src/components/ui/use-toast", () => ({
-  toast: jest.fn(),
-}));
-
-jest.mock("../src/lib/queryClient", () => ({
+jest.mock("@/lib/queryClient", () => ({
   client: {
     contact: {
       contact: {
@@ -25,9 +18,17 @@ jest.mock("../src/lib/queryClient", () => ({
   },
 }));
 
-describe("ContactUsForm", () => {
-  const mockToast = toast as jest.Mock;
+const mockApiResponseToast = jest.fn();
+const mockToast = jest.fn();
 
+jest.mock("@/components/ui/use-api-response-toast", () => ({
+  useApiResponseToast: jest.fn(() => ({
+    apiResponseToast: mockApiResponseToast,
+    toast: mockToast,
+  })),
+}));
+
+describe("ContactUsForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -52,12 +53,12 @@ describe("ContactUsForm", () => {
     fireEvent.click(screen.getByText("Send"));
 
     await waitFor(() => {
-      // TODO: the validation message for the Name field is missing because I can't locate it for some reason
-      //expect(screen.getByText("Name is required")).toBeInTheDocument();
-      expect(screen.getByText("Email is required")).toBeInTheDocument();
-      expect(screen.getByText("Message is required")).toBeInTheDocument();
+      // TODO: Missing validation for Name field, not able to locate the element
+      // expect(screen.getByText(/Name is required/i)).toBeInTheDocument();
+      expect(screen.getByText(/Email is required/i)).toBeInTheDocument();
+      expect(screen.getByText(/Message is required/i)).toBeInTheDocument();
       expect(
-        screen.getByText("Privacy policy must be accepted"),
+        screen.getByText(/Privacy policy must be accepted/i),
       ).toBeInTheDocument();
     });
   });
@@ -90,10 +91,7 @@ describe("ContactUsForm", () => {
           message: "Hello, this is a test message.",
         },
       });
-      expect(mockToast).toHaveBeenCalledWith({
-        variant: "default",
-        description: "Message sent!",
-      });
+      expect(mockApiResponseToast).toHaveBeenCalledTimes(1);
     });
   });
 
