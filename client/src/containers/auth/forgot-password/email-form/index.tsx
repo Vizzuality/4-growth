@@ -38,12 +38,15 @@ const ForgotPasswordEmailForm: FC = () => {
 
       form.handleSubmit(async (formValues) => {
         try {
-          const response = await client.auth.recoverPassword.mutation({
+          const { status, body } = await client.auth.recoverPassword.mutation({
             body: formValues,
           });
-          apiResponseToast<typeof response>(response, {
-            successMessage: "Check your inbox for a password reset link.",
-          });
+          apiResponseToast(
+            { status, body },
+            {
+              successMessage: "Check your inbox for a password reset link.",
+            },
+          );
         } catch (err) {
           toast({
             variant: "destructive",

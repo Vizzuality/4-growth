@@ -24,10 +24,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  ApiResponseToast,
-  useApiResponseToast,
-} from "@/components/ui/use-api-response-toast";
+import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
 
 const NewPasswordSchema = z
   .object({
@@ -59,15 +56,18 @@ const NewPasswordForm: FC = () => {
 
       form.handleSubmit(async (formValues) => {
         try {
-          const response = await client.user.resetPassword.mutation({
+          const { status, body } = await client.user.resetPassword.mutation({
             body: formValues,
             extraHeaders: {
               Authorization: `Bearer ${params.token}`,
             },
           });
-          apiResponseToast(response as ApiResponseToast, {
-            successMessage: "Password changed successfully.",
-          });
+          apiResponseToast(
+            { status, body },
+            {
+              successMessage: "Password changed successfully.",
+            },
+          );
           router.push("/auth/signin");
         } catch (err) {
           toast({
