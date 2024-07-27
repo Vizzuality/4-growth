@@ -54,9 +54,10 @@ const ContactUsForm: FC = () => {
 
       form.handleSubmit(async (formValues) => {
         setIsSending(true);
+        const { name, email, message } = formValues;
         try {
           const { status, body } = await client.contact.contact.mutation({
-            body: formValues,
+            body: { name, email, message },
           });
           apiResponseToast(
             { status, body },
