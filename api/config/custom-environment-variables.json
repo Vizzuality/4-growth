@@ -14,7 +14,7 @@
   "email": {
     "ses": {
       "accessKeyId": "AWS_SES_ACCESS_KEY_ID",
-      "secretAccessKey": "AWS_SES_SECRET_ACCESS_KEY",
+      "secretAccessKey": "AWS_SES_ACCESS_KEY_SECRET",
         "region": "AWS_REGION",
               "domain": "AWS_SES_DOMAIN"
     }
