@@ -2,7 +2,7 @@ import {
   IEmailServiceInterface,
   IEmailServiceToken,
 } from '@api/modules/email/email.service.interface';
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { AppConfig } from '@api/utils/app-config';
 
 export type PasswordRecovery = {
@@ -13,7 +13,6 @@ export type PasswordRecovery = {
 
 @Injectable()
 export class PasswordRecoveryEmailService {
-  logger: Logger = new Logger(PasswordRecoveryEmailService.name);
   constructor(
     @Inject(IEmailServiceToken)
     private readonly emailService: IEmailServiceInterface,
@@ -45,9 +44,6 @@ export class PasswordRecoveryEmailService {
       subject: 'Recover Password',
       html: htmlContent,
     });
-    this.logger.log(
-      `Password recovery email sent to ${passwordRecovery.email}`,
-    );
   }
 }
 
