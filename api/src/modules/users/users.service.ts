@@ -11,6 +11,7 @@ import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.se
 import { AuthService } from '@api/modules/auth/auth.service';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
 import { PasswordService } from '@api/modules/auth/password/password.service';
+import { ApiEventsService } from '@api/modules/api-events/api-events.service';
 
 @Injectable()
 export class UsersService extends AppBaseService<
@@ -24,8 +25,9 @@ export class UsersService extends AppBaseService<
     private readonly customChartService: CustomChartsService,
     private readonly authService: AuthService,
     private readonly passwordService: PasswordService,
+    private readonly events: ApiEventsService,
   ) {
-    super(userRepository, UsersService.name);
+    super(userRepository, 'user', 'users');
   }
 
   async createUser(createUserDto: CreateUserDto) {
@@ -59,6 +61,9 @@ export class UsersService extends AppBaseService<
   async resetPassword(user: User, newPassword: string) {
     user.password = await this.passwordService.hashPassword(newPassword);
     await this.userRepository.save(user);
-    this.logger.log(`User ${user.email} password has been reset`);
+    await this.events.createEvent(
+      this.events.eventMap.USER_EVENTS.USER_RECOVERED_PASSWORD,
+      { associatedId: user.id },
+    );
   }
 }

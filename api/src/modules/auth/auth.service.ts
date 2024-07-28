@@ -18,6 +18,7 @@ import {
   PasswordRecoveryEmailService,
 } from '@api/modules/auth/password/password-recovery-email.service';
 import { AppConfig } from '@api/utils/app-config';
+import { ApiEventsService } from '@api/modules/api-events/api-events.service';
 
 @Injectable()
 export class AuthService {
@@ -28,14 +29,19 @@ export class AuthService {
     private readonly passwordService: PasswordService,
     private readonly passwordMailer: PasswordRecoveryEmailService,
     private readonly jwtService: JwtService,
+    private readonly events: ApiEventsService,
   ) {}
 
   async signUp(dto: SignUpDto): Promise<void> {
     const passwordHash = await this.passwordService.hashPassword(dto.password);
-    await this.usersService.createUser({
+    const user = await this.usersService.createUser({
       email: dto.email,
       password: passwordHash,
     });
+    await this.events.createEvent(
+      this.events.eventMap.USER_EVENTS.USER_SIGNED_UP,
+      { associatedId: user.id },
+    );
   }
 
   async validateUser(email: string, password: string): Promise<User> {
@@ -76,6 +82,10 @@ export class AuthService {
         `User with email ${passwordRecovery.email} not found when trying to recover password`,
       );
       // if user does not exist, we should not return anything
+      await this.events.createEvent(
+        this.events.eventMap.USER_EVENTS.USER_NOT_FOUND_FOR_PASSWORD_RECOVERY,
+        { data: { email: passwordRecovery.email } },
+      );
       return;
     }
     const payload: JwtPayload = { id: user.id };
@@ -88,5 +98,9 @@ export class AuthService {
       url: passwordRecovery.url,
       token,
     });
+    await this.events.createEvent(
+      this.events.eventMap.USER_EVENTS.USER_REQUESTED_PASSWORD_RECOVERY,
+      { associatedId: user.id },
+    );
   }
 }
