@@ -11,6 +11,7 @@ import { JwtAuthGuard } from '@api/guards/jwt-auth.guard';
 import { TsRestModule } from '@ts-rest/nest';
 import { EmailModule } from './modules/email/email.module';
 import { ContactMailer } from '@api/contact.mailer';
+import { ApiEventsModule } from '@api/modules/api-events/api-events.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ContactMailer } from '@api/contact.mailer';
     UsersModule,
     AuthModule,
     EmailModule,
+    ApiEventsModule,
   ],
   controllers: [AppController],
   providers: [
