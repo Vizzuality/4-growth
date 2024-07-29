@@ -18,6 +18,15 @@ export default function ComingSoon() {
         <h1 className="text-white text-3xl md:text-6xl font-bold whitespace-nowrap">
           Visualisation Platform
         </h1>
+        <a
+          href="https://4growth-project.eu/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="4Growth project site"
+          className="px-4 py-3 text-blue-900 rounded-2xl bg-white hover:bg-white/80 transition-colors font-semibold"
+        >
+          4Growth project site
+        </a>
       </section>
 
       <section className="grid md:grid-cols-4 gap-0.5 mb-0.5">
