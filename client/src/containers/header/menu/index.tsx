@@ -18,8 +18,8 @@ const Menu: FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/contact" className={classes.link}>
-            Contact{" "}
+          <Link href="/contact-us" className={classes.link}>
+            Contact Us{" "}
           </Link>
         </li>
         <UserMenu />
