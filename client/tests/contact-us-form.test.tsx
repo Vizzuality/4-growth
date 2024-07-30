@@ -1,8 +1,8 @@
 import React from "react";
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { mocked } from "jest-mock";
 
-import "@testing-library/jest-dom/extend-expect";
 import { client } from "@/lib/queryClient";
 
 import ContactUsForm from "@/containers/contact-us";
@@ -64,7 +64,7 @@ describe("ContactUsForm", () => {
   });
 
   it("submits the form successfully when filled correctly", async () => {
-    client.contact.contact.mutation.mockResolvedValueOnce({});
+    mocked(client.contact.contact.mutation).mockResolvedValueOnce({} as never);
 
     render(<ContactUsForm />);
 
@@ -96,7 +96,7 @@ describe("ContactUsForm", () => {
   });
 
   it("shows an error toast when form submission fails", async () => {
-    client.contact.contact.mutation.mockRejectedValueOnce(
+    mocked(client.contact.contact.mutation).mockRejectedValueOnce(
       new Error("Submission failed"),
     );
 
@@ -133,7 +133,7 @@ describe("ContactUsForm", () => {
   });
 
   it("displays loading animation while sending", async () => {
-    client.contact.contact.mutation.mockImplementation(() => {
+    mocked(client.contact.contact.mutation).mockImplementation(() => {
       return new Promise((resolve) => setTimeout(resolve, 100));
     });
 

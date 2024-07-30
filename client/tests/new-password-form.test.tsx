@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter, useParams } from "next/navigation";
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+import { mocked } from "jest-mock";
 
 import { client } from "@/lib/queryClient";
 
@@ -36,13 +36,13 @@ describe("NewPasswordForm", () => {
   const mockToast = jest.fn();
 
   beforeEach(() => {
-    useRouter.mockReturnValue({ push: mockPush });
-    useParams.mockReturnValue({ token: "mockToken" });
-    useApiResponseToast.mockReturnValue({
+    mocked(useRouter).mockReturnValue({ push: mockPush } as never);
+    mocked(useParams).mockReturnValue({ token: "mockToken" });
+    mocked(useApiResponseToast).mockReturnValue({
       apiResponseToast: mockApiResponseToast,
       toast: mockToast,
     });
-    client.user.resetPassword.mutation.mockClear();
+    mocked(client.user.resetPassword.mutation).mockClear();
     mockPush.mockClear();
     mockApiResponseToast.mockClear();
     mockToast.mockClear();
@@ -92,7 +92,9 @@ describe("NewPasswordForm", () => {
   });
 
   it("submits form successfully with matching passwords", async () => {
-    client.user.resetPassword.mutation.mockResolvedValueOnce({ status: 200 });
+    mocked(client.user.resetPassword.mutation).mockResolvedValueOnce({
+      status: 200,
+    } as never);
 
     render(<NewPasswordForm />);
 
@@ -120,7 +122,7 @@ describe("NewPasswordForm", () => {
   });
 
   it("shows an error toast when submission fails", async () => {
-    client.user.resetPassword.mutation.mockRejectedValueOnce(
+    mocked(client.user.resetPassword.mutation).mockRejectedValueOnce(
       new Error("Error"),
     );
 

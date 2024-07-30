@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { mocked } from "jest-mock";
 
 import { client } from "@/lib/queryClient";
 
@@ -45,9 +46,11 @@ describe("ForgotPasswordEmailForm", () => {
 
   it("calls apiResponseToast on successful response", async () => {
     const mockResponse = { status: 200 };
-    client.auth.recoverPassword.mutation.mockResolvedValue(mockResponse);
+    mocked(client.auth.recoverPassword.mutation).mockResolvedValue(
+      mockResponse as never,
+    );
     const mockApiResponseToast = jest.fn();
-    useApiResponseToast.mockReturnValue({
+    mocked(useApiResponseToast).mockReturnValue({
       apiResponseToast: mockApiResponseToast,
       toast: jest.fn(),
     });
@@ -67,11 +70,11 @@ describe("ForgotPasswordEmailForm", () => {
   });
 
   it("shows error toast on failed response", async () => {
-    client.auth.recoverPassword.mutation.mockRejectedValue(
+    mocked(client.auth.recoverPassword.mutation).mockRejectedValue(
       new Error("Network error"),
     );
     const mockToast = jest.fn();
-    useApiResponseToast.mockReturnValue({
+    mocked(useApiResponseToast).mockReturnValue({
       apiResponseToast: jest.fn(),
       toast: mockToast,
     });
