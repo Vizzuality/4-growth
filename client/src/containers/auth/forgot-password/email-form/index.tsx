@@ -52,6 +52,8 @@ const ForgotPasswordEmailForm: FC = () => {
             variant: "destructive",
             description: "Something went wrong",
           });
+        } finally {
+          form.reset();
         }
       })(evt);
     },
