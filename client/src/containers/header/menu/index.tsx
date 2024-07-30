@@ -13,6 +13,17 @@ const Menu: FC = () => {
     <nav className="min-w-[150px]">
       <ul className="overflow-hidden py-2">
         <li>
+          <Link
+            href="https://4growth-project.eu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="4Growth project site"
+            className={classes.link}
+          >
+            4Growth project site
+          </Link>
+        </li>
+        <li>
           <Link href="/about" className={classes.link}>
             About
           </Link>
