@@ -23,7 +23,7 @@ export default function ComingSoon() {
           target="_blank"
           rel="noopener noreferrer"
           title="4Growth project site"
-          className="px-4 py-3 text-blue-900 rounded-2xl bg-white hover:bg-white/80 transition-colors font-semibold"
+          className="rounded-2xl bg-white px-4 py-3 font-semibold text-blue-900 transition-colors hover:bg-white/80"
         >
           4Growth project site
         </a>
