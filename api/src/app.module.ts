@@ -3,12 +3,31 @@ import { AppController } from './app.controller';
 import { AppService } from '@api/app.service';
 import { UsersModule } from '@api/modules/users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from '@api/typeorm.config';
+import { getTypeORMConfig } from '@api/typeorm.config';
 import { AuthModule } from '@api/modules/auth/auth.module';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { AllExceptionsFilter } from '@api/filters/all-exceptions.exception.filter';
+import { JwtAuthGuard } from '@api/guards/jwt-auth.guard';
+import { TsRestModule } from '@ts-rest/nest';
+import { EmailModule } from './modules/email/email.module';
+import { ContactMailer } from '@api/contact.mailer';
+import { ApiEventsModule } from '@api/modules/api-events/api-events.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), UsersModule, AuthModule],
+  imports: [
+    TsRestModule.register({ isGlobal: true, validateRequestBody: true }),
+    TypeOrmModule.forRoot(getTypeORMConfig()),
+    UsersModule,
+    AuthModule,
+    EmailModule,
+    ApiEventsModule,
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    { provide: APP_GUARD, useClass: JwtAuthGuard },
+    { provide: APP_FILTER, useClass: AllExceptionsFilter },
+    ContactMailer,
+  ],
 })
 export class AppModule {}

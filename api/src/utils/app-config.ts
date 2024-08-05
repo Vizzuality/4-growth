@@ -9,6 +9,19 @@ type APP_DB_CONFIG = {
   database: string;
 };
 
+type APP_JWT_CONFIG = {
+  secret: string;
+  expiresIn: string;
+  passwordRecoveryExpiresIn: string;
+};
+
+type APP_SES_MAIL_CONFIG = {
+  accessKeyId: string;
+  secretAccessKey: string;
+  region: string;
+  domain: string;
+};
+
 /**
  * Utility functions related to app configuration.
  */
@@ -99,5 +112,13 @@ export class AppConfig {
 
   static getDbConfig(): APP_DB_CONFIG {
     return this.get<APP_DB_CONFIG>('db');
+  }
+
+  static getJWTConfig(): APP_JWT_CONFIG {
+    return this.get<APP_JWT_CONFIG>('jwt');
+  }
+
+  static getSESMailConfig(): APP_SES_MAIL_CONFIG {
+    return this.get<APP_SES_MAIL_CONFIG>('email.ses');
   }
 }

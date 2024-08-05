@@ -6,6 +6,11 @@
     "database": "4growth",
     "host": "localhost",
     "port": 5432
+  },
+  "jwt": {
+    "secret": "defaultsecret",
+    "expiresIn": "1d",
+    "passwordRecoveryExpiresIn": "1d"
   }
 }
 

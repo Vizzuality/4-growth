@@ -1,12 +1,22 @@
 import { DataSourceOptions } from 'typeorm';
 import { AppConfig } from '@api/utils/app-config';
-import { User } from '@shared/dto/users/user.entity';
+import { DB_ENTITIES } from '@shared/lib/db-entities';
 
 /**
  * TypeORM configuration.
  */
 
 const dbConfig = AppConfig.getDbConfig();
+
+// TODO: Handle this more gracefully, probably using typeorm config useFactory or NestJS native config module:
+//       https://docs.nestjs.com/techniques/configuration
+
+export const getTypeORMConfig = () => {
+  if (process.env.NODE_ENV === 'production') {
+    return { ...typeOrmConfig, extra: sslConfig };
+  }
+  return typeOrmConfig;
+};
 
 export const typeOrmConfig: DataSourceOptions = {
   type: 'postgres',
@@ -15,6 +25,14 @@ export const typeOrmConfig: DataSourceOptions = {
   username: dbConfig.username,
   password: dbConfig.password,
   database: dbConfig.database,
-  entities: [User],
+  entities: DB_ENTITIES,
   synchronize: true,
+  extra: {},
+};
+
+export const sslConfig: Partial<DataSourceOptions> = {
+  ssl: {
+    require: true,
+    rejectUnauthorized: false,
+  },
 };

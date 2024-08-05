@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'client/**'
+      - 'shared/**'
       - '.github/workflows/api-tests.yml'
       - '/*'               # include changes in root
       - '!api/**'       # exclude client folder
@@ -13,8 +14,8 @@ on:
 
 
 jobs:
-  api-tests-e2e:
-    name: Client Tests
+  client-integration-tests:
+    name: Client Integration Tests
     runs-on: ubuntu-22.04
 
     steps:

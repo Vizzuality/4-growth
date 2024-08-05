@@ -1,19 +1,34 @@
-import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { User } from '@shared/dto/users/user.entity';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
+import { AppBaseService } from '@api/utils/app-base.service';
+import { AppInfoDTO } from '@api/utils/info.dto';
+import { FetchSpecification } from 'nestjs-base-service';
+import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.service';
+import { AuthService } from '@api/modules/auth/auth.service';
+import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
+import { PasswordService } from '@api/modules/auth/password/password.service';
+import { ApiEventsService } from '@api/modules/api-events/api-events.service';
 
 @Injectable()
-export class UsersService {
+export class UsersService extends AppBaseService<
+  User,
+  CreateUserDto,
+  UpdateUserDto,
+  AppInfoDTO
+> {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
-  ) {}
+    private readonly customChartService: CustomChartsService,
+    private readonly authService: AuthService,
+    private readonly passwordService: PasswordService,
+    private readonly events: ApiEventsService,
+  ) {
+    super(userRepository, 'user', 'users');
+  }
 
   async createUser(createUserDto: CreateUserDto) {
     const existingUser = await this.findByEmail(createUserDto.email);
@@ -22,11 +37,7 @@ export class UsersService {
         `Email ${createUserDto.email} already exists`,
       );
     }
-    await this.userRepository.save(createUserDto);
-  }
-
-  async find(): Promise<User[]> {
-    return this.userRepository.find();
+    return this.userRepository.save(createUserDto);
   }
 
   async findOneBy(id: string) {
@@ -35,25 +46,24 @@ export class UsersService {
     });
   }
 
-  async update(id: string, dto: UpdateUserDto) {
-    return this.userRepository.update(id, dto);
+  async findByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { email } });
   }
 
-  async remove(id: string) {
-    const found = await this.userRepository.findOneBy({
-      id: id,
-    });
-    if (!found) {
-      throw new NotFoundException(`Country with ID "${id}" not found`);
-    }
-    if (found) {
-      return this.userRepository.remove(found);
-    }
+  async getUsersCustomCharts(userId: string, dto: FetchSpecification) {
+    return this.customChartService.findAllPaginated(dto, { userId });
   }
 
-  async findByEmail(email: string) {
-    return this.userRepository.findOne({
-      where: { email },
-    });
+  async updatePassword(user: User, dto: UpdateUserPasswordDto) {
+    return this.authService.updatePassword(user, dto);
+  }
+
+  async resetPassword(user: User, newPassword: string) {
+    user.password = await this.passwordService.hashPassword(newPassword);
+    await this.userRepository.save(user);
+    await this.events.createEvent(
+      this.events.eventMap.USER_EVENTS.USER_RECOVERED_PASSWORD,
+      { associatedId: user.id },
+    );
   }
 }

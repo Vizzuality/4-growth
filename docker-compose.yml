@@ -2,6 +2,8 @@ version: '3.8'
 
 services:
   api:
+    environment:
+      DB_HOST: database
     build:
       context: .
       dockerfile: api/Dockerfile
@@ -14,12 +16,17 @@ services:
     build:
       context: .
       dockerfile: client/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: "http://api:4000"
+        NEXTAUTH_SECRET: "mysupersecret"
+        NEXTAUTH_URL: "http://client:3000/auth/api"
+        AUTH_CREDENTIALS: "user:test"
     ports:
       - "3000:3000"
     networks:
       - 4-growth-docker-network
 
-  postgres:
+  database:
     image: postgres:13
     environment:
       POSTGRES_USER: 4growth

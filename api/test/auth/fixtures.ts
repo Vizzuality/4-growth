@@ -1,8 +1,9 @@
 import { TestManager } from '../utils/test-manager';
 import * as request from 'supertest';
 import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
-import { createUser } from '../utils/entity-mocks';
 import { User } from '@shared/dto/users/user.entity';
+import { SignInDto } from '@shared/dto/auth/sign-in.dto';
+import { createUser } from '@shared/lib/entity-mocks';
 
 export class AuthFixtures {
   testManager: TestManager<any>;
@@ -12,10 +13,7 @@ export class AuthFixtures {
   }
 
   async GivenThereIsUserRegistered(): Promise<User> {
-    const user = await createUser(this.testManager.getDataSource(), {
-      email: 'test@email.com',
-    });
-    return user;
+    return createUser(this.testManager.getDataSource());
   }
 
   async WhenISignUpANewUserWithWrongPayload(
@@ -28,23 +26,21 @@ export class AuthFixtures {
 
   ThenIShouldReceiveValidationErrors(response: request.Response): void {
     expect(response.status).toBe(400);
-    expect(response.body).toEqual({
-      message: [
-        'email must be an email',
-        'password must be longer than or equal to 8 characters',
-      ],
-      error: 'Bad Request',
-      statusCode: 400,
-    });
+    expect(response.body.errors).toHaveLength(2);
+    expect(response.body.errors[0].title).toEqual('Invalid email');
+    expect(response.body.errors[1].title).toEqual(
+      'Password must be more than 8 characters',
+    );
   }
 
-  ThenIShouldReceiveAEmailAlreadyExistError(response: request.Response) {
+  ThenIShouldReceiveAEmailAlreadyExistError(
+    response: request.Response,
+    email: string,
+  ) {
     expect(response.status).toBe(409);
-    expect(response.body).toEqual({
-      message: 'Email test@email.com already exists',
-      error: 'Conflict',
-      statusCode: 409,
-    });
+    expect(response.body.errors[0].title).toEqual(
+      `Email ${email} already exists`,
+    );
   }
 
   async WhenISignUpANewUser(signUpDto: SignUpDto): Promise<request.Response> {
@@ -62,5 +58,21 @@ export class AuthFixtures {
       });
     expect(user.id).toBeDefined();
     expect(user.email).toEqual(newUser.email);
+  }
+
+  async WhenISingIn(dto: SignInDto): Promise<request.Response> {
+    return request(this.testManager.getApp().getHttpServer())
+      .post('/auth/sign-in')
+      .send(dto);
+  }
+
+  ThenIShouldReceiveAUnauthorizedError(response: request.Response) {
+    expect(response.status).toBe(401);
+    expect(response.body.errors[0].title).toEqual('Invalid credentials');
+  }
+
+  ThenIShouldReceiveAValidToken(response: request.Response) {
+    expect(response.status).toBe(201);
+    expect(response.body.accessToken).toBeDefined();
   }
 }

@@ -148,6 +148,12 @@ locals {
       namespace = "aws:elbv2:listener:443"
       name      = "SSLCertificateArns"
       value     = var.acm_certificate.arn
+    },
+    // Health check path
+    {
+      namespace = "aws:elasticbeanstalk:environment:process:default"
+      name      = "HealthCheckPath"
+      value     = "/health"
     }
   ]
 }
@@ -160,6 +166,7 @@ resource "aws_elastic_beanstalk_environment" "application_environment" {
   solution_stack_name    = var.solution_stack_name
   tier                   = var.tier
   wait_for_ready_timeout = "20m"
+  cname_prefix = var.cname_prefix != null ? var.cname_prefix : null
 
   dynamic "setting" {
     for_each = local.environment_settings

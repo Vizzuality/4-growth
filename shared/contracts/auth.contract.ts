@@ -1,5 +1,11 @@
 import { initContract } from '@ts-rest/core';
-import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
+import { IAccessToken } from '@shared/dto/auth/access-token.interface';
+import { JSONAPIError } from '@shared/dto/errors/json-api.error';
+import {
+  EmailSchema,
+  SignInSchema,
+  SignUpSchema,
+} from '@shared/schemas/auth.schemas';
 
 const contract = initContract();
 export const authContract = contract.router({
@@ -8,9 +14,27 @@ export const authContract = contract.router({
     path: '/auth/sign-up',
     responses: {
       201: contract.type<null>(),
-      // TODO: Define a global error type
+      400: contract.type<JSONAPIError>(),
+      409: contract.type<JSONAPIError>(),
     },
-    body: contract.type<SignUpDto>(),
-    summary: 'Sign a new user up',
+    body: SignUpSchema,
+  },
+  signIn: {
+    method: 'POST',
+    path: '/auth/sign-in',
+    responses: {
+      201: contract.type<IAccessToken>(),
+      401: contract.type<JSONAPIError>(),
+    },
+    body: SignInSchema,
+  },
+  recoverPassword: {
+    method: 'POST',
+    path: '/auth/recover-password',
+    responses: {
+      200: null,
+      400: contract.type<JSONAPIError>(),
+    },
+    body: EmailSchema,
   },
 });

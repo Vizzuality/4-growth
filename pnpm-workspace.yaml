@@ -2,3 +2,4 @@ packages:
   - 'api/**'
   - 'client/**'
   - 'shared/**'
+  - 'e2e/**'

@@ -2,7 +2,24 @@
   "db" : {
     "username": "DB_USERNAME",
     "password": "DB_PASSWORD",
-    "database": "DB_NAME"
+    "database": "DB_NAME",
+    "host": "DB_HOST",
+    "port": "DB_PORT"
+  },
+  "jwt": {
+    "secret": "JWT_SECRET",
+    "expiresIn": "JWT_EXPIRES_IN",
+    "passwordRecoveryExpiresIn": "PASSWORD_RECOVERY_EXPIRES_IN"
+  },
+  "email": {
+    "ses": {
+      "accessKeyId": "AWS_SES_ACCESS_KEY_ID",
+      "secretAccessKey": "AWS_SES_ACCESS_KEY_SECRET",
+        "region": "AWS_REGION",
+              "domain": "AWS_SES_DOMAIN"
+    },
+    "contactEmail": "CONTACT_EMAIL"
   }
+
 }
 
