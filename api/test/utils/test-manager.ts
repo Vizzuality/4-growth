@@ -45,10 +45,7 @@ export class TestManager<FixtureType> {
   }) {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
-    })
-      .overrideProvider(IEmailServiceToken)
-      .useClass(MockEmailService)
-      .compile();
+    }).compile();
     const dataSource = moduleFixture.get<DataSource>(getDataSourceToken());
     const testApp = moduleFixture.createNestApplication();
     testApp.useGlobalPipes(new ValidationPipe());
