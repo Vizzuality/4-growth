@@ -36,6 +36,8 @@ services:
       - "5432:5432"
     networks:
       - 4-growth-docker-network
+    volumes:
+      - ./scripts/sql:/docker-entrypoint-initdb.d
 
 
 networks:
