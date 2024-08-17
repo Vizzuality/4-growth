@@ -14,8 +14,6 @@ import * as request from 'supertest';
 import { User } from '@shared/dto/users/user.entity';
 import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
-import { IEmailServiceToken } from '@api/modules/email/email.service.interface';
-import { MockEmailService } from './mocks/mock-email.service';
 import { getDataSourceToken } from '@nestjs/typeorm';
 
 /**

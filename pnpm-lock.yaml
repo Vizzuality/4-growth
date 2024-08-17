@@ -294,9 +294,6 @@ importers:
       eslint-plugin-prettier:
         specifier: 5.1.3
         version: 5.1.3(@types/eslint@8.56.10)(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5)
-      extend-expect:
-        specifier: link:@testing-library/jest-dom/extend-expect
-        version: link:@testing-library/jest-dom/extend-expect
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.12)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
@@ -350,6 +347,34 @@ importers:
         specifier: ^5.1.3
         version: 5.4.5
 
+  odata-server:
+    dependencies:
+      express:
+        specifier: 4.19.2
+        version: 4.19.2
+      odata-v4-pg:
+        specifier: 0.1.1
+        version: 0.1.1
+      odata-v4-server:
+        specifier: 0.2.13
+        version: 0.2.13
+      pg:
+        specifier: 8.11.5
+        version: 8.11.5
+      shared:
+        specifier: workspace:shared
+        version: link:../shared
+    devDependencies:
+      '@types/express':
+        specifier: ^4.17.17
+        version: 4.17.21
+      '@types/pg':
+        specifier: 8.11.6
+        version: 8.11.6
+      typescript:
+        specifier: ^5.1.3
+        version: 5.4.5
+
   shared:
     dependencies:
       '@ts-rest/core':
@@ -384,13 +409,13 @@ importers:
         version: 4.17.21
       nestjs-base-service:
         specifier: 0.11.1
-        version: 0.11.1(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5)))
+        version: 0.11.1(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@22.4.0)(typescript@5.4.5)))
       pg:
         specifier: 8.11.5
         version: 8.11.5
       typeorm:
         specifier: ^0.3.20
-        version: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
+        version: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@22.4.0)(typescript@5.4.5))
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -407,6 +432,9 @@ importers:
       '@types/lodash':
         specifier: 4.17.4
         version: 4.17.4
+      '@types/node':
+        specifier: 22.4.0
+        version: 22.4.0
       jsonwebtoken:
         specifier: 9.0.2
         version: 9.0.2
@@ -2000,6 +2028,9 @@ packages:
   '@types/bcrypt@5.0.2':
     resolution: {integrity: sha512-6atioO8Y75fNcbmj0G7UjI9lXN2pQ/IGJ2FWT4a/btd0Lk9lQalHLKhkgKVZ3r+spnmWUKfbMi1GEe9wyHQfNQ==}
 
+  '@types/body-parser@1.17.0':
+    resolution: {integrity: sha512-a2+YeUjPkztKJu5aIF2yArYFQQp8d51wZ7DavSHjFuY1mqVgidGyzEQ41JIVNy82fXj8yPgy2vJmfIywgESW6w==}
+
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
 
@@ -2008,6 +2039,9 @@ packages:
 
   '@types/cookiejar@2.1.5':
     resolution: {integrity: sha512-he+DHOWReW0nghN24E1WUqM0efK4kI9oTqDm6XmK8ZPe2djZ90BSNdGnIyCLzCPw7/pogPlGbzI2wHGGmi4O/Q==}
+
+  '@types/cors@2.8.4':
+    resolution: {integrity: sha512-ipZjBVsm2tF/n8qFGOuGBkUij9X9ZswVi9G3bx/6dz7POpVa6gVHcj1wsX/LVEn9MMF41fxK/PnZPPoTD1UFPw==}
 
   '@types/eslint-scope@3.7.7':
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
@@ -2075,6 +2109,9 @@ packages:
   '@types/node@20.14.2':
     resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
 
+  '@types/node@22.4.0':
+    resolution: {integrity: sha512-49AbMDwYUz7EXxKU/r7mXOsxwFr4BYbvB7tWYxVuLdb2ibd30ijjXINSMAHiEEZk5PCRBmW1gUeisn2VMKt3cQ==}
+
   '@types/nodemailer@6.4.15':
     resolution: {integrity: sha512-0EBJxawVNjPkng1zm2vopRctuWVCxk34JcIlRuXSf54habUWdz1FB7wHDqOqvDa8Mtpt0Q3LTXQkAs2LNyK5jQ==}
 
@@ -2089,6 +2126,9 @@ packages:
 
   '@types/passport@1.0.16':
     resolution: {integrity: sha512-FD0qD5hbPWQzaM0wHUnJ/T0BBCJBxCeemtnCwc/ThhTg3x9jfrAcRUmj5Dopza+MfFS9acTe3wk7rcVnRIp/0A==}
+
+  '@types/pg@8.11.6':
+    resolution: {integrity: sha512-/2WmmBXHLsfRqzfHW7BNZ8SbYzE8OSk7i3WjFYvfgRHj7S1xj+16Je5fUKv3lVdVzk/zn9TXOqf+avFCFIE0yQ==}
 
   '@types/prop-types@15.7.12':
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
@@ -2953,6 +2993,10 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
+  deepmerge@2.2.1:
+    resolution: {integrity: sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==}
+    engines: {node: '>=0.10.0'}
+
   deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
@@ -3306,6 +3350,9 @@ packages:
   express@4.19.2:
     resolution: {integrity: sha512-5T6nhjsT+EOMzuck8JjBHARTHfMht0POzlA60WV2pMD3gyXw2LZnZ+ueGdNxG+0calOJcWKbpFcuzLZ91YWq9Q==}
     engines: {node: '>= 0.10.0'}
+
+  extend@3.0.2:
+    resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
   external-editor@3.1.0:
     resolution: {integrity: sha512-hMQ4CX1p1izmuLYyZqLMO/qGNw10wSv9QDCPfzXfyFrOaCSSoRfqE1Kf1s5an66J5JZC62NewG+mK49jOCtQew==}
@@ -4490,6 +4537,39 @@ packages:
     resolution: {integrity: sha512-yBYjY9QX2hnRmZHAjG/f13MzmBzxzYgQhFrke06TTyKY5zSTEqkOeukBzIdVA3j3ulu8Qa3MbVFShV7T2RmGtQ==}
     engines: {node: '>= 0.4'}
 
+  obuf@1.1.2:
+    resolution: {integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==}
+
+  odata-v4-literal@0.1.1:
+    resolution: {integrity: sha512-xX9IrLywUmFI6In/AgT0Yy0DpBgW/Y7N9Q3iSfbqOjVyE2z8PvWflx9kgPBiCGmpZFw4dG2TKGlVRd2jgD8+vg==}
+
+  odata-v4-metadata@0.1.5:
+    resolution: {integrity: sha512-EKESasm7rFR+KtRePjvhfoc8FFj2ymSdPuOFFYcWUeuikfAv6nSw+VGuu4UWxcE+ZPoWZU9Wdi6o3cEzvnC1EQ==}
+    engines: {node: '>=0.6.0'}
+
+  odata-v4-parser@0.1.13:
+    resolution: {integrity: sha512-JjgP/Dt18zpS0uLozcqGGVOcmfSPrsLuDj/r1UQ4siyY2KiIZ2h++0tVwefLKcLMKWF/50UVF5qRfVXPfzCkcg==}
+
+  odata-v4-parser@0.1.29:
+    resolution: {integrity: sha512-7ZsqxcMbGAqKSBme0+lul7g9K52RadGYU3WvYwDdduJNfnduSL59w4OEskvEzWHZMcPRqPnD9XtuO7Rpl+B3jA==}
+
+  odata-v4-pg@0.1.1:
+    resolution: {integrity: sha512-WUtbCM9aaiTY5ZQtK2J5cndXsYvdE3TR/cGMXmmwUOqXG+dQCfGWCxCJimZKiw8OtSL5WMSLxQh9EHaGlxIuIA==}
+
+  odata-v4-server@0.2.13:
+    resolution: {integrity: sha512-2l5rC5ZYU8qWrrv+13OU7ZW/SeqXal54D14gyEtwB14dWYRP3KHgeolAudbFXULJP6/2GrISqzz+ak/erCLebw==}
+
+  odata-v4-service-document@0.0.3:
+    resolution: {integrity: sha512-UILJFzAG/ahwatvHM3LSslJOHweJZooG3SSma0LpjkS8iCnZW2SPnwHnUxwqsvp9JUNHV0/LU16wbqM/VnImAQ==}
+    engines: {node: '>=0.6.0'}
+
+  odata-v4-service-metadata@0.1.6:
+    resolution: {integrity: sha512-Cjn8xj5087a9jCqwhllzUrRSee67mglV6wNNB44mfRNXi/NNG5tyyXMo2M5/PG8OsHboCr9KdUgjqnYhBPsWxA==}
+    engines: {node: '>=0.6.0'}
+
+  odata-v4-sql@0.1.2:
+    resolution: {integrity: sha512-Y3S2N2C+W5pRlXsnuZBhGZ+ZlbkBxjjzwi8I6MKRmjpqil1BOs0YIUQWYCp70WmP/psp//hOJHpBRc8iFgomTg==}
+
   oidc-token-hash@5.0.3:
     resolution: {integrity: sha512-IF4PcGgzAr6XXSff26Sk/+P4KZFJVuHAJZj3wgO3vX2bMdNVp/QXTP3P7CEm9V1IdG8lDLY3HhiqpsE/nOwpPw==}
     engines: {node: ^10.13.0 || >=12.0.0}
@@ -4621,6 +4701,10 @@ packages:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
 
+  pg-numeric@1.0.2:
+    resolution: {integrity: sha512-BM/Thnrw5jm2kKLE5uJkXqqExRUY/toLHda65XgFTBTFYZyopbKjBe29Ii3RbkvlsMoFwD+tHeGaCjjv0gHlyw==}
+    engines: {node: '>=4'}
+
   pg-pool@3.6.2:
     resolution: {integrity: sha512-Htjbg8BlwXqSBQ9V8Vjtc+vzf/6fVUuak/3/XXKA9oxZprwW3IMDQTGHP+KDmVL7rtd+R1QjbnCFPuTHm3G4hg==}
     peerDependencies:
@@ -4632,6 +4716,10 @@ packages:
   pg-types@2.2.0:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
+
+  pg-types@4.0.2:
+    resolution: {integrity: sha512-cRL3JpS3lKMGsKaWndugWQoLOCoP+Cic8oseVcbr0qhPzYD5DWXK+RZ9LY9wxRf7RQia4SCwQlXk0q6FCPrVng==}
+    engines: {node: '>=10'}
 
   pg@8.11.5:
     resolution: {integrity: sha512-jqgNHSKL5cbDjFlHyYsCXmQDrfIX/3RsNwYqpd4N0Kt8niLuNoRNH+aazv6cOd43gPh9Y4DjQCtb+X0MH0Hvnw==}
@@ -4739,17 +4827,36 @@ packages:
     resolution: {integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==}
     engines: {node: '>=4'}
 
+  postgres-array@3.0.2:
+    resolution: {integrity: sha512-6faShkdFugNQCLwucjPcY5ARoW1SlbnrZjmGl0IrrqewpvxvhSLHimCVzqeuULCbG0fQv7Dtk1yDbG3xv7Veog==}
+    engines: {node: '>=12'}
+
   postgres-bytea@1.0.0:
     resolution: {integrity: sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==}
     engines: {node: '>=0.10.0'}
+
+  postgres-bytea@3.0.0:
+    resolution: {integrity: sha512-CNd4jim9RFPkObHSjVHlVrxoVQXz7quwNFpz7RY1okNNme49+sVyiTvTRobiLV548Hx/hb1BG+iE7h9493WzFw==}
+    engines: {node: '>= 6'}
 
   postgres-date@1.0.7:
     resolution: {integrity: sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==}
     engines: {node: '>=0.10.0'}
 
+  postgres-date@2.1.0:
+    resolution: {integrity: sha512-K7Juri8gtgXVcDfZttFKVmhglp7epKb1K4pgrkLxehjqkrgPhfG6OO8LHLkfaqkbpjNRnra018XwAr1yQFWGcA==}
+    engines: {node: '>=12'}
+
   postgres-interval@1.2.0:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
+
+  postgres-interval@3.0.0:
+    resolution: {integrity: sha512-BSNDnbyZCXSxgA+1f5UU2GmwhoI0aU5yMxRGO8CdFEcY2BQF9xm/7MqKnYoM1nJDk8nONNWDk9WeSmePFhQdlw==}
+    engines: {node: '>=12'}
+
+  postgres-range@1.1.4:
+    resolution: {integrity: sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w==}
 
   preact-render-to-string@5.2.6:
     resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
@@ -4977,6 +5084,9 @@ packages:
   redent@3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
     engines: {node: '>=8'}
+
+  reflect-metadata@0.1.14:
+    resolution: {integrity: sha512-ZhYeb6nRaXCfhnndflDK8qI6ZQ/YcWZCISRAWICW9XYqMUwjZM9Z0DveWX/ABN01oxSHwVxKQmxeYZSsm0jh5A==}
 
   reflect-metadata@0.2.2:
     resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
@@ -5480,6 +5590,9 @@ packages:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
     engines: {node: '>=6'}
 
+  tslib@1.14.1:
+    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
@@ -5604,6 +5717,9 @@ packages:
 
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
+  undici-types@6.19.6:
+    resolution: {integrity: sha512-e/vggGopEfTKSvj4ihnOLTsqhrKRN3LeO6qSN/GxohhuRv8qH9bNQ4B8W7e/vFL+0XTnmHPB4/kegunZGA4Org==}
 
   universalify@0.2.0:
     resolution: {integrity: sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==}
@@ -6905,7 +7021,7 @@ snapshots:
       '@nestjs/core': 10.3.8(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.8)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       reflect-metadata: 0.2.2
       rxjs: 7.8.1
-      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
+      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       uuid: 9.0.1
 
   '@next/env@14.2.3': {}
@@ -7932,6 +8048,11 @@ snapshots:
     dependencies:
       '@types/node': 20.14.2
 
+  '@types/body-parser@1.17.0':
+    dependencies:
+      '@types/connect': 3.4.38
+      '@types/node': 20.14.2
+
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
@@ -7942,6 +8063,10 @@ snapshots:
       '@types/node': 20.14.2
 
   '@types/cookiejar@2.1.5': {}
+
+  '@types/cors@2.8.4':
+    dependencies:
+      '@types/express': 4.17.21
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -8024,6 +8149,10 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
+  '@types/node@22.4.0':
+    dependencies:
+      undici-types: 6.19.6
+
   '@types/nodemailer@6.4.15':
     dependencies:
       '@types/node': 20.14.2
@@ -8047,6 +8176,12 @@ snapshots:
   '@types/passport@1.0.16':
     dependencies:
       '@types/express': 4.17.21
+
+  '@types/pg@8.11.6':
+    dependencies:
+      '@types/node': 20.14.2
+      pg-protocol: 1.6.1
+      pg-types: 4.0.2
 
   '@types/prop-types@15.7.12': {}
 
@@ -9071,6 +9206,8 @@ snapshots:
 
   deep-is@0.1.4: {}
 
+  deepmerge@2.2.1: {}
+
   deepmerge@4.3.1: {}
 
   defaults@1.0.4:
@@ -9637,6 +9774,8 @@ snapshots:
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
+
+  extend@3.0.2: {}
 
   external-editor@3.1.0:
     dependencies:
@@ -10372,7 +10511,7 @@ snapshots:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
       '@types/jsdom': 20.0.1
-      '@types/node': 20.12.12
+      '@types/node': 20.14.2
       jest-mock: 29.7.0
       jest-util: 29.7.0
       jsdom: 20.0.3
@@ -10922,22 +11061,22 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  nestjs-base-service@0.11.1(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))):
+  nestjs-base-service@0.11.1(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@22.4.0)(typescript@5.4.5))):
     dependencies:
       '@nestjs/common': 10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       class-validator: 0.14.0
       express: 4.18.2
       lodash: 4.17.21
-      nestjs-typeorm-paginate: 4.0.3(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5)))
-      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
+      nestjs-typeorm-paginate: 4.0.3(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@22.4.0)(typescript@5.4.5)))
+      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@22.4.0)(typescript@5.4.5))
       typescript: 4.7.4
     transitivePeerDependencies:
       - supports-color
 
-  nestjs-typeorm-paginate@4.0.3(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))):
+  nestjs-typeorm-paginate@4.0.3(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@22.4.0)(typescript@5.4.5))):
     dependencies:
       '@nestjs/common': 10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5))
+      typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@22.4.0)(typescript@5.4.5))
 
   next-auth@4.24.7(next@14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nodemailer@6.9.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -11071,6 +11210,58 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.0.0
 
+  obuf@1.1.2: {}
+
+  odata-v4-literal@0.1.1: {}
+
+  odata-v4-metadata@0.1.5: {}
+
+  odata-v4-parser@0.1.13: {}
+
+  odata-v4-parser@0.1.29: {}
+
+  odata-v4-pg@0.1.1:
+    dependencies:
+      odata-v4-parser: 0.1.13
+      odata-v4-sql: 0.1.2
+
+  odata-v4-server@0.2.13:
+    dependencies:
+      '@types/body-parser': 1.17.0
+      '@types/cors': 2.8.4
+      '@types/express': 4.17.21
+      '@types/qs': 6.9.15
+      body-parser: 1.20.2
+      cors: 2.8.5
+      deepmerge: 2.2.1
+      express: 4.19.2
+      odata-v4-literal: 0.1.1
+      odata-v4-metadata: 0.1.5
+      odata-v4-parser: 0.1.29
+      odata-v4-service-document: 0.0.3
+      odata-v4-service-metadata: 0.1.6
+      qs: 6.12.1
+      reflect-metadata: 0.1.14
+      tslib: 1.14.1
+    transitivePeerDependencies:
+      - supports-color
+
+  odata-v4-service-document@0.0.3:
+    dependencies:
+      extend: 3.0.2
+      odata-v4-metadata: 0.1.5
+      odata-v4-service-metadata: 0.1.6
+
+  odata-v4-service-metadata@0.1.6:
+    dependencies:
+      extend: 3.0.2
+      odata-v4-metadata: 0.1.5
+
+  odata-v4-sql@0.1.2:
+    dependencies:
+      odata-v4-literal: 0.1.1
+      odata-v4-parser: 0.1.13
+
   oidc-token-hash@5.0.3: {}
 
   on-finished@2.4.1:
@@ -11203,6 +11394,8 @@ snapshots:
 
   pg-int8@1.0.1: {}
 
+  pg-numeric@1.0.2: {}
+
   pg-pool@3.6.2(pg@8.11.5):
     dependencies:
       pg: 8.11.5
@@ -11216,6 +11409,16 @@ snapshots:
       postgres-bytea: 1.0.0
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
+
+  pg-types@4.0.2:
+    dependencies:
+      pg-int8: 1.0.1
+      pg-numeric: 1.0.2
+      postgres-array: 3.0.2
+      postgres-bytea: 3.0.0
+      postgres-date: 2.1.0
+      postgres-interval: 3.0.0
+      postgres-range: 1.1.4
 
   pg@8.11.5:
     dependencies:
@@ -11307,13 +11510,25 @@ snapshots:
 
   postgres-array@2.0.0: {}
 
+  postgres-array@3.0.2: {}
+
   postgres-bytea@1.0.0: {}
 
+  postgres-bytea@3.0.0:
+    dependencies:
+      obuf: 1.1.2
+
   postgres-date@1.0.7: {}
+
+  postgres-date@2.1.0: {}
 
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
+
+  postgres-interval@3.0.0: {}
+
+  postgres-range@1.1.4: {}
 
   preact-render-to-string@5.2.6(preact@10.22.0):
     dependencies:
@@ -11497,6 +11712,8 @@ snapshots:
     dependencies:
       indent-string: 4.0.0
       strip-indent: 3.0.0
+
+  reflect-metadata@0.1.14: {}
 
   reflect-metadata@0.2.2: {}
 
@@ -12030,6 +12247,25 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
+  ts-node@10.9.2(@types/node@22.4.0)(typescript@5.4.5):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 22.4.0
+      acorn: 8.11.3
+      acorn-walk: 8.3.2
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.4.5
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    optional: true
+
   tsc-alias@1.8.10:
     dependencies:
       chokidar: 3.6.0
@@ -12057,6 +12293,8 @@ snapshots:
       json5: 2.2.3
       minimist: 1.2.8
       strip-bom: 3.0.0
+
+  tslib@1.14.1: {}
 
   tslib@2.6.2: {}
 
@@ -12109,7 +12347,7 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(typescript@5.4.5)):
+  typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)):
     dependencies:
       '@sqltools/formatter': 1.2.5
       app-root-path: 3.1.0
@@ -12132,6 +12370,29 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@22.4.0)(typescript@5.4.5)):
+    dependencies:
+      '@sqltools/formatter': 1.2.5
+      app-root-path: 3.1.0
+      buffer: 6.0.3
+      chalk: 4.1.2
+      cli-highlight: 2.1.11
+      dayjs: 1.11.11
+      debug: 4.3.4
+      dotenv: 16.4.5
+      glob: 10.3.16
+      mkdirp: 2.1.6
+      reflect-metadata: 0.2.2
+      sha.js: 2.4.11
+      tslib: 2.6.2
+      uuid: 9.0.1
+      yargs: 17.7.2
+    optionalDependencies:
+      pg: 8.11.5
+      ts-node: 10.9.2(@types/node@22.4.0)(typescript@5.4.5)
+    transitivePeerDependencies:
+      - supports-color
+
   typescript@4.7.4: {}
 
   typescript@5.3.3: {}
@@ -12150,6 +12411,8 @@ snapshots:
       which-boxed-primitive: 1.0.2
 
   undici-types@5.26.5: {}
+
+  undici-types@6.19.6: {}
 
   universalify@0.2.0: {}
 
