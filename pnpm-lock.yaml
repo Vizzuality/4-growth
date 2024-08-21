@@ -34,6 +34,9 @@ importers:
       '@nestjs/typeorm':
         specifier: ^10.0.2
         version: 10.0.2(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.8(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.8)(reflect-metadata@0.2.2)(rxjs@7.8.1))(reflect-metadata@0.2.2)(rxjs@7.8.1)(typeorm@0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))
+      '@odata/client':
+        specifier: 2.21.10
+        version: 2.21.10
       '@ts-rest/nest':
         specifier: 3.45.2
         version: 3.45.2(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.8(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.8)(reflect-metadata@0.2.2)(rxjs@7.8.1))(rxjs@7.8.1)(zod@3.23.8)
@@ -1048,6 +1051,9 @@ packages:
       rxjs: ^7.2.0
       typeorm: ^0.3.0
 
+  '@newdash/newdash@5.23.1':
+    resolution: {integrity: sha512-yVMMjSNKUyUC9dXM+h3M7D3e+MwKWeK6dqn0K3OkAIFkHY9/+9dXLncBipa2P3nQ7SJJlFaa0Gwx1OioXbJFhg==}
+
   '@next/env@14.2.3':
     resolution: {integrity: sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==}
 
@@ -1124,6 +1130,18 @@ packages:
     resolution: {integrity: sha512-um0xL3fO7Mf4fDxcqx9KryrB7zgRM5JSlvGN5AGkP6JLM5XEKyjeAiPbNxdXVXQ16isuAhYpvP88NgL2BGd6aA==}
     engines: {node: '>=8.0.0', npm: '>=5.0.0'}
     hasBin: true
+
+  '@odata/client@2.21.10':
+    resolution: {integrity: sha512-b85im0W4W9Q3oRm2OkqZ+3jksK5nAeeNfxthf3O6xsSpUhGzbxWMniw2SRU1Nv+LeAwxY5EnkDhJtQOLB4aIQA==}
+    engines: {node: '>=18', npm: '>=8'}
+
+  '@odata/metadata@0.2.8':
+    resolution: {integrity: sha512-7oJW1gGEYmuJ/deCnVIncsp4oH1dR7xszAMp4KWyGtZ/t78MrwYs4FIsm2/OlBKL3F/zI8wNTMt0TU6/KFm5Kw==}
+    engines: {node: '>=10'}
+
+  '@odata/parser@0.2.14':
+    resolution: {integrity: sha512-aio+Ok2WbEY+foVe9YL+ondDsXqbk8UEFYCJSmDvbELLDv1WDjY8tx96wm1ASZXIbD3PIMDw+KYbjiLn2aYdxg==}
+    engines: {node: '>=10'}
 
   '@panva/hkdf@1.1.1':
     resolution: {integrity: sha512-dhPeilub1NuIG0X5Kvhh9lH4iW3ZsHlnzwgwbOlgwQ2wG1IqFzsgHqmKPk3WzsdWAeaxKJxgM0+W433RmN45GA==}
@@ -2108,6 +2126,9 @@ packages:
 
   '@types/mime@1.3.5':
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
+
+  '@types/node-fetch@2.6.11':
+    resolution: {integrity: sha512-24xFj9R5+rfQJLRyM56qh+wnVSYhyXC2tkoBndtY0U+vubqNsYXGjufB2nn8Q6gt0LrARwL6UBtMCSVCwl4B1g==}
 
   '@types/node@20.12.12':
     resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
@@ -3393,6 +3414,9 @@ packages:
   fb-watchman@2.0.2:
     resolution: {integrity: sha512-p5161BqbuCaSnB8jIbzQHOlpgsPmK5rJVDfDKO91Axs5NC1uu3HRQm6wt9cd9/+GtQQIO53JdGXXoyDpTAsgYA==}
 
+  fetch-cookie@3.0.1:
+    resolution: {integrity: sha512-ZGXe8Y5Z/1FWqQ9q/CrJhkUD73DyBU9VF0hBQmEO/wPHe4A9PKTjplFDLeFX8aOsYypZUcX5Ji/eByn3VCVO3Q==}
+
   figures@3.2.0:
     resolution: {integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==}
     engines: {node: '>=8'}
@@ -3641,6 +3665,9 @@ packages:
   http-proxy-agent@5.0.0:
     resolution: {integrity: sha512-n2hY8YdoRE1i7r6M0w9DIw5GgZN0G25P8zLCRQ8rjXtTU3vsNFBI/vWK/UIeE6g5MUUz6avwAPXmL6Fy9D/90w==}
     engines: {node: '>= 6'}
+
+  http-string-parser@0.0.6:
+    resolution: {integrity: sha512-sngOeBkIL32kum4Z+FulU+3Ve41B3js1IKfel0WAhwLqDJiUPC1UTqFRBr2/IDw9dbks6B4xSIYgPiJU7ivxww==}
 
   https-proxy-agent@5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
@@ -5243,6 +5270,9 @@ packages:
 
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
+
+  set-cookie-parser@2.7.0:
+    resolution: {integrity: sha512-lXLOiqpkUumhRdFF3k1osNXCy9akgx/dyPZ5p8qAg9seJzXr5ZrlqZuWIMuY6ejOsVLE6flJ5/h3lsn57fQ/PQ==}
 
   set-function-length@1.2.2:
     resolution: {integrity: sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==}
@@ -7052,6 +7082,8 @@ snapshots:
       typeorm: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       uuid: 9.0.1
 
+  '@newdash/newdash@5.23.1': {}
+
   '@next/env@14.2.3': {}
 
   '@next/eslint-plugin-next@14.2.3':
@@ -7104,6 +7136,31 @@ snapshots:
       node-fetch: 2.7.0
     transitivePeerDependencies:
       - encoding
+
+  '@odata/client@2.21.10':
+    dependencies:
+      '@newdash/newdash': 5.23.1
+      '@odata/parser': 0.2.14
+      '@types/node-fetch': 2.6.11
+      fetch-cookie: 3.0.1
+      http-string-parser: 0.0.6
+      node-fetch: 2.7.0
+      uuid: 9.0.1
+    optionalDependencies:
+      fsevents: 2.3.3
+    transitivePeerDependencies:
+      - encoding
+
+  '@odata/metadata@0.2.8':
+    dependencies:
+      '@newdash/newdash': 5.23.1
+      '@types/express': 4.17.21
+      reflect-metadata: 0.1.14
+
+  '@odata/parser@0.2.14':
+    dependencies:
+      '@newdash/newdash': 5.23.1
+      '@odata/metadata': 0.2.8
 
   '@panva/hkdf@1.1.1': {}
 
@@ -8168,6 +8225,11 @@ snapshots:
   '@types/methods@1.1.4': {}
 
   '@types/mime@1.3.5': {}
+
+  '@types/node-fetch@2.6.11':
+    dependencies:
+      '@types/node': 20.14.2
+      form-data: 4.0.0
 
   '@types/node@20.12.12':
     dependencies:
@@ -9843,6 +9905,11 @@ snapshots:
     dependencies:
       bser: 2.1.1
 
+  fetch-cookie@3.0.1:
+    dependencies:
+      set-cookie-parser: 2.7.0
+      tough-cookie: 4.1.4
+
   figures@3.2.0:
     dependencies:
       escape-string-regexp: 1.0.5
@@ -10127,6 +10194,8 @@ snapshots:
       debug: 4.3.4(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
+
+  http-string-parser@0.0.6: {}
 
   https-proxy-agent@5.0.1:
     dependencies:
@@ -11911,6 +11980,8 @@ snapshots:
       - supports-color
 
   set-blocking@2.0.0: {}
+
+  set-cookie-parser@2.7.0: {}
 
   set-function-length@1.2.2:
     dependencies:

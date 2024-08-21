@@ -12,6 +12,7 @@ import { TsRestModule } from '@ts-rest/nest';
 import { EmailModule } from './modules/email/email.module';
 import { ContactMailer } from '@api/contact.mailer';
 import { ApiEventsModule } from '@api/modules/api-events/api-events.module';
+import { OdataModule } from './modules/odata/odata.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { ApiEventsModule } from '@api/modules/api-events/api-events.module';
     AuthModule,
     EmailModule,
     ApiEventsModule,
+    OdataModule,
   ],
   controllers: [AppController],
   providers: [
