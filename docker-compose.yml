@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   api:
     environment:
@@ -38,6 +36,19 @@ services:
       - 4-growth-docker-network
     volumes:
       - ./scripts/sql:/docker-entrypoint-initdb.d
+
+  odata-server:
+    environment:
+      DB_HOST: database
+    build:
+      context: .
+      dockerfile: odata-server/Dockerfile
+    ports:
+      - "4001:4001"
+    networks:
+      - 4-growth-docker-network
+    depends_on:
+      - database
 
 
 networks:
