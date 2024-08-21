@@ -11,6 +11,8 @@ Here is the directory structure:
 - `api`: This is the backend application, built with NestJS.
 - `client`: This is the frontend application, built with React.
 - `shared`: This directory contains shared code used by the other applications.
+- `e2e`: This directory contains end-to-end tests for the applications.
+- `odata-server`: This directory contains the local OData server, used for development and testing purposes.
 
 ## Package Manager
 

@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start:prod": "node .",
+    "start": "node .",
+    "start:prod": "tsc && node .",
     "start:dev":  "npx nodemon src/index.ts"
   },
   "keywords": [],
