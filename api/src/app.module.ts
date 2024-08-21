@@ -13,6 +13,7 @@ import { EmailModule } from './modules/email/email.module';
 import { ContactMailer } from '@api/contact.mailer';
 import { ApiEventsModule } from '@api/modules/api-events/api-events.module';
 import { OdataModule } from './modules/odata/odata.module';
+import { SurveyResponsesModule } from './modules/survey-responses/survey-responses.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { OdataModule } from './modules/odata/odata.module';
     EmailModule,
     ApiEventsModule,
     OdataModule,
+    SurveyResponsesModule,
   ],
   controllers: [AppController],
   providers: [

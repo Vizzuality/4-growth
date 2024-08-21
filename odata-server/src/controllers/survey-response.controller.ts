@@ -19,6 +19,7 @@ export class SurveyResponseController extends ODataController {
     const sqlQuery = createQuery(query);
     const repo = AppDataSource.getRepository(SurveyResponse);
     const res: any[] = await repo.query(sqlQuery.from('survey_responses'), sqlQuery.parameters)
+    console.log('res', res)
     return res
   }
 
