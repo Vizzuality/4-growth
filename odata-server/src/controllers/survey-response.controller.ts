@@ -5,18 +5,8 @@ import { Repository } from 'typeorm';
 import { AppDataSource } from '../ormconfig';
 
 
-// TODO: To show jsons serialized results, the type of the controller needs to be a class with Edm annotations
 
-export class Product {
-  @Edm.Int32
-  Id: number;
-
-  @Edm.String
-  Name: string;
-
-}
-
-@odata.type(Product)
+@odata.type(SurveyResponse)
 export class SurveyResponseController extends ODataController {
   private surveyResponseRepository: Repository<SurveyResponse>;
 
@@ -29,9 +19,9 @@ export class SurveyResponseController extends ODataController {
   async getSurveyResponses(@odata.query query: ODataQuery): Promise<SurveyResponse[]> {
     const arr = []
     for(const n of [1,2,3,4,5] ){
-      const product = new Product()
-      product.Id = n
-      product.Name = `product ${n}`
+      const product = new SurveyResponse()
+      product.id = n
+      product.status = `product ${n}`
       arr.push(product)
     }
    return arr as any
