@@ -1,199 +1,357 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { Edm } from 'odata-v4-server';
 
-// TODO: Fields coming from the DB must match the properties decorated with Odata to be serialized. Handle this scenario
-
-@Entity('survey_responses')
+@Entity({ name: 'survey_responses' })
 export class SurveyResponse {
   @PrimaryGeneratedColumn()
   @Edm.Int32
   id: number;
 
-  @Column({ type: 'timestamp' })
-  @Edm.DateTimeOffset
-  start_date: Date;
-
-  @Column({ type: 'timestamp' })
-  @Edm.DateTimeOffset
-  end_date: Date;
-
-  @Column({ type: 'varchar', length: 255 })
+  @Column()
   @Edm.String
-  status: string;
+  org_4growth: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column()
   @Edm.String
-  ip_address: string;
+  sector_4growth: string;
 
-  @Column({ type: 'int' })
-  @Edm.Int32
-  progress: number;
-
-  @Column({ type: 'int' })
-  @Edm.Int32
-  duration_in_seconds: number;
-
-  @Column({ type: 'boolean' })
-  @Edm.Boolean
-  finished: boolean;
-
-  @Column({ type: 'timestamp' })
-  @Edm.DateTimeOffset
-  recorded_date: Date;
-
-  @Column({ type: 'varchar', length: 255 })
+  @Column()
   @Edm.String
-  response_id: string;
+  type: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column()
   @Edm.String
-  recipient_last_name: string;
+  location: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column()
   @Edm.String
-  recipient_first_name: string;
+  prim_agri: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column({ nullable: true })
   @Edm.String
-  recipient_email: string;
+  prim_agri_other?: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column()
   @Edm.String
-  external_data_reference: string;
+  prim_forest: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column({ nullable: true })
   @Edm.String
-  location_latitude: string;
+  prim_forest_other?: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column()
   @Edm.String
-  location_longitude: string;
+  org_farm: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column()
   @Edm.String
-  distribution_channel: string;
+  org_size: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column()
   @Edm.String
-  user_language: string;
+  reg_cons: string;
 
-  @Column({ type: 'text', nullable: true })
-  @Edm.String
-  consent_statement: string;
-
-  @Column({ type: 'boolean', nullable: true })
-  @Edm.Boolean
-  agree_to_contact: boolean;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  name: string;
-
-  @Column({ type: 'boolean', nullable: true })
-  @Edm.Boolean
-  test_entry: boolean;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  organisation_name: string;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  sector: string;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  type_of_stakeholder: string;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  location_country_region: string;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  primary_area_operation_agriculture: string;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  other_area_agriculture: string;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  primary_area_operation_forestry: string;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  other_area_forestry: string;
-
-  @Column({ type: 'boolean', nullable: true })
-  @Edm.Boolean
-  organic_farming: boolean;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  @Edm.String
-  organisation_size: string;
-
-  @Column({ type: 'text', nullable: true })
-  @Edm.String
-  regional_subsector_considerations: string;
-
-  @Column({ type: 'text', nullable: true })
+  @Column()
   @Edm.String
   considerations: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column()
   @Edm.String
-  governance_model: string;
+  gm01: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column()
   @Edm.String
-  regulatory_considerations: string;
+  gm02: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   @Edm.String
-  specify_regulatory: string;
+  gm02_other?: string;
 
-  @Column({ type: 'boolean', nullable: true })
-  @Edm.Boolean
-  influenced_decision_making: boolean;
-
-  @Column({ type: 'text', nullable: true })
+  @Column()
   @Edm.String
-  impact_on_job_creation: string;
+  gm04: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   @Edm.String
-  economic_impact: string;
+  gm04_other?: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   @Edm.String
-  sustainability_impact: string;
+  gm04_1?: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column()
   @Edm.String
-  energy_efficiency_impact: string;
+  integrated_digi_tech: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({nullable: true})
   @Edm.String
-  biodiversity_impact: string;
+  digitech_agri: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   @Edm.String
-  track_sustainability: string;
+  digitech_agri_other?: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   @Edm.String
-  plans_for_expansion: string;
+  digitaltech_forestry?: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   @Edm.String
-  facilitate_expansion: string;
+  digitaltech_forestry_other?: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({type: 'boolean', default: false})
   @Edm.String
-  future_developments: string;
+  goals_to_adopt: boolean;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   @Edm.String
-  additional_input: string;
+  specify_challenges_tech_adopt?: string;
+
+  @Column()
+  @Edm.String
+  lvl_digitalisation: string;
+
+  @Column()
+  @Edm.String
+  prim_function_tech: string;
+
+  @Column()
+  @Edm.String
+  adopt_level_tech: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  challenges_tech_adopt?: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  specify_challenges?: string;
+
+  @Column({type: 'boolean', default: false})
+  @Edm.String
+  further_integration: boolean;
+
+  @Column({ nullable: true })
+  @Edm.String
+  specify_barriers?: string;
+
+  @Column()
+  @Edm.String
+  digitech_userneeds: string;
+
+  @Column({nullable: true})
+  @Edm.String
+  adv_tech: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  adv_tech_other?: string;
+
+  @Column({type: 'boolean', default: false, nullable: true})
+  @Edm.String
+  limitations_tech: boolean;
+
+  @Column({ nullable: true })
+  @Edm.String
+  specify_limitations?: string;
+
+  @Column({ type: 'boolean', default: false, nullable: true })
+  @Edm.String
+  network_connect: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  network_connectivity: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  reliability_network: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  barriers_connectivity?: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  devices_network: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  acp6_1: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  acp6_1_other?: string;
+
+  @Column({ nullable: true})
+  @Edm.String
+  acp6_2: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  acp6_3: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  acp6_4: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  acp6_4_1?: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dmdsp7_1: string;
+
+  @Column({ nullable: true})
+  @Edm.String
+  dmdsp7_2: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dmdsp7_3: string;
+
+  @Column({ nullable: true})
+  @Edm.String
+  dmdsp7_4: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dmdsp7_5: string;
+
+  @Column({ nullable: true})
+  @Edm.String
+  dmdsp7_6: string;
+
+  @Column()
+  @Edm.String
+  dmdsp7_7: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dmdsp7_8: string;
+
+  @Column({ nullable: true})
+  @Edm.String
+  dmdsp7_9: string;
+
+  @Column({ nullable: true})
+  @Edm.String
+  dmdsp7_10: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dsdf8_1: string;
+
+  @Column({ nullable: true})
+  @Edm.String
+  dsdf8_2: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dsdf8_1_1?: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dsdf8_1_2?: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dsdf8_3: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dsdf8_4: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dsdf8_4_1?: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dsdf8_5: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dsdf8_6: string;
+
+  @Column()
+  @Edm.String
+  dsdf8_7: string;
+
+  @Column()
+  @Edm.String
+  dsdf8_8: string;
+
+  @Column()
+  @Edm.String
+  dsdf8_9: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  dsdf8_9_1?: string;
+
+  @Column()
+  @Edm.String
+  dsdf8_10: string;
+
+  @Column()
+  @Edm.String
+  digitech_social_benefits: string;
+
+  @Column()
+  @Edm.String
+  digitech_job_creation: string;
+
+  @Column()
+  @Edm.String
+  digitech_overall_social: string;
+
+  @Column()
+  @Edm.String
+  digitech_efficiency: string;
+
+  @Column()
+  @Edm.String
+  digitech_input: string;
+
+  @Column()
+  @Edm.String
+  digitech_overall_economic: string;
+
+  @Column()
+  @Edm.String
+  digitech_sustainability: string;
+
+  @Column()
+  @Edm.String
+  digitech_impacts_footprint: string;
+
+  @Column()
+  @Edm.String
+  didgitech_energy_efficiency: string;
+
+  @Column()
+  @Edm.String
+  digitech_biodiversity: string;
+
+  @Column()
+  @Edm.String
+  digitech_track_sustainability: string;
+
+  @Column()
+  @Edm.String
+  plan_upgrade_digitech: string;
+
+  @Column()
+  @Edm.String
+  facilitate_expansion_upgrade: string;
+
+  @Column()
+  @Edm.String
+  type_of_developments: string;
+
+  @Column({ nullable: true })
+  @Edm.String
+  ac12_1: string;
 }

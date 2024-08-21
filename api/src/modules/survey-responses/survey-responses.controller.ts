@@ -12,7 +12,7 @@ export class SurveyResponsesController {
   ) {}
 
   @Public()
-  @Get('/test')
+  @Get('/')
   async getAll() {
     return this.odata.getAll('');
   }
