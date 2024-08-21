@@ -1,6 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { Edm } from 'odata-v4-server';
 
+// TODO: Fields coming from the DB must match the properties decorated with Odata to be serialized. Handle this scenario
+
 @Entity('survey_responses')
 export class SurveyResponse {
   @PrimaryGeneratedColumn()
@@ -9,11 +11,11 @@ export class SurveyResponse {
 
   @Column({ type: 'timestamp' })
   @Edm.DateTimeOffset
-  startDate: Date;
+  start_date: Date;
 
   @Column({ type: 'timestamp' })
   @Edm.DateTimeOffset
-  endDate: Date;
+  end_date: Date;
 
   @Column({ type: 'varchar', length: 255 })
   @Edm.String
@@ -21,7 +23,7 @@ export class SurveyResponse {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  ipAddress: string;
+  ip_address: string;
 
   @Column({ type: 'int' })
   @Edm.Int32
@@ -29,7 +31,7 @@ export class SurveyResponse {
 
   @Column({ type: 'int' })
   @Edm.Int32
-  durationInSeconds: number;
+  duration_in_seconds: number;
 
   @Column({ type: 'boolean' })
   @Edm.Boolean
@@ -37,51 +39,51 @@ export class SurveyResponse {
 
   @Column({ type: 'timestamp' })
   @Edm.DateTimeOffset
-  recordedDate: Date;
+  recorded_date: Date;
 
   @Column({ type: 'varchar', length: 255 })
   @Edm.String
-  responseId: string;
+  response_id: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  recipientLastName: string;
+  recipient_last_name: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  recipientFirstName: string;
+  recipient_first_name: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  recipientEmail: string;
+  recipient_email: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  externalDataReference: string;
+  external_data_reference: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  locationLatitude: string;
+  location_latitude: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  locationLongitude: string;
+  location_longitude: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  distributionChannel: string;
+  distribution_channel: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  userLanguage: string;
+  user_language: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  consentStatement: string;
+  consent_statement: string;
 
   @Column({ type: 'boolean', nullable: true })
   @Edm.Boolean
-  agreeToContact: boolean;
+  agree_to_contact: boolean;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
@@ -89,11 +91,11 @@ export class SurveyResponse {
 
   @Column({ type: 'boolean', nullable: true })
   @Edm.Boolean
-  testEntry: boolean;
+  test_entry: boolean;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  organisationName: string;
+  organisation_name: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
@@ -101,39 +103,39 @@ export class SurveyResponse {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  typeOfStakeholder: string;
+  type_of_stakeholder: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  locationCountryRegion: string;
+  location_country_region: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  primaryAreaOperationAgriculture: string;
+  primary_area_operation_agriculture: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  otherAreaAgriculture: string;
+  other_area_agriculture: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  primaryAreaOperationForestry: string;
+  primary_area_operation_forestry: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  otherAreaForestry: string;
+  other_area_forestry: string;
 
   @Column({ type: 'boolean', nullable: true })
   @Edm.Boolean
-  organicFarming: boolean;
+  organic_farming: boolean;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   @Edm.String
-  organisationSize: string;
+  organisation_size: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  regionalSubsectorConsiderations: string;
+  regional_subsector_considerations: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
@@ -141,57 +143,57 @@ export class SurveyResponse {
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  governanceModel: string;
+  governance_model: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  regulatoryConsiderations: string;
+  regulatory_considerations: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  specifyRegulatory: string;
+  specify_regulatory: string;
 
   @Column({ type: 'boolean', nullable: true })
   @Edm.Boolean
-  influencedDecisionMaking: boolean;
+  influenced_decision_making: boolean;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  impactOnJobCreation: string;
+  impact_on_job_creation: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  economicImpact: string;
+  economic_impact: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  sustainabilityImpact: string;
+  sustainability_impact: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  energyEfficiencyImpact: string;
+  energy_efficiency_impact: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  biodiversityImpact: string;
+  biodiversity_impact: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  trackSustainability: string;
+  track_sustainability: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  plansForExpansion: string;
+  plans_for_expansion: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  facilitateExpansion: string;
+  facilitate_expansion: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  futureDevelopments: string;
+  future_developments: string;
 
   @Column({ type: 'text', nullable: true })
   @Edm.String
-  additionalInput: string;
+  additional_input: string;
 }
