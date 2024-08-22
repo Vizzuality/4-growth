@@ -28,10 +28,22 @@ jobs:
           POSTGRES_USER: 4growth
           POSTGRES_PASSWORD: 4growth
           POSTGRES_DB: 4growth
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Create OData database for tests
+        run: |
+          psql -h localhost -U 4growth -c 'CREATE DATABASE "4growth-odata" OWNER "4growth";'
+        env:
+          PGPASSWORD: 4growth
 
       - name: Node setup
         uses: actions/setup-node@v4
