@@ -14,7 +14,7 @@ export class OdataService implements OdataClientInterface {
 
   async getAll(query: string): Promise<any> {
     const result = await this.odataClient.newRequest({
-      collection: 'SurveyResponse', // entity set
+      collection: 'SurveyResponse',
     });
     return result;
   }
