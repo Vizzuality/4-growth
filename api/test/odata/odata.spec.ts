@@ -1,7 +1,4 @@
 import { TestManager } from '../utils/test-manager';
-import { User } from '@shared/dto/users/user.entity';
-import { createUser } from '@shared/lib/entity-mocks';
-import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
 import { DataSource } from 'typeorm';
@@ -21,8 +18,6 @@ export const ODataSource = new DataSource({
 
 describe('OData Integration', () => {
   let testManager: TestManager<any>;
-  let authToken: string;
-  let testUser: User;
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager();

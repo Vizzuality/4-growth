@@ -52,6 +52,14 @@ jobs:
 
       - uses: pnpm/action-setup@v4
 
+      - name: Install OData server dependencies
+        working-directory: odata-server
+        run: pnpm install
+
+      - name: Run OData server
+        working-directory: odata-server
+        run: pnpm start:prod &
+
       - name: Install API dependencies
         working-directory: api
         run: pnpm install
