@@ -9,6 +9,7 @@ on:
       - '/*'               # include changes in root
       - '!client/**'       # exclude client folder
       - '!infrastructure/**'  # exclude infra folder
+      - 'package.json'
 
   workflow_dispatch:
 
