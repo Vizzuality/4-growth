@@ -44,6 +44,10 @@ jobs:
         working-directory: api
         run: pnpm install
 
+      - name: Lint code
+        working-directory: api
+        run: pnpm lint
+
       - name: Run API E2E tests
         working-directory: api
         run: pnpm test:e2e
