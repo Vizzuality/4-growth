@@ -3,3 +3,6 @@ packages:
   - 'client/**'
   - 'shared/**'
   - 'e2e/**'
+
+catalog:
+  zod: 3.23.8
