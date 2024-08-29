@@ -17,8 +17,8 @@ COPY client ./client
 COPY shared ./shared
 
 RUN corepack enable pnpm
-RUN pnpm --filter shared install
-RUN pnpm --filter client install
+RUN pnpm shared:deps
+RUN pnpm client:deps
 
 RUN pnpm client:build
 
