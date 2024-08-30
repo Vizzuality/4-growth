@@ -51,9 +51,8 @@ module "github" {
   github_owner = var.github_owner
   github_token = var.github_token
   github_environment = var.environment
-  environment_secret_map = merge(local.api_secret_env_vars, local.client_secret_env_vars)
-  // TODO: we need to pass a optional custom value per env, i.e to set a external non-code generated values
-  environment_variable_map = merge(local.api_env_vars, local.client_env_vars)
+  environment_secret_map = merge(local.api_secret_env_vars, local.client_secret_env_vars, var.github_additional_environment_secrets)
+  environment_variable_map = merge(local.api_env_vars, local.client_env_vars, var.github_additional_environment_variables)
 }
 
 
