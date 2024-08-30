@@ -12,13 +12,12 @@ ENV AUTH_CREDENTIALS $AUTH_CREDENTIALS
 
 WORKDIR /app
 
-COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.json ./
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.json .npmrc ./
 COPY client ./client
 COPY shared ./shared
 
 RUN corepack enable pnpm
-RUN pnpm shared:deps
-RUN pnpm client:deps
+RUN pnpm install
 
 RUN pnpm client:build
 
