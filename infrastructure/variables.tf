@@ -80,8 +80,6 @@ variable "auth_credentials" {
 
 
 
-
-
 #variable "repo_name" {
 #  type        = string
 #  description = "Name of the Github repository where the code is hosted"
