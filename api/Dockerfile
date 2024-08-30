@@ -26,24 +26,15 @@ ENV CONTACT_EMAIL $CONTACT_EMAIL
 
 WORKDIR /app
 
-
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.json .npmrc ./
-COPY api/package.json api/tsconfig.json ./api/
-COPY shared/package.json shared/tsconfig.json ./shared/
-
-RUN corepack enable pnpm
-
-
 COPY api ./api
 COPY shared ./shared
 
+RUN corepack enable pnpm
 RUN pnpm install
-
 
 RUN pnpm api:build
 
-
 EXPOSE 4000
-
 
 CMD ["pnpm", "api:prod"]
