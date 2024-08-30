@@ -40,9 +40,10 @@ jobs:
 
       - uses: pnpm/action-setup@v4
 
-      - name: Install API dependencies
-        working-directory: api
-        run: pnpm install
+      - name: Install API node modules
+        uses: ./.github/actions/install-node-modules
+        with:
+          working-directory: .
 
       - name: Lint code
         working-directory: api
