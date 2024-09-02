@@ -29,8 +29,16 @@ jobs:
 
       - uses: pnpm/action-setup@v4
 
-      - name: Install Client dependencies
-        working-directory: client
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-
+
+      - name: Install dependencies
+        working-directory: .
         run: pnpm install
 
       - name: Run Client tests
