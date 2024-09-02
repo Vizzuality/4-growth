@@ -3,3 +3,4 @@ packages:
   - 'client/**'
   - 'shared/**'
   - 'e2e/**'
+  - 'odata-server/**'

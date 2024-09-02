@@ -16,6 +16,7 @@ The infrastructure architecture is based on the following components:
 2. Elastic Container Registry (ECR) repositories for the client and API applications.
 3. Load Balancer with HTTPS listener.
 4. NGINX reverse proxy to distribute requests to the Frontend and API.
+5. RDS database for storing application data.
 
 
 ## Working with Terraform
