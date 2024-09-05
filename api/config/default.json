@@ -11,6 +11,15 @@
     "secret": "defaultsecret",
     "expiresIn": "1d",
     "passwordRecoveryExpiresIn": "1d"
+  },
+  "email": {
+    "ses": {
+      "accessKeyId": "myaccesskeyid",
+      "secretAccessKey": "mysecretaccess",
+      "region": "region",
+      "domain": "random.com"
+    },
+    "contactEmail": "contact@email.com"
   }
 }
 
