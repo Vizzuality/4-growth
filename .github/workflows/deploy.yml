@@ -218,7 +218,7 @@ jobs:
           EOF
 
       - name: Upload Docker Compose File as Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: docker-compose-file
           path: infrastructure/source_bundle/docker-compose.yml
@@ -229,7 +229,7 @@ jobs:
           zip -r deploy.zip * .[^.]*
 
       - name: Upload Zip File as Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: deploy-zip
           path: infrastructure/source_bundle/deploy.zip
