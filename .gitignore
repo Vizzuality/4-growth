@@ -32,3 +32,4 @@ Thumbs.db
 /e2e/test-results/
 
 /scripts/ssh
+/api/config/local.json
