@@ -1,7 +1,6 @@
 import React from "react";
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { mocked } from "jest-mock";
 
 // eslint-disable-next-line import/order
 import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
@@ -22,16 +21,18 @@ const TestComponent = (props: { response: never; options: never }) => {
 
 import { useToast } from "@/components/ui/use-toast";
 
-jest.mock("@/components/ui/use-toast", () => ({
-  useToast: jest.fn(),
+import { vi } from "vitest";
+
+vi.mock("@/components/ui/use-toast", () => ({
+  useToast: vi.fn(),
 }));
 
 describe("useApiResponseToast", () => {
-  const mockToast = jest.fn();
+  const mockToast = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    mocked(useToast).mockReturnValue({ toast: mockToast } as never);
+    vi.clearAllMocks();
+    vi.mocked(useToast).mockReturnValue({ toast: mockToast } as never);
   });
 
   it("shows a success toast for 2xx response", async () => {

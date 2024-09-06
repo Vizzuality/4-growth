@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { mocked } from "jest-mock";
+import { vi } from "vitest";
 
 import { client } from "@/lib/queryClient";
 
@@ -8,20 +8,20 @@ import ForgotPasswordEmailForm from "@/containers/auth/forgot-password/email-for
 import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
 
 // Mocks
-jest.mock("@/lib/queryClient", () => ({
+vi.mock("@/lib/queryClient", () => ({
   client: {
     auth: {
       recoverPassword: {
-        mutation: jest.fn(),
+        mutation: vi.fn(),
       },
     },
   },
 }));
 
-jest.mock("@/components/ui/use-api-response-toast", () => ({
-  useApiResponseToast: jest.fn(() => ({
-    apiResponseToast: jest.fn(),
-    toast: jest.fn(),
+vi.mock("@/components/ui/use-api-response-toast", () => ({
+  useApiResponseToast: vi.fn(() => ({
+    apiResponseToast: vi.fn(),
+    toast: vi.fn(),
   })),
 }));
 
@@ -46,13 +46,13 @@ describe("ForgotPasswordEmailForm", () => {
 
   it("calls apiResponseToast on successful response", async () => {
     const mockResponse = { status: 200 };
-    mocked(client.auth.recoverPassword.mutation).mockResolvedValue(
+    vi.mocked(client.auth.recoverPassword.mutation).mockResolvedValue(
       mockResponse as never,
     );
-    const mockApiResponseToast = jest.fn();
-    mocked(useApiResponseToast).mockReturnValue({
+    const mockApiResponseToast = vi.fn();
+    vi.mocked(useApiResponseToast).mockReturnValue({
       apiResponseToast: mockApiResponseToast,
-      toast: jest.fn(),
+      toast: vi.fn(),
     });
 
     render(<ForgotPasswordEmailForm />);
@@ -70,12 +70,12 @@ describe("ForgotPasswordEmailForm", () => {
   });
 
   it("shows error toast on failed response", async () => {
-    mocked(client.auth.recoverPassword.mutation).mockRejectedValue(
+    vi.mocked(client.auth.recoverPassword.mutation).mockRejectedValue(
       new Error("Network error"),
     );
-    const mockToast = jest.fn();
-    mocked(useApiResponseToast).mockReturnValue({
-      apiResponseToast: jest.fn(),
+    const mockToast = vi.fn();
+    vi.mocked(useApiResponseToast).mockReturnValue({
+      apiResponseToast: vi.fn(),
       toast: mockToast,
     });
 
