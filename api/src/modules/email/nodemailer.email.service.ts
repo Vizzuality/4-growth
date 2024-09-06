@@ -46,7 +46,11 @@ export class NodemailerEmailService implements IEmailServiceInterface {
   private getMailConfig() {
     const { accessKeyId, secretAccessKey, region, domain } =
       AppConfig.getSESMailConfig();
-
+    if (!accessKeyId || !secretAccessKey || !region || !domain) {
+      this.logger.error(
+        'Variables for Email Service not set. Email not available',
+      );
+    }
     return { accessKeyId, secretAccessKey, region, domain };
   }
 }
