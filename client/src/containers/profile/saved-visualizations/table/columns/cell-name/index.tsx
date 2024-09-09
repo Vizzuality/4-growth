@@ -20,10 +20,9 @@ import { selectedRowAtom } from "@/containers/profile/store";
 
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
+import { getAuthHeader } from "@/utils/auth-header";
 
 import { ColumnsTable } from "../";
-
-import { getAuthHeader } from "@/utils/auth-header";
 
 const CellName: FC<CellContext<ColumnsTable, unknown>> = ({
   getValue,

@@ -21,10 +21,9 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { getAuthHeader } from "@/utils/auth-header";
 
 import { CLASS } from "../";
-
-import { getAuthHeader } from "@/utils/auth-header";
 
 const DeleteVisualizationButton: FC<{ id: string }> = ({ id }) => {
   const { data: session } = useSession();

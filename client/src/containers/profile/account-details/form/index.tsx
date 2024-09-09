@@ -23,10 +23,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
+import { getAuthHeader } from "@/utils/auth-header";
 
 import { accountDetailsSchema } from "./schema";
-
-import { getAuthHeader } from "@/utils/auth-header";
 
 const AccountDetailsForm: FC = () => {
   const queryClient = useQueryClient();
