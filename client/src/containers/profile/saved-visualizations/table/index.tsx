@@ -32,12 +32,11 @@ import {
   SelectContent,
   SelectValue,
 } from "@/components/ui/select";
+import { getAuthHeader } from "@/utils/auth-header";
 
 import { selectedRowAtom } from "../../store";
 
 import useColumns from "./columns";
-
-import { getAuthHeader } from "@/utils/auth-header";
 
 const ROWS_PER_PAGE_OPTIONS = ["10", "25", "50", "100"];
 
