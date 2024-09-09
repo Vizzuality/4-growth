@@ -5,9 +5,9 @@ on:
     paths:
       - 'client/**'
       - 'shared/**'
-      - '.github/workflows/api-tests.yml'
+      - '.github/workflows/client-tests.yml'
       - '/*'               # include changes in root
-      - '!api/**'       # exclude client folder
+      - '!api/**'       # exclude api folder
       - '!infrastructure/**'  # exclude infra folder
       - 'package.json'
 

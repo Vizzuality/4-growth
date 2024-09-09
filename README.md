@@ -40,6 +40,23 @@ Each application also has its own `tsconfig.json` file that extends the root con
 
 Please refer to the TypeScript documentation for more details on the various compiler options and how to use them.
 
+
+## Environment Variables
+
+The different services in this project use environment variables to configure their behavior. There are different ways to set environment variables depending on the service and the environment.
+
+### API
+
+We use [config](https://www.npmjs.com/package/config) to manage environment variables. The configuration files are stored in `api/config`. 
+Please refer to the `config` documentation for to understand how the configuration files are loaded and the hierarchy of configuration.
+
+To make use of you personal environment variables, you can create a `local.json` file (which is gitignored in the project) in the `api/config` directory and add your environment variables for the API there.
+
+### CLIENT
+
+The client application uses `.env` files to manage environment variables. The handling of existing `.env` files is managed by NextJS, please refer
+to the official [NextJS Environment Vars](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables) official documentation for more information.
+
 ## Dockerisation
 
 The applications in this project are containerized using Docker. Each application has its own `Dockerfile` that specifies how to build a Docker image for the application.

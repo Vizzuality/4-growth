@@ -47,8 +47,8 @@ export class NodemailerEmailService implements IEmailServiceInterface {
     const { accessKeyId, secretAccessKey, region, domain } =
       AppConfig.getSESMailConfig();
     if (!accessKeyId || !secretAccessKey || !region || !domain) {
-      throw new ServiceUnavailableException(
-        'AWS SES credentials not found in the environment variables. Please provide them',
+      this.logger.error(
+        'Variables for Email Service not set. Email not available',
       );
     }
     return { accessKeyId, secretAccessKey, region, domain };
