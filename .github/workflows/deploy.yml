@@ -17,9 +17,19 @@ on:
 
 jobs:
 
+  set_environment:
+    runs-on: ubuntu-latest
+    name: Set Deployment Environment
+    outputs:
+      env_name: ${{ steps.set_env.outputs.env_name }}
+    steps:
+      - id: set_env
+        run: echo "env_name=${{ github.ref_name == 'main' && 'production' || github.ref_name }}" >> $GITHUB_OUTPUT
+
   build_client:
+    needs: [ set_environment ]
     environment:
-      name: ${{ github.ref_name == 'main' && 'production' || github.ref_name }}
+      name: ${{ needs.set_environment.outputs.env_name }}
     runs-on: ubuntu-latest
     name: Build Client image and push to Amazon ECR
     steps:
@@ -33,16 +43,6 @@ jobs:
             client:
               - 'client/**'
               - '.github/workflows/**'
-
-      - name: Extract branch name
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.client-changes.outputs.client == 'true' }}
-        run: |
-          {
-            branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-            echo "branch=${branch}"
-            echo "branch_upper=${branch^^}"
-          } >> $GITHUB_OUTPUT
-        id: extract_branch
 
       - name: Configure AWS credentials
         if: ${{ github.event_name == 'workflow_dispatch' || steps.client-changes.outputs.client == 'true' }}
@@ -79,11 +79,12 @@ jobs:
           push: true
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_CLIENT_REPOSITORY_NAME }}:${{ github.sha }}
-            ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_CLIENT_REPOSITORY_NAME }}:${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_CLIENT_REPOSITORY_NAME }}:${{ needs.set_environment.outputs.env_name }}
 
   build_api:
+    needs: [ set_environment ]
     environment:
-      name: ${{ github.ref_name == 'main' && 'production' || github.ref_name }}
+      name: ${{ needs.set_environment.outputs.env_name }}
     runs-on: ubuntu-latest
     name: Build API image and push to Amazon ECR
     steps:
@@ -97,16 +98,6 @@ jobs:
             api:
               - 'api/**'
               - '.github/workflows/**'
-
-      - name: Extract branch name
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
-        run: |
-          {
-            branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-            echo "branch=${branch}"
-            echo "branch_upper=${branch^^}"
-          } >> $GITHUB_OUTPUT
-        id: extract_branch
 
       - name: Configure AWS credentials
         if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
@@ -150,15 +141,15 @@ jobs:
           push: true
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_API_REPOSITORY_NAME }}:${{ github.sha }}
-            ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_API_REPOSITORY_NAME }}:${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_API_REPOSITORY_NAME }}:${{ needs.set_environment.outputs.env_name }}
   
 
   deploy:
     name: Deploy Services to Amazon EBS
-    needs: [ build_client, build_api ]
+    needs: [ set_environment, build_client, build_api ]
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.ref_name == 'main' && 'production' || github.ref_name }}
+      name: ${{ needs.set_environment.outputs.env_name }}
 
     steps:
       - name: Checkout code
@@ -175,22 +166,13 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Extract branch name
-        run: |
-          {
-            branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-            echo "branch=${branch}"
-            echo "branch_upper=${branch^^}"
-          } >> $GITHUB_OUTPUT
-        id: extract_branch
-
       - name: Generate docker compose file
         working-directory: infrastructure/source_bundle
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY_CLIENT: ${{ secrets.TF_CLIENT_REPOSITORY_NAME }}
           ECR_REPOSITORY_API: ${{ secrets.TF_API_REPOSITORY_NAME }}
-          IMAGE_TAG: ${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
+          IMAGE_TAG: ${{ needs.set_environment.outputs.env_name }}
         run: |
           cat <<EOF >> docker-compose.yml
           services:
@@ -217,30 +199,19 @@ jobs:
                 - client
           EOF
 
-      - name: Upload Docker Compose File as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: docker-compose-file
-          path: infrastructure/source_bundle/docker-compose.yml
 
       - name: Generate zip file
         working-directory: infrastructure/source_bundle
         run: |
           zip -r deploy.zip * .[^.]*
 
-      - name: Upload Zip File as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: deploy-zip
-          path: infrastructure/source_bundle/deploy.zip
-
       - name: Deploy to Amazon EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
           aws_access_key: ${{ secrets.TF_PIPELINE_USER_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.TF_PIPELINE_USER_SECRET_ACCESS_KEY }}
-          application_name: ${{ secrets.TF_PROJECT_NAME}}-${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
-          environment_name: ${{ secrets.TF_PROJECT_NAME}}-${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}-environment
+          application_name: ${{ secrets.TF_PROJECT_NAME}}-${{ needs.set_environment.outputs.env_name }}
+          environment_name: ${{ secrets.TF_PROJECT_NAME}}-${{ needs.set_environment.outputs.env_name }}-environment
           region: ${{ secrets.TF_AWS_REGION }}
           version_label: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           deployment_package: infrastructure/source_bundle/deploy.zip
