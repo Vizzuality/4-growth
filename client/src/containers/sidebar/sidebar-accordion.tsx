@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren, useEffect, useState } from "react";
 
 import { Accordion } from "@/components/ui/accordion";
 
@@ -11,6 +11,11 @@ const SidebarAccordion: FC<PropsWithChildren<SidebarAccordionProps>> = ({
   children,
 }) => {
   const [value, setValue] = useState(defaultValue || undefined);
+
+  useEffect(() => {
+    if (value === defaultValue) return;
+    setValue(defaultValue);
+  }, [defaultValue, setValue]);
 
   return (
     <Accordion
