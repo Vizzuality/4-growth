@@ -6,8 +6,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { AppBaseService } from '@api/utils/app-base.service';
 import { AppInfoDTO } from '@api/utils/info.dto';
-import { FetchSpecification } from 'nestjs-base-service';
-import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.service';
 import { AuthService } from '@api/modules/auth/auth.service';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
 import { PasswordService } from '@api/modules/auth/password/password.service';
@@ -22,7 +20,6 @@ export class UsersService extends AppBaseService<
 > {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
-    private readonly customChartService: CustomChartsService,
     private readonly authService: AuthService,
     private readonly passwordService: PasswordService,
     private readonly events: ApiEventsService,
@@ -48,10 +45,6 @@ export class UsersService extends AppBaseService<
 
   async findByEmail(email: string): Promise<User | null> {
     return this.userRepository.findOne({ where: { email } });
-  }
-
-  async getUsersCustomCharts(userId: string, dto: FetchSpecification) {
-    return this.customChartService.findAllPaginated(dto, { userId });
   }
 
   async updatePassword(user: User, dto: UpdateUserPasswordDto) {

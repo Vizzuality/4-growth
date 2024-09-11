@@ -5,8 +5,6 @@ import { DataSource, DeepPartial } from 'typeorm';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import {
   createBaseWidget,
-  createCustomChart,
-  createCustomFilter,
   createCustomWidget,
   createSection,
   createUser,
@@ -15,8 +13,6 @@ import { logUserIn } from './user.auth';
 import { Type } from '@nestjs/common/interfaces';
 import * as request from 'supertest';
 import { User } from '@shared/dto/users/user.entity';
-import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
-import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
 import { getDataSourceToken } from '@nestjs/typeorm';
 import { Section } from '@shared/dto/sections/section.entity';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
@@ -96,12 +92,6 @@ export class TestManager<FixtureType> {
     return {
       createUser: (additionalData: Partial<User>) =>
         createUser(this.getDataSource(), additionalData),
-      createCustomChart: (user: User, additionalData?: Partial<CustomChart>) =>
-        createCustomChart(this.getDataSource(), user, additionalData),
-      createChartFilter: (
-        chart: CustomChart,
-        additionalData?: Partial<ChartFilter>,
-      ) => createCustomFilter(this.getDataSource(), chart, additionalData),
       createBaseWidget: (
         additionalData?: DeepPartial<BaseWidget>,
       ): Promise<BaseWidget> =>

@@ -10,7 +10,6 @@ import {
   ApiPaginationResponse,
   ApiResponse,
 } from '@shared/dto/global/api-response.dto';
-import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 import { PasswordSchema } from '@shared/schemas/auth.schemas';
 import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
 import {
@@ -97,16 +96,6 @@ export const usersContract = contract.router({
       401: contract.type<JSONAPIError>(),
     },
     body: null,
-  },
-  getUsersCustomCharts: {
-    method: 'GET',
-    path: '/users/:id/custom-charts',
-    pathParams: z.object({ id: z.string() }),
-    query: contract.type<FetchSpecification>(),
-    responses: {
-      200: contract.type<ApiPaginationResponse<CustomChart>>(),
-      400: contract.type<JSONAPIError>(),
-    },
   },
   resetPassword: {
     method: 'POST',
