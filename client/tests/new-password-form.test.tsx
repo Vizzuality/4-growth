@@ -42,7 +42,7 @@ describe("NewPasswordForm", () => {
       apiResponseToast: mockApiResponseToast,
       toast: mockToast,
     });
-    vi.mocked(client.user.resetPassword.mutation).mockClear();
+    vi.mocked(client.users.resetPassword.mutation).mockClear();
     mockPush.mockClear();
     mockApiResponseToast.mockClear();
     mockToast.mockClear();
@@ -92,7 +92,7 @@ describe("NewPasswordForm", () => {
   });
 
   it("submits form successfully with matching passwords", async () => {
-    vi.mocked(client.user.resetPassword.mutation).mockResolvedValueOnce({
+    vi.mocked(client.users.resetPassword.mutation).mockResolvedValueOnce({
       status: 200,
     } as never);
 
@@ -108,7 +108,7 @@ describe("NewPasswordForm", () => {
     fireEvent.submit(screen.getByText("Submit"));
 
     await waitFor(() => {
-      expect(client.user.resetPassword.mutation).toHaveBeenCalledWith({
+      expect(client.users.resetPassword.mutation).toHaveBeenCalledWith({
         body: { password: "password123", repeatPassword: "password123" },
         extraHeaders: { Authorization: "Bearer mockToken" },
       });
@@ -122,7 +122,7 @@ describe("NewPasswordForm", () => {
   });
 
   it("shows an error toast when submission fails", async () => {
-    vi.mocked(client.user.resetPassword.mutation).mockRejectedValueOnce(
+    vi.mocked(client.users.resetPassword.mutation).mockRejectedValueOnce(
       new Error("Error"),
     );
 

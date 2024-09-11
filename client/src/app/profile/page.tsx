@@ -17,7 +17,7 @@ export default async function ProfilePage() {
   await queryClient.prefetchQuery({
     queryKey: queryKeys.users.detail(session?.user?.id as string).queryKey,
     queryFn: () =>
-      client.user.findMe.query({
+      client.users.findMe.query({
         extraHeaders: {
           ...getAuthHeader(session?.accessToken),
         },
