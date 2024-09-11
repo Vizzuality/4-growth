@@ -29,7 +29,7 @@ const DeleteAccount: FC = () => {
 
   const onDeleteAccount = useCallback(async () => {
     try {
-      const { status, body } = await client.user.deleteMe.mutation({
+      const { status, body } = await client.users.deleteMe.mutation({
         extraHeaders: {
           ...getAuthHeader(session?.accessToken),
         },

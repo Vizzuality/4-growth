@@ -56,7 +56,7 @@ const NewPasswordForm: FC = () => {
 
       form.handleSubmit(async (formValues) => {
         try {
-          const { status, body } = await client.user.resetPassword.mutation({
+          const { status, body } = await client.users.resetPassword.mutation({
             body: formValues,
             extraHeaders: {
               Authorization: `Bearer ${params.token}`,

@@ -52,7 +52,7 @@ const SignUpForm: FC = () => {
       const parsed = changePasswordSchema.safeParse(formData);
       if (parsed.success) {
         try {
-          const response = await client.user.updatePassword.mutation({
+          const response = await client.users.updatePassword.mutation({
             body: {
               currentPassword: parsed.data.password,
               newPassword: parsed.data.newPassword,

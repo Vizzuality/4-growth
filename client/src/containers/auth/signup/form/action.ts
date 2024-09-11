@@ -22,7 +22,7 @@ export async function signUpAction(
       message: "Invalid form data",
     };
   }
-  
+
   try {
     const response = await client.auth.signUp.mutation({
       body: {

@@ -35,7 +35,7 @@ const AccountDetailsForm: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
 
-  const { data: user } = client.user.findMe.useQuery(
+  const { data: user } = client.users.findMe.useQuery(
     queryKeys.users.detail(session?.user?.id as string).queryKey,
     {
       extraHeaders: {
@@ -62,7 +62,7 @@ const AccountDetailsForm: FC = () => {
       const parsed = accountDetailsSchema.safeParse(formData);
 
       if (parsed.success) {
-        const response = await client.user.updateUser.mutation({
+        const response = await client.users.updateUser.mutation({
           params: {
             id: session?.user?.id as string,
           },

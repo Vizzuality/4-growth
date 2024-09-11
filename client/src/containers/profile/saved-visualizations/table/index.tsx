@@ -53,7 +53,7 @@ const SavedVisualizationsTable: FC = () => {
     totalPages: 1,
   });
 
-  const { data } = client.user.getUsersCustomCharts.useQuery(
+  const { data } = client.users.getUsersCustomCharts.useQuery(
     queryKeys.users.userCharts(session?.user.id as string, {
       sorting,
       pagination,
