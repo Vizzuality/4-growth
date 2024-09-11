@@ -1,5 +1,6 @@
-import { useParams } from "next/navigation";
 import { useMemo, useState, useEffect } from "react";
+
+import { useParams } from "next/navigation";
 
 export const useHash = () => {
   const getCurrentHash = useMemo(
