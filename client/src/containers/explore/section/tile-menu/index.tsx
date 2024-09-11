@@ -13,8 +13,8 @@ const TileMenu: FC<TileMenuProps> = ({ items }) => {
     <div className="grid grid-cols-3 gap-0.5">
       {items.map((i) => (
         <Link key={`tile-menu-${i.href}`} href={i.href}>
-          <Card className="bg-primary p-6 hover:bg-secondary">
-            <h3 className="mb-6 font-semibold">{i.title}</h3>
+          <Card className="space-y-6 bg-primary p-6 transition-colors hover:bg-secondary">
+            <h3 className="font-semibold">{i.title}</h3>
             <p className="text-muted-foreground">{i.description}</p>
           </Card>
         </Link>
