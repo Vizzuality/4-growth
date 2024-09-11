@@ -1,5 +1,6 @@
-import { Accordion } from "@/components/ui/accordion";
 import { FC, PropsWithChildren, useState } from "react";
+
+import { Accordion } from "@/components/ui/accordion";
 
 interface SidebarAccordionProps {
   defaultValue?: string[];

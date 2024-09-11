@@ -9,7 +9,6 @@ type ContentSectionProps = {
 const ContentSection: FC<PropsWithChildren<ContentSectionProps>> = ({
   title,
   description,
-  headerImg,
   children,
 }) => {
   return (

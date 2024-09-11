@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 import Header from "@/containers/header";
+import SidebarAccordion from "@/containers/sidebar/sidebar-accordion";
 
 import {
   AccordionContent,
@@ -14,7 +15,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import SidebarAccordion from "@/containers/sidebar/sidebar-accordion";
 
 const Sidebar: FC = () => {
   const currentPage = usePathname().startsWith("/sandbox")
