@@ -19,7 +19,7 @@ import {
   ProcessFetchSpecification,
 } from 'nestjs-base-service';
 import { tsRestHandler, TsRestHandler } from '@ts-rest/nest';
-import { userContract as c } from '@shared/contracts/user.contract';
+import { usersContract as c } from '@shared/contracts/users.contract';
 
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
