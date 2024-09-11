@@ -17,7 +17,11 @@ import { WidgetsModule } from '@api/modules/widgets/widgets.module';
 
 @Module({
   imports: [
-    TsRestModule.register({ isGlobal: true, validateRequestBody: true }),
+    TsRestModule.register({
+      isGlobal: true,
+      validateRequestBody: true,
+      validateRequestQuery: true,
+    }),
     TypeOrmModule.forRoot(getTypeORMConfig()),
     UsersModule,
     AuthModule,

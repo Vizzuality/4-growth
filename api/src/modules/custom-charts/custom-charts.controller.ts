@@ -9,11 +9,12 @@ import { CustomChartsService } from '@api/modules/custom-charts/custom-charts.se
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { customChartsContract as c } from '@shared/contracts/custom-charts.contract';
 import { UpdateCustomChartDto } from '@shared/dto/custom-charts/update-custom-chart.dto';
-
+import { Public } from '@api/decorators/is-public.decorator';
 @Controller()
 export class CustomChartsController {
   constructor(private readonly customChartService: CustomChartsService) {}
 
+  @Public()
   @TsRestHandler(c.getCustomCharts)
   async getCustomCharts(): Promise<any> {
     return tsRestHandler(c.getCustomCharts, async ({ query }) => {

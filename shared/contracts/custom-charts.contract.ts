@@ -7,6 +7,7 @@ import {
   ApiResponse,
 } from '@shared/dto/global/api-response.dto';
 import { UpdateCustomChartDto } from '@shared/dto/custom-charts/update-custom-chart.dto';
+import { FetchSpecificationSchema } from '@shared/schemas/fetch-specification.schema';
 
 const contract = initContract();
 export const customChartsContract = contract.router({
