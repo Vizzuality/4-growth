@@ -1,7 +1,7 @@
 import { initContract } from '@ts-rest/core';
 import { UpdateUserDto } from '@shared/dto/users/update-user.dto';
 import { CreateUserDto } from '@shared/dto/users/create-user.dto';
-import * as z from 'zod';
+import { z } from 'zod';
 import { JSONAPIError } from '@shared/dto/errors/json-api.error';
 import { UserDto } from '@shared/dto/users/user.dto';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
@@ -12,9 +12,14 @@ import {
 } from '@shared/dto/global/api-response.dto';
 import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 import { PasswordSchema } from '@shared/schemas/auth.schemas';
+import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
+import {
+  CreateCustomWidgetSchema,
+  UpdateCustomWidgetSchema,
+} from '@shared/schemas/widget.schemas';
 
 const contract = initContract();
-export const userContract = contract.router({
+export const usersContract = contract.router({
   createUser: {
     method: 'POST',
     path: '/users',
@@ -111,5 +116,55 @@ export const userContract = contract.router({
       400: contract.type<JSONAPIError>(),
     },
     body: PasswordSchema,
+  },
+  // Custom Widgets
+  searchCustomWidgets: {
+    method: 'GET',
+    path: '/users/:userId/widgets',
+    pathParams: z.object({ userId: z.string().uuid() }),
+    query: contract.type<FetchSpecification>(),
+    responses: {
+      200: contract.type<ApiPaginationResponse<CustomWidget>>(),
+      400: contract.type<JSONAPIError>(),
+    },
+  },
+  findCustomWidget: {
+    method: 'GET',
+    path: '/users/:userId/widgets/:id',
+    pathParams: z.object({ userId: z.string().uuid(), id: z.string() }),
+    responses: {
+      200: contract.type<ApiResponse<CustomWidget>>(),
+      400: contract.type<JSONAPIError>(),
+    },
+  },
+  createCustomWidget: {
+    method: 'POST',
+    path: '/users/:userId/widgets',
+    pathParams: z.object({ userId: z.string().uuid() }),
+    body: CreateCustomWidgetSchema,
+    responses: {
+      201: contract.type<ApiResponse<CustomWidget>>(),
+      400: contract.type<JSONAPIError>(),
+    },
+  },
+  updateCustomWidget: {
+    method: 'PATCH',
+    path: '/users/:userId/widgets/:id',
+    pathParams: z.object({ userId: z.string().uuid(), id: z.string() }),
+    body: UpdateCustomWidgetSchema,
+    responses: {
+      200: contract.type<ApiResponse<CustomWidget>>(),
+      400: contract.type<JSONAPIError>(),
+    },
+  },
+  deleteCustomWidget: {
+    method: 'DELETE',
+    path: '/users/:userId/widgets/:id',
+    pathParams: z.object({ userId: z.string().uuid(), id: z.string() }),
+    body: null,
+    responses: {
+      200: contract.type<ApiResponse<CustomWidget>>(),
+      400: contract.type<JSONAPIError>(),
+    },
   },
 });

@@ -1,11 +1,14 @@
 import { AppModule } from '@api/app.module';
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { DataSource } from 'typeorm';
+import { DataSource, DeepPartial } from 'typeorm';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import {
+  createBaseWidget,
   createCustomChart,
   createCustomFilter,
+  createCustomWidget,
+  createSection,
   createUser,
 } from '@shared/lib/entity-mocks';
 import { logUserIn } from './user.auth';
@@ -14,9 +17,10 @@ import * as request from 'supertest';
 import { User } from '@shared/dto/users/user.entity';
 import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
 import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
-import { IEmailServiceToken } from '@api/modules/email/email.service.interface';
-import { MockEmailService } from './mocks/mock-email.service';
 import { getDataSourceToken } from '@nestjs/typeorm';
+import { Section } from '@shared/dto/sections/section.entity';
+import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
+import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
 
 /**
  * @description: Abstraction for NestJS testing workflow. For now its a basic implementation to create a test app, but can be extended to encapsulate
@@ -40,7 +44,7 @@ export class TestManager<FixtureType> {
     this.fixtures = options?.fixtures;
   }
 
-  static async createTestManager<FixtureType>(options?: {
+  static async createTestManager<FixtureType = void>(options?: {
     fixtures: FixtureType;
   }) {
     const moduleFixture = await Test.createTestingModule({
@@ -75,8 +79,8 @@ export class TestManager<FixtureType> {
     return this.moduleFixture.get(typeOrToken);
   }
 
-  async setUpTestUser() {
-    const user = await createUser(this.getDataSource());
+  async setUpTestUser(additionalData?: Partial<User>) {
+    const user = await createUser(this.getDataSource(), additionalData);
     return logUserIn(this, user);
   }
 
@@ -98,6 +102,16 @@ export class TestManager<FixtureType> {
         chart: CustomChart,
         additionalData?: Partial<ChartFilter>,
       ) => createCustomFilter(this.getDataSource(), chart, additionalData),
+      createBaseWidget: (
+        additionalData?: DeepPartial<BaseWidget>,
+      ): Promise<BaseWidget> =>
+        createBaseWidget(this.getDataSource(), additionalData),
+      createSection: (additionalData: DeepPartial<Section>) =>
+        createSection(this.getDataSource(), additionalData),
+      createCustomWidget: (
+        additionalData?: DeepPartial<CustomWidget>,
+      ): Promise<CustomWidget> =>
+        createCustomWidget(this.getDataSource(), additionalData),
     };
   }
 }
