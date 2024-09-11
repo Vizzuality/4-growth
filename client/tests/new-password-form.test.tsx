@@ -22,7 +22,7 @@ vi.mock("@/components/ui/use-api-response-toast", () => ({
 
 vi.mock("@/lib/queryClient", () => ({
   client: {
-    user: {
+    users: {
       resetPassword: {
         mutation: vi.fn(),
       },

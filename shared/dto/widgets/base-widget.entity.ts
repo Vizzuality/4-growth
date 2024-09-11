@@ -11,7 +11,7 @@ import { CustomWidget } from './custom-widget.entity';
 import { Section } from '@shared/dto/sections/section.entity';
 import {
   WIDGET_VISUALIZATIONS,
-  WidgetVisualizationsType,
+  type WidgetVisualizationsType,
 } from '@shared/dto/widgets/widget-visualizations.constants';
 
 @Entity('base_widgets')

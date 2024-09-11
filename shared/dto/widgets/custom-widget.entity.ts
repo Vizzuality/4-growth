@@ -9,7 +9,7 @@ import { BaseWidget } from './base-widget.entity';
 import { User } from '../users/user.entity';
 import {
   WIDGET_VISUALIZATIONS,
-  WidgetVisualizationsType,
+  type WidgetVisualizationsType,
 } from './widget-visualizations.constants';
 
 @Entity('custom_widgets')
