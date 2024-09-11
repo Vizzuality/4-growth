@@ -6,7 +6,7 @@ const OverviewSection: FC = () => {
   return (
     <div id="overview" className="grid grid-cols-1 gap-0.5">
       <div className="grid grid-cols-2 gap-0.5">
-        <Card className="space-y-2 bg-secondary">
+        <Card className="space-y-4 bg-secondary">
           <h2 className="text-xl font-semibold">
             Digital Agriculture & Forestry Uptake: Overview
           </h2>
