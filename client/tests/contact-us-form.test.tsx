@@ -1,28 +1,28 @@
 import React from "react";
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { mocked } from "jest-mock";
+import { vi } from "vitest";
 
 import { client } from "@/lib/queryClient";
 
 import ContactUsForm from "@/containers/contact-us";
 
 // Mocks
-jest.mock("@/lib/queryClient", () => ({
+vi.mock("@/lib/queryClient", () => ({
   client: {
     contact: {
       contact: {
-        mutation: jest.fn(),
+        mutation: vi.fn(),
       },
     },
   },
 }));
 
-const mockApiResponseToast = jest.fn();
-const mockToast = jest.fn();
+const mockApiResponseToast = vi.fn();
+const mockToast = vi.fn();
 
-jest.mock("@/components/ui/use-api-response-toast", () => ({
-  useApiResponseToast: jest.fn(() => ({
+vi.mock("@/components/ui/use-api-response-toast", () => ({
+  useApiResponseToast: vi.fn(() => ({
     apiResponseToast: mockApiResponseToast,
     toast: mockToast,
   })),
@@ -30,7 +30,7 @@ jest.mock("@/components/ui/use-api-response-toast", () => ({
 
 describe("ContactUsForm", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders the form correctly", () => {
@@ -64,7 +64,9 @@ describe("ContactUsForm", () => {
   });
 
   it("submits the form successfully when filled correctly", async () => {
-    mocked(client.contact.contact.mutation).mockResolvedValueOnce({} as never);
+    vi.mocked(client.contact.contact.mutation).mockResolvedValueOnce(
+      {} as never,
+    );
 
     render(<ContactUsForm />);
 
@@ -96,7 +98,7 @@ describe("ContactUsForm", () => {
   });
 
   it("shows an error toast when form submission fails", async () => {
-    mocked(client.contact.contact.mutation).mockRejectedValueOnce(
+    vi.mocked(client.contact.contact.mutation).mockRejectedValueOnce(
       new Error("Submission failed"),
     );
 
@@ -133,7 +135,7 @@ describe("ContactUsForm", () => {
   });
 
   it("displays loading animation while sending", async () => {
-    mocked(client.contact.contact.mutation).mockImplementation(() => {
+    vi.mocked(client.contact.contact.mutation).mockImplementation(() => {
       return new Promise((resolve) => setTimeout(resolve, 100));
     });
 

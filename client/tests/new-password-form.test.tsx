@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter, useParams } from "next/navigation";
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { mocked } from "jest-mock";
+import { vi } from "vitest";
 
 import { client } from "@/lib/queryClient";
 
@@ -12,37 +12,37 @@ import NewPasswordForm from "@/containers/auth/forgot-password/new-password-form
 import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
 
 // Mocks
-jest.mock("next/navigation", () => ({
-  useRouter: jest.fn(),
-  useParams: jest.fn(),
+vi.mock("next/navigation", () => ({
+  useRouter: vi.fn(),
+  useParams: vi.fn(),
 }));
-jest.mock("@/components/ui/use-api-response-toast", () => ({
-  useApiResponseToast: jest.fn(),
+vi.mock("@/components/ui/use-api-response-toast", () => ({
+  useApiResponseToast: vi.fn(),
 }));
 
-jest.mock("@/lib/queryClient", () => ({
+vi.mock("@/lib/queryClient", () => ({
   client: {
     user: {
       resetPassword: {
-        mutation: jest.fn(),
+        mutation: vi.fn(),
       },
     },
   },
 }));
 
 describe("NewPasswordForm", () => {
-  const mockPush = jest.fn();
-  const mockApiResponseToast = jest.fn();
-  const mockToast = jest.fn();
+  const mockPush = vi.fn();
+  const mockApiResponseToast = vi.fn();
+  const mockToast = vi.fn();
 
   beforeEach(() => {
-    mocked(useRouter).mockReturnValue({ push: mockPush } as never);
-    mocked(useParams).mockReturnValue({ token: "mockToken" });
-    mocked(useApiResponseToast).mockReturnValue({
+    vi.mocked(useRouter).mockReturnValue({ push: mockPush } as never);
+    vi.mocked(useParams).mockReturnValue({ token: "mockToken" });
+    vi.mocked(useApiResponseToast).mockReturnValue({
       apiResponseToast: mockApiResponseToast,
       toast: mockToast,
     });
-    mocked(client.user.resetPassword.mutation).mockClear();
+    vi.mocked(client.user.resetPassword.mutation).mockClear();
     mockPush.mockClear();
     mockApiResponseToast.mockClear();
     mockToast.mockClear();
@@ -92,7 +92,7 @@ describe("NewPasswordForm", () => {
   });
 
   it("submits form successfully with matching passwords", async () => {
-    mocked(client.user.resetPassword.mutation).mockResolvedValueOnce({
+    vi.mocked(client.user.resetPassword.mutation).mockResolvedValueOnce({
       status: 200,
     } as never);
 
@@ -122,7 +122,7 @@ describe("NewPasswordForm", () => {
   });
 
   it("shows an error toast when submission fails", async () => {
-    mocked(client.user.resetPassword.mutation).mockRejectedValueOnce(
+    vi.mocked(client.user.resetPassword.mutation).mockRejectedValueOnce(
       new Error("Error"),
     );
 
