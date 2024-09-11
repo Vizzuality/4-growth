@@ -10,13 +10,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ApiPaginationResponse } from '@shared/dto/global/api-response.dto';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
-import { WidgetVisualizationsType } from '@shared/dto/widgets/widget-visualizations.constants';
 import {
   CreateCustomWidgetDTO,
   UpdateCustomWidgetDTO,
 } from '@shared/dto/widgets/widget.dto';
 import { FetchSpecification } from 'nestjs-base-service';
 import { DeepPartial, Repository, SelectQueryBuilder } from 'typeorm';
+import { WidgetUtils } from '@shared/dto/widgets/widget.utils';
 
 @Injectable()
 export class CustomWidgetService extends AppBaseService<
@@ -100,8 +100,9 @@ export class CustomWidgetService extends AppBaseService<
     }
 
     if (
-      baseWidget.visualisations.includes(
-        params.defaultVisualization as WidgetVisualizationsType,
+      WidgetUtils.isValidDefaultVisualization(
+        params.defaultVisualization,
+        baseWidget.visualisations,
       ) === false
     ) {
       throw new BadRequestException(
@@ -118,8 +119,7 @@ export class CustomWidgetService extends AppBaseService<
       widget: { id: params.widgetId },
       user: { id: info.authenticatedUser.id },
       filters: params.filters,
-      defaultVisualization:
-        params.defaultVisualization as WidgetVisualizationsType,
+      defaultVisualization: params.defaultVisualization,
     };
     return this.customWidgetRepository.save(customWidget);
   }
@@ -169,18 +169,20 @@ export class CustomWidgetService extends AppBaseService<
     }
     if (defaultVisualization) {
       if (
-        relatedBaseWidget.visualisations.includes(
-          defaultVisualization as WidgetVisualizationsType,
+        WidgetUtils.isValidDefaultVisualization(
+          defaultVisualization,
+          relatedBaseWidget.visualisations,
         ) === false
       ) {
         throw new BadRequestException(
-          `Visualization ${defaultVisualization} is not allowed. Must be one of: ${relatedBaseWidget.visualisations.join(
+          `Visualization ${
+            params.defaultVisualization
+          } is not allowed. Must be one of: ${relatedBaseWidget.visualisations.join(
             ', ',
           )}`,
         );
       }
-      customWidget.defaultVisualization =
-        defaultVisualization as WidgetVisualizationsType;
+      customWidget.defaultVisualization = defaultVisualization;
     }
     if (filters) {
       customWidget.filters = filters;
