@@ -71,6 +71,8 @@ const SavedVisualizationsTable: FC = () => {
           : ["-updatedAt"],
         pageSize: pagination.size,
         pageNumber: pagination.page,
+        filter: { name: "a" },
+        omitFields: ["password"],
       },
     },
     {

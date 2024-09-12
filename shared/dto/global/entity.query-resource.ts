@@ -1,30 +1,22 @@
 import { z } from 'zod';
 
-export const FetchSpecificationSchema = z.object({
-  /**
-   * @type {string} - Test Page
-   */
-  pageSize: z.number().optional(),
-  /**
-   * @type {number} - Test number
-   */
-  pageNumber: z.number().optional(),
-  disablePagination: z.boolean().optional(),
-  fields: z.array(z.string()).optional(),
-  omitFields: z.array(z.string()).optional(),
-  include: z.array(z.string()).optional(),
-  sort: z.array(z.string()).optional(),
-  filter: z.object({}),
-});
+export interface EntityQueryResource {
+  fields?: string[];
+  omitFields?: string[];
+  include?: string[];
+  filter?: Record<string, string | string[]>;
+}
 
 export function generateQuerySchema<
   FIELDS extends string,
   INCLUDES extends string,
   FILTERS extends string,
+  OMIT_FIELDS extends string,
 >(config: {
   fields: readonly FIELDS[];
   includes: readonly INCLUDES[];
   filters: readonly FILTERS[];
+  omitFields: readonly OMIT_FIELDS[];
 }) {
   return z.object({
     pageSize: z.number().optional(),
@@ -32,7 +24,7 @@ export function generateQuerySchema<
     disablePagination: z.boolean().optional(),
     fields: z.array(z.enum(config.fields as [FIELDS, ...FIELDS[]])).optional(),
     omitFields: z
-      .array(z.enum(config.fields as [FIELDS, ...FIELDS[]]))
+      .array(z.enum(config.omitFields as [OMIT_FIELDS, ...OMIT_FIELDS[]]))
       .optional(),
     include: z
       .array(z.enum(config.includes as [INCLUDES, ...INCLUDES[]]))
