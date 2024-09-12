@@ -15,7 +15,7 @@ const OverviewSection: FC = () => {
             lobortis ultrices mattis amet gravida augue dapibus. See methodology
           </p>
         </Card>
-        <Card className="bg-lightgray bg-[url('/images/explore/overview-widget-bg.jpg')] bg-cover bg-center bg-no-repeat" />
+        <Card className="bg-lightgray bg-[url('/images/explore/overview-widget-bg.avif')] bg-cover bg-center bg-no-repeat" />
       </div>
       <div className="grid grid-cols-2 gap-0.5">
         <Card>map widget</Card>
