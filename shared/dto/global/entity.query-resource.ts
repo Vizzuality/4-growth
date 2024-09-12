@@ -12,12 +12,17 @@ export function generateQuerySchema<
   INCLUDES extends string,
   FILTERS extends string,
   OMIT_FIELDS extends string,
+  SORT_BY extends string,
 >(config: {
   fields: readonly FIELDS[];
   includes: readonly INCLUDES[];
   filters: readonly FILTERS[];
   omitFields: readonly OMIT_FIELDS[];
+  sortBy: readonly SORT_BY[];
 }) {
+  const sortFields = config.sortBy.flatMap(
+    (field) => [field, `-${field}`] as const,
+  );
   return z.object({
     pageSize: z.number().optional(),
     pageNumber: z.number().optional(),
@@ -29,7 +34,7 @@ export function generateQuerySchema<
     include: z
       .array(z.enum(config.includes as [INCLUDES, ...INCLUDES[]]))
       .optional(),
-    sort: z.array(z.string()).optional(),
+    sort: z.array(z.enum(sortFields as [SORT_BY, ...SORT_BY[]])).optional(),
     filter: z
       .record(
         z.enum(config.filters as [FILTERS, ...FILTERS[]]),
