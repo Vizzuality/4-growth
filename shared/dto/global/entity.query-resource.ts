@@ -1,10 +1,17 @@
 import { z } from 'zod';
 
-export interface EntityQueryResource {
-  fields?: string[];
-  omitFields?: string[];
-  include?: string[];
-  filter?: Record<string, string | string[]>;
+export interface EntityQueryResource<
+  FIELDS extends string,
+  INCLUDES extends string,
+  FILTERS extends string,
+  OMIT_FIELDS extends string,
+  SORT_BY extends string,
+> {
+  fields: readonly FIELDS[];
+  includes: readonly INCLUDES[];
+  filters: readonly FILTERS[];
+  omitFields: readonly OMIT_FIELDS[];
+  sort: readonly SORT_BY[];
 }
 
 export function generateQuerySchema<
@@ -18,9 +25,9 @@ export function generateQuerySchema<
   includes: readonly INCLUDES[];
   filters: readonly FILTERS[];
   omitFields: readonly OMIT_FIELDS[];
-  sortBy: readonly SORT_BY[];
+  sort: readonly SORT_BY[];
 }) {
-  const sortFields = config.sortBy.flatMap(
+  const sortFields = config.sort.flatMap(
     (field) => [field, `-${field}`] as const,
   );
   return z.object({

@@ -68,11 +68,11 @@ const SavedVisualizationsTable: FC = () => {
         fields: ["id", "name", "indicator", "type", "updatedAt"],
         sort: Object.keys(sorting).length
           ? sorting.map((sort) => `${sort.desc ? "" : "-"}${sort.id}`)
-          : ["-updatedAt"],
+          : ["-updatedAt", "-name"],
         pageSize: pagination.size,
         pageNumber: pagination.page,
         filter: { name: "a" },
-        omitFields: ["password"],
+        omitFields: ["id"],
       },
     },
     {
