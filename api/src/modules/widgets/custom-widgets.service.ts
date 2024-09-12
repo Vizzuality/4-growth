@@ -166,6 +166,8 @@ export class CustomWidgetService extends AppBaseService<
         throw exception;
       }
       customWidget.widget = { id: widgetId } as BaseWidget;
+      customWidget.defaultVisualization =
+        relatedBaseWidget.defaultVisualization;
     }
     if (defaultVisualization) {
       if (
