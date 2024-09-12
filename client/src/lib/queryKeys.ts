@@ -11,4 +11,8 @@ export const usersKeys = createQueryKeys("users", {
   ],
 });
 
-export const queryKeys = mergeQueryKeys(usersKeys);
+export const sectionsKeys = createQueryKeys("sections", {
+  all: null,
+});
+
+export const queryKeys = mergeQueryKeys(usersKeys, sectionsKeys);
