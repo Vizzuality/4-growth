@@ -20,7 +20,7 @@ const ActionsButton = ({ row }: CellContext<ColumnsTable, unknown>) => {
   const [selectedRow] = useAtom(selectedRowAtom);
   const resetSelectedRow = useResetAtom(selectedRowAtom);
 
-  const isRowSelected = selectedRow === row.original.id;
+  const isRowSelected = selectedRow === String(row.original.id);
 
   if (isRowSelected) {
     return (
