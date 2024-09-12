@@ -4,8 +4,13 @@ import { FC } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@/lib/utils";
+import { useAtomValue } from "jotai";
 
+import { client } from "@/lib/queryClient";
+import { queryKeys } from "@/lib/queryKeys";
+import { cn, parseSearchSectionsQuery } from "@/lib/utils";
+
+import { intersectingAtom } from "@/containers/explore/store";
 import Header from "@/containers/header";
 import SidebarAccordion from "@/containers/sidebar/sidebar-accordion";
 
@@ -17,7 +22,13 @@ import {
 import { Button } from "@/components/ui/button";
 
 const Sidebar: FC = () => {
+  const { data } = client.sections.searchSections.useQuery(
+    queryKeys.sections.all.queryKey,
+    { query: {} },
+    { select: parseSearchSectionsQuery },
+  );
   const isExplore = usePathname().startsWith("/explore");
+  const intersecting = useAtomValue(intersectingAtom);
 
   return (
     <>
@@ -49,22 +60,42 @@ const Sidebar: FC = () => {
           <>
             <AccordionItem value="explore-filters">
               <AccordionTrigger>Filters</AccordionTrigger>
-              <AccordionContent>filters here...</AccordionContent>
+              <AccordionContent className="py-3.5">
+                filters here...
+              </AccordionContent>
             </AccordionItem>
             <AccordionItem value="explore-sections">
               <AccordionTrigger>Sections</AccordionTrigger>
-              <AccordionContent></AccordionContent>
+              <AccordionContent className="py-3.5">
+                {data?.map((s) => (
+                  <Link
+                    key={`section-link-${s.id}`}
+                    className={cn(
+                      "block transition-colors hover:bg-secondary",
+                      intersecting === s.id &&
+                        "border-l-2 border-white bg-secondary",
+                    )}
+                    href={`#${s.id}`}
+                  >
+                    <div className="px-4 py-3.5">{s.name}</div>
+                  </Link>
+                ))}
+              </AccordionContent>
             </AccordionItem>
           </>
         ) : (
           <>
             <AccordionItem value="sandbox-settings">
               <AccordionTrigger>Settings</AccordionTrigger>
-              <AccordionContent>settings here...</AccordionContent>
+              <AccordionContent className="py-3.5">
+                settings here...
+              </AccordionContent>
             </AccordionItem>
             <AccordionItem value="sandbox-filters">
               <AccordionTrigger>Filters</AccordionTrigger>
-              <AccordionContent>filters here...</AccordionContent>
+              <AccordionContent className="py-3.5">
+                filters here...
+              </AccordionContent>
             </AccordionItem>
           </>
         )}
