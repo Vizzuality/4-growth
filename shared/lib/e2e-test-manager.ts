@@ -1,14 +1,8 @@
 import { DataSource } from 'typeorm';
 import { User } from '@shared/dto/users/user.entity';
-import {
-  createCustomChart,
-  createCustomFilter,
-  createUser,
-} from '@shared/lib/entity-mocks';
+import { createUser } from '@shared/lib/entity-mocks';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import { DB_ENTITIES } from '@shared/lib/db-entities';
-import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
-import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entity';
 import { sign } from 'jsonwebtoken';
 
 const AppDataSource = new DataSource({
@@ -59,12 +53,6 @@ export class E2eTestManager {
     return {
       createUser: (additionalData?: Partial<User>) =>
         createUser(this.getDataSource(), additionalData),
-      createCustomChart: (user: User, additionalData?: Partial<CustomChart>) =>
-        createCustomChart(this.getDataSource(), user, additionalData),
-      createChartFilter: (
-        chart: CustomChart,
-        additionalData?: Partial<ChartFilter>,
-      ) => createCustomFilter(this.getDataSource(), chart, additionalData),
     };
   }
 

@@ -1,14 +1,14 @@
-import { CustomChart } from "@shared/dto/custom-charts/custom-chart.entity";
 import { ColumnDef } from "@tanstack/react-table";
 
 import ActionsButton from "./actions-button";
 import CellName from "./cell-name";
 import SortingButton from "./sorting-button";
+import { CustomWidget } from "@shared/dto/widgets/custom-widget.entity";
 
-export interface ColumnsTable extends Partial<CustomChart> {}
+export interface ColumnsTable extends Partial<CustomWidget> {}
 
 const useColumns = () => {
-  const columns: ColumnDef<Partial<CustomChart>>[] = [
+  const columns: ColumnDef<Partial<CustomWidget>>[] = [
     {
       accessorKey: "name",
       header: (headerProps) => (

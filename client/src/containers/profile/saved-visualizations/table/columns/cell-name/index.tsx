@@ -43,9 +43,10 @@ const CellName: FC<CellContext<ColumnsTable, unknown>> = ({
       >[0],
     ) => {
       if (evt.code === "Enter" && isEditing) {
-        const response = await client.userCharts.updateCustomChart.mutation({
+        const response = await client.users.updateCustomWidget.mutation({
           params: {
-            id: row.original.id as string,
+            userId: session?.user.id as string,
+            id: String(row.original.id),
           },
           body: {
             name: evt.currentTarget.value,
@@ -92,7 +93,7 @@ const CellName: FC<CellContext<ColumnsTable, unknown>> = ({
   );
 
   useEffect(() => {
-    if (selectedRow === row.original.id) {
+    if (selectedRow === String(row.original.id)) {
       setIsEditing(true);
       ref.current?.focus();
     }
