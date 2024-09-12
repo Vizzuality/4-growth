@@ -52,14 +52,14 @@ const SavedVisualizationsTable: FC = () => {
     totalPages: 1,
   });
 
-  const { data } = client.users.getUsersCustomCharts.useQuery(
+  const { data } = client.users.searchCustomWidgets.useQuery(
     queryKeys.users.userCharts(session?.user.id as string, {
       sorting,
       pagination,
     }).queryKey,
     {
       params: {
-        id: session?.user.id as string,
+        userId: session?.user.id as string,
       },
       extraHeaders: {
         ...getAuthHeader(session?.accessToken as string),
@@ -133,7 +133,7 @@ const SavedVisualizationsTable: FC = () => {
                 key={row.id}
                 className={cn("border-l !border-l-transparent", {
                   "!border-l-foreground bg-navy-700":
-                    selectedRow === row.original.id,
+                    selectedRow === String(row.original.id),
                 })}
               >
                 {row.getVisibleCells().map((cell) => (
