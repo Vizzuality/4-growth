@@ -41,7 +41,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   }, []);
 
   return (
-    <div ref={ref} id={id} className="h-[700px] bg-secondary">
+    <div ref={ref} id={id}>
       {children}
     </div>
   );
