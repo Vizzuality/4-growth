@@ -10,13 +10,19 @@ describe('Users CRUD (e2e)', () => {
   beforeAll(async () => {
     testManager = await TestManager.createTestManager();
   });
+
   beforeEach(async () => {
     const { jwtToken, user } = await testManager.setUpTestUser();
     authToken = jwtToken;
     testUser = user;
   });
+
   afterEach(async () => {
     await testManager.clearDatabase();
+  });
+
+  afterAll(async () => {
+    await testManager.close();
   });
 
   it('should get all users', async () => {
