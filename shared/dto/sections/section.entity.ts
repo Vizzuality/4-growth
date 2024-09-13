@@ -7,10 +7,13 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 
-@Entity('section')
+@Entity('sections')
 export class Section {
   @PrimaryColumn()
   order: number;
+
+  @Column({ unique: true })
+  slug: string;
 
   @Column()
   name: string;

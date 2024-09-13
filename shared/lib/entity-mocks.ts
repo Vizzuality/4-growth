@@ -48,6 +48,7 @@ export const createSection = async (
   const sectionsRepository = dataSource.getRepository(Section);
 
   const defaults = {
+    slug: 'test-section',
     name: 'Test section',
     description: 'Description of a test section',
     order: 1,
