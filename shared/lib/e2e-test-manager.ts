@@ -1,9 +1,10 @@
-import { DataSource } from 'typeorm';
+import { DataSource, DeepPartial } from 'typeorm';
 import { User } from '@shared/dto/users/user.entity';
-import { createUser } from '@shared/lib/entity-mocks';
+import { createCustomWidget, createUser } from '@shared/lib/entity-mocks';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import { DB_ENTITIES } from '@shared/lib/db-entities';
 import { sign } from 'jsonwebtoken';
+import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -53,6 +54,10 @@ export class E2eTestManager {
     return {
       createUser: (additionalData?: Partial<User>) =>
         createUser(this.getDataSource(), additionalData),
+      createCustomWidget: (
+        additionalData?: DeepPartial<CustomWidget>,
+      ): Promise<CustomWidget> =>
+        createCustomWidget(this.getDataSource(), additionalData),
     };
   }
 
