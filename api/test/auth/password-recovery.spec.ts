@@ -14,15 +14,22 @@ describe('Password Recovery', () => {
     mockEmailService =
       testManager.moduleFixture.get<MockEmailService>(IEmailServiceToken);
   });
+
   beforeEach(async () => {
     const { jwtToken, user } = await testManager.setUpTestUser();
     authToken = jwtToken;
     testUser = user;
     jest.clearAllMocks();
   });
+
   afterEach(async () => {
     await testManager.clearDatabase();
   });
+
+  afterAll(async () => {
+    await testManager.close();
+  });
+
   it('an email should be sent if a user with provided email has been found', async () => {
     const response = await testManager
       .request()

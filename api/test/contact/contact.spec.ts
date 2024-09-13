@@ -15,6 +15,11 @@ describe('Contact', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
   });
+
+  afterAll(async () => {
+    await testManager.close();
+  });
+
   it('should call the mailing service when receiving a contact request', async () => {
     const response = await testManager
       .request()
