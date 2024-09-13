@@ -16,6 +16,11 @@ describe('Authentication (e2e)', () => {
   afterAll(async () => {
     await testManager.close();
   });
+
+  afterAll(async () => {
+    await testManager.close();
+  });
+
   describe('Sign Up', () => {
     test(`it should throw validation errors`, async () => {
       const response = await fixtures.WhenISignUpANewUserWithWrongPayload({

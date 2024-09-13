@@ -13,9 +13,15 @@ describe('Users (e2e)', () => {
     userTestFixtures = new UserFixtures(testManager);
     jwtService = testManager.getModule<JwtService>(JwtService);
   });
+
   afterEach(async () => {
     await testManager.clearDatabase();
   });
+
+  afterAll(async () => {
+    await testManager.close();
+  });
+
   describe('Get my own info', () => {
     it('should return user information', async () => {
       const { jwtToken, user } = await userTestFixtures.GivenImLoggedIn();
