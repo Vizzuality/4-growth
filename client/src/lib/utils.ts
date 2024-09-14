@@ -7,6 +7,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/**
+ * @todo Remove this when slug property is available in Section
+ */
 export function parseSearchSectionsQuery(resp: {
   status: 200;
   body: ApiPaginationResponse<Section>;
