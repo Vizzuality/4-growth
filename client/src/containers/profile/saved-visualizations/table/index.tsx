@@ -65,12 +65,12 @@ const SavedVisualizationsTable: FC = () => {
         ...getAuthHeader(session?.accessToken as string),
       },
       query: {
-        fields: ["id", "name", "type", "updatedAt"],
-        sort: Object.keys(sorting).length
-          ? sorting.map((sort) => `${sort.desc ? "" : "-"}${sort.id}`)
-          : ["updatedAt"],
+        fields: ["id", "name", "type", "updatedAt", "createdAt"],
+        // The previous approach break the typing, can we use it another way?
+        sort: ["name", "-updatedAt"],
         pageSize: pagination.size,
         pageNumber: pagination.page,
+        filter: { name: "a" },
       },
     },
     {
