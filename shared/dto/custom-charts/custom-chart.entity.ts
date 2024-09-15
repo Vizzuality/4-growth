@@ -13,6 +13,14 @@ import { ChartFilter } from '@shared/dto/custom-charts/custom-chart-filter.entit
 
 import { INDICATORS, CUSTOM_CHART_TYPE } from './custom-chart.constants';
 
+export const CustomChartQueryResource = {
+  fields: ['id', 'name', 'type', 'updatedAt', 'createdAt'],
+  includes: ['user', 'chartFilters'],
+  filters: ['name', 'indicator'],
+  omitFields: ['id', 'name', 'type', 'updatedAt', 'createdAt'],
+  sort: ['name', 'updatedAt', 'createdAt'],
+};
+
 @Entity({ name: 'custom_charts' })
 export class CustomChart {
   @PrimaryGeneratedColumn('uuid')

@@ -10,13 +10,17 @@ import {
   ApiPaginationResponse,
   ApiResponse,
 } from '@shared/dto/global/api-response.dto';
-import { CustomChart } from '@shared/dto/custom-charts/custom-chart.entity';
+import {
+  CustomChart,
+  CustomChartQueryResource,
+} from '@shared/dto/custom-charts/custom-chart.entity';
 import { PasswordSchema } from '@shared/schemas/auth.schemas';
 import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
 import {
   CreateCustomWidgetSchema,
   UpdateCustomWidgetSchema,
 } from '@shared/schemas/widget.schemas';
+import { generateQuerySchema } from '@shared/dto/global/entity.query-resource';
 
 const contract = initContract();
 export const usersContract = contract.router({
@@ -102,7 +106,7 @@ export const usersContract = contract.router({
     method: 'GET',
     path: '/users/:id/custom-charts',
     pathParams: z.object({ id: z.string() }),
-    query: contract.type<FetchSpecification>(),
+    query: generateQuerySchema(CustomChartQueryResource),
     responses: {
       200: contract.type<ApiPaginationResponse<CustomChart>>(),
       400: contract.type<JSONAPIError>(),
