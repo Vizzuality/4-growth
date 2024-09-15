@@ -19,7 +19,7 @@ export const CustomChartQueryResource = {
   filters: ['name', 'indicator'],
   omitFields: ['id', 'name', 'type', 'updatedAt', 'createdAt'],
   sort: ['name', 'updatedAt', 'createdAt'],
-};
+} as const;
 
 @Entity({ name: 'custom_charts' })
 export class CustomChart {

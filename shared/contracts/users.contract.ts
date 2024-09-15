@@ -106,13 +106,14 @@ export const usersContract = contract.router({
     method: 'GET',
     path: '/users/:id/custom-charts',
     pathParams: z.object({ id: z.string() }),
-    query: generateQuerySchema({
-      fields: ['id', 'name', 'type', 'updatedAt', 'createdAt'],
-      includes: ['user', 'chartFilters'],
-      filters: ['name', 'indicator'],
-      omitFields: ['id', 'name', 'type', 'updatedAt', 'createdAt'],
-      sort: ['name', 'updatedAt', 'createdAt'],
-    }),
+    // query: generateQuerySchema({
+    //   fields: ['id', 'name', 'type', 'updatedAt', 'createdAt'],
+    //   includes: ['user', 'chartFilters'],
+    //   filters: ['name', 'indicator'],
+    //   omitFields: ['id', 'name', 'type', 'updatedAt', 'createdAt'],
+    //   sort: ['name', 'updatedAt', 'createdAt'],
+    // }),
+    query: generateQuerySchema(CustomChartQueryResource),
     responses: {
       200: contract.type<ApiPaginationResponse<CustomChart>>(),
       400: contract.type<JSONAPIError>(),

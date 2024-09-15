@@ -70,7 +70,6 @@ const SavedVisualizationsTable: FC = () => {
         sort: ["name", "-updatedAt"],
         pageSize: pagination.size,
         pageNumber: pagination.page,
-        filter: { name: "a" },
       },
     },
     {

@@ -13,18 +13,21 @@ export function generateQuerySchema<
   omitFields: readonly OMIT_FIELDS[];
   sort: readonly SORT_BY[];
 }) {
+  type SortField = SORT_BY | `-${SORT_BY}`;
   const sortFields = config.sort.flatMap(
     (field) => [field, `-${field}`] as const,
-  );
+  ) as readonly SortField[];
   return z.object({
     pageSize: z
       .number()
       .optional()
-      .refine((n) => n > 0, { message: 'Page size must be a positive number' }),
+      .refine((n) => n === undefined || n > 0, {
+        message: 'Page size must be a positive number',
+      }),
     pageNumber: z
       .number()
       .optional()
-      .refine((n) => n > 0, {
+      .refine((n) => n === undefined || n > 0, {
         message: 'Page number must be a positive number',
       }),
     disablePagination: z.boolean().optional(),
@@ -47,7 +50,7 @@ export function generateQuerySchema<
       .array(z.enum(config.includes as [INCLUDES, ...INCLUDES[]]))
       .optional(),
     sort: z
-      .array(z.enum(sortFields as [SORT_BY, ...SORT_BY[]]))
+      .array(z.enum(sortFields as [SortField, ...SortField[]]))
       .optional()
       .refine(
         (arr) =>
