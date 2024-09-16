@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
 export const FetchSpecificationSchema = z.object({
-  pageSize: z.number().optional(),
-  pageNumber: z.number().optional(),
-  disablePagination: z.boolean().optional(),
+  pageSize: z.coerce.number().optional(),
+  pageNumber: z.coerce.number().optional(),
+  disablePagination: z.coerce.boolean().optional(),
   fields: z.array(z.string()).optional(),
   omitFields: z.array(z.string()).optional(),
   include: z.array(z.string()).optional(),
