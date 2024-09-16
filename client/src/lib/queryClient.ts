@@ -1,8 +1,8 @@
 import router from "@shared/contracts";
+import { QueryClient } from "@tanstack/react-query";
 import { initQueryClient } from "@ts-rest/react-query";
 
 import { env } from "@/env";
-import { QueryClient } from "@tanstack/react-query";
 
 const client = initQueryClient(router, {
   validateResponse: true,
