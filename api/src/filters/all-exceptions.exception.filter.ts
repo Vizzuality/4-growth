@@ -99,7 +99,12 @@ export class AllExceptionsFilter implements ExceptionFilter {
   handleZodValidationErrorMessages(
     exception: RequestValidationError,
   ): JSONAPIErrorOptions[] {
-    const errors: JSONAPIErrorOptions[] = exception.body.issues.map(
+    const zodValidationIssues = [
+      ...(exception.body?.issues || []),
+      ...(exception.query?.issues || []),
+      ...(exception.pathParams?.issues || []),
+    ];
+    const errors: JSONAPIErrorOptions[] = zodValidationIssues.map(
       (issue): JSONAPIErrorOptions => {
         return {
           status: exception.getStatus().toString(10),
