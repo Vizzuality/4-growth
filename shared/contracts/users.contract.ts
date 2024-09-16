@@ -17,6 +17,7 @@ import {
   CreateCustomWidgetSchema,
   UpdateCustomWidgetSchema,
 } from '@shared/schemas/widget.schemas';
+import { FetchSpecificationSchema } from '@shared/schemas/query-param.schema';
 
 const contract = initContract();
 export const usersContract = contract.router({
@@ -102,7 +103,7 @@ export const usersContract = contract.router({
     method: 'GET',
     path: '/users/:id/custom-charts',
     pathParams: z.object({ id: z.string() }),
-    query: contract.type<FetchSpecification>(),
+    query: FetchSpecificationSchema,
     responses: {
       200: contract.type<ApiPaginationResponse<CustomChart>>(),
       400: contract.type<JSONAPIError>(),
