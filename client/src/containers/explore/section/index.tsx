@@ -3,7 +3,7 @@ import { useRef, useEffect, PropsWithChildren, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { BaseWidget } from "@shared/dto/widgets/base-widget.entity";
+import { Section as SectionEntity } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
 
 import { intersectingAtom } from "@/containers/explore/store";
@@ -15,28 +15,18 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-interface iSection {
-  id: string;
-  order?: number | undefined;
-  name?: string | undefined;
-  description?: string | undefined;
-  createdAt?: Date | undefined;
-  baseWidgets?: BaseWidget[] | undefined;
-}
-
-interface SectionData extends iSection {
-  allSections: iSection[];
-}
 interface SectionProps {
-  data: SectionData;
+  data: SectionEntity;
+  menuItems: SectionEntity[];
 }
 
 const POPOVER_ID = "sections-menu-popover";
 const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   data,
+  menuItems,
   children,
 }) => {
-  const { id, name, description, allSections } = data;
+  const { slug, name, description } = data;
   const ref = useRef<HTMLDivElement>(null);
   const setIntersecting = useSetAtom(intersectingAtom);
   const [popoverOpen, setPopOverOpen] = useState(false);
@@ -49,7 +39,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
         const isInViewport = top >= 0 && bottom <= window.innerHeight;
 
         if (isInViewport) {
-          setIntersecting(id);
+          setIntersecting(slug);
         }
       },
       { threshold: 1.0 },
@@ -82,7 +72,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   };
 
   return (
-    <section className="h-[660px]" ref={ref} id={id}>
+    <section className="h-[660px]" ref={ref} id={slug}>
       <header className="flex justify-between space-y-4 rounded-2xl bg-secondary p-6">
         <div>
           <h2 className="text-xl font-semibold">{name}</h2>
@@ -115,13 +105,13 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
             </Button>
           </PopoverTrigger>
           <PopoverContent align="end" id={POPOVER_ID}>
-            {allSections.map((s) => (
+            {menuItems.map((s) => (
               <Button
-                key={`menu-item-${s.id}`}
+                key={`menu-item-${s.slug}`}
                 variant="clean"
                 className="block w-full p-4 text-left text-xs hover:bg-primary-foreground"
                 onClick={() => {
-                  handleLinkClick(s.id);
+                  handleLinkClick(s.slug);
                 }}
               >
                 {s.name}

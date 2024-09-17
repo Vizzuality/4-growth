@@ -8,7 +8,7 @@ import { useAtomValue } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
-import { cn, parseSearchSectionsQuery } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 import { intersectingAtom } from "@/containers/explore/store";
 import Header from "@/containers/header";
@@ -25,7 +25,7 @@ const Sidebar: FC = () => {
   const { data } = client.sections.searchSections.useQuery(
     queryKeys.sections.all.queryKey,
     { query: {} },
-    { select: parseSearchSectionsQuery },
+    { select: (res) => res.body.data },
   );
   const isExplore = usePathname().startsWith("/explore");
   const intersecting = useAtomValue(intersectingAtom);
@@ -69,13 +69,13 @@ const Sidebar: FC = () => {
               <AccordionContent className="py-3.5">
                 {data?.map((s) => (
                   <Link
-                    key={`section-link-${s.id}`}
+                    key={`section-link-${s.slug}`}
                     className={cn(
                       "block transition-colors hover:bg-secondary",
-                      intersecting === s.id &&
+                      intersecting === s.slug &&
                         "border-l-2 border-white bg-secondary",
                     )}
-                    href={`#${s.id}`}
+                    href={`#${s.slug}`}
                   >
                     <div className="px-4 py-3.5">{s.name}</div>
                   </Link>
