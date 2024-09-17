@@ -5,7 +5,6 @@ import { z } from 'zod';
 import { JSONAPIError } from '@shared/dto/errors/json-api.error';
 import { UserDto } from '@shared/dto/users/user.dto';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';
-import { FetchSpecification } from 'nestjs-base-service';
 import {
   ApiPaginationResponse,
   ApiResponse,
@@ -38,7 +37,7 @@ export const usersContract = contract.router({
       400: contract.type<{ message: string }>(),
     },
     summary: 'Get all users',
-    query: contract.type<FetchSpecification>(),
+    query: FetchSpecificationSchema,
   },
   findMe: {
     method: 'GET',
@@ -47,7 +46,7 @@ export const usersContract = contract.router({
       200: contract.type<ApiResponse<UserDto>>(),
       401: contract.type<JSONAPIError>(),
     },
-    query: contract.type<FetchSpecification>(),
+    query: FetchSpecificationSchema,
   },
   updatePassword: {
     method: 'PATCH',
@@ -71,7 +70,7 @@ export const usersContract = contract.router({
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
     },
-    query: contract.type<FetchSpecification>(),
+    query: FetchSpecificationSchema,
     summary: 'Get a user by id',
   },
   updateUser: {
@@ -112,7 +111,7 @@ export const usersContract = contract.router({
     method: 'GET',
     path: '/users/:userId/widgets',
     pathParams: z.object({ userId: z.string().uuid() }),
-    query: contract.type<FetchSpecification>(),
+    query: FetchSpecificationSchema,
     responses: {
       200: contract.type<ApiPaginationResponse<CustomWidget>>(),
       400: contract.type<JSONAPIError>(),
