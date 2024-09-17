@@ -10,13 +10,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ApiPaginationResponse } from '@shared/dto/global/api-response.dto';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
-import { WidgetVisualizationsType } from '@shared/dto/widgets/widget-visualizations.constants';
 import {
   CreateCustomWidgetDTO,
   UpdateCustomWidgetDTO,
 } from '@shared/dto/widgets/widget.dto';
 import { FetchSpecification } from 'nestjs-base-service';
 import { DeepPartial, Repository, SelectQueryBuilder } from 'typeorm';
+import { WidgetUtils } from '@shared/dto/widgets/widget.utils';
 
 @Injectable()
 export class CustomWidgetService extends AppBaseService<
@@ -83,6 +83,8 @@ export class CustomWidgetService extends AppBaseService<
     params: CreateCustomWidgetDTO,
     info: AppInfoDTO,
   ): Promise<CustomWidget> {
+    // TODO: If we go this way, we will have to make this check at service level everywhere, and besides duplicating code (or if we extract it, coupling different behaviours)
+    // it can get really messy really fast.
     if (userId !== info.authenticatedUser.id) {
       throw new ForbiddenException();
     }
@@ -99,9 +101,12 @@ export class CustomWidgetService extends AppBaseService<
       throw exception;
     }
 
+    // TODO: All kinds of entity/model/dto validations should be left to the framework, and not be done manually.
+    // Additionally, final safety nets should be implemented at the database level.
     if (
-      baseWidget.visualisations.includes(
-        params.defaultVisualization as WidgetVisualizationsType,
+      WidgetUtils.isValidDefaultVisualization(
+        params.defaultVisualization,
+        baseWidget.visualisations,
       ) === false
     ) {
       throw new BadRequestException(
@@ -118,8 +123,7 @@ export class CustomWidgetService extends AppBaseService<
       widget: { id: params.widgetId },
       user: { id: info.authenticatedUser.id },
       filters: params.filters,
-      defaultVisualization:
-        params.defaultVisualization as WidgetVisualizationsType,
+      defaultVisualization: params.defaultVisualization,
     };
     return this.customWidgetRepository.save(customWidget);
   }
@@ -148,6 +152,7 @@ export class CustomWidgetService extends AppBaseService<
       );
       throw exception;
     }
+
     let relatedBaseWidget = customWidget.widget;
 
     if (name) {
@@ -157,6 +162,8 @@ export class CustomWidgetService extends AppBaseService<
       relatedBaseWidget = await this.baseWidgetRepository.findOneBy({
         id: widgetId,
       });
+      // TODO: This can never be null, as it comes from the DB entity, and the relation is set as mandatory, it will always exists
+      //       as long as the main entity exists
       if (relatedBaseWidget === null) {
         const exception = new NotFoundException('BaseWidget not found');
         this.logger.error(
@@ -166,25 +173,35 @@ export class CustomWidgetService extends AppBaseService<
         throw exception;
       }
       customWidget.widget = { id: widgetId } as BaseWidget;
+      customWidget.defaultVisualization =
+        relatedBaseWidget.defaultVisualization;
     }
+    // TODO: Again, all this checks should be done at framework level. Plus nested if statements are a code smell. It is very important to remember
+    //       that we are in the early stages of the project, we should make sure that basic/easy operations are kept simple and clean.
     if (defaultVisualization) {
       if (
-        relatedBaseWidget.visualisations.includes(
-          defaultVisualization as WidgetVisualizationsType,
+        WidgetUtils.isValidDefaultVisualization(
+          defaultVisualization,
+          relatedBaseWidget.visualisations,
         ) === false
       ) {
         throw new BadRequestException(
-          `Visualization ${defaultVisualization} is not allowed. Must be one of: ${relatedBaseWidget.visualisations.join(
+          `Visualization ${
+            params.defaultVisualization
+          } is not allowed. Must be one of: ${relatedBaseWidget.visualisations.join(
             ', ',
           )}`,
         );
       }
-      customWidget.defaultVisualization =
-        defaultVisualization as WidgetVisualizationsType;
+      customWidget.defaultVisualization = defaultVisualization;
     }
     if (filters) {
       customWidget.filters = filters;
     }
+
+    // TODO: Finally, instead of building the new object manually with the updated fields, TypeORM can take care of this by using the update method.
+    //       You can pass the id, and all the body params that are received. It will check which are truthy, and update only those. If some value breaks
+    //       any constraint
     return this.customWidgetRepository.save(customWidget);
   }
 
@@ -210,6 +227,12 @@ export class CustomWidgetService extends AppBaseService<
       throw exception;
     }
 
+    // TODO: There are differences between remove() and delete() methods of the repository. Main differences:
+    //       1- similarly as save() vs insert(), remove first loads the entity, effectively making two queries, while delete does not.
+    //       2- it has it's usages (you can check), but I don't see any reasons right now to use remove right now. I am not saying we should not use it here
+    //          I just want you to be aware of the differences.
+    //       3- Following the previous point, remove mutates the original object, removing the id field, so we should be careful with the mutability
+    //       4- Last point, we should not return to the consumer the deleted entity, as it is not available anymore. Right now there is no usage for that
     return this.customWidgetRepository.remove(customWidget);
   }
 }

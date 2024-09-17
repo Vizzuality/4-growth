@@ -21,6 +21,11 @@ describe('Api Events', () => {
   afterEach(async () => {
     await testManager.clearDatabase();
   });
+
+  afterAll(async () => {
+    await testManager.close();
+  });
+
   it('an api event should be registered if a user has requested password recovery but the provided email is not found in the system', async () => {
     await authService.recoverPassword({ email: 'not-existing-user@test.com' });
     const apiEvent = await apiEventsRepository.findOne({

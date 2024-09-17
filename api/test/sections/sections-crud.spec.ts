@@ -30,6 +30,7 @@ describe('Page Sections API', () => {
     const entityMocks = testManager.mocks();
     const sections = [
       await entityMocks.createSection({
+        slug: 'section-1',
         name: 'Section 1',
         description: ':)',
         order: 1,
@@ -39,6 +40,7 @@ describe('Page Sections API', () => {
         ],
       }),
       await entityMocks.createSection({
+        slug: 'section-2',
         name: 'Section 2',
         description: ':)',
         order: 2,

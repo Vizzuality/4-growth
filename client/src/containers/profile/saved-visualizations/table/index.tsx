@@ -52,22 +52,29 @@ const SavedVisualizationsTable: FC = () => {
     totalPages: 1,
   });
 
-  const { data } = client.users.getUsersCustomCharts.useQuery(
+  const { data } = client.users.searchCustomWidgets.useQuery(
     queryKeys.users.userCharts(session?.user.id as string, {
       sorting,
       pagination,
     }).queryKey,
     {
       params: {
-        id: session?.user.id as string,
+        userId: session?.user.id as string,
       },
       extraHeaders: {
         ...getAuthHeader(session?.accessToken as string),
       },
       query: {
-        fields: ["id", "name", "type", "updatedAt", "createdAt"],
-        // The previous approach break the typing, can we use it another way?
-        sort: ["name", "-updatedAt"],
+        fields: [
+          "id",
+          "name",
+          "defaultVisualization",
+          "createdAt",
+          "updatedAt",
+        ],
+        sort: Object.keys(sorting).length
+          ? sorting.map((sort) => `${sort.desc ? "" : "-"}${sort.id}`)
+          : ["-updatedAt"],
         pageSize: pagination.size,
         pageNumber: pagination.page,
       },
@@ -132,7 +139,7 @@ const SavedVisualizationsTable: FC = () => {
                 key={row.id}
                 className={cn("border-l !border-l-transparent", {
                   "!border-l-foreground bg-navy-700":
-                    selectedRow === row.original.id,
+                    selectedRow === String(row.original.id),
                 })}
               >
                 {row.getVisibleCells().map((cell) => (

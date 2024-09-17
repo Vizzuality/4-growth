@@ -4,6 +4,7 @@ import {
   ManyToOne,
   CreateDateColumn,
   PrimaryGeneratedColumn,
+  JoinColumn,
 } from 'typeorm';
 import { BaseWidget } from './base-widget.entity';
 import { User } from '../users/user.entity';
@@ -18,12 +19,14 @@ export class CustomWidget {
   id: number;
 
   @ManyToOne(() => User, (user: User) => user.customWidgets)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
   @Column()
   name: string;
 
   @ManyToOne(() => BaseWidget, (widget: BaseWidget) => widget.customWidgets)
+  @JoinColumn({ name: 'widget_id' })
   widget: BaseWidget;
 
   @Column({

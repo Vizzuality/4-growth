@@ -19,8 +19,14 @@ export class BaseWidget {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
+  @Column({ nullable: true })
+  question: string;
+
+  @Column({ nullable: true })
+  indicator: string;
+
   @ManyToOne(() => Section, (section: Section) => section.baseWidgets)
-  @JoinColumn({ name: 'section_id' })
+  @JoinColumn({ name: 'section_id', referencedColumnName: 'order' })
   section: Section;
 
   @Column({ name: 'section_order' })

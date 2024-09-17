@@ -94,17 +94,6 @@ export class UsersController {
     });
   }
 
-  @TsRestHandler(c.getUsersCustomCharts)
-  async getCustomChart(@Param('id', ParseUUIDPipe) id: string): Promise<any> {
-    return tsRestHandler(c.getUsersCustomCharts, async ({ query }) => {
-      const customChart = await this.usersService.getUsersCustomCharts(
-        id,
-        query,
-      );
-      return { body: customChart, status: HttpStatus.OK };
-    });
-  }
-
   @TsRestHandler(c.resetPassword)
   async recoverPassword(@GetUser() user: User): Promise<any> {
     return tsRestHandler(

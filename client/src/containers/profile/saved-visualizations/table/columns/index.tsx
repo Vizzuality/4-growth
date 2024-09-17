@@ -1,14 +1,14 @@
-import { CustomChart } from "@shared/dto/custom-charts/custom-chart.entity";
+import { CustomWidget } from "@shared/dto/widgets/custom-widget.entity";
 import { ColumnDef } from "@tanstack/react-table";
 
 import ActionsButton from "./actions-button";
 import CellName from "./cell-name";
 import SortingButton from "./sorting-button";
 
-export interface ColumnsTable extends Partial<CustomChart> {}
+export interface ColumnsTable extends Partial<CustomWidget> {}
 
 const useColumns = () => {
-  const columns: ColumnDef<Partial<CustomChart>>[] = [
+  const columns: ColumnDef<Partial<CustomWidget>>[] = [
     {
       accessorKey: "name",
       header: (headerProps) => (
@@ -20,7 +20,7 @@ const useColumns = () => {
       cell: (cellProps) => <CellName {...cellProps} />,
     },
     {
-      accessorKey: "indicator",
+      accessorKey: "createdAt",
       header: (headerProps) => (
         <div className="flex space-x-2 text-slate-300">
           <span className="text-sm font-medium">Indicator</span>
@@ -30,7 +30,7 @@ const useColumns = () => {
       cell: ({ getValue }) => getValue(),
     },
     {
-      accessorKey: "type",
+      accessorKey: "defaultVisualization",
       header: (headerProps) => (
         <div className="flex space-x-2 text-slate-300">
           <span className="text-sm font-medium">Type of chart</span>

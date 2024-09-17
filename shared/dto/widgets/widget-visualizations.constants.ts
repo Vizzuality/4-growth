@@ -6,5 +6,7 @@ export const WIDGET_VISUALIZATIONS = {
   AREA_GRAPH: 'area_graph',
 } as const;
 
+export const VALID_WIDGET_VISUALIZATIONS = Object.values(WIDGET_VISUALIZATIONS);
+
 export type WidgetVisualizationsType =
   (typeof WIDGET_VISUALIZATIONS)[keyof typeof WIDGET_VISUALIZATIONS];

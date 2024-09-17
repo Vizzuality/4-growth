@@ -31,9 +31,10 @@ const DeleteVisualizationButton: FC<{ id: string }> = ({ id }) => {
   const { toast } = useToast();
 
   const handleDelete = useCallback(async () => {
-    const response = await client.userCharts.deleteCustomChart.mutation({
+    const response = await client.users.deleteCustomWidget.mutation({
       params: {
-        id: id as string,
+        userId: session?.user.id as string,
+        id,
       },
       extraHeaders: {
         ...getAuthHeader(session?.accessToken as string),

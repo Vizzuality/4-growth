@@ -22,7 +22,7 @@ const ActionsMenu: FC<{
 }> = ({ id }) => {
   const [, setSelectedRow] = useAtom(selectedRowAtom);
   const handleRename = useCallback(() => {
-    setSelectedRow(id as string);
+    setSelectedRow(String(id));
   }, [setSelectedRow, id]);
 
   return (
@@ -40,7 +40,7 @@ const ActionsMenu: FC<{
         </button>
       </li>
       <li>
-        <DeleteVisualizationButton id={id as string} />
+        <DeleteVisualizationButton id={String(id)} />
       </li>
     </ul>
   );

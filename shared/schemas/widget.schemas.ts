@@ -9,7 +9,7 @@ export const CreateCustomWidgetSchema = z.object({
 
 export const UpdateCustomWidgetSchema = z.object({
   name: z.string().optional(),
-  widgetId: z.number(),
-  defaultVisualization: z.string(),
-  filters: z.object({}).passthrough(),
+  widgetId: z.number().optional(),
+  defaultVisualization: z.string().optional(),
+  filters: z.object({}).passthrough().optional(),
 });
