@@ -20,7 +20,7 @@ export class BaseWidget {
   id: number;
 
   @ManyToOne(() => Section, (section: Section) => section.baseWidgets)
-  @JoinColumn({ name: 'section_id' })
+  @JoinColumn({ name: 'section_id', referencedColumnName: 'order' })
   section: Section;
 
   @Column({ name: 'section_order' })
