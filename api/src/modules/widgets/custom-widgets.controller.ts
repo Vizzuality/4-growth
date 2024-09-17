@@ -43,7 +43,7 @@ export class CustomWidgetsController {
       const { userId, id } = params;
       const data = await this.customWidgetsService.findCustomWidgetById(
         userId,
-        Number.parseInt(id),
+        id,
         {
           authenticatedUser: user,
         },
@@ -76,7 +76,7 @@ export class CustomWidgetsController {
       const { userId, id } = params;
       const data = await this.customWidgetsService.updateCustomWidget(
         userId,
-        Number.parseInt(id),
+        id,
         body,
         {
           authenticatedUser: user,
@@ -94,7 +94,7 @@ export class CustomWidgetsController {
       const { userId, id } = params;
       const data = await this.customWidgetsService.removeCustomWidget(
         userId,
-        Number.parseInt(id),
+        id,
         {
           authenticatedUser: user,
         },
