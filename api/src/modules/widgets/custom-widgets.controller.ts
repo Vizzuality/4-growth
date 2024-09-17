@@ -5,10 +5,6 @@ import { ControllerResponse } from '@api/types/controller.type';
 import { CustomWidgetService } from '@api/modules/widgets/custom-widgets.service';
 import { GetUser } from '@api/decorators/get-user.decorator';
 import { User } from '@shared/dto/users/user.entity';
-import {
-  FetchSpecification,
-  ProcessFetchSpecification,
-} from 'nestjs-base-service';
 
 @Controller()
 export class CustomWidgetsController {
@@ -18,15 +14,13 @@ export class CustomWidgetsController {
 
   @TsRestHandler(c.searchCustomWidgets)
   public async searchCustomWidgets(
-    @ProcessFetchSpecification()
-    queryDTO: FetchSpecification,
     @GetUser()
     user: User,
   ): Promise<ControllerResponse> {
-    return tsRestHandler(c.searchCustomWidgets, async ({ params }) => {
+    return tsRestHandler(c.searchCustomWidgets, async ({ params, query }) => {
       const data = await this.customWidgetsService.searchCustomWidgets(
         params.userId,
-        queryDTO,
+        query,
         {
           authenticatedUser: user,
         },
