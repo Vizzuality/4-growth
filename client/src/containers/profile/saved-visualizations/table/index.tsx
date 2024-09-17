@@ -65,7 +65,13 @@ const SavedVisualizationsTable: FC = () => {
         ...getAuthHeader(session?.accessToken as string),
       },
       query: {
-        fields: ["id", "name", "indicator", "type", "updatedAt"],
+        fields: [
+          "id",
+          "name",
+          "defaultVisualization",
+          "createdAt",
+          "updatedAt",
+        ],
         sort: Object.keys(sorting).length
           ? sorting.map((sort) => `${sort.desc ? "" : "-"}${sort.id}`)
           : ["-updatedAt"],
