@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import { dehydrate, Hydrate } from "@tanstack/react-query";
+import { dehydrate, Hydrate, QueryClient } from "@tanstack/react-query";
 import type { Metadata } from "next";
 
 import { client, getQueryClient } from "@/lib/queryClient";
@@ -13,8 +13,10 @@ export const metadata: Metadata = {
   description: "Explore | 4Growth",
 };
 
+const browserQueryClient: QueryClient | undefined = undefined;
+
 export default async function ExploreLayout({ children }: PropsWithChildren) {
-  const queryClient = getQueryClient();
+  const queryClient = getQueryClient(browserQueryClient);
   await queryClient.prefetchQuery({
     queryKey: queryKeys.sections.all.queryKey,
     queryFn: () => client.sections.searchSections.query({ query: {} }),
