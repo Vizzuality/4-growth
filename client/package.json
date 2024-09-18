@@ -15,7 +15,8 @@
     "@ts-rest/react-query": "^3.45.2",
     "clsx": "2.1.1",
     "lucide-react": "0.378.0",
-    "next": "14.2.3",
+    "next": "14.2.10",
+    "next-auth": "4.24.7",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "2.3.0"
