@@ -42,7 +42,7 @@ test.describe('Explore E2E', () => {
   })
 
   test('List all sections in the sidebar and main body', async () => {
-    await page.goto('/explore')
+    await page.goto('/explore', { waitUntil: 'domcontentloaded' })
     expect(await page.getByTestId('section-container').count()).toBe(sections.length)
     expect(await page.getByTestId('section-link').count()).toBe(sections.length)
   })
