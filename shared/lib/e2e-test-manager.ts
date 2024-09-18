@@ -1,10 +1,17 @@
 import { DataSource, DeepPartial } from 'typeorm';
 import { User } from '@shared/dto/users/user.entity';
-import { createCustomWidget, createUser } from '@shared/lib/entity-mocks';
+import {
+  createBaseWidget,
+  createCustomWidget,
+  createSection,
+  createUser,
+} from '@shared/lib/entity-mocks';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import { DB_ENTITIES } from '@shared/lib/db-entities';
 import { sign } from 'jsonwebtoken';
 import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
+import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
+import { Section } from '@shared/dto/sections/section.entity';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -54,6 +61,12 @@ export class E2eTestManager {
     return {
       createUser: (additionalData?: Partial<User>) =>
         createUser(this.getDataSource(), additionalData),
+      createSection: (additionalData?: DeepPartial<Section>) =>
+        createSection(this.getDataSource(), additionalData),
+      createBaseWidget: (
+        additionalData?: DeepPartial<BaseWidget>,
+      ): Promise<BaseWidget> =>
+        createBaseWidget(this.getDataSource(), additionalData),
       createCustomWidget: (
         additionalData?: DeepPartial<CustomWidget>,
       ): Promise<CustomWidget> =>

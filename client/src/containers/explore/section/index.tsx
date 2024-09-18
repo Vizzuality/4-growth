@@ -72,7 +72,12 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   };
 
   return (
-    <section className="h-[660px]" ref={ref} id={slug}>
+    <section
+      className="h-[660px]"
+      ref={ref}
+      id={slug}
+      data-testid="section-container"
+    >
       <header className="flex justify-between space-y-4 rounded-2xl bg-secondary p-6">
         <div>
           <h2 className="text-xl font-semibold">{name}</h2>

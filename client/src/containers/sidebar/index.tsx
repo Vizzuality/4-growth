@@ -76,6 +76,7 @@ const Sidebar: FC = () => {
                         "border-l-2 border-white bg-secondary",
                     )}
                     href={`#${s.slug}`}
+                    data-testid="section-link"
                   >
                     <div className="px-4 py-3.5">{s.name}</div>
                   </Link>
