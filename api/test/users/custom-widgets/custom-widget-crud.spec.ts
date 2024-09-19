@@ -198,7 +198,7 @@ describe('Custom Widgets API', () => {
     });
 
     // TODO: Skipping this tests as filtering capabilities are not working, pending to fix the corresponding schema
-    it.skip('Should allow authenticated users to read their custom widgets using filters', async () => {
+    it('Should allow authenticated users to read their custom widgets using filters', async () => {
       // Given
       const customWidget1 = await entityMocks.createCustomWidget({
         name: 'custom-widget1',
@@ -224,7 +224,9 @@ describe('Custom Widgets API', () => {
       // When
       const res = await testManager
         .request()
-        .get(`/users/${testUser.id}/widgets?filter[name]=${customWidget1.name}`)
+        .get(
+          `/users/${testUser.id}/widgets?filter[name]=${customWidget1.name}&include[]=widget`,
+        )
         .set('Authorization', `Bearer ${authToken}`);
 
       // Then
@@ -232,6 +234,7 @@ describe('Custom Widgets API', () => {
       const responseData = res.body.data;
       expect(responseData).toHaveLength(1);
       expect(responseData[0].name).toBe(customWidget1.name);
+      expect(responseData[0].widget.id).toBe(baseWidget.id);
     });
 
     it("Shouldn't allow authenticated users to read other user's custom widgets", async () => {
