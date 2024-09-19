@@ -15,7 +15,8 @@ import {
   CreateCustomWidgetSchema,
   UpdateCustomWidgetSchema,
 } from '@shared/schemas/widget.schemas';
-import { FetchSpecificationSchema } from '@shared/schemas/query-param.schema';
+import { generateEntityQuerySchema } from '@shared/schemas/query-param.schema';
+import { User } from '@shared/dto/users/user.entity';
 
 const contract = initContract();
 export const usersContract = contract.router({
@@ -37,7 +38,7 @@ export const usersContract = contract.router({
       400: contract.type<{ message: string }>(),
     },
     summary: 'Get all users',
-    query: FetchSpecificationSchema,
+    query: generateEntityQuerySchema(User),
   },
   findMe: {
     method: 'GET',
@@ -46,7 +47,7 @@ export const usersContract = contract.router({
       200: contract.type<ApiResponse<UserDto>>(),
       401: contract.type<JSONAPIError>(),
     },
-    query: FetchSpecificationSchema,
+    query: generateEntityQuerySchema(User),
   },
   updatePassword: {
     method: 'PATCH',
@@ -70,7 +71,7 @@ export const usersContract = contract.router({
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
     },
-    query: FetchSpecificationSchema,
+    query: generateEntityQuerySchema(User),
     summary: 'Get a user by id',
   },
   updateUser: {
@@ -111,7 +112,7 @@ export const usersContract = contract.router({
     method: 'GET',
     path: '/users/:userId/widgets',
     pathParams: z.object({ userId: z.string().uuid() }),
-    query: FetchSpecificationSchema,
+    query: generateEntityQuerySchema(CustomWidget),
     responses: {
       200: contract.type<ApiPaginationResponse<CustomWidget>>(),
       400: contract.type<JSONAPIError>(),
