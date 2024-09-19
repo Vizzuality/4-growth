@@ -40,9 +40,9 @@ const generateQuerySchema = <
   const sort = z.array(z.enum(config.sort as [SORT, ...SORT[]])).optional();
 
   return z.object({
-    pageSize: z.number().optional(),
-    pageNumber: z.number().optional(),
-    disablePagination: z.boolean().optional(),
+    pageSize: z.coerce.number().optional(),
+    pageNumber: z.coerce.number().optional(),
+    disablePagination: z.coerce.boolean().optional(),
     fields,
     omitFields,
     include,
