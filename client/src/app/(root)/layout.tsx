@@ -1,9 +1,9 @@
 import { PropsWithChildren } from "react";
 
-import { dehydrate, Hydrate } from "@tanstack/react-query";
+import { dehydrate, Hydrate, QueryClient } from "@tanstack/react-query";
 import type { Metadata } from "next";
 
-import { client, makeQueryClient } from "@/lib/queryClient";
+import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
 import Sidebar from "@/containers/sidebar";
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ExploreLayout({ children }: PropsWithChildren) {
-  const queryClient = makeQueryClient();
+  const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: queryKeys.sections.all.queryKey,
     queryFn: async () => {
