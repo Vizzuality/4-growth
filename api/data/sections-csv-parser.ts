@@ -1,8 +1,5 @@
 import * as fs from 'fs';
 import { Options, parse } from 'csv-parse';
-import { Section } from '@shared/dto/sections/section.entity';
-import { DeepPartial } from 'typeorm';
-import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 
 const ROW_VISUALIZATION_MAP = {
   4: 'single_value',
@@ -16,9 +13,7 @@ const parseSectionsFromFile = async (
   filePath: string,
   parsingOpts?: Options,
 ) => {
-  const fileContents = fs.readFileSync(filePath, 'utf-8');
-
-  const sections: Record<string, DeepPartial<Section>> = {};
+  const sections: any = {};
   await new Promise<void>((resolve) => {
     const csvParser = parse(parsingOpts);
 
@@ -44,32 +39,30 @@ const parseSectionsFromFile = async (
             name: section,
             description: section,
             order: ++currentSectionOrder,
-            baseWidgets: [] as any,
+            widgets: [],
           };
           currentWidgetSectionOrder = 0;
         }
 
-        const visualisations = [];
+        const availableVisualizations = [];
         for (let fieldIdx = 4; fieldIdx < 9; fieldIdx++) {
           const field = row[fieldIdx];
           if (field === 'TRUE') {
-            visualisations.push(ROW_VISUALIZATION_MAP[fieldIdx]);
+            availableVisualizations.push(ROW_VISUALIZATION_MAP[fieldIdx]);
           }
         }
-        const defaultVisualization = visualisations[0];
+        const defaultVisualization = availableVisualizations[0];
         /// Not a valid widget row
         if (defaultVisualization === undefined) continue;
         const question = row[0].trim();
-        const baseWidget = {
+        sections[sectionSlug].widgets.push({
           id: ++currentWidgetIdx,
           question,
           indicator,
-          visualisations,
+          availableVisualizations,
           defaultVisualization,
           sectionOrder: ++currentWidgetSectionOrder,
-          section: sections[sectionSlug].order as any,
-        } as BaseWidget;
-        sections[sectionSlug].baseWidgets.push(baseWidget);
+        });
       }
     });
 
@@ -82,11 +75,12 @@ const parseSectionsFromFile = async (
       resolve();
     });
 
+    const fileContents = fs.readFileSync(filePath, 'utf-8');
     csvParser.write(fileContents);
     csvParser.end();
   });
 
-  return Object.values(sections);
+  return sections;
 };
 
 export const SectionsCSVParser = {

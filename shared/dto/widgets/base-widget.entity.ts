@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   OneToMany,
   JoinColumn,
+  Index,
 } from 'typeorm';
 import { CustomWidget } from './custom-widget.entity';
 import { Section } from '@shared/dto/sections/section.entity';
@@ -30,6 +31,7 @@ export class BaseWidget {
   section: Section;
 
   @Column({ name: 'section_order' })
+  @Index('idx_section_widgets_section_order')
   sectionOrder: number;
 
   @Column({ type: 'simple-array', enum: WIDGET_VISUALIZATIONS })
@@ -48,6 +50,8 @@ export class BaseWidget {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @OneToMany(() => CustomWidget, (customWidget) => customWidget.widget)
+  @OneToMany(() => CustomWidget, (customWidget) => customWidget.widget, {
+    cascade: true,
+  })
   customWidgets: CustomWidget[];
 }
