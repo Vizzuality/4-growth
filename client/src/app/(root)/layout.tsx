@@ -22,7 +22,7 @@ export default async function ExploreLayout({ children }: PropsWithChildren) {
         query: {},
       });
 
-      console.log("SECTIONS PRE FETCH", JSON.stringify(response.body));
+      console.log("SECTIONS PRE FETCH!!!", JSON.stringify(response.body));
       return response;
     },
   });
