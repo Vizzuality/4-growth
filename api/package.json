@@ -12,7 +12,8 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "lint": "eslint \"src/**/*.ts\" --fix",
-    "test:e2e": "jest --config ./test/jest-config.json -i"
+    "test:e2e": "jest --config ./test/jest-config.json -i",
+    "transform:sections": "ts-node data/transform-sections.ts"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "3.616.0",

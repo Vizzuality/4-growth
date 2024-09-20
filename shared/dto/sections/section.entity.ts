@@ -24,6 +24,8 @@ export class Section {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @OneToMany(() => BaseWidget, (widget: BaseWidget) => widget.section)
+  @OneToMany(() => BaseWidget, (widget: BaseWidget) => widget.section, {
+    onDelete: 'CASCADE',
+  })
   baseWidgets: BaseWidget[];
 }
