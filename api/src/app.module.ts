@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from '@api/app.service';
 import { UsersModule } from '@api/modules/users/users.module';
@@ -14,6 +14,7 @@ import { ContactMailer } from '@api/contact.mailer';
 import { ApiEventsModule } from '@api/modules/api-events/api-events.module';
 import { SectionsModule } from './modules/sections/sections.module';
 import { WidgetsModule } from '@api/modules/widgets/widgets.module';
+import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 
 @Module({
   imports: [
@@ -36,6 +37,14 @@ import { WidgetsModule } from '@api/modules/widgets/widgets.module';
     { provide: APP_GUARD, useClass: JwtAuthGuard },
     { provide: APP_FILTER, useClass: AllExceptionsFilter },
     ContactMailer,
+    DataSourceManager,
   ],
 })
-export class AppModule {}
+export class AppModule implements OnModuleInit {
+  public constructor(private readonly dataSourceManager: DataSourceManager) {}
+
+  public async onModuleInit() {
+    // We wait for all the initial data to be loaded to avoid conflicts when testing
+    await this.dataSourceManager.loadInitialData();
+  }
+}
