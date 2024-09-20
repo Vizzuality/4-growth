@@ -17,14 +17,10 @@ export default async function ExploreLayout({ children }: PropsWithChildren) {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: queryKeys.sections.all.queryKey,
-    queryFn: async () => {
-      const response = await client.sections.searchSections.query({
-        query: {},
-      });
-
-      console.log("SECTIONS PRE FETCH!!!", JSON.stringify(response.body));
-      return response;
-    },
+    queryFn: async () =>
+      client.sections.searchSections.query({
+        fetchOptions: { cache: "no-cache" },
+      }),
   });
 
   return (
