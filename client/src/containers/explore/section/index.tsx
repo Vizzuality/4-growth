@@ -59,7 +59,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   useEffect(() => {
     const handlePopState = () => {
       const hash = window.location.hash.slice(1);
-      const element = document.getElementById(hash || "overview");
+      const element = document.getElementById(hash || menuItems[0].slug);
       element?.scrollIntoView({ behavior: "smooth" });
     };
 
