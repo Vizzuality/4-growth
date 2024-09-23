@@ -56,6 +56,19 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
     };
   }, []);
 
+  useEffect(() => {
+    const handlePopState = () => {
+      const hash = window.location.hash.slice(1);
+      const element = document.getElementById(hash || "overview");
+      element?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+
   const handleLinkClick = (sectionId: string) => {
     setPopOverOpen(false);
 
