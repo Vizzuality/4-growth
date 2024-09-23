@@ -18,15 +18,13 @@ describe('Custom Widgets API', () => {
   });
 
   beforeEach(async () => {
+    await testManager.clearDatabase();
+
     const user = await testManager.setUpTestUser();
     authToken = user.jwtToken;
     testUser = user.user;
 
     baseWidget = await entityMocks.createBaseWidget();
-  });
-
-  afterEach(async () => {
-    await testManager.clearDatabase();
   });
 
   afterAll(async () => {

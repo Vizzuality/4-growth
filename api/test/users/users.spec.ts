@@ -14,7 +14,7 @@ describe('Users (e2e)', () => {
     jwtService = testManager.getModule<JwtService>(JwtService);
   });
 
-  afterEach(async () => {
+  beforeEach(async () => {
     await testManager.clearDatabase();
   });
 

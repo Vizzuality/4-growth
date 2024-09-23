@@ -12,13 +12,11 @@ describe('Users CRUD (e2e)', () => {
   });
 
   beforeEach(async () => {
+    await testManager.clearDatabase();
+
     const { jwtToken, user } = await testManager.setUpTestUser();
     authToken = jwtToken;
     testUser = user;
-  });
-
-  afterEach(async () => {
-    await testManager.clearDatabase();
   });
 
   afterAll(async () => {
