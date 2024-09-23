@@ -1,16 +1,12 @@
 import { CellContext } from "@tanstack/react-table";
 import { useAtom } from "jotai/react";
 import { useResetAtom } from "jotai/utils";
-import { EllipsisIcon, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 
+import MenuButton from "@/containers/menu-button";
 import { selectedRowAtom } from "@/containers/profile/store";
 
 import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
 
 import { ColumnsTable } from "..";
 
@@ -40,19 +36,9 @@ const ActionsButton = ({ row }: CellContext<ColumnsTable, unknown>) => {
   }
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          type="button"
-          className="flex h-8 w-8 items-center rounded-full bg-navy-700 p-2 transition-colors hover:bg-navy-800"
-        >
-          <EllipsisIcon />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent align="end">
-        <ActionsMenu id={row.original.id} />
-      </PopoverContent>
-    </Popover>
+    <MenuButton>
+      <ActionsMenu id={row.original.id} />
+    </MenuButton>
   );
 };
 
