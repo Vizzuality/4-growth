@@ -6,7 +6,7 @@ describe('Page Sections API', () => {
   let authToken: string;
 
   beforeAll(async () => {
-    testManager = await TestManager.createTestManager();
+    testManager = await TestManager.createTestManager({ logger: false });
     await testManager.clearDatabase();
     const { jwtToken } = await testManager.setUpTestUser();
     authToken = jwtToken;

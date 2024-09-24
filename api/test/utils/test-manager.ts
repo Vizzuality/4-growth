@@ -1,6 +1,6 @@
 import { AppModule } from '@api/app.module';
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
 import { DataSource, DeepPartial } from 'typeorm';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import {
@@ -40,14 +40,22 @@ export class TestManager<FixtureType> {
     this.fixtures = options?.fixtures;
   }
 
-  static async createTestManager<FixtureType = void>(options?: {
-    fixtures: FixtureType;
-  }) {
+  static async createTestManager<FixtureType = void>(
+    options: {
+      fixtures?: FixtureType;
+      logger?: Logger | false;
+    } = {},
+  ) {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
+    // moduleFixture.useLogger(false);
     const dataSource = moduleFixture.get<DataSource>(getDataSourceToken());
     const testApp = moduleFixture.createNestApplication();
+    if (options.logger !== undefined) {
+      // Has to be called before init. Otherwise it has no effect.
+      testApp.useLogger(false);
+    }
     testApp.useGlobalPipes(new ValidationPipe());
     await testApp.init();
     return new TestManager<FixtureType>(testApp, dataSource, moduleFixture);
