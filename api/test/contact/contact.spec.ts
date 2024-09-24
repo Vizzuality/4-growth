@@ -8,7 +8,7 @@ describe('Contact', () => {
   let mockEmailService: MockEmailService;
 
   beforeAll(async () => {
-    testManager = await TestManager.createTestManager();
+    testManager = await TestManager.createTestManager({ logger: false });
     mockEmailService =
       testManager.moduleFixture.get<MockEmailService>(IEmailServiceToken);
   });

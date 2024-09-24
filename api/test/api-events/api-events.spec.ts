@@ -12,7 +12,7 @@ describe('Api Events', () => {
   let apiEventsRepository: Repository<ApiEventEntity>;
 
   beforeAll(async () => {
-    testManager = await TestManager.createTestManager();
+    testManager = await TestManager.createTestManager({ logger: false });
     authService = testManager.moduleFixture.get<AuthService>(AuthService);
     usersService = testManager.moduleFixture.get<UsersService>(UsersService);
     apiEventsRepository = testManager.dataSource.getRepository(ApiEventEntity);

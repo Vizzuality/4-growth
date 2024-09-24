@@ -5,8 +5,9 @@ describe('Authentication (e2e)', () => {
   let testManager: TestManager<any>;
   let fixtures: AuthFixtures;
   beforeAll(async () => {
-    testManager = await TestManager.createTestManager();
+    testManager = await TestManager.createTestManager({ logger: false });
     fixtures = new AuthFixtures(testManager);
+    global.console.error = () => {};
   });
 
   afterEach(async () => {

@@ -5,7 +5,7 @@ describe('Page Sections API', () => {
   let testManager: TestManager<unknown>;
 
   beforeAll(async () => {
-    testManager = await TestManager.createTestManager();
+    testManager = await TestManager.createTestManager({ logger: false });
     await testManager.clearDatabase();
   });
 

@@ -10,20 +10,17 @@ describe('Password Recovery', () => {
   let mockEmailService: MockEmailService;
 
   beforeAll(async () => {
-    testManager = await TestManager.createTestManager();
+    testManager = await TestManager.createTestManager({ logger: false });
     mockEmailService =
       testManager.moduleFixture.get<MockEmailService>(IEmailServiceToken);
   });
 
   beforeEach(async () => {
+    await testManager.clearDatabase();
     const { jwtToken, user } = await testManager.setUpTestUser();
     authToken = jwtToken;
     testUser = user;
     jest.clearAllMocks();
-  });
-
-  afterEach(async () => {
-    await testManager.clearDatabase();
   });
 
   afterAll(async () => {
