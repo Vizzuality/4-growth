@@ -7,9 +7,8 @@ import { SQLAdapter } from 'api/data/sql-adapter';
 
 @Injectable()
 export class DataSourceManager {
-  private readonly logger: Logger;
-
   public constructor(
+    private readonly logger: Logger,
     @InjectDataSource() private readonly dataSource: DataSource,
   ) {
     this.logger = new Logger(this.constructor.name);
@@ -18,8 +17,14 @@ export class DataSourceManager {
   public async loadInitialData(): Promise<void> {
     const schemafilePath = `data/schema.sql`;
     const sectionsfilePath = `data/survey.csv`;
-    this.logger.log(`Loading initial schema from "${schemafilePath}"`);
-    this.logger.log(`Loading initial data from "${sectionsfilePath}"`);
+    this.logger.log(
+      `Loading initial schema from "${schemafilePath}"`,
+      this.constructor.name,
+    );
+    this.logger.log(
+      `Loading initial data from "${sectionsfilePath}"`,
+      this.constructor.name,
+    );
     const sections = await SectionsCSVParser.parseSectionsFromFile(
       sectionsfilePath,
       {

@@ -101,6 +101,7 @@ export class AppConfig {
       } else {
         Logger.warn(
           `Value of the ${stringProperty} config property should be a string, ${typeof valuesFromString} found: its contents will be ignored.`,
+          this.constructor.name,
         );
       }
     }

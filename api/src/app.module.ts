@@ -15,6 +15,7 @@ import { ApiEventsModule } from '@api/modules/api-events/api-events.module';
 import { SectionsModule } from './modules/sections/sections.module';
 import { WidgetsModule } from '@api/modules/widgets/widgets.module';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
+import { LoggingModule } from '@api/modules/logging/logging.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { DataSourceManager } from '@api/infrastructure/data-source-manager';
       validateRequestQuery: true,
     }),
     TypeOrmModule.forRoot(getTypeORMConfig()),
+    LoggingModule,
     UsersModule,
     AuthModule,
     EmailModule,
