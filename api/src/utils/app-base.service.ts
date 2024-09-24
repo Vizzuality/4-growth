@@ -5,7 +5,6 @@ import {
 } from 'nestjs-base-service';
 
 import { Repository } from 'typeorm';
-import { Logger } from '@nestjs/common';
 import { PaginationMeta } from '@shared/dto/global/api-response.dto';
 
 export abstract class AppBaseService<
@@ -22,7 +21,6 @@ export abstract class AppBaseService<
     protected idProperty: string = 'id',
   ) {
     super(repository, alias, { idProperty });
-    this.logger = new Logger(alias);
   }
 
   async findAllPaginated(

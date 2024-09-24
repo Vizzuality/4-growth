@@ -4,6 +4,7 @@ import {
   BadRequestException,
   ForbiddenException,
   Injectable,
+  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,6 +27,8 @@ export class CustomWidgetService extends AppBaseService<
   AppInfoDTO
 > {
   public constructor(
+    // It has to be protected in order to correctly extend the class
+    protected readonly logger: Logger,
     @InjectRepository(CustomWidget)
     private customWidgetRepository: Repository<CustomWidget>,
     @InjectRepository(BaseWidget)
@@ -96,6 +99,7 @@ export class CustomWidgetService extends AppBaseService<
       const exception = new NotFoundException('BaseWidget not found');
       this.logger.error(
         `BaseWidget with id ${params.widgetId} not found`,
+        null,
         exception.stack,
       );
       throw exception;
@@ -148,6 +152,7 @@ export class CustomWidgetService extends AppBaseService<
       const exception = new NotFoundException('CustomWidget not found');
       this.logger.error(
         `CustomWidget with id ${id} not found`,
+        null,
         exception.stack,
       );
       throw exception;
@@ -168,6 +173,7 @@ export class CustomWidgetService extends AppBaseService<
         const exception = new NotFoundException('BaseWidget not found');
         this.logger.error(
           `BaseWidget with id ${id} not found`,
+          null,
           exception.stack,
         );
         throw exception;
@@ -222,6 +228,7 @@ export class CustomWidgetService extends AppBaseService<
       const exception = new NotFoundException('CustomWidget not found');
       this.logger.error(
         `CustomWidget with id ${id} not found`,
+        null,
         exception.stack,
       );
       throw exception;

@@ -11,16 +11,16 @@ import { Logger } from '@nestjs/common';
  */
 
 export class MockEmailService implements IEmailServiceInterface {
-  logger: Logger = new Logger(MockEmailService.name);
+  public constructor(private readonly logger: Logger) {}
 
   sendMail =
     typeof jest !== 'undefined'
       ? jest.fn(async (sendMailDTO: SendMailDTO): Promise<void> => {
-          this.logger.log('Mock Email sent');
+          this.logger.log('Mock Email sent', this.constructor.name);
           return Promise.resolve();
         })
       : async (sendMailDTO: SendMailDTO): Promise<void> => {
-          this.logger.log('Mock Email sent');
+          this.logger.log('Mock Email sent', this.constructor.name);
           return Promise.resolve();
         };
 }

@@ -38,7 +38,11 @@ export class NodemailerEmailService implements IEmailServiceInterface {
         text: sendMailDTO.text,
       });
     } catch (e) {
-      this.logger.error(`Error sending email: ${JSON.stringify(e)}`);
+      this.logger.error(
+        `Error sending email: ${JSON.stringify(e)}`,
+        null,
+        this.constructor.name,
+      );
       throw new ServiceUnavailableException('Could not send email');
     }
   }
@@ -49,6 +53,8 @@ export class NodemailerEmailService implements IEmailServiceInterface {
     if (!accessKeyId || !secretAccessKey || !region || !domain) {
       this.logger.error(
         'Variables for Email Service not set. Email not available',
+        null,
+        this.constructor.name,
       );
     }
     return { accessKeyId, secretAccessKey, region, domain };
