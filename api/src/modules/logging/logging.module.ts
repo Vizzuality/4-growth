@@ -1,5 +1,6 @@
-import { Logger, Module } from '@nestjs/common';
+import { Global, Logger, Module } from '@nestjs/common';
 
+@Global()
 @Module({
   providers: [Logger],
   exports: [Logger],
