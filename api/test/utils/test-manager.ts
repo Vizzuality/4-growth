@@ -49,12 +49,11 @@ export class TestManager<FixtureType> {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-    // moduleFixture.useLogger(false);
     const dataSource = moduleFixture.get<DataSource>(getDataSourceToken());
     const testApp = moduleFixture.createNestApplication();
     if (options.logger !== undefined) {
       // Has to be called before init. Otherwise it has no effect.
-      testApp.useLogger(false);
+      testApp.useLogger(options.logger);
     }
     testApp.useGlobalPipes(new ValidationPipe());
     await testApp.init();
