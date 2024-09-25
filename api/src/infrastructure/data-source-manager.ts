@@ -10,9 +10,7 @@ export class DataSourceManager {
   public constructor(
     private readonly logger: Logger,
     @InjectDataSource() private readonly dataSource: DataSource,
-  ) {
-    this.logger = new Logger(this.constructor.name);
-  }
+  ) {}
 
   public async loadInitialData(): Promise<void> {
     const schemafilePath = `data/schema.sql`;
