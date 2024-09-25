@@ -22,7 +22,7 @@ const parseSectionsFromFile = async (
       csvParser.read();
 
       let currentWidgetIdx = 0;
-      let currentSectionOrder = 1;
+      let currentSectionOrder = 0;
       let currentWidgetSectionOrder = 0;
       let row: any;
       while ((row = csvParser.read()) != null) {
