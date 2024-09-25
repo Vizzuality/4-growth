@@ -44,6 +44,7 @@ export class TestManager<FixtureType> {
     options: {
       fixtures?: FixtureType;
       logger?: Logger | false;
+      initialize?: false;
     } = {},
   ) {
     const moduleFixture = await Test.createTestingModule({
@@ -56,7 +57,9 @@ export class TestManager<FixtureType> {
       testApp.useLogger(options.logger);
     }
     testApp.useGlobalPipes(new ValidationPipe());
-    await testApp.init();
+    if (options.initialize !== false) {
+      await testApp.init();
+    }
     return new TestManager<FixtureType>(testApp, dataSource, moduleFixture);
   }
 
