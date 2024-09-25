@@ -32,5 +32,5 @@ export class Section {
 }
 
 export class SectionWithDataWidget extends Section {
-  baseWidgets: BaseWidgetWithData[];
+  declare baseWidgets: BaseWidgetWithData[];
 }
