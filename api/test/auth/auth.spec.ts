@@ -7,7 +7,6 @@ describe('Authentication (e2e)', () => {
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({ logger: false });
     fixtures = new AuthFixtures(testManager);
-    global.console.error = () => {};
   });
 
   afterEach(async () => {
