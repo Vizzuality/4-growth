@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   PrimaryColumn,
 } from 'typeorm';
+import { BaseWidgetWithData } from '@shared/dto/widgets/base-widget-data.interface';
 
 @Entity('sections')
 export class Section {
@@ -28,4 +29,8 @@ export class Section {
     onDelete: 'CASCADE',
   })
   baseWidgets: BaseWidget[];
+}
+
+export class SectionWithDataWidget extends Section {
+  baseWidgets: BaseWidgetWithData[];
 }
