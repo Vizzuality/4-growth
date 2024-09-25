@@ -2,42 +2,51 @@ import { FC } from "react";
 
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { ChartContainer } from "@/components/ui/chart";
+import { WidgetData } from "@/types";
 
-const chartData = [
-  { month: "January", value: 186 },
-  { month: "February", value: 305 },
-  { month: "March", value: 237 },
-  { month: "April", value: 73 },
-  { month: "May", value: 209 },
-  { month: "June", value: 214 },
-];
+interface HorizontalBarChartProps {
+  data: WidgetData;
+}
 
-const chartConfig = {
-  value: {
-    label: "Desktop",
-    color: "#2563eb",
-  },
-} satisfies ChartConfig;
+function getValueIndexFromWidgetData(data: WidgetData) {
+  let index = 0;
+  let largestValue = 0;
 
-const HorizontalBarChart: FC = () => {
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].value > largestValue) {
+      largestValue = data[i].value;
+      index = i;
+    }
+  }
+
+  return index;
+}
+const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
+  const height = data.length * 50;
+  const highestValueIndex = getValueIndexFromWidgetData(data);
   return (
-    <ChartContainer config={chartConfig} className="min-h-[200px] w-full p-0">
+    <ChartContainer
+      config={{}}
+      className="w-full p-0"
+      style={{ maxHeight: `${height}px`, width: "60%" }}
+    >
       <BarChart
+        height={height}
         margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
-        data={chartData}
+        data={data}
         layout="vertical"
+        barGap={2}
         accessibilityLayer
       >
         <XAxis type="number" hide />
-        <YAxis type="category" dataKey="month" hide />
+        <YAxis type="category" dataKey="label" hide />
         <Bar
+          barSize={47}
           dataKey="value"
-          // fill="hsl(var(--accent))"
-          fill="hsl(var(--secondary))"
           radius={[0, 8, 8, 0]}
           label={({ x, y, height, value, index }) => {
-            const entry = chartData[index];
+            const entry = data[index];
 
             return (
               <text
@@ -49,13 +58,21 @@ const HorizontalBarChart: FC = () => {
                 fontSize={12}
               >
                 <tspan fontWeight="bold">{value}%</tspan>
-                <tspan dx="8">{entry.month}</tspan>
+                <tspan dx="8">{entry.label}</tspan>
               </text>
             );
           }}
         >
-          {chartData.map((entry, index) => (
-            <Cell key={`cell-${entry.month}-${index}`} />
+          {data.map((entry, index) => (
+            <Cell
+              // height={47}
+              key={`cell-${entry.label}-${index}`}
+              fill={
+                index === highestValueIndex
+                  ? "hsl(var(--accent))"
+                  : "hsl(var(--secondary))"
+              }
+            />
           ))}
         </Bar>
       </BarChart>

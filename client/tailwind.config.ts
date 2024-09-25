@@ -52,6 +52,19 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+        },
+        map: {
+          1: "hsl(var(--map-1))",
+          2: "hsl(var(--map-2))",
+          3: "hsl(var(--map-3))",
+          4: "hsl(var(--map-4))",
+          5: "hsl(var(--map-5))",
+        },
         magenta: {
           "500": "#C00B62",
         },
@@ -101,27 +114,9 @@ const config = {
             backgroundImage: 'url("/images/coming-soon/hero_1.png")',
           },
         },
-        "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
-        },
-        "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
-        },
       },
       animation: {
         hero: "fadeImages 8s ease-in-out infinite",
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
