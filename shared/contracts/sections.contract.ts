@@ -1,6 +1,9 @@
 import { JSONAPIError } from '@shared/dto/errors/json-api.error';
 import { ApiPaginationResponse } from '@shared/dto/global/api-response.dto';
-import { Section } from '@shared/dto/sections/section.entity';
+import {
+  Section,
+  SectionWithDataWidget,
+} from '@shared/dto/sections/section.entity';
 import { generateEntityQuerySchema } from '@shared/schemas/query-param.schema';
 import { initContract } from '@ts-rest/core';
 
@@ -9,7 +12,7 @@ export const sectionContract = contract.router({
   searchSections: {
     method: 'GET',
     path: '/sections',
-    query: generateEntityQuerySchema(Section),
+    query: generateEntityQuerySchema(SectionWithDataWidget),
     responses: {
       200: contract.type<ApiPaginationResponse<Section>>(),
       400: contract.type<JSONAPIError>(),

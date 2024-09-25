@@ -1,12 +1,9 @@
+import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
+
 /**
  * Represents an array of widget data objects.
  */
 export type WidgetData = Array<{
-  /**
-   * Unique identifier
-   */
-  id: number;
-
   /** The numeric value associated with the widget answer, with or without applied filters */
   value: number;
 
@@ -19,3 +16,7 @@ export type WidgetData = Array<{
    */
   label: string | null;
 }>;
+
+export class BaseWidgetWithData extends BaseWidget {
+  data: WidgetData;
+}
