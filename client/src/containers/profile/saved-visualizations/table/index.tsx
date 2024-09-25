@@ -2,6 +2,8 @@
 
 import { FC, useEffect, useState } from "react";
 
+import { CustomWidget } from "@shared/dto/widgets/custom-widget.entity";
+import { SortQueryParam } from "@shared/schemas/query-param.schema";
 import {
   flexRender,
   getCoreRowModel,
@@ -37,8 +39,6 @@ import { getAuthHeader } from "@/utils/auth-header";
 import { selectedRowAtom } from "../../store";
 
 import useColumns from "./columns";
-import { SortQueryParam } from "@shared/schemas/query-param.schema";
-import { CustomWidget } from "@shared/dto/widgets/custom-widget.entity";
 
 const ROWS_PER_PAGE_OPTIONS = ["10", "25", "50", "100"];
 

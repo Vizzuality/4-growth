@@ -1,36 +1,34 @@
-import { cn } from "@/lib/utils";
 import { FC } from "react";
+
+import { cn } from "@/lib/utils";
+
+import { WidgetData } from "@/types";
 
 interface AreaChartProps {
   indicator: string;
-  question: string;
-  answers: { label: string; value: number }[];
+  data: WidgetData;
 }
 
-const AreaChart: FC<AreaChartProps> = ({ indicator, question, answers }) => {
+const AreaChart: FC<AreaChartProps> = ({ indicator, data }) => {
   return (
     <div className="relative flex h-full items-end">
       <div className="absolute left-6 top-6 z-10 h-[calc(100%_-_3rem)] w-[calc(100%_-_3rem)]">
-        <div className="flex h-full flex-col justify-between">
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold">{indicator}</h3>
-            <p className="text-xs text-muted-foreground">{question}</p>
-          </div>
+        <div className="flex h-full flex-col justify-end">
           <div className="flex items-end justify-between">
-            <p className="text-2xl font-semibold">{answers[0].value}%</p>
+            <p className="text-2xl font-semibold">{data[0].value}%</p>
             <div className="text-xs font-bold">
               <p>
-                {answers[1].label} {answers[1].value}%
+                {data[1].label} {data[1].value}%
               </p>
               <p>
-                {answers[2].label}
-                {answers[2].value}%
+                {data[2].label}
+                {data[2].value}%
               </p>
             </div>
           </div>
         </div>
       </div>
-      {answers.map((a, i) => (
+      {data.map((a, i) => (
         <div
           key={`area-chart-${indicator}-${a.label}-${a.value}`}
           style={{ width: `${a.value}%` }}
