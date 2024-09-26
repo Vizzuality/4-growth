@@ -16,6 +16,10 @@ describe('App', () => {
     dataSourceManager = testManager.testApp.get(DataSourceManager);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   afterAll(async () => {
     await testManager.clearDatabase();
     await testManager.close();
