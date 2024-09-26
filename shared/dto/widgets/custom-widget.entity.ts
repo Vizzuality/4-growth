@@ -12,7 +12,7 @@ import {
   WIDGET_VISUALIZATIONS,
   type WidgetVisualizationsType,
 } from './widget-visualizations.constants';
-import { WidgetFilters } from '@shared/dto/widgets/base-widget-data.interface';
+import { type WidgetFilters } from '@shared/dto/widgets/base-widget-data.interface';
 
 @Entity('custom_widgets')
 export class CustomWidget {
