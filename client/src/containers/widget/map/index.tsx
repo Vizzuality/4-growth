@@ -33,10 +33,10 @@ const Map: FC<MapProps> = ({ indicator, question, data }) => {
         projection="geoMercator"
         projectionConfig={{
           center: [10, 57],
-          scale: 480,
+          scale: 450,
         }}
       >
-        <Geographies geography="/maps/europe.geojson">
+        <Geographies geography="/maps/countries.geojson">
           {({ geographies }) =>
             geographies.map((geo) => {
               return (
@@ -44,8 +44,8 @@ const Map: FC<MapProps> = ({ indicator, question, data }) => {
                   key={geo.rsmKey}
                   geography={geo}
                   fill={
-                    data[geo.properties.ISO_A2_EH]
-                      ? COLOR_MAP[data[geo.properties.ISO_A2_EH]]
+                    data[geo.properties.ADM0_A3]
+                      ? COLOR_MAP[data[geo.properties.ADM0_A3]]
                       : "hsl(var(--background))"
                   }
                   stroke={

@@ -130,7 +130,7 @@ function getButtonText(v: WidgetVisualizationsType): string {
     case "pie_chart":
       return "Show as a pie chart";
     case "area_graph":
-      return "Show as an area graph";
+      return "Show as an area chart";
     case "map":
       return "Show as a map";
     default:
