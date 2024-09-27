@@ -1,12 +1,9 @@
 "use client";
-import { useRef, useEffect, PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
 import { Section as SectionEntity } from "@shared/dto/sections/section.entity";
-import { useSetAtom } from "jotai";
-
-import { intersectingAtom } from "@/containers/explore/store";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -30,34 +27,8 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   children,
 }) => {
   const { slug, name, description } = data;
-  const ref = useRef<HTMLDivElement>(null);
-  const setIntersecting = useSetAtom(intersectingAtom);
   const [popoverOpen, setPopOverOpen] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const { top, bottom } = entry.boundingClientRect;
-        const isInViewport = top >= 0 && bottom <= window.innerHeight;
-
-        if (isInViewport) {
-          setIntersecting(slug);
-        }
-      },
-      { threshold: 1.0 },
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, []);
 
   const handleLinkClick = (sectionId: string) => {
     setPopOverOpen(false);
@@ -75,12 +46,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   };
 
   return (
-    <section
-      className="mb-16"
-      ref={ref}
-      id={slug}
-      data-testid="section-container"
-    >
+    <section className="mb-16" id={slug} data-testid="section-container">
       {isOverview ? (
         <div className="grid grid-cols-2 gap-0.5">
           <Card className="space-y-4 bg-secondary">
