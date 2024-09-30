@@ -17,6 +17,12 @@ export type WidgetData = Array<{
   label: string | null;
 }>;
 
+export type WidgetFilters = any;
+
+export type WidgetNavigationData = {
+  href: string;
+};
+
 export class BaseWidgetWithData extends BaseWidget {
-  data: WidgetData;
+  data: WidgetData | WidgetFilters | WidgetNavigationData;
 }
