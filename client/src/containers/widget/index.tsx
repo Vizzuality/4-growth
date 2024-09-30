@@ -97,9 +97,6 @@ export default function Widget({
               onOpenChange={handleOpenChange}
             >
               <Button variant="clean" className={classes}>
-                More info
-              </Button>
-              <Button variant="clean" className={classes}>
                 Customize chart
               </Button>
               <Separator />
