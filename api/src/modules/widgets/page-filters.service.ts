@@ -12,7 +12,7 @@ export class PageFiltersService {
     );
   }
 
-  public async search(): Promise<PageFilter[]> {
+  public async listFilters(): Promise<PageFilter[]> {
     return this.filters;
   }
 }

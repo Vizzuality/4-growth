@@ -1,9 +1,8 @@
+type DefaultFilterLabels = { selected: string; unselected: string };
+
 export type PageFilter = {
   name: string;
   isCustomFilter: boolean;
   values: string[];
-  label: {
-    selected: string;
-    unSelected: string;
-  };
+  label: DefaultFilterLabels | string;
 };

@@ -13,7 +13,7 @@ export class PageFiltersController {
   @TsRestHandler(c.searchFilters)
   public async searchPageFilters(): Promise<ControllerResponse> {
     return tsRestHandler(c.searchFilters, async () => {
-      const data = await this.pageFiltersService.search();
+      const data = await this.pageFiltersService.listFilters();
       return { body: { data }, status: 200 };
     });
   }
