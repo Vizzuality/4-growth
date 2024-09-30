@@ -4,16 +4,13 @@ import {
   WidgetDataFilterOperatorType,
 } from '@shared/dto/global/search-widget-data-params';
 
-export const SearchWidgetDataParamsSchema = z.object({
+export const WidgetDataFiltersSchema = z.object({
   filters: z
     .array(
       z.object({
         name: z.string(),
         operator: z.enum(
-          VALID_SEARCH_WIDGET_DATA_OPERATORS as [
-            WidgetDataFilterOperatorType,
-            ...WidgetDataFilterOperatorType[],
-          ],
+          VALID_SEARCH_WIDGET_DATA_OPERATORS as [WidgetDataFilterOperatorType],
         ),
         value: z.unknown(),
       }),
@@ -21,6 +18,4 @@ export const SearchWidgetDataParamsSchema = z.object({
     .optional(),
 });
 
-export type SearchWidgetDataParams = z.infer<
-  typeof SearchWidgetDataParamsSchema
->;
+export type WidgetDataFiltersType = z.infer<typeof WidgetDataFiltersSchema>;
