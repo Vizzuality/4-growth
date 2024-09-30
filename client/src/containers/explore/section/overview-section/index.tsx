@@ -1,38 +1,48 @@
 import { FC } from "react";
 
+import TileMenu, { TileMenuItem } from "@/containers/explore/section/tile-menu";
 import Widget from "@/containers/widget";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import Map from "@/containers/widget/map";
 
 import { Card } from "@/components/ui/card";
 
-const OverviewSection: FC = () => {
+const OverviewSection: FC<{ tileMenuItems: TileMenuItem[] }> = ({
+  tileMenuItems,
+}) => {
   return (
-    <div id="overview">
-      <div className="grid grid-cols-2 gap-0.5">
+    <>
+      <div className="col-span-2 grid grid-cols-2 gap-0.5">
         <Card className="p-0">
           <Map
             indicator="Adoption of technology by country"
             question="Has your organisation integrated digital technologies into its workflows?"
+            // TODO: Remove hardcoded data when api response is available
             data={{
-              NL: 1,
-              BE: 2,
-              GR: 2,
-              LV: 2,
-              BY: 3,
-              UA: 4,
+              NLD: 1,
+              BEL: 2,
+              GBR: 2,
+              LVA: 2,
+              BGR: 3,
+              SWE: 4,
+              NOR: 2,
+              FIN: 1,
+              GRC: 1,
+              EST: 1,
+              UKR: 1,
+              DNK: 2,
+              POL: 2,
               MD: 2,
-              RO: 2,
-              FR: 5,
-              IE: 2,
-              IS: 1,
-              IT: 3,
-              CH: 2,
-              GB: 4,
-              ES: 2,
-              PT: 1,
-              DE: 3,
-              RU: 2,
+              ROU: 2,
+              FRA: 5,
+              IRL: 2,
+              ISL: 1,
+              ITA: 3,
+              CHE: 2,
+              ESP: 2,
+              PRT: 1,
+              DEU: 3,
+              RUS: 2,
             }}
           />
         </Card>
@@ -69,7 +79,8 @@ const OverviewSection: FC = () => {
           </Card>
         </div>
       </div>
-    </div>
+      <TileMenu items={tileMenuItems} className="m t-6 col-span-2" />
+    </>
   );
 };
 
