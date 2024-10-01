@@ -47,11 +47,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   };
 
   return (
-    <section
-      className="mb-16 grid gap-0.5"
-      id={slug}
-      data-testid="section-container"
-    >
+    <section className="mb-16 grid gap-0.5" id={slug}>
       {isOverview ? (
         <div className="grid grid-cols-2 gap-0.5">
           <Card className="space-y-4 bg-secondary">
