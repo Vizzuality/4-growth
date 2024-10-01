@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
+
 import TileMenu, { TileMenuItem } from "@/containers/explore/section/tile-menu";
 import Widget from "@/containers/widget";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
@@ -7,7 +9,13 @@ import Map from "@/containers/widget/map";
 
 import { Card } from "@/components/ui/card";
 
-const OverviewSection: FC<{ tileMenuItems: TileMenuItem[] }> = ({
+interface OverviewSectionProps {
+  tileMenuItems: TileMenuItem[];
+  widgets: BaseWidgetWithData[];
+}
+
+const OverviewSection: FC<OverviewSectionProps> = ({
+  widgets,
   tileMenuItems,
 }) => {
   return (
@@ -15,8 +23,8 @@ const OverviewSection: FC<{ tileMenuItems: TileMenuItem[] }> = ({
       <div className="col-span-2 grid grid-cols-2 gap-0.5">
         <Card className="p-0">
           <Map
-            indicator="Adoption of technology by country"
-            question="Has your organisation integrated digital technologies into its workflows?"
+            indicator={widgets[0].indicator}
+            question={widgets[0].question}
             // TODO: Remove hardcoded data when api response is available
             data={{
               NLD: 1,
@@ -49,37 +57,31 @@ const OverviewSection: FC<{ tileMenuItems: TileMenuItem[] }> = ({
         <div className="grid grid-rows-2 gap-0.5">
           <div className="flex gap-0.5">
             <Widget
-              defaultVisualization="single_value"
-              visualisations={["single_value"]}
-              indicator="Total countries"
-              question="Location (Country/Region)"
-              data={[{ value: 23, total: 23, label: null }]}
+              defaultVisualization={widgets[1].defaultVisualization}
+              visualisations={widgets[1].visualisations}
+              indicator={widgets[1].indicator}
+              question={widgets[1].question}
+              data={widgets[1].data}
               fill="bg-secondary"
             />
             <Widget
-              defaultVisualization="single_value"
-              visualisations={["single_value"]}
-              indicator="Total surveys"
-              question="Location (Country/Region)"
-              data={[{ value: 123, total: 123, label: null }]}
+              defaultVisualization={widgets[2].defaultVisualization}
+              visualisations={widgets[2].visualisations}
+              indicator={widgets[2].indicator}
+              question={widgets[2].question}
+              data={widgets[2].data}
               fill="bg-accent"
             />
           </div>
           <Card className="row-start-2 space-y-8 p-0 pb-6">
             <h3 className="pl-6 pr-6 pt-6 text-base font-semibold">
-              Organizations by sector
+              {widgets[3].indicator}
             </h3>
-            <HorizontalBarChart
-              data={[
-                { label: "Agriculture", value: 27, total: 27 },
-                { label: "Forestry", value: 45, total: 45 },
-                { label: "Both", value: 15, total: 15 },
-              ]}
-            />
+            <HorizontalBarChart data={widgets[3].data} />
           </Card>
         </div>
       </div>
-      <TileMenu items={tileMenuItems} className="m t-6 col-span-2" />
+      <TileMenu items={tileMenuItems} className="t-6 col-span-2 mt-6" />
     </>
   );
 };

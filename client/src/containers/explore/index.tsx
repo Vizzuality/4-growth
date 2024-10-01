@@ -87,36 +87,41 @@ export default function Explore() {
       className="overflow-y-auto scroll-smooth pb-32"
     >
       {showOverlay && <Overlay />}
-      {sections.map((s, i) => (
-        <Section
-          key={`section-container-${s.slug}`}
-          isOverview={i === 0}
-          data={s}
-          menuItems={sections}
-        >
-          {i === 0 && (
-            <OverviewSection
-              tileMenuItems={sections.map((s) => ({
-                name: s.name,
-                description: s.description,
-                slug: s.slug,
-              }))}
-            />
-          )}
-          {s.baseWidgets.map((w) => (
-            <Widget
-              key={`widget-${w.id}`}
-              indicator={w.indicator}
-              question={w.question}
-              visualisations={w.visualisations}
-              defaultVisualization={w.defaultVisualization}
-              data={w.data}
-              className="col-span-1 last:odd:col-span-2"
-              onMenuOpenChange={setShowOverlay}
-            />
-          ))}
-        </Section>
-      ))}
+      {sections.map((s) => {
+        const isOverview = s.order === 1;
+        return (
+          <Section
+            key={`section-container-${s.slug}`}
+            isOverview={isOverview}
+            data={s}
+            menuItems={sections}
+          >
+            {isOverview ? (
+              <OverviewSection
+                widgets={s.baseWidgets}
+                tileMenuItems={sections.map((s) => ({
+                  name: s.name,
+                  description: s.description,
+                  slug: s.slug,
+                }))}
+              />
+            ) : (
+              s.baseWidgets.map((w) => (
+                <Widget
+                  key={`widget-${w.id}`}
+                  indicator={w.indicator}
+                  question={w.question}
+                  visualisations={w.visualisations}
+                  defaultVisualization={w.defaultVisualization}
+                  data={w.data}
+                  className="col-span-1 last:odd:col-span-2"
+                  onMenuOpenChange={setShowOverlay}
+                />
+              ))
+            )}
+          </Section>
+        );
+      })}
     </div>
   );
 }
