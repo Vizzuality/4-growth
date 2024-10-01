@@ -66,7 +66,7 @@ const Sidebar: FC = () => {
             </AccordionItem>
             <AccordionItem value="explore-sections">
               <AccordionTrigger>Sections</AccordionTrigger>
-              <AccordionContent className="py-3.5">
+              <AccordionContent className="py-3.5" id="sidebar-sections-list">
                 {data?.map((s) => (
                   <Link
                     key={`section-link-${s.slug}`}
@@ -76,7 +76,6 @@ const Sidebar: FC = () => {
                         "border-l-2 border-white bg-secondary",
                     )}
                     href={`#${s.slug}`}
-                    data-testid="section-link"
                   >
                     <div className="px-4 py-3.5">{s.name}</div>
                   </Link>

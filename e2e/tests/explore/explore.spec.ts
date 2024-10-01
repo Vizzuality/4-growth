@@ -41,7 +41,7 @@ test.describe('Explore E2E', () => {
 
   test('List all sections in the sidebar and main body', async () => {
     await page.goto('/explore')
-    expect(await page.getByTestId('section-container').count()).toBe(sections.length)
-    expect(await page.getByTestId('section-link').count()).toBe(sections.length)
+    expect(page.locator('#sections-container').locator('section')).toHaveCount(sections.length)
+    expect(page.locator('#sidebar-sections-list').locator('a')).toHaveCount(sections.length)
   })
 })
