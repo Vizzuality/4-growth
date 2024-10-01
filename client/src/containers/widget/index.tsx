@@ -5,19 +5,15 @@ import { WidgetVisualizationsType } from "@shared/dto/widgets/widget-visualizati
 
 import { cn } from "@/lib/utils";
 
-import MenuButton from "@/containers/menu-button";
 import AreaChart from "@/containers/widget/area-chart";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import PieChart from "@/containers/widget/pie-chart";
 import SingleValue from "@/containers/widget/single-value";
+import WidgetHeader from "@/containers/widget/widget-header";
 
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { WidgetData } from "@/types";
 
-const classes =
-  "block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted";
 interface WidgetProps {
   indicator: string;
   question: string;
@@ -38,7 +34,7 @@ export default function Widget({
   className,
   onMenuOpenChange,
 }: WidgetProps) {
-  const [currentVisualazation, setCurrentVisualazation] =
+  const [currentVisualization, setCurrentVisualization] =
     useState(defaultVisualization);
   const [showMenu, setShowMenu] = useState(false);
   const handleOpenChange = (open: boolean) => {
@@ -48,7 +44,7 @@ export default function Widget({
   };
   let ChartComponent = null;
 
-  if (currentVisualazation === "single_value") {
+  if (currentVisualization === "single_value") {
     return (
       <Card className="p-0">
         <SingleValue indicator={indicator} data={data} fill={fill} />
@@ -56,81 +52,71 @@ export default function Widget({
     );
   }
 
-  switch (currentVisualazation) {
+  switch (currentVisualization) {
     case "horizontal_bar_chart":
-      ChartComponent = <HorizontalBarChart data={data} />;
-      break;
-    case "pie_chart":
-      ChartComponent = <PieChart data={data} />;
-      break;
-    case "map":
-      ChartComponent = null;
-      break;
-    case "area_graph":
-      ChartComponent = <AreaChart indicator={indicator} data={data} />;
-      break;
-    default:
-      ChartComponent = null;
-      break;
-  }
-  return (
-    <>
-      <Card
-        className={cn(
-          "relative min-h-80 p-0",
-          currentVisualazation !== "area_graph" && "space-y-8 pb-8",
-          showMenu && "z-50",
-          className,
-        )}
-      >
-        <header
+      ChartComponent = (
+        <Card
           className={cn(
-            currentVisualazation === "area_graph"
-              ? "t-8 absolute left-0 z-20 w-full p-8"
-              : "px-8 pt-8",
+            "relative min-h-80 p-0 pb-6",
+            showMenu && "z-50",
+            className,
           )}
         >
-          <div className="flex justify-between">
-            <h3 className="text-base font-semibold">{indicator}</h3>
-            <MenuButton
-              className="flex flex-col gap-6 py-4"
-              onOpenChange={handleOpenChange}
-            >
-              <Button variant="clean" className={classes}>
-                Customize chart
-              </Button>
-              <Separator />
-              {visualisations.map((v) => (
-                <Button
-                  key={`menu-button-${v}`}
-                  variant="clean"
-                  className={classes}
-                  onClick={() => setCurrentVisualazation(v)}
-                >
-                  {getButtonText(v)}
-                </Button>
-              ))}
-            </MenuButton>
-          </div>
-          <p className="text-xs text-muted-foreground">{question}</p>
-        </header>
-        {ChartComponent}
-      </Card>
-    </>
-  );
-}
-
-function getButtonText(v: WidgetVisualizationsType): string {
-  switch (v) {
-    case "horizontal_bar_chart":
-      return "Show as a bar chart";
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            visualisations={visualisations}
+            onMenuOpenChange={handleOpenChange}
+            onMenuButtonClicked={setCurrentVisualization}
+          />
+          <HorizontalBarChart data={data} />
+        </Card>
+      );
+      break;
     case "pie_chart":
-      return "Show as a pie chart";
-    case "area_graph":
-      return "Show as an area chart";
+      ChartComponent = (
+        <Card
+          className={cn(
+            "relative min-h-80 p-0 pb-6",
+            showMenu && "z-50",
+            className,
+          )}
+        >
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            visualisations={visualisations}
+            onMenuOpenChange={handleOpenChange}
+            onMenuButtonClicked={setCurrentVisualization}
+          />
+          <PieChart data={data} />
+        </Card>
+      );
+      break;
     case "map":
-      return "Show as a map";
+      ChartComponent = null;
+      break;
+    case "area_graph":
+      ChartComponent = (
+        <Card
+          className={cn("relative min-h-80 p-0", showMenu && "z-50", className)}
+        >
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            visualisations={visualisations}
+            className="t-8 absolute left-0 z-20 w-full p-8"
+            onMenuOpenChange={handleOpenChange}
+            onMenuButtonClicked={setCurrentVisualization}
+          />
+          <AreaChart indicator={indicator} data={data} />
+        </Card>
+      );
+      break;
     default:
-      return "";
+      ChartComponent = null;
+      break;
   }
+
+  return ChartComponent;
 }

@@ -6,12 +6,20 @@ import { cn } from "@/lib/utils";
 
 import { MapData } from "@/types";
 
-const COLOR_MAP = {
-  1: "hsl(var(--map-1))",
-  2: "hsl(var(--map-2))",
-  3: "hsl(var(--map-3))",
-  4: "hsl(var(--map-4))",
-  5: "hsl(var(--map-5))",
+const FILL_MAP = {
+  1: "fill-map-1",
+  2: "fill-map-2",
+  3: "fill-map-3",
+  4: "fill-map-4",
+  5: "fill-map-5",
+} as const;
+
+const BG_MAP = {
+  1: "bg-map-1",
+  2: "bg-map-2",
+  3: "bg-map-3",
+  4: "bg-map-4",
+  5: "bg-map-5",
 } as const;
 
 interface MapProps {
@@ -29,7 +37,7 @@ const Map: FC<MapProps> = ({ indicator, question, data }) => {
       </div>
 
       <ComposableMap
-        style={{ height: "100%" }}
+        className="h-full w-full"
         projection="geoMercator"
         projectionConfig={{
           center: [10, 57],
@@ -43,18 +51,18 @@ const Map: FC<MapProps> = ({ indicator, question, data }) => {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill={
-                    data[geo.properties.ADM0_A3]
-                      ? COLOR_MAP[data[geo.properties.ADM0_A3]]
-                      : "hsl(var(--background))"
-                  }
                   stroke={
                     geo.properties.CONTINENT === "Europe"
                       ? "hsl(var(--background))"
                       : "rgb(29 39 87 / var(--tw-bg-opacity))"
                   }
                   strokeWidth="1.0"
-                  className="focus:outline-none"
+                  className={cn(
+                    "fill-map- focus:outline-none",
+                    data[geo.properties.ADM0_A3]
+                      ? FILL_MAP[data[geo.properties.ADM0_A3]]
+                      : "fill-background",
+                  )}
                 />
               );
             })
@@ -62,20 +70,18 @@ const Map: FC<MapProps> = ({ indicator, question, data }) => {
         </Geographies>
       </ComposableMap>
       <div className="absolute bottom-3 right-6 flex h-5 text-2xs">
-        {Object.keys(COLOR_MAP).map((k) => (
+        {Object.keys(BG_MAP).map((n) => (
           <div
-            key={`color-scale-${k}`}
+            key={`color-scale-${n}`}
             className={cn(
-              "flex w-10 justify-center p-1",
-              Number(k) === 1 && "rounded-l-full",
-              Number(k) === 5 && "rounded-r-full",
+              "flex w-10 items-center justify-center p-1",
+              BG_MAP[Number(n) as keyof typeof BG_MAP],
+              Number(n) === 1 && "rounded-l-full",
+              Number(n) === 5 && "rounded-r-full",
             )}
-            style={{
-              backgroundColor: COLOR_MAP[Number(k) as keyof typeof COLOR_MAP],
-            }}
           >
-            {Number(k) === 1 && <p className="text-background">Low</p>}
-            {Number(k) === 5 && <p className="text-foreground">High</p>}
+            {Number(n) === 1 && <p className="text-background">Low</p>}
+            {Number(n) === 5 && <p className="text-foreground">High</p>}
           </div>
         ))}
       </div>
