@@ -15,22 +15,32 @@ test.describe('Explore E2E', () => {
   })
 
   test.beforeEach(async () => {
+    await testManager.clearDatabase()
+
     const entityMocks = testManager.mocks()
     sections = [
       await entityMocks.createSection({
         slug: 'section-1',
         name: 'Section 1',
         description: ':)',
-        order: 1
+        order: 1,
+        baseWidgets: [
+          await entityMocks.createBaseWidget({ sectionOrder: 1 }),
+          await entityMocks.createBaseWidget({ sectionOrder: 2 }),
+          await entityMocks.createBaseWidget({ sectionOrder: 3 }),
+          await entityMocks.createBaseWidget({ sectionOrder: 4 })
+        ]
       }),
       await entityMocks.createSection({
         slug: 'section-2',
         name: 'Section 2',
         description: ':)',
-        order: 2
+        order: 2,
+        baseWidgets: []
       })
     ]
   })
+
   test.afterEach(async () => {
     await testManager.clearDatabase()
   })
@@ -41,7 +51,9 @@ test.describe('Explore E2E', () => {
 
   test('List all sections in the sidebar and main body', async () => {
     await page.goto('/explore')
-    expect(page.locator('#sections-container').locator('section')).toHaveCount(sections.length)
-    expect(page.locator('#sidebar-sections-list').locator('a')).toHaveCount(sections.length)
+    await expect(page.locator('#sections-container').locator('section')).toHaveCount(
+      sections.length
+    )
+    await expect(page.locator('#sidebar-sections-list').locator('a')).toHaveCount(sections.length)
   })
 })
