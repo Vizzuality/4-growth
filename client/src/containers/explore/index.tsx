@@ -75,6 +75,8 @@ export default function Explore() {
     };
 
     window.addEventListener("popstate", handlePopState);
+
+    handlePopState();
     return () => {
       window.removeEventListener("popstate", handlePopState);
     };
