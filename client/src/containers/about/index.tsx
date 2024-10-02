@@ -12,7 +12,7 @@ import Title from "@/components/ui/title";
 
 const About: FC = () => {
   return (
-    <div className="container relative flex flex-col gap-0.5 py-8">
+    <div className="container relative flex max-w-[940px] flex-col gap-0.5 py-8">
       <Header />
       <div className="grid gap-0.5 md:grid-cols-2">
         <Card className="order-1 space-y-4">
@@ -42,23 +42,8 @@ const About: FC = () => {
             est volutpat. Elit odio sit euismod risus euismod.
           </p>
         </Card>
-        <Card className="relative order-2 min-h-[275px] p-0 md:min-h-fit">
-          <Image
-            src="/images/fields.avif"
-            alt="fields"
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </Card>
-        <Card className="relative order-2 min-h-[275px] p-0 md:min-h-fit">
-          <Image
-            src="/images/about/tractor-fields.avif"
-            alt="tractor fields"
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </Card>
+        <Card className="relative order-2 min-h-[275px] bg-[url('/images/fields.avif')] bg-cover bg-center bg-no-repeat p-0 md:min-h-fit" />
+        <Card className="min-h-[275px relative order-2 bg-[url('/images/about/tractor-fields.avif')] bg-cover bg-center bg-no-repeat p-0 md:min-h-fit" />
         <Card className="order-3 space-y-4 md:order-4">
           <Title as="h2" size="xl">
             4Growth project
@@ -181,14 +166,7 @@ const About: FC = () => {
             />
           </div>
         </Card>
-        <Card className="relative order-5 min-h-[275px] p-0 md:order-6 md:min-h-fit">
-          <Image
-            src="/images/about/hands.avif"
-            alt="hands"
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </Card>
+        <Card className="relative order-5 min-h-[275px] bg-[url('/images/about/hands.avif')] bg-cover bg-center bg-no-repeat p-0 md:order-6 md:min-h-fit" />
       </div>
     </div>
   );
