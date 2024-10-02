@@ -34,7 +34,7 @@ export const createBaseWidget = async (
       WIDGET_VISUALIZATIONS.AREA_GRAPH,
       WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
     ],
-    defaultVisualization: WIDGET_VISUALIZATIONS.SINGLE_VALUE,
+    defaultVisualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
     sectionOrder: 1,
   };
 
