@@ -8,6 +8,7 @@ import MenuButton from "@/containers/menu-button";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Title from "@/components/ui/title";
 
 const classes =
   "block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted";
@@ -47,7 +48,9 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
   return (
     <header className={cn("p-8", className)}>
       <div className="flex justify-between">
-        <h3 className="text-base font-semibold">{indicator}</h3>
+        <Title as="h3" className="text-base">
+          {indicator}
+        </Title>
         <MenuButton
           className="flex flex-col gap-6 py-4"
           onOpenChange={onMenuOpenChange}

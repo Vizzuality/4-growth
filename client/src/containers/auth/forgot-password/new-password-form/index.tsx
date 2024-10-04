@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import Title from "@/components/ui/title";
 import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
 
 const NewPasswordSchema = z
@@ -83,7 +84,9 @@ const NewPasswordForm: FC = () => {
   return (
     <div className="space-y-8 rounded-2xl bg-navy-800 py-6">
       <div className="space-y-4 px-6">
-        <h2 className="text-xl font-semibold">Create new password</h2>
+        <Title as="h2" className="text-xl">
+          Create new password
+        </Title>
         <p className="text-xs text-muted-foreground">
           Enter your email address, and we&apos;ll send you a link to get back
           into your account.

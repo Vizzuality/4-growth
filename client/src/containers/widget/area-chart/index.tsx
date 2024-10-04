@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { cn } from "@/lib/utils";
+import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
 
-import { WidgetData } from "@/types";
+import { cn } from "@/lib/utils";
 
 interface AreaChartProps {
   indicator: string;

@@ -4,6 +4,8 @@ import { BarChartHorizontal, Filter } from "lucide-react";
 
 import Wrapper from "@/containers/wrapper";
 
+import Title from "@/components/ui/title";
+
 export default function ComingSoon() {
   return (
     <Wrapper className="px-2 pt-0.5 md:pt-6 lg:px-24 lg:pt-20">
@@ -54,9 +56,9 @@ export default function ComingSoon() {
           <div className="flex space-x-0.5">
             <div className="w-1/2 space-y-4 rounded-2xl bg-blue-800 px-8 py-8 xl:py-14">
               <Filter size={24} stroke="white" className="stroke-green-600" />
-              <h4 className="text-base font-bold text-white">
+              <Title as="h4" className="text-base font-bold text-white">
                 Data Filtering and Segmentation
-              </h4>
+              </Title>
               <p className="text-xs text-foreground">
                 Filter data based on different criteria, such as geographic
                 location, age, sector, organisation, etc.
@@ -64,9 +66,9 @@ export default function ComingSoon() {
             </div>
             <div className="w-1/2 space-y-4 rounded-2xl bg-blue-800 px-8 py-8 xl:py-14">
               <BarChartHorizontal size={24} className="stroke-green-600" />
-              <h4 className="text-base font-bold text-white">
+              <Title as="h4" className="text-base font-bold text-white">
                 Comparative Data Analysis
-              </h4>
+              </Title>
               <p className="text-xs text-foreground">
                 Integrated features to perform descriptive and comparative
                 analysis of demographic data.
@@ -79,8 +81,12 @@ export default function ComingSoon() {
 
       <section className="flex flex-col items-center space-y-8 rounded-2xl bg-[url('/images/coming-soon/gradient.jpg')] bg-cover bg-no-repeat py-16">
         <div className="text-center">
-          <h2 className="text-xl font-bold uppercase">Coming soon</h2>
-          <h3 className="text-4xl font-bold md:text-[56px]">Stay tunned!</h3>
+          <Title as="h2" className="text-xl font-bold uppercase">
+            Coming soon
+          </Title>
+          <Title as="h3" className="text-4xl font-bold md:text-[56px]">
+            Stay tunned!
+          </Title>
         </div>
         <div className="h-44 w-80 rounded-3xl bg-[url('/images/coming-soon/mockup.png')] bg-cover bg-center px-2 md:h-[330px] md:w-[580px] md:px-0" />
       </section>
