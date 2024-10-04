@@ -1,8 +1,10 @@
 import { FC } from "react";
 
+import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
+
 import { cn } from "@/lib/utils";
 
-import { WidgetData } from "@/types";
+import Title from "@/components/ui/title";
 
 interface SingleValueProps {
   indicator: string;
@@ -33,7 +35,9 @@ const SingleValue: FC<SingleValueProps> = ({
         className={cn("absolute left-0 top-0 h-full", fill)}
       ></div>
       <div className="relative z-10 space-y-6 p-6">
-        <h3 className="text-base font-semibold">{indicator}</h3>
+        <Title as="h3" className="text-base">
+          {indicator}
+        </Title>
         <p className="text-2xl font-semibold">{value}</p>
       </div>
     </div>

@@ -27,6 +27,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import Title from "@/components/ui/title";
 import { useApiResponseToast } from "@/components/ui/use-api-response-toast";
 
 export const ContactUsWithPrivacyPolicySchema =
@@ -80,7 +81,9 @@ const ContactUsForm: FC = () => {
   return (
     <div className="relative space-y-8 rounded-2xl bg-transparent py-6 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-2xl before:bg-navy-900/50 before:backdrop-blur">
       <div className="relative px-6">
-        <h2 className="text-xl font-semibold">Contact</h2>
+        <Title as="h2" className="text-xl">
+          Contact
+        </Title>
       </div>
       <Form {...form}>
         <form

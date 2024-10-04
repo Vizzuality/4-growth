@@ -4,6 +4,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 import { cn } from "@/lib/utils";
 
+import Title from "@/components/ui/title";
 import { MapData } from "@/types";
 
 const FILL_MAP = {
@@ -32,7 +33,9 @@ const Map: FC<MapProps> = ({ indicator, question, data }) => {
   return (
     <div className="relative h-full">
       <div className="absolute left-6 top-6 space-y-2">
-        <h3 className="text-base font-semibold">{indicator}</h3>
+        <Title as="h3" className="text-base">
+          {indicator}
+        </Title>
         <p className="text-xs text-muted-foreground">{question}</p>
       </div>
 

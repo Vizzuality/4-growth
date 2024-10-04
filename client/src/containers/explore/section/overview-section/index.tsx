@@ -8,6 +8,7 @@ import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import Map from "@/containers/widget/map";
 
 import { Card } from "@/components/ui/card";
+import Title from "@/components/ui/title";
 
 interface OverviewSectionProps {
   tileMenuItems: TileMenuItem[];
@@ -74,9 +75,9 @@ const OverviewSection: FC<OverviewSectionProps> = ({
             />
           </div>
           <Card className="row-start-2 space-y-8 p-0 pb-6">
-            <h3 className="pl-6 pr-6 pt-6 text-base font-semibold">
+            <Title as="h3" className="pl-6 pr-6 pt-6 text-base">
               {widgets[3].indicator}
-            </h3>
+            </Title>
             <HorizontalBarChart data={widgets[3].data} />
           </Card>
         </div>

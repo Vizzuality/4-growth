@@ -13,6 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import Title from "@/components/ui/title";
 
 interface SectionProps {
   data: SectionEntity;
@@ -51,7 +52,9 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
       {isOverview ? (
         <div className="col-span-2 mb-0.5 grid grid-cols-2 gap-0.5">
           <Card className="space-y-4 bg-secondary">
-            <h2 className="text-xl font-semibold">{name}</h2>
+            <Title as="h2" className="text-xl">
+              {name}
+            </Title>
             <p className="text-muted-foreground">{description}</p>
           </Card>
           <Card className="bg-lightgray bg-[url('/images/explore/overview-widget-bg.avif')] bg-cover bg-center bg-no-repeat" />
@@ -59,7 +62,9 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
       ) : (
         <header className="mb-0.5 flex justify-between space-y-4 rounded-2xl bg-secondary p-6">
           <div>
-            <h2 className="text-xl font-semibold">{name}</h2>
+            <Title as="h2" className="text-xl">
+              {name}
+            </Title>
             <p className="text-muted-foreground">{description}</p>
           </div>
           <Popover open={popoverOpen} onOpenChange={setPopOverOpen}>
