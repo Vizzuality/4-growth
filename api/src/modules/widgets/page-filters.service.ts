@@ -1,18 +1,17 @@
-import * as fs from 'fs';
-import { Injectable } from '@nestjs/common';
-import { PageFilter } from '@shared/dto/widgets/page-filter.dto';
+import { Repository } from 'typeorm';
+import { Injectable, Logger } from '@nestjs/common';
+import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class PageFiltersService {
-  private filters: PageFilter[];
-
-  public constructor() {
-    this.filters = JSON.parse(
-      fs.readFileSync('data/filters/filters.json', 'utf-8'),
-    );
-  }
+  public constructor(
+    protected readonly logger: Logger,
+    @InjectRepository(PageFilter)
+    private readonly pageFilterRepository: Repository<PageFilter>,
+  ) {}
 
   public async listFilters(): Promise<PageFilter[]> {
-    return this.filters;
+    return await this.pageFilterRepository.find();
   }
 }
