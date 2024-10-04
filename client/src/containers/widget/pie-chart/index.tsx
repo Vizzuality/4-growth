@@ -1,12 +1,12 @@
 "use client";
 import { FC } from "react";
 
+import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Pie, PieChart as RePieChart } from "recharts";
 
 import { cn } from "@/lib/utils";
 
 import { ChartContainer } from "@/components/ui/chart";
-import { WidgetData } from "@/types";
 
 const CHART_COLORS = [
   "bg-chart-1",

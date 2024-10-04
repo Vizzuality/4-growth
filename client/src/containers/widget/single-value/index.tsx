@@ -15,8 +15,16 @@ const SingleValue: FC<SingleValueProps> = ({
   data,
   fill = "bg-secondary",
 }) => {
+  if (data.length === 0) {
+    console.warn(
+      `SingleValue - ${indicator}: Expected at least 1 data point, but received 0.`,
+    );
+    return null;
+  }
+
   const { value, total } = data[0];
-  const fillPercentage = Math.round((100 / total) * value);
+  const fillPercentage =
+    total > 0 ? Math.min(Math.round((value / total) * 100), 100) : 0;
 
   return (
     <div className="relative h-full">

@@ -1,9 +1,9 @@
 import { FC } from "react";
 
+import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
 import { ChartContainer } from "@/components/ui/chart";
-import { WidgetData } from "@/types";
 
 interface HorizontalBarChartProps {
   data: WidgetData;
@@ -65,7 +65,6 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
         >
           {data.map((entry, index) => (
             <Cell
-              // height={47}
               key={`cell-${entry.label}-${index}`}
               fill={
                 index === highestValueIndex

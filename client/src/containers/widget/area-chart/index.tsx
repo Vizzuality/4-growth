@@ -10,6 +10,13 @@ interface AreaChartProps {
 }
 
 const AreaChart: FC<AreaChartProps> = ({ indicator, data }) => {
+  if (data.length !== 3) {
+    console.warn(
+      `AreaChart - ${indicator}: Expected exactly 3 data points, but received ${data.length}.`,
+    );
+    return null;
+  }
+
   return (
     <div className="relative flex h-full items-end">
       <div className="absolute left-6 top-6 z-10 h-[calc(100%_-_3rem)] w-[calc(100%_-_3rem)]">
@@ -21,8 +28,7 @@ const AreaChart: FC<AreaChartProps> = ({ indicator, data }) => {
                 {data[1].label} {data[1].value}%
               </p>
               <p>
-                {data[2].label}
-                {data[2].value}%
+                {data[2].label} {data[2].value}%
               </p>
             </div>
           </div>
@@ -31,6 +37,7 @@ const AreaChart: FC<AreaChartProps> = ({ indicator, data }) => {
       {data.map((a, i) => (
         <div
           key={`area-chart-${indicator}-${a.label}-${a.value}`}
+          data-testid="area-chart-segment"
           style={{ width: `${a.value}%` }}
           className={cn(
             "flex h-full flex-col justify-end",
