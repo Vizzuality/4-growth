@@ -9,7 +9,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const isWidgetData = (data: any): data is WidgetData => {
+export const isWidgetData = (
+  data: WidgetData | WidgetNavigationData,
+): data is WidgetData => {
   return (
     Array.isArray(data) &&
     (data.length === 0 ||
@@ -21,7 +23,7 @@ export const isWidgetData = (data: any): data is WidgetData => {
 };
 
 export const isWidgetNavigationData = (
-  data: any,
+  data: WidgetData | WidgetNavigationData,
 ): data is WidgetNavigationData => {
   return (
     typeof data === "object" &&
