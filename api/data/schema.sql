@@ -55,7 +55,7 @@ BEGIN
     )
     ON CONFLICT (id) DO UPDATE SET
 	    "indicator" = EXCLUDED."indicator",
-      question = EXCLUDED.question,
+      question = EXCLUDED.
       section_order = EXCLUDED.section_order,
       visualisations = EXCLUDED.visualisations,
       default_visualization = EXCLUDED.default_visualization,

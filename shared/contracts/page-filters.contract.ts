@@ -1,6 +1,6 @@
 import { JSONAPIError } from '@shared/dto/errors/json-api.error';
 import { ApiResponse } from '@shared/dto/global/api-response.dto';
-import { PageFilter } from '@shared/dto/widgets/page-filter.dto';
+import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
 import { initContract } from '@ts-rest/core';
 
 const contract = initContract();

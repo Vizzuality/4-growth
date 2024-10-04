@@ -3,19 +3,21 @@ import {
   VALID_SEARCH_WIDGET_DATA_OPERATORS,
   WidgetDataFilterOperatorType,
 } from '@shared/dto/global/search-widget-data-params';
+import {
+  AVAILABLE_PAGE_FILTER_NAMES,
+  PageFilterQuestionKey,
+} from '@shared/dto/widgets/page-filter-question-map';
 
-export const WidgetDataFiltersSchema = z.object({
-  filters: z
-    .array(
-      z.object({
-        name: z.string(),
-        operator: z.enum(
-          VALID_SEARCH_WIDGET_DATA_OPERATORS as [WidgetDataFilterOperatorType],
-        ),
-        value: z.unknown(),
-      }),
-    )
-    .optional(),
+export const WidgetDataFilterSchema = z.object({
+  name: z.enum(AVAILABLE_PAGE_FILTER_NAMES as [PageFilterQuestionKey]),
+  operator: z.enum(
+    VALID_SEARCH_WIDGET_DATA_OPERATORS as [WidgetDataFilterOperatorType],
+  ),
+  value: z.unknown(),
 });
 
-export type WidgetDataFiltersType = z.infer<typeof WidgetDataFiltersSchema>;
+export const WidgetDataFiltersSchema = z.object({
+  filters: z.array(WidgetDataFilterSchema).optional(),
+});
+
+export type WidgetDataFiltersSchema = z.infer<typeof WidgetDataFiltersSchema>;

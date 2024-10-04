@@ -8,21 +8,21 @@ export type WidgetData = Array<{
   value: number;
 
   /** The numeric value associated with the widget answer without any filters */
-  total: number;
+  total?: number;
 
   /**
    * A descriptive label for the widget answer.
    * Can be null if no label is provided.
    */
-  label: string | null;
+  label?: string;
 }>;
 
-export type WidgetFilters = any;
+export type WidgetFilters = unknown;
 
 export type WidgetNavigationData = {
   href: string;
 };
 
 export class BaseWidgetWithData extends BaseWidget {
-  data: WidgetData | WidgetFilters | WidgetNavigationData;
+  data: WidgetData;
 }
