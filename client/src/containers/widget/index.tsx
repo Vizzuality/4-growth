@@ -109,21 +109,27 @@ export default function Widget({
       ChartComponent = null;
       break;
     case WIDGET_VISUALIZATIONS.AREA_GRAPH:
-      ChartComponent = (
-        <Card
-          className={cn("relative min-h-80 p-0", showMenu && "z-50", className)}
-        >
-          <WidgetHeader
-            indicator={indicator}
-            question={question}
-            visualisations={visualisations}
-            className="t-8 absolute left-0 z-20 w-full p-8"
-            onMenuOpenChange={handleOpenChange}
-            onMenuButtonClicked={setCurrentVisualization}
-          />
-          <AreaChart indicator={indicator} data={data} />
-        </Card>
-      );
+      if (isWidgetData(data)) {
+        ChartComponent = (
+          <Card
+            className={cn(
+              "relative min-h-80 p-0",
+              showMenu && "z-50",
+              className,
+            )}
+          >
+            <WidgetHeader
+              indicator={indicator}
+              question={question}
+              visualisations={visualisations}
+              className="t-8 absolute left-0 z-20 w-full p-8"
+              onMenuOpenChange={handleOpenChange}
+              onMenuButtonClicked={setCurrentVisualization}
+            />
+            <AreaChart indicator={indicator} data={data} />
+          </Card>
+        );
+      }
       break;
     case WIDGET_VISUALIZATIONS.NAVIGATION:
     case WIDGET_VISUALIZATIONS.FILTER:
