@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
+import { WIDGET_VISUALIZATIONS } from "@shared/dto/widgets/widget-visualizations.constants";
 import { useSetAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
@@ -108,18 +109,29 @@ export default function Explore() {
                 }))}
               />
             ) : (
-              s.baseWidgets.map((w) => (
+              <>
+                {s.baseWidgets.map((w) => (
+                  <Widget
+                    key={`widget-${w.id}`}
+                    indicator={w.indicator}
+                    question={w.question}
+                    visualisations={w.visualisations}
+                    defaultVisualization={w.defaultVisualization}
+                    data={w.data}
+                    className="col-span-1 last:odd:col-span-2"
+                    onMenuOpenChange={setShowOverlay}
+                  />
+                ))}
                 <Widget
-                  key={`widget-${w.id}`}
-                  indicator={w.indicator}
-                  question={w.question}
-                  visualisations={w.visualisations}
-                  defaultVisualization={w.defaultVisualization}
-                  data={w.data}
+                  indicator="Drones for Forest Monitoring in France."
+                  question="a question"
+                  defaultVisualization={WIDGET_VISUALIZATIONS.FILTER}
+                  visualisations={[WIDGET_VISUALIZATIONS.FILTER]}
+                  data={[]}
                   className="col-span-1 last:odd:col-span-2"
                   onMenuOpenChange={setShowOverlay}
                 />
-              ))
+              </>
             )}
           </Section>
         );

@@ -47,9 +47,9 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   };
 
   return (
-    <section className="mb-16 grid gap-0.5" id={slug}>
+    <section className="mb-16" id={slug}>
       {isOverview ? (
-        <div className="col-span-2 grid grid-cols-2 gap-0.5">
+        <div className="col-span-2 mb-0.5 grid grid-cols-2 gap-0.5">
           <Card className="space-y-4 bg-secondary">
             <h2 className="text-xl font-semibold">{name}</h2>
             <p className="text-muted-foreground">{description}</p>
@@ -57,7 +57,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
           <Card className="bg-lightgray bg-[url('/images/explore/overview-widget-bg.avif')] bg-cover bg-center bg-no-repeat" />
         </div>
       ) : (
-        <header className="flex justify-between space-y-4 rounded-2xl bg-secondary p-6">
+        <header className="mb-0.5 flex justify-between space-y-4 rounded-2xl bg-secondary p-6">
           <div>
             <h2 className="text-xl font-semibold">{name}</h2>
             <p className="text-muted-foreground">{description}</p>
@@ -87,7 +87,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
           </Popover>
         </header>
       )}
-      {children}
+      <div className="grid grid-cols-2 gap-0.5">{children}</div>
     </section>
   );
 };
