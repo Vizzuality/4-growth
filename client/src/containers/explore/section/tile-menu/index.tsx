@@ -25,7 +25,7 @@ const TileMenu: FC<TileMenuProps> = ({ items, className }) => {
           key={`tile-menu-${i.slug}`}
           className="space-y-6 bg-primary p-0 transition-colors hover:bg-secondary"
         >
-          <Link className="flex-1 p-6" href={"#" + i.slug}>
+          <Link className="flex-1 p-6" href={`#${i.slug}`}>
             <Title as="h3" className="text-base">
               {i.name}
             </Title>

@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 import {
+  BaseWidgetWithData,
   WidgetData,
   WidgetNavigationData,
 } from "@shared/dto/widgets/base-widget-data.interface";
@@ -10,9 +11,10 @@ import {
   WidgetVisualizationsType,
 } from "@shared/dto/widgets/widget-visualizations.constants";
 
-import { cn, isWidgetData, isWidgetNavigationData } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 import AreaChart from "@/containers/widget/area-chart";
+import Filter from "@/containers/widget/filter";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import Navigation from "@/containers/widget/navigation";
 import PieChart from "@/containers/widget/pie-chart";
@@ -21,12 +23,35 @@ import WidgetHeader from "@/containers/widget/widget-header";
 
 import { Card } from "@/components/ui/card";
 
+const isWidgetData = (
+  data: WidgetData | WidgetNavigationData,
+): data is WidgetData => {
+  return (
+    Array.isArray(data) &&
+    (data.length === 0 ||
+      (typeof data[0] === "object" &&
+        "value" in data[0] &&
+        "total" in data[0] &&
+        "label" in data[0]))
+  );
+};
+
+const isWidgetNavigationData = (
+  data: WidgetData | WidgetNavigationData,
+): data is WidgetNavigationData => {
+  return (
+    typeof data === "object" &&
+    data !== null &&
+    "href" in data &&
+    typeof data.href === "string"
+  );
+};
 export interface WidgetProps {
   indicator: string;
   question: string;
   defaultVisualization: WidgetVisualizationsType;
   visualisations: WidgetVisualizationsType[];
-  data: WidgetData | WidgetNavigationData;
+  data: BaseWidgetWithData["data"];
   fill?: "bg-secondary" | "bg-accent";
   className?: string;
   onMenuOpenChange?: (open: boolean) => void;
@@ -50,20 +75,17 @@ export default function Widget({
 
     if (onMenuOpenChange) onMenuOpenChange(open);
   };
-  let ChartComponent = null;
 
-  if (currentVisualization === "single_value" && isWidgetData(data)) {
-    return (
-      <Card className="p-0">
-        <SingleValue indicator={indicator} data={data} fill={fill} />
-      </Card>
-    );
-  }
-
-  switch (currentVisualization) {
-    case WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART:
-      if (isWidgetData(data)) {
-        ChartComponent = (
+  if (isWidgetData(data)) {
+    switch (currentVisualization) {
+      case WIDGET_VISUALIZATIONS.SINGLE_VALUE:
+        return (
+          <Card className="p-0">
+            <SingleValue indicator={indicator} data={data} fill={fill} />
+          </Card>
+        );
+      case WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART:
+        return (
           <Card
             className={cn(
               "relative min-h-80 p-0 pb-6",
@@ -81,11 +103,8 @@ export default function Widget({
             <HorizontalBarChart data={data} />
           </Card>
         );
-      }
-      break;
-    case WIDGET_VISUALIZATIONS.PIE_CHART:
-      if (isWidgetData(data)) {
-        ChartComponent = (
+      case WIDGET_VISUALIZATIONS.PIE_CHART:
+        return (
           <Card
             className={cn(
               "relative min-h-80 p-0 pb-6",
@@ -103,14 +122,8 @@ export default function Widget({
             <PieChart data={data} />
           </Card>
         );
-      }
-      break;
-    case WIDGET_VISUALIZATIONS.MAP:
-      ChartComponent = null;
-      break;
-    case WIDGET_VISUALIZATIONS.AREA_GRAPH:
-      if (isWidgetData(data)) {
-        ChartComponent = (
+      case WIDGET_VISUALIZATIONS.AREA_GRAPH:
+        return (
           <Card
             className={cn(
               "relative min-h-80 p-0",
@@ -129,37 +142,47 @@ export default function Widget({
             <AreaChart indicator={indicator} data={data} />
           </Card>
         );
-      }
-      break;
-    case WIDGET_VISUALIZATIONS.NAVIGATION:
-    case WIDGET_VISUALIZATIONS.FILTER:
-      if (isWidgetNavigationData(data)) {
-        ChartComponent = (
+      case WIDGET_VISUALIZATIONS.MAP:
+        // TODO: return map component when widget data for map is defined
+        return null;
+      default:
+        break;
+    }
+  }
+
+  if (isWidgetNavigationData(data)) {
+    switch (currentVisualization) {
+      case WIDGET_VISUALIZATIONS.NAVIGATION:
+        return (
           <Card
             className={cn(
               "relative min-h-80 p-0",
               showMenu && "z-50",
-              currentVisualization === WIDGET_VISUALIZATIONS.FILTER &&
-                "bg-accent",
               className,
             )}
           >
-            <Navigation
-              indicator={indicator}
-              visualization={currentVisualization}
-              href={data.href}
-            />
+            <Navigation indicator={indicator} href={data.href} />
           </Card>
         );
-      }
-      break;
-    default:
-      console.warn(
-        `Widget: Unsupported visualization type "${currentVisualization}" for indicator "${indicator}".`,
-      );
-      ChartComponent = null;
-      break;
+      case WIDGET_VISUALIZATIONS.FILTER:
+        return (
+          <Card
+            className={cn(
+              "relative min-h-80 bg-accent p-0",
+              showMenu && "z-50",
+              className,
+            )}
+          >
+            <Filter indicator={indicator} href={data.href} />
+          </Card>
+        );
+      default:
+        break;
+    }
   }
 
-  return ChartComponent;
+  console.warn(
+    `Widget: Unsupported visualization type "${currentVisualization}" for indicator "${indicator}".`,
+  );
+  return null;
 }

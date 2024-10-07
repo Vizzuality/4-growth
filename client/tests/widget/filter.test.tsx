@@ -1,18 +1,18 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import Navigation from "@/containers/widget/navigation";
+import Filter from "@/containers/widget/filter";
 
-describe("NavigationWidget Component", () => {
+describe("FilterWidget Component", () => {
   const mockProps = {
     indicator: "Test",
     href: "#",
   };
 
   it("renders correctly", () => {
-    const { container } = render(<Navigation {...mockProps} />);
+    const { container } = render(<Filter {...mockProps} />);
 
     expect(screen.getByText("Test")).toBeInTheDocument();
-    expect(screen.getByText("Explore in Sandbox")).toBeInTheDocument();
+    expect(screen.getByText("Apply filters")).toBeInTheDocument();
     expect(screen.getByRole("link")).toHaveAttribute("href", "#");
 
     expect(container.querySelector("svg")).toHaveClass(

@@ -38,6 +38,12 @@ vi.mock("@/containers/widget/navigation", () => ({
   ),
 }));
 
+vi.mock("@/containers/widget/filter", () => ({
+  default: () => (
+    <div data-testid={WIDGET_VISUALIZATIONS.FILTER}>Filter widget</div>
+  ),
+}));
+
 describe("Widget", () => {
   const mockProps = {
     indicator: "Test Indicator",
@@ -64,11 +70,6 @@ describe("Widget", () => {
       );
 
       switch (visualizationType) {
-        case WIDGET_VISUALIZATIONS.FILTER:
-          expect(
-            screen.getByTestId(WIDGET_VISUALIZATIONS.NAVIGATION),
-          ).toBeInTheDocument();
-          break;
         case WIDGET_VISUALIZATIONS.MAP:
           expect(container.firstChild).toBeNull();
           break;
