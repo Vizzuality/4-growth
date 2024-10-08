@@ -23,19 +23,15 @@ test.describe('Explore E2E', () => {
         slug: 'section-1',
         name: 'Section 1',
         description: ':)',
-        order: 1,
-        baseWidgets: [
-          await entityMocks.createBaseWidget({ sectionOrder: 1 }),
-          await entityMocks.createBaseWidget({ sectionOrder: 2 }),
-          await entityMocks.createBaseWidget({ sectionOrder: 3 }),
-          await entityMocks.createBaseWidget({ sectionOrder: 4 })
-        ]
+        // TODO: Should set order to 1 and add baseWidgets when API is able to return widget data in test env
+        order: 2,
+        baseWidgets: []
       }),
       await entityMocks.createSection({
         slug: 'section-2',
         name: 'Section 2',
         description: ':)',
-        order: 2,
+        order: 3,
         baseWidgets: []
       })
     ]
