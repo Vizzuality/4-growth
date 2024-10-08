@@ -26,7 +26,7 @@ const SingleValue: FC<SingleValueProps> = ({
 
   const { value, total } = data[0];
   const fillPercentage =
-    total > 0 ? Math.min(Math.round((value / total) * 100), 100) : 0;
+    total && total > 0 ? Math.min(Math.round((value / total) * 100), 100) : 0;
 
   return (
     <div className="relative h-full">
