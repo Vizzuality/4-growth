@@ -23,7 +23,8 @@ test.describe('Explore E2E', () => {
         slug: 'section-1',
         name: 'Section 1',
         description: ':)',
-        // TODO: Should set order to 1 and add baseWidgets when API is able to return widget data in test env
+        // TODO: We should test the content of the sections including overview section and the widgets
+        // when API is returning widget data in test environment.
         order: 2,
         baseWidgets: []
       }),
