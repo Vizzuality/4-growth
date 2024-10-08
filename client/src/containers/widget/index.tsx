@@ -23,29 +23,6 @@ import WidgetHeader from "@/containers/widget/widget-header";
 
 import { Card } from "@/components/ui/card";
 
-const isWidgetData = (
-  data: WidgetData | WidgetNavigationData,
-): data is WidgetData => {
-  return (
-    Array.isArray(data) &&
-    (data.length === 0 ||
-      (typeof data[0] === "object" &&
-        "value" in data[0] &&
-        "total" in data[0] &&
-        "label" in data[0]))
-  );
-};
-
-const isWidgetNavigationData = (
-  data: WidgetData | WidgetNavigationData,
-): data is WidgetNavigationData => {
-  return (
-    typeof data === "object" &&
-    data !== null &&
-    "href" in data &&
-    typeof data.href === "string"
-  );
-};
 export interface WidgetProps {
   indicator: string;
   question: string;
@@ -76,113 +53,104 @@ export default function Widget({
     if (onMenuOpenChange) onMenuOpenChange(open);
   };
 
-  if (isWidgetData(data)) {
-    switch (currentVisualization) {
-      case WIDGET_VISUALIZATIONS.SINGLE_VALUE:
-        return (
-          <Card className="p-0">
-            <SingleValue indicator={indicator} data={data} fill={fill} />
-          </Card>
-        );
-      case WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART:
-        return (
-          <Card
-            className={cn(
-              "relative min-h-80 p-0 pb-6",
-              showMenu && "z-50",
-              className,
-            )}
-          >
-            <WidgetHeader
-              indicator={indicator}
-              question={question}
-              visualisations={visualisations}
-              onMenuOpenChange={handleOpenChange}
-              onMenuButtonClicked={setCurrentVisualization}
-            />
-            <HorizontalBarChart data={data} />
-          </Card>
-        );
-      case WIDGET_VISUALIZATIONS.PIE_CHART:
-        return (
-          <Card
-            className={cn(
-              "relative min-h-80 p-0 pb-6",
-              showMenu && "z-50",
-              className,
-            )}
-          >
-            <WidgetHeader
-              indicator={indicator}
-              question={question}
-              visualisations={visualisations}
-              onMenuOpenChange={handleOpenChange}
-              onMenuButtonClicked={setCurrentVisualization}
-            />
-            <PieChart data={data} />
-          </Card>
-        );
-      case WIDGET_VISUALIZATIONS.AREA_GRAPH:
-        return (
-          <Card
-            className={cn(
-              "relative min-h-80 p-0",
-              showMenu && "z-50",
-              className,
-            )}
-          >
-            <WidgetHeader
-              indicator={indicator}
-              question={question}
-              visualisations={visualisations}
-              className="t-8 absolute left-0 z-20 w-full p-8"
-              onMenuOpenChange={handleOpenChange}
-              onMenuButtonClicked={setCurrentVisualization}
-            />
-            <AreaChart indicator={indicator} data={data} />
-          </Card>
-        );
-      case WIDGET_VISUALIZATIONS.MAP:
-        // TODO: return map component when widget data for map is defined
-        return null;
-      default:
-        break;
-    }
+  switch (currentVisualization) {
+    case WIDGET_VISUALIZATIONS.SINGLE_VALUE:
+      return (
+        <Card className="p-0">
+          <SingleValue
+            indicator={indicator}
+            data={data as WidgetData}
+            fill={fill}
+          />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART:
+      return (
+        <Card
+          className={cn(
+            "relative min-h-80 p-0 pb-6",
+            showMenu && "z-50",
+            className,
+          )}
+        >
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            visualisations={visualisations}
+            onMenuOpenChange={handleOpenChange}
+            onMenuButtonClicked={setCurrentVisualization}
+          />
+          <HorizontalBarChart data={data as WidgetData} />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.PIE_CHART:
+      return (
+        <Card
+          className={cn(
+            "relative min-h-80 p-0 pb-6",
+            showMenu && "z-50",
+            className,
+          )}
+        >
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            visualisations={visualisations}
+            onMenuOpenChange={handleOpenChange}
+            onMenuButtonClicked={setCurrentVisualization}
+          />
+          <PieChart data={data as WidgetData} />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.AREA_GRAPH:
+      return (
+        <Card
+          className={cn("relative min-h-80 p-0", showMenu && "z-50", className)}
+        >
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            visualisations={visualisations}
+            className="t-8 absolute left-0 z-20 w-full p-8"
+            onMenuOpenChange={handleOpenChange}
+            onMenuButtonClicked={setCurrentVisualization}
+          />
+          <AreaChart indicator={indicator} data={data as WidgetData} />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.NAVIGATION:
+      return (
+        <Card
+          className={cn("relative min-h-80 p-0", showMenu && "z-50", className)}
+        >
+          <Navigation
+            indicator={indicator}
+            href={(data as WidgetNavigationData).href}
+          />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.FILTER:
+      return (
+        <Card
+          className={cn(
+            "relative min-h-80 bg-accent p-0",
+            showMenu && "z-50",
+            className,
+          )}
+        >
+          <Filter
+            indicator={indicator}
+            href={(data as WidgetNavigationData).href}
+          />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.MAP:
+      // TODO: return map component when widget data for map is defined
+      return null;
+    default:
+      console.warn(
+        `Widget: Unsupported visualization type "${currentVisualization}" for indicator "${indicator}".`,
+      );
+      return null;
   }
-
-  if (isWidgetNavigationData(data)) {
-    switch (currentVisualization) {
-      case WIDGET_VISUALIZATIONS.NAVIGATION:
-        return (
-          <Card
-            className={cn(
-              "relative min-h-80 p-0",
-              showMenu && "z-50",
-              className,
-            )}
-          >
-            <Navigation indicator={indicator} href={data.href} />
-          </Card>
-        );
-      case WIDGET_VISUALIZATIONS.FILTER:
-        return (
-          <Card
-            className={cn(
-              "relative min-h-80 bg-accent p-0",
-              showMenu && "z-50",
-              className,
-            )}
-          >
-            <Filter indicator={indicator} href={data.href} />
-          </Card>
-        );
-      default:
-        break;
-    }
-  }
-
-  console.warn(
-    `Widget: Unsupported visualization type "${currentVisualization}" for indicator "${indicator}".`,
-  );
-  return null;
 }

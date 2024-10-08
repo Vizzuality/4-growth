@@ -24,5 +24,5 @@ export type WidgetNavigationData = {
 };
 
 export class BaseWidgetWithData extends BaseWidget {
-  data: WidgetData | WidgetFilters | WidgetNavigationData;
+  data: WidgetData | WidgetNavigationData;
 }
