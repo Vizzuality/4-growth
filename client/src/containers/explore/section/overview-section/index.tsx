@@ -1,6 +1,9 @@
 import { FC } from "react";
 
-import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
+import {
+  BaseWidgetWithData,
+  WidgetData,
+} from "@shared/dto/widgets/base-widget-data.interface";
 
 import TileMenu, { TileMenuItem } from "@/containers/explore/section/tile-menu";
 import Widget from "@/containers/widget";
@@ -78,7 +81,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
             <Title as="h3" className="pl-6 pr-6 pt-6 text-base">
               {widgets[3].indicator}
             </Title>
-            <HorizontalBarChart data={widgets[3].data} />
+            <HorizontalBarChart data={widgets[3].data as WidgetData} />
           </Card>
         </div>
       </div>
