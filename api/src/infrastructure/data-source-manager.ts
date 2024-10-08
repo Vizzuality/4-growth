@@ -4,7 +4,6 @@ import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { SectionsCSVParser } from 'api/data/sections/sections-csv-parser';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
-import { PageFiltersCSVParser } from 'api/data/page-filters/page-filters-csv-parser';
 
 @Injectable()
 export class DataSourceManager {
@@ -18,7 +17,7 @@ export class DataSourceManager {
     const schemaSql = this.getInitialSchemaSqlCode();
     const sqlScripts: string[] = await Promise.all([
       this.getInitialSectionsSqlCode(),
-      this.getInitialPageFilters(),
+      this.getFiltersSqlCode(),
       this.getMockDataSqlCode(),
     ]);
 
@@ -65,25 +64,12 @@ export class DataSourceManager {
     return this.sqlAdapter.generateSqlFromSections(sections);
   }
 
-  private async getInitialPageFilters(): Promise<string> {
-    const pageFiltersFilePath = `data/page-filters/page-filters.csv`;
-    this.logger.log(
-      `Loading initial data from "${pageFiltersFilePath}"`,
-      this.constructor.name,
-    );
-    const pageFilters =
-      await PageFiltersCSVParser.parseFromFile(pageFiltersFilePath);
-    return this.sqlAdapter.generateSqlFromPageFilters(pageFilters);
-  }
-
   public async loadMockData(): Promise<void> {
-    const schemaSql = this.getInitialSchemaSqlCode();
     const sqlScripts: string[] = await Promise.all([this.getMockDataSqlCode()]);
 
     const queryRunner = this.dataSource.createQueryRunner();
     try {
       await queryRunner.startTransaction();
-      await queryRunner.query(schemaSql);
       const sqlCodePromises = [];
       for (let sqlCodeIdx = 0; sqlCodeIdx < sqlScripts.length; sqlCodeIdx++) {
         sqlCodePromises.push(queryRunner.query(sqlScripts[sqlCodeIdx]));
@@ -100,6 +86,15 @@ export class DataSourceManager {
 
   private getMockDataSqlCode(): string {
     const filePath = `data/mock-data.sql`;
+    this.logger.log(
+      `Loading initial data from "${filePath}"`,
+      this.constructor.name,
+    );
+    return fs.readFileSync(filePath, 'utf-8');
+  }
+
+  private getFiltersSqlCode(): string {
+    const filePath = `data/filters.sql`;
     this.logger.log(
       `Loading initial data from "${filePath}"`,
       this.constructor.name,
