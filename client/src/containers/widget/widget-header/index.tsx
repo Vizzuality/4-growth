@@ -31,10 +31,10 @@ const getButtonText = (v: WidgetVisualizationsType): string => {
 interface WidgetHeaderProps {
   indicator: string;
   question: string;
-  visualisations: WidgetVisualizationsType[];
+  visualisations?: WidgetVisualizationsType[];
   className?: string;
-  onMenuOpenChange: (o: boolean) => void;
-  onMenuButtonClicked: (v: WidgetVisualizationsType) => void;
+  onMenuOpenChange?: (o: boolean) => void;
+  onMenuButtonClicked?: (v: WidgetVisualizationsType) => void;
 }
 
 const WidgetHeader: FC<WidgetHeaderProps> = ({
@@ -46,30 +46,32 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
   onMenuButtonClicked,
 }) => {
   return (
-    <header className={cn("p-8", className)}>
+    <header className={cn("space-y-2 p-8", className)}>
       <div className="flex justify-between">
         <Title as="h3" className="text-base">
           {indicator}
         </Title>
-        <MenuButton
-          className="flex flex-col gap-6 py-4"
-          onOpenChange={onMenuOpenChange}
-        >
-          <Button variant="clean" className={classes}>
-            Customize chart
-          </Button>
-          <Separator />
-          {visualisations.map((v) => (
-            <Button
-              key={`menu-button-${v}`}
-              variant="clean"
-              className={classes}
-              onClick={() => onMenuButtonClicked(v)}
-            >
-              {getButtonText(v)}
+        {visualisations && onMenuOpenChange && onMenuButtonClicked && (
+          <MenuButton
+            className="flex flex-col gap-6 py-4"
+            onOpenChange={onMenuOpenChange}
+          >
+            <Button variant="clean" className={classes}>
+              Customize chart
             </Button>
-          ))}
-        </MenuButton>
+            <Separator />
+            {visualisations.map((v) => (
+              <Button
+                key={`menu-button-${v}`}
+                variant="clean"
+                className={classes}
+                onClick={() => onMenuButtonClicked(v)}
+              >
+                {getButtonText(v)}
+              </Button>
+            ))}
+          </MenuButton>
+        )}
       </div>
       <p className="text-xs text-muted-foreground">{question}</p>
     </header>

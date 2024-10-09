@@ -13,8 +13,8 @@ import {
 
 import { cn, isEmptyWidget } from "@/lib/utils";
 
+import NoData from "@/containers/no-data";
 import AreaChart from "@/containers/widget/area-chart";
-import EmptyWidget from "@/containers/widget/empty-widget";
 import Filter from "@/containers/widget/filter";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import Navigation from "@/containers/widget/navigation";
@@ -57,7 +57,8 @@ export default function Widget({
   if (isEmptyWidget(data)) {
     return (
       <Card className={cn("relative min-h-80 p-0", className)}>
-        <EmptyWidget indicator={indicator} question={question} />
+        <WidgetHeader indicator={indicator} question={question} />
+        <NoData />
       </Card>
     );
   }
