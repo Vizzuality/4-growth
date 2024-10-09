@@ -8,8 +8,8 @@ import {
 import { isEmptyWidget } from "@/lib/utils";
 
 import TileMenu, { TileMenuItem } from "@/containers/explore/section/tile-menu";
+import NoData from "@/containers/no-data";
 import Widget from "@/containers/widget";
-import EmptyWidget from "@/containers/widget/empty-widget";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import Map from "@/containers/widget/map";
 
@@ -96,15 +96,13 @@ const OverviewSection: FC<OverviewSectionProps> = ({
             />
           </div>
           <Card className="row-start-2 space-y-8 p-0 pb-6">
+            <Title as="h3" className="px-6 pt-6 text-base">
+              {widgets[3].indicator}
+            </Title>
             {isEmptyWidget(widgets[3].data) ? (
-              <EmptyWidget indicator={widgets[3].indicator} />
+              <NoData />
             ) : (
-              <>
-                <Title as="h3" className="pl-6 pr-6 pt-6 text-base">
-                  {widgets[3].indicator}
-                </Title>
-                <HorizontalBarChart data={widgets[3].data as WidgetData} />
-              </>
+              <HorizontalBarChart data={widgets[3].data as WidgetData} />
             )}
           </Card>
         </div>
