@@ -55,6 +55,21 @@ const OverviewSection: FC<OverviewSectionProps> = ({
               PRT: 1,
               DEU: 3,
               RUS: 2,
+              BLR: 1,
+              SVN: 1,
+              SVK: 2,
+              CSK: 3,
+              CZE: 3,
+              LTU: 3,
+              AUT: 4,
+              HRC: 3,
+              BIH: 2,
+              MNE: 1,
+              HRV: 3,
+              ALB: 3,
+              SRB: 4,
+              HUN: 2,
+              MDA: 3,
             }}
           />
         </Card>
