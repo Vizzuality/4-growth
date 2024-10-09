@@ -36,6 +36,7 @@ export class PostgresSurveyDataRepository implements ISurveyDataRepository {
 SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.answers ${filterClause})`);
       }
 
+      // Only the first section is needed for now
       const widgetDataPromises = [];
       for (let sectionIdx = 0; sectionIdx < sections.length; sectionIdx++) {
         const section = sections[sectionIdx];
@@ -66,7 +67,7 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
         `${widget.indicator} not found in WidgetQuestionMap. Skipping filter...`,
         this.constructor.name,
       );
-      return;
+      widget.data = [];
     }
     // TODO: Edge cases here. Total surveys and total countries.
     if (widget.indicator === 'Total surveys') {
@@ -94,7 +95,10 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
     const totalsResult: { key: string; count: number; total: number }[] =
       await t.query(totalsSql);
 
-    if (totalsResult.length === 0) return;
+    if (totalsResult.length === 0) {
+      widget.data = [];
+      return;
+    }
 
     const widgetData: WidgetData = [];
     for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
