@@ -11,9 +11,10 @@ import {
   WidgetVisualizationsType,
 } from "@shared/dto/widgets/widget-visualizations.constants";
 
-import { cn } from "@/lib/utils";
+import { cn, isEmptyWidget } from "@/lib/utils";
 
 import AreaChart from "@/containers/widget/area-chart";
+import EmptyWidget from "@/containers/widget/empty-widget";
 import Filter from "@/containers/widget/filter";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import Navigation from "@/containers/widget/navigation";
@@ -52,6 +53,14 @@ export default function Widget({
 
     if (onMenuOpenChange) onMenuOpenChange(open);
   };
+
+  if (isEmptyWidget(data)) {
+    return (
+      <Card className={cn("relative min-h-80 p-0", className)}>
+        <EmptyWidget indicator={indicator} question={question} />
+      </Card>
+    );
+  }
 
   switch (currentVisualization) {
     case WIDGET_VISUALIZATIONS.SINGLE_VALUE:
