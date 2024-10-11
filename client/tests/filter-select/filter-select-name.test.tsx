@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
 import FilterSelectName from "@/containers/filter/filter-select/filter-select-name";
 
 describe("FilterSelectName", () => {
@@ -14,16 +14,11 @@ describe("FilterSelectName", () => {
     },
   ];
 
-  it("renders the search input", () => {
-    render(<FilterSelectName items={mockItems} />);
+  it("renders the search input and search icon", () => {
+    const { container } = render(<FilterSelectName items={mockItems} />);
 
     expect(screen.getByRole("searchbox")).toBeInTheDocument();
-  });
-
-  it("renders the search icon", () => {
-    render(<FilterSelectName items={mockItems} />);
-
-    expect(screen.getByRole("searchbox")).toBeInTheDocument();
+    expect(container.querySelector("svg")).toHaveClass("lucide lucide-search");
   });
 
   it("renders a list of all filters by default", () => {
