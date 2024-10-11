@@ -1,4 +1,4 @@
-import { TestManager } from '../utils/test-manager';
+import { TestManager } from '../../utils/test-manager';
 import { AuthFixtures } from './fixtures';
 
 describe('Authentication (e2e)', () => {

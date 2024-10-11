@@ -1,5 +1,5 @@
-import { TestManager } from '../utils/test-manager';
-import { MockEmailService } from '../utils/mocks/mock-email.service';
+import { TestManager } from '../../utils/test-manager';
+import { MockEmailService } from '../../utils/mocks/mock-email.service';
 import { IEmailServiceToken } from '@api/modules/email/email.service.interface';
 import { HttpStatus } from '@nestjs/common';
 

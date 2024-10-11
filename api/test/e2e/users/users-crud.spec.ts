@@ -1,4 +1,4 @@
-import { TestManager } from '../utils/test-manager';
+import { TestManager } from '../../utils/test-manager';
 import { User } from '@shared/dto/users/user.entity';
 import { createUser } from '@shared/lib/entity-mocks';
 

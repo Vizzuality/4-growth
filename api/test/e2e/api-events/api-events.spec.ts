@@ -1,4 +1,4 @@
-import { TestManager } from '../utils/test-manager';
+import { TestManager } from '../../utils/test-manager';
 import { Repository } from 'typeorm';
 import { AuthService } from '@api/modules/auth/auth.service';
 import { ApiEventEntity } from '@shared/dto/api-events/api-events.entity';
