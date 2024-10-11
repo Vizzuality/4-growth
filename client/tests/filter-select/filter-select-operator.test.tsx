@@ -6,7 +6,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import FilterSelectOperator from "@/containers/filter/filter-select/filter-select-operator";
 
 vi.mock("jotai", async () => {
-  const actual = await vi.importActual<typeof import("jotai")>("jotai");
+  const actual = await vi.importActual<typeof jotai>("jotai");
   return {
     ...actual,
     useAtom: vi.fn(),
@@ -25,19 +25,6 @@ describe("FilterSelectOperator", () => {
     return render(ui, { wrapper: Wrapper });
   };
 
-  it("renders a button when currentStep is not valuesOperator", () => {
-    (jotai.useAtom as jest.Mock).mockReturnValue([
-      FilterSelectStep.values,
-      vi.fn(),
-    ]);
-
-    renderWithFormProvider(<FilterSelectOperator />);
-
-    expect(screen.getByRole("button")).toBeInTheDocument();
-    expect(screen.getByText("is")).toBeInTheDocument();
-    expect(screen.getByTestId("triangle-down-icon")).toBeInTheDocument();
-  });
-
   it("toggles view when button is clicked", () => {
     const setCurrentStepMock = vi.fn();
     (jotai.useAtom as jest.Mock).mockReturnValue([
@@ -46,6 +33,10 @@ describe("FilterSelectOperator", () => {
     ]);
 
     renderWithFormProvider(<FilterSelectOperator />);
+    const button = screen.getByRole("button");
+
+    expect(button).toHaveTextContent("is");
+    expect(screen.getByTestId("triangle-down-icon")).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button"));
 

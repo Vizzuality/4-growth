@@ -3,7 +3,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import FilterSelect from "@/containers/filter/filter-select";
 import { FilterSelectValuesProps } from "@/containers/filter/filter-select/filter-select-values";
 
-// Mock the child components
 vi.mock("@/containers/filter/filter-select/filter-select-name", () => ({
   default: () => <div data-testid="filter-select-name">FilterSelectName</div>,
 }));

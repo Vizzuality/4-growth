@@ -5,7 +5,7 @@ import { FilterSelectStep } from "@/containers/filter/filter-select/store";
 import FilterSelectValues from "@/containers/filter/filter-select/filter-select-values";
 
 vi.mock("jotai", async () => {
-  const actual = await vi.importActual<typeof import("jotai")>("jotai");
+  const actual = await vi.importActual<typeof jotai>("jotai");
   return {
     ...actual,
     useAtom: vi.fn(),
@@ -64,8 +64,8 @@ describe("FilterSelectValues", () => {
     ]);
     render(<FilterSelectValues {...mockProps} />);
 
-    const showValuesButton = screen.getByText("“Select values”");
-    fireEvent.click(showValuesButton);
+    const selectValuesButton = screen.getByText("“Select values”");
+    fireEvent.click(selectValuesButton);
 
     expect(setCurrentStepMock).toHaveBeenCalledWith(
       FilterSelectStep.valuesList,
@@ -101,9 +101,21 @@ describe("FilterSelectValues", () => {
     const selectAllCheckbox = screen.getByLabelText("Select All");
 
     expect(selectAllCheckbox).toHaveAttribute("aria-checked", "false");
+    mockFilter.values.forEach((value) => {
+      expect(screen.getByLabelText(value)).toHaveAttribute(
+        "aria-checked",
+        "false",
+      );
+    });
 
     fireEvent.click(selectAllCheckbox);
     expect(selectAllCheckbox).toHaveAttribute("aria-checked", "true");
+    mockFilter.values.forEach((value) => {
+      expect(screen.getByLabelText(value)).toHaveAttribute(
+        "aria-checked",
+        "true",
+      );
+    });
   });
 
   it("submits the form with selected values", async () => {
