@@ -13,7 +13,7 @@ export const WidgetDataFilterSchema = z.object({
   operator: z.enum(
     VALID_SEARCH_WIDGET_DATA_OPERATORS as [WidgetDataFilterOperatorType],
   ),
-  value: z.unknown(),
+  values: z.array(z.string()),
 });
 
 export const WidgetDataFiltersSchema = z.object({

@@ -60,8 +60,7 @@ export class SQLAdapter {
       for (const value of columnValues) {
         filterClause += `(hierarchy_level_2 = '${value}' AND (`;
 
-        const filterValues = (filter.value as string).split(',');
-        for (const filterValue of filterValues) {
+        for (const filterValue of filter.values) {
           filterClause += `categorical_answer ${filter.operator} '${filterValue}' OR `;
         }
         filterClause = filterClause.slice(0, -4);
