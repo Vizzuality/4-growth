@@ -1,6 +1,6 @@
-import { TestManager } from '../utils/test-manager';
+import { TestManager } from '../../utils/test-manager';
 import { User } from '@shared/dto/users/user.entity';
-import { MockEmailService } from '../utils/mocks/mock-email.service';
+import { MockEmailService } from '../../utils/mocks/mock-email.service';
 import { IEmailServiceToken } from '@api/modules/email/email.service.interface';
 
 describe('Password Recovery', () => {

@@ -1,4 +1,4 @@
-import { TestManager } from '../utils/test-manager';
+import { TestManager } from '../../utils/test-manager';
 import * as request from 'supertest';
 import { SignUpDto } from '@shared/dto/auth/sign-up.dto';
 import { User } from '@shared/dto/users/user.entity';

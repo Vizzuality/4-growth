@@ -1,4 +1,4 @@
-import { TestManager } from '../utils/test-manager';
+import { TestManager } from '../../utils/test-manager';
 import * as request from 'supertest';
 import { User } from '@shared/dto/users/user.entity';
 import { UpdateUserPasswordDto } from '@shared/dto/users/update-user-password.dto';

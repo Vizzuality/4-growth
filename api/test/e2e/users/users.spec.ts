@@ -1,5 +1,5 @@
 import { UserFixtures } from './fixtures';
-import { TestManager } from '../utils/test-manager';
+import { TestManager } from '../../utils/test-manager';
 import { JwtService } from '@nestjs/jwt';
 import { v4 as uuidv4 } from 'uuid';
 
