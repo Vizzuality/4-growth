@@ -13,7 +13,7 @@ import { WidgetDataFiltersSchema } from '@shared/schemas/widget-data-filters.sch
 
 @Injectable()
 export class SectionsService extends AppBaseService<
-  SectionWithDataWidget,
+  Section,
   unknown,
   unknown,
   AppInfoDTO
@@ -27,6 +27,26 @@ export class SectionsService extends AppBaseService<
     super(sectionsRepository, 'section', 'sections');
   }
 
+  public async searchSectionsWithData(
+    query: FetchSpecification & WidgetDataFiltersSchema,
+  ): Promise<SectionWithDataWidget[]> {
+    // TODO: There is a bug / weird behavior in typeorm when using take and skip with leftJoinAndSelect:
+    //       https://github.com/typeorm/typeorm/issues/4742#issuecomment-780702477
+    //       Since we don't need pagination for this endpoint, we can disable it for now but worth checking
+    query.disablePagination = true;
+    const [sections] = await this.findAll(query);
+
+    const { filters } = query;
+
+    const sectionsWithData =
+      await this.surveyDataRepository.addSurveyDataToSections(
+        sections as Section[],
+        filters,
+      );
+
+    return sectionsWithData;
+  }
+
   // The library should make this method protected
   public async extendFindAllQuery(
     query: SelectQueryBuilder<SectionWithDataWidget>,
@@ -37,22 +57,5 @@ export class SectionsService extends AppBaseService<
       .addOrderBy('baseWidget.sectionOrder', 'ASC'); // Sort baseWidgets by sectionOrder
 
     return query;
-  }
-
-  public async extendFindAllResults(
-    entitiesAndCount: [SectionWithDataWidget[], number],
-    fetchSpecification?: FetchSpecification & WidgetDataFiltersSchema,
-    // info?: AppInfoDTO,
-  ): Promise<[SectionWithDataWidget[], number]> {
-    const [sections, count] = entitiesAndCount;
-    const { filters } = fetchSpecification;
-
-    const sectionsWithData =
-      await this.surveyDataRepository.addSurveyDataToSections(
-        sections,
-        filters,
-      );
-
-    return [sectionsWithData, count];
   }
 }
