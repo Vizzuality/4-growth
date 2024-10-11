@@ -65,8 +65,6 @@ describe('Page Sections API', () => {
     const bodyData = res.body.data;
     expect(bodyData).toHaveLength(2);
 
-    console.log(JSON.stringify(bodyData, null, 2));
-
     const section1 = bodyData[0];
     expect(section1.baseWidgets).toHaveLength(3);
 
