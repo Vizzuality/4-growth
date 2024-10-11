@@ -9,6 +9,10 @@ const client = initQueryClient(router, {
   baseUrl: env.NEXT_PUBLIC_API_URL,
 });
 
+const QUERY_OPTIONS = {
+  fetchOptions: { cache: "no-cache" },
+} as const;
+
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
@@ -23,4 +27,4 @@ function makeQueryClient() {
   });
 }
 
-export { client, makeQueryClient };
+export { client, QUERY_OPTIONS, makeQueryClient };
