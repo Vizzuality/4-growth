@@ -100,9 +100,9 @@ const Sidebar: FC = () => {
                       <FilterSelect
                         items={filtersQuery.data || []}
                         fixedFilter={f}
-                        onSubmit={(v) =>
-                          console.log("filterSelect onSubmit:", v)
-                        }
+                        onSubmit={() => {
+                          // TODO: implemenation will be added in seperate PR
+                        }}
                       />
                     </PopoverContent>
                   </Popover>
@@ -123,7 +123,9 @@ const Sidebar: FC = () => {
                 >
                   <FilterSelect
                     items={filtersQuery.data || []}
-                    onSubmit={(v) => console.log("filterSelect onSubmit:", v)}
+                    onSubmit={() => {
+                      // TODO: implemenation will be added in seperate PR
+                    }}
                   />
                 </PopoverContent>
               </Popover>
