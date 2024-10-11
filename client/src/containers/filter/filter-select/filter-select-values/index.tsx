@@ -1,0 +1,194 @@
+import { ChangeEvent, FC, useState } from "react";
+
+import { useForm } from "react-hook-form";
+
+import Fuse from "fuse.js";
+import { useAtom, useAtomValue } from "jotai";
+import { SearchIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
+import FilterSelectOperator, {
+  operatorToName,
+} from "@/containers/filter/filter-select/filter-select-operator";
+import {
+  currentFilterAtom,
+  currentStepAtom,
+  FilterSelectStep,
+} from "@/containers/filter/filter-select/store";
+
+import TriangleDown from "@/components/icons/triangle-down";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+
+export interface FilterSelectForm {
+  values: string[];
+  operator: keyof typeof operatorToName;
+}
+
+export interface FilterSelectValuesProps {
+  isFixedFilter?: boolean;
+  onSubmit: (values: FilterSelectForm) => void;
+}
+
+const FilterSelectValues: FC<FilterSelectValuesProps> = ({
+  isFixedFilter,
+  onSubmit,
+}) => {
+  const form = useForm<FilterSelectForm>({
+    defaultValues: { values: [], operator: "=" },
+  });
+  const filter = useAtomValue(currentFilterAtom);
+  const [currentStep, setCurrentStep] = useAtom(currentStepAtom);
+  const [selectAll, setSelectAll] = useState(false);
+  const selectedValues = form.watch("values");
+  const [values, setValues] = useState<string[]>(filter?.values || []);
+
+  const fuse = (value: string) => {
+    const config = {
+      threshold: 0.3,
+    };
+
+    return new Fuse(filter?.values || [], config).search(value);
+  };
+
+  const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchValue = e.target.value;
+
+    if (searchValue.length === 0) {
+      setValues(filter?.values || []);
+      return;
+    }
+
+    const result = fuse(searchValue);
+
+    setValues(result.map((o) => o.item));
+  };
+
+  const handleSelectAll = (checked: boolean) => {
+    setSelectAll(checked);
+    if (checked) {
+      form.setValue("values", filter?.values || []);
+    } else {
+      form.setValue("values", []);
+    }
+  };
+
+  return (
+    <>
+      <Button
+        type="button"
+        variant="clean"
+        className="justify-between rounded-none px-4 py-1 transition-colors hover:bg-slate-100 disabled:bg-transparent disabled:text-inherit"
+        onClick={() => {
+          setCurrentStep(FilterSelectStep.name);
+        }}
+        disabled={isFixedFilter}
+      >
+        <span className="text-xs font-medium">{filter?.name}</span>
+        <TriangleDown aria-hidden="true" />
+      </Button>
+      <Form {...form}>
+        <FilterSelectOperator />
+        {currentStep === FilterSelectStep.valuesList ? (
+          <form
+            className="flex h-full min-h-0 flex-col bg-slate-100"
+            onSubmit={form.handleSubmit((f) => onSubmit(f))}
+          >
+            <div className="relative w-full border-t border-bluish-gray-500 border-opacity-35 px-4">
+              <Input
+                type="search"
+                variant="secondary"
+                className="px-4 py-1 pr-10"
+                onChange={handleOnInputChange}
+              />
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 transform">
+                <SearchIcon size={18} className="text-popover-foreground" />
+              </div>
+              <Separator className="bg-bluish-gray-500 bg-opacity-35" />
+            </div>
+            <FormField
+              control={form.control}
+              name="values"
+              render={({ field }) => (
+                <FormItem className="flex-1 space-y-0 overflow-y-auto pt-2">
+                  {values.length === filter?.values.length && (
+                    <FormItem className="flex items-center justify-between gap-2 space-y-0 px-4 py-1">
+                      <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none px-0 text-xs font-medium">
+                        Select All
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          variant="secondary"
+                          className="data-[state=unchecked]:hidden"
+                          checked={selectAll}
+                          onCheckedChange={handleSelectAll}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                  {values.map((v) => (
+                    <FormItem
+                      key={`filter-select-value-${v}`}
+                      className="flex items-center justify-between gap-2 space-y-0 px-4 py-1"
+                    >
+                      <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none px-0 text-xs font-medium">
+                        {v}
+                      </FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          variant="secondary"
+                          className="data-[state=unchecked]:hidden"
+                          checked={field.value?.includes(v) || false}
+                          onCheckedChange={(checked) => {
+                            const updatedValues = checked
+                              ? [...(field.value || []), v]
+                              : (field.value || []).filter(
+                                  (value: string) => value !== v,
+                                );
+                            field.onChange(updatedValues);
+                          }}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  ))}
+                </FormItem>
+              )}
+            />
+            <div
+              className={cn(
+                "p-0.5",
+                selectedValues.length === 0 ? "hidden" : "block",
+              )}
+            >
+              <Button className="w-full" type="submit">
+                Apply
+              </Button>
+            </div>
+          </form>
+        ) : (
+          <Button
+            type="button"
+            variant="clean"
+            className="justify-between rounded-none px-4 py-1 text-navy-800 transition-colors hover:bg-slate-100"
+            onClick={() => setCurrentStep(FilterSelectStep.valuesList)}
+          >
+            <span className="text-xs font-medium">“Select values”</span>
+            <TriangleDown className="text-navy-800" aria-hidden="true" />
+          </Button>
+        )}
+      </Form>
+    </>
+  );
+};
+
+export default FilterSelectValues;

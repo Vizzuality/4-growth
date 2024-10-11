@@ -15,4 +15,12 @@ export const sectionsKeys = createQueryKeys("sections", {
   all: null,
 });
 
-export const queryKeys = mergeQueryKeys(usersKeys, sectionsKeys);
+export const pageFiltersKeys = createQueryKeys("pageFilters", {
+  all: null,
+});
+
+export const queryKeys = mergeQueryKeys(
+  usersKeys,
+  sectionsKeys,
+  pageFiltersKeys,
+);
