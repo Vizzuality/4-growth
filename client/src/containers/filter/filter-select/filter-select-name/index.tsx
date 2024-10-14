@@ -47,7 +47,7 @@ const FilterSelectName: FC<{ items: PageFilter[] }> = ({ items }) => {
         <Input
           type="search"
           variant="secondary"
-          className="px-4 py-1 pr-10"
+          className="px-4 pb-2 pr-10 pt-4"
           onChange={handleOnInputChange}
         />
         <div className="absolute right-4 top-1/2 -translate-y-1/2 transform">
@@ -60,7 +60,7 @@ const FilterSelectName: FC<{ items: PageFilter[] }> = ({ items }) => {
           <Button
             key={`filter-select-name-${f.name}`}
             variant="clean"
-            className="cursor-pointer justify-start rounded-none px-4 py-1 text-xs font-medium transition-colors hover:bg-slate-100"
+            className="h-4 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-100"
             onClick={() => {
               setCurrentFilter(f);
               setCurrentStep(FilterSelectStep.values);

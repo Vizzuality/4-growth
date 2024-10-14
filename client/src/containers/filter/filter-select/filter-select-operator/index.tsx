@@ -55,13 +55,13 @@ const FilterSelectOperator: FC = () => {
                   {Object.keys(operatorToName).map((k) => (
                     <FormItem
                       key={`filter-select-operator-${k}`}
-                      className="flex items-center justify-between space-y-0 px-4 py-1"
+                      className="flex h-10 items-center justify-between space-y-0 pr-3 transition-colors hover:bg-slate-200"
                     >
-                      <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none px-0 text-xs font-medium">
+                      <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none py-4 pl-3 pr-0 text-xs font-medium">
                         {operatorToName[k as keyof typeof operatorToName]}
                       </FormLabel>
                       <FormControl>
-                        <RadioGroupItem value={k} />
+                        <RadioGroupItem value={k} className="text-navy-700" />
                       </FormControl>
                     </FormItem>
                   ))}
@@ -77,7 +77,7 @@ const FilterSelectOperator: FC = () => {
     <Button
       type="button"
       variant="clean"
-      className="justify-between rounded-none px-4 py-1 transition-colors hover:bg-slate-100"
+      className="justify-between rounded-none px-3 py-4 transition-colors hover:bg-slate-100"
       onClick={toggleView}
     >
       <span className="text-xs font-medium">

@@ -88,7 +88,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
       <Button
         type="button"
         variant="clean"
-        className="justify-between rounded-none px-4 py-1 transition-colors hover:bg-slate-100 disabled:bg-transparent disabled:text-inherit"
+        className="justify-between rounded-none px-3 py-4 transition-colors hover:bg-slate-100 disabled:bg-transparent disabled:text-inherit"
         onClick={() => {
           setCurrentStep(FilterSelectStep.name);
         }}
@@ -104,26 +104,28 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
             className="flex h-full min-h-0 flex-col bg-slate-100"
             onSubmit={form.handleSubmit((f) => onSubmit(f))}
           >
-            <div className="relative w-full border-t border-bluish-gray-500 border-opacity-35 px-4">
+            <div className="relative w-full border-t border-bluish-gray-500 border-opacity-35">
               <Input
                 type="search"
                 variant="secondary"
-                className="px-4 py-1 pr-10"
+                className="h-10 py-4 pl-3 pr-10"
                 onChange={handleOnInputChange}
               />
               <div className="absolute right-4 top-1/2 -translate-y-1/2 transform">
                 <SearchIcon size={18} className="text-popover-foreground" />
               </div>
-              <Separator className="bg-bluish-gray-500 bg-opacity-35" />
+              <div className="px-4">
+                <Separator className="bg-bluish-gray-500 bg-opacity-35" />
+              </div>
             </div>
             <FormField
               control={form.control}
               name="values"
               render={({ field }) => (
-                <FormItem className="flex-1 space-y-0 overflow-y-auto pt-2">
+                <FormItem className="flex-1 space-y-0 overflow-y-auto">
                   {values.length === filter?.values.length && (
-                    <FormItem className="flex items-center justify-between gap-2 space-y-0 px-4 py-1">
-                      <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none px-0 text-xs font-medium">
+                    <FormItem className="flex h-10 items-center justify-between gap-2 space-y-0 pr-3 transition-colors hover:bg-slate-200">
+                      <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none py-4 pl-3 pr-0 text-xs font-medium">
                         Select All
                       </FormLabel>
                       <FormControl>
@@ -139,9 +141,9 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
                   {values.map((v) => (
                     <FormItem
                       key={`filter-select-value-${v}`}
-                      className="flex items-center justify-between gap-2 space-y-0 px-4 py-1"
+                      className="flex h-10 items-center justify-between gap-2 space-y-0 pr-3 transition-colors hover:bg-slate-200"
                     >
-                      <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none px-0 text-xs font-medium">
+                      <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none py-4 pl-3 pr-0 text-xs font-medium">
                         {v}
                       </FormLabel>
                       <FormControl>
@@ -179,7 +181,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
           <Button
             type="button"
             variant="clean"
-            className="justify-between rounded-none px-4 py-1 text-navy-800 transition-colors hover:bg-slate-100"
+            className="justify-between rounded-none px-3 py-4 text-navy-800 transition-colors hover:bg-slate-100"
             onClick={() => setCurrentStep(FilterSelectStep.valuesList)}
           >
             <span className="text-xs font-medium">“Select values”</span>
