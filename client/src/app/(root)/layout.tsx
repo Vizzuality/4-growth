@@ -27,7 +27,7 @@ export default async function ExploreLayout({ children }: PropsWithChildren) {
   return (
     <Hydrate state={dehydrate(queryClient)}>
       <div className="grid h-full grid-cols-[280px_1fr] gap-0.5">
-        <div className="flex h-full flex-col gap-0.5">
+        <div className="flex h-full flex-col gap-0.5 overflow-hidden">
           <Sidebar />
         </div>
         <div className="flex h-full flex-col overflow-hidden">{children}</div>
