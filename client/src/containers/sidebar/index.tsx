@@ -51,7 +51,7 @@ const Sidebar: FC = () => {
     <>
       {isPopoverOpen && <Overlay />}
       <Header />
-      <div className="rounded-2xl bg-primary">
+      <div className="flex rounded-2xl bg-primary">
         <Button
           variant="clean"
           className={cn("w-full", isExplore && "bg-white text-primary")}

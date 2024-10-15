@@ -43,7 +43,7 @@ const FilterSelectName: FC<{ items: PageFilter[] }> = ({ items }) => {
 
   return (
     <>
-      <div className="relative w-full">
+      <div className="relative w-full bg-slate-100">
         <Input
           type="search"
           variant="secondary"
@@ -54,13 +54,13 @@ const FilterSelectName: FC<{ items: PageFilter[] }> = ({ items }) => {
           <SearchIcon size={18} className="text-popover-foreground" />
         </div>
       </div>
-      <Separator />
-      <div className="relative flex h-full flex-col overflow-y-auto">
+      <Separator className="bg-bluish-gray-500 bg-opacity-35" />
+      <div className="relative flex h-full flex-col overflow-y-auto bg-slate-100">
         {filters.map((f) => (
           <Button
             key={`filter-select-name-${f.name}`}
             variant="clean"
-            className="h-4 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-100"
+            className="h-10 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-200"
             onClick={() => {
               setCurrentFilter(f);
               setCurrentStep(FilterSelectStep.values);
