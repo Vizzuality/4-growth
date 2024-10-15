@@ -1,18 +1,18 @@
 import { FC } from "react";
 
-import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
+import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 
 import { cn } from "@/lib/utils";
 
 interface AreaChartProps {
   indicator: string;
-  data: WidgetData;
+  data?: WidgetChartData;
 }
 
 const AreaChart: FC<AreaChartProps> = ({ indicator, data }) => {
-  if (data.length !== 3) {
+  if (data?.length !== 3) {
     console.warn(
-      `AreaChart - ${indicator}: Expected exactly 3 data points, but received ${data.length}.`,
+      `AreaChart - ${indicator}: Expected exactly 3 data points, but received ${data?.length}.`,
     );
     return null;
   }

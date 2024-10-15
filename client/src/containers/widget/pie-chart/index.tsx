@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
 
-import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
+import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Pie, PieChart as RePieChart } from "recharts";
 
 import { cn } from "@/lib/utils";
@@ -16,10 +16,15 @@ const CHART_COLORS = [
 ] as const;
 
 interface PieChartProps {
-  data: WidgetData;
+  data?: WidgetChartData;
 }
 
 const PieChart: FC<PieChartProps> = ({ data }) => {
+  if (!data || data.length === 0) {
+    console.warn(`PieChart: Expected at least 1 data point, but received 0.`);
+    return null;
+  }
+
   return (
     <div className="flex flex-1 gap-x-8 pl-6">
       <ChartContainer config={{}} className="aspect-square min-h-[200px]">
