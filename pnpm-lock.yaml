@@ -233,9 +233,6 @@ importers:
       '@tanstack/react-table':
         specifier: 8.19.2
         version: 8.19.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ts-rest/react-query':
         specifier: 3.51.0
         version: 3.51.0(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@ts-rest/core@3.51.0(@types/node@20.14.2)(zod@3.23.8))(react@18.3.1)(zod@3.23.8)
@@ -303,6 +300,9 @@ importers:
       '@testing-library/react':
         specifier: ^15.0.7
         version: 15.0.7(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@testing-library/react-hooks':
+        specifier: 8.0.1
+        version: 8.0.1(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
