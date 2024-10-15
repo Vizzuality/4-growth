@@ -5,7 +5,7 @@ import SingleValue from "@/containers/widget/single-value";
 describe("SingleValue", () => {
   const mockProps = {
     indicator: "Test",
-    data: [{ label: "", value: 100, total: 100 }],
+    data: { value: 100, total: 100 },
   };
 
   it("renders the indicator and value and updates when props change", () => {
@@ -15,10 +15,7 @@ describe("SingleValue", () => {
     expect(screen.getByText("100")).toBeInTheDocument();
 
     rerender(
-      <SingleValue
-        indicator="Test 2"
-        data={[{ label: "", value: 50, total: 100 }]}
-      />,
+      <SingleValue indicator="Test 2" data={{ value: 50, total: 100 }} />,
     );
     expect(screen.getByText("Test 2")).toBeInTheDocument();
     expect(screen.getByText("50")).toBeInTheDocument();
@@ -31,12 +28,7 @@ describe("SingleValue", () => {
     );
     expect(fillElement).toHaveStyle("width: 100%");
 
-    rerender(
-      <SingleValue
-        {...mockProps}
-        data={[{ label: "", value: 50, total: 100 }]}
-      />,
-    );
+    rerender(<SingleValue {...mockProps} data={{ value: 50, total: 100 }} />);
 
     expect(fillElement).toHaveStyle("width: 50% ");
   });
@@ -61,7 +53,7 @@ describe("SingleValue", () => {
 
   it("handles edge case with 0 total correctly", () => {
     const { container } = render(
-      <SingleValue {...mockProps} data={[{ label: "", value: 0, total: 0 }]} />,
+      <SingleValue {...mockProps} data={{ value: 0, total: 0 }} />,
     );
     const fillElement = container.querySelector(
       ".absolute.left-0.top-0.h-full",
@@ -71,10 +63,7 @@ describe("SingleValue", () => {
 
   it("handles edge case with value greater than total correctly", () => {
     const { container } = render(
-      <SingleValue
-        {...mockProps}
-        data={[{ label: "", value: 150, total: 100 }]}
-      />,
+      <SingleValue {...mockProps} data={{ value: 150, total: 100 }} />,
     );
     const fillElement = container.querySelector(
       ".absolute.left-0.top-0.h-full",
@@ -86,7 +75,9 @@ describe("SingleValue", () => {
     const consoleWarnSpy = vi
       .spyOn(console, "warn")
       .mockImplementation(() => {});
-    const { container } = render(<SingleValue {...mockProps} data={[]} />);
+    const { container } = render(
+      <SingleValue {...mockProps} data={undefined} />,
+    );
 
     expect(consoleWarnSpy).toHaveBeenCalledWith(
       "SingleValue - Test: Expected at least 1 data point, but received 0.",

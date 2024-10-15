@@ -1,11 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import {
-  BaseWidgetWithData,
-  WidgetData,
-  WidgetNavigationData,
-} from "@shared/dto/widgets/base-widget-data.interface";
+import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import {
   WIDGET_VISUALIZATIONS,
   WidgetVisualizationsType,
@@ -67,11 +63,7 @@ export default function Widget({
     case WIDGET_VISUALIZATIONS.SINGLE_VALUE:
       return (
         <Card className="p-0">
-          <SingleValue
-            indicator={indicator}
-            data={data as WidgetData}
-            fill={fill}
-          />
+          <SingleValue indicator={indicator} data={data?.counter} fill={fill} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART:
@@ -90,7 +82,7 @@ export default function Widget({
             onMenuOpenChange={handleOpenChange}
             onMenuButtonClicked={setCurrentVisualization}
           />
-          <HorizontalBarChart data={data as WidgetData} />
+          <HorizontalBarChart data={data.chart} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.PIE_CHART:
@@ -109,7 +101,7 @@ export default function Widget({
             onMenuOpenChange={handleOpenChange}
             onMenuButtonClicked={setCurrentVisualization}
           />
-          <PieChart data={data as WidgetData} />
+          <PieChart data={data.chart} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.AREA_GRAPH:
@@ -125,7 +117,7 @@ export default function Widget({
             onMenuOpenChange={handleOpenChange}
             onMenuButtonClicked={setCurrentVisualization}
           />
-          <AreaChart indicator={indicator} data={data as WidgetData} />
+          <AreaChart indicator={indicator} data={data.chart} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.NAVIGATION:
@@ -133,10 +125,7 @@ export default function Widget({
         <Card
           className={cn("relative min-h-80 p-0", showMenu && "z-50", className)}
         >
-          <Navigation
-            indicator={indicator}
-            href={(data as WidgetNavigationData).href}
-          />
+          <Navigation indicator={indicator} href={data?.navigation?.href} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.FILTER:
@@ -148,10 +137,7 @@ export default function Widget({
             className,
           )}
         >
-          <Filter
-            indicator={indicator}
-            href={(data as WidgetNavigationData).href}
-          />
+          <Filter indicator={indicator} href={data?.navigation?.href} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.MAP:

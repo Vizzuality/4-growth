@@ -1,3 +1,7 @@
+import {
+  WIDGET_VISUALIZATIONS,
+  WidgetVisualizationsType,
+} from '@shared/dto/widgets/widget-visualizations.constants';
 import { DataSource, EntityManager } from 'typeorm';
 import { ISurveyDataRepository } from '@api/infrastructure/survey-data-repository.interface';
 import { Inject, Logger } from '@nestjs/common';
@@ -8,6 +12,7 @@ import { SQLAdapter } from '@api/infrastructure/sql-adapter';
 import { WidgetQuestionMap } from '@shared/dto/widgets/widget-question-map';
 import {
   BaseWidgetWithData,
+  WidgetChartData,
   WidgetData,
 } from '@shared/dto/widgets/base-widget-data.interface';
 
@@ -67,7 +72,7 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
         `${widget.indicator} not found in WidgetQuestionMap. Skipping filter...`,
         this.constructor.name,
       );
-      widget.data = [];
+      widget.data = {};
     }
     // TODO: Edge cases here. Total surveys and total countries.
     if (widget.indicator === 'Total surveys') {
@@ -77,7 +82,7 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
         t.query(filteredCount),
         t.query(totalCount),
       ]);
-      widget.data = [{ value, total }];
+      widget.data = { counter: { value, total } };
       return;
     }
     if (widget.indicator === 'Total countries') {
@@ -87,7 +92,7 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
         t.query(filteredCount),
         t.query(totalCount),
       ]);
-      widget.data = [{ value, total }];
+      widget.data = { counter: { value, total } };
       return;
     }
 
@@ -96,14 +101,38 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
       await t.query(totalsSql);
 
     if (totalsResult.length === 0) {
-      widget.data = [];
+      widget.data = {};
       return;
     }
 
-    const widgetData: WidgetData = [];
-    for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
-      const res = totalsResult[rowIdx];
-      widgetData.push({ label: res.key, value: res.count, total: res.total });
+    let widgetData: WidgetData = {};
+    const charts: WidgetVisualizationsType[] = [
+      WIDGET_VISUALIZATIONS.AREA_GRAPH,
+      WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
+      WIDGET_VISUALIZATIONS.PIE_CHART,
+    ];
+
+    if (widget.visualisations.some((v) => charts.includes(v))) {
+      const arr: WidgetChartData = [];
+
+      for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
+        const res = totalsResult[rowIdx];
+        arr.push({ label: res.key, value: res.count });
+      }
+
+      widgetData = { chart: arr };
+    }
+
+    if (widget.visualisations.includes(WIDGET_VISUALIZATIONS.SINGLE_VALUE)) {
+      // TODO: Add WidgetCounterData
+    }
+
+    if (widget.visualisations.includes(WIDGET_VISUALIZATIONS.MAP)) {
+      // TODO: Add WidgetMapData
+    }
+
+    if (widget.visualisations.includes(WIDGET_VISUALIZATIONS.NAVIGATION)) {
+      // TODO: Add WidgetNavigationData
     }
 
     widget.data = widgetData;

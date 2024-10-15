@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
+import { WidgetCounterData } from "@shared/dto/widgets/base-widget-data.interface";
 
 import { cn } from "@/lib/utils";
 
@@ -8,7 +8,7 @@ import Title from "@/components/ui/title";
 
 interface SingleValueProps {
   indicator: string;
-  data: WidgetData;
+  data?: WidgetCounterData;
   fill?: "bg-secondary" | "bg-accent";
 }
 
@@ -17,14 +17,14 @@ const SingleValue: FC<SingleValueProps> = ({
   data,
   fill = "bg-secondary",
 }) => {
-  if (data.length === 0) {
+  if (!data) {
     console.warn(
       `SingleValue - ${indicator}: Expected at least 1 data point, but received 0.`,
     );
     return null;
   }
 
-  const { value, total } = data[0];
+  const { value, total } = data;
   const fillPercentage =
     total && total > 0 ? Math.min(Math.round((value / total) * 100), 100) : 0;
 
