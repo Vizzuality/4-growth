@@ -8,13 +8,19 @@ import { CustomWidgetsController } from '@api/modules/widgets/custom-widgets.con
 import { PageFiltersService } from '@api/modules/widgets/page-filters.service';
 import { PageFiltersController } from '@api/modules/widgets/page-filters.controller';
 import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
+import { WidgetsController } from '@api/modules/widgets/widgets.controller';
+import { WidgetsService } from '@api/modules/widgets/widgets.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([BaseWidget, CustomWidget, PageFilter]),
     forwardRef(() => AuthModule),
   ],
-  providers: [CustomWidgetService, PageFiltersService],
-  controllers: [CustomWidgetsController, PageFiltersController],
+  providers: [CustomWidgetService, PageFiltersService, WidgetsService],
+  controllers: [
+    CustomWidgetsController,
+    PageFiltersController,
+    WidgetsController,
+  ],
 })
 export class WidgetsModule {}
