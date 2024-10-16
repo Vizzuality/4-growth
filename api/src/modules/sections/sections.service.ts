@@ -40,7 +40,7 @@ export class SectionsService extends AppBaseService<
 
     const sectionsWithData =
       await this.surveyDataRepository.addSurveyDataToSections(
-        sections as Section[],
+        sections,
         filters,
       );
 
