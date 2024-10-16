@@ -1,10 +1,4 @@
-import {
-  Controller,
-  HttpStatus,
-  Param,
-  UseInterceptors,
-  ClassSerializerInterceptor,
-} from '@nestjs/common';
+import { Controller, HttpStatus, Param } from '@nestjs/common';
 import { WidgetsService } from './widgets.service';
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { widgetsContract as c } from '@shared/contracts/base-widgets.contract';
@@ -12,7 +6,6 @@ import { ControllerResponse } from '@api/types/controller.type';
 import { Public } from '@api/decorators/is-public.decorator';
 
 @Controller()
-@UseInterceptors(ClassSerializerInterceptor)
 export class WidgetsController {
   constructor(private widgetsService: WidgetsService) {}
 
