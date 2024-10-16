@@ -8,10 +8,9 @@ import { useAtomValue } from "jotai";
 
 import { cn } from "@/lib/utils";
 
-import useFilters from "@/hooks/useFilters";
-
 import Header from "@/containers/header";
 import FilterSettings from "@/containers/sidebar/filter-settings";
+import SandboxSettings from "@/containers/sidebar/sandbox-settings";
 import SectionsNav from "@/containers/sidebar/sections-nav";
 import { isPopoverOpenAtom } from "@/containers/sidebar/store";
 
@@ -28,7 +27,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 const Sidebar: FC = () => {
   const isExplore = usePathname().startsWith("/explore");
   const isPopoverOpen = useAtomValue(isPopoverOpenAtom);
-  const { filters } = useFilters();
 
   return (
     <>
@@ -85,7 +83,7 @@ const Sidebar: FC = () => {
             <AccordionItem value="sandbox-settings">
               <AccordionTrigger>Settings</AccordionTrigger>
               <AccordionContent className="py-3.5">
-                settings here...
+                <SandboxSettings />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="sandbox-filters">
