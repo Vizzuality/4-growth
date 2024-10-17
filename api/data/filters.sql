@@ -1,16 +1,4 @@
-
--- TEMPORAL WORKAROUND FOR FILTERS
-
-
-ALTER TABLE ONLY public.page_filters DROP CONSTRAINT "PK_066730e267edae13a61a79b8bd3";
-DROP TABLE public.page_filters;
-
-
-CREATE TABLE public.page_filters (
-                                     name character varying NOT NULL,
-                                     "values" text NOT NULL
-);
-
+DELETE FROM public.page_filters;
 
 INSERT INTO public.page_filters VALUES ('sector', 'Agriculture;Forestry;Both');
 INSERT INTO public.page_filters VALUES ('type-of-stakeholder', 'Farmer/agricultural producers;Forester;Forest owner;Forest operator;Forest product processor;Farming association;Farming cooperative;Forest industry association;Trade association;NGO/Advisory Group;Data association/organisation/coalition;Data provider;Platform provider;Service/Information provider;Digital technology provider; Research institutes and research networks; National and European networks');
@@ -46,10 +34,5 @@ INSERT INTO public.page_filters VALUES ('primary-functions', 'On-farm activities
 INSERT INTO public.page_filters VALUES ('adoption-level', 'Fully integrated;Advanced;Preliminary');
 INSERT INTO public.page_filters VALUES ('advantages', 'Increased efficiency and productivity;Improved decision-making;Efficient Resource Allocation;Traceability and Transparency;Early Detection of Issues;Economic Benefits;Smart Irrigation and Water Conservation;Improved Forest Management;Enhanced Safety and Monitoring;Other');
 INSERT INTO public.page_filters VALUES ('network-connectivity', 'Wired internet;Wireless internet;Cellular networks;Satellite internet;IoT networks;Fiber Optic Networks;Private Networks;Low-Power Wide-Area Network');
-
-
-ALTER TABLE ONLY public.page_filters
-    ADD CONSTRAINT "PK_066730e267edae13a61a79b8bd3" PRIMARY KEY (name);
-
 
 

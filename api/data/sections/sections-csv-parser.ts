@@ -31,7 +31,7 @@ const parseSectionsFromFile = async (
         if (indicator === '') continue;
 
         const section = row[3].trim() as string;
-        const sectionSlug = section.toLocaleLowerCase().replaceAll(' ', '-');
+        const sectionSlug = section.toLocaleLowerCase().replace(/ /g, '-');
 
         if (!(sectionSlug in sections)) {
           sections[sectionSlug] = {
@@ -48,7 +48,11 @@ const parseSectionsFromFile = async (
         for (let fieldIdx = 4; fieldIdx < 9; fieldIdx++) {
           const field = row[fieldIdx];
           if (field === 'TRUE') {
-            availableVisualizations.push(ROW_VISUALIZATION_MAP[fieldIdx]);
+            availableVisualizations.push(
+              ROW_VISUALIZATION_MAP[
+                fieldIdx as keyof typeof ROW_VISUALIZATION_MAP
+              ],
+            );
           }
         }
         const defaultVisualization = availableVisualizations[0];

@@ -1,6 +1,5 @@
 # 4-GROWTH API
 
-
 This project is built with NestJS.
 
 ## NestJS Version
@@ -27,4 +26,5 @@ Here are some of the npm scripts that you can run:
 - `pnpm start`: Starts the application
 - `pnpm start:dev`: Starts the application in watch mode
 - `pnpm test`: Runs the tests
-- `pnpm test:e2e`: Runs the end-to-end tests
+- `pnpm typeorm`: Execute typeorm CLI
+- `pnpm typeorm migration:run -d src/infrastructure/data-sources/postgres-data-source.ts`: Run typeorm migrations

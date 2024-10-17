@@ -14,7 +14,6 @@ export class DataSourceManager {
   ) {}
 
   public async loadInitialData(): Promise<void> {
-    const schemaSql = this.getInitialSchemaSqlCode();
     const sqlScripts: string[] = await Promise.all([
       this.getInitialSectionsSqlCode(),
       this.getFiltersSqlCode(),
@@ -24,7 +23,6 @@ export class DataSourceManager {
     const queryRunner = this.dataSource.createQueryRunner();
     try {
       await queryRunner.startTransaction();
-      await queryRunner.query(schemaSql);
       const sqlCodePromises = [];
       for (let sqlCodeIdx = 0; sqlCodeIdx < sqlScripts.length; sqlCodeIdx++) {
         sqlCodePromises.push(queryRunner.query(sqlScripts[sqlCodeIdx]));
@@ -37,16 +35,6 @@ export class DataSourceManager {
     } finally {
       await queryRunner.release();
     }
-  }
-
-  private getInitialSchemaSqlCode(): string {
-    const schemafilePath = `data/schema.sql`;
-    this.logger.log(
-      `Loading initial schema from "${schemafilePath}"`,
-      this.constructor.name,
-    );
-
-    return fs.readFileSync(schemafilePath, 'utf-8');
   }
 
   private async getInitialSectionsSqlCode(): Promise<string> {
