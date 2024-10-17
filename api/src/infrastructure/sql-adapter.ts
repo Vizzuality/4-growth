@@ -13,7 +13,7 @@ export class SQLAdapter {
     for (let idx = 0; idx < pageFilters.length; idx++) {
       const pageFilter = pageFilters[idx];
       // eslint-disable-next-line prettier/prettier
-      sqlCode += `INSERT INTO page_filters (name, values) VALUES ('${pageFilter.name.replaceAll("'", "''")}', '${pageFilter.values.join(';').replaceAll("'", "''")}') ON CONFLICT (name) DO UPDATE SET values = excluded.values;\n`;
+      sqlCode += `INSERT INTO page_filters (name, values) VALUES ('${pageFilter.name.replace(/'/g, "''")}', '${pageFilter.values.join(';').replace(/'/g, "''")}') ON CONFLICT (name) DO UPDATE SET values = excluded.values;\n`;
     }
     return sqlCode;
   }
@@ -22,7 +22,7 @@ export class SQLAdapter {
     let sqlCode: string = '';
     const keys = Object.keys(sections);
     for (const key of keys) {
-      const section = sections[key];
+      const section = sections[key as any];
       const { order, slug, name, description, widgets } = section;
 
       let widgetsSql = '';

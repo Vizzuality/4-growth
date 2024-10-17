@@ -7,6 +7,7 @@ import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
 import { Section } from '@shared/dto/sections/section.entity';
 import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
 import { SurveyAnswer } from '@shared/dto/surveys/survey-answer.entity';
+import { QuestionIndicatorMap } from '@shared/dto/surveys/question-widget-map.entity';
 
 export const DB_ENTITIES: MixedList<Function | string | EntitySchema> = [
   User,
@@ -16,4 +17,5 @@ export const DB_ENTITIES: MixedList<Function | string | EntitySchema> = [
   CustomWidget,
   PageFilter,
   SurveyAnswer,
+  QuestionIndicatorMap,
 ];
