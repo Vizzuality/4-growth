@@ -2,15 +2,15 @@ import { ChangeEvent, FC, useState } from "react";
 
 import { useForm } from "react-hook-form";
 
+import { WidgetDataFilterOperatorType } from "@shared/dto/global/search-widget-data-params";
+import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import Fuse from "fuse.js";
 import { useAtom, useAtomValue } from "jotai";
 import { SearchIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-import FilterSelectOperator, {
-  operatorToName,
-} from "@/containers/filter/filter-select/filter-select-operator";
+import FilterSelectOperator from "@/containers/filter/filter-select/filter-select-operator";
 import {
   currentFilterAtom,
   currentStepAtom,
@@ -32,52 +32,57 @@ import { Separator } from "@/components/ui/separator";
 
 export interface FilterSelectForm {
   values: string[];
-  operator: keyof typeof operatorToName;
+  operator: WidgetDataFilterOperatorType;
 }
 
 export interface FilterSelectValuesProps {
+  items: PageFilter[];
+  defaultValues: string[];
   isFixedFilter?: boolean;
   onSubmit: (values: FilterSelectForm) => void;
 }
 
 const FilterSelectValues: FC<FilterSelectValuesProps> = ({
+  items,
+  defaultValues,
   isFixedFilter,
   onSubmit,
 }) => {
-  const form = useForm<FilterSelectForm>({
-    defaultValues: { values: [], operator: "=" },
-  });
   const filter = useAtomValue(currentFilterAtom);
+  const allValues = items.find((i) => i.name === filter?.name)?.values || [];
   const [currentStep, setCurrentStep] = useAtom(currentStepAtom);
   const [selectAll, setSelectAll] = useState(false);
+  const form = useForm<FilterSelectForm>({
+    defaultValues: { values: defaultValues, operator: "=" },
+  });
   const selectedValues = form.watch("values");
-  const [values, setValues] = useState<string[]>(filter?.values || []);
+  const [formItems, setFormitems] = useState<string[]>(allValues);
 
   const fuse = (value: string) => {
     const config = {
       threshold: 0.3,
     };
 
-    return new Fuse(filter?.values || [], config).search(value);
+    return new Fuse(allValues, config).search(value);
   };
 
   const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const searchValue = e.target.value;
 
     if (searchValue.length === 0) {
-      setValues(filter?.values || []);
+      setFormitems(allValues);
       return;
     }
 
     const result = fuse(searchValue);
 
-    setValues(result.map((o) => o.item));
+    setFormitems(result.map((o) => o.item));
   };
 
   const handleSelectAll = (checked: boolean) => {
     setSelectAll(checked);
     if (checked) {
-      form.setValue("values", filter?.values || []);
+      form.setValue("values", allValues);
     } else {
       form.setValue("values", []);
     }
@@ -123,7 +128,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
               name="values"
               render={({ field }) => (
                 <FormItem className="flex-1 space-y-0 overflow-y-auto">
-                  {values.length === filter?.values.length && (
+                  {allValues.length && (
                     <FormItem className="flex h-10 items-center justify-between gap-2 space-y-0 pr-3 transition-colors hover:bg-slate-200">
                       <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none py-4 pl-3 pr-0 text-xs font-medium">
                         Select All
@@ -138,7 +143,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
                       </FormControl>
                     </FormItem>
                   )}
-                  {values.map((v) => (
+                  {formItems.map((v) => (
                     <FormItem
                       key={`filter-select-value-${v}`}
                       className="flex h-10 items-center justify-between gap-2 space-y-0 pr-3 transition-colors hover:bg-slate-200"

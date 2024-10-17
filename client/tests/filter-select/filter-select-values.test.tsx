@@ -20,13 +20,25 @@ vi.mock("@/containers/filter/filter-select/filter-select-operator", () => ({
 }));
 
 describe("FilterSelectValues", () => {
+  const mockItems = [
+    {
+      name: "sector",
+      values: ["Agriculture", "Forestry"],
+    },
+    {
+      name: "level-of-reliability:-1-5",
+      values: ["1", "2", "3", "4", "5"],
+    },
+  ];
   const mockFilter = {
     name: "sector",
-    values: ["Agriculture", "Forestry", "Both"],
+    values: ["Agriculture", "Forestry"],
   };
 
   const mockOnSubmit = vi.fn();
   const mockProps = {
+    items: mockItems,
+    defaultValues: [],
     onSubmit: mockOnSubmit,
   };
 
@@ -94,6 +106,32 @@ describe("FilterSelectValues", () => {
       expect(screen.queryByText("Agriculture")).not.toBeInTheDocument();
       expect(screen.queryByText("Both")).not.toBeInTheDocument();
     });
+  });
+
+  it("should unselect all checkboxes if defaultValues is empty", () => {
+    render(<FilterSelectValues {...mockProps} defaultValues={[]} />);
+
+    expect(screen.getByLabelText("Agriculture")).toHaveAttribute(
+      "aria-checked",
+      "false",
+    );
+    expect(screen.getByLabelText("Forestry")).toHaveAttribute(
+      "aria-checked",
+      "false",
+    );
+  });
+
+  it("should select the correct checkboxes if defaultValues is passed", () => {
+    render(<FilterSelectValues {...mockProps} defaultValues={["Forestry"]} />);
+
+    expect(screen.getByLabelText("Agriculture")).toHaveAttribute(
+      "aria-checked",
+      "false",
+    );
+    expect(screen.getByLabelText("Forestry")).toHaveAttribute(
+      "aria-checked",
+      "true",
+    );
   });
 
   it("toggles select all checkbox", () => {

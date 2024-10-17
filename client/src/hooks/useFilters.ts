@@ -4,21 +4,19 @@ import {
   VALID_SEARCH_WIDGET_DATA_OPERATORS,
   WidgetDataFilterOperatorType,
 } from "@shared/dto/global/search-widget-data-params";
-import {
-  AVAILABLE_PAGE_FILTER_NAMES,
-  PageFilterQuestionKey,
-} from "@shared/dto/widgets/page-filter-question-map";
 import { useQueryState } from "nuqs";
 import qs from "qs";
 
-interface FilterQueryParam {
-  name: PageFilterQuestionKey;
+export interface FilterQueryParam {
+  name: string;
   operator: WidgetDataFilterOperatorType;
-  value: string[];
+  values: string[];
 }
 
 type ParsedFilterObject = {
-  [K in keyof FilterQueryParam]: K extends "value" ? string | string[] : string;
+  [K in keyof FilterQueryParam]: K extends "values"
+    ? string | string[]
+    : string;
 } & { [key: string]: unknown };
 
 function useFilters() {
@@ -53,10 +51,59 @@ function useFilters() {
     [setFiltersQuery],
   );
 
-  return { filters, setFilters };
+  const addFilter = useCallback(
+    (newFilter: FilterQueryParam) => {
+      let updatedFilters = filters.slice();
+
+      if (!updatedFilters.some((filter) => filter.name === newFilter.name)) {
+        updatedFilters.push(newFilter);
+      } else {
+        updatedFilters = filters.map((filter) => {
+          if (filter.name === newFilter.name) {
+            return {
+              ...filter,
+              values: newFilter.values,
+            };
+          }
+
+          return filter;
+        });
+      }
+
+      setFilters(updatedFilters);
+    },
+    [filters, setFilters],
+  );
+
+  const removeFilterValue = useCallback(
+    (name: string, valueToRemove: string) => {
+      const updatedFilters = filters
+        .map((filter) => {
+          if (filter.name === name) {
+            const updatedValues = filter.values.filter(
+              (value) => value !== valueToRemove,
+            );
+
+            if (updatedValues.length === 0) {
+              return null;
+            }
+
+            return { ...filter, values: updatedValues };
+          }
+
+          return filter;
+        })
+        .filter((filter): filter is FilterQueryParam => filter !== null);
+
+      setFilters(updatedFilters);
+    },
+    [filters, setFilters],
+  );
+
+  return { filters, setFilters, addFilter, removeFilterValue };
 }
 
-const REQUIRED_KEYS = ["name", "operator", "value"];
+const REQUIRED_KEYS = ["name", "operator", "values"];
 
 function validateFilterQueryParam(
   obj: ParsedFilterObject,
@@ -67,13 +114,6 @@ function validateFilterQueryParam(
   if (missingKeys.length > 0) {
     throw new Error(
       `Filter at index ${index} is missing required keys: ${missingKeys.join(", ")}`,
-    );
-  }
-
-  // Check if name is valid
-  if (!AVAILABLE_PAGE_FILTER_NAMES.includes(obj.name)) {
-    throw new Error(
-      `Filter at index ${index} has invalid 'name': "${obj.name}".`,
     );
   }
 
@@ -88,10 +128,10 @@ function validateFilterQueryParam(
     );
   }
 
-  // Check if value is a non-empty array of strings
-  if (!Array.isArray(obj.value) || obj.value.length === 0) {
+  // Check if values is a non-empty array of strings
+  if (!Array.isArray(obj.values) || obj.values.length === 0) {
     throw new Error(
-      `Filter at index ${index} has invalid 'value': expected a non-empty array, got ${JSON.stringify(obj.value)}`,
+      `Filter at index ${index} has invalid 'values': expected a non-empty array, got ${JSON.stringify(obj.values)}`,
     );
   }
 

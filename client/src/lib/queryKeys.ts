@@ -3,6 +3,8 @@ import {
   mergeQueryKeys,
 } from "@lukemorales/query-key-factory";
 
+import { FilterQueryParam } from "@/hooks/useFilters";
+
 export const usersKeys = createQueryKeys("users", {
   detail: (userId: string) => [userId],
   userCharts: (userId: string, options: Record<string, unknown>) => [
@@ -12,7 +14,9 @@ export const usersKeys = createQueryKeys("users", {
 });
 
 export const sectionsKeys = createQueryKeys("sections", {
-  all: null,
+  all: (filters: FilterQueryParam[]) => ({
+    queryKey: [{ filters }],
+  }),
 });
 
 export const pageFiltersKeys = createQueryKeys("pageFilters", {

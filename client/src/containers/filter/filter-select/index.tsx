@@ -19,12 +19,14 @@ import { Card } from "@/components/ui/card";
 
 export interface FilterSelectProps {
   items: PageFilter[];
+  defaultValues: string[];
   fixedFilter?: PageFilter;
   onSubmit: (values: FilterSelectForm & { name: string }) => void;
 }
 
 const FilterSelect: FC<FilterSelectProps> = ({
   items,
+  defaultValues,
   fixedFilter,
   onSubmit,
 }) => {
@@ -38,6 +40,7 @@ const FilterSelect: FC<FilterSelectProps> = ({
       >
         <Card className="relative h-full bg-foreground p-0 text-background">
           <FilterSelectSteps
+            defaultValues={defaultValues}
             fixedFilter={fixedFilter}
             items={items}
             onSubmit={onSubmit}
@@ -50,6 +53,7 @@ const FilterSelect: FC<FilterSelectProps> = ({
 
 function FilterSelectSteps({
   fixedFilter,
+  defaultValues,
   items,
   onSubmit,
 }: FilterSelectProps) {
@@ -62,6 +66,8 @@ function FilterSelectSteps({
 
   return (
     <FilterSelectValues
+      items={items}
+      defaultValues={defaultValues}
       isFixedFilter={!!fixedFilter}
       onSubmit={(v) => onSubmit({ ...v, name: currentFilter?.name as string })}
     />

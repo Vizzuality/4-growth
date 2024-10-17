@@ -8,10 +8,6 @@ vi.mock("nuqs", () => ({
   useQueryState: vi.fn(),
 }));
 
-vi.mock("@shared/dto/widgets/page-filter-question-map", () => ({
-  AVAILABLE_PAGE_FILTER_NAMES: ["sector", "eu-member-state"],
-}));
-
 vi.mock("@shared/dto/global/search-widget-data-params", () => ({
   VALID_SEARCH_WIDGET_DATA_OPERATORS: ["=", "!="],
 }));
@@ -39,7 +35,7 @@ describe("useFilters", () => {
 
   it("should parse and validate filters from filtersQuery", () => {
     const validFiltersQuery =
-      "filters[0][name]=sector&filters[0][operator]==&filters[0][value][0]=value1";
+      "filters[0][name]=sector&filters[0][operator]==&filters[0][values][0]=value1";
     const mockSetFiltersQuery = vi.fn();
     (useQueryState as jest.Mock).mockReturnValue([
       validFiltersQuery,
@@ -49,7 +45,7 @@ describe("useFilters", () => {
     const { result } = renderHook(() => useFilters());
 
     expect(result.current.filters).toEqual([
-      { name: "sector", operator: "=", value: ["value1"] },
+      { name: "sector", operator: "=", values: ["value1"] },
     ]);
   });
 
@@ -61,12 +57,12 @@ describe("useFilters", () => {
 
     act(() => {
       result.current.setFilters([
-        { name: "sector", operator: "=", value: ["newValue"] },
+        { name: "sector", operator: "=", values: ["newValue"] },
       ]);
     });
 
     expect(mockSetFiltersQuery).toHaveBeenCalledWith(
-      "filters[0][name]=sector&filters[0][operator]==&filters[0][value][0]=newValue",
+      "filters[0][name]=sector&filters[0][operator]==&filters[0][values][0]=newValue",
     );
   });
 
@@ -113,38 +109,32 @@ describe("useFilters", () => {
   );
 
   testInvalidFilter(
-    "invalid name",
-    "filters[0][name]=invalidName&filters[0][operator]==&filters[0][value][]=value1",
-    "Filter at index 0 has invalid 'name': \"invalidName\"",
-  );
-
-  testInvalidFilter(
     "invalid operator",
-    "filters[0][name]=sector&filters[0][operator]=>&filters[0][value][]=value1",
+    "filters[0][name]=sector&filters[0][operator]=>&filters[0][values][]=value1",
     "Filter at index 0 has invalid 'operator': \">\"",
   );
 
   testInvalidFilter(
     "missing name",
-    "filters[0][operator]==&filters[0][value][]=value1",
+    "filters[0][operator]==&filters[0][values][]=value1",
     "Filter at index 0 is missing required keys: name",
   );
 
   testInvalidFilter(
     "missing operator",
-    "filters[0][name]=sector&filters[0][value][]=value1",
+    "filters[0][name]=sector&filters[0][values][]=value1",
     "Filter at index 0 is missing required keys: operator",
   );
 
   testInvalidFilter(
-    "missing value",
+    "missing values",
     "filters[0][name]=sector&filters[0][operator]==",
-    "Filter at index 0 is missing required keys: value",
+    "Filter at index 0 is missing required keys: values",
   );
 
   testInvalidFilter(
-    "empty value array",
-    "filters[0][name]=sector&filters[0][operator]==&filters[0][value]=",
-    "Filter at index 0 has invalid 'value': expected a non-empty array",
+    "empty values array",
+    "filters[0][name]=sector&filters[0][operator]==&filters[0][values]=",
+    "Filter at index 0 has invalid 'values': expected a non-empty array",
   );
 });
