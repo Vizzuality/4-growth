@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default async function ExploreLayout({ children }: PropsWithChildren) {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: queryKeys.sections.all.queryKey,
+    queryKey: queryKeys.sections.all([]).queryKey,
     queryFn: async () => client.sections.searchSections.query(QUERY_OPTIONS),
   });
   await queryClient.prefetchQuery({
