@@ -1,4 +1,4 @@
-import { Controller, HttpStatus, Param } from '@nestjs/common';
+import { Controller, HttpStatus } from '@nestjs/common';
 import { WidgetsService } from './widgets.service';
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { widgetsContract as c } from '@shared/contracts/base-widgets.contract';
@@ -20,8 +20,8 @@ export class WidgetsController {
 
   @Public()
   @TsRestHandler(c.getWidget)
-  async getWidget(@Param('id') id: string): Promise<any> {
-    return tsRestHandler(c.getWidget, async ({ query }) => {
+  async getWidget(): Promise<any> {
+    return tsRestHandler(c.getWidget, async ({ params: { id }, query }) => {
       const widget = await this.widgetsService.getById(id, query);
       return { body: { data: widget }, status: HttpStatus.OK };
     });
