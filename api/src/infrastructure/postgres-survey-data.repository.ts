@@ -1,7 +1,3 @@
-import {
-  WIDGET_VISUALIZATIONS,
-  WidgetVisualizationsType,
-} from '@shared/dto/widgets/widget-visualizations.constants';
 import { DataSource, EntityManager } from 'typeorm';
 import { ISurveyDataRepository } from '@api/infrastructure/survey-data-repository.interface';
 import { Inject, Logger } from '@nestjs/common';
@@ -15,6 +11,7 @@ import {
   WidgetChartData,
   WidgetData,
 } from '@shared/dto/widgets/base-widget-data.interface';
+import { WidgetUtils } from '@shared/dto/widgets/widget.utils';
 
 export class PostgresSurveyDataRepository implements ISurveyDataRepository {
   public constructor(
@@ -106,13 +103,14 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
     }
 
     let widgetData: WidgetData = {};
-    const charts: WidgetVisualizationsType[] = [
-      WIDGET_VISUALIZATIONS.AREA_GRAPH,
-      WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
-      WIDGET_VISUALIZATIONS.PIE_CHART,
-    ];
+    const {
+      supportsChart,
+      supportsSingleValue,
+      supportsMap,
+      supportsNavigation,
+    } = WidgetUtils.getSupportedVisualizations(widget);
 
-    if (widget.visualisations.some((v) => charts.includes(v))) {
+    if (supportsChart) {
       const arr: WidgetChartData = [];
 
       for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
@@ -123,15 +121,15 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
       widgetData = { chart: arr };
     }
 
-    if (widget.visualisations.includes(WIDGET_VISUALIZATIONS.SINGLE_VALUE)) {
+    if (supportsSingleValue) {
       // TODO: Add WidgetCounterData
     }
 
-    if (widget.visualisations.includes(WIDGET_VISUALIZATIONS.MAP)) {
+    if (supportsMap) {
       // TODO: Add WidgetMapData
     }
 
-    if (widget.visualisations.includes(WIDGET_VISUALIZATIONS.NAVIGATION)) {
+    if (supportsNavigation) {
       // TODO: Add WidgetNavigationData
     }
 
