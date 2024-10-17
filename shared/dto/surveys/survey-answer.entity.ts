@@ -1,7 +1,7 @@
 import { Entity, Column, Index, PrimaryColumn } from 'typeorm';
 
 @Entity('survey_answers')
-@Index(['questionIndicator', 'answer'])
+@Index('idx_survey_answers_question_answer', ['questionIndicator', 'answer'])
 export class SurveyAnswer {
   @PrimaryColumn({ name: 'survey_id' })
   surveyId: string;
@@ -16,6 +16,6 @@ export class SurveyAnswer {
   answer: string;
 
   @Column({ name: 'country_code', nullable: false })
-  @Index()
+  @Index('idx_survey_answers_country_code')
   countryCode: string;
 }
