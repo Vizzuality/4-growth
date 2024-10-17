@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
+import { FilterQueryParam } from "@shared/schemas/query-param.schema";
 import { useSetAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
@@ -16,11 +17,10 @@ import { intersectingAtom } from "@/containers/explore/store";
 import Widget from "@/containers/widget";
 
 import { Overlay } from "@/components/ui/overlay";
-import { FilterQueryParam } from "@shared/schemas/query-param.schema";
 
 export default function Explore() {
   const { filters } = useFilters();
-  const { data, error } = client.sections.searchSections.useQuery(
+  const { data } = client.sections.searchSections.useQuery(
     queryKeys.sections.all(filters).queryKey,
     // TODO: Remove this type casting when api has updated the name property to type string
     { query: { filters: filters as FilterQueryParam<unknown> } },
