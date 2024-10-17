@@ -1,9 +1,6 @@
 import { FC } from "react";
 
-import {
-  BaseWidgetWithData,
-  WidgetData,
-} from "@shared/dto/widgets/base-widget-data.interface";
+import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 
 import { isEmptyWidget } from "@/lib/utils";
 
@@ -102,7 +99,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
             {isEmptyWidget(widgets[3].data) ? (
               <NoData />
             ) : (
-              <HorizontalBarChart data={widgets[3].data as WidgetData} />
+              <HorizontalBarChart data={widgets[3].data.chart} />
             )}
           </Card>
         </div>

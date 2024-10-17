@@ -78,11 +78,14 @@ describe("HorizontalBarChart", () => {
   });
 
   it("handles empty data gracefully", async () => {
+    const consoleWarnSpy = vi
+      .spyOn(console, "warn")
+      .mockImplementation(() => {});
     const { container } = render(<HorizontalBarChart data={[]} />);
 
-    await waitFor(() => {
-      const bars = container.querySelectorAll(".recharts-rectangle");
-      expect(bars).toHaveLength(0);
-    });
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      "HorizontalBarChart: Expected at least 1 data point, but received 0.",
+    );
+    expect(container.firstChild).toBeNull();
   });
 });

@@ -8,8 +8,10 @@ import { SQLAdapter } from '@api/infrastructure/sql-adapter';
 import { WidgetQuestionMap } from '@shared/dto/widgets/widget-question-map';
 import {
   BaseWidgetWithData,
+  WidgetChartData,
   WidgetData,
 } from '@shared/dto/widgets/base-widget-data.interface';
+import { WidgetUtils } from '@shared/dto/widgets/widget.utils';
 
 export class PostgresSurveyDataRepository implements ISurveyDataRepository {
   public constructor(
@@ -67,7 +69,7 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
         `${widget.indicator} not found in WidgetQuestionMap. Skipping filter...`,
         this.constructor.name,
       );
-      widget.data = [];
+      widget.data = {};
     }
     // TODO: Edge cases here. Total surveys and total countries.
     if (widget.indicator === 'Total surveys') {
@@ -77,7 +79,7 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
         t.query(filteredCount),
         t.query(totalCount),
       ]);
-      widget.data = [{ value, total }];
+      widget.data = { counter: { value, total } };
       return;
     }
     if (widget.indicator === 'Total countries') {
@@ -87,7 +89,7 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
         t.query(filteredCount),
         t.query(totalCount),
       ]);
-      widget.data = [{ value, total }];
+      widget.data = { counter: { value, total } };
       return;
     }
 
@@ -96,14 +98,39 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
       await t.query(totalsSql);
 
     if (totalsResult.length === 0) {
-      widget.data = [];
+      widget.data = {};
       return;
     }
 
-    const widgetData: WidgetData = [];
-    for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
-      const res = totalsResult[rowIdx];
-      widgetData.push({ label: res.key, value: res.count, total: res.total });
+    let widgetData: WidgetData = {};
+    const {
+      supportsChart,
+      supportsSingleValue,
+      supportsMap,
+      supportsNavigation,
+    } = WidgetUtils.getSupportedVisualizations(widget);
+
+    if (supportsChart) {
+      const arr: WidgetChartData = [];
+
+      for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
+        const res = totalsResult[rowIdx];
+        arr.push({ label: res.key, value: res.count });
+      }
+
+      widgetData = { chart: arr };
+    }
+
+    if (supportsSingleValue) {
+      // TODO: Add WidgetCounterData
+    }
+
+    if (supportsMap) {
+      // TODO: Add WidgetMapData
+    }
+
+    if (supportsNavigation) {
+      // TODO: Add WidgetNavigationData
     }
 
     widget.data = widgetData;

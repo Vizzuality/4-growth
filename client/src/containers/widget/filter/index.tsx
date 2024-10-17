@@ -8,11 +8,11 @@ import Title from "@/components/ui/title";
 
 const Filter: FC<{
   indicator: string;
-  href: string;
+  href?: string;
 }> = ({ indicator, href }) => {
   return (
     <Link
-      href={href}
+      href={href || "#"}
       className="group flex flex-1 flex-col justify-between p-6"
     >
       <div className="flex items-center justify-end">

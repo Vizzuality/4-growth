@@ -81,10 +81,14 @@ describe("PieChart", () => {
   });
 
   it("handles empty data gracefully", async () => {
+    const consoleWarnSpy = vi
+      .spyOn(console, "warn")
+      .mockImplementation(() => {});
     const { container } = render(<PieChart data={[]} />);
 
-    await waitFor(() => {
-      expect(container.querySelector(".recharts-surface")).toBeInTheDocument();
-    });
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      "PieChart: Expected at least 1 data point, but received 0.",
+    );
+    expect(container.firstChild).toBeNull();
   });
 });

@@ -8,11 +8,11 @@ import Title from "@/components/ui/title";
 
 const Navigation: FC<{
   indicator: string;
-  href: string;
+  href?: string;
 }> = ({ indicator, href }) => {
   return (
     <Link
-      href={href}
+      href={href || "#"}
       className="group relative flex flex-1 flex-col justify-between overflow-hidden p-6"
     >
       <div className="absolute inset-0 bg-[url('/images/explore/sandbox-navigation-widget.avif')] bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-in-out group-hover:scale-110"></div>
