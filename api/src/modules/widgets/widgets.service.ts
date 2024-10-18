@@ -27,24 +27,13 @@ export class WidgetsService extends AppBaseService<
     query: SelectQueryBuilder<BaseWidget>,
     fetchSpecification: FetchSpecification & WidgetVisualisationFilters,
   ): Promise<SelectQueryBuilder<BaseWidget>> {
-    if (fetchSpecification?.visualisations.length) {
+    if (fetchSpecification?.visualisations?.length) {
       return this.filterByVisualisation(
         query,
         fetchSpecification.visualisations,
       );
     }
-  }
-
-  async extendGetByIdQuery(
-    query: SelectQueryBuilder<BaseWidget>,
-    fetchSpecification?: FetchSpecification & WidgetVisualisationFilters,
-  ): Promise<SelectQueryBuilder<BaseWidget>> {
-    if (fetchSpecification?.visualisations.length) {
-      return this.filterByVisualisation(
-        query,
-        fetchSpecification.visualisations,
-      );
-    }
+    return query;
   }
 
   private filterByVisualisation(
