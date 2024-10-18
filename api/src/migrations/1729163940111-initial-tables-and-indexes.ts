@@ -3,8 +3,6 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 export class InitialTablesAndIndexes1729163940111
   implements MigrationInterface
 {
-  name = 'InitialSchema1729163940111';
-
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
       `CREATE TYPE "public"."base_widgets_default_visualization_enum" AS ENUM('single_value', 'map', 'horizontal_bar_chart', 'pie_chart', 'area_graph', 'filter', 'navigation')`,
@@ -16,13 +14,13 @@ export class InitialTablesAndIndexes1729163940111
       `CREATE TABLE "sections" ("order" integer NOT NULL, "slug" character varying NOT NULL, "name" character varying NOT NULL, "description" character varying, "created_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_6585d4a8196db804deedc1b343a" UNIQUE ("slug"), CONSTRAINT "PK_a605d9121e6cc3e665f24314ad8" PRIMARY KEY ("order"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "base_widgets" ("id" SERIAL NOT NULL, "question" character varying, "indicator" character varying, "section_order" integer NOT NULL, "visualisations" text NOT NULL, "default_visualization" "public"."base_widgets_default_visualization_enum" NOT NULL, "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "section_id" integer, CONSTRAINT "PK_93f5f3f72fcf9fb685e887c8064" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "base_widgets" ("indicator" character varying, "question" character varying, "section_order" integer NOT NULL, "visualisations" text NOT NULL, "default_visualization" "public"."base_widgets_default_visualization_enum" NOT NULL, "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "section_id" integer, CONSTRAINT "PK_93f5f3f72fcf9fb685e887c8064" PRIMARY KEY ("indicator"))`,
     );
     await queryRunner.query(
       `CREATE INDEX "idx_section_widgets_section_order" ON "base_widgets" ("section_order") `,
     );
     await queryRunner.query(
-      `CREATE TABLE "custom_widgets" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "default_visualization" "public"."custom_widgets_default_visualization_enum" NOT NULL, "filters" jsonb NOT NULL, "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "user_id" uuid, "widget_id" integer, CONSTRAINT "PK_a5d2205ca142399bde7d3f2b1cb" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "custom_widgets" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "default_visualization" "public"."custom_widgets_default_visualization_enum" NOT NULL, "filters" jsonb NOT NULL, "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "user_id" uuid, "widget_indicator" character varying, CONSTRAINT "PK_a5d2205ca142399bde7d3f2b1cb" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TABLE "users" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "email" character varying NOT NULL, "password" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_97672ac88f789774dd47f7c8be3" UNIQUE ("email"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`,
@@ -43,7 +41,10 @@ export class InitialTablesAndIndexes1729163940111
       `CREATE INDEX "idx_survey_answers_question_answer" ON "survey_answers" ("question_indicator", "answer") `,
     );
     await queryRunner.query(
-      `CREATE TABLE "question_indicator_map" ("indicator" character varying NOT NULL, "question" character varying NOT NULL, CONSTRAINT "PK_75e60c595a8a13cfe41e4710633" PRIMARY KEY ("indicator", "question"))`,
+      `CREATE TABLE "question_indicator_map" ("indicator" character varying NOT NULL, "question" character varying NOT NULL, CONSTRAINT "PK_75e60c595a8a13cfe41e4710633" PRIMARY KEY ("indicator"))`,
+    );
+    await queryRunner.query(
+      'ALTER TABLE "question_indicator_map" ADD CONSTRAINT "UQ_question_indicator_map_indicator_question" UNIQUE ("indicator", "question");',
     );
     await queryRunner.query(
       `ALTER TABLE "base_widgets" ADD CONSTRAINT "FK_ec4ecfd98ca886865a3f579994f" FOREIGN KEY ("section_id") REFERENCES "sections"("order") ON DELETE NO ACTION ON UPDATE NO ACTION`,
@@ -52,7 +53,16 @@ export class InitialTablesAndIndexes1729163940111
       `ALTER TABLE "custom_widgets" ADD CONSTRAINT "FK_dac539060d0b71bf4aeeb52b205" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
-      `ALTER TABLE "custom_widgets" ADD CONSTRAINT "FK_ba78a479ff764c0aa29e8f97ace" FOREIGN KEY ("widget_id") REFERENCES "base_widgets"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+      `ALTER TABLE "custom_widgets" ADD CONSTRAINT "FK_ba78a479ff764c0aa29e8f97ace" FOREIGN KEY ("widget_indicator") REFERENCES "base_widgets"("indicator") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "base_widgets" ADD CONSTRAINT "FK_question_indicator_map" FOREIGN KEY ("indicator", "question") REFERENCES "question_indicator_map"("indicator","question") ON DELETE CASCADE`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "survey_answers" ADD CONSTRAINT "FK_question_indicator_map" FOREIGN KEY ("question_indicator", "question") REFERENCES "question_indicator_map"("indicator","question") ON DELETE CASCADE`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "page_filters" ADD CONSTRAINT "FK_question_indicator_map" FOREIGN KEY ("name") REFERENCES "question_indicator_map"("indicator") ON DELETE CASCADE`,
     );
   }
 

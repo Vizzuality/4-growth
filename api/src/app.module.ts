@@ -49,7 +49,11 @@ export class AppModule implements OnModuleInit {
 
   public async onModuleInit() {
     // Wait for all the initial data to be loaded to avoid conflicts when testing
-    await this.dataSourceManager.loadInitialData();
-    await this.dataSourceManager.loadMockData();
+    await this.dataSourceManager.loadQuestionIndicatorMap();
+    await Promise.all([
+      this.dataSourceManager.loadPageFilters(),
+      this.dataSourceManager.loadPageSections(),
+      this.dataSourceManager.loadMockData(),
+    ]);
   }
 }

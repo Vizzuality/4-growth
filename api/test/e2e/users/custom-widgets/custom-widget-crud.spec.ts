@@ -24,7 +24,9 @@ describe('Custom Widgets API', () => {
     authToken = user.jwtToken;
     testUser = user.user;
 
-    baseWidget = await entityMocks.createBaseWidget();
+    baseWidget = await entityMocks.createBaseWidget({
+      indicator: 'base-widget',
+    });
   });
 
   afterAll(async () => {
@@ -36,7 +38,7 @@ describe('Custom Widgets API', () => {
       // Given
       const requestBody = {
         name: 'My saved widget',
-        widgetId: baseWidget.id,
+        widgetIndicator: baseWidget.indicator,
         defaultVisualization: baseWidget.defaultVisualization,
       };
 
@@ -55,7 +57,7 @@ describe('Custom Widgets API', () => {
       // Given
       const requestBody = {
         name: 'My saved widget',
-        widgetId: baseWidget.id,
+        widgetIndicator: baseWidget.indicator,
         defaultVisualization: baseWidget.defaultVisualization,
         filters: {},
       };
@@ -71,7 +73,7 @@ describe('Custom Widgets API', () => {
       expect(res.status).toBe(200);
       const returnedData = res.body.data;
       expect(returnedData.name).toBe(requestBody.name);
-      expect(returnedData.widget.id).toBe(requestBody.widgetId);
+      expect(returnedData.widget.indicator).toBe(requestBody.widgetIndicator);
       expect(returnedData.user.id).toBe(testUser.id);
       expect(returnedData.filters).toEqual(requestBody.filters);
     });
@@ -80,7 +82,7 @@ describe('Custom Widgets API', () => {
       // Given
       const requestBody = {
         name: 'My saved widget',
-        widgetId: baseWidget.id,
+        widgetIndicator: baseWidget.indicator,
         defaultVisualization: '1',
         filters: {},
       };
@@ -101,7 +103,7 @@ describe('Custom Widgets API', () => {
       // Given
       const requestBody = {
         name: 'My saved widget',
-        widgetId: baseWidget.id,
+        widgetIndicator: baseWidget.indicator,
         defaultVisualization: 'invalid_visualization',
         filters: {},
       };
@@ -125,7 +127,7 @@ describe('Custom Widgets API', () => {
       await entityMocks.createCustomWidget({
         name: 'custom-widget',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // When
@@ -143,12 +145,12 @@ describe('Custom Widgets API', () => {
       await entityMocks.createCustomWidget({
         name: 'custom-widget1',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
       await entityMocks.createCustomWidget({
         name: 'custom-widget2',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // When
@@ -166,12 +168,12 @@ describe('Custom Widgets API', () => {
       await entityMocks.createCustomWidget({
         name: 'custom-widget1',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
       await entityMocks.createCustomWidget({
         name: 'custom-widget2',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // Other user's custom widgets
@@ -181,7 +183,7 @@ describe('Custom Widgets API', () => {
       await entityMocks.createCustomWidget({
         name: 'other-user-custom-widget1',
         user: { id: otherUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // When
@@ -201,12 +203,12 @@ describe('Custom Widgets API', () => {
       const customWidget1 = await entityMocks.createCustomWidget({
         name: 'custom-widget1',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
       await entityMocks.createCustomWidget({
         name: 'custom-widget2',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // Other user's custom widgets
@@ -216,7 +218,7 @@ describe('Custom Widgets API', () => {
       await entityMocks.createCustomWidget({
         name: 'other-user-custom-widget1',
         user: { id: otherUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // When
@@ -232,7 +234,7 @@ describe('Custom Widgets API', () => {
       const responseData = res.body.data;
       expect(responseData).toHaveLength(1);
       expect(responseData[0].name).toBe(customWidget1.name);
-      expect(responseData[0].widget.id).toBe(baseWidget.id);
+      expect(responseData[0].widget.indicator).toBe(baseWidget.indicator);
     });
 
     it("Shouldn't allow authenticated users to read other user's custom widgets", async () => {
@@ -240,12 +242,12 @@ describe('Custom Widgets API', () => {
       await entityMocks.createCustomWidget({
         name: 'custom-widget1',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
       await entityMocks.createCustomWidget({
         name: 'custom-widget2',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // Other user's custom widgets
@@ -255,7 +257,7 @@ describe('Custom Widgets API', () => {
       await entityMocks.createCustomWidget({
         name: 'other-user-custom-widget1',
         user: { id: otherUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // When
@@ -276,11 +278,11 @@ describe('Custom Widgets API', () => {
       const customWidget = await entityMocks.createCustomWidget({
         name: 'custom-widget',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
       const requestBody = {
         name: 'Name changed!',
-        widgetId: baseWidget.id,
+        widgetIndicator: baseWidget.indicator,
       };
 
       // When
@@ -299,11 +301,11 @@ describe('Custom Widgets API', () => {
       const customWidget = await entityMocks.createCustomWidget({
         name: 'custom-widget',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
       const requestBody = {
         name: 'Name changed!',
-        widgetId: baseWidget.id,
+        widgetIndicator: baseWidget.indicator,
         defaultVisualization: '1',
         filters: {},
       };
@@ -325,11 +327,11 @@ describe('Custom Widgets API', () => {
       const customWidget = await entityMocks.createCustomWidget({
         name: 'custom-widget',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
       const requestBody = {
         name: 'Name changed!',
-        widgetId: baseWidget.id,
+        widgetIndicator: baseWidget.indicator,
         defaultVisualization: baseWidget.defaultVisualization,
         filters: {},
       };
@@ -345,7 +347,9 @@ describe('Custom Widgets API', () => {
       expect(res.status).toBe(200);
       const returnedData = res.body.data;
       expect(returnedData.name).toBe(requestBody.name);
-      expect(returnedData.widget).toEqual({ id: requestBody.widgetId });
+      expect(returnedData.widget).toEqual({
+        indicator: requestBody.widgetIndicator,
+      });
       expect(returnedData.defaultVisualization).toBe(
         requestBody.defaultVisualization,
       );
@@ -356,11 +360,11 @@ describe('Custom Widgets API', () => {
       const customWidget = await entityMocks.createCustomWidget({
         name: 'custom-widget',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
       const requestBody = {
         name: 'Name changed!',
-        widgetId: baseWidget.id,
+        widgetIndicator: baseWidget.indicator,
         defaultVisualization: baseWidget.defaultVisualization,
         filters: {},
       };
@@ -384,7 +388,7 @@ describe('Custom Widgets API', () => {
       const customWidget = await entityMocks.createCustomWidget({
         name: 'custom-widget',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // When
@@ -402,7 +406,7 @@ describe('Custom Widgets API', () => {
       const customWidget = await entityMocks.createCustomWidget({
         name: 'custom-widget',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // When
@@ -421,7 +425,7 @@ describe('Custom Widgets API', () => {
       const customWidget = await entityMocks.createCustomWidget({
         name: 'custom-widget',
         user: { id: testUser.id },
-        widget: { id: baseWidget.id },
+        widget: { indicator: baseWidget.indicator },
       });
 
       // When

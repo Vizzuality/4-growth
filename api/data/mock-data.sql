@@ -20,17 +20,12 @@ INSERT INTO survey.answers (survey_id, hierarchy_level_2, categorical_answer) VA
 INSERT INTO survey.answers (survey_id, hierarchy_level_2, categorical_answer) VALUES (3, 'Sector (Agri/Forestry/Both)', 'Forestry');
 
 -- NEW DATA MODEL
-DELETE FROM question_indicator_map;
-INSERT INTO question_indicator_map (indicator, question) VALUES 
-('sector', 'Sector (Agri/Forestry/Both)'),
-('eu-member-state', 'Location (Country/Region)');
-
 DELETE FROM survey_answers;
 INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (1, 'eu-member-state', 'Location (Country/Region)', 'Spain', 'ESP');
 INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (2, 'eu-member-state', 'Location (Country/Region)', 'Spain', 'ESP');
 INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (3, 'eu-member-state', 'Location (Country/Region)', 'Spain', 'ESP');
 INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (4, 'eu-member-state', 'Location (Country/Region)', 'France', 'FRA');
 INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (5, 'eu-member-state', 'Location (Country/Region)', 'France', 'FRA');
-INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (1, 'sector', 'Sector (Agri/Forestry/Both)', 'Agri', 'ESP');
-INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (2, 'sector', 'Sector (Agri/Forestry/Both)', 'Agri', 'ESP');
-INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (3, 'sector', 'Sector (Agri/Forestry/Both)', 'Forestry', 'FRA');
+INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (1, 'organisation-by-sector', 'Sector (Agri/Forestry/Both)', 'Agri', 'ESP');
+INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (2, 'organisation-by-sector', 'Sector (Agri/Forestry/Both)', 'Agri', 'ESP');
+INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code) VALUES (3, 'organisation-by-sector', 'Sector (Agri/Forestry/Both)', 'Forestry', 'FRA');
