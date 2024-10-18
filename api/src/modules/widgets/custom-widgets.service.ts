@@ -93,12 +93,12 @@ export class CustomWidgetService extends AppBaseService<
     }
 
     const baseWidget = await this.baseWidgetRepository.findOneBy({
-      id: params.widgetId,
+      indicator: params.widgetIndicator,
     });
     if (baseWidget === null) {
       const exception = new NotFoundException('BaseWidget not found');
       this.logger.error(
-        `BaseWidget with id ${params.widgetId} not found`,
+        `BaseWidget with id ${params.widgetIndicator} not found`,
         null,
         exception.stack,
       );
@@ -124,7 +124,7 @@ export class CustomWidgetService extends AppBaseService<
 
     const customWidget: DeepPartial<CustomWidget> = {
       name: params.name,
-      widget: { id: params.widgetId },
+      widget: { indicator: params.widgetIndicator },
       user: { id: info.authenticatedUser.id },
       filters: params.filters,
       defaultVisualization: params.defaultVisualization,
@@ -142,7 +142,7 @@ export class CustomWidgetService extends AppBaseService<
       throw new ForbiddenException();
     }
 
-    const { name, widgetId, defaultVisualization, filters } = params;
+    const { name, widgetIndicator, defaultVisualization, filters } = params;
 
     const customWidget = await this.customWidgetRepository.findOneBy({
       id,
@@ -163,9 +163,9 @@ export class CustomWidgetService extends AppBaseService<
     if (name) {
       customWidget.name = name;
     }
-    if (widgetId) {
+    if (widgetIndicator) {
       relatedBaseWidget = await this.baseWidgetRepository.findOneBy({
-        id: widgetId,
+        indicator: widgetIndicator,
       });
       // TODO: This can never be null, as it comes from the DB entity, and the relation is set as mandatory, it will always exists
       //       as long as the main entity exists
@@ -178,7 +178,7 @@ export class CustomWidgetService extends AppBaseService<
         );
         throw exception;
       }
-      customWidget.widget = { id: widgetId } as BaseWidget;
+      customWidget.widget = { indicator: widgetIndicator } as BaseWidget;
       customWidget.defaultVisualization =
         relatedBaseWidget.defaultVisualization;
     }

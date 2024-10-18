@@ -14,7 +14,7 @@
     "lint": "eslint \"src/**/*.ts\" --fix",
     "test": "jest --config ./test/jest-config.json -i",
     "typeorm": "pnpm exec ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js",
-    "transform:sections": "ts-node data/transform-sections.ts"
+    "transform:sections": "ts-node -r tsconfig-paths/register data/sections/transform-sections.ts"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "3.616.0",

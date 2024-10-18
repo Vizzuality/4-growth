@@ -17,7 +17,7 @@ describe('Page Sections API', () => {
   it('Should allow users to read page sections with its widgets', async () => {
     // Given
     const dataSourceManager = testManager.testApp.get(DataSourceManager);
-    await dataSourceManager.loadMockData();
+    await dataSourceManager.loadQuestionIndicatorMap();
 
     const entityMocks = testManager.mocks();
     await entityMocks.createSection({
@@ -28,15 +28,11 @@ describe('Page Sections API', () => {
       baseWidgets: [
         await entityMocks.createBaseWidget({
           sectionOrder: 1,
-          indicator: 'Total countries',
+          indicator: 'total-countries',
         }),
         await entityMocks.createBaseWidget({
           sectionOrder: 2,
-          indicator: 'Non-existent indicator',
-        }),
-        await entityMocks.createBaseWidget({
-          sectionOrder: 3,
-          indicator: 'Organisation by sector',
+          indicator: 'organisation-by-sector',
         }),
       ],
     });
@@ -66,7 +62,7 @@ describe('Page Sections API', () => {
     expect(bodyData).toHaveLength(2);
 
     const section1 = bodyData[0];
-    expect(section1.baseWidgets).toHaveLength(3);
+    expect(section1.baseWidgets).toHaveLength(2);
 
     const section2 = bodyData[1];
     expect(section2.baseWidgets).toHaveLength(1);
