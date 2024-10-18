@@ -3,10 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
+import { FilterQueryParam } from "@shared/schemas/query-param.schema";
 import { useSetAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
+
+import useFilters from "@/hooks/useFilters";
 
 import Section from "@/containers/explore/section";
 import OverviewSection from "@/containers/explore/section/overview-section";
@@ -16,12 +19,14 @@ import Widget from "@/containers/widget";
 import { Overlay } from "@/components/ui/overlay";
 
 export default function Explore() {
+  const { filters } = useFilters();
   const { data } = client.sections.searchSections.useQuery(
-    queryKeys.sections.all.queryKey,
-    { query: {} },
+    queryKeys.sections.all(filters).queryKey,
+    // TODO: Remove this type casting when api has updated the name property to type string
+    { query: { filters: filters as FilterQueryParam<unknown> } },
     { select: (res) => res.body.data },
   );
-  const sections = data as SectionWithDataWidget[];
+  const sections = (data as SectionWithDataWidget[]) || [];
   const ref = useRef<HTMLDivElement>(null);
   const [showOverlay, setShowOverlay] = useState(false);
   const setIntersecting = useSetAtom(intersectingAtom);
@@ -57,6 +62,10 @@ export default function Explore() {
   }, [ref.current, setIntersecting]);
 
   useEffect(() => {
+    // TODO: This check can be removed if the api response is fixed,
+    // i.e. the api should always return all sections and only filter the widget data
+    if (sections.length === 0) return;
+
     const handlePopState = () => {
       const hash = window.location.hash.slice(1);
       const id = decodeURIComponent(hash || sections[0].slug);
