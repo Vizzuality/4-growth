@@ -7,7 +7,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function isEmptyWidget(data: BaseWidgetWithData["data"]): boolean {
-  return (
-    (Array.isArray(data) && data.length === 0) || Object.keys(data).length === 0
-  );
+  return Object.keys(data).length === 0;
 }

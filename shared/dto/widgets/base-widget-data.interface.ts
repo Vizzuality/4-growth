@@ -1,21 +1,35 @@
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 
+export interface WidgetData {
+  chart?: WidgetChartData;
+  counter?: WidgetCounterData;
+  map?: WidgetMapData;
+  navigation?: WidgetNavigationData;
+}
+
 /**
- * Represents an array of widget data objects.
+ * Data for maps
  */
-export type WidgetData = Array<{
-  /** The numeric value associated with the widget answer, with or without applied filters */
+export type WidgetMapData = Array<{
+  country: string;
   value: number;
-
-  /** The numeric value associated with the widget answer without any filters */
-  total?: number;
-
-  /**
-   * A descriptive label for the widget answer.
-   * Can be null if no label is provided.
-   */
-  label?: string;
 }>;
+
+/**
+ * Data for barchart, piechart and areagraph
+ */
+export type WidgetChartData = Array<{
+  label: string;
+  value: number;
+}>;
+
+/**
+ * Data for single value
+ */
+export type WidgetCounterData = {
+  value: number;
+  total: number;
+};
 
 export type WidgetFilters = unknown;
 
@@ -24,5 +38,5 @@ export type WidgetNavigationData = {
 };
 
 export class BaseWidgetWithData extends BaseWidget {
-  data: WidgetData | WidgetNavigationData;
+  data: WidgetData;
 }

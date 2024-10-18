@@ -1,15 +1,15 @@
 import { FC } from "react";
 
-import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
+import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
 import { ChartContainer } from "@/components/ui/chart";
 
 interface HorizontalBarChartProps {
-  data: WidgetData;
+  data?: WidgetChartData;
 }
 
-function getValueIndexFromWidgetData(data: WidgetData) {
+function getValueIndexFromWidgetData(data: WidgetChartData) {
   let index = 0;
   let largestValue = 0;
 
@@ -23,6 +23,13 @@ function getValueIndexFromWidgetData(data: WidgetData) {
   return index;
 }
 const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data }) => {
+  if (!data || data.length === 0) {
+    console.warn(
+      `HorizontalBarChart: Expected at least 1 data point, but received 0.`,
+    );
+    return null;
+  }
+
   const height = data.length * 50;
   const highestValueIndex = getValueIndexFromWidgetData(data);
   return (

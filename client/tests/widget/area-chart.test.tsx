@@ -71,12 +71,7 @@ describe("AreaChart", () => {
     const consoleWarnSpy = vi
       .spyOn(console, "warn")
       .mockImplementation(() => {});
-    render(
-      <AreaChart
-        {...mockProps}
-        data={[{ label: "Yes", value: 100, total: 100 }]}
-      />,
-    );
+    render(<AreaChart {...mockProps} data={[{ label: "Yes", value: 100 }]} />);
 
     expect(consoleWarnSpy).toHaveBeenCalledWith(
       "AreaChart - Test: Expected exactly 3 data points, but received 1.",
