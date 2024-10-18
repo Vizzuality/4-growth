@@ -66,7 +66,7 @@ const VisualizationSelector: FC = () => {
             <Button
               key={`v-list-item-${v}`}
               variant="clean"
-              className="h-4 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-100"
+              className="h-10 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-100"
               onClick={() => {
                 setSelectedVisualization(v);
                 setShowVisualizations(false);
