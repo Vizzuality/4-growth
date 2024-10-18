@@ -8,6 +8,8 @@ import { useAtomValue } from "jotai";
 
 import { cn } from "@/lib/utils";
 
+import useFilters from "@/hooks/useFilters";
+
 import Header from "@/containers/header";
 import FilterSettings from "@/containers/sidebar/filter-settings";
 import SectionsNav from "@/containers/sidebar/sections-nav";
@@ -26,6 +28,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 const Sidebar: FC = () => {
   const isExplore = usePathname().startsWith("/explore");
   const isPopoverOpen = useAtomValue(isPopoverOpenAtom);
+  const { filters } = useFilters();
 
   return (
     <>
@@ -53,7 +56,11 @@ const Sidebar: FC = () => {
             key="sidebar-accordion-explore"
             type="multiple"
             className="w-full overflow-y-auto"
-            defaultValue={["explore-sections"]}
+            defaultValue={
+              filters.length
+                ? ["explore-filters", "explore-sections"]
+                : ["explore-sections"]
+            }
           >
             <AccordionItem value="explore-filters">
               <AccordionTrigger>Filters</AccordionTrigger>
