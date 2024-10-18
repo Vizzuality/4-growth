@@ -1,17 +1,50 @@
 import { TestManager } from 'api/test/utils/test-manager';
 import { WidgetVisualizationsType } from '@shared/dto/widgets/widget-visualizations.constants';
+import { DataSourceManager } from '@api/infrastructure/data-source-manager';
+import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 
 describe('Base Widgets', () => {
   let testManager: TestManager<unknown>;
+  let dataSourceManager: DataSourceManager;
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({ logger: false });
+    await testManager.clearDatabase();
+    dataSourceManager = testManager.getModule(DataSourceManager);
+  });
+
+  afterEach(async () => {
     await testManager.clearDatabase();
   });
 
   afterAll(async () => {
     await testManager.clearDatabase();
     await testManager.close();
+  });
+
+  it('Should get all app base widgets', async () => {
+    await dataSourceManager.loadInitialData();
+    const loadedWidgets = await testManager
+      .getDataSource()
+      .getRepository(BaseWidget)
+      .find();
+    const widgets = await testManager
+      .request()
+      .get('/widgets')
+      .query({ disablePagination: true });
+    expect(
+      widgets.body.data.map((widget: BaseWidget) => ({
+        id: widget.id,
+        question: widget.question,
+        indicator: widget.indicator,
+      })),
+    ).toEqual(
+      loadedWidgets.map((widget: BaseWidget) => ({
+        id: widget.id,
+        question: widget.question,
+        indicator: widget.indicator,
+      })),
+    );
   });
 
   it('Should get all available base widgets filtered by visualisation type', async () => {
