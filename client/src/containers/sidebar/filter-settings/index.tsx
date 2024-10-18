@@ -14,12 +14,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { POPOVER_CONTENT_CLASS } from "@/constants";
 
 const DEFAULT_FILTERS = ["eu-member-state", "type-of-data"];
-const POPOVER_CONTENT_CLASS = "ml-4 h-[320px] w-full min-w-[320px]";
 
 const FilterSettings: FC = () => {
-  const filtersQuery = client.pageFilter.searchFilters.useQuery(
+  const { data } = client.pageFilter.searchFilters.useQuery(
     queryKeys.pageFilters.all.queryKey,
     {},
     { select: (res) => res.body.data },
@@ -28,7 +28,7 @@ const FilterSettings: FC = () => {
 
   return (
     <>
-      {filtersQuery.data
+      {data
         ?.filter((pageFilter) => DEFAULT_FILTERS.includes(pageFilter.name))
         .map((f) => (
           <Popover
@@ -49,7 +49,7 @@ const FilterSettings: FC = () => {
               className={POPOVER_CONTENT_CLASS}
             >
               <FilterSelect
-                items={filtersQuery.data || []}
+                items={data || []}
                 fixedFilter={f}
                 onSubmit={() => {
                   // TODO: implemenation will be added in seperate PR
@@ -73,7 +73,7 @@ const FilterSettings: FC = () => {
           className={POPOVER_CONTENT_CLASS}
         >
           <FilterSelect
-            items={filtersQuery.data || []}
+            items={data || []}
             onSubmit={() => {
               // TODO: implemenation will be added in seperate PR
             }}
