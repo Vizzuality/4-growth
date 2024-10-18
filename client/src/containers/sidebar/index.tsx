@@ -10,9 +10,10 @@ import { cn } from "@/lib/utils";
 
 import Header from "@/containers/header";
 import FilterSettings from "@/containers/sidebar/filter-settings";
-import SandboxSettings from "@/containers/sidebar/sandbox-settings";
+import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import SectionsNav from "@/containers/sidebar/sections-nav";
 import { isPopoverOpenAtom } from "@/containers/sidebar/store";
+import VisualizationSelector from "@/containers/sidebar/visualization-selector";
 
 import {
   Accordion,
@@ -83,7 +84,8 @@ const Sidebar: FC = () => {
             <AccordionItem value="sandbox-settings">
               <AccordionTrigger>Settings</AccordionTrigger>
               <AccordionContent className="py-3.5">
-                <SandboxSettings />
+                <VisualizationSelector />
+                <IndicatorSelector />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="sandbox-filters">
