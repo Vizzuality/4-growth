@@ -119,7 +119,7 @@ export default function Explore() {
             ) : (
               s.baseWidgets.map((w) => (
                 <Widget
-                  key={`widget-${w.id}`}
+                  key={`widget-${w.indicator}`}
                   indicator={w.indicator}
                   question={w.question}
                   visualisations={w.visualisations}

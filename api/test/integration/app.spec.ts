@@ -26,12 +26,24 @@ describe('App', () => {
   });
 
   it('should call dataSourceManager.loadInitialData when it starts', async () => {
-    const loadInitialDataSpy = jest.spyOn(dataSourceManager, 'loadInitialData');
+    const loadQuestionIndicatorMapSpy = jest.spyOn(
+      dataSourceManager,
+      'loadQuestionIndicatorMap',
+    );
+    const loadPageFiltersSpy = jest.spyOn(dataSourceManager, 'loadPageFilters');
+    const loadPageSectionsSpy = jest.spyOn(
+      dataSourceManager,
+      'loadPageSections',
+    );
+    const loadMockDataSpy = jest.spyOn(dataSourceManager, 'loadMockData');
 
     // When
     await testApp.init();
 
     // Then
-    expect(loadInitialDataSpy).toHaveBeenCalledTimes(1);
+    expect(loadQuestionIndicatorMapSpy).toHaveBeenCalledTimes(1);
+    expect(loadPageFiltersSpy).toHaveBeenCalledTimes(1);
+    expect(loadPageSectionsSpy).toHaveBeenCalledTimes(1);
+    expect(loadMockDataSpy).toHaveBeenCalledTimes(1);
   });
 });

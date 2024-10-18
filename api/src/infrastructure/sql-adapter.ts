@@ -1,6 +1,7 @@
 import { WidgetDataFilters } from '@shared/dto/widgets/widget-data-filter';
 import { PageFilterQuestionMap } from '../../../shared/dto/widgets/page-filter-question-map';
 import { Injectable, Logger } from '@nestjs/common';
+import { Section } from '@shared/dto/sections/section.entity';
 
 @Injectable()
 export class SQLAdapter {
@@ -18,24 +19,21 @@ export class SQLAdapter {
     return sqlCode;
   }
 
-  public generateSqlFromSections(sections: any[]) {
+  public generateSqlFromSections(sections: Section[]) {
     let sqlCode: string = '';
-    const keys = Object.keys(sections);
-    for (const key of keys) {
-      const section = sections[key as any];
-      const { order, slug, name, description, widgets } = section;
+    for (const section of sections) {
+      const { order, slug, name, description, baseWidgets } = section;
 
       let widgetsSql = '';
-      for (const widget of widgets) {
+      for (const widget of baseWidgets) {
         const {
-          id,
           question,
           indicator,
           defaultVisualization,
-          availableVisualizations,
+          visualisations,
           sectionOrder,
         } = widget;
-        widgetsSql += `{"id": ${id}, "question": "${question}", "indicator": "${indicator}", "default_visualization": "${defaultVisualization}", "visualizations": "${availableVisualizations}", "section_order": ${sectionOrder}},`;
+        widgetsSql += `{"indicator": "${indicator}", "question": "${question}", "default_visualization": "${defaultVisualization}", "visualizations": "${visualisations}", "section_order": ${sectionOrder}},`;
       }
       widgetsSql = widgetsSql.slice(0, -1);
       sqlCode += `SELECT upsert_section_with_widgets('{"order": ${order}, "slug": "${slug}", "name": "${name}", "description": "${description}"}','[${widgetsSql}]'::jsonb);\n`;
