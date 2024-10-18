@@ -1,11 +1,38 @@
 "use client";
+import { useEffect } from "react";
+
+import { useAtom } from "jotai";
+
+import {
+  customWidgetAtom,
+  selectedVisualizationAtom,
+} from "@/containers/sandbox/store";
+
 import { Card } from "@/components/ui/card";
 import Title from "@/components/ui/title";
-import { customWidgetAtom } from "@/containers/sandbox/store";
-import { useAtomValue } from "jotai";
 
 export default function Sandbox() {
-  const widget = useAtomValue(customWidgetAtom);
+  const [widget, setWidget] = useAtom(customWidgetAtom);
+  const [selectedVisualization, setSelectedVisualization] = useAtom(
+    selectedVisualizationAtom,
+  );
+
+  useEffect(() => {
+    if (!widget || !selectedVisualization) return;
+
+    if (!widget.visualisations.includes(selectedVisualization)) {
+      setWidget(null);
+    }
+  }, [widget, selectedVisualization]);
+
+  useEffect(() => {
+    // cleanup
+    return () => {
+      setWidget(null);
+      setSelectedVisualization(null);
+    };
+  }, []);
+
   return (
     <Card className="p-6">
       <header className="space-y-2">

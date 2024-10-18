@@ -26,7 +26,7 @@ const FilterSettings: FC = () => {
 
   return (
     <>
-      {filtersQuery.data
+      {data
         ?.filter((pageFilter) => DEFAULT_FILTERS.includes(pageFilter.name))
         .map((f) => (
           <FilterPopup
