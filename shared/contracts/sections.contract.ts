@@ -7,7 +7,7 @@ import { initContract } from '@ts-rest/core';
 
 const contract = initContract();
 export const sectionContract = contract.router({
-  searchSections: {
+  getSections: {
     method: 'GET',
     path: '/sections',
     query: generateEntityQuerySchema(SectionWithDataWidget).merge(
