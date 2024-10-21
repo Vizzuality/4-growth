@@ -25,11 +25,7 @@ export default async function ExploreLayout({ children }: PropsWithChildren) {
   });
   await queryClient.prefetchQuery({
     queryKey: queryKeys.widgets.all.queryKey,
-    queryFn: async () =>
-      client.widgets.getWidgets.query({
-        ...QUERY_OPTIONS,
-        query: { visualisations: [] },
-      }),
+    queryFn: async () => client.widgets.getWidgets.query(QUERY_OPTIONS),
   });
 
   return (

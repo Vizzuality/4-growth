@@ -26,7 +26,7 @@ import { POPOVER_CONTENT_CLASS } from "@/constants";
 const IndicatorSelector: FC = () => {
   const { data } = client.widgets.getWidgets.useQuery(
     queryKeys.widgets.all.queryKey,
-    { query: { visualisations: [] } },
+    { query: {} },
     { select: (res) => res.body.data },
   );
   const [showIndicators, setShowIndicators] = useState(false);
