@@ -20,7 +20,7 @@ import { Overlay } from "@/components/ui/overlay";
 
 export default function Explore() {
   const { filters } = useFilters();
-  const { data } = client.sections.searchSections.useQuery(
+  const { data } = client.sections.getSections.useQuery(
     queryKeys.sections.all(filters).queryKey,
     // TODO: Remove this type casting when api has updated the name property to type string
     { query: { filters: filters as FilterQueryParam<unknown> } },

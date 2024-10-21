@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { intersectingAtom } from "@/containers/explore/store";
 
 const SectionsNav: FC = () => {
-  const sectionsQuery = client.sections.searchSections.useQuery(
+  const sectionsQuery = client.sections.getSections.useQuery(
     queryKeys.sections.all([]).queryKey,
     { query: {} },
     { select: (res) => res.body.data },
