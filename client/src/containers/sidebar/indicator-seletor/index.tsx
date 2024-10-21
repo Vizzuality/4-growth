@@ -1,10 +1,12 @@
 import { FC, useState } from "react";
 
 import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
+import { BaseWidget } from "@shared/dto/widgets/base-widget.entity";
 import { useAtom, useSetAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
+import { cn } from "@/lib/utils";
 
 import {
   customWidgetAtom,
@@ -21,8 +23,6 @@ import {
 } from "@/components/ui/popover";
 import { POPOVER_CONTENT_CLASS } from "@/constants";
 
-import widgets from "../widgets.json";
-
 const IndicatorSelector: FC = () => {
   const { data } = client.widgets.getWidgets.useQuery(
     queryKeys.widgets.all.queryKey,
@@ -35,6 +35,7 @@ const IndicatorSelector: FC = () => {
   const [selectedVisualization, setSelectedVisualization] = useAtom(
     selectedVisualizationAtom,
   );
+  const widgets = data as BaseWidget[];
 
   return (
     <Popover
@@ -61,26 +62,24 @@ const IndicatorSelector: FC = () => {
       <PopoverContent
         align="start"
         side="bottom"
-        className={POPOVER_CONTENT_CLASS}
+        className={cn(POPOVER_CONTENT_CLASS, "h-[320px]")}
       >
-        <div className="flex h-full flex-col overflow-y-auto">
-          <SearchableList
-            items={widgets}
-            itemKey="indicator"
-            onItemClick={(w: any) => {
-              if (
-                selectedVisualization &&
-                !widget?.visualisations.includes(selectedVisualization)
-              ) {
-                setSelectedVisualization(null);
-              }
+        <SearchableList
+          items={widgets}
+          itemKey="indicator"
+          onItemClick={(w) => {
+            if (
+              selectedVisualization &&
+              !widget?.visualisations.includes(selectedVisualization)
+            ) {
+              setSelectedVisualization(null);
+            }
 
-              setWidget(w as BaseWidgetWithData);
-              setShowIndicators(false);
-              setIsPopoverOpen(false);
-            }}
-          />
-        </div>
+            setWidget(w as BaseWidgetWithData);
+            setShowIndicators(false);
+            setIsPopoverOpen(false);
+          }}
+        />
       </PopoverContent>
     </Popover>
   );

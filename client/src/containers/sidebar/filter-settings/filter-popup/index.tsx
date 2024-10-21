@@ -3,6 +3,8 @@ import { FC, useState } from "react";
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { useSetAtom } from "jotai";
 
+import { cn } from "@/lib/utils";
+
 import useFilters from "@/hooks/useFilters";
 
 import FilterSelect from "@/containers/filter/filter-select";
@@ -14,14 +16,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { POPOVER_CONTENT_CLASS } from "@/constants";
 
 interface FilterPopupProps {
   name: string;
   fixedFilter?: PageFilter;
   items: PageFilter[];
 }
-
-const POPOVER_CONTENT_CLASS = "ml-4 h-[320px] w-full min-w-[320px]";
 
 const FilterItemButton: FC<{
   value: string;
@@ -89,7 +90,7 @@ const FilterPopup: FC<FilterPopupProps> = ({ name, fixedFilter, items }) => {
       <PopoverContent
         align="end"
         side="bottom"
-        className={POPOVER_CONTENT_CLASS}
+        className={cn(POPOVER_CONTENT_CLASS, "h-[320px]")}
       >
         <FilterSelect
           items={items}

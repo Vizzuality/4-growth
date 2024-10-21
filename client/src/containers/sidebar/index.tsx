@@ -55,11 +55,7 @@ const Sidebar: FC = () => {
             key="sidebar-accordion-explore"
             type="multiple"
             className="w-full overflow-y-auto"
-            defaultValue={
-              filters.length
-                ? ["explore-filters", "explore-sections"]
-                : ["explore-sections"]
-            }
+            defaultValue={["explore-sections"]}
           >
             <AccordionItem value="explore-filters">
               <AccordionTrigger>Filters</AccordionTrigger>
