@@ -1,0 +1,37 @@
+{
+  "ParseQueryResult": null,
+  "ResultHeaders": [
+    "Survey per day.ID",
+    "SurveyID.Name",
+    "Dates.ID"
+  ],
+  "Results": [
+    {
+      "Survey per day.ID": 6,
+      "SurveyID.Name": "R_2eKIDqs0Vsyj0qM",
+      "Dates.ID": 22511
+    },
+    {
+      "Survey per day.ID": 7,
+      "SurveyID.Name": "R_2hbsGDfZSDyw8BX",
+      "Dates.ID": 22512
+    },
+    {
+      "Survey per day.ID": 8,
+      "SurveyID.Name": "R_2XckmVyZ44klhUe",
+      "Dates.ID": 22511
+    },
+    {
+      "Survey per day.ID": 9,
+      "SurveyID.Name": "R_84qILa9AvSY5qCB",
+      "Dates.ID": 22514
+    },
+    {
+      "Survey per day.ID": 10,
+      "SurveyID.Name": "R_8OHmvlDNp8BXNAg",
+      "Dates.ID": 22514
+    }
+  ],
+  "ResultCount": 5,
+  "Visualizations": []
+}

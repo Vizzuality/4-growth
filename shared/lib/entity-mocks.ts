@@ -5,6 +5,7 @@ import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { Section } from '@shared/dto/sections/section.entity';
 import { WIDGET_VISUALIZATIONS } from '@shared/dto/widgets/widget-visualizations.constants';
 import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
+import { QuestionIndicatorMap } from '@shared/dto/surveys/question-widget-map.entity';
 
 export const createUser = async (
   dataSource: DataSource,
@@ -23,10 +24,19 @@ export const createUser = async (
   return { ...user, password: usedPassword } as User;
 };
 
+export const createQuestionIndicatorMap = async (
+  dataSource: DataSource,
+  data: QuestionIndicatorMap,
+) => {
+  const repo = dataSource.getRepository(QuestionIndicatorMap);
+  return repo.save(data);
+};
+
 export const createBaseWidget = async (
   dataSource: DataSource,
   additionalData?: DeepPartial<BaseWidget>,
 ) => {
+  // TODO: Create QuestionMapIndicator if not exists to reduce the verbosity of the test files
   const baseWidgetsRepository = dataSource.getRepository(BaseWidget);
 
   const defaults: Partial<BaseWidget> = {

@@ -1,3 +1,4 @@
+import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { User } from '@shared/dto/users/user.entity';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { TestManager } from 'api/test/utils/test-manager';
@@ -6,6 +7,7 @@ describe('Custom Widgets API', () => {
   const VALID_UUID = '3e933b93-79e5-4f98-b687-64405834cefd';
 
   let testManager: TestManager<unknown>;
+  let dataSourceManager: DataSourceManager;
   let entityMocks: ReturnType<typeof testManager.mocks>;
   let authToken: string;
   let testUser: User;
@@ -14,6 +16,7 @@ describe('Custom Widgets API', () => {
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager();
+    dataSourceManager = testManager.testApp.get(DataSourceManager);
     entityMocks = testManager.mocks();
   });
 
@@ -24,8 +27,9 @@ describe('Custom Widgets API', () => {
     authToken = user.jwtToken;
     testUser = user.user;
 
+    await dataSourceManager.loadQuestionIndicatorMap();
     baseWidget = await entityMocks.createBaseWidget({
-      indicator: 'base-widget',
+      indicator: 'eu-member-state',
     });
   });
 

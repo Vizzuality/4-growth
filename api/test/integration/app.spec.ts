@@ -35,7 +35,7 @@ describe('App', () => {
       dataSourceManager,
       'loadPageSections',
     );
-    const loadMockDataSpy = jest.spyOn(dataSourceManager, 'loadMockData');
+    const loadSurveyDataSpy = jest.spyOn(dataSourceManager, 'loadSurveyData');
 
     // When
     await testApp.init();
@@ -44,6 +44,6 @@ describe('App', () => {
     expect(loadQuestionIndicatorMapSpy).toHaveBeenCalledTimes(1);
     expect(loadPageFiltersSpy).toHaveBeenCalledTimes(1);
     expect(loadPageSectionsSpy).toHaveBeenCalledTimes(1);
-    expect(loadMockDataSpy).toHaveBeenCalledTimes(1);
+    expect(loadSurveyDataSpy).toHaveBeenCalledTimes(1);
   });
 });

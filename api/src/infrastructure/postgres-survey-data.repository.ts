@@ -1,11 +1,10 @@
-import { DataSource, EntityManager } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { ISurveyDataRepository } from '@api/infrastructure/survey-data-repository.interface';
 import { Inject, Logger } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { WidgetDataFilters } from '@shared/dto/widgets/widget-data-filter';
 import { SectionWithDataWidget } from '@shared/dto/sections/section.entity';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
-import { WidgetQuestionMap } from '@shared/dto/widgets/widget-question-map';
 import {
   BaseWidgetWithData,
   WidgetChartData,
@@ -24,85 +23,67 @@ export class PostgresSurveyDataRepository implements ISurveyDataRepository {
     sections: SectionWithDataWidget[],
     filters?: WidgetDataFilters,
   ): Promise<SectionWithDataWidget[]> {
-    // Perform a transaction to ensure isolation
-    return await this.dataSource.transaction('READ COMMITTED', async (t) => {
-      let answersTable: string = 'survey.answers';
+    const answersTable: string = 'survey_answers';
+    let filterClause: string;
 
-      if (filters !== undefined) {
-        answersTable = `filtered_answers`;
+    if (filters !== undefined) {
+      filterClause = this.sqlAdapter.generateSqlFromWidgetDataFilters(filters);
+    }
 
-        const filterClause =
-          this.sqlAdapter.generateSqlFromWidgetDataFilters(filters);
-
-        await t.query(`CREATE TEMPORARY TABLE ${answersTable} ON COMMIT DROP AS
-SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.answers ${filterClause})`);
+    const widgetDataPromises = [];
+    for (let sectionIdx = 0; sectionIdx < sections.length; sectionIdx++) {
+      const section = sections[sectionIdx];
+      const baseWidgets = section.baseWidgets;
+      for (let widgetIdx = 0; widgetIdx < baseWidgets.length; widgetIdx++) {
+        const widget = baseWidgets[widgetIdx];
+        widgetDataPromises.push(
+          this.appendBaseWidgetData(answersTable, filterClause, widget),
+        );
       }
+    }
 
-      // Only the first section is needed for now
-      const widgetDataPromises = [];
-      for (let sectionIdx = 0; sectionIdx < sections.length; sectionIdx++) {
-        const section = sections[sectionIdx];
-        const baseWidgets = section.baseWidgets;
-        for (let widgetIdx = 0; widgetIdx < baseWidgets.length; widgetIdx++) {
-          const widget = baseWidgets[widgetIdx];
-          widgetDataPromises.push(
-            this.appendBaseWidgetData(t, answersTable, widget),
-          );
-        }
-      }
-
-      await Promise.all(widgetDataPromises);
-      return sections;
-    });
+    await Promise.all(widgetDataPromises);
+    return sections;
   }
 
   private async appendBaseWidgetData(
-    t: EntityManager,
     answersTable: string,
+    filterClause: string,
     widget: BaseWidgetWithData,
   ): Promise<void> {
-    const question = WidgetQuestionMap.getQuestionByWidgetIndicator(
-      widget.indicator,
-    );
-    if (question === undefined) {
-      this.logger.warn(
-        `${widget.indicator} not found in WidgetQuestionMap. Skipping filter...`,
-        this.constructor.name,
-      );
-      widget.data = {};
-    }
-    // TODO: Edge cases here. Total surveys and total countries.
-    if (widget.indicator === 'Total surveys') {
-      const filteredCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM ${answersTable} GROUP BY survey_id) AS survey_count`;
-      const totalCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM survey.answers GROUP BY survey_id) AS survey_count`;
+    const { indicator } = widget;
+    // Edge cases here. Total surveys and total countries.
+    if (indicator === 'total-surveys') {
+      const filteredCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM ${answersTable} ${filterClause} GROUP BY survey_id) AS survey_count`;
+      const totalCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM ${answersTable} GROUP BY survey_id) AS survey_count`;
       const [[{ count: value }], [{ count: total }]] = await Promise.all([
-        t.query(filteredCount),
-        t.query(totalCount),
+        this.dataSource.query(filteredCount),
+        this.dataSource.query(totalCount),
       ]);
       widget.data = { counter: { value, total } };
       return;
     }
-    if (widget.indicator === 'Total countries') {
-      const filteredCount = `SELECT COUNT(DISTINCT categorical_answer) as "count" FROM ${answersTable} WHERE hierarchy_level_2 = '${question}'`;
-      const totalCount = `SELECT COUNT(DISTINCT categorical_answer) as "count" FROM survey.answers WHERE hierarchy_level_2 = '${question}'`;
+    if (indicator === 'total-countries') {
+      const filteredCount = `SELECT COUNT(DISTINCT country_code)::integer as "count" FROM ${answersTable} ${filterClause}`;
+      const totalCount = `SELECT COUNT(DISTINCT country_code)::integer as "count" FROM ${answersTable};`;
       const [[{ count: value }], [{ count: total }]] = await Promise.all([
-        t.query(filteredCount),
-        t.query(totalCount),
+        this.dataSource.query(filteredCount),
+        this.dataSource.query(totalCount),
       ]);
       widget.data = { counter: { value, total } };
       return;
     }
 
-    const totalsSql = `SELECT categorical_answer as "key", count(categorical_answer)::integer as "count", SUM(COUNT(categorical_answer)) OVER ()::integer AS total FROM ${answersTable} WHERE hierarchy_level_2 = '${question}' GROUP BY categorical_answer`;
+    const totalsSql = `SELECT answer as "key", count(answer)::integer as "count", SUM(COUNT(answer)) OVER ()::integer AS total FROM ${answersTable} ${this.sqlAdapter.appendExpressionToFilterClause(filterClause, `question_indicator = '${indicator}'`)} GROUP BY answer`;
     const totalsResult: { key: string; count: number; total: number }[] =
-      await t.query(totalsSql);
+      await this.dataSource.query(totalsSql);
 
     if (totalsResult.length === 0) {
       widget.data = {};
       return;
     }
 
-    let widgetData: WidgetData = {};
+    const widgetData: WidgetData = {};
     const {
       supportsChart,
       supportsSingleValue,
@@ -115,10 +96,10 @@ SELECT * FROM survey.answers WHERE survey_id IN (SELECT survey_id FROM survey.an
 
       for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
         const res = totalsResult[rowIdx];
-        arr.push({ label: res.key, value: res.count });
+        arr.push({ label: res.key, value: res.count, total: res.total });
       }
 
-      widgetData = { chart: arr };
+      widgetData.chart = arr;
     }
 
     if (supportsSingleValue) {

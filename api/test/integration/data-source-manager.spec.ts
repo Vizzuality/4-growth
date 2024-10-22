@@ -41,7 +41,7 @@ describe('DataSourceManager', () => {
     await Promise.all([
       dataSourceManager.loadPageFilters(),
       dataSourceManager.loadPageSections(),
-      dataSourceManager.loadMockData(),
+      dataSourceManager.loadSurveyData(),
     ]);
 
     // Then
@@ -61,7 +61,7 @@ describe('DataSourceManager', () => {
     await Promise.all([
       dataSourceManager.loadPageFilters(),
       dataSourceManager.loadPageSections(),
-      dataSourceManager.loadMockData(),
+      dataSourceManager.loadSurveyData(),
     ]);
 
     // Then

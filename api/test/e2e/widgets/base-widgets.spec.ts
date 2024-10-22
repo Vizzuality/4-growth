@@ -9,21 +9,20 @@ describe('Base Widgets', () => {
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({ logger: false });
-    await testManager.clearDatabase();
     dataSourceManager = testManager.getModule(DataSourceManager);
   });
 
-  afterEach(async () => {
+  beforeEach(async () => {
     await testManager.clearDatabase();
+    await dataSourceManager.loadQuestionIndicatorMap();
   });
 
   afterAll(async () => {
-    await testManager.clearDatabase();
     await testManager.close();
   });
 
   it('Should get all app base widgets', async () => {
-    await dataSourceManager.loadInitialData();
+    await dataSourceManager.loadSurveyData();
     const loadedWidgets = await testManager
       .getDataSource()
       .getRepository(BaseWidget)
@@ -34,15 +33,13 @@ describe('Base Widgets', () => {
       .query({ disablePagination: true });
     expect(
       widgets.body.data.map((widget: BaseWidget) => ({
-        id: widget.id,
-        question: widget.question,
         indicator: widget.indicator,
+        question: widget.question,
       })),
     ).toEqual(
       loadedWidgets.map((widget: BaseWidget) => ({
-        id: widget.id,
-        question: widget.question,
         indicator: widget.indicator,
+        question: widget.question,
       })),
     );
   });
@@ -55,9 +52,17 @@ describe('Base Widgets', () => {
       ['single_value', 'filter'],
       ['navigation', 'map'],
     ];
+
+    const mocks = testManager.mocks();
     for (const [i, vizz] of vizzes.entries()) {
-      await testManager.mocks().createBaseWidget({
-        indicator: `Indicator ${i}`,
+      const indicator = `indicator-${i}`;
+      // To make sure we satify the FK_constraint
+      await mocks.createQuestionIndicatorMap({
+        indicator,
+        question: indicator,
+      });
+      await mocks.createBaseWidget({
+        indicator,
         visualisations: vizz as WidgetVisualizationsType[],
       });
     }

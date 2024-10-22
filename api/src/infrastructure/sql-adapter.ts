@@ -1,7 +1,7 @@
 import { WidgetDataFilters } from '@shared/dto/widgets/widget-data-filter';
-import { PageFilterQuestionMap } from '../../../shared/dto/widgets/page-filter-question-map';
 import { Injectable, Logger } from '@nestjs/common';
 import { Section } from '@shared/dto/sections/section.entity';
+import { CountryISO3Map } from '@shared/constants/country-iso3.map';
 
 @Injectable()
 export class SQLAdapter {
@@ -45,27 +45,36 @@ export class SQLAdapter {
   public generateSqlFromWidgetDataFilters(filters: WidgetDataFilters): string {
     let filterClause: string = 'WHERE ';
     for (const filter of filters) {
-      const columnValues = PageFilterQuestionMap.getColumnValueByFilterName(
-        filter.name,
-      );
-      if (columnValues === undefined) {
-        this.logger.warn(
-          `${filter.name} not found in PageFilterQuestionMap. Skipping filter...`,
-          this.constructor.name,
-        );
-        continue;
-      }
-      for (const value of columnValues) {
-        filterClause += `(hierarchy_level_2 = '${value}' AND (`;
-
+      // Countries
+      if (filter.name == 'eu-member-state') {
+        filterClause += '(';
         for (const filterValue of filter.values) {
-          filterClause += `categorical_answer ${filter.operator} '${filterValue}' OR `;
+          filterClause += `country_code ${filter.operator} '${CountryISO3Map.getISO3ByCountryName(filterValue)}' OR `;
         }
         filterClause = filterClause.slice(0, -4);
-        filterClause += ')) AND ';
+        filterClause += ') AND ';
+        continue;
       }
+
+      filterClause += `(question_indicator = '${filter.name}' AND (`;
+
+      for (const filterValue of filter.values) {
+        filterClause += `answer ${filter.operator} '${filterValue}' OR `;
+      }
+      filterClause = filterClause.slice(0, -4);
+      filterClause += ')) AND ';
     }
     filterClause = filterClause.slice(0, -4);
     return filterClause;
+  }
+
+  public appendExpressionToFilterClause(
+    filterClause: string,
+    newExpression: string,
+  ): string {
+    if (filterClause !== undefined) {
+      return `${filterClause} AND ${newExpression}`;
+    }
+    return `WHERE ${newExpression}`;
   }
 }

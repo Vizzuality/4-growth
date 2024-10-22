@@ -14,7 +14,7 @@
     "lint": "eslint \"src/**/*.ts\" --fix",
     "test": "jest --config ./test/jest-config.json -i",
     "typeorm": "pnpm exec ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js",
-    "transform:sections": "ts-node -r tsconfig-paths/register data/sections/transform-sections.ts"
+    "transform:surveys": "ts-node -r tsconfig-paths/register data/surveys/transform.ts"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "3.616.0",
@@ -61,6 +61,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "csv-parse": "5.5.6",
+    "data-forge": "1.10.2",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",

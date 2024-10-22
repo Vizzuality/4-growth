@@ -48,12 +48,11 @@ export class AppModule implements OnModuleInit {
   public constructor(private readonly dataSourceManager: DataSourceManager) {}
 
   public async onModuleInit() {
-    // Wait for all the initial data to be loaded to avoid conflicts when testing
     await this.dataSourceManager.loadQuestionIndicatorMap();
     await Promise.all([
       this.dataSourceManager.loadPageFilters(),
       this.dataSourceManager.loadPageSections(),
-      this.dataSourceManager.loadMockData(),
+      this.dataSourceManager.loadSurveyData(),
     ]);
   }
 }
