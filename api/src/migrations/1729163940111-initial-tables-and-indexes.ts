@@ -47,16 +47,16 @@ export class InitialTablesAndIndexes1729163940111
       'ALTER TABLE "question_indicator_map" ADD CONSTRAINT "UQ_question_indicator_map_indicator_question" UNIQUE ("indicator", "question");',
     );
     await queryRunner.query(
-      `ALTER TABLE "base_widgets" ADD CONSTRAINT "FK_ec4ecfd98ca886865a3f579994f" FOREIGN KEY ("section_id") REFERENCES "sections"("order") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+      `ALTER TABLE "base_widgets" ADD CONSTRAINT "FK_ec4ecfd98ca886865a3f579994f" FOREIGN KEY ("section_id") REFERENCES "sections"("order") ON DELETE CASCADE`,
     );
     await queryRunner.query(
-      `ALTER TABLE "custom_widgets" ADD CONSTRAINT "FK_dac539060d0b71bf4aeeb52b205" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+      `ALTER TABLE "custom_widgets" ADD CONSTRAINT "FK_dac539060d0b71bf4aeeb52b205" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE`,
     );
     await queryRunner.query(
-      `ALTER TABLE "custom_widgets" ADD CONSTRAINT "FK_ba78a479ff764c0aa29e8f97ace" FOREIGN KEY ("widget_indicator") REFERENCES "base_widgets"("indicator") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+      `ALTER TABLE "custom_widgets" ADD CONSTRAINT "FK_ba78a479ff764c0aa29e8f97ace" FOREIGN KEY ("widget_indicator") REFERENCES "base_widgets"("indicator") ON DELETE CASCADE`,
     );
     await queryRunner.query(
-      `ALTER TABLE "base_widgets" ADD CONSTRAINT "FK_question_indicator_map" FOREIGN KEY ("indicator", "question") REFERENCES "question_indicator_map"("indicator","question") ON DELETE CASCADE`,
+      `ALTER TABLE "base_widgets" ADD CONSTRAINT "FK_question_indicator_map" FOREIGN KEY ("indicator") REFERENCES "question_indicator_map"("indicator") ON DELETE CASCADE`,
     );
     await queryRunner.query(
       `ALTER TABLE "survey_answers" ADD CONSTRAINT "FK_question_indicator_map" FOREIGN KEY ("question_indicator", "question") REFERENCES "question_indicator_map"("indicator","question") ON DELETE CASCADE`,

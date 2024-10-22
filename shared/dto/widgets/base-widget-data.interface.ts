@@ -21,6 +21,7 @@ export type WidgetMapData = Array<{
 export type WidgetChartData = Array<{
   label: string;
   value: number;
+  total: number;
 }>;
 
 /**

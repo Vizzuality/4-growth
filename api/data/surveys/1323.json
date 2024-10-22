@@ -1,0 +1,831 @@
+{
+  "ParseQueryResult": null,
+  "ResultHeaders": [
+    "Categorical answers.ID",
+    "Categorical answers.Name"
+  ],
+  "Results": [
+    {
+      "Categorical answers.ID": -1,
+      "Categorical answers.Name": "Unknown"
+    },
+    {
+      "Categorical answers.ID": 0,
+      "Categorical answers.Name": "Not Applicable"
+    },
+    {
+      "Categorical answers.ID": 380865,
+      "Categorical answers.Name": "3"
+    },
+    {
+      "Categorical answers.ID": 380867,
+      "Categorical answers.Name": "5"
+    },
+    {
+      "Categorical answers.ID": 1103476,
+      "Categorical answers.Name": "1"
+    },
+    {
+      "Categorical answers.ID": 1103484,
+      "Categorical answers.Name": "2"
+    },
+    {
+      "Categorical answers.ID": 1103493,
+      "Categorical answers.Name": "4"
+    },
+    {
+      "Categorical answers.ID": 1956612,
+      "Categorical answers.Name": "Small-scale/Local"
+    },
+    {
+      "Categorical answers.ID": 1956613,
+      "Categorical answers.Name": "Medium-scale/Local-National"
+    },
+    {
+      "Categorical answers.ID": 1956614,
+      "Categorical answers.Name": "Large-scale/National-International"
+    },
+    {
+      "Categorical answers.ID": 1956616,
+      "Categorical answers.Name": "High education"
+    },
+    {
+      "Categorical answers.ID": 1956617,
+      "Categorical answers.Name": "Advanced education"
+    },
+    {
+      "Categorical answers.ID": 1956618,
+      "Categorical answers.Name": "Technical and vocational education"
+    },
+    {
+      "Categorical answers.ID": 1956619,
+      "Categorical answers.Name": "Basic education"
+    },
+    {
+      "Categorical answers.ID": 1956621,
+      "Categorical answers.Name": "Early-career/Entry level"
+    },
+    {
+      "Categorical answers.ID": 1956622,
+      "Categorical answers.Name": "Mid-level professionals"
+    },
+    {
+      "Categorical answers.ID": 1956623,
+      "Categorical answers.Name": "Experts"
+    },
+    {
+      "Categorical answers.ID": 1956625,
+      "Categorical answers.Name": "Yes"
+    },
+    {
+      "Categorical answers.ID": 1956626,
+      "Categorical answers.Name": "No"
+    },
+    {
+      "Categorical answers.ID": 1956627,
+      "Categorical answers.Name": "Don't know"
+    },
+    {
+      "Categorical answers.ID": 1956629,
+      "Categorical answers.Name": "Facilitated"
+    },
+    {
+      "Categorical answers.ID": 1956630,
+      "Categorical answers.Name": "Hindered"
+    },
+    {
+      "Categorical answers.ID": 1956631,
+      "Categorical answers.Name": "No impact"
+    },
+    {
+      "Categorical answers.ID": 1956633,
+      "Categorical answers.Name": "Traditional/Subsistence Agriculture or Forestry"
+    },
+    {
+      "Categorical answers.ID": 1956634,
+      "Categorical answers.Name": "Cooperative Agriculture or Forestry"
+    },
+    {
+      "Categorical answers.ID": 1956635,
+      "Categorical answers.Name": "Corporate Agriculture or Forestry"
+    },
+    {
+      "Categorical answers.ID": 1956636,
+      "Categorical answers.Name": "Contract Farming or Forestry"
+    },
+    {
+      "Categorical answers.ID": 1956637,
+      "Categorical answers.Name": "Community Supported Agriculture or Forestry"
+    },
+    {
+      "Categorical answers.ID": 1956638,
+      "Categorical answers.Name": "Land trust and conservation Agriculture or Forestry"
+    },
+    {
+      "Categorical answers.ID": 1956644,
+      "Categorical answers.Name": "Where and how do you store this data? (4GROWTH)"
+    },
+    {
+      "Categorical answers.ID": 1956646,
+      "Categorical answers.Name": "Farm-level data"
+    },
+    {
+      "Categorical answers.ID": 1956647,
+      "Categorical answers.Name": "Earth Observation (EO) data"
+    },
+    {
+      "Categorical answers.ID": 1956648,
+      "Categorical answers.Name": "Environmental data"
+    },
+    {
+      "Categorical answers.ID": 1956649,
+      "Categorical answers.Name": "Socio-economic data"
+    },
+    {
+      "Categorical answers.ID": 1956650,
+      "Categorical answers.Name": "Supply chain data"
+    },
+    {
+      "Categorical answers.ID": 1956651,
+      "Categorical answers.Name": "Research and Development data"
+    },
+    {
+      "Categorical answers.ID": 1956653,
+      "Categorical answers.Name": "Initial investment"
+    },
+    {
+      "Categorical answers.ID": 1956654,
+      "Categorical answers.Name": "Connectivity infrastructure"
+    },
+    {
+      "Categorical answers.ID": 1956655,
+      "Categorical answers.Name": "Maintenance and upgrades"
+    },
+    {
+      "Categorical answers.ID": 1956656,
+      "Categorical answers.Name": "Energy"
+    },
+    {
+      "Categorical answers.ID": 1956657,
+      "Categorical answers.Name": "Integration with existing systems"
+    },
+    {
+      "Categorical answers.ID": 1956658,
+      "Categorical answers.Name": "Training and skill development"
+    },
+    {
+      "Categorical answers.ID": 1956659,
+      "Categorical answers.Name": "Data security and privacy measures"
+    },
+    {
+      "Categorical answers.ID": 1956661,
+      "Categorical answers.Name": "High"
+    },
+    {
+      "Categorical answers.ID": 1956662,
+      "Categorical answers.Name": "Moderate"
+    },
+    {
+      "Categorical answers.ID": 1956663,
+      "Categorical answers.Name": "Low"
+    },
+    {
+      "Categorical answers.ID": 1956665,
+      "Categorical answers.Name": "Open sharing"
+    },
+    {
+      "Categorical answers.ID": 1956666,
+      "Categorical answers.Name": "Restricted sharing"
+    },
+    {
+      "Categorical answers.ID": 1956667,
+      "Categorical answers.Name": "No sharing"
+    },
+    {
+      "Categorical answers.ID": 1956669,
+      "Categorical answers.Name": "Crop and yield data"
+    },
+    {
+      "Categorical answers.ID": 1956670,
+      "Categorical answers.Name": "Soil data"
+    },
+    {
+      "Categorical answers.ID": 1956671,
+      "Categorical answers.Name": "Weather and environmental data"
+    },
+    {
+      "Categorical answers.ID": 1956672,
+      "Categorical answers.Name": "Pest and disease data"
+    },
+    {
+      "Categorical answers.ID": 1956673,
+      "Categorical answers.Name": "Inventory and equipment data"
+    },
+    {
+      "Categorical answers.ID": 1956674,
+      "Categorical answers.Name": "Market and economic data"
+    },
+    {
+      "Categorical answers.ID": 1956675,
+      "Categorical answers.Name": "Remote sensing and geospatial data"
+    },
+    {
+      "Categorical answers.ID": 1956676,
+      "Categorical answers.Name": "Livestock data"
+    },
+    {
+      "Categorical answers.ID": 1956677,
+      "Categorical answers.Name": "Financial and operational data"
+    },
+    {
+      "Categorical answers.ID": 1956679,
+      "Categorical answers.Name": "Field Data Collection Apps"
+    },
+    {
+      "Categorical answers.ID": 1956680,
+      "Categorical answers.Name": "Precision Agriculture Technology"
+    },
+    {
+      "Categorical answers.ID": 1956681,
+      "Categorical answers.Name": "IoT Devices"
+    },
+    {
+      "Categorical answers.ID": 1956682,
+      "Categorical answers.Name": "Remote sensing platforms"
+    },
+    {
+      "Categorical answers.ID": 1956683,
+      "Categorical answers.Name": "Farm Management Software"
+    },
+    {
+      "Categorical answers.ID": 1956684,
+      "Categorical answers.Name": "Forest Management Software"
+    },
+    {
+      "Categorical answers.ID": 1956685,
+      "Categorical answers.Name": "Forest Inventory Tools"
+    },
+    {
+      "Categorical answers.ID": 1956686,
+      "Categorical answers.Name": "Traceability systems"
+    },
+    {
+      "Categorical answers.ID": 1956687,
+      "Categorical answers.Name": "Research Databases"
+    },
+    {
+      "Categorical answers.ID": 1956689,
+      "Categorical answers.Name": "Contribute"
+    },
+    {
+      "Categorical answers.ID": 1956690,
+      "Categorical answers.Name": "Impede"
+    },
+    {
+      "Categorical answers.ID": 1956693,
+      "Categorical answers.Name": "25%"
+    },
+    {
+      "Categorical answers.ID": 1956694,
+      "Categorical answers.Name": "50%"
+    },
+    {
+      "Categorical answers.ID": 1956695,
+      "Categorical answers.Name": "75%"
+    },
+    {
+      "Categorical answers.ID": 1956696,
+      "Categorical answers.Name": "90%"
+    },
+    {
+      "Categorical answers.ID": 1956698,
+      "Categorical answers.Name": "Substantial impact"
+    },
+    {
+      "Categorical answers.ID": 1956699,
+      "Categorical answers.Name": "Moderate impact"
+    },
+    {
+      "Categorical answers.ID": 1956700,
+      "Categorical answers.Name": "Negligible impact"
+    },
+    {
+      "Categorical answers.ID": 1956702,
+      "Categorical answers.Name": "Negative"
+    },
+    {
+      "Categorical answers.ID": 1956703,
+      "Categorical answers.Name": "Neutral"
+    },
+    {
+      "Categorical answers.ID": 1956704,
+      "Categorical answers.Name": "Positive"
+    },
+    {
+      "Categorical answers.ID": 1956711,
+      "Categorical answers.Name": "Emergence of new technologies"
+    },
+    {
+      "Categorical answers.ID": 1956712,
+      "Categorical answers.Name": "Advancements in existing technologies"
+    },
+    {
+      "Categorical answers.ID": 1956713,
+      "Categorical answers.Name": "No significant changes anticipated"
+    },
+    {
+      "Categorical answers.ID": 1956715,
+      "Categorical answers.Name": "Agriculture"
+    },
+    {
+      "Categorical answers.ID": 1956716,
+      "Categorical answers.Name": "Forestry"
+    },
+    {
+      "Categorical answers.ID": 1956717,
+      "Categorical answers.Name": "Both"
+    },
+    {
+      "Categorical answers.ID": 1956719,
+      "Categorical answers.Name": "Farmer/agricultural producers"
+    },
+    {
+      "Categorical answers.ID": 1956720,
+      "Categorical answers.Name": "Forester"
+    },
+    {
+      "Categorical answers.ID": 1956721,
+      "Categorical answers.Name": "Forest owner"
+    },
+    {
+      "Categorical answers.ID": 1956722,
+      "Categorical answers.Name": "Forest operator"
+    },
+    {
+      "Categorical answers.ID": 1956723,
+      "Categorical answers.Name": "Forest product processor"
+    },
+    {
+      "Categorical answers.ID": 1956724,
+      "Categorical answers.Name": "Farming association"
+    },
+    {
+      "Categorical answers.ID": 1956725,
+      "Categorical answers.Name": "Farming cooperative"
+    },
+    {
+      "Categorical answers.ID": 1956726,
+      "Categorical answers.Name": "Forestry association"
+    },
+    {
+      "Categorical answers.ID": 1956727,
+      "Categorical answers.Name": "Forest industry association"
+    },
+    {
+      "Categorical answers.ID": 1956728,
+      "Categorical answers.Name": "Trade association"
+    },
+    {
+      "Categorical answers.ID": 1956729,
+      "Categorical answers.Name": "NGO/Advisory group"
+    },
+    {
+      "Categorical answers.ID": 1956730,
+      "Categorical answers.Name": "Data association/organisation/coalition"
+    },
+    {
+      "Categorical answers.ID": 1956731,
+      "Categorical answers.Name": "Data provider"
+    },
+    {
+      "Categorical answers.ID": 1956732,
+      "Categorical answers.Name": "Infrastructure provider"
+    },
+    {
+      "Categorical answers.ID": 1956733,
+      "Categorical answers.Name": "Platform provider"
+    },
+    {
+      "Categorical answers.ID": 1956734,
+      "Categorical answers.Name": "Service/information provider"
+    },
+    {
+      "Categorical answers.ID": 1956735,
+      "Categorical answers.Name": "Digital technology provider"
+    },
+    {
+      "Categorical answers.ID": 1956736,
+      "Categorical answers.Name": "Research institutes and research networks"
+    },
+    {
+      "Categorical answers.ID": 1956737,
+      "Categorical answers.Name": "National and European networks"
+    },
+    {
+      "Categorical answers.ID": 1956739,
+      "Categorical answers.Name": "Austria"
+    },
+    {
+      "Categorical answers.ID": 1956740,
+      "Categorical answers.Name": "Belgium"
+    },
+    {
+      "Categorical answers.ID": 1956741,
+      "Categorical answers.Name": "Bulgaria"
+    },
+    {
+      "Categorical answers.ID": 1956742,
+      "Categorical answers.Name": "Croatia"
+    },
+    {
+      "Categorical answers.ID": 1956743,
+      "Categorical answers.Name": "Cyprus"
+    },
+    {
+      "Categorical answers.ID": 1956744,
+      "Categorical answers.Name": "Czechia"
+    },
+    {
+      "Categorical answers.ID": 1956745,
+      "Categorical answers.Name": "Denmark"
+    },
+    {
+      "Categorical answers.ID": 1956746,
+      "Categorical answers.Name": "Estonia"
+    },
+    {
+      "Categorical answers.ID": 1956747,
+      "Categorical answers.Name": "Finland"
+    },
+    {
+      "Categorical answers.ID": 1956748,
+      "Categorical answers.Name": "France"
+    },
+    {
+      "Categorical answers.ID": 1956749,
+      "Categorical answers.Name": "Germany"
+    },
+    {
+      "Categorical answers.ID": 1956750,
+      "Categorical answers.Name": "Greece"
+    },
+    {
+      "Categorical answers.ID": 1956751,
+      "Categorical answers.Name": "Hungary"
+    },
+    {
+      "Categorical answers.ID": 1956752,
+      "Categorical answers.Name": "Ireland"
+    },
+    {
+      "Categorical answers.ID": 1956753,
+      "Categorical answers.Name": "Italy"
+    },
+    {
+      "Categorical answers.ID": 1956754,
+      "Categorical answers.Name": "Latvia"
+    },
+    {
+      "Categorical answers.ID": 1956755,
+      "Categorical answers.Name": "Lithuania"
+    },
+    {
+      "Categorical answers.ID": 1956756,
+      "Categorical answers.Name": "Luxembourg"
+    },
+    {
+      "Categorical answers.ID": 1956757,
+      "Categorical answers.Name": "Malta"
+    },
+    {
+      "Categorical answers.ID": 1956758,
+      "Categorical answers.Name": "Poland"
+    },
+    {
+      "Categorical answers.ID": 1956759,
+      "Categorical answers.Name": "Portugal"
+    },
+    {
+      "Categorical answers.ID": 1956760,
+      "Categorical answers.Name": "Romania"
+    },
+    {
+      "Categorical answers.ID": 1956761,
+      "Categorical answers.Name": "Slovakia"
+    },
+    {
+      "Categorical answers.ID": 1956762,
+      "Categorical answers.Name": "Slovenia"
+    },
+    {
+      "Categorical answers.ID": 1956763,
+      "Categorical answers.Name": "Spain"
+    },
+    {
+      "Categorical answers.ID": 1956764,
+      "Categorical answers.Name": "Sweden"
+    },
+    {
+      "Categorical answers.ID": 1956765,
+      "Categorical answers.Name": "Netherlands"
+    },
+    {
+      "Categorical answers.ID": 1956767,
+      "Categorical answers.Name": "Crop cultivation - grains"
+    },
+    {
+      "Categorical answers.ID": 1956768,
+      "Categorical answers.Name": "Crop cultivation - vegetables"
+    },
+    {
+      "Categorical answers.ID": 1956769,
+      "Categorical answers.Name": "Crop cultivation - legumes"
+    },
+    {
+      "Categorical answers.ID": 1956770,
+      "Categorical answers.Name": "Crop cultivation - fruits"
+    },
+    {
+      "Categorical answers.ID": 1956771,
+      "Categorical answers.Name": "Plant propagation"
+    },
+    {
+      "Categorical answers.ID": 1956772,
+      "Categorical answers.Name": "Livestock farming - meat"
+    },
+    {
+      "Categorical answers.ID": 1956773,
+      "Categorical answers.Name": "Livestock farming - dairy"
+    },
+    {
+      "Categorical answers.ID": 1956774,
+      "Categorical answers.Name": "Livestock farming - other"
+    },
+    {
+      "Categorical answers.ID": 1956775,
+      "Categorical answers.Name": "Mixed farming (crops and animal)"
+    },
+    {
+      "Categorical answers.ID": 1956776,
+      "Categorical answers.Name": "Agricultural machinery and equipment services"
+    },
+    {
+      "Categorical answers.ID": 1956777,
+      "Categorical answers.Name": "Crop services (monitoring)"
+    },
+    {
+      "Categorical answers.ID": 1956778,
+      "Categorical answers.Name": "Farm management services"
+    },
+    {
+      "Categorical answers.ID": 1956779,
+      "Categorical answers.Name": "Post-harvest handling services"
+    },
+    {
+      "Categorical answers.ID": 1956781,
+      "Categorical answers.Name": "Reforestation"
+    },
+    {
+      "Categorical answers.ID": 1956782,
+      "Categorical answers.Name": "Forest conservation - thinning, pruning, weed & pest control"
+    },
+    {
+      "Categorical answers.ID": 1956783,
+      "Categorical answers.Name": "Felling"
+    },
+    {
+      "Categorical answers.ID": 1956784,
+      "Categorical answers.Name": "Non-Timber Forest Products (NTFPs)"
+    },
+    {
+      "Categorical answers.ID": 1956785,
+      "Categorical answers.Name": "Transportation of logs"
+    },
+    {
+      "Categorical answers.ID": 1956786,
+      "Categorical answers.Name": "Forest Fire Management"
+    },
+    {
+      "Categorical answers.ID": 1956787,
+      "Categorical answers.Name": "Forestry inventory and mapping"
+    },
+    {
+      "Categorical answers.ID": 1956788,
+      "Categorical answers.Name": "Wildlife management"
+    },
+    {
+      "Categorical answers.ID": 1956794,
+      "Categorical answers.Name": "Precision farming"
+    },
+    {
+      "Categorical answers.ID": 1956795,
+      "Categorical answers.Name": "Farm Management Information Systems"
+    },
+    {
+      "Categorical answers.ID": 1956796,
+      "Categorical answers.Name": "Automated machinery and robotics"
+    },
+    {
+      "Categorical answers.ID": 1956797,
+      "Categorical answers.Name": "Smart irrigation systems"
+    },
+    {
+      "Categorical answers.ID": 1956798,
+      "Categorical answers.Name": "Monitoring and tracking of livestock/crops"
+    },
+    {
+      "Categorical answers.ID": 1956799,
+      "Categorical answers.Name": "Smart-agri apps"
+    },
+    {
+      "Categorical answers.ID": 1956801,
+      "Categorical answers.Name": "Forest Fire Prediction and Monitoring systems"
+    },
+    {
+      "Categorical answers.ID": 1956803,
+      "Categorical answers.Name": "Drones for Forest Monitoring"
+    },
+    {
+      "Categorical answers.ID": 1956804,
+      "Categorical answers.Name": "Forest Inventory Management Software"
+    },
+    {
+      "Categorical answers.ID": 1956812,
+      "Categorical answers.Name": "Data management"
+    },
+    {
+      "Categorical answers.ID": 1956813,
+      "Categorical answers.Name": "Harvesting and distribution"
+    },
+    {
+      "Categorical answers.ID": 1956814,
+      "Categorical answers.Name": "Crop health and disease detection"
+    },
+    {
+      "Categorical answers.ID": 1956815,
+      "Categorical answers.Name": "Planning and Management"
+    },
+    {
+      "Categorical answers.ID": 1956816,
+      "Categorical answers.Name": "Decision-making"
+    },
+    {
+      "Categorical answers.ID": 1956817,
+      "Categorical answers.Name": "Supply chain optimisation"
+    },
+    {
+      "Categorical answers.ID": 1956818,
+      "Categorical answers.Name": "Monitoring"
+    },
+    {
+      "Categorical answers.ID": 1956819,
+      "Categorical answers.Name": "Production phase"
+    },
+    {
+      "Categorical answers.ID": 1956820,
+      "Categorical answers.Name": "On-farm activities"
+    },
+    {
+      "Categorical answers.ID": 1956822,
+      "Categorical answers.Name": "Preliminary"
+    },
+    {
+      "Categorical answers.ID": 1956823,
+      "Categorical answers.Name": "Advanced"
+    },
+    {
+      "Categorical answers.ID": 1956824,
+      "Categorical answers.Name": "Fully integrated"
+    },
+    {
+      "Categorical answers.ID": 1956826,
+      "Categorical answers.Name": "Not at all"
+    },
+    {
+      "Categorical answers.ID": 1956827,
+      "Categorical answers.Name": "Partially"
+    },
+    {
+      "Categorical answers.ID": 1956828,
+      "Categorical answers.Name": "Completely"
+    },
+    {
+      "Categorical answers.ID": 1956830,
+      "Categorical answers.Name": "Enhanced safety and monitoring"
+    },
+    {
+      "Categorical answers.ID": 1956831,
+      "Categorical answers.Name": "Improved forest management"
+    },
+    {
+      "Categorical answers.ID": 1956832,
+      "Categorical answers.Name": "Smart irrigation and water conservation"
+    },
+    {
+      "Categorical answers.ID": 1956833,
+      "Categorical answers.Name": "Economic benefits"
+    },
+    {
+      "Categorical answers.ID": 1956834,
+      "Categorical answers.Name": "Early detection of issues"
+    },
+    {
+      "Categorical answers.ID": 1956835,
+      "Categorical answers.Name": "Traceability and transparency"
+    },
+    {
+      "Categorical answers.ID": 1956836,
+      "Categorical answers.Name": "Efficient resource allocation"
+    },
+    {
+      "Categorical answers.ID": 1956837,
+      "Categorical answers.Name": "Improved decision-making"
+    },
+    {
+      "Categorical answers.ID": 1956838,
+      "Categorical answers.Name": "Increased efficiency and productivity"
+    },
+    {
+      "Categorical answers.ID": 1956840,
+      "Categorical answers.Name": "Low-power Wide-area network"
+    },
+    {
+      "Categorical answers.ID": 1956841,
+      "Categorical answers.Name": "Private networks"
+    },
+    {
+      "Categorical answers.ID": 1956842,
+      "Categorical answers.Name": "Fiber optic networks"
+    },
+    {
+      "Categorical answers.ID": 1956843,
+      "Categorical answers.Name": "IoT networks"
+    },
+    {
+      "Categorical answers.ID": 1956844,
+      "Categorical answers.Name": "Satellite internet"
+    },
+    {
+      "Categorical answers.ID": 1956845,
+      "Categorical answers.Name": "Cellular networks"
+    },
+    {
+      "Categorical answers.ID": 1956846,
+      "Categorical answers.Name": "Wireless internet"
+    },
+    {
+      "Categorical answers.ID": 1956847,
+      "Categorical answers.Name": "Wired internet"
+    },
+    {
+      "Categorical answers.ID": 1956849,
+      "Categorical answers.Name": "Agricultural machinery equipped with IoT (Internet of Things) sensors"
+    },
+    {
+      "Categorical answers.ID": 1956850,
+      "Categorical answers.Name": "GPS devices"
+    },
+    {
+      "Categorical answers.ID": 1956851,
+      "Categorical answers.Name": "Smartphones"
+    },
+    {
+      "Categorical answers.ID": 1956852,
+      "Categorical answers.Name": "Tablets"
+    },
+    {
+      "Categorical answers.ID": 1956853,
+      "Categorical answers.Name": "Laptop computers"
+    },
+    {
+      "Categorical answers.ID": 1956854,
+      "Categorical answers.Name": "Desktop computers"
+    },
+    {
+      "Categorical answers.ID": 1989787,
+      "Categorical answers.Name": "Better connectivity/Infrastructure"
+    },
+    {
+      "Categorical answers.ID": 1989791,
+      "Categorical answers.Name": "Data warehouses"
+    },
+    {
+      "Categorical answers.ID": 1989836,
+      "Categorical answers.Name": "On-premises servers/local storage facilities"
+    },
+    {
+      "Categorical answers.ID": 1989839,
+      "Categorical answers.Name": "Other namely"
+    },
+    {
+      "Categorical answers.ID": 1989842,
+      "Categorical answers.Name": "More income/Access to funding"
+    },
+    {
+      "Categorical answers.ID": 1996151,
+      "Categorical answers.Name": "No categorical answer"
+    }
+  ],
+  "ResultCount": 205,
+  "Visualizations": []
+}

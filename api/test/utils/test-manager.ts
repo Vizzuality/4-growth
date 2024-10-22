@@ -6,6 +6,7 @@ import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import {
   createBaseWidget,
   createCustomWidget,
+  createQuestionIndicatorMap,
   createSection,
   createUser,
 } from '@shared/lib/entity-mocks';
@@ -17,6 +18,7 @@ import { getDataSourceToken } from '@nestjs/typeorm';
 import { Section } from '@shared/dto/sections/section.entity';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
+import { QuestionIndicatorMap } from '@shared/dto/surveys/question-widget-map.entity';
 
 /**
  * @description: Abstraction for NestJS testing workflow. For now its a basic implementation to create a test app, but can be extended to encapsulate
@@ -102,6 +104,9 @@ export class TestManager<FixtureType> {
     return {
       createUser: (additionalData: Partial<User>) =>
         createUser(this.getDataSource(), additionalData),
+      createQuestionIndicatorMap: async (
+        additionalData: QuestionIndicatorMap,
+      ) => createQuestionIndicatorMap(this.getDataSource(), additionalData),
       createBaseWidget: (
         additionalData?: DeepPartial<BaseWidget>,
       ): Promise<BaseWidget> =>

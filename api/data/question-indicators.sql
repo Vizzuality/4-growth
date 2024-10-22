@@ -5,13 +5,13 @@ INSERT INTO question_indicator_map ("indicator", "question") VALUES
     ('adoption-of-technology-by-country', 'Has your organisation integrated digital technologies into its workflows?'),
     -- Sections in the survey
     -- Section 1 - General Information
-    ('organisation-by-sector', 'Sector (Agri/Forestry/Both)'),
-    ('eu-member-state', 'Location (Country/Region)'),
+    ('organisation-by-sector', 'Sector (agri/forestry/both)'),
+    ('eu-member-state', 'Location (country/region)'),
     ('type-of-stakeholder', 'Type of stakeholder'),
-    ('in-agriculture', 'Primary Area of Operation in agriculture'),
-    ('in-forestry', 'Primary Area of Operation in forestry'),
+    ('in-agriculture', 'Primary area of operation in agriculture'),
+    ('in-forestry', 'Primary area of operation in forestry'),
     -- Section 2 - Workforce information
-    ('organisation-size', 'What is the size of your agriculture or forestry organisation in terms of workforce?'),
+    ('organisation-size', 'Agriculture/forestry organisation size'),
     ('education-level', 'What is the general education level/attainment of your workforce?'),
     ('experience-level', 'What is the general level of work experience in your organisation?'),
     ('training-on-digital-technologies', 'Have your staff received training on the use of digital technologies?'),
@@ -36,7 +36,7 @@ INSERT INTO question_indicator_map ("indicator", "question") VALUES
     ('limitations-or-challenges', 'Have you encountered any perceived limitations or challenges in utilising these technologies?'),
     ('network-connectivity', 'Do you have network connectivity?'),
     ('network-connectivity-type', 'What network connectivity do you use?'),
-    ('level-of-reliability', 'How reliable is the current network connectivity?'),
+    ('level-of-reliability', 'How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)'),
     ('device-type', 'What type of devices are commonly used to access the network?'),
     -- Section 6 - Associated costs and prerequisites
     ('most-significant-costs', 'What are the most significant costs associated with the adoption of digital technologies in your organisation'),
@@ -49,9 +49,13 @@ INSERT INTO question_indicator_map ("indicator", "question") VALUES
     ('type-of-data', 'What type of data do you collect?'),
     ('data-payments', 'Do you pay for this data?'),
     ('types-of-tools-or-platforms', 'What type of tools or platforms do you use to collect data?'),
+    ('data-sharing-2', 'Do you share this data?'),
     ('challenges', 'Do challenges exist in sharing and interoperability of agricultural and forestry data?'),
+    ('%-data-driven-decisions', 'Approximately what percentage of overall decisions made are based on data analytics in your organisation?'),
     -- Section 8 -- Data storage and data flows
     ('data-storage', 'Where and how do you store this data?'),
+    ('data-flows/economic-implications', 'Are there economic implications associated with data flows in these sectors?'),
+    ('data-driven-decisions', 'Do you use data analytics for decision-making?'),
     -- Section 9 -- Socio-economic benefits and impact
     ('overall-contribution', 'How do these practices contribute to or impede the overall effectiveness of technology adoption?'),
     ('socio-economic-benefits', 'Have you experienced socio-economic benefits through the use of digital technologies?'),
@@ -59,7 +63,7 @@ INSERT INTO question_indicator_map ("indicator", "question") VALUES
     ('savings-in-inputs', 'Savings in inputs?'),
     ('overall-revenue', 'Increase in Overall revenue?'),
     ('job-creation-impact', 'Impact on job creation?'),
-    ('overall-socio-economic-impact', 'Overall Socio-economic Impact?'),
+    ('overall-socio-economic-impact', 'What is the overall economic impact of implementing digital technologies?'), -- Also "Overall Socio-economic Impact?"
     -- Section 10 -- Environmental and sustainability impact
     ('sustainability', 'Have digital technologies contributed to sustainability and environmental practices?'),
     ('conservation', 'Have you observed positive impacts on resource conservation or environmental footprint?'),
@@ -68,5 +72,6 @@ INSERT INTO question_indicator_map ("indicator", "question") VALUES
     ('track-and-ensure-adherence', 'Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?'),
     -- Section 11 -- Future outlook
     ('plans-to-expand/upgrade', 'Are there plans to expand or upgrade your current digital infrastructure?'),
-    ('future-expansion/upgrade', 'What would help facilitate the expansion/upgrade of digital infrastructure in the future?')
-ON CONFLICT (indicator, question) DO NOTHING;
+    ('future-expansion/upgrade', 'What would help facilitate the expansion/upgrade of digital infrastructure in the future?'),
+    ('future-developments', 'What type of developments do you anticipate in the near future?')
+ON CONFLICT (indicator) DO UPDATE SET question = EXCLUDED.question;

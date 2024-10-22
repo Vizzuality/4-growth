@@ -26,6 +26,7 @@ export class Section {
   createdAt: Date;
 
   @OneToMany(() => BaseWidget, (widget: BaseWidget) => widget.section, {
+    cascade: ['insert', 'update'],
     onDelete: 'CASCADE',
   })
   baseWidgets: BaseWidget[];
