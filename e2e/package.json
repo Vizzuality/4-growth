@@ -1,6 +1,7 @@
 {
   "name": "e2e",
   "private": true,
+  "type": "module",
   "dependencies": {
     "shared": "workspace:*"
   },
