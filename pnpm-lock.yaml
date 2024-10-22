@@ -290,9 +290,6 @@ importers:
       recharts:
         specifier: 2.12.7
         version: 2.12.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      shared:
-        specifier: workspace:*
-        version: link:../shared
       tailwind-merge:
         specifier: 2.3.0
         version: 2.3.0
@@ -372,6 +369,9 @@ importers:
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.14.2)(typescript@5.4.5)
+      typeorm:
+        specifier: 'catalog:'
+        version: 0.3.20(pg@8.11.5)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.4.5))
       typescript:
         specifier: 'catalog:'
         version: 5.4.5
