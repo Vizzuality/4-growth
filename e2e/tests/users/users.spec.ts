@@ -9,6 +9,8 @@ test.describe('Users E2E', () => {
   let page: Page;
   let user: User;
 
+
+
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
     testManager = await E2eTestManager.load(page);
