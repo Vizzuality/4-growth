@@ -7,6 +7,9 @@ jiti("./src/env");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ["typeorm"],
+  },
   webpack(config) {
     const warning = [
       ...(config.ignoreWarnings || []),
