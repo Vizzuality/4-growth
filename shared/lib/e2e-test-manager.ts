@@ -65,9 +65,8 @@ export class E2eTestManager {
       createSection: (additionalData?: DeepPartial<Section>) =>
         createSection(this.getDataSource(), additionalData),
       createBaseWidget: (
-        additionalData?: DeepPartial<BaseWidget>,
-      ): Promise<BaseWidget> =>
-        createBaseWidget(this.getDataSource(), additionalData),
+        data: DeepPartial<BaseWidget> & { indicator: string },
+      ): Promise<BaseWidget> => createBaseWidget(this.getDataSource(), data),
       createCustomWidget: (
         additionalData?: DeepPartial<CustomWidget>,
       ): Promise<CustomWidget> =>

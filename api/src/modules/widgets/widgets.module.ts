@@ -10,13 +10,21 @@ import { PageFiltersController } from '@api/modules/widgets/page-filters.control
 import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
 import { WidgetsController } from '@api/modules/widgets/widgets.controller';
 import { WidgetsService } from '@api/modules/widgets/widgets.service';
+import { PostgresSurveyDataRepository } from '@api/infrastructure/postgres-survey-data.repository';
+import { SQLAdapter } from '@api/infrastructure/sql-adapter';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([BaseWidget, CustomWidget, PageFilter]),
     forwardRef(() => AuthModule),
   ],
-  providers: [CustomWidgetService, PageFiltersService, WidgetsService],
+  providers: [
+    SQLAdapter,
+    { provide: 'SurveyDataRepository', useClass: PostgresSurveyDataRepository },
+    CustomWidgetService,
+    PageFiltersService,
+    WidgetsService,
+  ],
   controllers: [
     CustomWidgetsController,
     PageFiltersController,
