@@ -50,7 +50,7 @@ describe("Widget", () => {
     question: "Test Question",
     defaultVisualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
     visualisations: Object.values(WIDGET_VISUALIZATIONS),
-    data: [{ label: "Test", value: 100, total: 100 }],
+    data: { chart: [{ label: "Test", value: 100, total: 100 }] },
     onMenuOpenChange: vi.fn(),
   };
 
@@ -62,7 +62,7 @@ describe("Widget", () => {
         visualizationType === WIDGET_VISUALIZATIONS.FILTER ||
         visualizationType === WIDGET_VISUALIZATIONS.NAVIGATION
       ) {
-        props = { ...props, data: { href: "#" } };
+        props = { ...props, data: { navigation: { href: "#" } } };
       }
 
       const { container } = render(
