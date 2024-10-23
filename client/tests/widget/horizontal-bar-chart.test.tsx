@@ -89,6 +89,18 @@ const createChartTests = (
       });
     });
 
+    it("handles empty data gracefully", async () => {
+      const consoleWarnSpy = vi
+        .spyOn(console, "warn")
+        .mockImplementation(() => {});
+      const { container } = render(<ChartComponent data={[]} />);
+
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
+        "HorizontalBarChart: Expected at least 1 data point, but received 0.",
+      );
+      expect(container.firstChild).toBeNull();
+    });
+
     if (additionalTests) {
       additionalTests();
     }
@@ -105,19 +117,7 @@ describe("HorizontalBarChart", () => {
     vi.restoreAllMocks();
   });
 
-  createChartTests(ExploreHorizontalBarChart, "In Explore page", () => {
-    it("handles empty data gracefully", async () => {
-      const consoleWarnSpy = vi
-        .spyOn(console, "warn")
-        .mockImplementation(() => {});
-      const { container } = render(<ExploreHorizontalBarChart data={[]} />);
-
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        "HorizontalBarChart: Expected at least 1 data point, but received 0.",
-      );
-      expect(container.firstChild).toBeNull();
-    });
-  });
+  createChartTests(ExploreHorizontalBarChart, "In Explore page");
 
   createChartTests(SandboxHorizontalBarChart, "In Sandbox page", () => {
     it("renders the dotted line", async () => {
@@ -132,18 +132,6 @@ describe("HorizontalBarChart", () => {
           expect(line).toHaveAttribute("stroke-dasharray", "3 3");
         });
       });
-    });
-
-    it("handles empty data gracefully", async () => {
-      const consoleWarnSpy = vi
-        .spyOn(console, "warn")
-        .mockImplementation(() => {});
-      const { container } = render(<SandboxHorizontalBarChart data={[]} />);
-
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        "HorizontalBarChart: Expected at least 1 data point, but received 0.",
-      );
-      expect(container.firstChild?.firstChild).toBeNull();
     });
   });
 });
