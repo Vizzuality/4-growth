@@ -5,6 +5,7 @@ import {
   createCustomWidget,
   createSection,
   createUser,
+  ensureQuestionIndicatorMapExists,
 } from '@shared/lib/entity-mocks';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import { DB_ENTITIES } from '@shared/lib/db-entities';
@@ -71,6 +72,10 @@ export class E2eTestManager {
         additionalData?: DeepPartial<CustomWidget>,
       ): Promise<CustomWidget> =>
         createCustomWidget(this.getDataSource(), additionalData),
+      ensureQuestionIndicatorMapExists: async (
+        dataSource: DataSource,
+        questionIndicatorMap: { indicator: string; question: string },
+      ) => ensureQuestionIndicatorMapExists(dataSource, questionIndicatorMap),
     };
   }
 
