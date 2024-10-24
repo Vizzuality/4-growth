@@ -8,7 +8,10 @@ import { FetchSpecification } from 'nestjs-base-service';
 import { WidgetVisualisationFilters } from '@shared/schemas/widget-visualisation-filters.schema';
 import { BaseWidgetWithData } from '@shared/dto/widgets/base-widget-data.interface';
 import { WidgetDataFiltersSchema } from '@shared/schemas/widget-data-filters.schema';
-import { ISurveyDataRepository } from '@api/infrastructure/survey-data-repository.interface';
+import {
+  ISurveyDataRepository,
+  SurveyDataRepository,
+} from '@api/infrastructure/survey-data-repository.interface';
 
 @Injectable()
 export class WidgetsService extends AppBaseService<
@@ -22,7 +25,7 @@ export class WidgetsService extends AppBaseService<
     protected readonly logger: Logger,
     @InjectRepository(BaseWidget)
     private baseWidgetRepository: Repository<BaseWidget>,
-    @Inject('SurveyDataRepository')
+    @Inject(SurveyDataRepository)
     private readonly surveyDataRepository: ISurveyDataRepository,
   ) {
     super(baseWidgetRepository, 'baseWidget', 'baseWidgets');
