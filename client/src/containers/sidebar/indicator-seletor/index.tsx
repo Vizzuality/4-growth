@@ -21,7 +21,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { POPOVER_CONTENT_CLASS } from "@/constants";
+import { SIDEBAR_POPOVER_CLASS } from "@/constants";
 
 const IndicatorSelector: FC = () => {
   const { data } = client.widgets.getWidgets.useQuery(
@@ -62,7 +62,7 @@ const IndicatorSelector: FC = () => {
       <PopoverContent
         align="start"
         side="bottom"
-        className={cn(POPOVER_CONTENT_CLASS, "h-[320px]")}
+        className={cn(SIDEBAR_POPOVER_CLASS, "h-[320px]")}
       >
         <SearchableList
           items={widgets}
