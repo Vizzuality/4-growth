@@ -4,7 +4,9 @@ import React, { FC, useRef, useEffect, useState, useCallback } from "react";
 import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 import { useDebouncedCallback } from "use-debounce";
 
-import BaseHorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
+import BaseHorizontalBarChart, {
+  hasChartData,
+} from "@/containers/widget/horizontal-bar-chart";
 
 interface LargeHorizontalBarChartProps {
   data?: WidgetChartData;
@@ -37,10 +39,7 @@ const HorizontalBarChart: FC<LargeHorizontalBarChartProps> = ({ data }) => {
       window.removeEventListener("resize", debouncedUpdateChartWidth);
   }, [debouncedUpdateChartWidth]);
 
-  if (!data || data.length === 0) {
-    console.warn(
-      `HorizontalBarChart: Expected at least 1 data point, but received 0.`,
-    );
+  if (!hasChartData(data, HorizontalBarChart.displayName)) {
     return null;
   }
 
@@ -94,5 +93,6 @@ const HorizontalBarChart: FC<LargeHorizontalBarChartProps> = ({ data }) => {
     </div>
   );
 };
+HorizontalBarChart.displayName = "HorizontalBarChart/Sandbox";
 
 export default HorizontalBarChart;

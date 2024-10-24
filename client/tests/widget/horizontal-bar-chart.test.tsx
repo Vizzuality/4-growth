@@ -1,7 +1,9 @@
 import { vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import ExploreHorizontalBarChart from "@/containers/widget/horizontal-bar-chart/explore";
 import SandboxHorizontalBarChart from "@/containers/widget/horizontal-bar-chart/sandbox";
+import BreakdownChart from "@/containers/widget/horizontal-bar-chart/breakdown";
+import { CSS_CHART_COLORS, TW_CHART_COLORS } from "@/lib/constants";
 import type { ResponsiveContainerProps } from "recharts";
 
 vi.mock("recharts", async () => {
@@ -26,6 +28,25 @@ const newMockData = [
   { label: "Option A", value: 60 },
   { label: "Option B", value: 30 },
   { label: "Option C", value: 10 },
+];
+
+const mockBreakdownData = [
+  {
+    label: "Category 1",
+    data: [
+      { label: "Option A", value: 50 },
+      { label: "Option B", value: 30 },
+      { label: "Option C", value: 20 },
+    ],
+  },
+  {
+    label: "Category 2",
+    data: [
+      { label: "Option A", value: 60 },
+      { label: "Option B", value: 25 },
+      { label: "Option C", value: 15 },
+    ],
+  },
 ];
 
 type ChartComponent =
@@ -96,7 +117,7 @@ const createChartTests = (
       const { container } = render(<ChartComponent data={[]} />);
 
       expect(consoleWarnSpy).toHaveBeenCalledWith(
-        "HorizontalBarChart: Expected at least 1 data point, but received 0.",
+        `${ChartComponent.displayName}: Expected at least 1 data point, but received 0.`,
       );
       expect(container.firstChild).toBeNull();
     });
@@ -132,6 +153,90 @@ describe("HorizontalBarChart", () => {
           expect(line).toHaveAttribute("stroke-dasharray", "3 3");
         });
       });
+    });
+  });
+
+  describe("BreakdownChart", () => {
+    const renderChart = (data = mockBreakdownData) =>
+      render(<BreakdownChart data={data} />);
+
+    it("renders all category sections with their labels", async () => {
+      renderChart();
+
+      await waitFor(() => {
+        mockBreakdownData.forEach(({ label }) => {
+          expect(screen.getByText(label)).toBeInTheDocument();
+        });
+      });
+    });
+
+    it("renders charts for each category with correct styling", async () => {
+      const { container } = renderChart();
+
+      await waitFor(() => {
+        const charts = container.querySelectorAll(".breakdown-chart > div");
+        expect(charts).toHaveLength(mockBreakdownData.length + 1); // +1 for legend
+
+        const bars = container.querySelectorAll(".recharts-rectangle");
+        const expectedBarsCount = mockBreakdownData.reduce(
+          (acc, curr) => acc + curr.data.length,
+          0,
+        );
+        expect(bars).toHaveLength(expectedBarsCount);
+      });
+    });
+
+    it("applies correct colors to bars based on CSS_CHART_COLORS", async () => {
+      const { container } = renderChart();
+
+      await waitFor(() => {
+        mockBreakdownData.forEach(({ data }) => {
+          data.forEach((_, index) => {
+            const bars = container.querySelectorAll(
+              `.recharts-bar-rectangle:nth-child(${index + 1}) path`,
+            );
+            bars.forEach((bar) => {
+              expect(bar).toHaveAttribute("fill", CSS_CHART_COLORS[index]);
+            });
+          });
+        });
+      });
+    });
+
+    it("renders the legend with correct colors and labels", async () => {
+      renderChart();
+
+      await waitFor(() => {
+        const legendItems = screen.getByTestId(
+          "breakdown-chart-legend",
+        ).children;
+        const categoryData = mockBreakdownData[0].data;
+
+        expect(legendItems).toHaveLength(categoryData.length);
+
+        categoryData.forEach(({ label }, index) => {
+          const legendItem = legendItems[index];
+          const colorDot = legendItem.querySelector(".h-3.w-3.rounded-full");
+          const labelText = legendItem.querySelector("span:last-child");
+
+          expect(colorDot).toHaveClass(TW_CHART_COLORS[index]);
+          expect(labelText).toHaveTextContent(label);
+        });
+      });
+    });
+
+    it("handles empty data gracefully", async () => {
+      const consoleWarnSpy = vi
+        .spyOn(console, "warn")
+        .mockImplementation(() => {});
+      const { container } = render(<BreakdownChart data={[]} />);
+
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
+        `${BreakdownChart.displayName}: Expected at least 1 data point, but received 0.`,
+      );
+      expect(container.firstChild).toBeNull();
+
+      consoleWarnSpy.mockRestore();
     });
   });
 });

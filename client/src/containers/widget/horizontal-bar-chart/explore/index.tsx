@@ -3,17 +3,16 @@ import { FC } from "react";
 
 import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 
-import BaseHorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
+import BaseHorizontalBarChart, {
+  hasChartData,
+} from "@/containers/widget/horizontal-bar-chart";
 
 interface SmallHorizontalBarChartProps {
   data?: WidgetChartData;
 }
 
 const HorizontalBarChart: FC<SmallHorizontalBarChartProps> = ({ data }) => {
-  if (!data || data.length === 0) {
-    console.warn(
-      `HorizontalBarChart: Expected at least 1 data point, but received 0.`,
-    );
+  if (!hasChartData(data, HorizontalBarChart.displayName)) {
     return null;
   }
 
@@ -47,5 +46,6 @@ const HorizontalBarChart: FC<SmallHorizontalBarChartProps> = ({ data }) => {
     />
   );
 };
+HorizontalBarChart.displayName = "HorizontalBarChart/Explore";
 
 export default HorizontalBarChart;
