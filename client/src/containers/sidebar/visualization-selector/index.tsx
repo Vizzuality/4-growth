@@ -15,7 +15,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { POPOVER_CONTENT_CLASS } from "@/constants";
+import { SIDEBAR_POPOVER_CLASS } from "@/constants";
 
 const getVisualizationText = (value: WidgetVisualizationsType): string =>
   value
@@ -59,7 +59,7 @@ const VisualizationSelector: FC = () => {
       <PopoverContent
         align="start"
         side="bottom"
-        className={POPOVER_CONTENT_CLASS}
+        className={SIDEBAR_POPOVER_CLASS}
       >
         <div className="flex h-full flex-col overflow-y-auto">
           {VALID_WIDGET_VISUALIZATIONS.map((v) => (

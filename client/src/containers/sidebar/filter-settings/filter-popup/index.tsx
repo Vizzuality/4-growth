@@ -16,7 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { POPOVER_CONTENT_CLASS } from "@/constants";
+import { SIDEBAR_POPOVER_CLASS } from "@/constants";
 
 interface FilterPopupProps {
   name: string;
@@ -90,7 +90,7 @@ const FilterPopup: FC<FilterPopupProps> = ({ name, fixedFilter, items }) => {
       <PopoverContent
         align="end"
         side="bottom"
-        className={cn(POPOVER_CONTENT_CLASS, "h-[320px]")}
+        className={cn(SIDEBAR_POPOVER_CLASS, "h-[320px]")}
       >
         <FilterSelect
           items={items}
