@@ -11,8 +11,11 @@ interface HorizontalBarChartProps {
   width?: number;
   height: number;
   barSize?: number;
-  renderLabel: ImplicitLabelType;
+  renderLabel?: ImplicitLabelType;
   containerStyle?: React.CSSProperties;
+  barRadius?: [number, number, number, number];
+  renderTooltip?: React.ReactNode;
+  getCellColor?: (index: number) => string;
 }
 
 function getValueIndexFromWidgetData(data: WidgetChartData) {
@@ -30,8 +33,15 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
   barSize,
   renderLabel,
   containerStyle,
+  barRadius = [0, 8, 8, 0],
+  renderTooltip,
+  getCellColor,
 }) => {
   const highestValueIndex = getValueIndexFromWidgetData(data);
+  const defaultGetCellColor = (index: number) =>
+    index === highestValueIndex
+      ? "hsl(var(--accent))"
+      : "hsl(var(--secondary))";
 
   return (
     <ChartContainer config={{}} className="w-full p-0" style={containerStyle}>
@@ -49,23 +59,28 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
         <Bar
           barSize={barSize}
           dataKey="value"
-          radius={[0, 8, 8, 0]}
+          radius={barRadius}
           label={renderLabel}
         >
           {data.map((entry, index) => (
             <Cell
               key={`cell-${entry.label}-${index}`}
-              fill={
-                index === highestValueIndex
-                  ? "hsl(var(--accent))"
-                  : "hsl(var(--secondary))"
-              }
+              fill={(getCellColor || defaultGetCellColor)(index)}
             />
           ))}
         </Bar>
+        {renderTooltip}
       </BarChart>
     </ChartContainer>
   );
 };
+
+export function hasChartData<T>(data?: T[], name?: string): data is T[] {
+  if (!data || data.length === 0) {
+    console.warn(`${name}: Expected at least 1 data point, but received 0.`);
+    return false;
+  }
+  return true;
+}
 
 export default HorizontalBarChart;

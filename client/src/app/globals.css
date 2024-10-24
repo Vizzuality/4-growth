@@ -92,3 +92,9 @@
       @apply bg-background text-foreground antialiased text-base;
     }
   }
+
+  @layer utilities {
+  .breakdown-chart .\[\&_\.recharts-rectangle\.recharts-tooltip-cursor\]\:fill-muted .recharts-rectangle.recharts-tooltip-cursor {
+    fill: transparent;
+  }
+}
