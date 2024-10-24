@@ -7,7 +7,7 @@ import { isEmptyWidget } from "@/lib/utils";
 import TileMenu, { TileMenuItem } from "@/containers/explore/section/tile-menu";
 import NoData from "@/containers/no-data";
 import Widget from "@/containers/widget";
-import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
+import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart/explore";
 import Map from "@/containers/widget/map";
 
 import { Card } from "@/components/ui/card";

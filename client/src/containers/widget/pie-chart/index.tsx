@@ -4,16 +4,10 @@ import { FC } from "react";
 import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Pie, PieChart as RePieChart } from "recharts";
 
+import { TW_CHART_COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 import { ChartContainer } from "@/components/ui/chart";
-
-const CHART_COLORS = [
-  "bg-chart-1",
-  "bg-chart-2",
-  "bg-chart-3",
-  "bg-chart-4",
-] as const;
 
 interface PieChartProps {
   data?: WidgetChartData;
@@ -49,7 +43,7 @@ const PieChart: FC<PieChartProps> = ({ data }) => {
               className="flex items-center gap-x-1 text-xs"
             >
               <span
-                className={cn("block h-3 w-3 rounded-full", CHART_COLORS[i])}
+                className={cn("block h-3 w-3 rounded-full", TW_CHART_COLORS[i])}
               ></span>
               <span className="font-black">{c.value}%</span>
               <span>{c.label}</span>

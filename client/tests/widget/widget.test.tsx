@@ -5,14 +5,21 @@ import {
   WIDGET_VISUALIZATIONS,
   WidgetVisualizationsType,
 } from "@shared/dto/widgets/widget-visualizations.constants";
+import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 
-vi.mock("@/containers/widget/horizontal-bar-chart", () => ({
-  default: () => (
-    <div data-testid={WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART}>
-      Horizontal Bar Chart
-    </div>
-  ),
-}));
+vi.mock("@/containers/widget/horizontal-bar-chart", async () => {
+  const actual = await vi.importActual<typeof HorizontalBarChart>(
+    "@/containers/widget/horizontal-bar-chart",
+  );
+  return {
+    ...actual,
+    default: () => (
+      <div data-testid={WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART}>
+        Horizontal Bar Chart
+      </div>
+    ),
+  };
+});
 
 vi.mock("@/containers/widget/pie-chart", () => ({
   default: () => (
@@ -50,7 +57,7 @@ describe("Widget", () => {
     question: "Test Question",
     defaultVisualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
     visualisations: Object.values(WIDGET_VISUALIZATIONS),
-    data: [{ label: "Test", value: 100, total: 100 }],
+    data: { chart: [{ label: "Test", value: 100, total: 100 }] },
     onMenuOpenChange: vi.fn(),
   };
 
@@ -62,7 +69,7 @@ describe("Widget", () => {
         visualizationType === WIDGET_VISUALIZATIONS.FILTER ||
         visualizationType === WIDGET_VISUALIZATIONS.NAVIGATION
       ) {
-        props = { ...props, data: { href: "#" } };
+        props = { ...props, data: { navigation: { href: "#" } } };
       }
 
       const { container } = render(
