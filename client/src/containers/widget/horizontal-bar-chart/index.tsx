@@ -16,6 +16,7 @@ interface HorizontalBarChartProps {
   barRadius?: [number, number, number, number];
   renderTooltip?: React.ReactNode;
   getCellColor?: (index: number) => string;
+  onResize?: (width: number, height: number) => void;
 }
 
 function getValueIndexFromWidgetData(data: WidgetChartData) {
@@ -36,6 +37,7 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
   barRadius = [0, 8, 8, 0],
   renderTooltip,
   getCellColor,
+  onResize,
 }) => {
   const highestValueIndex = getValueIndexFromWidgetData(data);
   const defaultGetCellColor = (index: number) =>
@@ -44,7 +46,14 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
       : "hsl(var(--secondary))";
 
   return (
-    <ChartContainer config={{}} className="w-full p-0" style={containerStyle}>
+    <ChartContainer
+      config={{}}
+      className="w-full p-0"
+      style={containerStyle}
+      onResponsiveContainerResize={(w, h) => {
+        if (onResize) onResize(w, h);
+      }}
+    >
       <BarChart
         width={width}
         height={height}
