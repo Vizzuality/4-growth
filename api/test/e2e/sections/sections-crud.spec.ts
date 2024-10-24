@@ -46,7 +46,7 @@ describe('Page Sections API', () => {
         }),
         await entityMocks.createBaseWidget({
           sectionOrder: 2,
-          indicator: 'organisation-by-sector',
+          indicator: 'sector',
         }),
       ],
     });
@@ -71,7 +71,7 @@ describe('Page Sections API', () => {
     const expectedWidgetData = {
       'total-countries': { counter: { value: 1, total: 4 } },
       'total-surveys': { counter: { value: 2, total: 5 } },
-      'organisation-by-sector': {
+      sector: {
         chart: [
           {
             label: 'Agriculture',

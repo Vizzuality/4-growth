@@ -99,13 +99,6 @@
   },
   {
     "surveyId": "R_84qILa9AvSY5qCB",
-    "answerId": "248EA618033CE1ADF9F305AC20CF390BF3D0FB7E",
-    "question": "If you agree, please confirm the following statements  i have read the information presented in this consent form...",
-    "answer": "Yes",
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "R_84qILa9AvSY5qCB",
     "answerId": "262A10478C2F5A61F261736F49D35C9D729E7B2A",
     "question": "Where and how do you store this data?",
     "answer": "On-premises servers/local storage facilities",
@@ -316,13 +309,6 @@
   },
   {
     "surveyId": "R_84qILa9AvSY5qCB",
-    "answerId": "8C5419707E0981EC0FE4BDF524AF2A6961A97E50",
-    "question": "Specific regional or subsector considerations to take into account",
-    "answer": "Yes",
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "R_84qILa9AvSY5qCB",
     "answerId": "8EB4E2DC1F7472D415D118CF0F117CAACB1078C5",
     "question": "Do you have network connectivity?",
     "answer": "No",
@@ -416,13 +402,6 @@
     "surveyId": "R_84qILa9AvSY5qCB",
     "answerId": "D5846ABD30E4D36FB3D1B2CDD2DB8B83A91BF7C3",
     "question": "Do you pay for this data?",
-    "answer": "Yes",
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "R_84qILa9AvSY5qCB",
-    "answerId": "D6480F0B50D39F79BFEB9572D599560BD9DD1535",
-    "question": "I agree to be contacted again by the researchers for clarification or elaboration on my input in the discussion (optional)",
     "answer": "Yes",
     "countryCode": "BEL"
   },
@@ -617,13 +596,6 @@
   },
   {
     "surveyId": "R_8OHmvlDNp8BXNAg",
-    "answerId": "5C95E525980BAABA64F88606F7347084D87C2D6B",
-    "question": "Specific regional or subsector considerations to take into account",
-    "answer": "Yes",
-    "countryCode": "AUT"
-  },
-  {
-    "surveyId": "R_8OHmvlDNp8BXNAg",
     "answerId": "5E554E9B6E1C982A099618148078682F03FF38D5",
     "question": "Sector (agri/forestry/both)",
     "answer": "Forestry",
@@ -687,13 +659,6 @@
   },
   {
     "surveyId": "R_8OHmvlDNp8BXNAg",
-    "answerId": "A552CFB592058E51843E7AB0C3757503FDF65C14",
-    "question": "If you agree, please confirm the following statements  i have read the information presented in this consent form...",
-    "answer": "Yes",
-    "countryCode": "AUT"
-  },
-  {
-    "surveyId": "R_8OHmvlDNp8BXNAg",
     "answerId": "A8075694F4C09A8A0E67F5E286A0602C16839EFC",
     "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
     "answer": "Yes",
@@ -745,13 +710,6 @@
     "surveyId": "R_8OHmvlDNp8BXNAg",
     "answerId": "CA100B3508E11BD5FD059D601931CB5D585BE9B7",
     "question": "Have digital technologies contributed to sustainability and environmental practices?",
-    "answer": "No",
-    "countryCode": "AUT"
-  },
-  {
-    "surveyId": "R_8OHmvlDNp8BXNAg",
-    "answerId": "CFB12DAB0E2C261C35A46E29C741569F9AC75C55",
-    "question": "I agree to be contacted again by the researchers for clarification or elaboration on my input in the discussion (optional)",
     "answer": "No",
     "countryCode": "AUT"
   },
@@ -855,13 +813,6 @@
   },
   {
     "surveyId": "R_2eKIDqs0Vsyj0qM",
-    "answerId": "773B2CC3D69DB30DCCC22E302250D265516789C9",
-    "question": "I agree to be contacted again by the researchers for clarification or elaboration on my input in the discussion (optional)",
-    "answer": "No",
-    "countryCode": "BGR"
-  },
-  {
-    "surveyId": "R_2eKIDqs0Vsyj0qM",
     "answerId": "79A70081AB594B4BE815007FA398C1471B68E143",
     "question": "Agriculture/forestry organisation size",
     "answer": "Medium-scale/Local-National",
@@ -869,23 +820,9 @@
   },
   {
     "surveyId": "R_2eKIDqs0Vsyj0qM",
-    "answerId": "A9160B10D15EECF1E9033198D32E0B548A190ED0",
-    "question": "Specific regional or subsector considerations to take into account",
-    "answer": "Yes",
-    "countryCode": "BGR"
-  },
-  {
-    "surveyId": "R_2eKIDqs0Vsyj0qM",
     "answerId": "B08C923EA4C83BDD125F723D59965F678E156C7A",
     "question": "Location (country/region)",
     "answer": "Bulgaria",
-    "countryCode": "BGR"
-  },
-  {
-    "surveyId": "R_2eKIDqs0Vsyj0qM",
-    "answerId": "D33FF6FF8979C50CEAFA57EFD9BD9E0484F118BF",
-    "question": "If you agree, please confirm the following statements  i have read the information presented in this consent form...",
-    "answer": "Yes",
     "countryCode": "BGR"
   },
   {
@@ -900,13 +837,6 @@
     "answerId": "1C73220341F21C09C45B602B23CD2402D8674308",
     "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
     "answer": "Don't know",
-    "countryCode": "NLD"
-  },
-  {
-    "surveyId": "R_2hbsGDfZSDyw8BX",
-    "answerId": "1F32771828317F048FA73788B471DC363C159386",
-    "question": "If you agree, please confirm the following statements  i have read the information presented in this consent form...",
-    "answer": "Yes",
     "countryCode": "NLD"
   },
   {
@@ -1002,20 +932,6 @@
   },
   {
     "surveyId": "R_2hbsGDfZSDyw8BX",
-    "answerId": "935D0F300ED2BC92B5A1DE061AA77CA7E74C49BB",
-    "question": "Specific regional or subsector considerations to take into account",
-    "answer": "No",
-    "countryCode": "NLD"
-  },
-  {
-    "surveyId": "R_2hbsGDfZSDyw8BX",
-    "answerId": "A369DBD4098AA9EEB2BEB0F11146AE7B04568F22",
-    "question": "I agree to be contacted again by the researchers for clarification or elaboration on my input in the discussion (optional)",
-    "answer": "Yes",
-    "countryCode": "NLD"
-  },
-  {
-    "surveyId": "R_2hbsGDfZSDyw8BX",
     "answerId": "A4081F1DCEE4F3A9EBB99C7720F1A171FC9A60C2",
     "question": "Are there specific barriers hindering further integration?",
     "answer": "No",
@@ -1082,20 +998,6 @@
     "answerId": "5EA0552F9629D7A4A10E33B775FF0D5FB4050F53",
     "question": "What are the advantages of the used technologies?",
     "answer": "Efficient resource allocation",
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "R_2XckmVyZ44klhUe",
-    "answerId": "7F4AEA6D791AA42EF14B9A1CA5D2A9E240F07A48",
-    "question": "I agree to be contacted again by the researchers for clarification or elaboration on my input in the discussion (optional)",
-    "answer": "Yes",
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "R_2XckmVyZ44klhUe",
-    "answerId": "938ECB9906C797C36BA012784BCF07C60D370C73",
-    "question": "If you agree, please confirm the following statements  i have read the information presented in this consent form...",
-    "answer": "Yes",
     "countryCode": "BEL"
   },
   {
