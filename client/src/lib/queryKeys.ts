@@ -23,8 +23,13 @@ export const pageFiltersKeys = createQueryKeys("pageFilters", {
   all: null,
 });
 
+export const widgetsKeys = createQueryKeys("widgets", {
+  all: null,
+});
+
 export const queryKeys = mergeQueryKeys(
   usersKeys,
   sectionsKeys,
   pageFiltersKeys,
+  widgetsKeys,
 );

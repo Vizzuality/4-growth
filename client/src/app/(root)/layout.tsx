@@ -23,6 +23,10 @@ export default async function ExploreLayout({ children }: PropsWithChildren) {
     queryKey: queryKeys.pageFilters.all.queryKey,
     queryFn: async () => client.pageFilter.searchFilters.query(QUERY_OPTIONS),
   });
+  await queryClient.prefetchQuery({
+    queryKey: queryKeys.widgets.all.queryKey,
+    queryFn: async () => client.widgets.getWidgets.query(QUERY_OPTIONS),
+  });
 
   return (
     <Hydrate state={dehydrate(queryClient)}>

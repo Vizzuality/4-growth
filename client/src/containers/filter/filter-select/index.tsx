@@ -15,8 +15,6 @@ import {
   FilterSelectStep,
 } from "@/containers/filter/filter-select/store";
 
-import { Card } from "@/components/ui/card";
-
 export interface FilterSelectProps {
   items: PageFilter[];
   defaultValues: string[];
@@ -38,14 +36,12 @@ const FilterSelect: FC<FilterSelectProps> = ({
         }
         filter={fixedFilter || null}
       >
-        <Card className="relative h-full bg-foreground p-0 text-background">
-          <FilterSelectSteps
-            defaultValues={defaultValues}
-            fixedFilter={fixedFilter}
-            items={items}
-            onSubmit={onSubmit}
-          />
-        </Card>
+        <FilterSelectSteps
+          defaultValues={defaultValues}
+          fixedFilter={fixedFilter}
+          items={items}
+          onSubmit={onSubmit}
+        />
       </AtomsHydrator>
     </Provider>
   );

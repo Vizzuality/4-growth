@@ -89,7 +89,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
   };
 
   return (
-    <>
+    <div className="flex h-full flex-col">
       <Button
         type="button"
         variant="clean"
@@ -194,7 +194,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
           </Button>
         )}
       </Form>
-    </>
+    </div>
   );
 };
 

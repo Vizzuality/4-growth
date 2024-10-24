@@ -8,12 +8,12 @@ import { useAtomValue } from "jotai";
 
 import { cn } from "@/lib/utils";
 
-import useFilters from "@/hooks/useFilters";
-
 import Header from "@/containers/header";
 import FilterSettings from "@/containers/sidebar/filter-settings";
+import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import SectionsNav from "@/containers/sidebar/sections-nav";
 import { isPopoverOpenAtom } from "@/containers/sidebar/store";
+import VisualizationSelector from "@/containers/sidebar/visualization-selector";
 
 import {
   Accordion,
@@ -28,7 +28,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 const Sidebar: FC = () => {
   const isExplore = usePathname().startsWith("/explore");
   const isPopoverOpen = useAtomValue(isPopoverOpenAtom);
-  const { filters } = useFilters();
 
   return (
     <>
@@ -56,11 +55,7 @@ const Sidebar: FC = () => {
             key="sidebar-accordion-explore"
             type="multiple"
             className="w-full overflow-y-auto"
-            defaultValue={
-              filters.length
-                ? ["explore-filters", "explore-sections"]
-                : ["explore-sections"]
-            }
+            defaultValue={["explore-sections"]}
           >
             <AccordionItem value="explore-filters">
               <AccordionTrigger>Filters</AccordionTrigger>
@@ -85,7 +80,8 @@ const Sidebar: FC = () => {
             <AccordionItem value="sandbox-settings">
               <AccordionTrigger>Settings</AccordionTrigger>
               <AccordionContent className="py-3.5">
-                settings here...
+                <VisualizationSelector />
+                <IndicatorSelector />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="sandbox-filters">
