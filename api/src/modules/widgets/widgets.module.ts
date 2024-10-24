@@ -12,6 +12,7 @@ import { WidgetsController } from '@api/modules/widgets/widgets.controller';
 import { WidgetsService } from '@api/modules/widgets/widgets.service';
 import { PostgresSurveyDataRepository } from '@api/infrastructure/postgres-survey-data.repository';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
+import { SurveyDataRepository } from '@api/infrastructure/survey-data-repository.interface';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { SQLAdapter } from '@api/infrastructure/sql-adapter';
   ],
   providers: [
     SQLAdapter,
-    { provide: 'SurveyDataRepository', useClass: PostgresSurveyDataRepository },
+    { provide: SurveyDataRepository, useClass: PostgresSurveyDataRepository },
     CustomWidgetService,
     PageFiltersService,
     WidgetsService,

@@ -5,6 +5,9 @@ import {
 import { BaseWidgetWithData } from '@shared/dto/widgets/base-widget-data.interface';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { WidgetDataFilter } from '@shared/dto/widgets/widget-data-filter';
+
+export const SurveyDataRepository = Symbol('ISurveyDataRepository');
+
 export interface ISurveyDataRepository {
   addSurveyDataToSections(
     sections: Partial<Section>[],
