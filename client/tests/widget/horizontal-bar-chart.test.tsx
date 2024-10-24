@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import ExploreHorizontalBarChart from "@/containers/widget/horizontal-bar-chart/explore";
 import SandboxHorizontalBarChart from "@/containers/widget/horizontal-bar-chart/sandbox";
 import BreakdownChart from "@/containers/widget/horizontal-bar-chart/breakdown";
@@ -17,6 +17,10 @@ vi.mock("recharts", async () => {
     ),
   };
 });
+
+vi.mock("@/containers/no-data", () => ({
+  default: () => <div data-testid="no-data">No data</div>,
+}));
 
 const mockData = [
   { label: "Option A", value: 50 },
@@ -114,12 +118,12 @@ const createChartTests = (
       const consoleWarnSpy = vi
         .spyOn(console, "warn")
         .mockImplementation(() => {});
-      const { container } = render(<ChartComponent data={[]} />);
+      render(<ChartComponent data={[]} />);
 
       expect(consoleWarnSpy).toHaveBeenCalledWith(
         `${ChartComponent.displayName}: Expected at least 1 data point, but received 0.`,
       );
-      expect(container.firstChild).toBeNull();
+      expect(screen.getByTestId("no-data")).toBeInTheDocument();
     });
 
     if (additionalTests) {
@@ -229,12 +233,12 @@ describe("HorizontalBarChart", () => {
       const consoleWarnSpy = vi
         .spyOn(console, "warn")
         .mockImplementation(() => {});
-      const { container } = render(<BreakdownChart data={[]} />);
+      render(<BreakdownChart data={[]} />);
 
       expect(consoleWarnSpy).toHaveBeenCalledWith(
         `${BreakdownChart.displayName}: Expected at least 1 data point, but received 0.`,
       );
-      expect(container.firstChild).toBeNull();
+      expect(screen.getByTestId("no-data")).toBeInTheDocument();
 
       consoleWarnSpy.mockRestore();
     });

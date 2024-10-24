@@ -6,6 +6,7 @@ import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface"
 import { CSS_CHART_COLORS, TW_CHART_COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
+import NoData from "@/containers/no-data";
 import BaseHorizontalBarChart, {
   hasChartData,
 } from "@/containers/widget/horizontal-bar-chart";
@@ -18,7 +19,7 @@ interface SmallHorizontalBarChartProps {
 
 const HorizontalBarChart: FC<SmallHorizontalBarChartProps> = ({ data }) => {
   if (!hasChartData(data, HorizontalBarChart.displayName)) {
-    return null;
+    return <NoData />;
   }
 
   const tooltipContent = (
