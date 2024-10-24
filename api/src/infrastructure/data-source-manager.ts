@@ -1,8 +1,7 @@
 import * as fs from 'fs';
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { SQLAdapter } from '@api/infrastructure/sql-adapter';
 import { SectionsJSONParser } from 'api/data/sections/sections-json-parser';
 import { SurveyAnswer } from '@shared/dto/surveys/survey-answer.entity';
 import { QuestionIndicatorMap } from '@shared/dto/surveys/question-widget-map.entity';
@@ -12,7 +11,6 @@ import { Section } from '@shared/dto/sections/section.entity';
 export class DataSourceManager {
   public constructor(
     private readonly logger: Logger,
-    @Inject(SQLAdapter) private readonly sqlAdapter: SQLAdapter,
     @InjectDataSource() private readonly dataSource: DataSource,
   ) {}
 

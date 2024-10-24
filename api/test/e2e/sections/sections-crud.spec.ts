@@ -46,7 +46,7 @@ describe('Page Sections API', () => {
         }),
         await entityMocks.createBaseWidget({
           sectionOrder: 2,
-          indicator: 'organisation-by-sector',
+          indicator: 'sector',
         }),
       ],
     });
@@ -55,7 +55,7 @@ describe('Page Sections API', () => {
     const res = await testManager
       .request()
       .get(
-        '/sections?filters[0][name]=eu-member-state&filters[0][operator]==&filters[0][values]=Spain&filters[0][values]=Belgium',
+        '/sections?filters[0][name]=eu-member-state&filters[0][operator]==&filters[0][values][0]=Belgium',
       ); // Implicit ?include[]=baseWidgets&sort[]=order&sort[]=baseWidget.sectionOrder
 
     // Then
@@ -71,7 +71,7 @@ describe('Page Sections API', () => {
     const expectedWidgetData = {
       'total-countries': { counter: { value: 1, total: 4 } },
       'total-surveys': { counter: { value: 2, total: 5 } },
-      'organisation-by-sector': {
+      sector: {
         chart: [
           {
             label: 'Agriculture',

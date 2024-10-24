@@ -8,7 +8,10 @@ import {
   SectionWithDataWidget,
 } from '@shared/dto/sections/section.entity';
 import { FetchSpecification } from 'nestjs-base-service';
-import { ISurveyDataRepository } from '@api/infrastructure/survey-data-repository.interface';
+import {
+  ISurveyDataRepository,
+  SurveyDataRepository,
+} from '@api/infrastructure/survey-data-repository.interface';
 import { WidgetDataFiltersSchema } from '@shared/schemas/widget-data-filters.schema';
 
 @Injectable()
@@ -21,7 +24,7 @@ export class SectionsService extends AppBaseService<
   public constructor(
     @InjectRepository(Section)
     private readonly sectionsRepository: Repository<SectionWithDataWidget>,
-    @Inject('SurveyDataRepository')
+    @Inject(SurveyDataRepository)
     private readonly surveyDataRepository: ISurveyDataRepository,
   ) {
     super(sectionsRepository, 'section', 'sections');

@@ -3,6 +3,14 @@ import * as fs from 'node:fs';
 import { CountryISO3Map } from '@shared/constants/country-iso3.map';
 import { StringUtils } from '@api/utils/string.utils';
 
+const EXCLUDED_QUESTIONS = {
+  'If you agree, please confirm the following statements  i have read the information presented in this consent form...':
+    true,
+  'Specific regional or subsector considerations to take into account': true,
+  'I agree to be contacted again by the researchers for clarification or elaboration on my input in the discussion (optional)':
+    true,
+};
+
 const main = async () => {
   const [answersDf, dateDf, questionDf, answerIdDf] = await Promise.all([
     dataForge.fromObject(
@@ -68,7 +76,7 @@ const main = async () => {
     (row) => row['surveyId'],
   );
 
-  const transformedAnswers = [];
+  let transformedAnswers = [];
   for (const group of answersGroupByAnswers) {
     let answers = group.toArray();
     const countryAnswer = answers.find(
@@ -90,6 +98,9 @@ const main = async () => {
     transformedAnswers.push(...answers);
   }
 
+  transformedAnswers = transformedAnswers.filter(
+    (e) => !EXCLUDED_QUESTIONS[e.question],
+  );
   fs.writeFileSync(
     `${__dirname}/surveys.json`,
     JSON.stringify(transformedAnswers, null, 2),

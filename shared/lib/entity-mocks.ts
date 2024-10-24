@@ -32,11 +32,31 @@ export const createQuestionIndicatorMap = async (
   return repo.save(data);
 };
 
+export const ensureQuestionIndicatorMapExists = async (
+  dataSource: DataSource,
+  questionIndicatorMap: { indicator: string; question: string },
+) => {
+  const questionIndicatorRepository =
+    dataSource.getRepository(QuestionIndicatorMap);
+  const foundQuestionIndicator = await questionIndicatorRepository.findOneBy({
+    indicator: questionIndicatorMap.indicator,
+  });
+  if (foundQuestionIndicator === null) {
+    return await questionIndicatorRepository.save(questionIndicatorMap);
+  }
+  return undefined;
+};
+
 export const createBaseWidget = async (
   dataSource: DataSource,
-  additionalData?: DeepPartial<BaseWidget>,
+  data: DeepPartial<BaseWidget> & { indicator: string },
 ) => {
-  // TODO: Create QuestionMapIndicator if not exists to reduce the verbosity of the test files
+  const indicator = data.indicator;
+
+  await ensureQuestionIndicatorMapExists(dataSource, {
+    indicator,
+    question: indicator,
+  });
   const baseWidgetsRepository = dataSource.getRepository(BaseWidget);
 
   const defaults: Partial<BaseWidget> = {
@@ -48,7 +68,7 @@ export const createBaseWidget = async (
     sectionOrder: 1,
   };
 
-  return baseWidgetsRepository.save({ ...defaults, ...additionalData });
+  return baseWidgetsRepository.save({ ...defaults, ...data });
 };
 
 export const createSection = async (
@@ -63,6 +83,20 @@ export const createSection = async (
     description: 'Description of a test section',
     order: 1,
   };
+
+  // Create indicators if they don't exist in the database
+  if (additionalData !== undefined) {
+    const baseWidgets = additionalData.baseWidgets;
+    if (Array.isArray(baseWidgets) === true) {
+      for (let widgetIdx = 0; widgetIdx < baseWidgets.length; widgetIdx++) {
+        const widget = baseWidgets[widgetIdx];
+        await ensureQuestionIndicatorMapExists(dataSource, {
+          indicator: widget.indicator as string,
+          question: widget.indicator as string,
+        });
+      }
+    }
+  }
 
   return sectionsRepository.save({ ...defaults, ...additionalData });
 };

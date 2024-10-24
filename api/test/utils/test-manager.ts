@@ -9,6 +9,7 @@ import {
   createQuestionIndicatorMap,
   createSection,
   createUser,
+  ensureQuestionIndicatorMapExists,
 } from '@shared/lib/entity-mocks';
 import { logUserIn } from './user.auth';
 import { Type } from '@nestjs/common/interfaces';
@@ -107,10 +108,13 @@ export class TestManager<FixtureType> {
       createQuestionIndicatorMap: async (
         additionalData: QuestionIndicatorMap,
       ) => createQuestionIndicatorMap(this.getDataSource(), additionalData),
+      ensureQuestionIndicatorMapExists: async (
+        dataSource: DataSource,
+        questionIndicatorMap: { indicator: string; question: string },
+      ) => ensureQuestionIndicatorMapExists(dataSource, questionIndicatorMap),
       createBaseWidget: (
-        additionalData?: DeepPartial<BaseWidget>,
-      ): Promise<BaseWidget> =>
-        createBaseWidget(this.getDataSource(), additionalData),
+        data: DeepPartial<BaseWidget> & { indicator: string },
+      ): Promise<BaseWidget> => createBaseWidget(this.getDataSource(), data),
       createSection: (additionalData: DeepPartial<Section>) =>
         createSection(this.getDataSource(), additionalData),
       createCustomWidget: (

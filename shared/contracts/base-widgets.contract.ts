@@ -8,6 +8,7 @@ import {
 import { generateEntityQuerySchema } from '@shared/schemas/query-param.schema';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { WidgetVisualizationFilterSchema } from '@shared/schemas/widget-visualisation-filters.schema';
+import { WidgetDataFiltersSchema } from '@shared/schemas/widget-data-filters.schema';
 
 const contract = initContract();
 export const widgetsContract = contract.router({
@@ -29,9 +30,7 @@ export const widgetsContract = contract.router({
     pathParams: z.object({
       id: z.coerce.string(),
     }),
-    query: generateEntityQuerySchema(BaseWidget).merge(
-      WidgetVisualizationFilterSchema,
-    ),
+    query: generateEntityQuerySchema(BaseWidget).merge(WidgetDataFiltersSchema),
     responses: {
       200: contract.type<ApiResponse<BaseWidget>>(),
       400: contract.type<JSONAPIError>(),

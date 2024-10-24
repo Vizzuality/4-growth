@@ -22,7 +22,10 @@ export class WidgetsController {
   @TsRestHandler(c.getWidget)
   async getWidget(): Promise<any> {
     return tsRestHandler(c.getWidget, async ({ params: { id }, query }) => {
-      const widget = await this.widgetsService.getById(id, query);
+      const widget = await this.widgetsService.findWidgetWithDataById(
+        id,
+        query,
+      );
       return { body: { data: widget }, status: HttpStatus.OK };
     });
   }

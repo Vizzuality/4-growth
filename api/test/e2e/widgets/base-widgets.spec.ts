@@ -2,6 +2,7 @@ import { TestManager } from 'api/test/utils/test-manager';
 import { WidgetVisualizationsType } from '@shared/dto/widgets/widget-visualizations.constants';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
+import ObjectUtils from 'api/test/utils/object.utils';
 
 describe('Base Widgets', () => {
   let testManager: TestManager<unknown>;
@@ -56,11 +57,6 @@ describe('Base Widgets', () => {
     const mocks = testManager.mocks();
     for (const [i, vizz] of vizzes.entries()) {
       const indicator = `indicator-${i}`;
-      // To make sure we satify the FK_constraint
-      await mocks.createQuestionIndicatorMap({
-        indicator,
-        question: indicator,
-      });
       await mocks.createBaseWidget({
         indicator,
         visualisations: vizz as WidgetVisualizationsType[],
@@ -93,5 +89,66 @@ describe('Base Widgets', () => {
       });
 
     expect(noneFound.body.data).toHaveLength(0);
+  });
+
+  it('Should retrieve a widget with its data by its id (indicator)', async () => {
+    // Given
+    const dataSourceManager = testManager.testApp.get(DataSourceManager);
+    await dataSourceManager.loadQuestionIndicatorMap();
+    await dataSourceManager.loadSurveyData(
+      `${__dirname}/../../data/surveys.json`,
+    );
+
+    const indicator = 'total-surveys';
+    const mocks = testManager.mocks();
+    const createdWidget = await mocks.createBaseWidget({
+      indicator,
+    });
+
+    // When
+    const result = await testManager.request().get(`/widgets/${indicator}`);
+    const returnedWidget = result.body.data;
+
+    const createdWidgetWithData = {
+      ...ObjectUtils.normalizeDates(createdWidget),
+      data: {
+        counter: { value: 5, total: 5 },
+      },
+    };
+    // Then
+    expect(returnedWidget).toStrictEqual(createdWidgetWithData);
+  });
+
+  it('Should retrieve a widget with its filtered data by its id (indicator)', async () => {
+    // Given
+    const dataSourceManager = testManager.testApp.get(DataSourceManager);
+    await dataSourceManager.loadQuestionIndicatorMap();
+    await dataSourceManager.loadSurveyData(
+      `${__dirname}/../../data/surveys.json`,
+    );
+
+    const indicator = 'total-surveys';
+    const mocks = testManager.mocks();
+    const createdWidget = await mocks.createBaseWidget({
+      indicator,
+    });
+
+    // When
+    const result = await testManager
+      .request()
+      .get(
+        `/widgets/${indicator}?filters[0][name]=eu-member-state&filters[0][operator]==&filters[0][values][0]=Belgium`,
+      );
+
+    const returnedWidget = result.body.data;
+
+    const createdWidgetWithData = {
+      ...ObjectUtils.normalizeDates(createdWidget),
+      data: {
+        counter: { value: 2, total: 5 },
+      },
+    };
+    // Then
+    expect(returnedWidget).toStrictEqual(createdWidgetWithData);
   });
 });

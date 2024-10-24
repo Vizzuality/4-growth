@@ -6,12 +6,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '@api/modules/auth/auth.module';
 import { PostgresSurveyDataRepository } from '@api/infrastructure/postgres-survey-data.repository';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
+import { SurveyDataRepository } from '@api/infrastructure/survey-data-repository.interface';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Section]), forwardRef(() => AuthModule)],
   providers: [
     SQLAdapter,
-    { provide: 'SurveyDataRepository', useClass: PostgresSurveyDataRepository },
+    { provide: SurveyDataRepository, useClass: PostgresSurveyDataRepository },
     SectionsService,
   ],
   controllers: [SectionsController],
