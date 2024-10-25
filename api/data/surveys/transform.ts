@@ -1,5 +1,5 @@
 import * as dataForge from 'data-forge';
-import * as fs from 'node:fs';
+import * as fs from 'fs';
 import { CountryISO3Map } from '@shared/constants/country-iso3.map';
 import { StringUtils } from '@api/utils/string.utils';
 
