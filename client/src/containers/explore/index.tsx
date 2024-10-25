@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
-import { FilterQueryParam } from "@shared/schemas/query-param.schema";
 import { useSetAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
+import { normalizeWidgetData } from "@/lib/utils";
 
 import useFilters from "@/hooks/useFilters";
 
@@ -22,9 +22,17 @@ export default function Explore() {
   const { filters } = useFilters();
   const { data } = client.sections.getSections.useQuery(
     queryKeys.sections.all(filters).queryKey,
-    // TODO: Remove this type casting when api has updated the name property to type string
-    { query: { filters: filters as FilterQueryParam<unknown> } },
-    { select: (res) => res.body.data },
+    { query: { filters } },
+    {
+      select: (res) =>
+        res.body.data.map((d) => ({
+          ...d,
+          baseWidgets: d.baseWidgets?.map((w) => ({
+            ...w,
+            data: normalizeWidgetData(w.data),
+          })),
+        })),
+    },
   );
   const sections = (data as SectionWithDataWidget[]) || [];
   const ref = useRef<HTMLDivElement>(null);
