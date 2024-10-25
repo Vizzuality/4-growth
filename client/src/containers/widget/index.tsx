@@ -12,7 +12,7 @@ import { cn, isEmptyWidget } from "@/lib/utils";
 import NoData from "@/containers/no-data";
 import AreaChart from "@/containers/widget/area-chart";
 import Filter from "@/containers/widget/filter";
-import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart/explore";
+import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import Navigation from "@/containers/widget/navigation";
 import PieChart from "@/containers/widget/pie-chart";
 import SingleValue from "@/containers/widget/single-value";
@@ -82,7 +82,7 @@ export default function Widget({
             onMenuOpenChange={handleOpenChange}
             onMenuButtonClicked={setCurrentVisualization}
           />
-          <HorizontalBarChart data={data.chart} />
+          <HorizontalBarChart data={data.chart} barSize={47} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.PIE_CHART:
