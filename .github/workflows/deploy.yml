@@ -215,3 +215,18 @@ jobs:
           region: ${{ secrets.TF_AWS_REGION }}
           version_label: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           deployment_package: infrastructure/source_bundle/deploy.zip
+
+      - name: Wait for 30 seconds before checking the application status
+        run: sleep 30
+
+      - name: Verify application health with HTTP request
+        env:
+          API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
+        run: |
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "${API_URL}/api/status")
+          if [ "$RESPONSE" -ne 200 ]; then
+            echo "Application is not healthy. Received HTTP status $RESPONSE."
+            exit 1
+          else
+            echo "Application is healthy and responding with HTTP 200."
+          fi
