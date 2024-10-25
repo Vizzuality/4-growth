@@ -7,7 +7,7 @@ import { isEmptyWidget } from "@/lib/utils";
 import TileMenu, { TileMenuItem } from "@/containers/explore/section/tile-menu";
 import NoData from "@/containers/no-data";
 import Widget from "@/containers/widget";
-import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart/explore";
+import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import Map from "@/containers/widget/map";
 
 import { Card } from "@/components/ui/card";
@@ -99,7 +99,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
             {isEmptyWidget(widgets[3].data) ? (
               <NoData />
             ) : (
-              <HorizontalBarChart data={widgets[3].data.chart} />
+              <HorizontalBarChart data={widgets[3].data.chart} barSize={47} />
             )}
           </Card>
         </div>
