@@ -58,6 +58,26 @@ export class E2eTestManager {
     return createUser(this.dataSource, additionalData);
   }
 
+  async deleteUserById(id: string) {
+    try {
+      await this.dataSource.getRepository(User).delete({
+        id,
+      });
+    } catch (error) {
+      throw new Error(`Failed to delete test user with id: ${id}`);
+    }
+  }
+
+  async deleteUserByEmail(email: string) {
+    try {
+      await this.dataSource.getRepository(User).delete({
+        email,
+      });
+    } catch (error) {
+      throw new Error(`Failed to delete test user with email: ${email}`);
+    }
+  }
+
   mocks() {
     return {
       createUser: (additionalData?: Partial<User>) =>

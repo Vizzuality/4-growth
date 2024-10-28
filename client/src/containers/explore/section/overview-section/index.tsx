@@ -74,7 +74,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
           />
         </Card>
         <div className="grid grid-rows-2 gap-0.5">
-          <div className="flex gap-0.5">
+          <div className="flex gap-0.5" data-testid="overview-single-values">
             <Widget
               defaultVisualization={widgets[1].defaultVisualization}
               visualisations={widgets[1].visualisations}
