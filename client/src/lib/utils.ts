@@ -6,6 +6,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const getSidebarLinkId = (slug?: string): string =>
+  `sidebar-${slug}-link`;
+export const getInPageLinkId = (slug?: string): string => `inPage-${slug}-link`;
+
 export function isEmptyWidget(data: BaseWidgetWithData["data"]): boolean {
   return Object.keys(data).length === 0;
 }

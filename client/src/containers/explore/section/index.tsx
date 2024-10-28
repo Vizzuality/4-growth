@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 
 import { Section as SectionEntity } from "@shared/dto/sections/section.entity";
 
+import { getInPageLinkId, getSidebarLinkId } from "@/lib/utils";
+
 import SectionNavigator from "@/components/icons/section-navigator";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -48,7 +50,11 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   };
 
   return (
-    <section className="mb-16" id={slug}>
+    <section
+      className="mb-16"
+      id={slug}
+      aria-labelledby={`${getSidebarLinkId(slug)} ${getInPageLinkId(slug)}`}
+    >
       {isOverview ? (
         <div className="col-span-2 mb-0.5 grid grid-cols-2 gap-0.5">
           <Card className="space-y-4 bg-secondary">
