@@ -6,7 +6,7 @@ import { useAtomValue } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
-import { cn } from "@/lib/utils";
+import { cn, getSidebarLinkId } from "@/lib/utils";
 
 import { intersectingAtom } from "@/containers/explore/store";
 
@@ -19,20 +19,30 @@ const SectionsNav: FC = () => {
   const intersecting = useAtomValue(intersectingAtom);
 
   return (
-    <>
-      {sectionsQuery.data?.map((s) => (
-        <Link
-          key={`section-link-${s.slug}`}
-          className={cn(
-            "block transition-colors hover:bg-secondary",
-            intersecting === s.slug && "border-l-2 border-white bg-secondary",
-          )}
-          href={`#${s.slug}`}
-        >
-          <div className="px-4 py-3.5">{s.name}</div>
-        </Link>
-      ))}
-    </>
+    <nav aria-labelledby="sidebar-nav-title">
+      <h2 id="sidebar-nav-title" className="sr-only">
+        Sections navigation
+      </h2>
+      <ol role="list">
+        {sectionsQuery.data?.map((s) => (
+          <li key={`section-link-${s.slug}`} role="listitem">
+            <Link
+              className={cn(
+                "block transition-colors hover:bg-secondary",
+                intersecting === s.slug &&
+                  "border-l-2 border-white bg-secondary",
+              )}
+              href={`#${s.slug}`}
+              id={getSidebarLinkId(s.slug)}
+              aria-controls={s.slug}
+              aria-current={intersecting === s.slug ? "true" : undefined}
+            >
+              <div className="px-4 py-3.5">{s.name}</div>
+            </Link>
+          </li>
+        ))}
+      </ol>
+    </nav>
   );
 };
 
