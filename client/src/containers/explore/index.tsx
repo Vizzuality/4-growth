@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
 
+import { normalizeWidgetData } from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
-import { normalizeWidgetData } from "@/lib/utils";
 
 import useFilters from "@/hooks/useFilters";
 

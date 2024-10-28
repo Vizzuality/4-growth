@@ -1,4 +1,4 @@
-import { normalizeWidgetData } from "@/lib/utils";
+import { normalizeWidgetData } from "@/lib/normalize-widget-data";
 import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
 
 describe("normalizeWidgetData", () => {
