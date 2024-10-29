@@ -11,7 +11,7 @@ export class WidgetsController {
 
   @Public()
   @TsRestHandler(c.getWidgets)
-  async getWidgets(): Promise<ControllerResponse> {
+  public async getWidgets(): Promise<ControllerResponse> {
     return tsRestHandler(c.getWidgets, async ({ query }) => {
       const widgets = await this.widgetsService.findAllPaginated(query);
       return { body: widgets, status: HttpStatus.OK };
@@ -20,7 +20,7 @@ export class WidgetsController {
 
   @Public()
   @TsRestHandler(c.getWidget)
-  async getWidget(): Promise<any> {
+  public async getWidget(): Promise<ControllerResponse> {
     return tsRestHandler(c.getWidget, async ({ params: { id }, query }) => {
       const widget = await this.widgetsService.findWidgetWithDataById(
         id,

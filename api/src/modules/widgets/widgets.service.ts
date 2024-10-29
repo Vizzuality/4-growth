@@ -1,6 +1,6 @@
 import { AppBaseService } from '@api/utils/app-base.service';
 import { AppInfoDTO } from '@api/utils/info.dto';
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { Repository, SelectQueryBuilder } from 'typeorm';
@@ -9,9 +9,9 @@ import { WidgetVisualisationFilters } from '@shared/schemas/widget-visualisation
 import { BaseWidgetWithData } from '@shared/dto/widgets/base-widget-data.interface';
 import { WidgetDataFiltersSchema } from '@shared/schemas/widget-data-filters.schema';
 import {
-  ISurveyDataRepository,
-  SurveyDataRepository,
-} from '@api/infrastructure/survey-data-repository.interface';
+  ISurveyAnswerRepository,
+  SurveyAnswerRepository,
+} from '@api/infrastructure/survey-answer-repository.interface';
 
 @Injectable()
 export class WidgetsService extends AppBaseService<
@@ -25,8 +25,8 @@ export class WidgetsService extends AppBaseService<
     protected readonly logger: Logger,
     @InjectRepository(BaseWidget)
     private baseWidgetRepository: Repository<BaseWidget>,
-    @Inject(SurveyDataRepository)
-    private readonly surveyDataRepository: ISurveyDataRepository,
+    @Inject(SurveyAnswerRepository)
+    private readonly surveyAnswerRepository: ISurveyAnswerRepository,
   ) {
     super(baseWidgetRepository, 'baseWidget', 'baseWidgets');
   }
@@ -60,12 +60,20 @@ export class WidgetsService extends AppBaseService<
     query: FetchSpecification & WidgetDataFiltersSchema,
   ): Promise<BaseWidgetWithData> {
     const widget = await this.baseWidgetRepository.findOneBy({ indicator: id });
-    const { filters } = query;
+    if (widget === null) {
+      const exception = new NotFoundException(`Widget with id ${id} not found`);
+      this.logger.error(
+        exception.message,
+        exception.stack,
+        this.constructor.name,
+      );
+      throw exception;
+    }
 
     const baseWidgetWithData =
-      await this.surveyDataRepository.addSurveyDataToBaseWidget(
+      await this.surveyAnswerRepository.addSurveyDataToBaseWidget(
         widget,
-        filters,
+        query.filters,
       );
 
     return baseWidgetWithData;
