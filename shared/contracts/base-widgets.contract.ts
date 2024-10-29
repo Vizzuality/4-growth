@@ -9,6 +9,7 @@ import { generateEntityQuerySchema } from '@shared/schemas/query-param.schema';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { WidgetVisualizationFilterSchema } from '@shared/schemas/widget-visualisation-filters.schema';
 import { WidgetDataFiltersSchema } from '@shared/schemas/widget-data-filters.schema';
+import { BaseWidgetWithData } from '@shared/dto/widgets/base-widget-data.interface';
 
 const contract = initContract();
 export const widgetsContract = contract.router({
@@ -32,7 +33,7 @@ export const widgetsContract = contract.router({
     }),
     query: generateEntityQuerySchema(BaseWidget).merge(WidgetDataFiltersSchema),
     responses: {
-      200: contract.type<ApiResponse<BaseWidget>>(),
+      200: contract.type<ApiResponse<BaseWidgetWithData>>(),
       400: contract.type<JSONAPIError>(),
     },
     summary: 'Get a widget by id',
