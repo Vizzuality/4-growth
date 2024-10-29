@@ -44,6 +44,10 @@ const config = {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        disabled: {
+          background: "hsl(var(--disabled-background))",
+          foreground: "hsl(var(--disabled-foreground))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",

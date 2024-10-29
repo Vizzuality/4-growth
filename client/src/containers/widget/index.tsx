@@ -54,7 +54,7 @@ export default function Widget({
     return (
       <Card className={cn("relative min-h-80 p-0", className)}>
         <WidgetHeader indicator={indicator} question={question} />
-        <NoData />
+        <NoData className="mx-6 mb-6" />
       </Card>
     );
   }

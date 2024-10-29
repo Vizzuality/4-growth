@@ -97,7 +97,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
               {widgets[3].indicator}
             </Title>
             {isEmptyWidget(widgets[3].data) ? (
-              <NoData />
+              <NoData className="mx-6" />
             ) : (
               <HorizontalBarChart data={widgets[3].data.chart} barSize={47} />
             )}

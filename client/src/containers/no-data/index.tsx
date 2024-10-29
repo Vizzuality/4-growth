@@ -1,10 +1,23 @@
 import { FC } from "react";
 
-const NoData: FC = () => {
+import { cn } from "@/lib/utils";
+
+import NoDataIcon from "@/components/icons/no-data";
+
+interface NoDataProps {
+  className?: HTMLDivElement["className"] | undefined;
+}
+
+const NoData: FC<NoDataProps> = ({ className }) => {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-2">
-      <p className="font-semibold">No data</p>
-      <p className="text-xs">There was no data found for this visualization</p>
+    <div
+      className={cn(
+        "flex h-full flex-col items-center justify-center gap-4 rounded-2xl bg-disabled-background/5 p-8 text-xs text-disabled-foreground",
+        className,
+      )}
+    >
+      <NoDataIcon />
+      <p>No data available for this item.</p>
     </div>
   );
 };
