@@ -22,24 +22,33 @@ const isValidDefaultVisualization = (
   );
 };
 
-const getSupportedVisualizations = (widget: BaseWidgetWithData) => ({
-  supportsChart: widget.visualisations.some((v) =>
-    (
-      [
-        WIDGET_VISUALIZATIONS.AREA_GRAPH,
-        WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
-        WIDGET_VISUALIZATIONS.PIE_CHART,
-      ] as WidgetVisualizationsType[]
-    ).includes(v),
-  ),
-  supportsSingleValue: widget.visualisations.includes(
-    WIDGET_VISUALIZATIONS.SINGLE_VALUE,
-  ),
-  supportsMap: widget.visualisations.includes(WIDGET_VISUALIZATIONS.MAP),
-  supportsNavigation: widget.visualisations.includes(
-    WIDGET_VISUALIZATIONS.NAVIGATION,
-  ),
-});
+const getSupportedVisualizations = (widget: BaseWidgetWithData) => {
+  let supportsChart = false;
+  let supportsSingleValue = false;
+  let supportsMap = false;
+  let supportsNavigation = false;
+
+  const visualizationModes = widget.visualisations;
+  for (let idx = 0; idx < visualizationModes.length; idx++) {
+    const visualizationMode = visualizationModes[idx];
+
+    if (
+      visualizationMode === WIDGET_VISUALIZATIONS.AREA_GRAPH ||
+      visualizationMode === WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART ||
+      visualizationMode === WIDGET_VISUALIZATIONS.PIE_CHART
+    ) {
+      supportsChart = true;
+    } else if (visualizationMode === WIDGET_VISUALIZATIONS.SINGLE_VALUE) {
+      supportsSingleValue = true;
+    } else if (visualizationMode === WIDGET_VISUALIZATIONS.MAP) {
+      supportsMap = true;
+    } else if (visualizationMode === WIDGET_VISUALIZATIONS.NAVIGATION) {
+      supportsNavigation = true;
+    }
+  }
+
+  return [supportsChart, supportsSingleValue, supportsMap, supportsNavigation];
+};
 
 export const WidgetUtils = {
   isValidVisualization,

@@ -2,12 +2,14 @@ import { QueryFailedError, Repository } from 'typeorm';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { TestManager } from 'api/test/utils/test-manager';
 import { SurveyAnswer } from '@shared/dto/surveys/survey-answer.entity';
+import { PostgresSurveyAnswerRepository } from '@api/infrastructure/postgres-survey-answers.repository';
 
 describe('SurveyAnswerRepository', () => {
   let testManager: TestManager<unknown>;
   let dataSourceManager: DataSourceManager;
 
-  let surveyAnswerRepository: Repository<SurveyAnswer>;
+  let surveyAnswerRepository: Repository<SurveyAnswer> &
+    typeof PostgresSurveyAnswerRepository;
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({
@@ -17,7 +19,9 @@ describe('SurveyAnswerRepository', () => {
     dataSourceManager = testManager.testApp.get(DataSourceManager);
 
     const dataSource = testManager.getDataSource();
-    surveyAnswerRepository = dataSource.getRepository(SurveyAnswer);
+    surveyAnswerRepository = dataSource
+      .getRepository(SurveyAnswer)
+      .extend(PostgresSurveyAnswerRepository);
   });
 
   afterAll(async () => {

@@ -8,11 +8,11 @@ import {
   SectionWithDataWidget,
 } from '@shared/dto/sections/section.entity';
 import { FetchSpecification } from 'nestjs-base-service';
-import {
-  ISurveyDataRepository,
-  SurveyDataRepository,
-} from '@api/infrastructure/survey-data-repository.interface';
 import { WidgetDataFiltersSchema } from '@shared/schemas/widget-data-filters.schema';
+import {
+  ISurveyAnswerRepository,
+  SurveyAnswerRepository,
+} from '@api/infrastructure/survey-answer-repository.interface';
 
 @Injectable()
 export class SectionsService extends AppBaseService<
@@ -24,8 +24,8 @@ export class SectionsService extends AppBaseService<
   public constructor(
     @InjectRepository(Section)
     private readonly sectionsRepository: Repository<SectionWithDataWidget>,
-    @Inject(SurveyDataRepository)
-    private readonly surveyDataRepository: ISurveyDataRepository,
+    @Inject(SurveyAnswerRepository)
+    private readonly surveyAnswerRepository: ISurveyAnswerRepository,
   ) {
     super(sectionsRepository, 'section', 'sections');
   }
@@ -42,7 +42,7 @@ export class SectionsService extends AppBaseService<
     const { filters } = query;
 
     const sectionsWithData =
-      await this.surveyDataRepository.addSurveyDataToSections(
+      await this.surveyAnswerRepository.addSurveyDataToSections(
         sections,
         filters,
       );

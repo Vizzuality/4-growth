@@ -10,9 +10,9 @@ import { PageFiltersController } from '@api/modules/widgets/page-filters.control
 import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
 import { WidgetsController } from '@api/modules/widgets/widgets.controller';
 import { WidgetsService } from '@api/modules/widgets/widgets.service';
-import { PostgresSurveyDataRepository } from '@api/infrastructure/postgres-survey-data.repository';
+import { PostgresSurveyAnswerRepository } from '@api/infrastructure/postgres-survey-answers.repository';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
-import { SurveyDataRepository } from '@api/infrastructure/survey-data-repository.interface';
+import { SurveyAnswerRepository } from '@api/infrastructure/survey-answer-repository.interface';
 
 @Module({
   imports: [
@@ -21,7 +21,10 @@ import { SurveyDataRepository } from '@api/infrastructure/survey-data-repository
   ],
   providers: [
     SQLAdapter,
-    { provide: SurveyDataRepository, useClass: PostgresSurveyDataRepository },
+    {
+      provide: SurveyAnswerRepository,
+      useClass: PostgresSurveyAnswerRepository,
+    },
     CustomWidgetService,
     PageFiltersService,
     WidgetsService,

@@ -1,16 +1,23 @@
 import { TestManager } from 'api/test/utils/test-manager';
-import { WidgetVisualizationsType } from '@shared/dto/widgets/widget-visualizations.constants';
+import {
+  WIDGET_VISUALIZATIONS,
+  WidgetVisualizationsType,
+} from '@shared/dto/widgets/widget-visualizations.constants';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import ObjectUtils from 'api/test/utils/object.utils';
 
+const TEST_SURVEYS_DATA_PATH = `${__dirname}/../../data/surveys.json`;
+
 describe('Base Widgets', () => {
   let testManager: TestManager<unknown>;
   let dataSourceManager: DataSourceManager;
+  let mocks: ReturnType<TestManager<unknown>['mocks']>;
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({ logger: false });
     dataSourceManager = testManager.getModule(DataSourceManager);
+    mocks = testManager.mocks();
   });
 
   beforeEach(async () => {
@@ -54,7 +61,6 @@ describe('Base Widgets', () => {
       ['navigation', 'map'],
     ];
 
-    const mocks = testManager.mocks();
     for (const [i, vizz] of vizzes.entries()) {
       const indicator = `indicator-${i}`;
       await mocks.createBaseWidget({
@@ -85,7 +91,11 @@ describe('Base Widgets', () => {
       .request()
       .get('/widgets')
       .query({
-        'visualisations[]': ['map', 'area_graph', 'horizontal_bar_chart'],
+        'visualisations[]': [
+          WIDGET_VISUALIZATIONS.MAP,
+          WIDGET_VISUALIZATIONS.AREA_GRAPH,
+          WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
+        ],
       });
 
     expect(noneFound.body.data).toHaveLength(0);
@@ -95,12 +105,9 @@ describe('Base Widgets', () => {
     // Given
     const dataSourceManager = testManager.testApp.get(DataSourceManager);
     await dataSourceManager.loadQuestionIndicatorMap();
-    await dataSourceManager.loadSurveyData(
-      `${__dirname}/../../data/surveys.json`,
-    );
+    await dataSourceManager.loadSurveyData(TEST_SURVEYS_DATA_PATH);
 
     const indicator = 'total-surveys';
-    const mocks = testManager.mocks();
     const createdWidget = await mocks.createBaseWidget({
       indicator,
     });
@@ -123,12 +130,9 @@ describe('Base Widgets', () => {
     // Given
     const dataSourceManager = testManager.testApp.get(DataSourceManager);
     await dataSourceManager.loadQuestionIndicatorMap();
-    await dataSourceManager.loadSurveyData(
-      `${__dirname}/../../data/surveys.json`,
-    );
+    await dataSourceManager.loadSurveyData(TEST_SURVEYS_DATA_PATH);
 
     const indicator = 'total-surveys';
-    const mocks = testManager.mocks();
     const createdWidget = await mocks.createBaseWidget({
       indicator,
     });
@@ -150,5 +154,72 @@ describe('Base Widgets', () => {
     };
     // Then
     expect(returnedWidget).toStrictEqual(createdWidgetWithData);
+  });
+
+  it.each([
+    [
+      'Should retrieve a widget that can be viewed as a map with its data by its id (indicator)',
+      {
+        indicator: 'energy-efficiency',
+        question: 'Have digital technologies contributed to energy efficiency?',
+        visualisations: [WIDGET_VISUALIZATIONS.MAP],
+        defaultVisualization: WIDGET_VISUALIZATIONS.MAP,
+      },
+      {
+        map: [
+          { country: 'AUT', count: 1 },
+          { country: 'BEL', count: 1 },
+        ],
+      },
+    ],
+    [
+      "Should retrieve a widget that can be viewed as a map with its data by its id (indicator). Edge Case: 'adoption-of-technology-by-country'",
+      {
+        indicator: 'adoption-of-technology-by-country',
+        question:
+          'Has your organisation integrated digital technologies into its workflows?',
+        visualisations: [WIDGET_VISUALIZATIONS.MAP],
+        defaultVisualization: WIDGET_VISUALIZATIONS.MAP,
+      },
+      {
+        map: [
+          { country: 'BEL', count: 1 },
+          { country: 'NLD', count: 1 },
+        ],
+      },
+    ],
+  ])('%s', async (description, widgetPrimitives, expectedData) => {
+    // Given
+    const dataSourceManager = testManager.testApp.get(DataSourceManager);
+    await dataSourceManager.loadQuestionIndicatorMap();
+    await dataSourceManager.loadSurveyData(TEST_SURVEYS_DATA_PATH);
+
+    const widget = await mocks.createBaseWidget(widgetPrimitives);
+    // When
+    const result = await testManager
+      .request()
+      .get(`/widgets/${widget.indicator}`);
+
+    const returnedWidget = result.body.data;
+
+    const createdWidgetWithData = {
+      ...ObjectUtils.normalizeDates(widget),
+      data: expectedData,
+    };
+
+    // Then
+    expect(returnedWidget).toStrictEqual(createdWidgetWithData);
+  });
+
+  it('Should return a 404 status code when retrieving a widget by a non-existent indicator', async () => {
+    // Given
+    const indicator = 'non-existent-indicator';
+
+    // When
+    const result = await testManager.request().get(`/widgets/${indicator}`);
+
+    // Then
+
+    expect(result.status).toBe(404);
   });
 });

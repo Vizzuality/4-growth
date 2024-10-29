@@ -4,15 +4,18 @@ import { SectionsService } from '@api/modules/sections/sections.service';
 import { Section } from '@shared/dto/sections/section.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '@api/modules/auth/auth.module';
-import { PostgresSurveyDataRepository } from '@api/infrastructure/postgres-survey-data.repository';
+import { PostgresSurveyAnswerRepository } from '@api/infrastructure/postgres-survey-answers.repository';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
-import { SurveyDataRepository } from '@api/infrastructure/survey-data-repository.interface';
+import { SurveyAnswerRepository } from '@api/infrastructure/survey-answer-repository.interface';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Section]), forwardRef(() => AuthModule)],
   providers: [
     SQLAdapter,
-    { provide: SurveyDataRepository, useClass: PostgresSurveyDataRepository },
+    {
+      provide: SurveyAnswerRepository,
+      useClass: PostgresSurveyAnswerRepository,
+    },
     SectionsService,
   ],
   controllers: [SectionsController],
