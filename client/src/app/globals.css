@@ -26,6 +26,9 @@
       --accent-background: 331 89% 40%;
       --accent-foreground: 222.2 47.4% 11.2%;
 
+      --disabled-background: 213 27% 84%;
+      --disabled-foreground: 215 20% 65%;
+
       --destructive: 0 90.6% 70.78%;
       --destructive-foreground: 210 40% 98%;
 
