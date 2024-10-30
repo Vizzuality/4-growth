@@ -4,7 +4,7 @@ import { TestManager } from 'api/test/utils/test-manager';
 import { SurveyAnswer } from '@shared/dto/surveys/survey-answer.entity';
 import { PostgresSurveyAnswerRepository } from '@api/infrastructure/postgres-survey-answers.repository';
 
-describe('SurveyAnswerRepository', () => {
+describe('PostgresSurveyAnswerRepository', () => {
   let testManager: TestManager<unknown>;
   let dataSourceManager: DataSourceManager;
 
