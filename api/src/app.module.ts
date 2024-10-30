@@ -17,9 +17,13 @@ import { WidgetsModule } from '@api/modules/widgets/widgets.module';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { LoggingModule } from '@api/modules/logging/logging.module';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
+import { TerminusModule } from '@nestjs/terminus';
+
+const NODE_ENV = process.env.NODE_ENV;
 
 @Module({
   imports: [
+    TerminusModule.forRoot({ logger: NODE_ENV === 'test' ? false : true }),
     TsRestModule.register({
       isGlobal: true,
       validateRequestBody: true,
