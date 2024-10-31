@@ -12,7 +12,7 @@
     "typescript": "catalog:"
   },
   "scripts": {
-    "pretest": "tsc && tsc-alias",
+    "pretest": "rm -rf ./dist && tsc && tsc-alias",
     "test": "playwright test -c ./dist/e2e",
     "test:ui": "pnpm pretest && playwright test --ui -c ./dist/e2e",
     "codegen": "pnpm --filter api start:dev & pnpm --filter client dev & playwright codegen localhost:3000"
