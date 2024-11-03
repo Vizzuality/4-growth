@@ -16,8 +16,6 @@ import OverviewSection from "@/containers/explore/section/overview-section";
 import { intersectingAtom } from "@/containers/explore/store";
 import Widget from "@/containers/widget";
 
-import { Button } from "@/components/ui/button";
-
 export default function Explore() {
   const { filters } = useFilters();
   const { data } = client.sections.getSections.useQuery(
@@ -132,14 +130,6 @@ export default function Explore() {
                   question={w.question}
                   data={w.data}
                   className="col-span-1 last:odd:col-span-2"
-                  menuItems={
-                    <Button
-                      variant="clean"
-                      className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
-                    >
-                      Customize chart
-                    </Button>
-                  }
                   config={{
                     menu: { className: "flex flex-col gap-6 py-4" },
                     pieChart: {
@@ -148,6 +138,7 @@ export default function Explore() {
                     },
                     horizontalBarChart: { barSize: 47 },
                   }}
+                  showCustomizeWidgetButton
                 />
               ))
             )}
