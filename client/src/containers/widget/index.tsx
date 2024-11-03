@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import Link from "next/link";
+
 import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import {
   WIDGET_VISUALIZATIONS,
@@ -50,6 +52,7 @@ export interface WidgetProps {
   question?: string;
   menuItems?: React.ReactNode;
   className?: string;
+  showCustomizeWidgetButton?: boolean;
   config?: {
     singleValue?: { fill?: "bg-secondary" | "bg-accent" };
     horizontalBarChart?: { barSize: number };
@@ -69,18 +72,32 @@ export default function Widget({
   question,
   menuItems,
   className,
+  showCustomizeWidgetButton,
   config,
 }: WidgetProps) {
   const [selectedVisualization, setSelectedVisualization] =
     useState(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
   const menu =
-    !menuItems && !visualisations ? undefined : (
+    !menuItems && !visualisations && !showCustomizeWidgetButton ? undefined : (
       <MenuButton
         className={className}
         onOpenChange={setShowOverlay}
         {...config?.menu}
       >
+        {showCustomizeWidgetButton && (
+          <Button
+            variant="clean"
+            className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+            asChild
+          >
+            <Link
+              href={`/sandbox?visualization=${selectedVisualization}&indicator=${indicator}`}
+            >
+              Customize chart
+            </Link>
+          </Button>
+        )}
         {menuItems}
         {visualisations && (
           <>

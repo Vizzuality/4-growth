@@ -5,7 +5,6 @@ import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interfa
 import TileMenu, { TileMenuItem } from "@/containers/explore/section/tile-menu";
 import Widget from "@/containers/widget";
 
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 interface OverviewSectionProps {
@@ -29,14 +28,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
           config={{
             menu: { className: "flex flex-col gap-6 py-4" },
           }}
-          menuItems={
-            <Button
-              variant="clean"
-              className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
-            >
-              Customize chart
-            </Button>
-          }
+          showCustomizeWidgetButton
         />
         <div className="grid grid-rows-2 gap-0.5">
           <div className="flex gap-0.5" data-testid="overview-single-values">

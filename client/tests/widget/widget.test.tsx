@@ -90,6 +90,18 @@ describe("Widget", () => {
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 
+  it("renders the customize chart button with the correct href value", () => {
+    render(<Widget {...mockProps} showCustomizeWidgetButton />);
+
+    const menuButton = screen.getByRole("button");
+    fireEvent.click(menuButton);
+
+    expect(screen.getByRole("link")).toHaveAttribute(
+      "href",
+      `/sandbox?visualization=${mockProps.visualization}&indicator=${mockProps.indicator}`,
+    );
+  });
+
   it("renders the default visualization and switches visualization when menu item is clicked", async () => {
     render(
       <Widget
