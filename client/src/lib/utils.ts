@@ -11,5 +11,10 @@ export const getSidebarLinkId = (slug?: string): string =>
 export const getInPageLinkId = (slug?: string): string => `inPage-${slug}-link`;
 
 export function isEmptyWidget(data: BaseWidgetWithData["data"]): boolean {
-  return Object.keys(data).length === 0;
+  return (
+    !data.counter &&
+    !data.navigation &&
+    !data.chart?.length &&
+    !data.map?.length
+  );
 }

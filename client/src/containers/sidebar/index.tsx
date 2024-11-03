@@ -4,15 +4,12 @@ import { FC } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { useAtomValue } from "jotai";
-
 import { cn } from "@/lib/utils";
 
 import Header from "@/containers/header";
 import FilterSettings from "@/containers/sidebar/filter-settings";
 import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import SectionsNav from "@/containers/sidebar/sections-nav";
-import { isPopoverOpenAtom } from "@/containers/sidebar/store";
 import VisualizationSelector from "@/containers/sidebar/visualization-selector";
 
 import {
@@ -22,16 +19,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Overlay } from "@/components/ui/overlay";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Sidebar: FC = () => {
   const isExplore = usePathname().startsWith("/explore");
-  const isPopoverOpen = useAtomValue(isPopoverOpenAtom);
 
   return (
     <>
-      {isPopoverOpen && <Overlay />}
       <Header />
       <div className="flex rounded-2xl bg-primary">
         <Button
@@ -87,7 +81,7 @@ const Sidebar: FC = () => {
             <AccordionItem value="sandbox-filters">
               <AccordionTrigger>Filters</AccordionTrigger>
               <AccordionContent className="py-3.5">
-                <FilterSettings />
+                <FilterSettings withDataBreakdown />
               </AccordionContent>
             </AccordionItem>
           </Accordion>
