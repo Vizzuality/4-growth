@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { client, QUERY_OPTIONS } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import Overlay from "@/containers/overlay";
 import Sidebar from "@/containers/sidebar";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default async function ExploreLayout({ children }: PropsWithChildren) {
 
   return (
     <Hydrate state={dehydrate(queryClient)}>
+      <Overlay />
       <div className="grid h-full grid-cols-[280px_1fr] gap-0.5">
         <div className="flex h-full flex-col gap-0.5 overflow-hidden">
           <Sidebar />

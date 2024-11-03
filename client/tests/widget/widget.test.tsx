@@ -51,18 +51,24 @@ vi.mock("@/containers/widget/filter", () => ({
   ),
 }));
 
+vi.mock("@/containers/widget/map", () => ({
+  default: () => <div data-testid={WIDGET_VISUALIZATIONS.MAP}>Map widget</div>,
+}));
+
+vi.mock("@/containers/no-data", () => ({
+  default: () => <div data-testid="no-data">No data</div>,
+}));
+
 describe("Widget", () => {
-  const mockProps = {
+  const mockProps: WidgetProps = {
     indicator: "Test Indicator",
     question: "Test Question",
-    defaultVisualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
-    visualisations: Object.values(WIDGET_VISUALIZATIONS),
+    visualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
     data: { chart: [{ label: "Test", value: 100, total: 100 }] },
-    onMenuOpenChange: vi.fn(),
   };
 
   Object.values(WIDGET_VISUALIZATIONS).forEach((visualizationType) => {
-    it(`renders the correct defaultVisualization for ${visualizationType}`, () => {
+    it(`renders the correct visualization for ${visualizationType}`, () => {
       let props: WidgetProps = mockProps;
 
       if (
@@ -72,23 +78,25 @@ describe("Widget", () => {
         props = { ...props, data: { navigation: { href: "#" } } };
       }
 
-      const { container } = render(
-        <Widget {...props} defaultVisualization={visualizationType} />,
-      );
+      render(<Widget {...props} visualization={visualizationType} />);
 
-      switch (visualizationType) {
-        case WIDGET_VISUALIZATIONS.MAP:
-          expect(container.firstChild).toBeNull();
-          break;
-        default:
-          expect(screen.getByTestId(visualizationType)).toBeInTheDocument();
-          break;
-      }
+      expect(screen.getByTestId(visualizationType)).toBeInTheDocument();
     });
   });
 
-  it("renders the default visualization and switches visualization when menu item is clicked", async () => {
+  it("Hides the menu if no menuItems or visualisations are passed", () => {
     render(<Widget {...mockProps} />);
+
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
+
+  it("renders the default visualization and switches visualization when menu item is clicked", async () => {
+    render(
+      <Widget
+        {...mockProps}
+        visualisations={Object.values(WIDGET_VISUALIZATIONS)}
+      />,
+    );
     expect(
       screen.queryByTestId(WIDGET_VISUALIZATIONS.PIE_CHART),
     ).not.toBeInTheDocument();
@@ -110,17 +118,13 @@ describe("Widget", () => {
     ).toBeInTheDocument();
   });
 
-  it("calls onMenuOpenChange when menu is opened", () => {
-    render(<Widget {...mockProps} />);
-
-    const menuButton = screen.getByRole("button");
-    fireEvent.click(menuButton);
-
-    expect(mockProps.onMenuOpenChange).toHaveBeenCalledWith(true);
-  });
-
   it("applies correct classes based on showMenu state", async () => {
-    render(<Widget {...mockProps} />);
+    render(
+      <Widget
+        {...mockProps}
+        visualisations={Object.values(WIDGET_VISUALIZATIONS)}
+      />,
+    );
 
     const card = screen
       .getByTestId(WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART)
@@ -141,7 +145,7 @@ describe("Widget", () => {
       .mockImplementation(() => {});
     const props = {
       ...mockProps,
-      defaultVisualization: "pyramid_chart" as WidgetVisualizationsType,
+      visualization: "pyramid_chart" as WidgetVisualizationsType,
     };
     const { container } = render(<Widget {...props} />);
 
@@ -149,5 +153,11 @@ describe("Widget", () => {
       'Widget: Unsupported visualization type "pyramid_chart" for indicator "Test Indicator".',
     );
     expect(container.firstChild).toBeNull();
+  });
+
+  it("renders no-data component when widget data is empty", async () => {
+    render(<Widget {...mockProps} data={{ chart: [] }} />);
+
+    expect(screen.getByTestId("no-data")).toBeInTheDocument();
   });
 });

@@ -1,19 +1,16 @@
 import { FC, useState } from "react";
 
-import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import { BaseWidget } from "@shared/dto/widgets/base-widget.entity";
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { cn } from "@/lib/utils";
 
-import {
-  customWidgetAtom,
-  selectedVisualizationAtom,
-} from "@/containers/sandbox/store";
+import useSandboxWidget from "@/hooks/use-sandbox-widget";
+
+import { showOverlayAtom } from "@/containers/overlay/store";
 import SearchableList from "@/containers/searchable-list";
-import { isPopoverOpenAtom } from "@/containers/sidebar/store";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -24,25 +21,24 @@ import {
 import { SIDEBAR_POPOVER_CLASS } from "@/constants";
 
 const IndicatorSelector: FC = () => {
+  const { setIndicator, visualization, setVisualization, widget } =
+    useSandboxWidget();
   const { data } = client.widgets.getWidgets.useQuery(
     queryKeys.widgets.all.queryKey,
     { query: {} },
     { select: (res) => res.body.data },
   );
   const [showIndicators, setShowIndicators] = useState(false);
-  const setIsPopoverOpen = useSetAtom(isPopoverOpenAtom);
-  const [widget, setWidget] = useAtom(customWidgetAtom);
-  const [selectedVisualization, setSelectedVisualization] = useAtom(
-    selectedVisualizationAtom,
-  );
+  const setshowOverlay = useSetAtom(showOverlayAtom);
   const widgets = data as BaseWidget[];
 
   return (
     <Popover
       open={showIndicators}
       onOpenChange={(o) => {
+        console.log("onOpenChange", o);
         setShowIndicators(o);
-        setIsPopoverOpen(o);
+        setshowOverlay(o);
       }}
     >
       <PopoverTrigger asChild>
@@ -69,15 +65,15 @@ const IndicatorSelector: FC = () => {
           itemKey="indicator"
           onItemClick={(w) => {
             if (
-              selectedVisualization &&
-              !widget?.visualisations.includes(selectedVisualization)
+              visualization &&
+              !widget?.visualisations.includes(visualization)
             ) {
-              setSelectedVisualization(null);
+              setVisualization(w.defaultVisualization);
             }
 
-            setWidget(w as BaseWidgetWithData);
+            setIndicator(w.indicator);
             setShowIndicators(false);
-            setIsPopoverOpen(false);
+            setshowOverlay(false);
           }}
         />
       </PopoverContent>

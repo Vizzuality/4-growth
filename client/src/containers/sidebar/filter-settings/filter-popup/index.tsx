@@ -5,10 +5,10 @@ import { useSetAtom } from "jotai";
 
 import { cn } from "@/lib/utils";
 
-import useFilters from "@/hooks/useFilters";
+import useFilters from "@/hooks/use-filters";
 
 import FilterSelect from "@/containers/filter/filter-select";
-import { isPopoverOpenAtom } from "@/containers/sidebar/store";
+import { showOverlayAtom } from "@/containers/overlay/store";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -48,10 +48,10 @@ const FilterItemButton: FC<{
 const FilterPopup: FC<FilterPopupProps> = ({ name, fixedFilter, items }) => {
   const { filters, addFilter, removeFilterValue } = useFilters();
   const [showPopup, setShowPopup] = useState(false);
-  const setIsPopoverOpen = useSetAtom(isPopoverOpenAtom);
+  const setShowOverlay = useSetAtom(showOverlayAtom);
   const handleFiltersPopupChange = (open: boolean) => {
     setShowPopup(open);
-    setIsPopoverOpen(open);
+    setShowOverlay(open);
   };
   const selectedFilter = filters.find((f) => f.name === name);
 

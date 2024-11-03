@@ -1,49 +1,21 @@
 import { FC } from "react";
 
-import { WidgetVisualizationsType } from "@shared/dto/widgets/widget-visualizations.constants";
-
 import { cn } from "@/lib/utils";
 
-import MenuButton from "@/containers/menu-button";
-
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import Title from "@/components/ui/title";
-
-const classes =
-  "block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted";
-
-const getButtonText = (v: WidgetVisualizationsType): string => {
-  switch (v) {
-    case "horizontal_bar_chart":
-      return "Show as a bar chart";
-    case "pie_chart":
-      return "Show as a pie chart";
-    case "area_graph":
-      return "Show as an area chart";
-    case "map":
-      return "Show as a map";
-    default:
-      return "";
-  }
-};
 
 interface WidgetHeaderProps {
   indicator: string;
-  question: string;
-  visualisations?: WidgetVisualizationsType[];
+  question?: string;
+  menu?: React.ReactNode;
   className?: string;
-  onMenuOpenChange?: (o: boolean) => void;
-  onMenuButtonClicked?: (v: WidgetVisualizationsType) => void;
 }
 
 const WidgetHeader: FC<WidgetHeaderProps> = ({
   indicator,
   question,
-  visualisations,
+  menu,
   className,
-  onMenuOpenChange,
-  onMenuButtonClicked,
 }) => {
   return (
     <header className={cn("space-y-2 p-8", className)}>
@@ -51,29 +23,9 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
         <Title as="h3" className="text-base">
           {indicator}
         </Title>
-        {visualisations && onMenuOpenChange && onMenuButtonClicked && (
-          <MenuButton
-            className="flex flex-col gap-6 py-4"
-            onOpenChange={onMenuOpenChange}
-          >
-            <Button variant="clean" className={classes}>
-              Customize chart
-            </Button>
-            <Separator />
-            {visualisations.map((v) => (
-              <Button
-                key={`menu-button-${v}`}
-                variant="clean"
-                className={classes}
-                onClick={() => onMenuButtonClicked(v)}
-              >
-                {getButtonText(v)}
-              </Button>
-            ))}
-          </MenuButton>
-        )}
+        {menu}
       </div>
-      <p className="text-xs text-muted-foreground">{question}</p>
+      {question && <p className="text-xs text-muted-foreground">{question}</p>}
     </header>
   );
 };

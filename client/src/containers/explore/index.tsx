@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
@@ -9,14 +9,14 @@ import { normalizeWidgetData } from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
-import useFilters from "@/hooks/useFilters";
+import useFilters from "@/hooks/use-filters";
 
 import Section from "@/containers/explore/section";
 import OverviewSection from "@/containers/explore/section/overview-section";
 import { intersectingAtom } from "@/containers/explore/store";
 import Widget from "@/containers/widget";
 
-import { Overlay } from "@/components/ui/overlay";
+import { Button } from "@/components/ui/button";
 
 export default function Explore() {
   const { filters } = useFilters();
@@ -36,7 +36,6 @@ export default function Explore() {
   );
   const sections = (data as SectionWithDataWidget[]) || [];
   const ref = useRef<HTMLDivElement>(null);
-  const [showOverlay, setShowOverlay] = useState(false);
   const setIntersecting = useSetAtom(intersectingAtom);
 
   useEffect(() => {
@@ -105,7 +104,6 @@ export default function Explore() {
       ref={ref}
       className="overflow-y-auto scroll-smooth pb-32"
     >
-      {showOverlay && <Overlay />}
       {sections.map((s) => {
         const isOverview = s.order === 1;
         return (
@@ -128,13 +126,28 @@ export default function Explore() {
               s.baseWidgets.map((w) => (
                 <Widget
                   key={`widget-${w.indicator}`}
+                  visualization={w.defaultVisualization}
+                  visualisations={w.visualisations}
                   indicator={w.indicator}
                   question={w.question}
-                  visualisations={w.visualisations}
-                  defaultVisualization={w.defaultVisualization}
                   data={w.data}
                   className="col-span-1 last:odd:col-span-2"
-                  onMenuOpenChange={setShowOverlay}
+                  menuItems={
+                    <Button
+                      variant="clean"
+                      className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+                    >
+                      Customize chart
+                    </Button>
+                  }
+                  config={{
+                    menu: { className: "flex flex-col gap-6 py-4" },
+                    pieChart: {
+                      className: "aspect-square min-h-[200px]",
+                      legendPosition: "right",
+                    },
+                    horizontalBarChart: { barSize: 47 },
+                  }}
                 />
               ))
             )}

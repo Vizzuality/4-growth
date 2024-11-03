@@ -1,63 +1,38 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
 import WidgetHeader from "@/containers/widget/widget-header";
-import {
-  VALID_WIDGET_VISUALIZATIONS,
-  WIDGET_VISUALIZATIONS,
-} from "@shared/dto/widgets/widget-visualizations.constants";
 
 describe("WidgetHeader", () => {
   const mockProps = {
     indicator: "Test Indicator",
-    question: "Test Question",
-    visualisations: VALID_WIDGET_VISUALIZATIONS,
-    onMenuOpenChange: vi.fn(),
-    onMenuButtonClicked: vi.fn(),
   };
 
-  it("renders the indicator and question correctly", () => {
+  it("renders the indicator correctly", () => {
     render(<WidgetHeader {...mockProps} />);
 
-    expect(screen.getByText("Test Indicator")).toBeInTheDocument();
-    expect(screen.getByText("Test Question")).toBeInTheDocument();
+    expect(screen.queryByText("Test Indicator")).toBeInTheDocument();
   });
 
-  it("doesn't show the menu items by default", () => {
-    render(<WidgetHeader {...mockProps} />);
+  it("renders a question if passed as props", () => {
+    const { rerender } = render(<WidgetHeader {...mockProps} />);
+    const question = "Test Question";
 
-    expect(screen.queryByText("Customize chart")).not.toBeInTheDocument();
-    expect(screen.queryByText("Show as a bar chart")).not.toBeInTheDocument();
-    expect(screen.queryByText("Show as a pie chart")).not.toBeInTheDocument();
-    expect(screen.queryByText("Show as an area chart")).not.toBeInTheDocument();
-    expect(screen.queryByText("Show as a map")).not.toBeInTheDocument();
+    expect(screen.queryByText(question)).not.toBeInTheDocument();
+
+    rerender(<WidgetHeader {...mockProps} question={question} />);
+
+    expect(screen.queryByText(question)).toBeInTheDocument();
   });
 
-  it("opens list of menu options when menu button is clicked", async () => {
-    render(<WidgetHeader {...mockProps} />);
+  it("renders a menu if passed as props", () => {
+    const { rerender } = render(<WidgetHeader {...mockProps} />);
+    const Menu = () => <div data-testid="menu">Menu</div>;
 
-    fireEvent.click(screen.getByRole("button"));
+    expect(screen.queryByTestId("menu")).not.toBeInTheDocument();
 
-    expect(screen.queryByText("Customize chart")).toBeInTheDocument();
-    expect(screen.queryByText("Show as a bar chart")).toBeInTheDocument();
-    expect(screen.queryByText("Show as a pie chart")).toBeInTheDocument();
-    expect(screen.queryByText("Show as an area chart")).toBeInTheDocument();
-    expect(screen.queryByText("Show as a map")).toBeInTheDocument();
-  });
+    rerender(<WidgetHeader {...mockProps} menu={<Menu />} />);
 
-  it("calls appropriate callbacks when interacting with the dropdown menu", async () => {
-    render(<WidgetHeader {...mockProps} />);
-
-    const menuTrigger = screen.getByRole("button");
-    fireEvent.click(menuTrigger);
-
-    expect(mockProps.onMenuOpenChange).toHaveBeenCalledWith(true);
-
-    const pieChartOption = await screen.findByText("Show as a pie chart");
-    fireEvent.click(pieChartOption);
-
-    expect(mockProps.onMenuButtonClicked).toHaveBeenCalledWith(
-      WIDGET_VISUALIZATIONS.PIE_CHART,
-    );
+    expect(screen.queryByTestId("menu")).toBeInTheDocument();
   });
 
   it("applies custom className when provided", () => {

@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 
 import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
@@ -36,13 +36,20 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, barSize }) => {
 
   const height = data.length * 50;
   const highestValueIndex = getValueIndexFromWidgetData(data);
+  let style: CSSProperties = {
+    minHeight: "0px",
+    width: "60%",
+  };
+
+  if (barSize) {
+    style = {
+      ...style,
+      maxHeight: `${height}px`,
+    };
+  }
 
   return (
-    <ChartContainer
-      config={{}}
-      className="w-full p-0"
-      style={barSize ? { maxHeight: `${height}px`, width: "60%" } : undefined}
-    >
+    <ChartContainer config={{}} className="w-full p-0" style={style}>
       <BarChart
         height={height}
         margin={{ top: 0, left: 0, right: 0, bottom: 0 }}

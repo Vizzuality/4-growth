@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { useQueryState } from "nuqs";
-import useFilters from "@/hooks/useFilters";
+import useFilters from "@/hooks/use-filters";
 import type { MockInstance } from "vitest";
 
 vi.mock("nuqs", () => ({

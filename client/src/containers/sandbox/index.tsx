@@ -1,46 +1,53 @@
 "use client";
 import { useEffect } from "react";
 
-import { useAtom } from "jotai";
+import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
-import {
-  customWidgetAtom,
-  selectedVisualizationAtom,
-} from "@/containers/sandbox/store";
+import Widget from "@/containers/widget";
 
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import Title from "@/components/ui/title";
 
 export default function Sandbox() {
-  const [widget, setWidget] = useAtom(customWidgetAtom);
-  const [selectedVisualization, setSelectedVisualization] = useAtom(
-    selectedVisualizationAtom,
+  const { visualization, setVisualization, widget } = useSandboxWidget();
+  const menuItems = (
+    <>
+      <Button
+        variant="clean"
+        className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+      >
+        Save
+      </Button>
+      <Button
+        variant="clean"
+        className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+      >
+        Save as
+      </Button>
+    </>
   );
 
   useEffect(() => {
-    if (!widget || !selectedVisualization) return;
+    if (!widget) return;
 
-    if (!widget.visualisations.includes(selectedVisualization)) {
-      setWidget(null);
+    if (!visualization || !widget.visualisations.includes(visualization)) {
+      setVisualization(widget.defaultVisualization);
     }
-  }, [widget, selectedVisualization]);
-
-  useEffect(() => {
-    // cleanup
-    return () => {
-      setWidget(null);
-      setSelectedVisualization(null);
-    };
-  }, []);
+  }, [widget, visualization]);
 
   return (
-    <Card className="p-6">
-      <header className="space-y-2">
-        <Title as="h2" className="text-base font-normal">
-          {widget?.indicator}
-        </Title>
-        <p className="text-xs text-muted-foreground">{widget?.question}</p>
-      </header>
+    <Card className="p-0">
+      {widget && (
+        <Widget
+          indicator={widget.indicator}
+          question={widget.question}
+          visualization={visualization || widget.defaultVisualization}
+          data={widget.data}
+          menuItems={menuItems}
+          className="col-span-1 last:odd:col-span-2"
+          config={{ menu: { className: "flex flex-col py-4" } }}
+        />
+      )}
     </Card>
   );
 }

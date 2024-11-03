@@ -3,7 +3,7 @@ import { FC } from "react";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
-import useFilters from "@/hooks/useFilters";
+import useFilters from "@/hooks/use-filters";
 
 import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
 
@@ -11,7 +11,9 @@ import { Button } from "@/components/ui/button";
 
 const DEFAULT_FILTERS = ["eu-member-state", "type-of-data"];
 
-const FilterSettings: FC = () => {
+const FilterSettings: FC<{ withDataBreakdown?: boolean }> = ({
+  withDataBreakdown,
+}) => {
   const { filters } = useFilters();
   const filtersQuery = client.pageFilter.searchFilters.useQuery(
     queryKeys.pageFilters.all.queryKey,
@@ -50,12 +52,14 @@ const FilterSettings: FC = () => {
         name="Add a custom filter"
         items={customFilters}
       />
-      <Button
-        variant="clean"
-        className="w-full justify-start rounded-none px-4 py-3.5 font-normal transition-colors hover:bg-secondary"
-      >
-        Add a data breakdown
-      </Button>
+      {withDataBreakdown && (
+        <Button
+          variant="clean"
+          className="w-full justify-start rounded-none px-4 py-3.5 font-normal transition-colors hover:bg-secondary"
+        >
+          Add a data breakdown
+        </Button>
+      )}
     </>
   );
 };
