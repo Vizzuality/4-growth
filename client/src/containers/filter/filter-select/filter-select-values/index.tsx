@@ -5,12 +5,11 @@ import { useForm } from "react-hook-form";
 import { WidgetDataFilterOperatorType } from "@shared/dto/global/search-widget-data-params";
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import Fuse from "fuse.js";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { SearchIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-import FilterSelectOperator from "@/containers/filter/filter-select/filter-select-operator";
 import {
   currentFilterAtom,
   currentStepAtom,
@@ -28,6 +27,7 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 
 export interface FilterSelectForm {
@@ -50,7 +50,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
 }) => {
   const filter = useAtomValue(currentFilterAtom);
   const allValues = items.find((i) => i.name === filter?.name)?.values || [];
-  const [currentStep, setCurrentStep] = useAtom(currentStepAtom);
+  const setCurrentStep = useSetAtom(currentStepAtom);
   const [selectAll, setSelectAll] = useState(false);
   const form = useForm<FilterSelectForm>({
     defaultValues: { values: defaultValues, operator: "=" },
@@ -103,12 +103,11 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
         <TriangleDown aria-hidden="true" />
       </Button>
       <Form {...form}>
-        <FilterSelectOperator />
-        {currentStep === FilterSelectStep.valuesList ? (
-          <form
-            className="flex h-full min-h-0 flex-col bg-slate-100"
-            onSubmit={form.handleSubmit((f) => onSubmit(f))}
-          >
+        <form
+          className="flex h-full min-h-0 flex-col bg-slate-100"
+          onSubmit={form.handleSubmit((f) => onSubmit(f))}
+        >
+          {allValues.length > 15 && (
             <div className="relative w-full border-t border-bluish-gray-500 border-opacity-35">
               <Input
                 type="search"
@@ -123,11 +122,13 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
                 <Separator className="bg-bluish-gray-500 bg-opacity-35" />
               </div>
             </div>
-            <FormField
-              control={form.control}
-              name="values"
-              render={({ field }) => (
-                <FormItem className="flex-1 space-y-0 overflow-y-auto">
+          )}
+          <FormField
+            control={form.control}
+            name="values"
+            render={({ field }) => (
+              <ScrollArea>
+                <FormItem>
                   {allValues.length && (
                     <FormItem className="flex h-10 items-center justify-between gap-2 space-y-0 pr-3 transition-colors hover:bg-slate-200">
                       <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none py-4 pl-3 pr-0 text-xs font-medium">
@@ -143,6 +144,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
                       </FormControl>
                     </FormItem>
                   )}
+
                   {formItems.map((v) => (
                     <FormItem
                       key={`filter-select-value-${v}`}
@@ -169,30 +171,20 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
                     </FormItem>
                   ))}
                 </FormItem>
-              )}
-            />
-            <div
-              className={cn(
-                "p-0.5",
-                selectedValues.length === 0 ? "hidden" : "block",
-              )}
-            >
-              <Button className="w-full" type="submit">
-                Apply
-              </Button>
-            </div>
-          </form>
-        ) : (
-          <Button
-            type="button"
-            variant="clean"
-            className="justify-between rounded-none px-3 py-4 text-navy-800 transition-colors hover:bg-slate-100"
-            onClick={() => setCurrentStep(FilterSelectStep.valuesList)}
+              </ScrollArea>
+            )}
+          />
+          <div
+            className={cn(
+              "border-t-bluish-gray-500/35 bg-white p-0.5 pt-2",
+              selectedValues.length === 0 ? "hidden" : "block",
+            )}
           >
-            <span className="text-xs font-medium">“Select values”</span>
-            <TriangleDown className="text-navy-800" aria-hidden="true" />
-          </Button>
-        )}
+            <Button className="w-full" type="submit">
+              Apply
+            </Button>
+          </div>
+        </form>
       </Form>
     </div>
   );

@@ -13,27 +13,17 @@ vi.mock("jotai", async () => {
   };
 });
 
-vi.mock("@/containers/filter/filter-select/filter-select-operator", () => ({
-  default: () => (
-    <div data-testid="filter-select-operator">FilterSelectOperator</div>
-  ),
-}));
-
 describe("FilterSelectValues", () => {
+  const mockFilter = {
+    name: "location-country-region",
+    values: ["Austria", "Belgium", "Bulgaria"],
+  };
   const mockItems = [
-    {
-      name: "sector",
-      values: ["Agriculture", "Forestry"],
-    },
     {
       name: "level-of-reliability:-1-5",
       values: ["1", "2", "3", "4", "5"],
     },
-  ];
-  const mockFilter = {
-    name: "sector",
-    values: ["Agriculture", "Forestry"],
-  };
+  ].concat(mockFilter);
 
   const mockOnSubmit = vi.fn();
   const mockProps = {
@@ -46,47 +36,65 @@ describe("FilterSelectValues", () => {
     vi.clearAllMocks();
     (jotai.useAtomValue as jest.Mock).mockReturnValue(mockFilter);
     (jotai.useAtom as jest.Mock).mockReturnValue([
-      FilterSelectStep.valuesList,
+      FilterSelectStep.values,
       vi.fn(),
     ]);
   });
 
   it("renders the filter name button", () => {
     render(<FilterSelectValues {...mockProps} />);
-    expect(screen.getByText("sector")).toBeInTheDocument();
+    expect(screen.getByText("location-country-region")).toBeInTheDocument();
   });
 
   it("disables the filter name button when isFixedFilter is true", () => {
     render(<FilterSelectValues {...mockProps} isFixedFilter />);
-    expect(screen.getByText("sector").closest("button")).toHaveAttribute(
-      "disabled",
+    expect(
+      screen.getByText("location-country-region").closest("button"),
+    ).toHaveAttribute("disabled");
+  });
+
+  it("only renders the search input when there are more than 15 values", async () => {
+    const { rerender } = render(<FilterSelectValues {...mockProps} />);
+
+    expect(screen.queryByRole("searchbox")).not.toBeInTheDocument();
+
+    rerender(
+      <FilterSelectValues
+        {...mockProps}
+        items={[
+          {
+            name: "location-country-region",
+            values: [
+              "Austria",
+              "Belgium",
+              "Bulgaria",
+              "Croatia",
+              "Cyprus",
+              "Czechia",
+              "Denmark",
+              "Estonia",
+              "Finland",
+              "France",
+              "Germany",
+              "Greece",
+              "Hungary",
+              "Ireland",
+              "Italy",
+              "Latvia",
+            ],
+          },
+        ]}
+      />,
     );
-  });
 
-  it("renders the FilterSelectOperator component", () => {
-    render(<FilterSelectValues {...mockProps} />);
-    expect(screen.getByTestId("filter-select-operator")).toBeInTheDocument();
-  });
+    const searchInput = screen.getByRole("searchbox");
+    fireEvent.change(searchInput, { target: { value: "Italy" } });
 
-  it("changes step to valuesList when “Select values” button is clicked", () => {
-    const setCurrentStepMock = vi.fn();
-    (jotai.useAtom as jest.Mock).mockReturnValue([
-      FilterSelectStep.values,
-      setCurrentStepMock,
-    ]);
-    render(<FilterSelectValues {...mockProps} />);
-
-    const selectValuesButton = screen.getByText("“Select values”");
-    fireEvent.click(selectValuesButton);
-
-    expect(setCurrentStepMock).toHaveBeenCalledWith(
-      FilterSelectStep.valuesList,
-    );
-  });
-
-  it("renders the search input", () => {
-    render(<FilterSelectValues {...mockProps} />);
-    expect(screen.getByRole("searchbox")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("Italy")).toBeInTheDocument();
+      expect(screen.queryByText("Austria")).not.toBeInTheDocument();
+      expect(screen.queryByText("Belgium")).not.toBeInTheDocument();
+    });
   });
 
   it("renders the list of values", () => {
@@ -96,39 +104,27 @@ describe("FilterSelectValues", () => {
     });
   });
 
-  it("filters values when searching", async () => {
-    render(<FilterSelectValues {...mockProps} />);
-    const searchInput = screen.getByRole("searchbox");
-    fireEvent.change(searchInput, { target: { value: "For" } });
-
-    await waitFor(() => {
-      expect(screen.getByText("Forestry")).toBeInTheDocument();
-      expect(screen.queryByText("Agriculture")).not.toBeInTheDocument();
-      expect(screen.queryByText("Both")).not.toBeInTheDocument();
-    });
-  });
-
   it("should unselect all checkboxes if defaultValues is empty", () => {
     render(<FilterSelectValues {...mockProps} defaultValues={[]} />);
 
-    expect(screen.getByLabelText("Agriculture")).toHaveAttribute(
+    expect(screen.getByLabelText("Austria")).toHaveAttribute(
       "aria-checked",
       "false",
     );
-    expect(screen.getByLabelText("Forestry")).toHaveAttribute(
+    expect(screen.getByLabelText("Belgium")).toHaveAttribute(
       "aria-checked",
       "false",
     );
   });
 
   it("should select the correct checkboxes if defaultValues is passed", () => {
-    render(<FilterSelectValues {...mockProps} defaultValues={["Forestry"]} />);
+    render(<FilterSelectValues {...mockProps} defaultValues={["Austria"]} />);
 
-    expect(screen.getByLabelText("Agriculture")).toHaveAttribute(
+    expect(screen.getByLabelText("Belgium")).toHaveAttribute(
       "aria-checked",
       "false",
     );
-    expect(screen.getByLabelText("Forestry")).toHaveAttribute(
+    expect(screen.getByLabelText("Austria")).toHaveAttribute(
       "aria-checked",
       "true",
     );
@@ -159,8 +155,8 @@ describe("FilterSelectValues", () => {
   it("submits the form with selected values", async () => {
     render(<FilterSelectValues {...mockProps} />);
 
-    const value1Checkbox = screen.getByLabelText("Agriculture");
-    const value2Checkbox = screen.getByLabelText("Forestry");
+    const value1Checkbox = screen.getByLabelText("Austria");
+    const value2Checkbox = screen.getByLabelText("Belgium");
 
     fireEvent.click(value1Checkbox);
     fireEvent.click(value2Checkbox);
@@ -170,7 +166,7 @@ describe("FilterSelectValues", () => {
 
     await waitFor(() => {
       expect(mockOnSubmit).toHaveBeenCalledWith({
-        values: ["Agriculture", "Forestry"],
+        values: ["Austria", "Belgium"],
         operator: "=",
       });
     });
