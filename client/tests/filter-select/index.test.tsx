@@ -1,6 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
-import FilterSelect from "@/containers/filter/filter-select";
+import FilterSelect, {
+  FilterSelectProps,
+} from "@/containers/filter/filter-select";
 import { FilterSelectValuesProps } from "@/containers/filter/filter-select/filter-select-values";
 
 vi.mock("@/containers/filter/filter-select/filter-select-name", () => ({
@@ -19,7 +21,8 @@ vi.mock("@/containers/filter/filter-select/filter-select-values", () => ({
 
 describe("FilterSelect", () => {
   const mockOnSubmit = vi.fn();
-  const mockProps = {
+  const mockProps: FilterSelectProps = {
+    defaultValues: [],
     items: [
       {
         name: "sector",

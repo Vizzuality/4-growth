@@ -7,8 +7,6 @@ import { useHydrateAtoms } from "jotai/utils";
 export enum FilterSelectStep {
   name = "name",
   values = "values",
-  valuesOperator = "valuesOperator",
-  valuesList = "valuesList",
 }
 
 export const currentStepAtom = atom<FilterSelectStep>(FilterSelectStep.name);
