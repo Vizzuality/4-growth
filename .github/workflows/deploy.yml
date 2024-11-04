@@ -216,4 +216,3 @@ jobs:
           version_label: ${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           deployment_package: infrastructure/source_bundle/deploy.zip
           wait_for_deployment: true
-        timeout-minutes: 2
