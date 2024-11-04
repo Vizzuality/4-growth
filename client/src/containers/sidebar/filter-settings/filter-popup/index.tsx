@@ -20,6 +20,10 @@ import { SIDEBAR_POPOVER_CLASS } from "@/constants";
 
 interface FilterPopupProps {
   name: string;
+  label?: {
+    selected: string;
+    unSelected: string;
+  };
   fixedFilter?: PageFilter;
   items: PageFilter[];
 }
@@ -45,7 +49,12 @@ const FilterItemButton: FC<{
   );
 };
 
-const FilterPopup: FC<FilterPopupProps> = ({ name, fixedFilter, items }) => {
+const FilterPopup: FC<FilterPopupProps> = ({
+  name,
+  label,
+  fixedFilter,
+  items,
+}) => {
   const { filters, addFilter, removeFilterValue } = useFilters();
   const [showPopup, setShowPopup] = useState(false);
   const setShowOverlay = useSetAtom(showOverlayAtom);
@@ -65,7 +74,7 @@ const FilterPopup: FC<FilterPopupProps> = ({ name, fixedFilter, items }) => {
           {selectedFilter ? (
             <>
               <span className="inline-block">
-                {name} is{" "}
+                {label?.selected || name} is{" "}
                 <FilterItemButton
                   value={selectedFilter.values[0]}
                   onClick={(value) => removeFilterValue(name, value)}
@@ -83,7 +92,7 @@ const FilterPopup: FC<FilterPopupProps> = ({ name, fixedFilter, items }) => {
               </ul>
             </>
           ) : (
-            name
+            label?.unSelected || name
           )}
         </Button>
       </PopoverTrigger>
