@@ -9,7 +9,15 @@ import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
 
 import { Button } from "@/components/ui/button";
 
-const DEFAULT_FILTERS = ["eu-member-state", "type-of-data"];
+const DEFAULT_FILTERS = ["location-country-region"];
+const DEFAULT_FILTERS_LABEL_MAP: {
+  [key: string]: { selected: string; unSelected: string };
+} = {
+  "location-country-region": {
+    selected: "Country",
+    unSelected: "All countries",
+  },
+} as const;
 
 const FilterSettings: FC<{ withDataBreakdown?: boolean }> = ({
   withDataBreakdown,
@@ -34,6 +42,7 @@ const FilterSettings: FC<{ withDataBreakdown?: boolean }> = ({
           <FilterPopup
             key={`sidebar-filter-popover-${f.name}`}
             name={f.name}
+            label={DEFAULT_FILTERS_LABEL_MAP[f.name]}
             items={filtersQuery.data || []}
             fixedFilter={f}
           />
