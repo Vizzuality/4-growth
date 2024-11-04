@@ -9,13 +9,17 @@ import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
 
 import { Button } from "@/components/ui/button";
 
-const DEFAULT_FILTERS = ["location-country-region"];
+const DEFAULT_FILTERS = ["location-country-region", "sector"];
 const DEFAULT_FILTERS_LABEL_MAP: {
   [key: string]: { selected: string; unSelected: string };
 } = {
   "location-country-region": {
     selected: "Country",
     unSelected: "All countries",
+  },
+  sector: {
+    selected: "Sector",
+    unSelected: "All operation areas",
   },
 } as const;
 
