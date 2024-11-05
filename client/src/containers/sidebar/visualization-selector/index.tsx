@@ -61,7 +61,9 @@ const VisualizationSelector: FC = () => {
         className={SIDEBAR_POPOVER_CLASS}
       >
         <div className="flex h-full flex-col overflow-y-auto">
-          {VALID_WIDGET_VISUALIZATIONS.map((v) => (
+          {VALID_WIDGET_VISUALIZATIONS.filter(
+            (v) => v !== "filter" && v !== "navigation",
+          ).map((v) => (
             <Button
               key={`v-list-item-${v}`}
               variant="clean"
