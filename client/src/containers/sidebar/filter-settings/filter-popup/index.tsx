@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { useSetAtom } from "jotai";
 
-import useFilters from "@/hooks/useFilters";
+import useFilters from "@/hooks/use-filters";
 
 import FilterSelect from "@/containers/filter/filter-select";
 import { showOverlayAtom } from "@/containers/overlay/store";
