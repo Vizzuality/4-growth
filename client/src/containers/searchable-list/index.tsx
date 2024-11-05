@@ -5,6 +5,7 @@ import { SearchIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 
 interface SearchableListProps<T> {
@@ -53,7 +54,7 @@ function SearchableList<T>({
 
   return (
     <>
-      <div className="relative w-full bg-slate-100">
+      <div className="relative">
         <Input
           type="search"
           variant="secondary"
@@ -65,18 +66,19 @@ function SearchableList<T>({
         </div>
       </div>
       <Separator className="bg-bluish-gray-500 bg-opacity-35" />
-      <div className="relative flex h-full flex-col overflow-y-auto bg-slate-100">
+      <ScrollArea className="bg-slate-100" maxHeight={220}>
         {filteredItems.map((item, index) => (
-          <Button
-            key={`searchable-list-item-${index}`}
-            variant="clean"
-            className="h-10 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-200"
-            onClick={() => onItemClick(item)}
-          >
-            {item[itemKey] as string}
-          </Button>
+          <div key={`searchable-list-item-${index}`}>
+            <Button
+              variant="clean"
+              className="h-10 w-full cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-200"
+              onClick={() => onItemClick(item)}
+            >
+              {item[itemKey] as string}
+            </Button>
+          </div>
         ))}
-      </div>
+      </ScrollArea>
     </>
   );
 }

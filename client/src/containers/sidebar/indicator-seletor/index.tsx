@@ -5,7 +5,6 @@ import { useSetAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
-import { cn } from "@/lib/utils";
 
 import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
@@ -57,7 +56,7 @@ const IndicatorSelector: FC = () => {
       <PopoverContent
         align="start"
         side="bottom"
-        className={cn(SIDEBAR_POPOVER_CLASS, "h-[320px]")}
+        className={SIDEBAR_POPOVER_CLASS}
       >
         <SearchableList
           items={widgets}

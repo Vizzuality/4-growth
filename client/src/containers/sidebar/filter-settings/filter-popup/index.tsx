@@ -3,9 +3,7 @@ import { FC, useState } from "react";
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { useSetAtom } from "jotai";
 
-import { cn } from "@/lib/utils";
-
-import useFilters from "@/hooks/use-filters";
+import useFilters from "@/hooks/useFilters";
 
 import FilterSelect from "@/containers/filter/filter-select";
 import { showOverlayAtom } from "@/containers/overlay/store";
@@ -99,7 +97,7 @@ const FilterPopup: FC<FilterPopupProps> = ({
       <PopoverContent
         align="end"
         side="bottom"
-        className={cn(SIDEBAR_POPOVER_CLASS, "h-[320px]")}
+        className={SIDEBAR_POPOVER_CLASS}
       >
         <FilterSelect
           items={items}
