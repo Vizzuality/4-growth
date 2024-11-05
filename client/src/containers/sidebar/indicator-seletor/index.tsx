@@ -36,7 +36,6 @@ const IndicatorSelector: FC = () => {
     <Popover
       open={showIndicators}
       onOpenChange={(o) => {
-        console.log("onOpenChange", o);
         setShowIndicators(o);
         setshowOverlay(o);
       }}
