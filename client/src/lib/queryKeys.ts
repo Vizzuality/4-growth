@@ -25,7 +25,10 @@ export const pageFiltersKeys = createQueryKeys("pageFilters", {
 
 export const widgetsKeys = createQueryKeys("widgets", {
   all: null,
-  one: (indicator: string) => [indicator],
+  one: (indicator: string, filters: FilterQueryParam[]) => [
+    indicator,
+    { filters },
+  ],
 });
 
 export const queryKeys = mergeQueryKeys(
