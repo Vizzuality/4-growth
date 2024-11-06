@@ -7,7 +7,7 @@ import { Repository, SelectQueryBuilder } from 'typeorm';
 import { FetchSpecification } from 'nestjs-base-service';
 import { WidgetVisualisationFilters } from '@shared/schemas/widget-visualisation-filters.schema';
 import { BaseWidgetWithData } from '@shared/dto/widgets/base-widget-data.interface';
-import { WidgetDataFiltersSchema } from '@shared/schemas/widget-data-filters.schema';
+import { SearchWidgetDataParamsSchema } from '@shared/schemas/search-widget-data-params.schema';
 import {
   ISurveyAnswerRepository,
   SurveyAnswerRepository,
@@ -57,7 +57,7 @@ export class WidgetsService extends AppBaseService<
 
   public async findWidgetWithDataById(
     id: string,
-    query: FetchSpecification & WidgetDataFiltersSchema,
+    query: FetchSpecification & SearchWidgetDataParamsSchema,
   ): Promise<BaseWidgetWithData> {
     const widget = await this.baseWidgetRepository.findOneBy({ indicator: id });
     if (widget === null) {
@@ -71,10 +71,10 @@ export class WidgetsService extends AppBaseService<
     }
 
     const baseWidgetWithData =
-      await this.surveyAnswerRepository.addSurveyDataToBaseWidget(
-        widget,
-        query.filters,
-      );
+      await this.surveyAnswerRepository.addSurveyDataToBaseWidget(widget, {
+        filters: query.filters,
+        breakdown: query.breakdown,
+      });
 
     return baseWidgetWithData;
   }

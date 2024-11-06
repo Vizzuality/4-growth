@@ -2,6 +2,7 @@ import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 
 export interface WidgetData {
   chart?: WidgetChartData;
+  breakdown?: WidgetBreakdownData;
   counter?: WidgetCounterData;
   map?: WidgetMapData;
   navigation?: WidgetNavigationData;
@@ -22,6 +23,14 @@ export type WidgetChartData = Array<{
   label: string;
   value: number;
   total: number;
+}>;
+
+/**
+ * Data for a data breakdown chart
+ */
+export type WidgetBreakdownData = Array<{
+  label: string;
+  data: WidgetChartData;
 }>;
 
 /**

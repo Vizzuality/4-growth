@@ -1,4 +1,4 @@
-import { WidgetDataFilters } from '@shared/dto/widgets/widget-data-filter';
+import { WidgetDataFilter } from '@shared/dto/widgets/widget-data-filter';
 import { Injectable, Logger } from '@nestjs/common';
 import { Section } from '@shared/dto/sections/section.entity';
 import { CountryISO3Map } from '@shared/constants/country-iso3.map';
@@ -42,24 +42,30 @@ export class SQLAdapter {
     return sqlCode;
   }
 
-  public generateSqlFromWidgetDataFilters(filters: WidgetDataFilters): string {
+  public generateSqlFromWidgetDataFilters(
+    filters?: WidgetDataFilter[],
+    alias?: string,
+  ): string {
+    if (filters === undefined) {
+      return '';
+    }
     let filterClause: string = 'WHERE ';
     for (const filter of filters) {
       // Countries
-      if (filter.name == 'eu-member-state') {
+      if (filter.name == 'location-country-region') {
         filterClause += '(';
         for (const filterValue of filter.values) {
-          filterClause += `country_code ${filter.operator} '${CountryISO3Map.getISO3ByCountryName(filterValue)}' OR `;
+          filterClause += `${alias === undefined ? '' : `${alias}.`}country_code ${filter.operator} '${CountryISO3Map.getISO3ByCountryName(filterValue)}' OR `;
         }
         filterClause = filterClause.slice(0, -4);
         filterClause += ') AND ';
         continue;
       }
 
-      filterClause += `(question_indicator = '${filter.name}' AND (`;
+      filterClause += `(${alias === undefined ? '' : `${alias}.`}question_indicator = '${filter.name}' AND (`;
 
       for (const filterValue of filter.values) {
-        filterClause += `answer ${filter.operator} '${filterValue}' OR `;
+        filterClause += `${alias === undefined ? '' : `${alias}.`}answer ${filter.operator} '${filterValue}' OR `;
       }
       filterClause = filterClause.slice(0, -4);
       filterClause += ')) AND ';
@@ -71,10 +77,11 @@ export class SQLAdapter {
   public appendExpressionToFilterClause(
     filterClause: string,
     newExpression: string,
+    alias?: string,
   ): string {
-    if (filterClause !== undefined) {
-      return `${filterClause} AND ${newExpression}`;
+    if (filterClause !== '') {
+      return `${filterClause} AND ${alias === undefined ? newExpression : `${alias}.${newExpression}`}`;
     }
-    return `WHERE ${newExpression}`;
+    return `WHERE  ${alias === undefined ? newExpression : `${alias}.${newExpression}`}`;
   }
 }

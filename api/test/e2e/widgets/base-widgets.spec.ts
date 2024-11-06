@@ -141,7 +141,7 @@ describe('Base Widgets', () => {
     const result = await testManager
       .request()
       .get(
-        `/widgets/${indicator}?filters[0][name]=eu-member-state&filters[0][operator]==&filters[0][values][0]=Belgium`,
+        `/widgets/${indicator}?filters[0][name]=location-country-region&filters[0][operator]==&filters[0][values][0]=Belgium`,
       );
 
     const returnedWidget = result.body.data;
@@ -186,6 +186,23 @@ describe('Base Widgets', () => {
           { country: 'BEL', count: 1 },
           { country: 'NLD', count: 1 },
         ],
+        chart: [
+          {
+            label: 'No',
+            value: 2,
+            total: 2,
+          },
+          {
+            label: 'N/A',
+            value: 1,
+            total: 1,
+          },
+          {
+            label: 'Yes',
+            value: 2,
+            total: 2,
+          },
+        ],
       },
     ],
   ])('%s', async (description, widgetPrimitives, expectedData) => {
@@ -211,6 +228,131 @@ describe('Base Widgets', () => {
     expect(returnedWidget).toStrictEqual(createdWidgetWithData);
   });
 
+  it.each([
+    [
+      'Should retrieve the data breakdown of a widget by its id (indicator) against another question indicator',
+      { indicator: 'sector' },
+      '',
+      {
+        breakdown: [
+          {
+            label: 'Agriculture',
+            data: [
+              {
+                label: 'Belgium',
+                value: 2,
+                total: 2,
+              },
+            ],
+          },
+          {
+            label: 'Both',
+            data: [
+              {
+                label: 'Bulgaria',
+                value: 1,
+                total: 1,
+              },
+            ],
+          },
+          {
+            label: 'Forestry',
+            data: [
+              {
+                label: 'Austria',
+                value: 1,
+                total: 2,
+              },
+              {
+                label: 'Netherlands',
+                value: 1,
+                total: 2,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    [
+      'Should retrieve the data breakdown of a widget by its id (indicator) against another question indicator (with filters)',
+      { indicator: 'sector' },
+      '&filters[0][name]=location-country-region&filters[0][operator]==&filters[0][values][0]=Belgium',
+      {
+        breakdown: [
+          {
+            label: 'Agriculture',
+            data: [
+              {
+                label: 'Belgium',
+                value: 2,
+                total: 2,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  ])(
+    '%s',
+    async (
+      description,
+      widgetPrimitives,
+      additionalUrlParams,
+      expectedData,
+    ) => {
+      // Given
+      const dataSourceManager = testManager.testApp.get(DataSourceManager);
+      await dataSourceManager.loadQuestionIndicatorMap();
+      await dataSourceManager.loadSurveyData(TEST_SURVEYS_DATA_PATH);
+
+      const createdWidget = await mocks.createBaseWidget(widgetPrimitives);
+
+      // When
+      const result = await testManager
+        .request()
+        .get(
+          `/widgets/${widgetPrimitives.indicator}?breakdown=location-country-region${additionalUrlParams}`,
+        );
+
+      const returnedWidget = result.body.data;
+
+      const createdWidgetWithData = {
+        ...ObjectUtils.normalizeDates(createdWidget),
+        data: expectedData,
+      };
+
+      // Then
+      expect(returnedWidget).toStrictEqual(createdWidgetWithData);
+    },
+  );
+
+  it('Should retrieve no data of a widget with data by its id (indicator) if the breakdown indicator does not exist', async () => {
+    // Given
+    const dataSourceManager = testManager.testApp.get(DataSourceManager);
+    await dataSourceManager.loadQuestionIndicatorMap();
+    await dataSourceManager.loadSurveyData(TEST_SURVEYS_DATA_PATH);
+
+    const indicator = 'sector';
+    const createdWidget = await mocks.createBaseWidget({
+      indicator,
+    });
+
+    // When
+    const result = await testManager
+      .request()
+      .get(`/widgets/${indicator}?breakdown=non-existent-indicator`);
+
+    const returnedWidget = result.body.data;
+
+    const createdWidgetWithData = {
+      ...ObjectUtils.normalizeDates(createdWidget),
+      data: { breakdown: [] },
+    };
+
+    // Then
+    expect(returnedWidget).toStrictEqual(createdWidgetWithData);
+  });
+
   it('Should return a 404 status code when retrieving a widget by a non-existent indicator', async () => {
     // Given
     const indicator = 'non-existent-indicator';
@@ -219,7 +361,6 @@ describe('Base Widgets', () => {
     const result = await testManager.request().get(`/widgets/${indicator}`);
 
     // Then
-
     expect(result.status).toBe(404);
   });
 });
