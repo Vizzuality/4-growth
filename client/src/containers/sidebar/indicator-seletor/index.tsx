@@ -59,7 +59,9 @@ const IndicatorSelector: FC = () => {
         className={SIDEBAR_POPOVER_CLASS}
       >
         <SearchableList
-          items={widgets}
+          items={widgets.filter((w) =>
+            w.visualisations.every((v) => v !== "single_value"),
+          )}
           itemKey="indicator"
           onItemClick={(w) => {
             if (

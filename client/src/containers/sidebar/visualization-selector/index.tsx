@@ -29,7 +29,8 @@ const getVisualizationText = (value: WidgetVisualizationsType): string =>
 const VisualizationSelector: FC = () => {
   const [showVisualizations, setShowVisualizations] = useState(false);
   const setShowOverlay = useSetAtom(showOverlayAtom);
-  const { visualization, setVisualization } = useSandboxWidget();
+  const { indicator, visualization, setVisualization, widget } =
+    useSandboxWidget();
 
   return (
     <Popover
@@ -43,6 +44,7 @@ const VisualizationSelector: FC = () => {
         <Button
           variant="clean"
           className="inline-block h-full w-full whitespace-pre-wrap rounded-none px-4 py-3.5 text-left font-normal transition-colors hover:bg-secondary"
+          disabled={!indicator}
         >
           <span>Type</span>
           {visualization && (
@@ -62,7 +64,7 @@ const VisualizationSelector: FC = () => {
       >
         <div className="flex h-full flex-col overflow-y-auto">
           {VALID_WIDGET_VISUALIZATIONS.filter(
-            (v) => v !== "filter" && v !== "navigation",
+            (v) => v !== "filter" && v !== "navigation" && v !== "single_value",
           ).map((v) => (
             <Button
               key={`v-list-item-${v}`}
@@ -73,6 +75,7 @@ const VisualizationSelector: FC = () => {
                 setShowVisualizations(false);
                 setShowOverlay(false);
               }}
+              disabled={!widget?.visualisations.includes(v)}
             >
               {getVisualizationText(v)}
             </Button>
