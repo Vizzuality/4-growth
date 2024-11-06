@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, Fragment, useState } from "react";
 
 import {
   WidgetVisualizationsType,
@@ -16,6 +16,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+  Tooltip,
+} from "@/components/ui/tooltip";
 import { SIDEBAR_POPOVER_CLASS } from "@/constants";
 
 const getVisualizationText = (value: WidgetVisualizationsType): string =>
@@ -32,6 +38,26 @@ const VisualizationSelector: FC = () => {
   const { indicator, visualization, setVisualization, widget } =
     useSandboxWidget();
 
+  if (!indicator) {
+    return (
+      <TooltipProvider>
+        <Tooltip delayDuration={300}>
+          <TooltipTrigger className="inline-block h-full w-full whitespace-pre-wrap rounded-none px-4 py-3.5 text-left font-normal text-slate-400">
+            Type
+          </TooltipTrigger>
+          <TooltipContent
+            align="start"
+            alignOffset={16}
+            sideOffset={-8}
+            className="rounded-lg border-none px-2 py-1 text-2xs"
+          >
+            <p>Select an indicator first.</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
+  }
+
   return (
     <Popover
       open={showVisualizations}
@@ -44,7 +70,6 @@ const VisualizationSelector: FC = () => {
         <Button
           variant="clean"
           className="inline-block h-full w-full whitespace-pre-wrap rounded-none px-4 py-3.5 text-left font-normal transition-colors hover:bg-secondary"
-          disabled={!indicator}
         >
           <span>Type</span>
           {visualization && (
@@ -61,24 +86,51 @@ const VisualizationSelector: FC = () => {
         align="start"
         side="bottom"
         className={SIDEBAR_POPOVER_CLASS}
+        onOpenAutoFocus={(event) => {
+          // This prevents the tooltip to automatically trigger
+          event.preventDefault();
+        }}
       >
         <div className="flex h-full flex-col overflow-y-auto">
           {VALID_WIDGET_VISUALIZATIONS.filter(
             (v) => v !== "filter" && v !== "navigation" && v !== "single_value",
           ).map((v) => (
-            <Button
-              key={`v-list-item-${v}`}
-              variant="clean"
-              className="h-10 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-100"
-              onClick={() => {
-                setVisualization(v);
-                setShowVisualizations(false);
-                setShowOverlay(false);
-              }}
-              disabled={!widget?.visualisations.includes(v)}
-            >
-              {getVisualizationText(v)}
-            </Button>
+            <Fragment key={`v-list-item-${v}`}>
+              {!widget?.visualisations.includes(v) ? (
+                <TooltipProvider>
+                  <Tooltip delayDuration={300}>
+                    <TooltipTrigger asChild>
+                      <Button
+                        className="h-10 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium text-slate-400"
+                        variant="clean"
+                      >
+                        {getVisualizationText(v)}
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent
+                      align="start"
+                      alignOffset={16}
+                      sideOffset={-8}
+                      className="rounded-lg border-none bg-popover-foreground px-2 py-1 text-2xs text-white"
+                    >
+                      <p>Not available for the current indicator.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              ) : (
+                <Button
+                  variant="clean"
+                  className="h-10 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-100"
+                  onClick={() => {
+                    setVisualization(v);
+                    setShowVisualizations(false);
+                    setShowOverlay(false);
+                  }}
+                >
+                  {getVisualizationText(v)}
+                </Button>
+              )}
+            </Fragment>
           ))}
         </div>
       </PopoverContent>
