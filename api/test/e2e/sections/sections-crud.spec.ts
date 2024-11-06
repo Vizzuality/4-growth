@@ -55,7 +55,7 @@ describe('Page Sections API', () => {
     const res = await testManager
       .request()
       .get(
-        '/sections?filters[0][name]=eu-member-state&filters[0][operator]==&filters[0][values][0]=Belgium',
+        '/sections?filters[0][name]=location-country-region&filters[0][operator]==&filters[0][values][0]=Belgium',
       ); // Implicit ?include[]=baseWidgets&sort[]=order&sort[]=baseWidget.sectionOrder
 
     // Then

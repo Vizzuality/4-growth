@@ -29,7 +29,7 @@ describe('Custom Widgets API', () => {
 
     await dataSourceManager.loadQuestionIndicatorMap();
     baseWidget = await entityMocks.createBaseWidget({
-      indicator: 'eu-member-state',
+      indicator: 'location-country-region',
     });
   });
 

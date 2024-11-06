@@ -8,7 +8,7 @@ import {
   SectionWithDataWidget,
 } from '@shared/dto/sections/section.entity';
 import { FetchSpecification } from 'nestjs-base-service';
-import { WidgetDataFiltersSchema } from '@shared/schemas/widget-data-filters.schema';
+import { SearchWidgetDataFiltersSchema } from '@shared/schemas/search-widget-data-params.schema';
 import {
   ISurveyAnswerRepository,
   SurveyAnswerRepository,
@@ -31,7 +31,7 @@ export class SectionsService extends AppBaseService<
   }
 
   public async searchSectionsWithData(
-    query: FetchSpecification & WidgetDataFiltersSchema,
+    query: FetchSpecification & SearchWidgetDataFiltersSchema,
   ): Promise<SectionWithDataWidget[]> {
     // TODO: There is a bug / weird behavior in typeorm when using take and skip with leftJoinAndSelect:
     //       https://github.com/typeorm/typeorm/issues/4742#issuecomment-780702477
