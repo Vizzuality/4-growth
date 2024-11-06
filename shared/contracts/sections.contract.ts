@@ -16,6 +16,7 @@ export const sectionContract = contract.router({
     responses: {
       200: contract.type<ApiPaginationResponse<SectionWithDataWidget>>(),
       400: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
   },
 });
