@@ -190,17 +190,17 @@ describe('Base Widgets', () => {
           {
             label: 'N/A',
             value: 1,
-            total: 1,
+            total: 5,
           },
           {
             label: 'No',
             value: 2,
-            total: 2,
+            total: 5,
           },
           {
             label: 'Yes',
             value: 2,
-            total: 2,
+            total: 5,
           },
         ],
       },
