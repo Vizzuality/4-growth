@@ -73,7 +73,7 @@ export class WidgetsService extends AppBaseService<
     const baseWidgetWithData =
       await this.surveyAnswerRepository.addSurveyDataToBaseWidget(widget, {
         filters: query.filters,
-        breakdown: query.breakdown,
+        breakdownIndicator: query.breakdown,
       });
 
     return baseWidgetWithData;
