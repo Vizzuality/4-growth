@@ -74,8 +74,8 @@ const Sidebar: FC = () => {
             <AccordionItem value="sandbox-settings">
               <AccordionTrigger>Settings</AccordionTrigger>
               <AccordionContent className="py-3.5">
-                <VisualizationSelector />
                 <IndicatorSelector />
+                <VisualizationSelector />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="sandbox-filters">
