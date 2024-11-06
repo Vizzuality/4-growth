@@ -8,8 +8,13 @@
       {
         "question": "Has your organisation integrated digital technologies into its workflows?",
         "indicator": "adoption-of-technology-by-country",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "horizontal_bar_chart",
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph",
+          "map"
+        ],
+        "defaultVisualization": "map",
         "sectionOrder": 1
       },
       {
