@@ -46,9 +46,8 @@ export class SQLAdapter {
     filters?: WidgetDataFilter[],
     alias?: string,
   ): string {
-    if (filters === undefined) {
-      return '';
-    }
+    if (Array.isArray(filters) === false) return '';
+
     let filterClause: string = 'WHERE ';
     for (const filter of filters) {
       // Countries
@@ -82,6 +81,6 @@ export class SQLAdapter {
     if (filterClause !== '') {
       return `${filterClause} AND ${alias === undefined ? newExpression : `${alias}.${newExpression}`}`;
     }
-    return `WHERE  ${alias === undefined ? newExpression : `${alias}.${newExpression}`}`;
+    return `WHERE ${alias === undefined ? newExpression : `${alias}.${newExpression}`}`;
   }
 }

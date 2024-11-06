@@ -17,6 +17,6 @@ export interface ISurveyAnswerRepository extends Repository<SurveyAnswer> {
   ): Promise<SectionWithDataWidget[]>;
   addSurveyDataToBaseWidget(
     widget: BaseWidget,
-    params: { filters?: WidgetDataFilter[]; breakdown?: string },
+    params: { filters?: WidgetDataFilter[]; breakdownIndicator?: string },
   ): Promise<BaseWidgetWithData>;
 }

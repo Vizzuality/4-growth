@@ -48,7 +48,7 @@ export class PostgresSurveyAnswerRepository
     sections: SectionWithDataWidget[],
     filters?: WidgetDataFilter[],
   ): Promise<SectionWithDataWidget[]> {
-    let filterClause: string;
+    let filterClause: string = '';
     if (filters !== undefined) {
       filterClause = this.sqlAdapter.generateSqlFromWidgetDataFilters(filters);
     }
@@ -69,17 +69,23 @@ export class PostgresSurveyAnswerRepository
 
   public async addSurveyDataToBaseWidget(
     widget: BaseWidgetWithData,
-    params: { filters?: WidgetDataFilter[]; breakdown?: string } = {},
+    params: { filters?: WidgetDataFilter[]; breakdownIndicator?: string } = {},
   ): Promise<BaseWidgetWithData> {
-    const { filters, breakdown } = params;
-    let filterClause: string;
-    if (filters !== undefined) {
-      filterClause = this.sqlAdapter.generateSqlFromWidgetDataFilters(filters);
-    }
-    if (breakdown === undefined) {
+    const { filters, breakdownIndicator } = params;
+    if (breakdownIndicator === undefined) {
+      const filterClause =
+        this.sqlAdapter.generateSqlFromWidgetDataFilters(filters);
       await this.addDataToWidget(widget, filterClause);
     } else {
-      await this.addBreakdownDataToWidget(widget, breakdown, filterClause);
+      const filterClause = this.sqlAdapter.generateSqlFromWidgetDataFilters(
+        filters,
+        'main',
+      );
+      await this.addBreakdownDataToWidget(
+        widget,
+        breakdownIndicator,
+        filterClause,
+      );
     }
     return widget;
   }
@@ -122,9 +128,9 @@ export class PostgresSurveyAnswerRepository
     filterClause: string,
   ): Promise<void> {
     const totalsSql = `SELECT answer as "key", count(answer)::integer as "count", SUM(COUNT(answer)) OVER ()::integer AS total 
-    FROM ${this.answersTable} ${this.sqlAdapter.appendExpressionToFilterClause(filterClause, `question_indicator = '${widget.indicator}'`)} GROUP BY answer ORDER BY answer`;
+    FROM ${this.answersTable} ${this.sqlAdapter.appendExpressionToFilterClause(filterClause, 'question_indicator = $1')} GROUP BY answer ORDER BY answer`;
     const totalsResult: { key: string; count: number; total: number }[] =
-      await this.dataSource.query(totalsSql);
+      await this.dataSource.query(totalsSql, [widget.indicator]);
 
     const arr: WidgetChartData = [];
     for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
@@ -141,7 +147,7 @@ export class PostgresSurveyAnswerRepository
     GROUP BY country_code, question, answer
     HAVING question = $1 AND answer = 'Yes' ORDER BY country_code`;
 
-    const result = await this.dataSource.query(mapSql, [widget.indicator]);
+    const result = await this.dataSource.query(mapSql, [widget.question]);
     widget.data.map = result;
   }
 
@@ -204,9 +210,8 @@ export class PostgresSurveyAnswerRepository
         JOIN 
             survey_answers AS secondary
         ON 
-            main.survey_id = secondary.survey_id 
-            AND secondary.question_indicator = $1
-        ${this.sqlAdapter.appendExpressionToFilterClause(filterClause, `question_indicator = '${widget.indicator}'`, 'main')}
+            main.survey_id = secondary.survey_id AND secondary.question_indicator = $1
+        ${this.sqlAdapter.appendExpressionToFilterClause(filterClause, `question_indicator = $2`, 'main')}
     ) AS s
     GROUP BY 
         main_answer, secondary_answer
@@ -228,6 +233,7 @@ ORDER BY main_answer`;
 
     const breakdown = await this.dataSource.query(sqlCode, [
       breakdownIndicator,
+      widget.indicator,
     ]);
     widget.data = { breakdown };
   }
