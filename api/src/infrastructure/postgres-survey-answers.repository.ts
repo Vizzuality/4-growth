@@ -122,7 +122,7 @@ export class PostgresSurveyAnswerRepository
     filterClause: string,
   ): Promise<void> {
     const totalsSql = `SELECT answer as "key", count(answer)::integer as "count", SUM(COUNT(answer)) OVER ()::integer AS total 
-    FROM ${this.answersTable} ${this.sqlAdapter.appendExpressionToFilterClause(filterClause, `question_indicator = '${widget.indicator}'`)} GROUP BY answer`;
+    FROM ${this.answersTable} ${this.sqlAdapter.appendExpressionToFilterClause(filterClause, `question_indicator = '${widget.indicator}'`)} GROUP BY answer ORDER BY answer`;
     const totalsResult: { key: string; count: number }[] =
       await this.dataSource.query(totalsSql);
 
