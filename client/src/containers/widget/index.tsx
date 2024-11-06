@@ -52,7 +52,7 @@ export interface WidgetProps {
   breakdown?: string;
   visualisations?: WidgetVisualizationsType[];
   question?: string;
-  menuItems?: React.ReactNode;
+  menu?: React.ReactNode;
   className?: string;
   showCustomizeWidgetButton?: boolean;
   config?: {
@@ -73,7 +73,7 @@ export default function Widget({
   breakdown,
   data,
   question,
-  menuItems,
+  menu,
   className,
   showCustomizeWidgetButton,
   config,
@@ -81,8 +81,9 @@ export default function Widget({
   const [selectedVisualization, setSelectedVisualization] =
     useState(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
-  const menu =
-    !menuItems && !visualisations && !showCustomizeWidgetButton ? undefined : (
+  const menuComponent =
+    menu ||
+    (!visualisations && !showCustomizeWidgetButton ? undefined : (
       <MenuButton
         className={className}
         onOpenChange={setShowOverlay}
@@ -101,7 +102,6 @@ export default function Widget({
             </Link>
           </Button>
         )}
-        {menuItems}
         {visualisations && (
           <>
             <Separator />
@@ -118,7 +118,7 @@ export default function Widget({
           </>
         )}
       </MenuButton>
-    );
+    ));
 
   useEffect(() => {
     setSelectedVisualization(visualization);
@@ -127,7 +127,11 @@ export default function Widget({
   if (isEmptyWidget(data)) {
     return (
       <Card className={cn("relative min-h-80 p-0", className)}>
-        <WidgetHeader indicator={indicator} question={question} menu={menu} />
+        <WidgetHeader
+          indicator={indicator}
+          question={question}
+          menu={menuComponent}
+        />
         <NoData />
       </Card>
     );
@@ -168,7 +172,11 @@ export default function Widget({
             className,
           )}
         >
-          <WidgetHeader indicator={indicator} question={question} menu={menu} />
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            menu={menuComponent}
+          />
           <HorizontalBarChart
             data={data.chart}
             {...config?.horizontalBarChart}
@@ -184,7 +192,11 @@ export default function Widget({
             className,
           )}
         >
-          <WidgetHeader indicator={indicator} question={question} menu={menu} />
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            menu={menuComponent}
+          />
           <PieChart
             data={data.chart}
             className="min-h-0 w-full flex-1"
@@ -206,7 +218,7 @@ export default function Widget({
             indicator={indicator}
             question={question}
             className="t-8 absolute left-0 z-20 w-full p-8"
-            menu={menu}
+            menu={menuComponent}
           />
           <AreaChart indicator={indicator} data={data.chart} />
         </Card>
@@ -242,7 +254,7 @@ export default function Widget({
             indicator={indicator}
             question={question}
             className="t-8 absolute left-0 z-20 w-full p-8"
-            menu={menu}
+            menu={menuComponent}
           />
           <Map
             // TODO: Remove hardcoded data when api response is available

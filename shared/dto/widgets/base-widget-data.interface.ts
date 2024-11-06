@@ -41,8 +41,6 @@ export type WidgetCounterData = {
   total: number;
 };
 
-export type WidgetFilters = unknown;
-
 export type WidgetNavigationData = {
   href: string;
 };

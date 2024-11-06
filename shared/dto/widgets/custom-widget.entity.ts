@@ -12,7 +12,7 @@ import {
   WIDGET_VISUALIZATIONS,
   type WidgetVisualizationsType,
 } from './widget-visualizations.constants';
-import { type WidgetFilters } from '@shared/dto/widgets/base-widget-data.interface';
+import { type WidgetDataFilters } from '@shared/dto/widgets/widget-data-filter';
 
 @Entity('custom_widgets')
 export class CustomWidget {
@@ -40,7 +40,7 @@ export class CustomWidget {
   defaultVisualization: WidgetVisualizationsType;
 
   @Column('jsonb')
-  filters: WidgetFilters;
+  filters: WidgetDataFilters;
 
   @CreateDateColumn({ name: 'updated_at' })
   updatedAt: Date;

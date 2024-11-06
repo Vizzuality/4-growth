@@ -4,28 +4,34 @@ import { useEffect } from "react";
 import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
 import Widget from "@/containers/widget";
+import SaveWidgetMenu from "@/containers/widget/create-widget";
 
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useParams } from "next/navigation";
+import { client } from "@/lib/queryClient";
+import { useSession } from "next-auth/react";
+import { queryKeys } from "@/lib/queryKeys";
+import { getAuthHeader } from "@/utils/auth-header";
 
 export default function Sandbox() {
-  const { breakdown, visualization, setVisualization, widget } =
-    useSandboxWidget();
-  const menuItems = (
-    <>
-      <Button
-        variant="clean"
-        className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
-      >
-        Save
-      </Button>
-      <Button
-        variant="clean"
-        className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
-      >
-        Save as
-      </Button>
-    </>
+  const { visualization, setVisualization, widget } = useSandboxWidget();
+  const { id } = useParams();
+  const { data: session } = useSession();
+  const useCustomWidgetQuery = client.users.findCustomWidget.useQuery(
+    queryKeys.users.userChart(session?.user.id as string).queryKey,
+    {
+      params: {
+        id: String(1),
+        userId: session?.user.id as string,
+      },
+      extraHeaders: {
+        ...getAuthHeader(session?.accessToken as string),
+      },
+    },
+    {
+      select: (data) => data.body,
+      enabled: !!id,
+    },
   );
 
   useEffect(() => {
@@ -45,7 +51,11 @@ export default function Sandbox() {
           question={widget.question}
           visualization={visualization || widget.defaultVisualization}
           data={widget.data}
-          menuItems={menuItems}
+          menu={
+            <SaveWidgetMenu
+              mode={useCustomWidgetQuery.data ? "update" : "create"}
+            />
+          }
           className="col-span-1 last:odd:col-span-2"
           config={{ menu: { className: "flex flex-col py-4" } }}
         />
