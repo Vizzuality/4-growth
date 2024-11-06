@@ -24,9 +24,11 @@ const isValidDefaultVisualization = (
 
 const getSupportedVisualizations = (widget: BaseWidgetWithData) => {
   let supportsChart = false;
-  let supportsSingleValue = false;
   let supportsMap = false;
-  let supportsNavigation = false;
+  // No generic implementation for single value widgets for the time being
+  // let supportsSingleValue = false;
+  // No generic implementation navigation widgets for the time being
+  // let supportsNavigation = false;
 
   const visualizationModes = widget.visualisations;
   for (let idx = 0; idx < visualizationModes.length; idx++) {
@@ -38,16 +40,12 @@ const getSupportedVisualizations = (widget: BaseWidgetWithData) => {
       visualizationMode === WIDGET_VISUALIZATIONS.PIE_CHART
     ) {
       supportsChart = true;
-    } else if (visualizationMode === WIDGET_VISUALIZATIONS.SINGLE_VALUE) {
-      supportsSingleValue = true;
     } else if (visualizationMode === WIDGET_VISUALIZATIONS.MAP) {
       supportsMap = true;
-    } else if (visualizationMode === WIDGET_VISUALIZATIONS.NAVIGATION) {
-      supportsNavigation = true;
     }
   }
 
-  return [supportsChart, supportsSingleValue, supportsMap, supportsNavigation];
+  return [supportsChart, supportsMap];
 };
 
 export const WidgetUtils = {

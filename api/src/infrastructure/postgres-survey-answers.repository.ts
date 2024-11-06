@@ -102,14 +102,8 @@ export class PostgresSurveyAnswerRepository
       return this[methodName](widget, filterClause);
     }
 
-    const [
-      supportsChart,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      supportsSingleValue, // No generic implementation for single value widgets for the time being
-      supportsMap,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      supportsNavigation, //  No generic implementation navigation widgets for the time being
-    ] = WidgetUtils.getSupportedVisualizations(widget);
+    const [supportsChart, supportsMap] =
+      WidgetUtils.getSupportedVisualizations(widget);
 
     const dataPromises = [];
     if (supportsChart === true) {
