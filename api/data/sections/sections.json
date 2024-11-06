@@ -56,13 +56,8 @@
       {
         "question": "Location (Country/Region)",
         "indicator": "location-country-region",
-        "visualisations": [
-          "horizontal_bar_chart",
-          "pie_chart",
-          "area_graph",
-          "map"
-        ],
-        "defaultVisualization": "map",
+        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "defaultVisualization": "pie_chart",
         "sectionOrder": 2
       },
       {
