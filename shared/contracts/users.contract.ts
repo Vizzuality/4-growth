@@ -26,6 +26,7 @@ export const usersContract = contract.router({
     responses: {
       201: contract.type<ApiResponse<UserDto>>(),
       400: contract.type<{ message: string }>(),
+      500: contract.type<JSONAPIError>(),
     },
     body: contract.type<CreateUserDto>(),
     summary: 'Create a new user',
@@ -36,6 +37,7 @@ export const usersContract = contract.router({
     responses: {
       200: contract.type<ApiPaginationResponse<UserDto>>(),
       400: contract.type<{ message: string }>(),
+      500: contract.type<JSONAPIError>(),
     },
     summary: 'Get all users',
     query: generateEntityQuerySchema(User),
@@ -46,6 +48,7 @@ export const usersContract = contract.router({
     responses: {
       200: contract.type<ApiResponse<UserDto>>(),
       401: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
     query: generateEntityQuerySchema(User),
   },
@@ -56,6 +59,8 @@ export const usersContract = contract.router({
       200: contract.type<ApiResponse<UserDto>>(),
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
+      404: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
     body: contract.type<UpdateUserPasswordDto>(),
     summary: 'Update password of the user',
@@ -70,6 +75,8 @@ export const usersContract = contract.router({
       200: contract.type<UserDto>(),
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
+      404: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
     query: generateEntityQuerySchema(User),
     summary: 'Get a user by id',
@@ -84,6 +91,8 @@ export const usersContract = contract.router({
       200: contract.type<ApiResponse<UserDto>>(),
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
+      404: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
     body: contract.type<UpdateUserDto>(),
     summary: 'Update an existing user',
@@ -95,6 +104,7 @@ export const usersContract = contract.router({
       200: null,
       400: contract.type<JSONAPIError>(),
       401: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
     body: null,
   },
@@ -104,6 +114,7 @@ export const usersContract = contract.router({
     responses: {
       200: contract.type<null>(),
       400: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
     body: PasswordSchema,
   },
@@ -116,6 +127,8 @@ export const usersContract = contract.router({
     responses: {
       200: contract.type<ApiPaginationResponse<CustomWidget>>(),
       400: contract.type<JSONAPIError>(),
+      404: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
   },
   findCustomWidget: {
@@ -125,6 +138,8 @@ export const usersContract = contract.router({
     responses: {
       200: contract.type<ApiResponse<CustomWidget>>(),
       400: contract.type<JSONAPIError>(),
+      404: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
   },
   createCustomWidget: {
@@ -135,6 +150,7 @@ export const usersContract = contract.router({
     responses: {
       201: contract.type<ApiResponse<CustomWidget>>(),
       400: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
   },
   updateCustomWidget: {
@@ -145,6 +161,8 @@ export const usersContract = contract.router({
     responses: {
       200: contract.type<ApiResponse<CustomWidget>>(),
       400: contract.type<JSONAPIError>(),
+      404: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
   },
   deleteCustomWidget: {
@@ -155,6 +173,8 @@ export const usersContract = contract.router({
     responses: {
       200: contract.type<ApiResponse<CustomWidget>>(),
       400: contract.type<JSONAPIError>(),
+      404: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
   },
 });

@@ -11,6 +11,7 @@ export const pageFiltersContract = contract.router({
     responses: {
       200: contract.type<ApiResponse<PageFilter[]>>(),
       400: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
   },
 });
