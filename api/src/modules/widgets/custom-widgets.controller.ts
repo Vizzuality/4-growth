@@ -44,7 +44,7 @@ export class CustomWidgetsController {
         params.userId,
         body,
       );
-      return { body: { data }, status: 200 };
+      return { body: { data }, status: 201 };
     });
   }
 
