@@ -47,14 +47,14 @@
     "order": 2,
     "baseWidgets": [
       {
-        "question": "Type of stakeholder:",
+        "question": "Type of stakeholder",
         "indicator": "type-of-stakeholder",
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 1
       },
       {
-        "question": "Location (Country/Region):",
+        "question": "Location (Country/Region)",
         "indicator": "location-country-region",
         "visualisations": [
           "horizontal_bar_chart",
@@ -66,21 +66,21 @@
         "sectionOrder": 2
       },
       {
-        "question": "Primary Area of Operation in agriculture:",
+        "question": "Primary Area of Operation in agriculture",
         "indicator": "primary-area-of-operation-in-agriculture",
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 3
       },
       {
-        "question": "Primary Area of Operation in forestry:",
+        "question": "Primary Area of Operation in forestry",
         "indicator": "primary-area-of-operation-in-forestry",
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 4
       },
       {
-        "question": "Organic farming operation:",
+        "question": "Organic farming operation",
         "indicator": "organic-farming-operation",
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
         "defaultVisualization": "pie_chart",
