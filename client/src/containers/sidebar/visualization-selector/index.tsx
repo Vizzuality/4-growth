@@ -6,7 +6,7 @@ import {
 } from "@shared/dto/widgets/widget-visualizations.constants";
 import { useSetAtom } from "jotai";
 
-import useSandboxWidget from "@/hooks/use-sandbox-widget";
+import useWidgets from "@/hooks/use-widgets";
 
 import { showOverlayAtom } from "@/containers/overlay/store";
 

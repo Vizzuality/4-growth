@@ -8,8 +8,8 @@ import { useSession } from "next-auth/react";
 
 import { client } from "@/lib/queryClient";
 
-import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
-import useSandboxWidget from "@/hooks/use-sandbox-widget";
+import useFilters from "@/hooks/use-filters";
+import useWidgets from "@/hooks/use-widgets";
 
 import SaveWidgetForm from "@/containers/widget/create-widget/form";
 
@@ -22,12 +22,8 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { getAuthHeader } from "@/utils/auth-header";
 
-interface SaveWidgetMenuProps {
-  mode: "create" | "update";
-}
-const SaveWidgetMenu: FC<SaveWidgetMenuProps> = ({ mode }) => {
-  const { indicator, visualization } = useSandboxWidget();
-  const { filters } = useFilters();
+const CreateWidgetMenu: FC = () => {
+  const { indicator, visualization, filters } = useWidgets();
   const { data: session } = useSession();
   const router = useRouter();
   const { toast } = useToast();
@@ -44,6 +40,8 @@ const SaveWidgetMenu: FC<SaveWidgetMenuProps> = ({ mode }) => {
 
   const createWidget = useCallback(
     async (name: string) => {
+      if (!indicator) return;
+
       const { status, body } = await client.users.createCustomWidget.mutation({
         params: {
           userId: session?.user.id as string,
@@ -83,50 +81,16 @@ const SaveWidgetMenu: FC<SaveWidgetMenuProps> = ({ mode }) => {
     [session?.accessToken, session?.user.id, toast],
   );
 
-  const updateWidget = useCallback(
-    async (
-      id: string,
-      values: {
-        name?: string;
-        defaultVisualization?: string;
-        filters: FilterQueryParam[];
-        widgetIndicator?: string;
-      },
-    ) => {
-      const { status, body } = await client.users.updateCustomWidget.mutation({
-        params: {
-          id,
-          userId: session?.user.id as string,
-        },
-        body: values,
-        extraHeaders: {
-          ...getAuthHeader(session?.accessToken as string),
-        },
-      });
-
-      if (status === 200) {
-        setOpen(false);
-        toast({
-          description: (
-            <>
-              <p>Your chart has been successfully saved in </p>
-              <Link href="/profile" className="font-bold underline">
-                your profile.
-              </Link>
-            </>
-          ),
-        });
-
-        router.push(`/sandbox/${body.data.id}`);
-      } else {
-        toast({
-          variant: "destructive",
-          description: "Something went wrong saving the widget.",
-        });
-      }
-    },
-    [session?.accessToken, session?.user.id, toast],
-  );
+  if (!session) {
+    return (
+      <Link
+        href={`/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname + window.location.search)}`}
+        className="flex h-8 w-8 items-center rounded-full bg-navy-700 p-2 transition-colors hover:bg-navy-800"
+      >
+        <SaveIcon />
+      </Link>
+    );
+  }
 
   return (
     <Popover onOpenChange={handleOnOpenChange} open={open}>
@@ -139,29 +103,10 @@ const SaveWidgetMenu: FC<SaveWidgetMenuProps> = ({ mode }) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent align="end">
-        {showForm ? (
-          <SaveWidgetForm onSubmit={createWidget} />
-        ) : (
-          <div className="flex flex-col">
-            <Button
-              variant="clean"
-              onClick={() => {
-                if (session) {
-                  setShowForm(true);
-                } else {
-                  router.push(
-                    `/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname + window.location.search)}`,
-                  );
-                }
-              }}
-            >
-              Save chart
-            </Button>
-          </div>
-        )}
+        <SaveWidgetForm onSubmit={createWidget} />
       </PopoverContent>
     </Popover>
   );
 };
 
-export default SaveWidgetMenu;
+export default CreateWidgetMenu;

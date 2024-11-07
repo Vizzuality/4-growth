@@ -6,7 +6,7 @@ import { useSetAtom } from "jotai";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
-import useSandboxWidget from "@/hooks/use-sandbox-widget";
+import useWidgets from "@/hooks/use-widgets";
 
 import { showOverlayAtom } from "@/containers/overlay/store";
 import SearchableList from "@/containers/searchable-list";
@@ -21,7 +21,7 @@ import { SIDEBAR_POPOVER_CLASS } from "@/constants";
 
 const IndicatorSelector: FC = () => {
   const { setIndicator, visualization, setVisualization, widget } =
-    useSandboxWidget();
+    useWidgets();
   const { data } = client.widgets.getWidgets.useQuery(
     queryKeys.widgets.all.queryKey,
     { query: {} },
