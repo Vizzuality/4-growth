@@ -169,16 +169,18 @@ describe('Custom Widgets API', () => {
 
     it('Should allow authenticated users to read their custom widgets', async () => {
       // Given
-      await entityMocks.createCustomWidget({
-        name: 'custom-widget1',
-        user: { id: testUser.id },
-        widget: { indicator: baseWidget.indicator },
-      });
-      await entityMocks.createCustomWidget({
-        name: 'custom-widget2',
-        user: { id: testUser.id },
-        widget: { indicator: baseWidget.indicator },
-      });
+      const userCustomWidgets = [
+        await entityMocks.createCustomWidget({
+          name: 'custom-widget1',
+          user: { id: testUser.id },
+          widget: { indicator: baseWidget.indicator },
+        }),
+        await entityMocks.createCustomWidget({
+          name: 'custom-widget2',
+          user: { id: testUser.id },
+          widget: { indicator: baseWidget.indicator },
+        }),
+      ];
 
       // Other user's custom widgets
       const { user: otherUser } = await testManager.setUpTestUser({
@@ -198,7 +200,14 @@ describe('Custom Widgets API', () => {
 
       // Then
       expect(res.status).toBe(200);
-      expect(res.body.data).toHaveLength(2);
+      const returnedData = res.body.data;
+      expect(returnedData).toHaveLength(2);
+      for (const userCustomWidget of userCustomWidgets) {
+        const foundWidget = returnedData.find(
+          (r) => r.name === userCustomWidget.name,
+        );
+        expect(foundWidget).toBeDefined();
+      }
     });
 
     // TODO: Skipping this tests as filtering capabilities are not working, pending to fix the corresponding schema

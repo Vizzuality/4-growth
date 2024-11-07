@@ -70,9 +70,12 @@ export class CustomWidgetService extends AppBaseService<
       throw new ForbiddenException();
     }
 
-    const customWidget = await this.customWidgetRepository.findOneBy({
-      id,
-      user: { id: userId },
+    const customWidget = await this.customWidgetRepository.findOne({
+      where: {
+        id,
+        user: { id: userId },
+      },
+      relations: ['widget'],
     });
 
     if (customWidget === null) {
