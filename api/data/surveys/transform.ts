@@ -25,6 +25,7 @@ const QUESTIONS = new Set([
   'What type of data do you receive or provide?',
   'Have you encountered challenges in the adoption of digital technologies?',
   'What type of digital technology has been used for agriculture?',
+  'What type of digital technology has been used for forestry?',
   'What is the adoption level of these technologies?',
   'Do challenges exist in sharing and interoperability of agricultural and forestry data?',
   'What is the overall economic impact of implementing digital technologies?',

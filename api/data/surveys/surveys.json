@@ -1023,6 +1023,12 @@
   },
   {
     "surveyId": "R_84qILa9AvSY5qCB",
+    "question": "What type of digital technology has been used for forestry?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
     "question": "What network connectivity do you use?",
     "answer": "N/A",
     "countryCode": "BEL"
@@ -1078,6 +1084,12 @@
   {
     "surveyId": "R_8OHmvlDNp8BXNAg",
     "question": "What type of digital technology has been used for agriculture?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "What type of digital technology has been used for forestry?",
     "answer": "N/A",
     "countryCode": "AUT"
   },
@@ -1246,6 +1258,12 @@
   {
     "surveyId": "R_2eKIDqs0Vsyj0qM",
     "question": "What type of digital technology has been used for agriculture?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What type of digital technology has been used for forestry?",
     "answer": "N/A",
     "countryCode": "BGR"
   },
@@ -1527,6 +1545,12 @@
   },
   {
     "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What type of digital technology has been used for forestry?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
     "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
     "answer": "N/A",
     "countryCode": "NLD"
@@ -1774,6 +1798,12 @@
   {
     "surveyId": "R_2XckmVyZ44klhUe",
     "question": "What type of digital technology has been used for agriculture?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What type of digital technology has been used for forestry?",
     "answer": "N/A",
     "countryCode": "BEL"
   },
