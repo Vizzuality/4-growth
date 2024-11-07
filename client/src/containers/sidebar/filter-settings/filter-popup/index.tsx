@@ -3,8 +3,6 @@ import { FC, useState } from "react";
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { useSetAtom } from "jotai";
 
-import useFilters from "@/hooks/use-filters";
-
 import FilterSelect from "@/containers/filter/filter-select";
 import { showOverlayAtom } from "@/containers/overlay/store";
 
@@ -15,15 +13,19 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { SIDEBAR_POPOVER_CLASS } from "@/constants";
+import { FilterQueryParam } from "@/hooks/use-filters";
 
 interface FilterPopupProps {
   name: string;
+  filters: PageFilter[];
+  filterQueryParams: FilterQueryParam[];
+  onAddFilter: (newFilter: FilterQueryParam) => void;
+  onRemoveFilterValue: (name: string, valueToRemove: string) => void;
   label?: {
     selected: string;
     unSelected: string;
   };
   fixedFilter?: PageFilter;
-  items: PageFilter[];
 }
 
 const FilterItemButton: FC<{
@@ -49,18 +51,20 @@ const FilterItemButton: FC<{
 
 const FilterPopup: FC<FilterPopupProps> = ({
   name,
+  filterQueryParams,
   label,
   fixedFilter,
-  items,
+  filters,
+  onAddFilter,
+  onRemoveFilterValue,
 }) => {
-  const { filters, addFilter, removeFilterValue } = useFilters();
   const [showPopup, setShowPopup] = useState(false);
   const setShowOverlay = useSetAtom(showOverlayAtom);
   const handleFiltersPopupChange = (open: boolean) => {
     setShowPopup(open);
     setShowOverlay(open);
   };
-  const selectedFilter = filters.find((f) => f.name === name);
+  const selectedFilter = filterQueryParams.find((f) => f.name === name);
 
   return (
     <Popover onOpenChange={handleFiltersPopupChange} open={showPopup}>
@@ -75,7 +79,7 @@ const FilterPopup: FC<FilterPopupProps> = ({
                 {label?.selected || name} is{" "}
                 <FilterItemButton
                   value={selectedFilter.values[0]}
-                  onClick={(value) => removeFilterValue(name, value)}
+                  onClick={(value) => onRemoveFilterValue(name, value)}
                 />
               </span>
               <ul>
@@ -83,7 +87,7 @@ const FilterPopup: FC<FilterPopupProps> = ({
                   <li key={`selected-filter-${v}`}>
                     <FilterItemButton
                       value={v}
-                      onClick={(value) => removeFilterValue(name, value)}
+                      onClick={(value) => onRemoveFilterValue(name, value)}
                     />
                   </li>
                 ))}
@@ -100,11 +104,11 @@ const FilterPopup: FC<FilterPopupProps> = ({
         className={SIDEBAR_POPOVER_CLASS}
       >
         <FilterSelect
-          items={items}
+          items={filters}
           defaultValues={selectedFilter?.values || []}
           fixedFilter={fixedFilter}
           onSubmit={(values) => {
-            addFilter(values);
+            onAddFilter(values);
             handleFiltersPopupChange(false);
           }}
         />

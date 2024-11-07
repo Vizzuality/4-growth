@@ -7,9 +7,10 @@ import { FilterQueryParam } from "@/hooks/use-filters";
 
 export const usersKeys = createQueryKeys("users", {
   detail: (userId: string) => [userId],
-  userChart: (userId: string) => ["chart", userId],
+  userChart: (customWidgetId: string) => ["chart", customWidgetId],
   userCharts: (userId: string, options: Record<string, unknown>) => [
     "charts",
+    userId,
     options,
   ],
 });

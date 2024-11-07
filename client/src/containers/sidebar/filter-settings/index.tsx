@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import { client } from "@/lib/queryClient";
-import { queryKeys } from "@/lib/queryKeys";
-
-import useFilters from "@/hooks/use-filters";
+import { FilterQueryParam } from "@/hooks/use-filters";
 
 import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
+
+import { client } from "@/lib/queryClient";
+import { queryKeys } from "@/lib/queryKeys";
 
 const DEFAULT_FILTERS = ["location-country-region", "sector"];
 const DEFAULT_FILTERS_LABEL_MAP: {
@@ -22,16 +22,25 @@ const DEFAULT_FILTERS_LABEL_MAP: {
   },
 } as const;
 
-const FilterSettings: FC<{ withDataBreakdown?: boolean }> = ({
+interface FilterSettingsProps {
+  filterQueryParams: FilterQueryParam[];
+  onAddFilter: (newFilter: FilterQueryParam) => void;
+  onRemoveFilterValue: (name: string, valueToRemove: string) => void;
+  withDataBreakdown?: boolean;
+}
+
+const FilterSettings: FC<FilterSettingsProps> = ({
+  filterQueryParams,
   withDataBreakdown,
+  onAddFilter,
+  onRemoveFilterValue,
 }) => {
-  const { filters } = useFilters();
   const filtersQuery = client.pageFilter.searchFilters.useQuery(
     queryKeys.pageFilters.all.queryKey,
     {},
     { select: (res) => res.body.data },
   );
-  const selectedCustomFilters = filters.filter(
+  const selectedCustomFilters = filterQueryParams.filter(
     (f) => !DEFAULT_FILTERS.includes(f.name),
   );
   const customFilters =
@@ -45,8 +54,11 @@ const FilterSettings: FC<{ withDataBreakdown?: boolean }> = ({
           <FilterPopup
             key={`sidebar-filter-popover-${f.name}`}
             name={f.name}
+            filterQueryParams={filterQueryParams}
+            onAddFilter={onAddFilter}
+            onRemoveFilterValue={onRemoveFilterValue}
             label={DEFAULT_FILTERS_LABEL_MAP[f.name]}
-            items={filtersQuery.data || []}
+            filters={filtersQuery.data || []}
             fixedFilter={f}
           />
         ))}
@@ -55,14 +67,20 @@ const FilterSettings: FC<{ withDataBreakdown?: boolean }> = ({
         <FilterPopup
           key={`sidebar-filter-popover-${f.name}`}
           name={f.name}
-          items={customFilters}
+          filterQueryParams={filterQueryParams}
+          onAddFilter={onAddFilter}
+          onRemoveFilterValue={onRemoveFilterValue}
+          filters={customFilters}
           fixedFilter={f}
         />
       ))}
       <FilterPopup
         key="sidebar-filter-popover-custom"
         name="Add a custom filter"
-        items={customFilters}
+        filterQueryParams={filterQueryParams}
+        onAddFilter={onAddFilter}
+        onRemoveFilterValue={onRemoveFilterValue}
+        filters={customFilters}
       />
       {withDataBreakdown && <BreakdownSelector />}
     </>

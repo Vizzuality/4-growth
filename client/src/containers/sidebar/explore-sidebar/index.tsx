@@ -1,0 +1,42 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import FilterSettings from "@/containers/sidebar/filter-settings";
+import SectionsNav from "@/containers/sidebar/sections-nav";
+import useFilters from "@/hooks/use-filters";
+import { FC } from "react";
+
+const ExploreSidebar: FC = () => {
+  const { filters, addFilter, removeFilterValue } = useFilters();
+
+  return (
+    <Accordion
+      key="sidebar-accordion-explore"
+      type="multiple"
+      className="w-full overflow-y-auto"
+      defaultValue={["explore-sections"]}
+    >
+      <AccordionItem value="explore-filters">
+        <AccordionTrigger>Filters</AccordionTrigger>
+        <AccordionContent className="py-3.5">
+          <FilterSettings
+            filterQueryParams={filters}
+            onAddFilter={addFilter}
+            onRemoveFilterValue={removeFilterValue}
+          />
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="explore-sections">
+        <AccordionTrigger>Sections</AccordionTrigger>
+        <AccordionContent className="py-3.5" id="sidebar-sections-list">
+          <SectionsNav />
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+};
+
+export default ExploreSidebar;

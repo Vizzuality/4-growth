@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 import { client } from "@/lib/queryClient";
 
 import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
-import useSandboxWidget from "@/hooks/use-sandbox-widget";
+import useWidgets from "@/hooks/use-widgets";
 
 import SaveWidgetForm from "@/containers/widget/create-widget/form";
 
@@ -21,20 +21,20 @@ import {
 } from "@/components/ui/popover";
 import { useToast } from "@/components/ui/use-toast";
 import { getAuthHeader } from "@/utils/auth-header";
+import { useSetAtom } from "jotai";
+import { showOverlayAtom } from "@/containers/overlay/store";
 
-interface SaveWidgetMenuProps {
-  mode: "create" | "update";
-}
-const UpdateWidgetMenu: FC<SaveWidgetMenuProps> = ({ mode }) => {
-  const { indicator, visualization } = useSandboxWidget();
-  const { filters } = useFilters();
+const UpdateWidgetMenu: FC = () => {
+  const { indicator, visualization, filters } = useWidgets();
   const { data: session } = useSession();
   const router = useRouter();
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const setShowOverlay = useSetAtom(showOverlayAtom);
   const handleOnOpenChange = (isOpen: boolean) => {
     setOpen(isOpen);
+    setShowOverlay(isOpen);
 
     if (!isOpen && showForm) {
       // Timeout is added because popup is still visible while closing
@@ -145,17 +145,21 @@ const UpdateWidgetMenu: FC<SaveWidgetMenuProps> = ({ mode }) => {
           <div className="flex flex-col">
             <Button
               variant="clean"
+              className="justify-start rounded-none text-xs font-medium transition-colors hover:bg-slate-200"
               onClick={() => {
-                if (session) {
-                  setShowForm(true);
-                } else {
-                  router.push(
-                    `/auth/signin?callbackUrl=${encodeURIComponent(window.location.pathname + window.location.search)}`,
-                  );
-                }
+                setShowForm(true);
               }}
             >
-              Save chart
+              Save
+            </Button>
+            <Button
+              variant="clean"
+              className="justify-start rounded-none text-xs font-medium transition-colors hover:bg-slate-200"
+              onClick={() => {
+                setShowForm(true);
+              }}
+            >
+              Save as a copy
             </Button>
           </div>
         )}
