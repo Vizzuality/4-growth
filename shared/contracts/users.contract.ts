@@ -134,7 +134,7 @@ export const usersContract = contract.router({
   findCustomWidget: {
     method: 'GET',
     path: '/users/:userId/widgets/:id',
-    pathParams: z.object({ userId: z.string().uuid(), id: z.string() }),
+    pathParams: z.object({ userId: z.string().uuid(), id: z.coerce.number() }),
     responses: {
       200: contract.type<ApiResponse<CustomWidget>>(),
       400: contract.type<JSONAPIError>(),
