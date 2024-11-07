@@ -118,9 +118,9 @@ export class TestManager<FixtureType> {
       createSection: (additionalData: DeepPartial<Section>) =>
         createSection(this.getDataSource(), additionalData),
       createCustomWidget: (
-        additionalData?: DeepPartial<CustomWidget>,
+        data?: DeepPartial<CustomWidget>,
       ): Promise<CustomWidget> =>
-        createCustomWidget(this.getDataSource(), additionalData),
+        createCustomWidget(this.getDataSource(), data),
     };
   }
 }
