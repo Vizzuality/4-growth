@@ -26,7 +26,9 @@ export class CustomWidget {
   @Column()
   name: string;
 
-  @ManyToOne(() => BaseWidget, (widget: BaseWidget) => widget.customWidgets)
+  @ManyToOne(() => BaseWidget, (widget: BaseWidget) => widget.customWidgets, {
+    nullable: false,
+  })
   @JoinColumn({ name: 'widget_indicator' })
   widget: BaseWidget;
 
