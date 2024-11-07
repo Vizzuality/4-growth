@@ -88,9 +88,9 @@ export class E2eTestManager {
         data: DeepPartial<BaseWidget> & { indicator: string },
       ): Promise<BaseWidget> => createBaseWidget(this.getDataSource(), data),
       createCustomWidget: (
-        additionalData?: DeepPartial<CustomWidget>,
+        data?: DeepPartial<CustomWidget>,
       ): Promise<CustomWidget> =>
-        createCustomWidget(this.getDataSource(), additionalData),
+        createCustomWidget(this.getDataSource(), data),
       ensureQuestionIndicatorMapExists: async (
         dataSource: DataSource,
         questionIndicatorMap: { indicator: string; question: string },

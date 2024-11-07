@@ -103,7 +103,7 @@ export const createSection = async (
 
 export const createCustomWidget = async (
   dataSource: DataSource,
-  additionalData?: DeepPartial<CustomWidget>,
+  data?: DeepPartial<CustomWidget>,
 ) => {
   const baseWidgetsRepository = dataSource.getRepository(CustomWidget);
 
@@ -111,7 +111,12 @@ export const createCustomWidget = async (
     name: 'custom-widget',
     defaultVisualization: WIDGET_VISUALIZATIONS.AREA_GRAPH,
     filters: {},
+    widget: {} as BaseWidget,
   };
 
-  return baseWidgetsRepository.save({ ...defaults, ...additionalData });
+  const customWidget = { ...defaults, ...data };
+  customWidget.widget!.indicator ??= new Date().toISOString();
+
+  await createBaseWidget(dataSource, customWidget.widget! as BaseWidget);
+  return baseWidgetsRepository.save(customWidget);
 };
