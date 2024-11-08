@@ -2,18 +2,26 @@
 import { FC } from "react";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
 import Header from "@/containers/header";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import ExploreSidebar from "@/containers/sidebar/explore-sidebar";
 import SandboxSidebar from "@/containers/sidebar/sandbox-sidebar";
+import UserSandboxSidebar from "@/containers/sidebar/user-sandbox-sidebar";
+
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Sidebar: FC = () => {
   const isExplore = usePathname().startsWith("/explore");
+  const params = useParams();
+  let Component = isExplore ? ExploreSidebar : SandboxSidebar;
+
+  if (params.id) {
+    Component = UserSandboxSidebar;
+  }
 
   return (
     <>
@@ -35,7 +43,7 @@ const Sidebar: FC = () => {
         </Button>
       </div>
       <ScrollArea>
-        {isExplore ? <ExploreSidebar /> : <SandboxSidebar />}
+        <Component />
       </ScrollArea>
     </>
   );

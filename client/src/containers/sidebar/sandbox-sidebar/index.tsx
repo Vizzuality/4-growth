@@ -1,17 +1,23 @@
+import { FC } from "react";
+
+import useFilters from "@/hooks/use-filters";
+import useSandboxWidget from "@/hooks/use-sandbox-widget";
+
+import FilterSettings from "@/containers/sidebar/filter-settings";
+import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
+import VisualizationSelector from "@/containers/sidebar/visualization-selector";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import FilterSettings from "@/containers/sidebar/filter-settings";
-import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
-import VisualizationSelector from "@/containers/sidebar/visualization-selector";
-import useWidgets from "@/hooks/use-widgets";
-import { FC } from "react";
 
 const SandboxSidebar: FC = () => {
-  const { filters } = useWidgets();
+  const { filters, addFilter, removeFilterValue } = useFilters();
+  const { indicator, visualization, widget, setIndicator, setVisualization } =
+    useSandboxWidget();
 
   return (
     <Accordion
@@ -23,8 +29,16 @@ const SandboxSidebar: FC = () => {
       <AccordionItem value="sandbox-settings">
         <AccordionTrigger>Settings</AccordionTrigger>
         <AccordionContent className="py-3.5">
-          <VisualizationSelector />
-          <IndicatorSelector />
+          <VisualizationSelector
+            indicator={indicator}
+            visualization={visualization}
+            widget={widget}
+            onVisualizationSelected={setVisualization}
+          />
+          <IndicatorSelector
+            widget={widget}
+            onIndicatorSelected={setIndicator}
+          />
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="sandbox-filters">
@@ -32,8 +46,8 @@ const SandboxSidebar: FC = () => {
         <AccordionContent className="py-3.5">
           <FilterSettings
             filterQueryParams={filters}
-            onAddFilter={() => {}}
-            onRemoveFilterValue={() => {}}
+            onAddFilter={addFilter}
+            onRemoveFilterValue={removeFilterValue}
             withDataBreakdown
           />
         </AccordionContent>

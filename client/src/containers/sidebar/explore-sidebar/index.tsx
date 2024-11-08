@@ -1,13 +1,16 @@
+import { FC } from "react";
+
+import useFilters from "@/hooks/use-filters";
+
+import FilterSettings from "@/containers/sidebar/filter-settings";
+import SectionsNav from "@/containers/sidebar/sections-nav";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import FilterSettings from "@/containers/sidebar/filter-settings";
-import SectionsNav from "@/containers/sidebar/sections-nav";
-import useFilters from "@/hooks/use-filters";
-import { FC } from "react";
 
 const ExploreSidebar: FC = () => {
   const { filters, addFilter, removeFilterValue } = useFilters();

@@ -3,14 +3,18 @@ import { FC, useCallback, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { WidgetVisualizationsType } from "@shared/dto/widgets/widget-visualizations.constants";
+import { useQueryClient } from "@tanstack/react-query";
+import { useSetAtom } from "jotai";
 import { SaveIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import { client } from "@/lib/queryClient";
+import { queryKeys } from "@/lib/queryKeys";
 
-import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
-import useWidgets from "@/hooks/use-widgets";
+import { FilterQueryParam } from "@/hooks/use-filters";
 
+import { showOverlayAtom } from "@/containers/overlay/store";
 import SaveWidgetForm from "@/containers/widget/create-widget/form";
 
 import { Button } from "@/components/ui/button";
@@ -21,13 +25,22 @@ import {
 } from "@/components/ui/popover";
 import { useToast } from "@/components/ui/use-toast";
 import { getAuthHeader } from "@/utils/auth-header";
-import { useSetAtom } from "jotai";
-import { showOverlayAtom } from "@/containers/overlay/store";
 
-const UpdateWidgetMenu: FC = () => {
-  const { indicator, visualization, filters } = useWidgets();
+interface UpdateWidgetMenuProps {
+  widgetId: string;
+  indicator: string | null;
+  visualization: WidgetVisualizationsType | null;
+  filters: FilterQueryParam[];
+}
+const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
+  widgetId,
+  indicator,
+  visualization,
+  filters,
+}) => {
   const { data: session } = useSession();
   const router = useRouter();
+  const queryClient = useQueryClient();
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -44,6 +57,8 @@ const UpdateWidgetMenu: FC = () => {
 
   const createWidget = useCallback(
     async (name: string) => {
+      if (!indicator) return;
+
       const { status, body } = await client.users.createCustomWidget.mutation({
         params: {
           userId: session?.user.id as string,
@@ -60,7 +75,7 @@ const UpdateWidgetMenu: FC = () => {
       });
 
       if (status === 201) {
-        setOpen(false);
+        handleOnOpenChange(false);
         toast({
           description: (
             <>
@@ -80,53 +95,40 @@ const UpdateWidgetMenu: FC = () => {
         });
       }
     },
-    [session?.accessToken, session?.user.id, toast],
+    [visualization, indicator, session?.accessToken, session?.user.id, toast],
   );
 
-  const updateWidget = useCallback(
-    async (
-      id: string,
-      values: {
-        name?: string;
-        defaultVisualization?: string;
-        filters: FilterQueryParam[];
-        widgetIndicator?: string;
+  const updateWidget = useCallback(async () => {
+    const { status } = await client.users.updateCustomWidget.mutation({
+      params: {
+        id: widgetId,
+        userId: session?.user.id as string,
       },
-    ) => {
-      const { status, body } = await client.users.updateCustomWidget.mutation({
-        params: {
-          id,
-          userId: session?.user.id as string,
-        },
-        body: values,
-        extraHeaders: {
-          ...getAuthHeader(session?.accessToken as string),
-        },
+      body: {
+        defaultVisualization: visualization || undefined,
+        widgetIndicator: indicator || undefined,
+        filters,
+      },
+      extraHeaders: {
+        ...getAuthHeader(session?.accessToken as string),
+      },
+    });
+
+    if (status === 200) {
+      queryClient.invalidateQueries(
+        queryKeys.users.userChart(widgetId).queryKey,
+      );
+      handleOnOpenChange(false);
+      toast({
+        description: "Your chart has been successfully updated",
       });
-
-      if (status === 200) {
-        setOpen(false);
-        toast({
-          description: (
-            <>
-              <p>Your chart has been successfully saved in </p>
-              <Link href="/profile" className="font-bold underline">
-                your profile.
-              </Link>
-            </>
-          ),
-        });
-
-        router.push(`/sandbox/${body.data.id}`);
-      } else {
-        toast({
-          variant: "destructive",
-          description: "Something went wrong saving the widget.",
-        });
-      }
-    },
-    [session?.accessToken, session?.user.id, toast],
-  );
+    } else {
+      toast({
+        variant: "destructive",
+        description: "Something went wrong updating the widget.",
+      });
+    }
+  }, [session?.accessToken, session?.user.id, toast]);
 
   return (
     <Popover onOpenChange={handleOnOpenChange} open={open}>
@@ -146,9 +148,7 @@ const UpdateWidgetMenu: FC = () => {
             <Button
               variant="clean"
               className="justify-start rounded-none text-xs font-medium transition-colors hover:bg-slate-200"
-              onClick={() => {
-                setShowForm(true);
-              }}
+              onClick={updateWidget}
             >
               Save
             </Button>
