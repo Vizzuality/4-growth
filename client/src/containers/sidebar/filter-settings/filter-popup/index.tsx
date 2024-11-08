@@ -3,6 +3,8 @@ import { FC, useState } from "react";
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { useSetAtom } from "jotai";
 
+import { FilterQueryParam } from "@/hooks/use-filters";
+
 import FilterSelect from "@/containers/filter/filter-select";
 import { showOverlayAtom } from "@/containers/overlay/store";
 
@@ -13,7 +15,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { SIDEBAR_POPOVER_CLASS } from "@/constants";
-import { FilterQueryParam } from "@/hooks/use-filters";
 
 interface FilterPopupProps {
   name: string;

@@ -1,12 +1,11 @@
 import { FC, useState } from "react";
 
+import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import { BaseWidget } from "@shared/dto/widgets/base-widget.entity";
 import { useSetAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
-
-import useWidgets from "@/hooks/use-widgets";
 
 import { showOverlayAtom } from "@/containers/overlay/store";
 import SearchableList from "@/containers/searchable-list";
@@ -19,9 +18,14 @@ import {
 } from "@/components/ui/popover";
 import { SIDEBAR_POPOVER_CLASS } from "@/constants";
 
-const IndicatorSelector: FC = () => {
-  const { setIndicator, visualization, setVisualization, widget } =
-    useWidgets();
+interface IndicatorSelectorProps {
+  widget?: BaseWidgetWithData;
+  onIndicatorSelected: (indicator: string) => void;
+}
+const IndicatorSelector: FC<IndicatorSelectorProps> = ({
+  widget,
+  onIndicatorSelected,
+}) => {
   const { data } = client.widgets.getWidgets.useQuery(
     queryKeys.widgets.all.queryKey,
     { query: {} },
@@ -64,14 +68,7 @@ const IndicatorSelector: FC = () => {
           )}
           itemKey="indicator"
           onItemClick={(w) => {
-            if (
-              visualization &&
-              !widget?.visualisations.includes(visualization)
-            ) {
-              setVisualization(w.defaultVisualization);
-            }
-
-            setIndicator(w.indicator);
+            onIndicatorSelected(w.indicator);
             setShowIndicators(false);
             setshowOverlay(false);
           }}

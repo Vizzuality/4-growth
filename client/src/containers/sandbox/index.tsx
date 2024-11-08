@@ -1,15 +1,18 @@
 "use client";
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 
-import useWidgets from "@/hooks/use-widgets";
+import useFilters from "@/hooks/use-filters";
+import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
 import Widget from "@/containers/widget";
 import CreateWidgetMenu from "@/containers/widget/create-widget";
 
 import { Card } from "@/components/ui/card";
 
-export default function Sandbox() {
-  const { visualization, setVisualization, widget } = useWidgets();
+const Sandbox: FC = () => {
+  const { indicator, visualization, setVisualization, widget } =
+    useSandboxWidget();
+  const { filters } = useFilters();
 
   useEffect(() => {
     if (!widget) return;
@@ -28,11 +31,19 @@ export default function Sandbox() {
           question={widget.question}
           visualization={visualization || widget.defaultVisualization}
           data={widget.data}
-          menu={<CreateWidgetMenu />}
+          menu={
+            <CreateWidgetMenu
+              indicator={indicator}
+              visualization={visualization}
+              filters={filters}
+            />
+          }
           className="col-span-1 last:odd:col-span-2"
           config={{ menu: { className: "flex flex-col py-4" } }}
         />
       )}
     </Card>
   );
-}
+};
+
+export default Sandbox;

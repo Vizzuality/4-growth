@@ -3,13 +3,13 @@ import { FC, useCallback, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { WidgetVisualizationsType } from "@shared/dto/widgets/widget-visualizations.constants";
 import { SaveIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import { client } from "@/lib/queryClient";
 
-import useFilters from "@/hooks/use-filters";
-import useWidgets from "@/hooks/use-widgets";
+import { FilterQueryParam } from "@/hooks/use-filters";
 
 import SaveWidgetForm from "@/containers/widget/create-widget/form";
 
@@ -22,8 +22,16 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { getAuthHeader } from "@/utils/auth-header";
 
-const CreateWidgetMenu: FC = () => {
-  const { indicator, visualization, filters } = useWidgets();
+interface CreateWidgetMenuProps {
+  indicator: string | null;
+  visualization: WidgetVisualizationsType | null;
+  filters: FilterQueryParam[];
+}
+const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
+  indicator,
+  visualization,
+  filters,
+}) => {
   const { data: session } = useSession();
   const router = useRouter();
   const { toast } = useToast();

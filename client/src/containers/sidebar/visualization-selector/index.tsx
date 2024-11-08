@@ -1,12 +1,11 @@
 import { FC, Fragment, useState } from "react";
 
+import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import {
   WidgetVisualizationsType,
   VALID_WIDGET_VISUALIZATIONS,
 } from "@shared/dto/widgets/widget-visualizations.constants";
 import { useSetAtom } from "jotai";
-
-import useWidgets from "@/hooks/use-widgets";
 
 import { showOverlayAtom } from "@/containers/overlay/store";
 
@@ -32,11 +31,20 @@ const getVisualizationText = (value: WidgetVisualizationsType): string =>
     )
     .join(" ");
 
-const VisualizationSelector: FC = () => {
+interface VisualizationSelectorProps {
+  indicator: string | null;
+  visualization: WidgetVisualizationsType | null;
+  widget: BaseWidgetWithData | undefined;
+  onVisualizationSelected: (value: WidgetVisualizationsType | null) => void;
+}
+const VisualizationSelector: FC<VisualizationSelectorProps> = ({
+  indicator,
+  visualization,
+  widget,
+  onVisualizationSelected,
+}) => {
   const [showVisualizations, setShowVisualizations] = useState(false);
   const setShowOverlay = useSetAtom(showOverlayAtom);
-  const { indicator, visualization, setVisualization, widget } =
-    useSandboxWidget();
 
   if (!indicator) {
     return (
@@ -122,7 +130,7 @@ const VisualizationSelector: FC = () => {
                   variant="clean"
                   className="h-10 cursor-pointer justify-start rounded-none px-3 py-4 text-xs font-medium transition-colors hover:bg-slate-100"
                   onClick={() => {
-                    setVisualization(v);
+                    onVisualizationSelected(v);
                     setShowVisualizations(false);
                     setShowOverlay(false);
                   }}
