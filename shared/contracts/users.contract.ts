@@ -156,7 +156,7 @@ export const usersContract = contract.router({
   updateCustomWidget: {
     method: 'PATCH',
     path: '/users/:userId/widgets/:id',
-    pathParams: z.object({ userId: z.string().uuid(), id: z.string() }),
+    pathParams: z.object({ userId: z.string().uuid(), id: z.coerce.number() }),
     body: UpdateCustomWidgetSchema,
     responses: {
       200: contract.type<ApiResponse<CustomWidget>>(),
@@ -168,7 +168,7 @@ export const usersContract = contract.router({
   deleteCustomWidget: {
     method: 'DELETE',
     path: '/users/:userId/widgets/:id',
-    pathParams: z.object({ userId: z.string().uuid(), id: z.string() }),
+    pathParams: z.object({ userId: z.string().uuid(), id: z.coerce.number() }),
     body: null,
     responses: {
       200: contract.type<ApiResponse<CustomWidget>>(),
