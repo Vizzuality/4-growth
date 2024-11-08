@@ -171,7 +171,7 @@ export const usersContract = contract.router({
     pathParams: z.object({ userId: z.string().uuid(), id: z.coerce.number() }),
     body: null,
     responses: {
-      200: contract.type<ApiResponse<CustomWidget>>(),
+      204: contract.type<null>(),
       400: contract.type<JSONAPIError>(),
       404: contract.type<JSONAPIError>(),
       500: contract.type<JSONAPIError>(),

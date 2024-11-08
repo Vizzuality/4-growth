@@ -41,7 +41,7 @@ const DeleteVisualizationButton: FC<{ id: number }> = ({ id }) => {
       },
     });
 
-    if (response.status === 200) {
+    if (response.status === 204) {
       queryClient.invalidateQueries(
         queryKeys.users.userCharts(session?.user.id as string, {}).queryKey,
         {

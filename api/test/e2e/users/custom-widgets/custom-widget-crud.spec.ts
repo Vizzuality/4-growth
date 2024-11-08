@@ -1,6 +1,7 @@
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { User } from '@shared/dto/users/user.entity';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
+import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
 import { TestManager } from 'api/test/utils/test-manager';
 
 describe('Custom Widgets API', () => {
@@ -429,8 +430,17 @@ describe('Custom Widgets API', () => {
         .set('Authorization', `Bearer ${authToken}`);
 
       // Then
-      expect(res.status).toBe(200);
-      expect(res.body.data.name).toBe(customWidget.name);
+      expect(res.status).toBe(204);
+      const customWidgetRepository = testManager
+        .getDataSource()
+        .getRepository(CustomWidget);
+
+      expect(
+        await customWidgetRepository.findOneBy({
+          id: customWidget.id,
+          user: { id: customWidget.user.id },
+        }),
+      ).toBe(null);
     });
 
     it("Shouldn't allow authenticated users to delete other user's custom widgets", async () => {
