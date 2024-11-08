@@ -40,7 +40,7 @@ const ActionsMenu: FC<{
         </button>
       </li>
       <li>
-        <DeleteVisualizationButton id={String(id)} />
+        <DeleteVisualizationButton id={Number(id)} />
       </li>
     </ul>
   );

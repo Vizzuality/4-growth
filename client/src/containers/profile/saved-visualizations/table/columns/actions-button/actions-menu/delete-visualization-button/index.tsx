@@ -25,7 +25,7 @@ import { getAuthHeader } from "@/utils/auth-header";
 
 import { CLASS } from "../";
 
-const DeleteVisualizationButton: FC<{ id: string }> = ({ id }) => {
+const DeleteVisualizationButton: FC<{ id: number }> = ({ id }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
   const { toast } = useToast();

@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AppBaseService } from '@api/utils/app-base.service';
 import { AppInfoDTO } from '@api/utils/info.dto';
 import {
   BadRequestException,
-  ForbiddenException,
   Injectable,
   Logger,
   NotFoundException,
@@ -40,12 +40,7 @@ export class CustomWidgetService extends AppBaseService<
   public async searchCustomWidgets(
     userId: string,
     fetchSpecification: FetchSpecification,
-    info: AppInfoDTO,
   ): Promise<ApiPaginationResponse<CustomWidget>> {
-    if (userId !== info.authenticatedUser.id) {
-      throw new ForbiddenException();
-    }
-
     return this.findAllPaginated(fetchSpecification, { userId });
   }
 
@@ -64,12 +59,7 @@ export class CustomWidgetService extends AppBaseService<
   public async findCustomWidgetById(
     userId: string,
     id: number,
-    info: AppInfoDTO,
   ): Promise<CustomWidget> {
-    if (userId !== info.authenticatedUser.id) {
-      throw new ForbiddenException();
-    }
-
     const customWidget = await this.customWidgetRepository.findOne({
       where: {
         id,
@@ -87,14 +77,7 @@ export class CustomWidgetService extends AppBaseService<
   public async createCustomWidget(
     userId: string,
     params: CreateCustomWidgetDTO,
-    info: AppInfoDTO,
   ): Promise<CustomWidget> {
-    // TODO: If we go this way, we will have to make this check at service level everywhere, and besides duplicating code (or if we extract it, coupling different behaviours)
-    // it can get really messy really fast.
-    if (userId !== info.authenticatedUser.id) {
-      throw new ForbiddenException();
-    }
-
     const baseWidget = await this.baseWidgetRepository.findOneBy({
       indicator: params.widgetIndicator,
     });
@@ -108,8 +91,6 @@ export class CustomWidgetService extends AppBaseService<
       throw exception;
     }
 
-    // TODO: All kinds of entity/model/dto validations should be left to the framework, and not be done manually.
-    // Additionally, final safety nets should be implemented at the database level.
     if (
       WidgetUtils.isValidDefaultVisualization(
         params.defaultVisualization,
@@ -128,7 +109,7 @@ export class CustomWidgetService extends AppBaseService<
     const customWidget: DeepPartial<CustomWidget> = {
       name: params.name,
       widget: { indicator: params.widgetIndicator },
-      user: { id: info.authenticatedUser.id },
+      user: { id: userId },
       filters: params.filters,
       defaultVisualization: params.defaultVisualization,
     };
@@ -139,12 +120,7 @@ export class CustomWidgetService extends AppBaseService<
     userId: string,
     id: number,
     params: UpdateCustomWidgetDTO,
-    info: AppInfoDTO,
   ) {
-    if (userId !== info.authenticatedUser.id) {
-      throw new ForbiddenException();
-    }
-
     const { name, widgetIndicator, defaultVisualization, filters } = params;
 
     const customWidget = await this.customWidgetRepository.findOneBy({
@@ -170,8 +146,7 @@ export class CustomWidgetService extends AppBaseService<
       relatedBaseWidget = await this.baseWidgetRepository.findOneBy({
         indicator: widgetIndicator,
       });
-      // TODO: This can never be null, as it comes from the DB entity, and the relation is set as mandatory, it will always exists
-      //       as long as the main entity exists
+
       if (relatedBaseWidget === null) {
         const exception = new NotFoundException('BaseWidget not found');
         this.logger.error(
@@ -185,8 +160,7 @@ export class CustomWidgetService extends AppBaseService<
       customWidget.defaultVisualization =
         relatedBaseWidget.defaultVisualization;
     }
-    // TODO: Again, all this checks should be done at framework level. Plus nested if statements are a code smell. It is very important to remember
-    //       that we are in the early stages of the project, we should make sure that basic/easy operations are kept simple and clean.
+
     if (defaultVisualization) {
       if (
         WidgetUtils.isValidDefaultVisualization(
@@ -208,24 +182,17 @@ export class CustomWidgetService extends AppBaseService<
       customWidget.filters = filters;
     }
 
-    // TODO: Finally, instead of building the new object manually with the updated fields, TypeORM can take care of this by using the update method.
-    //       You can pass the id, and all the body params that are received. It will check which are truthy, and update only those. If some value breaks
-    //       any constraint
     return this.customWidgetRepository.save(customWidget);
   }
 
-  public async removeCustomWidget(
+  public async deleteCustomWidget(
     userId: string,
     id: number,
     info?: AppInfoDTO,
   ) {
-    if (userId !== info.authenticatedUser.id) {
-      throw new ForbiddenException();
-    }
-
     const customWidget = await this.customWidgetRepository.findOneBy({
       id,
-      user: { id: info.authenticatedUser.id },
+      user: { id: userId },
     });
     if (customWidget === null) {
       const exception = new NotFoundException('CustomWidget not found');

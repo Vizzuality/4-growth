@@ -3,8 +3,7 @@ import { tsRestHandler, TsRestHandler } from '@ts-rest/nest';
 import { usersContract as c } from '@shared/contracts/users.contract';
 import { ControllerResponse } from '@api/types/controller.type';
 import { CustomWidgetService } from '@api/modules/widgets/custom-widgets.service';
-import { GetUser } from '@api/decorators/get-user.decorator';
-import { User } from '@shared/dto/users/user.entity';
+import { AuthorizeByUserIdParam } from '@api/decorators/authorize';
 
 @Controller()
 export class CustomWidgetsController {
@@ -12,86 +11,65 @@ export class CustomWidgetsController {
     private readonly customWidgetsService: CustomWidgetService,
   ) {}
 
+  @AuthorizeByUserIdParam()
   @TsRestHandler(c.searchCustomWidgets)
-  public async searchCustomWidgets(
-    @GetUser()
-    user: User,
-  ): Promise<ControllerResponse> {
+  public async searchCustomWidgets(): Promise<ControllerResponse> {
     return tsRestHandler(c.searchCustomWidgets, async ({ params, query }) => {
       const data = await this.customWidgetsService.searchCustomWidgets(
         params.userId,
         query,
-        {
-          authenticatedUser: user,
-        },
       );
       return { body: data, status: 200 };
     });
   }
 
+  @AuthorizeByUserIdParam()
   @TsRestHandler(c.findCustomWidget)
-  public async findCustomWidget(
-    @GetUser() user: User,
-  ): Promise<ControllerResponse> {
+  public async findCustomWidget(): Promise<ControllerResponse> {
     return tsRestHandler(c.findCustomWidget, async ({ params }) => {
       const { userId, id } = params;
       const data = await this.customWidgetsService.findCustomWidgetById(
         userId,
         id,
-        {
-          authenticatedUser: user,
-        },
       );
       return { body: { data }, status: 200 };
     });
   }
 
+  @AuthorizeByUserIdParam()
   @TsRestHandler(c.createCustomWidget)
-  public async createCustomWidget(
-    @GetUser() user: User,
-  ): Promise<ControllerResponse> {
+  public async createCustomWidget(): Promise<ControllerResponse> {
     return tsRestHandler(c.createCustomWidget, async ({ params, body }) => {
       const data = await this.customWidgetsService.createCustomWidget(
         params.userId,
         body,
-        {
-          authenticatedUser: user,
-        },
       );
       return { body: { data }, status: 200 };
     });
   }
 
+  @AuthorizeByUserIdParam()
   @TsRestHandler(c.updateCustomWidget)
-  public async updateCustomWidget(
-    @GetUser() user: User,
-  ): Promise<ControllerResponse> {
+  public async updateCustomWidget(): Promise<ControllerResponse> {
     return tsRestHandler(c.updateCustomWidget, async ({ params, body }) => {
       const { userId, id } = params;
       const data = await this.customWidgetsService.updateCustomWidget(
         userId,
-        Number.parseInt(id),
+        id,
         body,
-        {
-          authenticatedUser: user,
-        },
       );
       return { body: { data }, status: 200 };
     });
   }
 
+  @AuthorizeByUserIdParam()
   @TsRestHandler(c.deleteCustomWidget)
-  public async deleteCustomWidget(
-    @GetUser() user: User,
-  ): Promise<ControllerResponse> {
+  public async deleteCustomWidget(): Promise<ControllerResponse> {
     return tsRestHandler(c.deleteCustomWidget, async ({ params }) => {
       const { userId, id } = params;
-      const data = await this.customWidgetsService.removeCustomWidget(
+      const data = await this.customWidgetsService.deleteCustomWidget(
         userId,
-        Number.parseInt(id),
-        {
-          authenticatedUser: user,
-        },
+        id,
       );
       return { body: { data }, status: 200 };
     });

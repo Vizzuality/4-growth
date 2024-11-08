@@ -46,7 +46,7 @@ const CellName: FC<CellContext<ColumnsTable, unknown>> = ({
         const response = await client.users.updateCustomWidget.mutation({
           params: {
             userId: session?.user.id as string,
-            id: String(row.original.id),
+            id: Number(row.original.id),
           },
           body: {
             name: evt.currentTarget.value,
