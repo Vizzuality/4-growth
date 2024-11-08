@@ -67,11 +67,8 @@ export class CustomWidgetsController {
   public async deleteCustomWidget(): Promise<ControllerResponse> {
     return tsRestHandler(c.deleteCustomWidget, async ({ params }) => {
       const { userId, id } = params;
-      const data = await this.customWidgetsService.deleteCustomWidget(
-        userId,
-        id,
-      );
-      return { body: { data }, status: 200 };
+      await this.customWidgetsService.deleteCustomWidget(userId, id);
+      return { body: null, status: 204 };
     });
   }
 }

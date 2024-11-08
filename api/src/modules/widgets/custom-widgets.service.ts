@@ -190,26 +190,19 @@ export class CustomWidgetService extends AppBaseService<
     id: number,
     info?: AppInfoDTO,
   ) {
-    const customWidget = await this.customWidgetRepository.findOneBy({
+    const result = await this.customWidgetRepository.delete({
       id,
       user: { id: userId },
     });
-    if (customWidget === null) {
+
+    if (result.affected === 0) {
       const exception = new NotFoundException('CustomWidget not found');
       this.logger.error(
-        `CustomWidget with id ${id} not found`,
+        `CustomWidget with id ${id} for user ${info.authenticatedUser.id} not found`,
         null,
         exception.stack,
       );
       throw exception;
     }
-
-    // TODO: There are differences between remove() and delete() methods of the repository. Main differences:
-    //       1- similarly as save() vs insert(), remove first loads the entity, effectively making two queries, while delete does not.
-    //       2- it has it's usages (you can check), but I don't see any reasons right now to use remove right now. I am not saying we should not use it here
-    //          I just want you to be aware of the differences.
-    //       3- Following the previous point, remove mutates the original object, removing the id field, so we should be careful with the mutability
-    //       4- Last point, we should not return to the consumer the deleted entity, as it is not available anymore. Right now there is no usage for that
-    return this.customWidgetRepository.remove(customWidget);
   }
 }
