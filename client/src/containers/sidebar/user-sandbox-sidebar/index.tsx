@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
+import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
@@ -43,48 +44,14 @@ const UserSandboxSidebar: FC = () => {
 
   const addFilter = useCallback(
     (newFilter: FilterQueryParam) => {
-      let updatedFilters = filters.slice();
-
-      if (!updatedFilters.some((filter) => filter.name === newFilter.name)) {
-        updatedFilters.push(newFilter);
-      } else {
-        updatedFilters = filters.map((filter) => {
-          if (filter.name === newFilter.name) {
-            return {
-              ...filter,
-              values: newFilter.values,
-            };
-          }
-
-          return filter;
-        });
-      }
-
-      setFilters(updatedFilters);
+      setFilters(addFilterQueryParam(filters, newFilter));
     },
     [filters, setFilters],
   );
 
   const removeFilterValue = useCallback(
     (name: string, valueToRemove: string) => {
-      const updatedFilters = filters
-        .map((filter) => {
-          if (filter.name === name) {
-            const updatedValues = filter.values.filter(
-              (value) => value !== valueToRemove,
-            );
-
-            if (updatedValues.length === 0) {
-              return null;
-            }
-
-            return { ...filter, values: updatedValues };
-          }
-
-          return filter;
-        })
-        .filter((filter): filter is FilterQueryParam => filter !== null);
-      setFilters(updatedFilters);
+      setFilters(removeFilterQueryParamValue(filters, name, valueToRemove));
     },
     [filters, setFilters],
   );

@@ -22,7 +22,7 @@ export default async function SandboxPage({
     queryKey: queryKeys.users.userChart(id).queryKey,
     queryFn: async () =>
       client.users.findCustomWidget.query({
-        params: { id, userId: session?.user?.id as string },
+        params: { id: Number(id), userId: session?.user?.id as string },
         extraHeaders: {
           ...getAuthHeader(session?.accessToken as string),
         },
