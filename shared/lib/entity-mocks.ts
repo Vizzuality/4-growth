@@ -110,7 +110,7 @@ export const createCustomWidget = async (
   const defaults: Partial<CustomWidget> = {
     name: 'custom-widget',
     defaultVisualization: WIDGET_VISUALIZATIONS.AREA_GRAPH,
-    filters: {},
+    filters: [],
     widget: {} as BaseWidget,
   };
 
