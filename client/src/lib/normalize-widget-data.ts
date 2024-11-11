@@ -18,6 +18,13 @@ function normalizeWidgetData(widgetData: WidgetData): WidgetData {
     result.chart = normalizeChartData(result.chart);
   }
 
+  if (result.breakdown) {
+    result.breakdown = result.breakdown.map((b) => ({
+      ...b,
+      data: normalizeChartData(b.data),
+    }));
+  }
+
   return result;
 }
 
