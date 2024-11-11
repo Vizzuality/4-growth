@@ -10,11 +10,15 @@ export class SectionsController {
   public constructor(private readonly sectionsService: SectionsService) {}
 
   @Public()
-  @TsRestHandler(c.searchSections)
-  public async searchSections(): Promise<ControllerResponse> {
-    return tsRestHandler(c.searchSections, async ({ query }) => {
-      const data = await this.sectionsService.findAllPaginated(query);
-      return { body: data, status: 200 };
+  @TsRestHandler(c.getSections)
+  public async getSections(): Promise<ControllerResponse> {
+    return tsRestHandler(c.getSections, async ({ query }) => {
+      // TODO: There is a bug / weird behavior in typeorm when using take and skip with leftJoinAndSelect:
+      //       https://github.com/typeorm/typeorm/issues/4742#issuecomment-780702477
+      //       Since we don't need pagination for this endpoint, we can disable it for now but worth checking
+      const data = await this.sectionsService.searchSectionsWithData(query);
+
+      return { body: { data }, status: 200 };
     });
   }
 }

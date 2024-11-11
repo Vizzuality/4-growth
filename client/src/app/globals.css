@@ -26,6 +26,9 @@
       --accent-background: 331 89% 40%;
       --accent-foreground: 222.2 47.4% 11.2%;
 
+      --disabled-background: 213 27% 84%;
+      --disabled-foreground: 215 20% 65%;
+
       --destructive: 0 90.6% 70.78%;
       --destructive-foreground: 210 40% 98%;
 
@@ -33,6 +36,18 @@
       --radius: 0.5rem;
       --input: 214.3 31.8% 91.4%;
       --ring: 222.2 84% 4.9%;
+
+      --chart-1: 331 89% 40%;
+      --chart-2: 229 58% 45%;
+      --chart-3: 198 93% 60%;
+      --chart-4: 48 96% 53%;
+      --chart-5: 27 87% 67%;
+
+       --map-1: 328 64% 89%;
+       --map-2: 329 54% 80%;
+       --map-3: 331 49% 64%;
+       --map-4: 332 51% 48%;
+       --map-5: 331 89% 40%;
     }
 
     /* .dark {
@@ -63,6 +78,12 @@
       --border: 217.2 32.6% 17.5%;
       --input: 217.2 32.6% 17.5%;
       --ring: 212.7 26.8% 83.9%;
+
+      --chart-1: 220 70% 50%;
+      --chart-2: 160 60% 45%;
+      --chart-3: 30 80% 55%;
+      --chart-4: 280 65% 60%;
+      --chart-5: 340 75% 55%;
     } */
   }
 
@@ -74,3 +95,9 @@
       @apply bg-background text-foreground antialiased text-base;
     }
   }
+
+  @layer utilities {
+  .breakdown-chart .\[\&_\.recharts-rectangle\.recharts-tooltip-cursor\]\:fill-muted .recharts-rectangle.recharts-tooltip-cursor {
+    fill: transparent;
+  }
+}

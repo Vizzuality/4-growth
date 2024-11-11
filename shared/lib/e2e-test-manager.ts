@@ -1,10 +1,18 @@
 import { DataSource, DeepPartial } from 'typeorm';
 import { User } from '@shared/dto/users/user.entity';
-import { createCustomWidget, createUser } from '@shared/lib/entity-mocks';
+import {
+  createBaseWidget,
+  createCustomWidget,
+  createSection,
+  createUser,
+  ensureQuestionIndicatorMapExists,
+} from '@shared/lib/entity-mocks';
 import { clearTestDataFromDatabase } from '@shared/lib/db-helpers';
 import { DB_ENTITIES } from '@shared/lib/db-entities';
 import { sign } from 'jsonwebtoken';
 import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
+import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
+import { Section } from '@shared/dto/sections/section.entity';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -50,14 +58,43 @@ export class E2eTestManager {
     return createUser(this.dataSource, additionalData);
   }
 
+  async deleteUserById(id: string) {
+    try {
+      await this.dataSource.getRepository(User).delete({
+        id,
+      });
+    } catch (error) {
+      throw new Error(`Failed to delete test user with id: ${id}`);
+    }
+  }
+
+  async deleteUserByEmail(email: string) {
+    try {
+      await this.dataSource.getRepository(User).delete({
+        email,
+      });
+    } catch (error) {
+      throw new Error(`Failed to delete test user with email: ${email}`);
+    }
+  }
+
   mocks() {
     return {
       createUser: (additionalData?: Partial<User>) =>
         createUser(this.getDataSource(), additionalData),
+      createSection: (additionalData?: DeepPartial<Section>) =>
+        createSection(this.getDataSource(), additionalData),
+      createBaseWidget: (
+        data: DeepPartial<BaseWidget> & { indicator: string },
+      ): Promise<BaseWidget> => createBaseWidget(this.getDataSource(), data),
       createCustomWidget: (
-        additionalData?: DeepPartial<CustomWidget>,
+        data?: DeepPartial<CustomWidget>,
       ): Promise<CustomWidget> =>
-        createCustomWidget(this.getDataSource(), additionalData),
+        createCustomWidget(this.getDataSource(), data),
+      ensureQuestionIndicatorMapExists: async (
+        dataSource: DataSource,
+        questionIndicatorMap: { indicator: string; question: string },
+      ) => ensureQuestionIndicatorMapExists(dataSource, questionIndicatorMap),
     };
   }
 

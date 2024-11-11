@@ -1,4 +1,25 @@
-// ? this endpoint is used as health check for the application
+import { env } from "@/env";
+
 export async function GET() {
-  return new Response("OK", { status: 200 });
+  try {
+    const res = await fetch(env.NEXT_PUBLIC_API_URL + "/health", {
+      cache: "no-cache",
+    });
+    if (res.status === 200) {
+      return new Response("OK", {
+        status: 200,
+        headers: { "Cache-Control": "max-age=5, must-revalidate" },
+      });
+    } else {
+      return new Response("KO", {
+        status: 503,
+        headers: { "Cache-Control": "max-age=5, must-revalidate" },
+      });
+    }
+  } catch (error) {
+    return new Response("KO", {
+      status: 503,
+      headers: { "Cache-Control": "max-age=5, must-revalidate" },
+    });
+  }
 }

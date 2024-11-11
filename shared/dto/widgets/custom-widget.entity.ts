@@ -12,6 +12,7 @@ import {
   WIDGET_VISUALIZATIONS,
   type WidgetVisualizationsType,
 } from './widget-visualizations.constants';
+import { type WidgetFilters } from '@shared/dto/widgets/base-widget-data.interface';
 
 @Entity('custom_widgets')
 export class CustomWidget {
@@ -25,8 +26,10 @@ export class CustomWidget {
   @Column()
   name: string;
 
-  @ManyToOne(() => BaseWidget, (widget: BaseWidget) => widget.customWidgets)
-  @JoinColumn({ name: 'widget_id' })
+  @ManyToOne(() => BaseWidget, (widget: BaseWidget) => widget.customWidgets, {
+    nullable: false,
+  })
+  @JoinColumn({ name: 'widget_indicator' })
   widget: BaseWidget;
 
   @Column({
@@ -37,7 +40,7 @@ export class CustomWidget {
   defaultVisualization: WidgetVisualizationsType;
 
   @Column('jsonb')
-  filters: any;
+  filters: WidgetFilters;
 
   @CreateDateColumn({ name: 'updated_at' })
   updatedAt: Date;

@@ -17,6 +17,8 @@ import { RequestValidationError } from '@ts-rest/nest';
  */
 @Catch(Error)
 export class AllExceptionsFilter implements ExceptionFilter {
+  public constructor(private readonly logger: Logger) {}
+
   catch(exception: Error, host: ArgumentsHost): void {
     const ctx: HttpArgumentsHost = host.switchToHttp();
     const response: any = ctx.getResponse();
@@ -28,7 +30,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       const errorDataForResponse: JSONAPIError = new JSONAPISerializer.Error(
         this.handleZodValidationErrorMessages(exception),
       );
-      Logger.error(errorDataForResponse);
+      this.logger.error(errorDataForResponse, null, this.constructor.name);
       return response.status(exception.getStatus()).json(errorDataForResponse);
     } else if (exception instanceof HttpException) {
       status = exception.getStatus();
@@ -62,9 +64,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
     }
 
     if (status >= 500) {
-      Logger.error(errors);
+      this.logger.error(errors, null, this.constructor.name);
     } else {
-      Logger.warn(errors);
+      this.logger.warn(errors, this.constructor.name);
     }
 
     /**

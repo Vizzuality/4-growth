@@ -22,8 +22,8 @@ import { ApiEventsService } from '@api/modules/api-events/api-events.service';
 
 @Injectable()
 export class AuthService {
-  logger = new Logger(AuthService.name);
   constructor(
+    private readonly logger: Logger,
     @Inject(forwardRef(() => UsersService))
     private readonly usersService: UsersService,
     private readonly passwordService: PasswordService,
@@ -80,6 +80,7 @@ export class AuthService {
     if (!user) {
       this.logger.warn(
         `User with email ${passwordRecovery.email} not found when trying to recover password`,
+        this.constructor.name,
       );
       // if user does not exist, we should not return anything
       await this.events.createEvent(

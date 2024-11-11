@@ -13,11 +13,13 @@ export default defineConfig({
             command: 'pnpm --filter api run build && NODE_ENV=test pnpm --filter api run start:prod',
             url: API_URL,
             reuseExistingServer: !process.env.CI,
+            timeout: 120_000
         },
         {
             command: 'NODE_ENV=test pnpm --filter client run build && NODE_ENV=test pnpm --filter client run start',
             url: APP_URL,
             reuseExistingServer: !process.env.CI,
+            timeout: 120_000
         },
     ],
     testDir: './tests',

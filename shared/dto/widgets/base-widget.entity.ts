@@ -1,11 +1,12 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
   Column,
   ManyToOne,
   CreateDateColumn,
   OneToMany,
   JoinColumn,
+  Index,
+  PrimaryColumn,
 } from 'typeorm';
 import { CustomWidget } from './custom-widget.entity';
 import { Section } from '@shared/dto/sections/section.entity';
@@ -16,20 +17,18 @@ import {
 
 @Entity('base_widgets')
 export class BaseWidget {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
+  @PrimaryColumn()
+  indicator: string;
 
   @Column({ nullable: true })
   question: string;
-
-  @Column({ nullable: true })
-  indicator: string;
 
   @ManyToOne(() => Section, (section: Section) => section.baseWidgets)
   @JoinColumn({ name: 'section_id', referencedColumnName: 'order' })
   section: Section;
 
   @Column({ name: 'section_order' })
+  @Index('idx_section_widgets_section_order')
   sectionOrder: number;
 
   @Column({ type: 'simple-array', enum: WIDGET_VISUALIZATIONS })
@@ -48,6 +47,8 @@ export class BaseWidget {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @OneToMany(() => CustomWidget, (customWidget) => customWidget.widget)
+  @OneToMany(() => CustomWidget, (customWidget) => customWidget.widget, {
+    cascade: true,
+  })
   customWidgets: CustomWidget[];
 }

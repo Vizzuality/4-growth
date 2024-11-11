@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 
 import { Menu as MenuIcon } from "lucide-react";
 
+import { Overlay } from "@/components/ui/overlay";
 import {
   Popover,
   PopoverContent,
@@ -23,9 +24,7 @@ const Header: FC = () => {
         </h1>
       </div>
 
-      {isOpen && (
-        <div className="absolute left-0 top-0 z-40 h-full w-full bg-navy-900/75" />
-      )}
+      {isOpen && <Overlay />}
 
       <Popover onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>

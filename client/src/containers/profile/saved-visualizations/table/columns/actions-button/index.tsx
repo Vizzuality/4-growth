@@ -8,8 +8,8 @@ import { selectedRowAtom } from "@/containers/profile/store";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
-  PopoverTrigger,
   PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover";
 
 import { ColumnsTable } from "..";

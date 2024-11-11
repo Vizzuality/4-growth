@@ -1,9 +1,18 @@
+import { Repository, SelectQueryBuilder } from 'typeorm';
 import { AppBaseService } from '@api/utils/app-base.service';
 import { AppInfoDTO } from '@api/utils/info.dto';
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Section } from '@shared/dto/sections/section.entity';
-import { Repository, SelectQueryBuilder } from 'typeorm';
+import {
+  Section,
+  SectionWithDataWidget,
+} from '@shared/dto/sections/section.entity';
+import { FetchSpecification } from 'nestjs-base-service';
+import { SearchWidgetDataFiltersSchema } from '@shared/schemas/search-widget-data-params.schema';
+import {
+  ISurveyAnswerRepository,
+  SurveyAnswerRepository,
+} from '@api/infrastructure/survey-answer-repository.interface';
 
 @Injectable()
 export class SectionsService extends AppBaseService<
@@ -14,15 +23,37 @@ export class SectionsService extends AppBaseService<
 > {
   public constructor(
     @InjectRepository(Section)
-    private sectionsRepository: Repository<Section>,
+    private readonly sectionsRepository: Repository<SectionWithDataWidget>,
+    @Inject(SurveyAnswerRepository)
+    private readonly surveyAnswerRepository: ISurveyAnswerRepository,
   ) {
     super(sectionsRepository, 'section', 'sections');
   }
 
-  // Does not allow me to use protected
+  public async searchSectionsWithData(
+    query: FetchSpecification & SearchWidgetDataFiltersSchema,
+  ): Promise<SectionWithDataWidget[]> {
+    // TODO: There is a bug / weird behavior in typeorm when using take and skip with leftJoinAndSelect:
+    //       https://github.com/typeorm/typeorm/issues/4742#issuecomment-780702477
+    //       Since we don't need pagination for this endpoint, we can disable it for now but worth checking
+    query.disablePagination = true;
+    const [sections] = await this.findAll(query);
+
+    const { filters } = query;
+
+    const sectionsWithData =
+      await this.surveyAnswerRepository.addSurveyDataToSections(
+        sections,
+        filters,
+      );
+
+    return sectionsWithData;
+  }
+
+  // The library should make this method protected
   public async extendFindAllQuery(
-    query: SelectQueryBuilder<Section>,
-  ): Promise<SelectQueryBuilder<Section>> {
+    query: SelectQueryBuilder<SectionWithDataWidget>,
+  ): Promise<SelectQueryBuilder<SectionWithDataWidget>> {
     query
       .leftJoinAndSelect('section.baseWidgets', 'baseWidget')
       .orderBy('section.order', 'ASC') // Sort sections by order

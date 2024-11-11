@@ -16,6 +16,7 @@ export const authContract = contract.router({
       201: contract.type<null>(),
       400: contract.type<JSONAPIError>(),
       409: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
     body: SignUpSchema,
   },
@@ -25,6 +26,7 @@ export const authContract = contract.router({
     responses: {
       201: contract.type<IAccessToken>(),
       401: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
     body: SignInSchema,
   },
@@ -34,6 +36,7 @@ export const authContract = contract.router({
     responses: {
       200: null,
       400: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
     },
     body: EmailSchema,
   },

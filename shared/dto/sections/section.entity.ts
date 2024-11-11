@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   PrimaryColumn,
 } from 'typeorm';
+import { BaseWidgetWithData } from '@shared/dto/widgets/base-widget-data.interface';
 
 @Entity('sections')
 export class Section {
@@ -24,6 +25,13 @@ export class Section {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @OneToMany(() => BaseWidget, (widget: BaseWidget) => widget.section)
+  @OneToMany(() => BaseWidget, (widget: BaseWidget) => widget.section, {
+    cascade: ['insert', 'update'],
+    onDelete: 'CASCADE',
+  })
   baseWidgets: BaseWidget[];
+}
+
+export class SectionWithDataWidget extends Section {
+  declare baseWidgets: BaseWidgetWithData[];
 }

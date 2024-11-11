@@ -26,7 +26,10 @@ export const typeOrmConfig: DataSourceOptions = {
   password: dbConfig.password,
   database: dbConfig.database,
   entities: DB_ENTITIES,
-  synchronize: true,
+  synchronize: false,
+  migrationsRun: true,
+  migrationsTableName: 'migrations',
+  migrations: [`${__dirname}/migrations/*{.ts,.js}`],
   extra: {},
 };
 

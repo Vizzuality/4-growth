@@ -1,0 +1,1972 @@
+[
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "064586BF108B005D4B999CF13D1FBAB762134879",
+    "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
+    "answer": "Positive",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "074666BD55F41ED1230DCB22138D79F157830470",
+    "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "07FEBFF13DEA94B54A60E2D527CA0B4557F34D05",
+    "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "0B4B3619E69647C452892F0812D51FD80B460C86",
+    "question": "Has your organisation integrated digital technologies into its workflows?",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "0B7F344675AA798AC87310782E1019EE43ACAE48",
+    "question": "What type of governance model do you operate under?",
+    "answer": "Cooperative Agriculture or Forestry",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "0B8704C965C36D4803F48DCCCA0A0988481A674C",
+    "question": "Are there specific barriers hindering further integration?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "0D9F666A7C45F1E78FE63404C64EDB79AB51BD62",
+    "question": "Have you identified organisational prerequisites (skills, workforce, education) necessary for successful technology integration?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "0DBFBAE5B1561716727943627153B3E1A985F86F",
+    "question": "What are the advantages of the used technologies?",
+    "answer": "Economic benefits",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "0E85C1FCC8D56C174C9C3A0534FF25CD0F9221BD",
+    "question": "Primary area of operation in agriculture",
+    "answer": "Mixed farming (crops and animal)",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "0FDA5173BEB7E296B560FA58ABDEEFC267A69854",
+    "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
+    "answer": "Contribute",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "148ED01CD6E5C1E01976FAD06415E7588C78665D",
+    "question": "What is the overall economic impact of implementing digital technologies?",
+    "answer": "Neutral",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "16EBE618FD8D2F9B987E9A9D5590827BDC528DF3",
+    "question": "What would help facilitate the expansion/upgrade of digital infrastructure in the future?",
+    "answer": "More income/Access to funding",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "1F0A3F1657CD8B74732FE68140A44BC956916860",
+    "question": "Have digital technologies contributed to energy efficiency?",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "1F6C22738D3BAF919E44195CC926CBD6367D0466",
+    "question": "Are there economic implications associated with data flows in these sectors?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "262A10478C2F5A61F261736F49D35C9D729E7B2A",
+    "question": "Where and how do you store this data?",
+    "answer": "On-premises servers/local storage facilities",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "2AA31663DC58F841A4947DEB5FBC03EB1B615792",
+    "question": "Approximately what percentage of overall decisions made are based on data analytics in your organisation?",
+    "answer": "25%",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "2B68D87DAEDA82387F8AF1B6D80D60B742D4B124",
+    "question": "What is the level of direct costs?",
+    "answer": "Moderate",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "2D18C40C0E18A5CC5B8DC58F63CDE3A82CBE707B",
+    "question": "Have you encountered challenges in the adoption of digital technologies?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "2F7E77A6FC36B15E735D0F90422BEBB4860FD6E2",
+    "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "2FA56D8F3CC3C43532A595DDC1CF934F9ADC4BAF",
+    "question": "What type of data do you collect?",
+    "answer": "Crop and yield data",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "3291B10E46ABCC62545BBC28AA55A7FC64CFD204",
+    "question": "Is data collected from your farming/forestry activities?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "32A189FD4E86E9B37CBA4D123E6A318006E73051",
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "Precision farming",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "3395B12C2F84E0ADA3A0B9451558CBDBA2430868",
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "Field Data Collection Apps",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "361856D94FDC3B8F277D62353CED3BF51D28D1E7",
+    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "Initial investment",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "3C0800D26174E16058DB32085CF66B12F387F8DE",
+    "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "3C4BECEF37E0D982F0F1106C61907B5374ED678F",
+    "question": "What type of developments do you anticipate in the near future?",
+    "answer": "Advancements in existing technologies",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "408265A726B98C3D6B4EB8BD58BABE862D7C18A3",
+    "question": "Do you share this data?",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "44A51E86BED8DBBC8BCE5B2A6ABE17AD91484A7A",
+    "question": "Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?",
+    "answer": "Facilitated",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "48C11C0B1BE935571F3648CC2887E5A45D6473A5",
+    "question": "Do you use data analytics for decision-making?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "4AD070A0935CA2D578D89A2291753A23E14605F7",
+    "question": "What type of data do you collect?",
+    "answer": "Pest and disease data",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "4BFA8F81C6B0AE4D776EC235B75585D8807C71F0",
+    "question": "Where and how do you store this data?",
+    "answer": "Data warehouses",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "4F4335A74E9172FE23915A01719680ECDD748A09",
+    "question": "Have you experienced social benefits through the use of digital technologies?",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "5124F11DFB31E9953F7548EF9F9DD2581F2A4E69",
+    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
+    "answer": "Production phase",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "5B1021FB3C4B28471B0C0649C8CEE611AC40C5C9",
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "IoT Devices",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "5EA0931E23F4516B0EE479CAE5F5467B5169FFCF",
+    "question": "How have digital technologies impacted job creation?",
+    "answer": "Moderate impact",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "600A7722D085FB3EF53720CA8BAE609C3F54E190",
+    "question": "Are there plans to expand or upgrade your current digital infrastructure?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "72EC4989E9FEE737FB8BB6C9EDF685FFDC6D6F99",
+    "question": "What type of data sharing practices related to digital technology does your organisation use?",
+    "answer": "Restricted sharing",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "761ED115CA42869D99E9D8E65578B3A40EC0BF47",
+    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
+    "answer": "Data management",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "7A6469656FF31B16408C2FE0C3C2ABCE6AAF2C6D",
+    "question": "What type of data do you receive or provide?",
+    "answer": "Farm-level data",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "7B9B6AC8DE1396C57637EFCE6D4E27AD83EDB0E1",
+    "question": "Have you seen savings in inputs due to digital technologies?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "80D03AC2F43A297551316C4FE9F8DF848D5087A9",
+    "question": "Type of stakeholder",
+    "answer": "Platform provider",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "88C129D08AC81A51937DBE2ECE080BF694F8DDAA",
+    "question": "What are the advantages of the used technologies?",
+    "answer": "Enhanced safety and monitoring",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "89B7961AF0FBDD534856E9C78A72FC8CDEA34CAC",
+    "question": "Do you use cloud services/data centres?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "8A14827D747472C272BA2589379876D966FDEFC5",
+    "question": "Have digital technologies resulted in cost savings or increased efficiency?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "8EB4E2DC1F7472D415D118CF0F117CAACB1078C5",
+    "question": "Do you have network connectivity?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "93AB65DF9A312BF58943D58C0588E78B5A199BC3",
+    "question": "Sector (agri/forestry/both)",
+    "answer": "Agriculture",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "96F23C2F25835EC6FE77E0162C0D38971D60AF58",
+    "question": "What type of data do you receive or provide?",
+    "answer": "Socio-economic data",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "A2C6CB090B0CF6B72077FC2A1C62768154FF931D",
+    "question": "What is the overall social impact of adopting digital technologies?",
+    "answer": "Neutral",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "A9D3F85263B6FBD6D84CD2A6E526FE341EBF169B",
+    "question": "Have digital technologies contributed to sustainability and environmental practices?",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "AF065BCBCAF3A3CD723B288A63A0B64696618FA5",
+    "question": "Agriculture/forestry organisation size",
+    "answer": "Medium-scale/Local-National",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "B2D4F17F7345230940B385DD484B6D829B78B95C",
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "Monitoring and tracking of livestock/crops",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "B627E4A5567A5AA6046A0211AA6DB704A55FFCE2",
+    "question": "What is the adoption level of these technologies?",
+    "answer": "Advanced",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "B96B719645161668FD37BCF10874FBCE750F6130",
+    "question": "Unexpected or hidden costs?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "BBBC11D1D534DE25AC0240B5245C65DA947C6368",
+    "question": "Location (country/region)",
+    "answer": "Belgium",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "BD4642F4F2D46B1D629E3B6158C151EBBA576141",
+    "question": "Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "C100FD8859D214CDF15E39FD623D4772C0F0FFCF",
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "Farm Management Software",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "CFBA29EAD78D136CDE70F9E7E6D02C5EC2457536",
+    "question": "Organic farming operation",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "D5846ABD30E4D36FB3D1B2CDD2DB8B83A91BF7C3",
+    "question": "Do you pay for this data?",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "D9C26DE72BF7B8262E6470FE4626CDF8085C557A",
+    "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "DB1EB9CD3A83652754A34552F48193AC5FABC3D4",
+    "question": "Do you pay for this data?",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "E1D0EAAE576C880199973879DD8D4AD4AD7BDCB5",
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "Smart-agri apps",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "E555651E11EA3FE8D0B01F2AC5379945BC47B0B3",
+    "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
+    "answer": "5",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "EAFA526CB48A1395F503902B57A79A7A26C9020F",
+    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "Integration with existing systems",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "EB0EC4EAC6A227CF2FD4AE9CBE03ACE5D5F49ED8",
+    "question": "Have you observed positive impacts on resource conservation or environmental footprint?",
+    "answer": "Yes",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "F276375884F37595ADA89B897EA3DE05D0FB1E15",
+    "question": "What are the advantages of the used technologies?",
+    "answer": "Early detection of issues",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "answerId": "F8F3E9599D96DE2A753EC95432307629FF7BEDBA",
+    "question": "What type of data do you collect?",
+    "answer": "Weather and environmental data",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "0D5B094B0B4E72209D3CF424EE0AF6ABEEB92B50",
+    "question": "Have you observed positive impacts on resource conservation or environmental footprint?",
+    "answer": "Yes",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "0FD793BE825847910A1A1C98588FD6560E08E99C",
+    "question": "How have digital technologies impacted job creation?",
+    "answer": "Moderate impact",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "12ABF685C05739AB2A038F4A4FB4A5D0DC820A4D",
+    "question": "What is the overall social impact of adopting digital technologies?",
+    "answer": "Neutral",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "14CB8DB64C63DF39BC6AA75074540F7C238380F9",
+    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "Integration with existing systems",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "15C5FEFD7B1FCD0FBD740D8F1C4B7C79A621A3DA",
+    "question": "Do you share this data?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "1741726555E25D7237443834BB4C6B2098BEA578",
+    "question": "Do you pay for this data?",
+    "answer": "Yes",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "1DE6AB68EEDB7561B10B0681DB0BD1729C9D98B6",
+    "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
+    "answer": "5",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "1F81014570CB4BE8CBDD2788E509612DE5E13B02",
+    "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
+    "answer": "Negative",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "31D5E1263A02548AF898492D5F235A292A3C87FA",
+    "question": "Do you use data analytics for decision-making?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "321EAE9E70D0F67D66A92BF1BDBFFB4675CD8BFC",
+    "question": "Primary area of operation in forestry",
+    "answer": "Forest conservation - thinning, pruning, weed & pest control",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "342739517DD2A8288E8B970C5D41B424563DFF74",
+    "question": "What type of data do you collect?",
+    "answer": "Soil data",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "351F6CA56F2A65F751949137F8175A44B2F3EEC7",
+    "question": "Have you seen savings in inputs due to digital technologies?",
+    "answer": "Yes",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "4526682A64E1FD64EB2755B68DDD617EF57B45E6",
+    "question": "Agriculture/forestry organisation size",
+    "answer": "Small-scale/Local",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "4578B4DFC6042F7EE9E72BA14DCF089A9A4D580C",
+    "question": "What type of data do you receive or provide?",
+    "answer": "Farm-level data",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "524DBA03AD9CC9F980477B9D9578E576326C23AC",
+    "question": "Are there economic implications associated with data flows in these sectors?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "541E132BF54A48BF46786535DB831217BB7E9E8A",
+    "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "57D955162044375F6BE413AF2D8F96F7B182E084",
+    "question": "Have digital technologies resulted in cost savings or increased efficiency?",
+    "answer": "Yes",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "58C6DF3A45839AF1A318BCB57DB39776938FF210",
+    "question": "Are there plans to expand or upgrade your current digital infrastructure?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "5AA687F3E6895741A4EEA801F2066FFF6C164B80",
+    "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "5E554E9B6E1C982A099618148078682F03FF38D5",
+    "question": "Sector (agri/forestry/both)",
+    "answer": "Forestry",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "61F9152225CB220417B10C4E4D6B1E2DEF1A6AA0",
+    "question": "What type of developments do you anticipate in the near future?",
+    "answer": "Emergence of new technologies",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "686B2312AF8B6A7315B701093D4550B37A3D36D5",
+    "question": "Do you have network connectivity?",
+    "answer": "Don't know",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "6DFB88CD537F1BA27246E54C93A83C01479C3C11",
+    "question": "What type of data sharing practices related to digital technology does your organisation use?",
+    "answer": "Restricted sharing",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "8886416F0C1EB0C7A119DE537DB57DDC22BE588B",
+    "question": "Have digital technologies contributed to energy efficiency?",
+    "answer": "Yes",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "8D506165312540E75D9E0CE39CD08AFDD1933637",
+    "question": "Do you use cloud services/data centres?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "8EDC74D7F7D299162E74831C84E20793C2DB06A3",
+    "question": "What would help facilitate the expansion/upgrade of digital infrastructure in the future?",
+    "answer": "Better connectivity/Infrastructure",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "8F5D45A94AFA823CF49821541933707CD3FC9F6C",
+    "question": "Do you pay for this data?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "9F719C579BBA8C3B61219B84B288040EA89CDD0B",
+    "question": "Where and how do you store this data?",
+    "answer": "On-premises servers/local storage facilities",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "A8075694F4C09A8A0E67F5E286A0602C16839EFC",
+    "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
+    "answer": "Yes",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "A8D48C2A99F9AF963CB1A38CBCF6E2AA36180BE4",
+    "question": "Type of stakeholder",
+    "answer": "Farmer/agricultural producers",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "ADA20268DFBC2A1D9DA42FF46CACD8307874327A",
+    "question": "What are the advantages of the used technologies?",
+    "answer": "Other namely",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "ADCE811D32D8808240690C5522985CACEFDCFC59",
+    "question": "Have you experienced social benefits through the use of digital technologies?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "B2922D85D284C6D8927F7B580ACC79E68D174022",
+    "question": "What network connectivity do you use?",
+    "answer": "Private networks",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "BAB079DC908EB358D802E9AA584C121B253811B3",
+    "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
+    "answer": "Contribute",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "C006E77673104E02E28BBE03BE7CD53F59C78CC5",
+    "question": "What is the level of direct costs?",
+    "answer": "Moderate",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "CA100B3508E11BD5FD059D601931CB5D585BE9B7",
+    "question": "Have digital technologies contributed to sustainability and environmental practices?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "D3AEDD974FE3181B34AC4ABE6F55212F71B939DF",
+    "question": "Have you identified organisational prerequisites (skills, workforce, education) necessary for successful technology integration?",
+    "answer": "Yes",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "DCE1B97562CF08B6AE7D256B59F1B67AB4756498",
+    "question": "Is data collected from your farming/forestry activities?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "E04C4836DF9AD3E14D2B1A7511F777405C06935F",
+    "question": "Approximately what percentage of overall decisions made are based on data analytics in your organisation?",
+    "answer": "50%",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "E2C22F0BA2A1CF717E6EF7D4021E86096A898CC6",
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "IoT Devices",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "E7B76EF784C7BE570D2A1299EECF6C059A79A092",
+    "question": "Organic farming operation",
+    "answer": "Yes",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "E9289EE2461693B4A48B630303BECAF7AF3166AC",
+    "question": "Location (country/region)",
+    "answer": "Austria",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "EA1BB7EB4E484700BFB9E96083F4344E95EC1DC7",
+    "question": "What is the overall economic impact of implementing digital technologies?",
+    "answer": "Negative",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "EE37F49E258CCEFE0DFF06C49BFFEEF1193858CF",
+    "question": "Has your organisation integrated digital technologies into its workflows?",
+    "answer": "No",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "answerId": "EEB4699AFE1AE37545A3F47F533BBF7EFD2F8184",
+    "question": "Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?",
+    "answer": "Yes",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "answerId": "0DFFA5A045120581C09E201F82DE695217629C56",
+    "question": "Organic farming operation",
+    "answer": "Yes",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "answerId": "2A0B3A39AE838C8509A2A2F83FFA0B45083845A7",
+    "question": "Primary area of operation in forestry",
+    "answer": "Forest conservation - thinning, pruning, weed & pest control",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "answerId": "2FE9A3F53E459258A0923D3C1248CA273E698382",
+    "question": "Primary area of operation in agriculture",
+    "answer": "Crop cultivation - vegetables",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "answerId": "62EE3036B1F493A5EA8D5029EB286FCD10FA36E9",
+    "question": "Type of stakeholder",
+    "answer": "Farmer/agricultural producers",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "answerId": "65511BE75FF477EB824DE5E1AAA3D83848DD9F29",
+    "question": "Sector (agri/forestry/both)",
+    "answer": "Both",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "answerId": "79A70081AB594B4BE815007FA398C1471B68E143",
+    "question": "Agriculture/forestry organisation size",
+    "answer": "Medium-scale/Local-National",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "answerId": "B08C923EA4C83BDD125F723D59965F678E156C7A",
+    "question": "Location (country/region)",
+    "answer": "Bulgaria",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "1AF61EAD18A56CC7B62F14857B94B3B9060B217C",
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "Other namely",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "1C73220341F21C09C45B602B23CD2402D8674308",
+    "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
+    "answer": "Don't know",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "2055C5821CC3CEB8FA6328DC5F4A4D5A0DC33B7D",
+    "question": "What are the advantages of the used technologies?",
+    "answer": "Other namely",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "3B0241823A7E2CC98A0A13872F2F9B46634CA30C",
+    "question": "What network connectivity do you use?",
+    "answer": "Low-power Wide-area network",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "3C71CEF68A959D319FA0699AF2BB43ED33CD7C4B",
+    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
+    "answer": "Supply chain optimisation",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "3E27A17DEA419237F3091AE038A46D586D77B922",
+    "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
+    "answer": "5",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "4D67BE1CF9DEDB703D861D08A29106BC5BE014E3",
+    "question": "Organic farming operation",
+    "answer": "Yes",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "64A104EFC1885860AA13A8BA332F20ED07811226",
+    "question": "To what extent do digital technologies meet evolving user needs within your organization?",
+    "answer": "Not at all",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "65C14D98E851D9C5F524C6E07255C27E188628DE",
+    "question": "Agriculture/forestry organisation size",
+    "answer": "Small-scale/Local",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "6FCFCC9E01C278C3EFC379EAECDBE7522EB6077C",
+    "question": "Has your organisation integrated digital technologies into its workflows?",
+    "answer": "Yes",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "7392D02C0CDB0E53D91368BFA561331CFD65F71C",
+    "question": "Sector (agri/forestry/both)",
+    "answer": "Forestry",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "7622DDA526EF6D56A412044CF461170AC5DCB2B3",
+    "question": "Type of stakeholder",
+    "answer": "Forester",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "7794F6C9B2D2E2B522CAA73D0E193A9260252DB4",
+    "question": "What is the adoption level of these technologies?",
+    "answer": "Preliminary",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "798FBF34CD09ED8529EBCE1FC7F3F35C1D218455",
+    "question": "Primary area of operation in forestry",
+    "answer": "Non-Timber Forest Products (NTFPs)",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "8E897132C8400500920458B41591B52D8C0CD6FB",
+    "question": "Location (country/region)",
+    "answer": "Netherlands",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "A4081F1DCEE4F3A9EBB99C7720F1A171FC9A60C2",
+    "question": "Are there specific barriers hindering further integration?",
+    "answer": "No",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "AED0339F03967C0EEC9BB0A140DB79262D2B93FE",
+    "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
+    "answer": "5",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "D22DC4454500BA0955CD46627790C89D1045A8BA",
+    "question": "What type of developments do you anticipate in the near future?",
+    "answer": "Emergence of new technologies",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "E3C98A2EFFE9CEFFE67CC77472B92F2F84FABD86",
+    "question": "Have you encountered challenges in the adoption of digital technologies?",
+    "answer": "Yes",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "ED35BF55663D371DAFEA42F7B915770592634E53",
+    "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
+    "answer": "Yes",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "F505AF251DC55B2DFC9F37CF33E06732A0B81245",
+    "question": "What type of devices are commonly used to access the network?",
+    "answer": "Agricultural machinery equipped with IoT (Internet of Things) sensors",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "answerId": "FE657C22BD6CE9AE398AA7AE3A7C6A3E80492D92",
+    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "Connectivity infrastructure",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "answerId": "24C6B6CF0FD4296ECDFC1C1581E39E5AA88D664D",
+    "question": "To what extent do digital technologies meet evolving user needs within your organization?",
+    "answer": "Partially",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "answerId": "2BC99380FAA599B443875DE9091B68BE789E4E2F",
+    "question": "Has your organisation integrated digital technologies into its workflows?",
+    "answer": "No",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "answerId": "5EA0552F9629D7A4A10E33B775FF0D5FB4050F53",
+    "question": "What are the advantages of the used technologies?",
+    "answer": "Efficient resource allocation",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "answerId": "B4A5695CAF35D3787982334EF22CFDE48C180AFE",
+    "question": "Type of stakeholder",
+    "answer": "Farmer/agricultural producers",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "answerId": "B655DBE231492012BFFB49B9779EBA1C1102B924",
+    "question": "Sector (agri/forestry/both)",
+    "answer": "Agriculture",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "answerId": "C2060C6357353C1BC9B8BBCFE36251050C3161AB",
+    "question": "Location (country/region)",
+    "answer": "Belgium",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "question": "What network connectivity do you use?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "question": "To what extent do digital technologies meet evolving user needs within your organization?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "question": "What type of devices are commonly used to access the network?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_84qILa9AvSY5qCB",
+    "question": "Primary area of operation in forestry",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "Unexpected or hidden costs?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "Have you encountered challenges in the adoption of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "What is the adoption level of these technologies?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "Are there specific barriers hindering further integration?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "What type of governance model do you operate under?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "To what extent do digital technologies meet evolving user needs within your organization?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "Primary area of operation in agriculture",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "What type of devices are commonly used to access the network?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_8OHmvlDNp8BXNAg",
+    "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "AUT"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What is the overall social impact of adopting digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What type of data sharing practices related to digital technology does your organisation use?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Is data collected from your farming/forestry activities?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have digital technologies contributed to sustainability and environmental practices?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Approximately what percentage of overall decisions made are based on data analytics in your organisation?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Unexpected or hidden costs?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have you observed positive impacts on resource conservation or environmental footprint?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have digital technologies contributed to energy efficiency?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have you identified organisational prerequisites (skills, workforce, education) necessary for successful technology integration?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Do you use cloud services/data centres?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What type of data do you receive or provide?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have you encountered challenges in the adoption of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What is the adoption level of these technologies?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What is the overall economic impact of implementing digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Are there economic implications associated with data flows in these sectors?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Are there specific barriers hindering further integration?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What network connectivity do you use?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What would help facilitate the expansion/upgrade of digital infrastructure in the future?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have you seen savings in inputs due to digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What type of governance model do you operate under?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Do you use data analytics for decision-making?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Are there plans to expand or upgrade your current digital infrastructure?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "To what extent do digital technologies meet evolving user needs within your organization?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What are the advantages of the used technologies?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What type of devices are commonly used to access the network?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Do you pay for this data?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "How have digital technologies impacted job creation?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What type of data do you collect?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Do you share this data?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have you experienced social benefits through the use of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What is the level of direct costs?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Has your organisation integrated digital technologies into its workflows?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Do you have network connectivity?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "What type of developments do you anticipate in the near future?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Have digital technologies resulted in cost savings or increased efficiency?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2eKIDqs0Vsyj0qM",
+    "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "BGR"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What is the overall social impact of adopting digital technologies?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What type of data sharing practices related to digital technology does your organisation use?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Is data collected from your farming/forestry activities?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Have digital technologies contributed to sustainability and environmental practices?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Approximately what percentage of overall decisions made are based on data analytics in your organisation?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Unexpected or hidden costs?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Have you observed positive impacts on resource conservation or environmental footprint?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Have digital technologies contributed to energy efficiency?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Have you identified organisational prerequisites (skills, workforce, education) necessary for successful technology integration?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Do you use cloud services/data centres?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What type of data do you receive or provide?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What is the overall economic impact of implementing digital technologies?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Are there economic implications associated with data flows in these sectors?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What would help facilitate the expansion/upgrade of digital infrastructure in the future?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Have you seen savings in inputs due to digital technologies?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What type of governance model do you operate under?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Do you use data analytics for decision-making?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Are there plans to expand or upgrade your current digital infrastructure?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Primary area of operation in agriculture",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Do you pay for this data?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "How have digital technologies impacted job creation?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What type of data do you collect?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Do you share this data?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Have you experienced social benefits through the use of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "What is the level of direct costs?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Do you have network connectivity?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Have digital technologies resulted in cost savings or increased efficiency?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2hbsGDfZSDyw8BX",
+    "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What is the overall social impact of adopting digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What type of data sharing practices related to digital technology does your organisation use?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Is data collected from your farming/forestry activities?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Organic farming operation",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have digital technologies contributed to sustainability and environmental practices?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Approximately what percentage of overall decisions made are based on data analytics in your organisation?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Unexpected or hidden costs?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have you observed positive impacts on resource conservation or environmental footprint?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have digital technologies contributed to energy efficiency?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have you identified organisational prerequisites (skills, workforce, education) necessary for successful technology integration?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Do you use cloud services/data centres?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What type of data do you receive or provide?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have you encountered challenges in the adoption of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What is the adoption level of these technologies?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What is the overall economic impact of implementing digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Are there economic implications associated with data flows in these sectors?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Are there specific barriers hindering further integration?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What network connectivity do you use?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What would help facilitate the expansion/upgrade of digital infrastructure in the future?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have you seen savings in inputs due to digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What type of governance model do you operate under?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Do you use data analytics for decision-making?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Are there plans to expand or upgrade your current digital infrastructure?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Primary area of operation in agriculture",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What type of devices are commonly used to access the network?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Do you pay for this data?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "How have digital technologies impacted job creation?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What type of data do you collect?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Do you share this data?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have you experienced social benefits through the use of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What is the level of direct costs?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Agriculture/forestry organisation size",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Do you have network connectivity?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "What type of developments do you anticipate in the near future?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Have digital technologies resulted in cost savings or increased efficiency?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Primary area of operation in forestry",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "R_2XckmVyZ44klhUe",
+    "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  }
+]

@@ -11,10 +11,10 @@ export type ContactForm = z.infer<typeof ContactUsSchema>;
 
 @Injectable()
 export class ContactMailer {
-  logger: Logger = new Logger(ContactMailer.name);
   contactAddress: string;
 
   constructor(
+    private readonly logger: Logger,
     @Inject(IEmailServiceToken)
     private readonly mailer: IEmailServiceInterface,
   ) {
@@ -32,6 +32,6 @@ export class ContactMailer {
       html: `<p>${message}</p>`,
       text: message,
     });
-    this.logger.log(`Contact email sent from ${email}`);
+    this.logger.log(`Contact email sent from ${email}`, this.constructor.name);
   }
 }

@@ -2,6 +2,8 @@
 
 import { FC, useEffect, useState } from "react";
 
+import { CustomWidget } from "@shared/dto/widgets/custom-widget.entity";
+import { SortQueryParam } from "@shared/schemas/query-param.schema";
 import {
   flexRender,
   getCoreRowModel,
@@ -73,7 +75,9 @@ const SavedVisualizationsTable: FC = () => {
           "updatedAt",
         ],
         sort: Object.keys(sorting).length
-          ? sorting.map((sort) => `${sort.desc ? "" : "-"}${sort.id}`)
+          ? (sorting.map(
+              (sort) => `${sort.desc ? "" : "-"}${sort.id}`,
+            ) as SortQueryParam<CustomWidget>)
           : ["-updatedAt"],
         pageSize: pagination.size,
         pageNumber: pagination.page,

@@ -1,0 +1,281 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+import Link from "next/link";
+
+import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
+import {
+  WIDGET_VISUALIZATIONS,
+  WidgetVisualizationsType,
+} from "@shared/dto/widgets/widget-visualizations.constants";
+import { useAtom } from "jotai";
+
+import { cn, isEmptyWidget } from "@/lib/utils";
+
+import MenuButton from "@/containers/menu-button";
+import NoData from "@/containers/no-data";
+import { showOverlayAtom } from "@/containers/overlay/store";
+import AreaChart from "@/containers/widget/area-chart";
+import Filter from "@/containers/widget/filter";
+import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
+import Map from "@/containers/widget/map";
+import Navigation from "@/containers/widget/navigation";
+import PieChart from "@/containers/widget/pie-chart";
+import SingleValue from "@/containers/widget/single-value";
+import WidgetHeader from "@/containers/widget/widget-header";
+
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+
+const getMenuButtonText = (v: WidgetVisualizationsType): string => {
+  switch (v) {
+    case "horizontal_bar_chart":
+      return "Show as a bar chart";
+    case "pie_chart":
+      return "Show as a pie chart";
+    case "area_graph":
+      return "Show as an area chart";
+    case "map":
+      return "Show as a map";
+    default:
+      return "";
+  }
+};
+
+export interface WidgetProps {
+  indicator: string;
+  data: BaseWidgetWithData["data"];
+  visualization: WidgetVisualizationsType;
+  visualisations?: WidgetVisualizationsType[];
+  question?: string;
+  menuItems?: React.ReactNode;
+  className?: string;
+  showCustomizeWidgetButton?: boolean;
+  config?: {
+    singleValue?: { fill?: "bg-secondary" | "bg-accent" };
+    horizontalBarChart?: { barSize: number };
+    pieChart?: {
+      className: HTMLDivElement["className"];
+      legendPosition?: "bottom" | "right";
+    };
+    menu?: { className: string };
+  };
+}
+
+export default function Widget({
+  indicator,
+  visualization,
+  visualisations,
+  data,
+  question,
+  menuItems,
+  className,
+  showCustomizeWidgetButton,
+  config,
+}: WidgetProps) {
+  const [selectedVisualization, setSelectedVisualization] =
+    useState(visualization);
+  const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
+  const menu =
+    !menuItems && !visualisations && !showCustomizeWidgetButton ? undefined : (
+      <MenuButton
+        className={className}
+        onOpenChange={setShowOverlay}
+        {...config?.menu}
+      >
+        {showCustomizeWidgetButton && (
+          <Button
+            variant="clean"
+            className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+            asChild
+          >
+            <Link
+              href={`/sandbox?visualization=${selectedVisualization}&indicator=${indicator}`}
+            >
+              Customize chart
+            </Link>
+          </Button>
+        )}
+        {menuItems}
+        {visualisations && (
+          <>
+            <Separator />
+            {visualisations.map((v) => (
+              <Button
+                key={`visualization-list-item-${v}`}
+                variant="clean"
+                className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+                onClick={() => setSelectedVisualization(v)}
+              >
+                {getMenuButtonText(v)}
+              </Button>
+            ))}
+          </>
+        )}
+      </MenuButton>
+    );
+
+  useEffect(() => {
+    setSelectedVisualization(visualization);
+  }, [visualization]);
+
+  if (isEmptyWidget(data)) {
+    return (
+      <Card className={cn("relative min-h-80 p-0", className)}>
+        <WidgetHeader indicator={indicator} question={question} menu={menu} />
+        <NoData />
+      </Card>
+    );
+  }
+
+  switch (selectedVisualization) {
+    case WIDGET_VISUALIZATIONS.SINGLE_VALUE:
+      return (
+        <Card className="p-0">
+          <SingleValue
+            indicator={indicator}
+            data={data?.counter}
+            {...config?.singleValue}
+          />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART:
+      return (
+        <Card
+          className={cn(
+            "relative min-h-80 p-0 pb-7",
+            showOverlay && "z-50",
+            className,
+          )}
+        >
+          <WidgetHeader indicator={indicator} question={question} menu={menu} />
+          <HorizontalBarChart
+            data={data.chart}
+            {...config?.horizontalBarChart}
+          />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.PIE_CHART:
+      return (
+        <Card
+          className={cn(
+            "relative min-h-80 p-0 pb-7",
+            showOverlay && "z-50",
+            className,
+          )}
+        >
+          <WidgetHeader indicator={indicator} question={question} menu={menu} />
+          <PieChart
+            data={data.chart}
+            className="min-h-0 w-full flex-1"
+            legendPosition="bottom"
+            {...config?.pieChart}
+          />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.AREA_GRAPH:
+      return (
+        <Card
+          className={cn(
+            "relative min-h-80 p-0",
+            showOverlay && "z-50",
+            className,
+          )}
+        >
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            className="t-8 absolute left-0 z-20 w-full p-8"
+            menu={menu}
+          />
+          <AreaChart indicator={indicator} data={data.chart} />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.NAVIGATION:
+      return (
+        <Card
+          className={cn(
+            "relative min-h-80 p-0",
+            showOverlay && "z-50",
+            className,
+          )}
+        >
+          <Navigation indicator={indicator} href={data?.navigation?.href} />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.FILTER:
+      return (
+        <Card
+          className={cn(
+            "relative min-h-80 bg-accent p-0",
+            showOverlay && "z-50",
+            className,
+          )}
+        >
+          <Filter indicator={indicator} href={data?.navigation?.href} />
+        </Card>
+      );
+    case WIDGET_VISUALIZATIONS.MAP:
+      return (
+        <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
+          <WidgetHeader
+            indicator={indicator}
+            question={question}
+            className="t-8 absolute left-0 z-20 w-full p-8"
+            menu={menu}
+          />
+          <Map
+            // TODO: Remove hardcoded data when api response is available
+            data={{
+              NLD: 1,
+              BEL: 2,
+              GBR: 2,
+              LVA: 2,
+              BGR: 3,
+              SWE: 4,
+              NOR: 2,
+              FIN: 1,
+              GRC: 1,
+              EST: 1,
+              UKR: 1,
+              DNK: 2,
+              POL: 2,
+              MD: 2,
+              ROU: 2,
+              FRA: 5,
+              IRL: 2,
+              ISL: 1,
+              ITA: 3,
+              CHE: 2,
+              ESP: 2,
+              PRT: 1,
+              DEU: 3,
+              RUS: 2,
+              BLR: 1,
+              SVN: 1,
+              SVK: 2,
+              CSK: 3,
+              CZE: 3,
+              LTU: 3,
+              AUT: 4,
+              HRC: 3,
+              BIH: 2,
+              MNE: 1,
+              HRV: 3,
+              ALB: 3,
+              SRB: 4,
+              HUN: 2,
+              MDA: 3,
+            }}
+          />
+        </Card>
+      );
+    default:
+      console.warn(
+        `Widget: Unsupported visualization type "${visualization}" for indicator "${indicator}".`,
+      );
+      return null;
+  }
+}

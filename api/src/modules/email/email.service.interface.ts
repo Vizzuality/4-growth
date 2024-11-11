@@ -1,5 +1,3 @@
-import { Logger } from '@nestjs/common';
-
 export class SendMailDTO {
   from: string;
   to: string;
@@ -11,7 +9,5 @@ export class SendMailDTO {
 export const IEmailServiceToken = 'IEmailServiceInterface';
 
 export interface IEmailServiceInterface {
-  logger: Logger;
-
   sendMail(sendMailDTO: SendMailDTO): Promise<any>;
 }

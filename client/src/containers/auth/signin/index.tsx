@@ -4,13 +4,16 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Title from "@/components/ui/title";
 
 import SignInForm from "./form";
 
 const SignIn: FC = () => {
   return (
     <div className="flex flex-col">
-      <h2 className="mb-4 px-8 text-4xl font-semibold">Log in</h2>
+      <Title as="h2" className="mb-4 px-8 text-4xl">
+        Log in
+      </Title>
       <SignInForm />
       <Button variant="link" size="none" className="mt-6 self-center" asChild>
         <Link href="/auth/forgot-password">Forgot password?</Link>

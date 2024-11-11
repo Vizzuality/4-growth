@@ -4,6 +4,7 @@ import {
   BadRequestException,
   ForbiddenException,
   Injectable,
+  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,6 +27,8 @@ export class CustomWidgetService extends AppBaseService<
   AppInfoDTO
 > {
   public constructor(
+    // It has to be protected in order to correctly extend the class
+    protected readonly logger: Logger,
     @InjectRepository(CustomWidget)
     private customWidgetRepository: Repository<CustomWidget>,
     @InjectRepository(BaseWidget)
@@ -67,9 +70,12 @@ export class CustomWidgetService extends AppBaseService<
       throw new ForbiddenException();
     }
 
-    const customWidget = await this.customWidgetRepository.findOneBy({
-      id,
-      user: { id: userId },
+    const customWidget = await this.customWidgetRepository.findOne({
+      where: {
+        id,
+        user: { id: userId },
+      },
+      relations: ['widget'],
     });
 
     if (customWidget === null) {
@@ -90,12 +96,13 @@ export class CustomWidgetService extends AppBaseService<
     }
 
     const baseWidget = await this.baseWidgetRepository.findOneBy({
-      id: params.widgetId,
+      indicator: params.widgetIndicator,
     });
     if (baseWidget === null) {
       const exception = new NotFoundException('BaseWidget not found');
       this.logger.error(
-        `BaseWidget with id ${params.widgetId} not found`,
+        `BaseWidget with id ${params.widgetIndicator} not found`,
+        null,
         exception.stack,
       );
       throw exception;
@@ -120,7 +127,7 @@ export class CustomWidgetService extends AppBaseService<
 
     const customWidget: DeepPartial<CustomWidget> = {
       name: params.name,
-      widget: { id: params.widgetId },
+      widget: { indicator: params.widgetIndicator },
       user: { id: info.authenticatedUser.id },
       filters: params.filters,
       defaultVisualization: params.defaultVisualization,
@@ -138,7 +145,7 @@ export class CustomWidgetService extends AppBaseService<
       throw new ForbiddenException();
     }
 
-    const { name, widgetId, defaultVisualization, filters } = params;
+    const { name, widgetIndicator, defaultVisualization, filters } = params;
 
     const customWidget = await this.customWidgetRepository.findOneBy({
       id,
@@ -148,6 +155,7 @@ export class CustomWidgetService extends AppBaseService<
       const exception = new NotFoundException('CustomWidget not found');
       this.logger.error(
         `CustomWidget with id ${id} not found`,
+        null,
         exception.stack,
       );
       throw exception;
@@ -158,9 +166,9 @@ export class CustomWidgetService extends AppBaseService<
     if (name) {
       customWidget.name = name;
     }
-    if (widgetId) {
+    if (widgetIndicator) {
       relatedBaseWidget = await this.baseWidgetRepository.findOneBy({
-        id: widgetId,
+        indicator: widgetIndicator,
       });
       // TODO: This can never be null, as it comes from the DB entity, and the relation is set as mandatory, it will always exists
       //       as long as the main entity exists
@@ -168,11 +176,12 @@ export class CustomWidgetService extends AppBaseService<
         const exception = new NotFoundException('BaseWidget not found');
         this.logger.error(
           `BaseWidget with id ${id} not found`,
+          null,
           exception.stack,
         );
         throw exception;
       }
-      customWidget.widget = { id: widgetId } as BaseWidget;
+      customWidget.widget = { indicator: widgetIndicator } as BaseWidget;
       customWidget.defaultVisualization =
         relatedBaseWidget.defaultVisualization;
     }
@@ -222,6 +231,7 @@ export class CustomWidgetService extends AppBaseService<
       const exception = new NotFoundException('CustomWidget not found');
       this.logger.error(
         `CustomWidget with id ${id} not found`,
+        null,
         exception.stack,
       );
       throw exception;

@@ -5,6 +5,7 @@ import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { Section } from '@shared/dto/sections/section.entity';
 import { WIDGET_VISUALIZATIONS } from '@shared/dto/widgets/widget-visualizations.constants';
 import { CustomWidget } from '@shared/dto/widgets/custom-widget.entity';
+import { QuestionIndicatorMap } from '@shared/dto/surveys/question-widget-map.entity';
 
 export const createUser = async (
   dataSource: DataSource,
@@ -23,10 +24,39 @@ export const createUser = async (
   return { ...user, password: usedPassword } as User;
 };
 
+export const createQuestionIndicatorMap = async (
+  dataSource: DataSource,
+  data: QuestionIndicatorMap,
+) => {
+  const repo = dataSource.getRepository(QuestionIndicatorMap);
+  return repo.save(data);
+};
+
+export const ensureQuestionIndicatorMapExists = async (
+  dataSource: DataSource,
+  questionIndicatorMap: { indicator: string; question: string },
+) => {
+  const questionIndicatorRepository =
+    dataSource.getRepository(QuestionIndicatorMap);
+  const foundQuestionIndicator = await questionIndicatorRepository.findOneBy({
+    indicator: questionIndicatorMap.indicator,
+  });
+  if (foundQuestionIndicator === null) {
+    return await questionIndicatorRepository.save(questionIndicatorMap);
+  }
+  return undefined;
+};
+
 export const createBaseWidget = async (
   dataSource: DataSource,
-  additionalData?: DeepPartial<BaseWidget>,
+  data: DeepPartial<BaseWidget> & { indicator: string },
 ) => {
+  const indicator = data.indicator;
+
+  await ensureQuestionIndicatorMapExists(dataSource, {
+    indicator,
+    question: indicator,
+  });
   const baseWidgetsRepository = dataSource.getRepository(BaseWidget);
 
   const defaults: Partial<BaseWidget> = {
@@ -34,11 +64,11 @@ export const createBaseWidget = async (
       WIDGET_VISUALIZATIONS.AREA_GRAPH,
       WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
     ],
-    defaultVisualization: WIDGET_VISUALIZATIONS.AREA_GRAPH,
+    defaultVisualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
     sectionOrder: 1,
   };
 
-  return baseWidgetsRepository.save({ ...defaults, ...additionalData });
+  return baseWidgetsRepository.save({ ...defaults, ...data });
 };
 
 export const createSection = async (
@@ -54,12 +84,26 @@ export const createSection = async (
     order: 1,
   };
 
+  // Create indicators if they don't exist in the database
+  if (additionalData !== undefined) {
+    const baseWidgets = additionalData.baseWidgets;
+    if (Array.isArray(baseWidgets) === true) {
+      for (let widgetIdx = 0; widgetIdx < baseWidgets.length; widgetIdx++) {
+        const widget = baseWidgets[widgetIdx];
+        await ensureQuestionIndicatorMapExists(dataSource, {
+          indicator: widget.indicator as string,
+          question: widget.indicator as string,
+        });
+      }
+    }
+  }
+
   return sectionsRepository.save({ ...defaults, ...additionalData });
 };
 
 export const createCustomWidget = async (
   dataSource: DataSource,
-  additionalData?: DeepPartial<CustomWidget>,
+  data?: DeepPartial<CustomWidget>,
 ) => {
   const baseWidgetsRepository = dataSource.getRepository(CustomWidget);
 
@@ -67,7 +111,12 @@ export const createCustomWidget = async (
     name: 'custom-widget',
     defaultVisualization: WIDGET_VISUALIZATIONS.AREA_GRAPH,
     filters: {},
+    widget: {} as BaseWidget,
   };
 
-  return baseWidgetsRepository.save({ ...defaults, ...additionalData });
+  const customWidget = { ...defaults, ...data };
+  customWidget.widget!.indicator ??= new Date().toISOString();
+
+  await createBaseWidget(dataSource, customWidget.widget! as BaseWidget);
+  return baseWidgetsRepository.save(customWidget);
 };
