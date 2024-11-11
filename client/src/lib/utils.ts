@@ -13,6 +13,7 @@ export const getInPageLinkId = (slug?: string): string => `inPage-${slug}-link`;
 export function isEmptyWidget(data: BaseWidgetWithData["data"]): boolean {
   return (
     !data.counter &&
+    !data.breakdown &&
     !data.navigation &&
     !data.chart?.length &&
     !data.map?.length

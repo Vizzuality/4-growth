@@ -3,6 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import BreakdownChart from "@/containers/widget/breakdown";
 import { CSS_CHART_COLORS, TW_CHART_COLORS } from "@/lib/constants";
 import type { ResponsiveContainerProps } from "recharts";
+import { WidgetBreakdownData } from "@shared/dto/widgets/base-widget-data.interface";
 
 vi.mock("recharts", async () => {
   const mockRecharts = await vi.importActual<any>("recharts");
@@ -20,21 +21,25 @@ vi.mock("@/containers/no-data", () => ({
   default: () => <div data-testid="no-data">No data</div>,
 }));
 
-const mockData = [
+const mockData: WidgetBreakdownData = [
   {
     label: "Category 1",
-    data: [
-      { label: "Option A", value: 50 },
-      { label: "Option B", value: 30 },
-      { label: "Option C", value: 20 },
-    ],
+    data: [{ label: "Option A", value: 100, total: 100 }],
   },
   {
     label: "Category 2",
     data: [
-      { label: "Option A", value: 60 },
-      { label: "Option B", value: 25 },
-      { label: "Option C", value: 15 },
+      { label: "Option A", value: 60, total: 100 },
+      { label: "Option B", value: 25, total: 100 },
+      { label: "Option C", value: 15, total: 100 },
+    ],
+  },
+  {
+    label: "Category 3",
+    data: [
+      { label: "Option A", value: 50, total: 100 },
+      { label: "Option B", value: 30, total: 100 },
+      { label: "Option C", value: 20, total: 100 },
     ],
   },
 ];
@@ -91,7 +96,7 @@ describe("BreakdownChart", () => {
 
     await waitFor(() => {
       const legendItems = screen.getByTestId("breakdown-chart-legend").children;
-      const categoryData = mockData[0].data;
+      const categoryData = mockData[1].data;
 
       expect(legendItems).toHaveLength(categoryData.length);
 

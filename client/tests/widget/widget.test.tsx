@@ -59,6 +59,10 @@ vi.mock("@/containers/no-data", () => ({
   default: () => <div data-testid="no-data">No data</div>,
 }));
 
+vi.mock("@/containers/widget/breakdown", () => ({
+  default: () => <div data-testid="breakdown">Breakdown Chart</div>,
+}));
+
 describe("Widget", () => {
   const mockProps: WidgetProps = {
     indicator: "Test Indicator",
@@ -149,6 +153,25 @@ describe("Widget", () => {
     await waitFor(() => {
       expect(card).toHaveClass("z-50");
     });
+  });
+
+  it("renders breakdown chart when breakdown props is passed", () => {
+    render(
+      <Widget
+        {...mockProps}
+        breakdown="another-indicator"
+        data={{
+          breakdown: [
+            {
+              label: "Category 1",
+              data: [{ label: "Option A", value: 100, total: 100 }],
+            },
+          ],
+        }}
+      />,
+    );
+
+    expect(screen.getByTestId("breakdown")).toBeInTheDocument();
   });
 
   it("renders null for unsupported visualization type", () => {

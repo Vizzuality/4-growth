@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 export default function Sandbox() {
-  const { visualization, setVisualization, widget } = useSandboxWidget();
+  const { breakdown, visualization, setVisualization, widget } =
+    useSandboxWidget();
   const menuItems = (
     <>
       <Button
@@ -39,6 +40,7 @@ export default function Sandbox() {
     <Card className="p-0">
       {widget && (
         <Widget
+          breakdown={breakdown || undefined}
           indicator={widget.indicator}
           question={widget.question}
           visualization={visualization || widget.defaultVisualization}

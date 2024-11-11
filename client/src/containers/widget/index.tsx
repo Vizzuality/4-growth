@@ -17,6 +17,7 @@ import MenuButton from "@/containers/menu-button";
 import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
 import AreaChart from "@/containers/widget/area-chart";
+import Breakdown from "@/containers/widget/breakdown";
 import Filter from "@/containers/widget/filter";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
 import Map from "@/containers/widget/map";
@@ -48,6 +49,7 @@ export interface WidgetProps {
   indicator: string;
   data: BaseWidgetWithData["data"];
   visualization: WidgetVisualizationsType;
+  breakdown?: string;
   visualisations?: WidgetVisualizationsType[];
   question?: string;
   menuItems?: React.ReactNode;
@@ -68,6 +70,7 @@ export default function Widget({
   indicator,
   visualization,
   visualisations,
+  breakdown,
   data,
   question,
   menuItems,
@@ -126,6 +129,21 @@ export default function Widget({
       <Card className={cn("relative min-h-80 p-0", className)}>
         <WidgetHeader indicator={indicator} question={question} menu={menu} />
         <NoData />
+      </Card>
+    );
+  }
+
+  if (breakdown) {
+    return (
+      <Card
+        className={cn(
+          "relative min-h-80 p-0 pb-7",
+          showOverlay && "z-50",
+          className,
+        )}
+      >
+        <WidgetHeader indicator={indicator} question={question} menu={menu} />
+        <Breakdown data={data.breakdown} />
       </Card>
     );
   }

@@ -1,7 +1,7 @@
 "use client";
 import React, { FC } from "react";
 
-import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
+import { WidgetBreakdownData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
 import { CSS_CHART_COLORS, TW_CHART_COLORS } from "@/lib/constants";
@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/chart";
 
 interface BreakdownProps {
-  data?: { label: string; data: WidgetChartData }[];
+  data?: WidgetBreakdownData;
 }
 
 const Breakdown: FC<BreakdownProps> = ({ data }) => {
@@ -81,17 +81,19 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
         data-testid="breakdown-chart-legend"
         className="flex items-center gap-6 pl-6"
       >
-        {data[0].data.map((d, i) => (
-          <p
-            key={`breakdown-chart-legend-${d.label}`}
-            className="flex items-center gap-x-1 text-xs"
-          >
-            <span
-              className={cn("block h-3 w-3 rounded-full", TW_CHART_COLORS[i])}
-            ></span>
-            <span>{d.label}</span>
-          </p>
-        ))}
+        {[...data]
+          .sort((a, b) => b.data.length - a.data.length)[0]
+          .data.map((d, i) => (
+            <p
+              key={`breakdown-chart-legend-${d.label}`}
+              className="flex items-center gap-x-1 text-xs"
+            >
+              <span
+                className={cn("block h-3 w-3 rounded-full", TW_CHART_COLORS[i])}
+              ></span>
+              <span>{d.label}</span>
+            </p>
+          ))}
       </div>
     </div>
   );

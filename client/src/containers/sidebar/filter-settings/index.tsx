@@ -5,9 +5,8 @@ import { queryKeys } from "@/lib/queryKeys";
 
 import useFilters from "@/hooks/use-filters";
 
+import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
-
-import { Button } from "@/components/ui/button";
 
 const DEFAULT_FILTERS = ["location-country-region", "sector"];
 const DEFAULT_FILTERS_LABEL_MAP: {
@@ -65,14 +64,7 @@ const FilterSettings: FC<{ withDataBreakdown?: boolean }> = ({
         name="Add a custom filter"
         items={customFilters}
       />
-      {withDataBreakdown && (
-        <Button
-          variant="clean"
-          className="w-full justify-start rounded-none px-4 py-3.5 font-normal transition-colors hover:bg-secondary"
-        >
-          Add a data breakdown
-        </Button>
-      )}
+      {withDataBreakdown && <BreakdownSelector />}
     </>
   );
 };
