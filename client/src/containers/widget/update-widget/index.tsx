@@ -48,11 +48,6 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
   const handleOnOpenChange = (isOpen: boolean) => {
     setOpen(isOpen);
     setShowOverlay(isOpen);
-
-    if (!isOpen && showForm) {
-      // Timeout is added because popup is still visible while closing
-      setTimeout(() => setShowForm(false), 200);
-    }
   };
 
   const createWidget = useCallback(
@@ -140,7 +135,14 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
           <SaveIcon />
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="end">
+      <PopoverContent
+        align="end"
+        onCloseAutoFocus={() => {
+          if (showForm) {
+            setShowForm(false);
+          }
+        }}
+      >
         {showForm ? (
           <SaveWidgetForm onSubmit={createWidget} />
         ) : (

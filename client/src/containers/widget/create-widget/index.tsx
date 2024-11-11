@@ -36,14 +36,8 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
   const router = useRouter();
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
-  const [showForm, setShowForm] = useState(false);
   const handleOnOpenChange = (isOpen: boolean) => {
     setOpen(isOpen);
-
-    if (!isOpen && showForm) {
-      // Timeout is added because popup is still visible while closing
-      setTimeout(() => setShowForm(false), 200);
-    }
   };
 
   const createWidget = useCallback(
