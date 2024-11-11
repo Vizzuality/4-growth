@@ -7,13 +7,12 @@ vi.mock("@/components/icons/no-data", () => ({
 }));
 
 describe("NoData", () => {
+  const defaultDescription = "No data available for this item.";
   it("renders the correct content", () => {
     render(<NoData />);
 
     expect(screen.getByTestId("no-data-icon")).toBeInTheDocument();
-    expect(
-      screen.getByText("No data available for this item."),
-    ).toBeInTheDocument();
+    expect(screen.getByText(defaultDescription)).toBeInTheDocument();
   });
 
   it("renders with custom description", () => {
@@ -21,6 +20,7 @@ describe("NoData", () => {
     render(<NoData description={customDescription} />);
 
     expect(screen.getByText(customDescription)).toBeInTheDocument();
+    expect(screen.queryByText(defaultDescription)).not.toBeInTheDocument();
   });
 
   it("renders with custom icon", () => {
