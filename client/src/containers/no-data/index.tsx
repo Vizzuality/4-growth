@@ -6,9 +6,17 @@ import NoDataIcon from "@/components/icons/no-data";
 
 interface NoDataProps {
   className?: HTMLDivElement["className"] | undefined;
+  /**
+   * Overrides default icon
+   */
+  icon?: React.ReactNode;
+  /**
+   * Overrides default description
+   */
+  description?: string;
 }
 
-const NoData: FC<NoDataProps> = ({ className }) => {
+const NoData: FC<NoDataProps> = ({ className, icon, description }) => {
   return (
     <div
       className={cn(
@@ -16,8 +24,8 @@ const NoData: FC<NoDataProps> = ({ className }) => {
         className,
       )}
     >
-      <NoDataIcon />
-      <p>No data available for this item.</p>
+      {icon || <NoDataIcon />}
+      <p>{description || "No data available for this item."}</p>
     </div>
   );
 };
