@@ -4,9 +4,11 @@ import { FC, useEffect } from "react";
 import useFilters from "@/hooks/use-filters";
 import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
+import NoData from "@/containers/no-data";
 import Widget from "@/containers/widget";
 import CreateWidgetMenu from "@/containers/widget/create-widget";
 
+import MenuPointer from "@/components/icons/menu-pointer";
 import { Card } from "@/components/ui/card";
 
 const Sandbox: FC = () => {
@@ -24,7 +26,7 @@ const Sandbox: FC = () => {
 
   return (
     <Card className="p-0">
-      {widget && (
+      {widget ? (
         <Widget
           breakdown={breakdown || undefined}
           indicator={widget.indicator}
@@ -41,6 +43,8 @@ const Sandbox: FC = () => {
           className="col-span-1 last:odd:col-span-2"
           config={{ menu: { className: "flex flex-col py-4" } }}
         />
+      ) : (
+        <NoData icon={<MenuPointer />} className="m-6 gap-6" />
       )}
     </Card>
   );

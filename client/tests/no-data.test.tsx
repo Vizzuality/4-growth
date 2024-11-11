@@ -15,4 +15,19 @@ describe("NoData", () => {
       screen.getByText("No data available for this item."),
     ).toBeInTheDocument();
   });
+
+  it("renders with custom description", () => {
+    const customDescription = "Custom description";
+    render(<NoData description={customDescription} />);
+
+    expect(screen.getByText(customDescription)).toBeInTheDocument();
+  });
+
+  it("renders with custom icon", () => {
+    const CustomIcon = () => <div data-testid="custom-icon">Custom Icon</div>;
+    render(<NoData icon={<CustomIcon />} />);
+
+    expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
+    expect(screen.queryByTestId("no-data-icon")).not.toBeInTheDocument();
+  });
 });
