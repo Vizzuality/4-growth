@@ -64,7 +64,7 @@ describe('Custom Widgets API', () => {
         name: 'My saved widget',
         widgetIndicator: baseWidget.indicator,
         defaultVisualization: baseWidget.defaultVisualization,
-        filters: {},
+        filters: [],
       };
 
       // When
@@ -75,7 +75,7 @@ describe('Custom Widgets API', () => {
         .send(requestBody);
 
       // Then
-      expect(res.status).toBe(200);
+      expect(res.status).toBe(201);
       const returnedData = res.body.data;
       expect(returnedData.name).toBe(requestBody.name);
       expect(returnedData.widget.indicator).toBe(requestBody.widgetIndicator);
@@ -89,7 +89,7 @@ describe('Custom Widgets API', () => {
         name: 'My saved widget',
         widgetIndicator: baseWidget.indicator,
         defaultVisualization: '1',
-        filters: {},
+        filters: [],
       };
 
       // When
@@ -110,7 +110,7 @@ describe('Custom Widgets API', () => {
         name: 'My saved widget',
         widgetIndicator: baseWidget.indicator,
         defaultVisualization: 'invalid_visualization',
-        filters: {},
+        filters: [],
       };
 
       // When
@@ -370,7 +370,7 @@ describe('Custom Widgets API', () => {
         name: 'Name changed!',
         widgetIndicator: baseWidget.indicator,
         defaultVisualization: '1',
-        filters: {},
+        filters: [],
       };
 
       // When
@@ -396,7 +396,7 @@ describe('Custom Widgets API', () => {
         name: 'Name changed!',
         widgetIndicator: baseWidget.indicator,
         defaultVisualization: baseWidget.defaultVisualization,
-        filters: {},
+        filters: [],
       };
 
       // When
@@ -429,7 +429,7 @@ describe('Custom Widgets API', () => {
         name: 'Name changed!',
         widgetIndicator: baseWidget.indicator,
         defaultVisualization: baseWidget.defaultVisualization,
-        filters: {},
+        filters: [],
       };
 
       // When
