@@ -27,6 +27,7 @@ jobs:
             api:
               - 'api/**'
               - '.github/workflows/**'
+          base: 'test-0'
 
       - name: Print detected changes
         run: |
