@@ -21,7 +21,6 @@ jobs:
         id: changes
         with:
           base: 'test-0'
-          ref: ${{ github.ref_name }}
           initial-fetch-depth: 0
           filters: |
             client:
