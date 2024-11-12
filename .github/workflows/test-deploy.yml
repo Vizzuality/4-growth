@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - '**'  # Runs on every branch
+      - '**'
 
 jobs:  
   detect_changes:
@@ -27,7 +27,6 @@ jobs:
             api:
               - 'api/**'
               - '.github/workflows/**'
-          base: 'test-1'
 
       - name: Print detected changes
         run: |
