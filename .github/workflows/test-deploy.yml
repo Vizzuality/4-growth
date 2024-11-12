@@ -25,6 +25,13 @@ jobs:
               - 'api/**'
               - '.github/workflows/**'
           base: 'test-1'
+
+      - name: Print detected changes
+        run: |
+          echo "Detected changes in the following paths:"
+          echo "Client changed: ${{ steps.path_filter.outputs.client }}"
+          echo "API changed: ${{ steps.path_filter.outputs.api }}"
+          echo "All changes: ${{ steps.path_filter.outputs.changes }}"
   
   build_api:
       needs: [detect_changes]
