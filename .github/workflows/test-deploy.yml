@@ -15,8 +15,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        # with:
-        #   fetch-depth: 0
+        with:
+          fetch-depth: 0
 
       - name: Detect changes in client and API paths
         uses: dorny/paths-filter@v3
@@ -24,7 +24,7 @@ jobs:
         with:
           base: 'test-0'
           ref: ${{ github.ref_name }}
-          # initial-fetch-depth: 0
+          initial-fetch-depth: 0
           filters: |
             client:
               - 'client/**'
