@@ -1,0 +1,43 @@
+name: Test deploy
+
+on:
+  workflow_dispatch:
+
+jobs:  
+  detect_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      api_changed: ${{ steps.changes.outputs.api }}
+      client_changed: ${{ steps.changes.outputs.client }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Detect changes in client and API paths
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            client:
+              - 'client/**'
+              - '.github/workflows/**'
+            api:
+              - 'api/**'
+              - '.github/workflows/**'
+          base: 'dev'
+  
+  build_api:
+      needs: [detect_changes]
+      if: ${{ needs.detect_changes.outputs.api_changed == 'true' }}
+      runs-on: ubuntu-latest
+      steps:
+        - name: Build Step
+          run: echo "Building based on detected API changes."
+
+  build_client:
+      needs: [detect_changes]
+      if: ${{ needs.detect_changes.outputs.client_changed == 'true' }}
+      runs-on: ubuntu-latest
+      steps:
+        - name: Build Step
+          run: echo "Building based on detected CLIENT changes."

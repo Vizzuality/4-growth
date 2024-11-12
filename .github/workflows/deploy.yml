@@ -16,7 +16,6 @@ on:
       - 'package.json'
 
 jobs:
-
   set_environment:
     runs-on: ubuntu-latest
     name: Set Deployment Environment
@@ -25,6 +24,26 @@ jobs:
     steps:
       - id: set_env
         run: echo "env_name=${{ github.ref_name == 'main' && 'production' || github.ref_name }}" >> $GITHUB_OUTPUT
+
+  detect_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      changed_paths: ${{ steps.path_filter.outputs.changes }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Detect changes in client and API paths
+        uses: dorny/paths-filter@v3
+        id: path_filter
+        with:
+          filters: |
+            client:
+              - 'client/**'
+              - '.github/workflows/**'
+            api:
+              - 'api/**'
+              - '.github/workflows/**'
 
   build_client:
     needs: [ set_environment ]
