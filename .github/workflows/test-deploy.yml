@@ -14,7 +14,9 @@ jobs:
       client_changed: ${{ steps.changes.outputs.client }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@
+        with:
+          fetch-depth: 0
 
       - name: Detect changes in client and API paths
         uses: dorny/paths-filter@v3
