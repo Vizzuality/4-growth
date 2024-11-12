@@ -16,7 +16,6 @@ on:
       - 'package.json'
 
 jobs:
-
   set_environment:
     runs-on: ubuntu-latest
     name: Set Deployment Environment
@@ -26,8 +25,32 @@ jobs:
       - id: set_env
         run: echo "env_name=${{ github.ref_name == 'main' && 'production' || github.ref_name }}" >> $GITHUB_OUTPUT
 
+  trigger_build:
+    runs-on: ubuntu-latest
+    outputs:
+      build_api: ${{ steps.changes.outputs.api == 'true' || github.ref_name == 'staging' || github.ref_name == 'main' }}
+      build_client: ${{ steps.changes.outputs.client == 'true' || github.ref_name == 'staging' || github.ref_name == 'main' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Detect changes in client and API paths
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            client:
+              - '.github/workflows/**'
+              - 'shared/**'
+              - 'client/**'
+            api:
+              - '.github/workflows/**'
+              - 'shared/**'
+              - 'api/**'
+
   build_client:
-    needs: [ set_environment ]
+    needs: [ set_environment, trigger_build ]
+    if: ${{ github.event_name == 'workflow_dispatch' || needs.trigger_build.outputs.build_client == 'true' }}
     environment:
       name: ${{ needs.set_environment.outputs.env_name }}
     runs-on: ubuntu-latest
@@ -36,16 +59,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - uses: dorny/paths-filter@v3
-        id: client-changes
-        with:
-          filters: |
-            client:
-              - 'client/**'
-              - '.github/workflows/**'
-
       - name: Configure AWS credentials
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.client-changes.outputs.client == 'true' }}
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.TF_PIPELINE_USER_ACCESS_KEY_ID }}
@@ -53,18 +67,15 @@ jobs:
           aws-region: ${{ secrets.TF_AWS_REGION }}
 
       - name: Login to Amazon ECR
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.client-changes.outputs.client == 'true' }}
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
         with:
           mask-password: 'true'
 
       - name: Set up Docker Buildx
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.client-changes.outputs.client == 'true' }}
         uses: docker/setup-buildx-action@v3
 
       - name: Build, tag, and push Client image to Amazon ECR
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.client-changes.outputs.client == 'true' }}
         uses: docker/build-push-action@v5
         with:
           build-args: |
@@ -82,7 +93,8 @@ jobs:
             ${{ steps.login-ecr.outputs.registry }}/${{ secrets.TF_CLIENT_REPOSITORY_NAME }}:${{ needs.set_environment.outputs.env_name }}
 
   build_api:
-    needs: [ set_environment ]
+    needs: [ set_environment, trigger_build ]
+    if: ${{ github.event_name == 'workflow_dispatch' || needs.trigger_build.outputs.build_api == 'true' }}
     environment:
       name: ${{ needs.set_environment.outputs.env_name }}
     runs-on: ubuntu-latest
@@ -90,17 +102,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - uses: dorny/paths-filter@v3
-        id: api-changes
-        with:
-          filters: |
-            api:
-              - 'api/**'
-              - '.github/workflows/**'
-
+        
       - name: Configure AWS credentials
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.TF_PIPELINE_USER_ACCESS_KEY_ID }}
@@ -108,18 +111,15 @@ jobs:
           aws-region: ${{ secrets.TF_AWS_REGION }}
 
       - name: Login to Amazon ECR
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
         with:
           mask-password: 'true'
 
       - name: Set up Docker Buildx
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
         uses: docker/setup-buildx-action@v3
 
       - name: Build, tag, and push API image to Amazon ECR
-        if: ${{ github.event_name == 'workflow_dispatch' || steps.api-changes.outputs.api == 'true' }}
         uses: docker/build-push-action@v5
         with:
           build-args: |
