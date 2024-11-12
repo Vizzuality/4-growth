@@ -24,7 +24,7 @@ jobs:
             api:
               - 'api/**'
               - '.github/workflows/**'
-          base: 'test-0'
+          base: 'test-1'
   
   build_api:
       needs: [detect_changes]
