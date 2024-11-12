@@ -14,14 +14,14 @@ jobs:
       client_changed: ${{ steps.changes.outputs.client }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@4
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@
 
       - name: Detect changes in client and API paths
         uses: dorny/paths-filter@v3
         id: changes
         with:
+          base: 'test-0'
+          initial-fetch-depth: 0
           filters: |
             client:
               - 'client/**'
@@ -29,7 +29,6 @@ jobs:
             api:
               - 'api/**'
               - '.github/workflows/**'
-          base: 'test-0'
 
       - name: Print detected changes
         run: |
