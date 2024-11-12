@@ -2,6 +2,9 @@ name: Test deploy
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - '**'  # Runs on every branch
 
 jobs:  
   detect_changes:
