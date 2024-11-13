@@ -126,7 +126,8 @@ export const usersContract = contract.router({
     query: generateEntityQuerySchema(CustomWidget),
     responses: {
       200: contract.type<ApiPaginationResponse<CustomWidget>>(),
-      400: contract.type<JSONAPIError>(),
+      401: contract.type<JSONAPIError>(),
+      403: contract.type<JSONAPIError>(),
       404: contract.type<JSONAPIError>(),
       500: contract.type<JSONAPIError>(),
     },
@@ -138,6 +139,8 @@ export const usersContract = contract.router({
     responses: {
       200: contract.type<ApiResponse<CustomWidget>>(),
       400: contract.type<JSONAPIError>(),
+      401: contract.type<JSONAPIError>(),
+      403: contract.type<JSONAPIError>(),
       404: contract.type<JSONAPIError>(),
       500: contract.type<JSONAPIError>(),
     },

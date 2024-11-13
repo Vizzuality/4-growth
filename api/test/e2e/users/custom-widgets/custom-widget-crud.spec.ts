@@ -127,24 +127,6 @@ describe('Custom Widgets API', () => {
   });
 
   describe('Read API', () => {
-    it("Shouldn't allow anonymous users to read custom widgets", async () => {
-      // Given
-      await entityMocks.createCustomWidget({
-        name: 'custom-widget',
-        user: { id: testUser.id },
-        widget: { indicator: baseWidget.indicator },
-      });
-
-      // When
-      const res = await testManager
-        .request()
-        .get(`/users/${VALID_UUID}/widgets`);
-
-      // Then
-      expect(res.status).toBe(401);
-      expect(res.body.errors).toBeDefined();
-    });
-
     it('Should allow authenticated users to read their custom widgets', async () => {
       // Given
       await entityMocks.createCustomWidget({
@@ -282,6 +264,73 @@ describe('Custom Widgets API', () => {
 
       // Then
       expect(res.status).toBe(403);
+      expect(res.body.errors).toBeDefined();
+    });
+
+    it("Shouldn't allow authenticated users to read other user's custom widgets by id", async () => {
+      // Given
+      // Other user's custom widgets
+      const { user: otherUser } = await testManager.setUpTestUser({
+        email: '2@test.com',
+      });
+      const createdCustomWidget = await entityMocks.createCustomWidget({
+        name: 'other-user-custom-widget1',
+        user: { id: otherUser.id },
+        widget: { indicator: baseWidget.indicator },
+      });
+
+      // When
+      const res = await testManager
+        .request()
+        .get(`/users/${otherUser.id}/widgets/${createdCustomWidget.id}`)
+        .set('Authorization', `Bearer ${authToken}`);
+
+      // Then
+      expect(res.status).toBe(403);
+      expect(res.body.errors).toBeDefined();
+    });
+
+    it("Shouldn't allow anonymous users to read other user's custom widgets", async () => {
+      // Given
+      // Other user's custom widgets
+      const { user: otherUser } = await testManager.setUpTestUser({
+        email: '2@test.com',
+      });
+      await entityMocks.createCustomWidget({
+        name: 'other-user-custom-widget1',
+        user: { id: otherUser.id },
+        widget: { indicator: baseWidget.indicator },
+      });
+
+      // When
+      const res = await testManager
+        .request()
+        .get(`/users/${otherUser.id}/widgets`);
+
+      // Then
+      expect(res.status).toBe(401);
+      expect(res.body.errors).toBeDefined();
+    });
+
+    it("Shouldn't allow anonymous users to read other user's custom widgets by id", async () => {
+      // Given
+      // Other user's custom widgets
+      const { user: otherUser } = await testManager.setUpTestUser({
+        email: '2@test.com',
+      });
+      const createdCustomWidget = await entityMocks.createCustomWidget({
+        name: 'other-user-custom-widget1',
+        user: { id: otherUser.id },
+        widget: { indicator: baseWidget.indicator },
+      });
+
+      // When
+      const res = await testManager
+        .request()
+        .get(`/users/${otherUser.id}/widgets/${createdCustomWidget.id}`);
+
+      // Then
+      expect(res.status).toBe(401);
       expect(res.body.errors).toBeDefined();
     });
   });
