@@ -55,7 +55,6 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
   const form = useForm<FilterSelectForm>({
     defaultValues: { values: defaultValues, operator: "=" },
   });
-  const selectedValues = form.watch("values");
   const [formItems, setFormitems] = useState<string[]>(allValues);
 
   const fuse = (value: string) => {
@@ -82,9 +81,15 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
   const handleSelectAll = (checked: boolean) => {
     setSelectAll(checked);
     if (checked) {
-      form.setValue("values", allValues);
+      form.setValue("values", allValues, {
+        shouldDirty: true,
+        shouldTouch: true,
+      });
     } else {
-      form.setValue("values", []);
+      form.setValue("values", [], {
+        shouldDirty: true,
+        shouldTouch: true,
+      });
     }
   };
 
@@ -177,7 +182,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
           <div
             className={cn(
               "border-t-bluish-gray-500/35 bg-white p-0.5 pt-2",
-              selectedValues.length === 0 ? "hidden" : "block",
+              form.formState.isDirty ? "block" : "hidden",
             )}
           >
             <Button className="w-full" type="submit">
