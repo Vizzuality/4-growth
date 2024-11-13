@@ -1,9 +1,11 @@
-import ComingSoon from "@/containers/coming-soon";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-blue-900">
-      <ComingSoon />
-    </main>
-  );
+  // Temporary redirect to explore page
+  redirect("/explore");
+  // return (
+  //   <main className="min-h-screen bg-blue-900">
+  //     <ComingSoon />
+  //   </main>
+  // );
 }
