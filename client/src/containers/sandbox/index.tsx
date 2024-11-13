@@ -44,7 +44,11 @@ const Sandbox: FC = () => {
           config={{ menu: { className: "flex flex-col py-4" } }}
         />
       ) : (
-        <NoData icon={<MenuPointer />} className="m-6 gap-6" />
+        <NoData
+          icon={<MenuPointer />}
+          description="Select an indicator to visualize its data."
+          className="m-6 gap-6"
+        />
       )}
     </Card>
   );
