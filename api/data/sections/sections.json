@@ -34,7 +34,7 @@
       {
         "question": "Sector (Agri/Forestry/Both)",
         "indicator": "sector",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 4
       }
@@ -49,35 +49,35 @@
       {
         "question": "Type of stakeholder",
         "indicator": "type-of-stakeholder",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 1
       },
       {
         "question": "Location (Country/Region)",
         "indicator": "location-country-region",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "pie_chart",
         "sectionOrder": 2
       },
       {
         "question": "Primary Area of Operation in agriculture",
         "indicator": "primary-area-of-operation-in-agriculture",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 3
       },
       {
         "question": "Primary Area of Operation in forestry",
         "indicator": "primary-area-of-operation-in-forestry",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 4
       },
       {
         "question": "Organic farming operation",
         "indicator": "organic-farming-operation",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "pie_chart",
         "sectionOrder": 5
       }
@@ -92,7 +92,7 @@
       {
         "question": "Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?",
         "indicator": "governance-model-impact",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "pie_chart",
         "sectionOrder": 1
       },
@@ -121,14 +121,14 @@
       {
         "question": "What type of digital technology has been used for agriculture?",
         "indicator": "technology-type-agriculture",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 2
       },
       {
         "question": "What type of digital technology has been used for forestry?",
         "indicator": "technology-type-forestry",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 3
       },
@@ -145,7 +145,6 @@
         "visualisations": [
           "horizontal_bar_chart",
           "pie_chart",
-          "area_graph",
           "gauge_chart"
         ],
         "defaultVisualization": "horizontal_bar_chart",
@@ -154,14 +153,14 @@
       {
         "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
         "indicator": "primary-functions",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 6
       },
       {
         "question": "What is the adoption level of these technologies?",
         "indicator": "adoption-level",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "pie_chart",
         "sectionOrder": 7
       },
@@ -219,7 +218,7 @@
       {
         "question": "What type of data do you collect?",
         "indicator": "type-of-data-collected",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 2
       },
@@ -247,7 +246,7 @@
       {
         "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
         "indicator": "overall-contribution",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 6
       }
@@ -269,7 +268,7 @@
       {
         "question": "What is the overall social impact of adopting digital technologies?",
         "indicator": "overall-social-impact",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 2
       }
@@ -298,7 +297,7 @@
       {
         "question": "What is the overall economic impact of implementing digital technologies",
         "indicator": "overall-economic-impact",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 3
       }
