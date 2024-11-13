@@ -96,7 +96,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
   const updateWidget = useCallback(async () => {
     const { status } = await client.users.updateCustomWidget.mutation({
       params: {
-        id: widgetId,
+        id: Number(widgetId),
         userId: session?.user.id as string,
       },
       body: {

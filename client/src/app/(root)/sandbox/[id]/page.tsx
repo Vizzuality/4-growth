@@ -1,4 +1,7 @@
+import { redirect } from "next/navigation";
+
 import { dehydrate, Hydrate, QueryClient } from "@tanstack/react-query";
+import { Session } from "next-auth";
 
 import { client, QUERY_OPTIONS } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
@@ -8,8 +11,6 @@ import { auth } from "@/app/auth/api/[...nextauth]/config";
 import Sandbox from "@/containers/sandbox/user-sandbox";
 
 import { getAuthHeader } from "@/utils/auth-header";
-import { redirect } from "next/navigation";
-import { Session } from "next-auth";
 
 async function fetchCustomWidget(id: string, session: Session | null) {
   try {
