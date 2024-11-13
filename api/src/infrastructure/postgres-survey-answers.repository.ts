@@ -126,17 +126,16 @@ export class PostgresSurveyAnswerRepository
     widget: BaseWidgetWithData,
     filterClauseWithParams: FilterClauseWithParams,
   ): Promise<void> {
-    const [whereClauseSql, whereClauseParams] =
-      this.sqlAdapter.addExpressionToFilterClause(filterClauseWithParams, [
-        'question_indicator',
-        '=',
-        widget.indicator,
-      ]);
+    const [filterClause, queryParams] = filterClauseWithParams;
 
+    const newParams = [...queryParams, widget.indicator];
     const totalsSql = `SELECT answer as "key", count(answer)::integer as "count", SUM(COUNT(answer)) OVER ()::integer AS total 
-    FROM ${this.answersTable} ${whereClauseSql} GROUP BY answer ORDER BY answer`;
+    FROM ${this.answersTable} 
+    WHERE survey_id IN (SELECT survey_id FROM ${this.answersTable} ${filterClause}) AND question_indicator = $${newParams.length}
+    GROUP BY answer ORDER BY answer`;
+
     const totalsResult: { key: string; count: number; total: number }[] =
-      await this.dataSource.query(totalsSql, whereClauseParams);
+      await this.dataSource.query(totalsSql, newParams);
 
     const arr: WidgetChartData = [];
     for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {

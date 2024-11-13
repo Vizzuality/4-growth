@@ -126,35 +126,51 @@ describe('Base Widgets', () => {
     expect(returnedWidget).toStrictEqual(createdWidgetWithData);
   });
 
-  it('Should retrieve a widget with its filtered data by its id (indicator)', async () => {
-    // Given
-    const dataSourceManager = testManager.testApp.get(DataSourceManager);
-    await dataSourceManager.loadQuestionIndicatorMap();
-    await dataSourceManager.loadSurveyData(TEST_SURVEYS_DATA_PATH);
-
-    const indicator = 'total-surveys';
-    const createdWidget = await mocks.createBaseWidget({
-      indicator,
-    });
-
-    // When
-    const result = await testManager
-      .request()
-      .get(
-        `/widgets/${indicator}?filters[0][name]=location-country-region&filters[0][operator]==&filters[0][values][0]=Belgium`,
-      );
-
-    const returnedWidget = result.body.data;
-
-    const createdWidgetWithData = {
-      ...ObjectUtils.normalizeDates(createdWidget),
-      data: {
+  it.each([
+    [
+      'total-surveys',
+      '?filters[0][name]=location-country-region&filters[0][operator]==&filters[0][values][0]=Belgium',
+      {
         counter: { value: 2, total: 5 },
       },
-    };
-    // Then
-    expect(returnedWidget).toStrictEqual(createdWidgetWithData);
-  });
+    ],
+    [
+      'type-of-stakeholder',
+      '?filters[0][name]=sector&filters[0][operator]==&filters[0][values][0]=Agriculture',
+      {
+        chart: [
+          { label: 'Farmer/agricultural producers', value: 1, total: 2 },
+          { label: 'Platform provider', value: 1, total: 2 },
+        ],
+      },
+    ],
+  ])(
+    'Should retrieve a widget with its filtered data by its id (indicator)',
+    async (indicator: string, urlParams: string, expectedData: unknown) => {
+      // Given
+      const dataSourceManager = testManager.testApp.get(DataSourceManager);
+      await dataSourceManager.loadQuestionIndicatorMap();
+      await dataSourceManager.loadSurveyData(TEST_SURVEYS_DATA_PATH);
+
+      const createdWidget = await mocks.createBaseWidget({
+        indicator,
+      });
+
+      // When
+      const result = await testManager
+        .request()
+        .get(`/widgets/${indicator}${urlParams}`);
+
+      const returnedWidget = result.body.data;
+
+      const createdWidgetWithData = {
+        ...ObjectUtils.normalizeDates(createdWidget),
+        data: expectedData,
+      };
+      // Then
+      expect(returnedWidget).toStrictEqual(createdWidgetWithData);
+    },
+  );
 
   it.each([
     [
