@@ -34,6 +34,16 @@ const nextConfig = {
     config.ignoreWarnings = warning;
     return config;
   },
+  async redirects() {
+    // Temporary redirect to explore page
+    return [
+      {
+        source: '/',
+        destination: '/explore',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;
