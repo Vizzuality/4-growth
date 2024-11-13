@@ -10,7 +10,7 @@ import CreateWidgetMenu from "@/containers/widget/create-widget";
 import { Card } from "@/components/ui/card";
 
 const Sandbox: FC = () => {
-  const { indicator, visualization, setVisualization, widget } =
+  const { breakdown, indicator, visualization, setVisualization, widget } =
     useSandboxWidget();
   const { filters } = useFilters();
 

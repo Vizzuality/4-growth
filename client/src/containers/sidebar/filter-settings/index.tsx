@@ -8,9 +8,6 @@ import { FilterQueryParam } from "@/hooks/use-filters";
 import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
 
-import { client } from "@/lib/queryClient";
-import { queryKeys } from "@/lib/queryKeys";
-
 const DEFAULT_FILTERS = ["location-country-region", "sector"];
 const DEFAULT_FILTERS_LABEL_MAP: {
   [key: string]: { selected: string; unSelected: string };
