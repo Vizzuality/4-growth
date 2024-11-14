@@ -183,8 +183,8 @@ describe('Base Widgets', () => {
       },
       {
         map: [
-          { country: 'AUT', count: 1 },
-          { country: 'BEL', count: 1 },
+          { country: 'AUT', value: 1 },
+          { country: 'BEL', value: 1 },
         ],
       },
     ],
@@ -199,8 +199,8 @@ describe('Base Widgets', () => {
       },
       {
         map: [
-          { country: 'BEL', count: 1 },
-          { country: 'NLD', count: 1 },
+          { country: 'BEL', value: 1 },
+          { country: 'NLD', value: 1 },
         ],
         chart: [
           {
