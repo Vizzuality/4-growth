@@ -258,47 +258,7 @@ export default function Widget({
           />
           <Map
             // TODO: Remove hardcoded data when api response is available
-            data={{
-              NLD: 1,
-              BEL: 2,
-              GBR: 2,
-              LVA: 2,
-              BGR: 3,
-              SWE: 4,
-              NOR: 2,
-              FIN: 1,
-              GRC: 1,
-              EST: 1,
-              UKR: 1,
-              DNK: 2,
-              POL: 2,
-              MD: 2,
-              ROU: 2,
-              FRA: 5,
-              IRL: 2,
-              ISL: 1,
-              ITA: 3,
-              CHE: 2,
-              ESP: 2,
-              PRT: 1,
-              DEU: 3,
-              RUS: 2,
-              BLR: 1,
-              SVN: 1,
-              SVK: 2,
-              CSK: 3,
-              CZE: 3,
-              LTU: 3,
-              AUT: 4,
-              HRC: 3,
-              BIH: 2,
-              MNE: 1,
-              HRV: 3,
-              ALB: 3,
-              SRB: 4,
-              HUN: 2,
-              MDA: 3,
-            }}
+            data={data.map}
           />
         </Card>
       );
