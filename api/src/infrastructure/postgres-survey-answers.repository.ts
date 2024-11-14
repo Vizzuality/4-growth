@@ -147,7 +147,7 @@ export class PostgresSurveyAnswerRepository
   }
 
   private async addMapDataToWidget(widget: BaseWidgetWithData): Promise<void> {
-    const mapSql = `SELECT country_code as country, COUNT(survey_id)::integer AS "count" 
+    const mapSql = `SELECT country_code as country, COUNT(survey_id)::integer AS "value" 
     FROM ${this.answersTable}
     GROUP BY country_code, question, answer
     HAVING question = $1 AND answer = 'Yes' ORDER BY country_code`;
