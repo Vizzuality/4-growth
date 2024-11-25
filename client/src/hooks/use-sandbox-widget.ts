@@ -21,7 +21,7 @@ function useSandboxWidget() {
       parseAsStringEnum<WidgetVisualizationsType>(VALID_WIDGET_VISUALIZATIONS),
     );
   const { filters } = useFilters();
-  const { data } = client.widgets.getWidget.useQuery(
+  const getWidgetQuery = client.widgets.getWidget.useQuery(
     queryKeys.widgets.one(indicator, filters, breakdown || undefined).queryKey,
     {
       params: { id: indicator },
@@ -32,6 +32,8 @@ function useSandboxWidget() {
     },
     {
       enabled: !!indicator,
+      // No retry to immediately show the final component or we have to add a spinner?
+      retry: 0,
       select: (res) => ({
         ...res.body.data,
         data: normalizeWidgetData(res.body.data.data),
@@ -45,7 +47,7 @@ function useSandboxWidget() {
     breakdown,
     setIndicator,
     setVisualization,
-    widget: data,
+    getWidgetQuery,
   };
 }
 

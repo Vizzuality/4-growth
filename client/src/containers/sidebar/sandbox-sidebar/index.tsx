@@ -16,8 +16,13 @@ import {
 
 const SandboxSidebar: FC = () => {
   const { filters, addFilter, removeFilterValue } = useFilters();
-  const { indicator, visualization, widget, setIndicator, setVisualization } =
-    useSandboxWidget();
+  const {
+    indicator,
+    visualization,
+    getWidgetQuery: { data: widget },
+    setIndicator,
+    setVisualization,
+  } = useSandboxWidget();
 
   return (
     <Accordion
