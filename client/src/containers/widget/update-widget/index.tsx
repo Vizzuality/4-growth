@@ -49,6 +49,13 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
     setOpen(isOpen);
     setShowOverlay(isOpen);
   };
+  const invalidateQueries = useCallback(
+    (widgetId: string) =>
+      queryClient.invalidateQueries(
+        queryKeys.users.userChart(widgetId).queryKey,
+      ),
+    [queryClient],
+  );
 
   const createWidget = useCallback(
     async (name: string) => {
@@ -70,6 +77,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
       });
 
       if (status === 201) {
+        invalidateQueries(widgetId);
         handleOnOpenChange(false);
         toast({
           description: (
@@ -90,7 +98,16 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
         });
       }
     },
-    [visualization, indicator, session?.accessToken, session?.user.id, toast],
+    [
+      visualization,
+      indicator,
+      filters,
+      session?.accessToken,
+      session?.user.id,
+      toast,
+      invalidateQueries,
+      router,
+    ],
   );
 
   const updateWidget = useCallback(async () => {
@@ -110,9 +127,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
     });
 
     if (status === 200) {
-      queryClient.invalidateQueries(
-        queryKeys.users.userChart(widgetId).queryKey,
-      );
+      invalidateQueries(widgetId);
       handleOnOpenChange(false);
       toast({
         description: "Your chart has been successfully updated",
@@ -123,7 +138,16 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
         description: "Something went wrong updating the widget.",
       });
     }
-  }, [session?.accessToken, session?.user.id, toast]);
+  }, [
+    widgetId,
+    visualization,
+    indicator,
+    filters,
+    session?.accessToken,
+    session?.user.id,
+    toast,
+    invalidateQueries,
+  ]);
 
   return (
     <Popover onOpenChange={handleOnOpenChange} open={open}>
