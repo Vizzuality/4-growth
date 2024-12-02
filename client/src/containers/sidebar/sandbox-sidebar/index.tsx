@@ -4,6 +4,7 @@ import useFilters from "@/hooks/use-filters";
 import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
 import FilterSettings from "@/containers/sidebar/filter-settings";
+import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filters-button";
 import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import VisualizationSelector from "@/containers/sidebar/visualization-selector";
 
@@ -47,7 +48,10 @@ const SandboxSidebar: FC = () => {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="sandbox-filters">
-        <AccordionTrigger>Filters</AccordionTrigger>
+        <div className="relative">
+          <AccordionTrigger>Filters</AccordionTrigger>
+          <ClearFiltersButton />
+        </div>
         <AccordionContent className="py-3.5">
           <FilterSettings
             filterQueryParams={filters}

@@ -9,6 +9,7 @@ import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 import { FilterQueryParam } from "@/hooks/use-filters";
 
 import FilterSettings from "@/containers/sidebar/filter-settings";
+import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filters-button";
 import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import {
   sandboxFiltersAtom,
@@ -79,7 +80,10 @@ const UserSandboxSidebar: FC = () => {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="sandbox-filters">
-        <AccordionTrigger>Filters</AccordionTrigger>
+        <div className="relative">
+          <AccordionTrigger>Filters</AccordionTrigger>
+          <ClearFiltersButton />
+        </div>
         <AccordionContent className="py-3.5">
           <FilterSettings
             filterQueryParams={filters}

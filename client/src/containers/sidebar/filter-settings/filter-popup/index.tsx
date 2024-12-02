@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { useSetAtom } from "jotai";
+import { CircleXIcon } from "lucide-react";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
@@ -35,18 +36,16 @@ const FilterItemButton: FC<{
   onClick: (value: string) => void;
 }> = ({ value, onClick }) => {
   return (
-    <>
+    <span className="inline-flex items-end gap-2">
       <span className="font-bold">{value}&nbsp;</span>
-      <span
-        className="h-full p-0 align-text-bottom text-xs transition-all hover:font-extrabold"
+      <CircleXIcon
+        className="h-4 w-4 transition-colors hover:text-white/80"
         onClick={(e) => {
           e.stopPropagation();
           onClick(value);
         }}
-      >
-        <span>x</span>
-      </span>
-    </>
+      />
+    </span>
   );
 };
 
