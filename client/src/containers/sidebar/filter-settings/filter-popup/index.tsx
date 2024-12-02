@@ -36,7 +36,7 @@ const FilterItemButton: FC<{
   onClick: (value: string) => void;
 }> = ({ value, onClick }) => {
   return (
-    <span className="inline-flex items-end gap-2">
+    <span className="inline-flex items-center gap-2">
       <span className="font-bold">{value}&nbsp;</span>
       <CircleXIcon
         className="h-4 w-4 transition-colors hover:text-white/80"
