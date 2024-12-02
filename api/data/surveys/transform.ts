@@ -88,6 +88,12 @@ const ensureAllSurveyQuestionsHaveAnswers = (rows) => {
   const surveyQuestionMap = generateSurveQuestionyMap(rows);
 
   for (const [surveyId, questions] of surveyQuestionMap) {
+    if (questions.size !== QUESTIONS.size) {
+      console.log(
+        `survey_id: ${surveyId} has ${questions.size} of ${QUESTIONS.size} questions answered`,
+      );
+    }
+
     const countryCode = rows.find(
       (row) => row.surveyId === surveyId,
     ).countryCode;
@@ -100,6 +106,15 @@ const ensureAllSurveyQuestionsHaveAnswers = (rows) => {
           answer: 'N/A',
           countryCode,
         });
+      }
+    }
+
+    // Search for questions that are not in the QUESTIONS set
+    for (const question of questions) {
+      if (QUESTIONS.has(question) === false) {
+        console.error(
+          `survey_id: ${surveyId} has an unexpected question: ${question}`,
+        );
       }
     }
   }
@@ -170,6 +185,7 @@ const main = async () => {
     (row) => row['surveyId'],
   );
 
+  let skippedSurveys = 0;
   let transformedAnswers = [];
   for (const group of answersGroupByAnswers) {
     let answers = group.toArray();
@@ -177,7 +193,10 @@ const main = async () => {
       (e) => e['question'] === 'Location (country/region)',
     );
     if (countryAnswer === undefined) {
-      throw new Error('Country answer not found');
+      console.error(
+        `survey_id: ${answers[0].surveyId} was skipped because "Location (country/region)" question has no answer (${(++skippedSurveys + '').padStart(3, '0')})`,
+      );
+      continue;
     }
 
     answers = answers.map((e) => {
@@ -202,6 +221,10 @@ const main = async () => {
     `${__dirname}/surveys.json`,
     JSON.stringify(transformedAnswers, null, 2),
     'utf-8',
+  );
+
+  console.log(
+    `\nCreated file ${__dirname}/surveys.json and it contains data for ${answersGroupByAnswers.count() - skippedSurveys} surveys.`,
   );
 };
 

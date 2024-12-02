@@ -623,7 +623,7 @@
     },
     {
       "Categorical answers.ID": 1956796,
-      "Categorical answers.Name": "Automated machinery and robotics"
+      "Categorical answers.Name": "Automated machinery and robotics 1"
     },
     {
       "Categorical answers.ID": 1956797,
@@ -802,12 +802,24 @@
       "Categorical answers.Name": "Desktop computers"
     },
     {
+      "Categorical answers.ID": 1989786,
+      "Categorical answers.Name": "Agricultural information management systems"
+    },
+    {
       "Categorical answers.ID": 1989787,
       "Categorical answers.Name": "Better connectivity/Infrastructure"
     },
     {
+      "Categorical answers.ID": 1989789,
+      "Categorical answers.Name": "Cloud-based platforms"
+    },
+    {
       "Categorical answers.ID": 1989791,
       "Categorical answers.Name": "Data warehouses"
+    },
+    {
+      "Categorical answers.ID": 1989830,
+      "Categorical answers.Name": "Geographic Information Systems (GIS)"
     },
     {
       "Categorical answers.ID": 1989836,
@@ -815,17 +827,45 @@
     },
     {
       "Categorical answers.ID": 1989839,
-      "Categorical answers.Name": "Other namely"
+      "Categorical answers.Name": "Other namely 1"
     },
     {
       "Categorical answers.ID": 1989842,
       "Categorical answers.Name": "More income/Access to funding"
     },
     {
+      "Categorical answers.ID": 1989854,
+      "Categorical answers.Name": "Standardisation efforts/Regulatory support"
+    },
+    {
       "Categorical answers.ID": 1996151,
       "Categorical answers.Name": "No categorical answer"
+    },
+    {
+      "Categorical answers.ID": 1997628,
+      "Categorical answers.Name": "Yes, e-mail:"
+    },
+    {
+      "Categorical answers.ID": 1997649,
+      "Categorical answers.Name": "NGO"
+    },
+    {
+      "Categorical answers.ID": 1997650,
+      "Categorical answers.Name": "Advisory group"
+    },
+    {
+      "Categorical answers.ID": 1997651,
+      "Categorical answers.Name": "Improved management"
+    },
+    {
+      "Categorical answers.ID": 1997676,
+      "Categorical answers.Name": "Other namely"
+    },
+    {
+      "Categorical answers.ID": 1997677,
+      "Categorical answers.Name": "Automated machinery and robotics"
     }
   ],
-  "ResultCount": 205,
+  "ResultCount": 215,
   "Visualizations": []
 }
