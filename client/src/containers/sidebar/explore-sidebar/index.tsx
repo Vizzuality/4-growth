@@ -3,6 +3,7 @@ import { FC } from "react";
 import useFilters from "@/hooks/use-filters";
 
 import FilterSettings from "@/containers/sidebar/filter-settings";
+import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filters-button";
 import SectionsNav from "@/containers/sidebar/sections-nav";
 
 import {
@@ -23,7 +24,10 @@ const ExploreSidebar: FC = () => {
       defaultValue={["explore-sections"]}
     >
       <AccordionItem value="explore-filters">
-        <AccordionTrigger>Filters</AccordionTrigger>
+        <div className="relative">
+          <AccordionTrigger>Filters</AccordionTrigger>
+          <ClearFiltersButton />
+        </div>
         <AccordionContent className="py-3.5">
           <FilterSettings
             filterQueryParams={filters}
