@@ -80,7 +80,14 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
         });
       }
     },
-    [session?.accessToken, session?.user.id, toast],
+    [
+      session?.accessToken,
+      session?.user.id,
+      visualization,
+      indicator,
+      filters,
+      toast,
+    ],
   );
 
   if (!session) {
