@@ -3,12 +3,16 @@ import { FC } from "react";
 import Link from "next/link";
 
 import UserMenu from "./user";
+import { usePathname } from "next/navigation";
 
 export const classes = {
   link: "block px-4 py-2 hover:bg-muted transition-colors",
 };
 
 const Menu: FC = () => {
+  const pathname = usePathname();
+  const showLinks = !/^\/(?:explore|sandbox)/.test(pathname);
+
   return (
     <nav className="min-w-[150px]">
       <ul className="overflow-hidden py-2">
@@ -23,6 +27,20 @@ const Menu: FC = () => {
             4Growth project site
           </a>
         </li>
+        {showLinks && (
+          <>
+            <li>
+              <Link href="/" className={classes.link}>
+                Explore
+              </Link>
+            </li>
+            <li>
+              <Link href="/sandbox" className={classes.link}>
+                Sandbox
+              </Link>
+            </li>
+          </>
+        )}
         <li>
           <Link href="/about" className={classes.link}>
             About

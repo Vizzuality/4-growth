@@ -12,17 +12,20 @@ import {
 } from "@/components/ui/popover";
 
 import Menu from "./menu";
+import Link from "next/link";
 
 const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="flex items-center justify-between rounded-2xl bg-accent p-4">
-      <div className="h-[72px] w-[160px] space-y-3 bg-logo bg-no-repeat">
-        <h1 className="overflow-hidden whitespace-nowrap indent-[100%]">
-          4Growth Visualisation Platform
-        </h1>
-      </div>
+      <Link href="/sandbox">
+        <div className="h-[72px] w-[160px] space-y-3 bg-logo bg-no-repeat">
+          <h1 className="overflow-hidden whitespace-nowrap indent-[100%]">
+            4Growth Visualisation Platform
+          </h1>
+        </div>
+      </Link>
 
       {isOpen && <Overlay />}
 
