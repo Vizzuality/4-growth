@@ -6,6 +6,7 @@ import Title from "@/components/ui/title";
 
 interface WidgetHeaderProps {
   indicator: string;
+  responseRate: number;
   question?: string;
   menu?: React.ReactNode;
   className?: string;
@@ -13,6 +14,7 @@ interface WidgetHeaderProps {
 
 const WidgetHeader: FC<WidgetHeaderProps> = ({
   indicator,
+  responseRate,
   question,
   menu,
   className,
@@ -23,7 +25,10 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
         <Title as="h3" className="text-base">
           {indicator}
         </Title>
-        {menu}
+        <div className="flex items-center gap-2">
+          <p className="text-xs">{responseRate}%</p>
+          {menu}
+        </div>
       </div>
       {question && <p className="text-xs text-muted-foreground">{question}</p>}
     </header>

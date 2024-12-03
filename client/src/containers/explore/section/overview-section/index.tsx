@@ -25,6 +25,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
           indicator={widgets[0].indicator}
           question={widgets[0].question}
           data={widgets[0].data}
+          responseRate={widgets[0].responseRate}
           config={{
             menu: { className: "flex flex-col gap-6 py-4" },
           }}
@@ -37,6 +38,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
               indicator={widgets[1].indicator}
               question={widgets[1].question}
               data={widgets[1].data}
+              responseRate={widgets[1].responseRate}
               config={{ singleValue: { fill: "bg-secondary" } }}
             />
             <Widget
@@ -44,6 +46,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
               indicator={widgets[2].indicator}
               question={widgets[2].question}
               data={widgets[2].data}
+              responseRate={widgets[2].responseRate}
               config={{ singleValue: { fill: "bg-accent" } }}
             />
           </div>
@@ -52,6 +55,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
               visualization={widgets[3].defaultVisualization}
               indicator={widgets[3].indicator}
               data={widgets[3].data}
+              responseRate={widgets[3].responseRate}
               config={{ horizontalBarChart: { barSize: 47 } }}
             />
           </Card>

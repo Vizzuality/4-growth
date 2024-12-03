@@ -5,7 +5,10 @@ import { useEffect, useRef } from "react";
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
 
-import { normalizeWidgetData } from "@/lib/normalize-widget-data";
+import {
+  getResponseRate,
+  normalizeWidgetData,
+} from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
@@ -28,6 +31,7 @@ export default function Explore() {
           baseWidgets: d.baseWidgets?.map((w) => ({
             ...w,
             data: normalizeWidgetData(w.data),
+            responseRate: getResponseRate(w.data),
           })),
         })),
     },
@@ -129,6 +133,7 @@ export default function Explore() {
                   indicator={w.indicator}
                   question={w.question}
                   data={w.data}
+                  responseRate={w.responseRate}
                   className="col-span-1 last:odd:col-span-2"
                   config={{
                     menu: { className: "flex flex-col gap-6 py-4" },

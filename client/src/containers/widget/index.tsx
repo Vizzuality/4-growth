@@ -49,6 +49,7 @@ export interface WidgetProps {
   indicator: string;
   data: BaseWidgetWithData["data"];
   visualization: WidgetVisualizationsType;
+  responseRate: number;
   breakdown?: string;
   visualisations?: WidgetVisualizationsType[];
   question?: string;
@@ -68,6 +69,7 @@ export interface WidgetProps {
 
 export default function Widget({
   indicator,
+  responseRate,
   visualization,
   visualisations,
   breakdown,
@@ -131,6 +133,7 @@ export default function Widget({
           indicator={indicator}
           question={question}
           menu={menuComponent}
+          responseRate={responseRate}
         />
         <NoData />
       </Card>
@@ -146,7 +149,12 @@ export default function Widget({
           className,
         )}
       >
-        <WidgetHeader indicator={indicator} question={question} menu={menu} />
+        <WidgetHeader
+          indicator={indicator}
+          question={question}
+          menu={menu}
+          responseRate={responseRate}
+        />
         <Breakdown data={data.breakdown} />
       </Card>
     );
@@ -176,6 +184,7 @@ export default function Widget({
             indicator={indicator}
             question={question}
             menu={menuComponent}
+            responseRate={responseRate}
           />
           <HorizontalBarChart
             data={data.chart}
@@ -196,6 +205,7 @@ export default function Widget({
             indicator={indicator}
             question={question}
             menu={menuComponent}
+            responseRate={responseRate}
           />
           <PieChart
             data={data.chart}
@@ -219,6 +229,7 @@ export default function Widget({
             question={question}
             className="t-8 absolute left-0 z-20 w-full p-8"
             menu={menuComponent}
+            responseRate={responseRate}
           />
           <AreaChart indicator={indicator} data={data.chart} />
         </Card>
@@ -255,6 +266,7 @@ export default function Widget({
             question={question}
             className="t-8 absolute left-0 z-20 w-full p-8"
             menu={menuComponent}
+            responseRate={responseRate}
           />
           <Map
             // TODO: Remove hardcoded data when api response is available
