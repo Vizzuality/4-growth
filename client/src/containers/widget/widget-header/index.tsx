@@ -5,6 +5,12 @@ import { ClipboardCheckIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import Title from "@/components/ui/title";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface WidgetHeaderProps {
   indicator: string;
@@ -28,10 +34,20 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
           {indicator}
         </Title>
         <div className="flex items-center gap-2">
-          <p className="inline-flex items-center gap-1 text-2xs font-medium text-muted-foreground">
-            <ClipboardCheckIcon className="h-4 w-4" strokeWidth={1.5} />
-            <span>{responseRate}%</span>
-          </p>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <p className="inline-flex items-center gap-1 rounded-full bg-primary p-2 text-2xs font-medium text-muted-foreground">
+                  <ClipboardCheckIcon className="h-4 w-4" strokeWidth={1.5} />
+                  <span>{responseRate}%</span>
+                </p>
+              </TooltipTrigger>
+              <TooltipContent className="rounded-full border-none bg-background px-2 py-1 text-xs text-foreground">
+                <p>Response rate</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           {menu}
         </div>
       </div>
