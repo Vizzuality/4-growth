@@ -147,6 +147,10 @@ jobs:
   deploy:
     name: Deploy Services to Amazon EBS
     needs: [ set_environment, build_client, build_api ]
+    if: >
+      (needs.build_client.result == 'success' && needs.build_api.result == 'success') ||
+      (needs.build_client.result == 'success' && needs.build_api.result == 'skipped') ||
+      (needs.build_client.result == 'skipped' && needs.build_api.result == 'success')
     runs-on: ubuntu-latest
     environment:
       name: ${{ needs.set_environment.outputs.env_name }}
