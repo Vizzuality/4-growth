@@ -4,7 +4,10 @@ import {
 } from "@shared/dto/widgets/widget-visualizations.constants";
 import { parseAsStringEnum, useQueryState } from "nuqs";
 
-import { normalizeWidgetData } from "@/lib/normalize-widget-data";
+import {
+  getResponseRate,
+  normalizeWidgetData,
+} from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
@@ -37,6 +40,7 @@ function useSandboxWidget() {
       select: (res) => ({
         ...res.body.data,
         data: normalizeWidgetData(res.body.data.data),
+        responseRate: getResponseRate(res.body.data.data),
       }),
     },
   );

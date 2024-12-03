@@ -38,6 +38,7 @@ const Sandbox: FC = () => {
       <Widget
         breakdown={breakdown || undefined}
         indicator={widget.indicator}
+        responseRate={widget.responseRate}
         question={widget.question}
         visualization={visualization || widget.defaultVisualization}
         data={widget.data}

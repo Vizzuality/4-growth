@@ -6,7 +6,7 @@ import Title from "@/components/ui/title";
 
 interface WidgetHeaderProps {
   indicator: string;
-  responseRate: number;
+  responseRate?: number;
   question?: string;
   menu?: React.ReactNode;
   className?: string;
