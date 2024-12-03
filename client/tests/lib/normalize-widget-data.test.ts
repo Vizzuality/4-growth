@@ -1,4 +1,7 @@
-import { normalizeWidgetData } from "@/lib/normalize-widget-data";
+import {
+  getResponseRate,
+  normalizeWidgetData,
+} from "@/lib/normalize-widget-data";
 import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
 
 describe("normalizeWidgetData", () => {
@@ -40,6 +43,21 @@ describe("normalizeWidgetData", () => {
     ]);
   });
 
+  it("should filter out N/A entries", () => {
+    const input: WidgetData = {
+      chart: [
+        { label: "A", value: 40, total: 100 },
+        { label: "N/A", value: 20, total: 100 },
+        { label: "B", value: 40, total: 100 },
+      ],
+    };
+
+    const result = normalizeWidgetData(input);
+
+    expect(result.chart).toHaveLength(2);
+    expect(result.chart?.find((item) => item.label === "N/A")).toBeUndefined();
+  });
+
   it("should not modify counter data", () => {
     const input: WidgetData = {
       counter: { value: 10, total: 20 },
@@ -48,5 +66,54 @@ describe("normalizeWidgetData", () => {
     const result = normalizeWidgetData(input);
 
     expect(result.counter).toEqual({ value: 10, total: 20 });
+  });
+});
+
+describe("getResponseRate", () => {
+  it("should calculate response rate correctly", () => {
+    const data: WidgetData = {
+      chart: [
+        { label: "A", value: 40, total: 100 },
+        { label: "B", value: 30, total: 100 },
+        { label: "N/A", value: 30, total: 100 },
+      ],
+    };
+
+    const result = getResponseRate(data);
+
+    expect(result).toBe(70);
+  });
+
+  it("should return 0 when chart data is empty", () => {
+    const data: WidgetData = {
+      chart: [],
+    };
+
+    const result = getResponseRate(data);
+
+    expect(result).toBe(0);
+  });
+
+  it("should handle case when N/A is not present", () => {
+    const data: WidgetData = {
+      chart: [
+        { label: "A", value: 60, total: 100 },
+        { label: "B", value: 40, total: 100 },
+      ],
+    };
+
+    const result = getResponseRate(data);
+
+    expect(result).toBe(100);
+  });
+
+  it("should handle case when only N/A is present", () => {
+    const data: WidgetData = {
+      chart: [{ label: "N/A", value: 50, total: 50 }],
+    };
+
+    const result = getResponseRate(data);
+
+    expect(result).toBe(0);
   });
 });

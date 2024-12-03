@@ -29,6 +29,20 @@ function normalizeWidgetData(widgetData: WidgetData): WidgetData {
 }
 
 /**
+ * Calculates the response rate in percentage
+ */
+function getResponseRate(data: WidgetData) {
+  if (!data.chart || data.chart.length === 0) return 0;
+
+  const total = data.chart[0].total;
+  const notAnsweredTotal =
+    data.chart.find((c) => c.label === "N/A")?.value || 0;
+  const respondedTotal = total - notAnsweredTotal;
+
+  return Math.round((respondedTotal / total) * 100);
+}
+
+/**
  * Calculates percentage values for map data based on total count
  */
 function normalizeMapData(mapData: WidgetMapData): WidgetMapData {
@@ -48,13 +62,23 @@ function calculateMapTotal(mapData: WidgetMapData): number {
 }
 
 /**
- * Calculates percentage values for chart data using individual totals
+ * Calculates percentage values for chart data using the total value
+ * without N/A, plus filters out N/A from the array
  */
 function normalizeChartData(chartData: WidgetChartData): WidgetChartData {
-  return chartData.map((entry) => ({
-    ...entry,
-    value: calculatePercentage(entry.value, entry.total),
-  }));
+  const totalWithoutNA = chartData.reduce(
+    (acc, curr) => (curr.label !== "N/A" ? acc + curr.value : acc),
+    0,
+  );
+  return chartData
+    .map((entry) => ({
+      ...entry,
+      value: calculatePercentage(
+        entry.value,
+        totalWithoutNA === 0 ? entry.total : totalWithoutNA,
+      ),
+    }))
+    .filter((c) => c.label !== "N/A");
 }
 
 /**
@@ -64,4 +88,4 @@ function calculatePercentage(value: number, total: number): number {
   return Math.round((value / total) * 100);
 }
 
-export { normalizeWidgetData };
+export { normalizeWidgetData, getResponseRate };
