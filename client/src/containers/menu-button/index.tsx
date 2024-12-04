@@ -35,6 +35,7 @@ export default function MenuButton({
         <Button
           type="button"
           className="flex h-8 w-8 items-center rounded-full bg-navy-700 p-2 transition-colors hover:bg-navy-800"
+          data-testid="menu-button"
         >
           <EllipsisIcon />
         </Button>

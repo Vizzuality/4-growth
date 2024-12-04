@@ -67,9 +67,11 @@ describe("Widget", () => {
   const mockProps: WidgetProps = {
     indicator: "Test Indicator",
     question: "Test Question",
+    responseRate: 80,
     visualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
     data: { chart: [{ label: "Test", value: 100, total: 100 }] },
   };
+  const menuButtonTestId = "menu-button";
 
   Object.values(WIDGET_VISUALIZATIONS).forEach((visualizationType) => {
     it(`renders the correct visualization for ${visualizationType}`, () => {
@@ -91,13 +93,13 @@ describe("Widget", () => {
   it("Hides the menu if no menuItems or visualisations are passed", () => {
     render(<Widget {...mockProps} />);
 
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(screen.queryByTestId(menuButtonTestId)).not.toBeInTheDocument();
   });
 
   it("renders the customize chart button with the correct href value", () => {
     render(<Widget {...mockProps} showCustomizeWidgetButton />);
 
-    const menuButton = screen.getByRole("button");
+    const menuButton = screen.getByTestId(menuButtonTestId);
     fireEvent.click(menuButton);
 
     expect(screen.getByRole("link")).toHaveAttribute(
@@ -120,7 +122,7 @@ describe("Widget", () => {
       screen.getByTestId(WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART),
     ).toBeInTheDocument();
 
-    const menuButton = screen.getByRole("button");
+    const menuButton = screen.getByTestId(menuButtonTestId);
     fireEvent.click(menuButton);
 
     const pieChartOption = await screen.findByText("Show as a pie chart");
@@ -147,7 +149,7 @@ describe("Widget", () => {
       .closest('div[class*="relative"]');
     expect(card).not.toHaveClass("z-50");
 
-    const menuButton = screen.getByRole("button");
+    const menuButton = screen.getByTestId(menuButtonTestId);
     fireEvent.click(menuButton);
 
     await waitFor(() => {
@@ -194,5 +196,14 @@ describe("Widget", () => {
     render(<Widget {...mockProps} data={{ chart: [] }} />);
 
     expect(screen.getByTestId("no-data")).toBeInTheDocument();
+  });
+
+  it("renders the correct response rate value", () => {
+    render(<Widget {...mockProps} />);
+
+    const ele = screen.getByTestId("response-rate");
+
+    expect(ele.firstChild).toHaveClass("lucide-clipboard-check");
+    expect(ele).toHaveTextContent(`${mockProps.responseRate}%`);
   });
 });
