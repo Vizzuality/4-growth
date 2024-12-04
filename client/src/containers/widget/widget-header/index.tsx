@@ -35,9 +35,12 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
         </Title>
         <div className="flex items-center gap-2">
           <TooltipProvider>
-            <Tooltip>
+            <Tooltip delayDuration={350}>
               <TooltipTrigger>
-                <p className="inline-flex items-center gap-1 rounded-full bg-primary p-2 text-2xs font-medium text-muted-foreground">
+                <p
+                  data-testid="response-rate"
+                  className="inline-flex items-center gap-1 rounded-full bg-primary p-2 text-2xs font-medium text-muted-foreground"
+                >
                   <ClipboardCheckIcon className="h-4 w-4" strokeWidth={1.5} />
                   <span>{responseRate}%</span>
                 </p>
