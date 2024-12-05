@@ -37,4 +37,15 @@ test.describe('Authentication', () => {
     await page.waitForURL('/profile');
     await expect(page.locator('input[type="email"]')).toHaveValue(user.email);
   });
+
+  test('a user tries to sign in with invalid credentials', async ({ page }) => {
+    await page.goto('/auth/signin');
+
+    await page.getByPlaceholder('Enter your email').fill('invalid@email.com');
+    await page.getByPlaceholder('*******').fill('12345678');
+    await page.getByRole('button', { name: 'Log in' }).click();
+
+    const errorMessage = page.getByText('Invalid credentials');
+    await expect(errorMessage).toBeVisible();
+  });
 });
