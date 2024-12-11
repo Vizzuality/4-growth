@@ -19,7 +19,7 @@ const Header: FC = () => {
 
   return (
     <header className="flex items-center justify-between rounded-2xl bg-accent p-4">
-      <Link href="/sandbox">
+      <Link href="/explore">
         <div className="h-[72px] w-[160px] space-y-3 bg-logo bg-no-repeat">
           <h1 className="overflow-hidden whitespace-nowrap indent-[100%]">
             4Growth Visualisation Platform
