@@ -35,11 +35,9 @@ function getResponseRate(data: WidgetData) {
   if (!data.chart || data.chart.length === 0) return 0;
 
   const total = data.chart[0].total;
-  const notAnsweredTotal =
-    data.chart.find((c) => c.label === "N/A")?.value || 0;
-  const respondedTotal = total - notAnsweredTotal;
+  const totalWithoutNA = calculateTotalWithoutNA(data.chart);
 
-  return Math.round((respondedTotal / total) * 100);
+  return Math.round((totalWithoutNA / total) * 100);
 }
 
 /**
@@ -62,14 +60,22 @@ function calculateMapTotal(mapData: WidgetMapData): number {
 }
 
 /**
+ * Calculates the total sum of values without N/A values
+ */
+function calculateTotalWithoutNA(chartData: WidgetChartData): number {
+  return chartData.reduce(
+    (acc, curr) => (curr.label !== "N/A" ? acc + curr.value : acc),
+    0,
+  );
+}
+
+/**
  * Calculates percentage values for chart data using the total value
  * without N/A, plus filters out N/A from the array
  */
 function normalizeChartData(chartData: WidgetChartData): WidgetChartData {
-  const totalWithoutNA = chartData.reduce(
-    (acc, curr) => (curr.label !== "N/A" ? acc + curr.value : acc),
-    0,
-  );
+  const totalWithoutNA = calculateTotalWithoutNA(chartData);
+
   return chartData
     .map((entry) => ({
       ...entry,
