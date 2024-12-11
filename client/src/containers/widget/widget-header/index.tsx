@@ -33,8 +33,8 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
         <Title as="h3" className="text-base">
           {indicator}
         </Title>
-        {typeof responseRate === "number" && (
-          <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
+          {typeof responseRate === "number" && (
             <TooltipProvider>
               <Tooltip delayDuration={350}>
                 <TooltipTrigger>
@@ -51,9 +51,9 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-          </div>
-        )}
-        {menu}
+          )}
+          {menu}
+        </div>
       </div>
       {question && <p className="text-xs text-muted-foreground">{question}</p>}
     </header>
