@@ -149,12 +149,7 @@ export default function Widget({
           className,
         )}
       >
-        <WidgetHeader
-          indicator={indicator}
-          question={question}
-          menu={menu}
-          responseRate={responseRate}
-        />
+        <WidgetHeader indicator={indicator} question={question} menu={menu} />
         <Breakdown data={data.breakdown} />
       </Card>
     );
