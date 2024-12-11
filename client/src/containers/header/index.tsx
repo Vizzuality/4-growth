@@ -2,6 +2,8 @@
 
 import { FC, useState } from "react";
 
+import Link from "next/link";
+
 import { Menu as MenuIcon } from "lucide-react";
 
 import { Overlay } from "@/components/ui/overlay";
@@ -12,7 +14,6 @@ import {
 } from "@/components/ui/popover";
 
 import Menu from "./menu";
-import Link from "next/link";
 
 const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);

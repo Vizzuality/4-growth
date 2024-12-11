@@ -19,10 +19,12 @@ function normalizeWidgetData(widgetData: WidgetData): WidgetData {
   }
 
   if (result.breakdown) {
-    result.breakdown = result.breakdown.map((b) => ({
-      ...b,
-      data: normalizeChartData(b.data),
-    }));
+    result.breakdown = result.breakdown
+      .map((b) => ({
+        ...b,
+        data: normalizeChartData(b.data),
+      }))
+      .filter((d) => d.label !== "N/A");
   }
 
   return result;

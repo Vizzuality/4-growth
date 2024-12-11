@@ -1,9 +1,9 @@
 import { FC } from "react";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import UserMenu from "./user";
-import { usePathname } from "next/navigation";
 
 export const classes = {
   link: "block px-4 py-2 hover:bg-muted transition-colors",
