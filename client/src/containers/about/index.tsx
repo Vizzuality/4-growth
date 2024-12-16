@@ -20,26 +20,29 @@ const About: FC = () => {
             About the platform
           </Title>
           <p className="leading-6 text-slate-300">
-            Lorem ipsum dolor sit amet consectetur. Molestie at leo quam sit.
-            Magna at dui quis sapien volutpat sapien risus dolor. Luctus proin
-            sit vitae lorem nascetur leo. Vitae etiam bibendum at enim nam. Est
-            in sed volutpat diam purus sagittis. Amet nunc dui duis faucibus
-            elit. Dictum aliquam amet sit dictum et dui gravida. Senectus diam
-            ipsum vel placerat est elementum nullam.
+            The 4Growth Visualisation Platform provides key insights into the
+            current and future uptake of digital and data-driven technologies in
+            the agriculture and forestry markets. Through interaction with the
+            platform, users will see where and how different technologies are
+            being implemented in their sectors of choice and allows them to
+            understand how the market is likely to evolve.
           </p>
           <p className="leading-6 text-slate-300">
-            Enim aliquet blandit scelerisque bibendum sit habitant sagittis sem
-            iaculis. Enim at vitae porttitor orci amet in gravida vulputate
-            tempus. Felis et consectetur ut mollis sit vestibulum fames donec.
-            Ut ullamcorper nunc amet tortor. Tortor purus auctor sit tristique.
+            This rich information will illuminate key market trends which can
+            help potential adopters of digital technologies reduce their
+            investment risk and better understand the benefits of technology
+            adoption.
           </p>
           <p className="leading-6 text-slate-300">
-            Neque morbi cras ac accumsan vel tellus justo. In euismod ultrices
-            scelerisque sed. Sed fames elementum nam mauris a. Quis tempus
-            tristique vitae ullamcorper accumsan. Mattis eget fermentum nisl
-            adipiscing venenatis tempus. Neque varius morbi pellentesque amet
-            sagittis. In mi ornare at vitae cras lobortis. Ante magnis nibh leo
-            est volutpat. Elit odio sit euismod risus euismod.
+            The information presented on the platform is derived from analysis
+            which incorporates both &quot;ground truth&quot; data gathered from
+            individual farmers, foresters and technology ecosystem stakeholders
+            all across Europe along with &quot;macro-level&quot; economic data
+            and projections.
+          </p>
+          <p className="leading-6 text-slate-300">
+            This &quot;bottom-up&quot; and &quot;top-down&quot; approach aims to
+            provide a robust and holistic perspective on market modelling.
           </p>
         </Card>
         <Card className="relative order-2 min-h-[275px] bg-[url('/images/fields.avif')] bg-cover bg-center bg-no-repeat p-0 md:min-h-fit" />
