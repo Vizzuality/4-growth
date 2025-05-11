@@ -123,33 +123,44 @@ const ensureAllSurveyQuestionsHaveAnswers = (rows) => {
 const main = async () => {
   const [answersDf, dateDf, questionDf, answerIdDf] = await Promise.all([
     dataForge.fromObject(
-      JSON.parse(await fs.promises.readFile('data/surveys/1318.json', 'utf8'))
-        .Results,
+      JSON.parse(await fs.promises.readFile('data/surveys/Answer.json', 'utf8'))
+        .value,
     ),
     dataForge.fromObject(
-      JSON.parse(await fs.promises.readFile('data/surveys/1320.json', 'utf8'))
-        .Results,
+      JSON.parse(
+        await fs.promises.readFile('data/surveys/Survey_metadata.json', 'utf8'),
+      ).value,
     ),
     dataForge.fromObject(
-      JSON.parse(await fs.promises.readFile('data/surveys/1322.json', 'utf8'))
-        .Results,
+      JSON.parse(
+        await fs.promises.readFile(
+          'data/surveys/Question_hierarchy.json',
+          'utf8',
+        ),
+      ).value,
     ),
     dataForge.fromObject(
-      JSON.parse(await fs.promises.readFile('data/surveys/1323.json', 'utf8'))
-        .Results,
+      JSON.parse(
+        await fs.promises.readFile(
+          'data/surveys/Categorical_Answers.json',
+          'utf8',
+        ),
+      ).value,
     ),
   ]);
 
+  console.log('Number of surveys: ', dateDf.count());
+
   const join1 = answersDf.join(
     dateDf,
-    (leftRow) => leftRow.Value['Answer.Survey per dayID'],
-    (rightRow) => rightRow.Value['Survey per day.ID'],
+    (leftRow) => leftRow.Value['Survey_per_dayID'],
+    (rightRow) => rightRow.Value['Survey_per_dayID'],
     (leftRow, rightRow) => {
       return {
-        surveyId: rightRow.Value['SurveyID.Name'],
-        answerId: leftRow.Value['Answer.ID'],
-        question: leftRow.Value['Answer.Subquestion'],
-        answer: leftRow.Value['Answer.Categorical answer'],
+        surveyId: rightRow.Value['ID'],
+        answerId: leftRow.Value['ID'],
+        question: leftRow.Value['Subquestion'],
+        answer: leftRow.Value['Categorical_Answer'],
       };
     },
   );
@@ -157,10 +168,11 @@ const main = async () => {
   const join2 = join1.join(
     questionDf,
     (leftRow) => leftRow['question'],
-    (rightRow) => rightRow.Value['Question hierarchy.ID'],
+    (rightRow) => rightRow.Value['ID'],
     (leftRow, rightRow) => {
+      leftRow['questionId'] = leftRow['question'];
       const question = StringUtils.capitalizeFirstLetter(
-        rightRow.Value['Question hierarchy.Level2'].replace(/:/g, ''),
+        rightRow.Value['Level2'].replace(/:/g, ''),
       );
       leftRow['question'] = question;
       return leftRow;
@@ -170,15 +182,17 @@ const main = async () => {
   const join3 = join2.join(
     answerIdDf,
     (leftRow) => leftRow['answer'],
-    (rightRow) => rightRow.Value['Categorical answers.ID'],
+    (rightRow) => rightRow.Value['ID'],
     (leftRow, rightRow) => {
-      leftRow['answer'] = rightRow.Value['Categorical answers.Name'];
+      leftRow['answerId'] = leftRow['answer'];
+      const answer = rightRow.Value['Name'].replace(/ \([\w\s]+\)/g, '');
+      leftRow['answer'] = answer;
       return leftRow;
     },
   );
 
   const filteredAnswers = join3.where(
-    (row) => row['answer'] !== 'No categorical answer',
+    (row) => row['answer'].startsWith('No categorical answer') === false,
   );
 
   const answersGroupByAnswers = filteredAnswers.groupBy(

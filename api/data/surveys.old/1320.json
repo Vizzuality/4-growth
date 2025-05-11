@@ -1,0 +1,392 @@
+{
+  "ParseQueryResult": null,
+  "ResultHeaders": [
+    "Survey per day.ID",
+    "SurveyID.Name",
+    "Dates.ID"
+  ],
+  "Results": [
+    {
+      "Survey per day.ID": 6,
+      "SurveyID.Name": "R_2eKIDqs0Vsyj0qM",
+      "Dates.ID": 22511
+    },
+    {
+      "Survey per day.ID": 7,
+      "SurveyID.Name": "R_2hbsGDfZSDyw8BX",
+      "Dates.ID": 22512
+    },
+    {
+      "Survey per day.ID": 8,
+      "SurveyID.Name": "R_2XckmVyZ44klhUe",
+      "Dates.ID": 22511
+    },
+    {
+      "Survey per day.ID": 9,
+      "SurveyID.Name": "R_84qILa9AvSY5qCB",
+      "Dates.ID": 22514
+    },
+    {
+      "Survey per day.ID": 10,
+      "SurveyID.Name": "R_8OHmvlDNp8BXNAg",
+      "Dates.ID": 22514
+    },
+    {
+      "Survey per day.ID": 11,
+      "SurveyID.Name": "R_237fhQlTij29Ypr",
+      "Dates.ID": 22520
+    },
+    {
+      "Survey per day.ID": 12,
+      "SurveyID.Name": "R_2eQAYavL6HGbP5g",
+      "Dates.ID": 22528
+    },
+    {
+      "Survey per day.ID": 13,
+      "SurveyID.Name": "R_2ILD0P4EhTsH1Ke",
+      "Dates.ID": 22518
+    },
+    {
+      "Survey per day.ID": 14,
+      "SurveyID.Name": "R_2n29o9qPlCJr00u",
+      "Dates.ID": 22513
+    },
+    {
+      "Survey per day.ID": 15,
+      "SurveyID.Name": "R_2ndzOgcqO0Si3yY",
+      "Dates.ID": 22521
+    },
+    {
+      "Survey per day.ID": 16,
+      "SurveyID.Name": "R_2NoEUKXdLzPmOGZ",
+      "Dates.ID": 22520
+    },
+    {
+      "Survey per day.ID": 17,
+      "SurveyID.Name": "R_2OQcBs6WYHpC6fz",
+      "Dates.ID": 22518
+    },
+    {
+      "Survey per day.ID": 18,
+      "SurveyID.Name": "R_2OVJceI9xVSpSrG",
+      "Dates.ID": 22522
+    },
+    {
+      "Survey per day.ID": 19,
+      "SurveyID.Name": "R_2Pw1owKZ8Xwiw2M",
+      "Dates.ID": 22532
+    },
+    {
+      "Survey per day.ID": 20,
+      "SurveyID.Name": "R_2Q4KCNbsESAwQ3B",
+      "Dates.ID": 22511
+    },
+    {
+      "Survey per day.ID": 21,
+      "SurveyID.Name": "R_2RWcqkQTOJs0A5V",
+      "Dates.ID": 22522
+    },
+    {
+      "Survey per day.ID": 22,
+      "SurveyID.Name": "R_2tP5Cggo5JfG2Gt",
+      "Dates.ID": 22520
+    },
+    {
+      "Survey per day.ID": 23,
+      "SurveyID.Name": "R_2W0EizAbhTcIFQl",
+      "Dates.ID": 22520
+    },
+    {
+      "Survey per day.ID": 24,
+      "SurveyID.Name": "R_845EMyR320fOI9H",
+      "Dates.ID": 22519
+    },
+    {
+      "Survey per day.ID": 25,
+      "SurveyID.Name": "R_8c7ACQXBFJym9oi",
+      "Dates.ID": 22528
+    },
+    {
+      "Survey per day.ID": 26,
+      "SurveyID.Name": "R_8EAR2EuaiYTJJyD",
+      "Dates.ID": 22522
+    },
+    {
+      "Survey per day.ID": 27,
+      "SurveyID.Name": "R_8kGQxghivtiT44E",
+      "Dates.ID": 22532
+    },
+    {
+      "Survey per day.ID": 28,
+      "SurveyID.Name": "R_8ms0pODCvr2Xybj",
+      "Dates.ID": 22518
+    },
+    {
+      "Survey per day.ID": 29,
+      "SurveyID.Name": "R_8rl0fi6E0MWcwNG",
+      "Dates.ID": 22528
+    },
+    {
+      "Survey per day.ID": 30,
+      "SurveyID.Name": "R_8WVjQdyUjpjE3uq",
+      "Dates.ID": 22534
+    },
+    {
+      "Survey per day.ID": 31,
+      "SurveyID.Name": "R_20DEi0AQb5NDy9q",
+      "Dates.ID": 22557
+    },
+    {
+      "Survey per day.ID": 32,
+      "SurveyID.Name": "R_22xPt8kdfJASd4R",
+      "Dates.ID": 22557
+    },
+    {
+      "Survey per day.ID": 33,
+      "SurveyID.Name": "R_23FjD5BWyysPn7r",
+      "Dates.ID": 22568
+    },
+    {
+      "Survey per day.ID": 34,
+      "SurveyID.Name": "R_23vXB0kE1GrPABq",
+      "Dates.ID": 22560
+    },
+    {
+      "Survey per day.ID": 35,
+      "SurveyID.Name": "R_296zLv8u71SPzII",
+      "Dates.ID": 22560
+    },
+    {
+      "Survey per day.ID": 36,
+      "SurveyID.Name": "R_2cAbRDJwqB20aCO",
+      "Dates.ID": 22546
+    },
+    {
+      "Survey per day.ID": 37,
+      "SurveyID.Name": "R_2d6MgRJso8AdQq6",
+      "Dates.ID": 22569
+    },
+    {
+      "Survey per day.ID": 38,
+      "SurveyID.Name": "R_2e3h3lnlb0q8hj0",
+      "Dates.ID": 22562
+    },
+    {
+      "Survey per day.ID": 39,
+      "SurveyID.Name": "R_2fdV4RabiC8KZ7s",
+      "Dates.ID": 22554
+    },
+    {
+      "Survey per day.ID": 40,
+      "SurveyID.Name": "R_2Fg1A0QXpKynyqx",
+      "Dates.ID": 22549
+    },
+    {
+      "Survey per day.ID": 41,
+      "SurveyID.Name": "R_2hnIhPulhOZ3xAX",
+      "Dates.ID": 22560
+    },
+    {
+      "Survey per day.ID": 42,
+      "SurveyID.Name": "R_2ilfNkJ7RCNeUo4",
+      "Dates.ID": 22550
+    },
+    {
+      "Survey per day.ID": 43,
+      "SurveyID.Name": "R_2jMRW9WvulWTG0m",
+      "Dates.ID": 22588
+    },
+    {
+      "Survey per day.ID": 44,
+      "SurveyID.Name": "R_2KiKqWNJxCVT0P6",
+      "Dates.ID": 22596
+    },
+    {
+      "Survey per day.ID": 45,
+      "SurveyID.Name": "R_2kOlvLNo3MM2ExU",
+      "Dates.ID": 22564
+    },
+    {
+      "Survey per day.ID": 46,
+      "SurveyID.Name": "R_2MFcBM8hThkj2A9",
+      "Dates.ID": 22590
+    },
+    {
+      "Survey per day.ID": 47,
+      "SurveyID.Name": "R_2n7Wm3QLp6BZjyy",
+      "Dates.ID": 22561
+    },
+    {
+      "Survey per day.ID": 48,
+      "SurveyID.Name": "R_2O35vaxsWxEBhys",
+      "Dates.ID": 22560
+    },
+    {
+      "Survey per day.ID": 49,
+      "SurveyID.Name": "R_2oSb2c6bnOPk53P",
+      "Dates.ID": 22557
+    },
+    {
+      "Survey per day.ID": 50,
+      "SurveyID.Name": "R_2PdXcFsTQyGiAOe",
+      "Dates.ID": 22554
+    },
+    {
+      "Survey per day.ID": 51,
+      "SurveyID.Name": "R_2qjRT4gXWBdqKs9",
+      "Dates.ID": 22570
+    },
+    {
+      "Survey per day.ID": 52,
+      "SurveyID.Name": "R_2Qq783MCaBh442R",
+      "Dates.ID": 22554
+    },
+    {
+      "Survey per day.ID": 53,
+      "SurveyID.Name": "R_2tArVifZ1u74nHy",
+      "Dates.ID": 22596
+    },
+    {
+      "Survey per day.ID": 54,
+      "SurveyID.Name": "R_2TvOOAgXg658xF2",
+      "Dates.ID": 22554
+    },
+    {
+      "Survey per day.ID": 55,
+      "SurveyID.Name": "R_2TY0di2dHAvaewV",
+      "Dates.ID": 22585
+    },
+    {
+      "Survey per day.ID": 56,
+      "SurveyID.Name": "R_2UgcMJmMVxVqrIL",
+      "Dates.ID": 22555
+    },
+    {
+      "Survey per day.ID": 57,
+      "SurveyID.Name": "R_2zpVFWfRaYCAaps",
+      "Dates.ID": 22553
+    },
+    {
+      "Survey per day.ID": 58,
+      "SurveyID.Name": "R_83WQR0OZbOY1lWj",
+      "Dates.ID": 22567
+    },
+    {
+      "Survey per day.ID": 59,
+      "SurveyID.Name": "R_86eFGqJFj9Tezs1",
+      "Dates.ID": 22569
+    },
+    {
+      "Survey per day.ID": 60,
+      "SurveyID.Name": "R_8akI2ahNEfwvGSJ",
+      "Dates.ID": 22563
+    },
+    {
+      "Survey per day.ID": 61,
+      "SurveyID.Name": "R_8Bi25rNlKM1mMXD",
+      "Dates.ID": 22558
+    },
+    {
+      "Survey per day.ID": 62,
+      "SurveyID.Name": "R_8CBOJMNLKbQ0uh4",
+      "Dates.ID": 22576
+    },
+    {
+      "Survey per day.ID": 63,
+      "SurveyID.Name": "R_8cqp962d7u4pXCb",
+      "Dates.ID": 22576
+    },
+    {
+      "Survey per day.ID": 64,
+      "SurveyID.Name": "R_8DHrxckElYCo1xL",
+      "Dates.ID": 22557
+    },
+    {
+      "Survey per day.ID": 65,
+      "SurveyID.Name": "R_8E68y3APZ9yypPE",
+      "Dates.ID": 22556
+    },
+    {
+      "Survey per day.ID": 66,
+      "SurveyID.Name": "R_8EcplkIyuFz8s64",
+      "Dates.ID": 22581
+    },
+    {
+      "Survey per day.ID": 67,
+      "SurveyID.Name": "R_8EM6wdOoHaBGpg4",
+      "Dates.ID": 22555
+    },
+    {
+      "Survey per day.ID": 68,
+      "SurveyID.Name": "R_8FmkWal61ulzGDn",
+      "Dates.ID": 22560
+    },
+    {
+      "Survey per day.ID": 69,
+      "SurveyID.Name": "R_8G3xeprB9n1v002",
+      "Dates.ID": 22556
+    },
+    {
+      "Survey per day.ID": 70,
+      "SurveyID.Name": "R_8g60PlXre3Hyda9",
+      "Dates.ID": 22557
+    },
+    {
+      "Survey per day.ID": 71,
+      "SurveyID.Name": "R_8hip9G7d4WhlNZu",
+      "Dates.ID": 22581
+    },
+    {
+      "Survey per day.ID": 72,
+      "SurveyID.Name": "R_8lDfFegFl5vLAc6",
+      "Dates.ID": 22581
+    },
+    {
+      "Survey per day.ID": 73,
+      "SurveyID.Name": "R_8lhJShXSxMJeM4C",
+      "Dates.ID": 22569
+    },
+    {
+      "Survey per day.ID": 74,
+      "SurveyID.Name": "R_8MnFHqvfMPTUnqD",
+      "Dates.ID": 22575
+    },
+    {
+      "Survey per day.ID": 75,
+      "SurveyID.Name": "R_8oFEe870IRF7xOV",
+      "Dates.ID": 22568
+    },
+    {
+      "Survey per day.ID": 76,
+      "SurveyID.Name": "R_8P0OJmXccecJb3j",
+      "Dates.ID": 22543
+    },
+    {
+      "Survey per day.ID": 77,
+      "SurveyID.Name": "R_8QW11OK7a9lq8Tn",
+      "Dates.ID": 22556
+    },
+    {
+      "Survey per day.ID": 78,
+      "SurveyID.Name": "R_8v38Y7UpEv41Etj",
+      "Dates.ID": 22557
+    },
+    {
+      "Survey per day.ID": 79,
+      "SurveyID.Name": "R_8w5lrvsfgH3IuGr",
+      "Dates.ID": 22555
+    },
+    {
+      "Survey per day.ID": 80,
+      "SurveyID.Name": "R_8xFSdUscsXYeUxr",
+      "Dates.ID": 22569
+    },
+    {
+      "Survey per day.ID": 81,
+      "SurveyID.Name": "R_8z5DMLzyP5VQMXW",
+      "Dates.ID": 22557
+    }
+  ],
+  "ResultCount": 76,
+  "Visualizations": []
+}
