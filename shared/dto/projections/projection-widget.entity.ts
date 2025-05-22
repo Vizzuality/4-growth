@@ -1,0 +1,41 @@
+import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
+import {
+  PROJECTION_TYPES,
+  ProjectionType,
+} from '@shared/dto/projections/projection-types';
+import {
+  PROJECTION_VISUALIZATIONS,
+  ProjectionVisualizationsType,
+} from '@shared/dto/projections/projection-visualizations.constants';
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+
+@Entity('projection_widgets')
+export class ProjectionWidget {
+  @PrimaryColumn()
+  id: number;
+
+  @Column({ type: 'enum', enum: PROJECTION_TYPES })
+  type: ProjectionType;
+
+  @Column()
+  title: string;
+
+  @Column({
+    name: 'visualizations',
+    type: 'simple-array',
+    enum: PROJECTION_VISUALIZATIONS,
+  })
+  visualizations: ProjectionVisualizationsType[];
+
+  @Column({
+    name: 'default_visualization',
+    type: 'enum',
+    enum: PROJECTION_VISUALIZATIONS,
+  })
+  defaultVisualization: ProjectionVisualizationsType;
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+
+  data?: Partial<ProjectionData>[];
+}

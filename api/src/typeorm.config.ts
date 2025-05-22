@@ -30,7 +30,10 @@ export const typeOrmConfig: DataSourceOptions = {
   migrationsRun: true,
   migrationsTableName: 'migrations',
   migrations: [`${__dirname}/migrations/*{.ts,.js}`],
-  extra: {},
+  extra: {
+    min: 2,
+    max: 10,
+  },
 };
 
 export const sslConfig: Partial<DataSourceOptions> = {
