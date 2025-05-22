@@ -18,6 +18,7 @@ import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { LoggingModule } from '@api/modules/logging/logging.module';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
 import { TerminusModule } from '@nestjs/terminus';
+import { ProjectionsModule } from '@api/modules/projections/projections.module';
 
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -37,6 +38,7 @@ const NODE_ENV = process.env.NODE_ENV;
     ApiEventsModule,
     SectionsModule,
     WidgetsModule,
+    ProjectionsModule,
   ],
   controllers: [AppController],
   providers: [
@@ -57,6 +59,14 @@ export class AppModule implements OnModuleInit {
       this.dataSourceManager.loadPageFilters(),
       this.dataSourceManager.loadPageSections(),
       this.dataSourceManager.loadSurveyData(),
+
+      // Projections
+      this.dataSourceManager.loadProjections(),
+    ]);
+    await Promise.all([
+      this.dataSourceManager.generateProjectionsFilters(),
+      this.dataSourceManager.generateProjectionsSettings(),
+      this.dataSourceManager.generateProjectionsWidgets(),
     ]);
   }
 }
