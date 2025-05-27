@@ -39,10 +39,10 @@ export class PostgresProjectionDataRepository
       QueryBuilderUtils.applySearchFilters(queryBuilder, filters, {
         alias: 'projection',
       });
-      const values = await queryBuilder.getRawOne();
+      const { values } = await queryBuilder.getRawOne();
       result.push({
         name: filterName,
-        values,
+        values: values ? values : [],
       });
     }
     return result;
