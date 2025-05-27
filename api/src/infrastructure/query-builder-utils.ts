@@ -47,7 +47,7 @@ export const QueryBuilderUtils = {
           break;
       }
     }
-    console.log(query.getQueryAndParameters());
+
     return query;
   },
 };
