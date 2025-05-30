@@ -8,22 +8,10 @@ export class Migrations1747989127876 implements MigrationInterface {
       `ALTER TABLE "base_widgets" DROP CONSTRAINT "FK_ec4ecfd98ca886865a3f579994f"`,
     );
     await queryRunner.query(
-      `ALTER TABLE "base_widgets" DROP CONSTRAINT "FK_question_indicator_map"`,
-    );
-    await queryRunner.query(
       `ALTER TABLE "custom_widgets" DROP CONSTRAINT "FK_dac539060d0b71bf4aeeb52b205"`,
     );
     await queryRunner.query(
       `ALTER TABLE "custom_widgets" DROP CONSTRAINT "FK_ba78a479ff764c0aa29e8f97ace"`,
-    );
-    await queryRunner.query(
-      `ALTER TABLE "page_filters" DROP CONSTRAINT "FK_question_indicator_map"`,
-    );
-    await queryRunner.query(
-      `ALTER TABLE "survey_answers" DROP CONSTRAINT "FK_question_indicator_map"`,
-    );
-    await queryRunner.query(
-      `ALTER TABLE "question_indicator_map" DROP CONSTRAINT "UQ_question_indicator_map_indicator_question"`,
     );
     await queryRunner.query(
       `CREATE TABLE "projection_data" ("id" integer NOT NULL, "year" integer NOT NULL, "value" double precision NOT NULL, "projection_id" integer, CONSTRAINT "PK_92af84ffd90e7c9cc9a6116d5cd" PRIMARY KEY ("id"))`,
@@ -85,22 +73,10 @@ export class Migrations1747989127876 implements MigrationInterface {
     await queryRunner.query(`DROP TYPE "public"."projections_type_enum"`);
     await queryRunner.query(`DROP TABLE "projection_data"`);
     await queryRunner.query(
-      `ALTER TABLE "question_indicator_map" ADD CONSTRAINT "UQ_question_indicator_map_indicator_question" UNIQUE ("indicator", "question")`,
-    );
-    await queryRunner.query(
-      `ALTER TABLE "survey_answers" ADD CONSTRAINT "FK_question_indicator_map" FOREIGN KEY ("indicator", "question_indicator", "question", "name") REFERENCES "question_indicator_map"("indicator","indicator","question","indicator") ON DELETE CASCADE ON UPDATE NO ACTION`,
-    );
-    await queryRunner.query(
-      `ALTER TABLE "page_filters" ADD CONSTRAINT "FK_question_indicator_map" FOREIGN KEY ("indicator", "question_indicator", "question", "name") REFERENCES "question_indicator_map"("indicator","indicator","question","indicator") ON DELETE CASCADE ON UPDATE NO ACTION`,
-    );
-    await queryRunner.query(
       `ALTER TABLE "custom_widgets" ADD CONSTRAINT "FK_ba78a479ff764c0aa29e8f97ace" FOREIGN KEY ("widget_indicator") REFERENCES "base_widgets"("indicator") ON DELETE CASCADE ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
       `ALTER TABLE "custom_widgets" ADD CONSTRAINT "FK_dac539060d0b71bf4aeeb52b205" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE NO ACTION`,
-    );
-    await queryRunner.query(
-      `ALTER TABLE "base_widgets" ADD CONSTRAINT "FK_question_indicator_map" FOREIGN KEY ("indicator", "question_indicator", "question", "name") REFERENCES "question_indicator_map"("indicator","indicator","question","indicator") ON DELETE CASCADE ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
       `ALTER TABLE "base_widgets" ADD CONSTRAINT "FK_ec4ecfd98ca886865a3f579994f" FOREIGN KEY ("section_id") REFERENCES "sections"("order") ON DELETE CASCADE ON UPDATE NO ACTION`,
