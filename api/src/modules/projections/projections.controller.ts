@@ -38,4 +38,25 @@ export class ProjectionsController {
       return { body: { data }, status: 200 };
     });
   }
+
+  @Public()
+  @TsRestHandler(c.getCustomProjectionSettings)
+  public async getCustomProjectionSettings(): Promise<ControllerResponse> {
+    return tsRestHandler(c.getCustomProjectionSettings, async () => {
+      const data = this.projectionsService.getCustomProjectionSettings();
+
+      return { body: { data }, status: 200 };
+    });
+  }
+
+  @Public()
+  @TsRestHandler(c.getCustomProjection)
+  public async getCustomProjection(): Promise<ControllerResponse> {
+    return tsRestHandler(c.getCustomProjection, async ({ query }) => {
+      const data =
+        await this.projectionsService.generateCustomProjection(query);
+
+      return { body: { data }, status: 200 };
+    });
+  }
 }

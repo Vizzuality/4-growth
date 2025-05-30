@@ -17,7 +17,12 @@ import {
 import { ProjectionFilter } from '@shared/dto/projections/projection-filter.entity';
 import { QueryBuilderUtils } from '@api/infrastructure/query-builder-utils';
 import { ProjectionWidget } from '@shared/dto/projections/projection-widget.entity';
-
+import {
+  CUSTOM_PROJECTION_SETTINGS,
+  CustomProjectionSettingsType,
+} from '@shared/dto/projections/custom-projection-settings';
+import { CustomProjection } from '@shared/dto/projections/custom-projection.type';
+import { CustomProjectionSettingsSchemaType } from '@shared/schemas/custom-projection-settings.schema';
 @Injectable()
 export class ProjectionsService extends AppBaseService<
   Projection,
@@ -36,6 +41,20 @@ export class ProjectionsService extends AppBaseService<
     private readonly projectionDataRepository: IProjectionDataRepository,
   ) {
     super(projectionsRepository, 'projection', 'projections');
+  }
+
+  public async generateCustomProjection(
+    query: SearchFiltersDTO & CustomProjectionSettingsSchemaType,
+  ): Promise<CustomProjection> {
+    const { settings, dataFilters } = query;
+    return this.projectionDataRepository.previewProjectionCustomWidget(
+      dataFilters,
+      settings,
+    );
+  }
+
+  public getCustomProjectionSettings(): CustomProjectionSettingsType {
+    return CUSTOM_PROJECTION_SETTINGS;
   }
 
   public async getProjectionsFilters(

@@ -5,5 +5,9 @@ export const PROJECTION_VISUALIZATIONS = {
   BUBBLE_CHART: 'bubble_chart',
 } as const;
 
+export const AVIALABLE_PROJECTION_VISUALIZATIONS = Object.values(
+  PROJECTION_VISUALIZATIONS,
+);
+
 export type ProjectionVisualizationsType =
   (typeof PROJECTION_VISUALIZATIONS)[keyof typeof PROJECTION_VISUALIZATIONS];
