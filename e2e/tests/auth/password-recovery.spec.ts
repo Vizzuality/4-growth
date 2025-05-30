@@ -19,7 +19,7 @@ test.describe('Password Recovery E2E', () => {
   });
 
   test.beforeEach(async () => {
-    user = await testManager.mocks().createUser();
+    user = await testManager.mocks().createUser(user);
   });
 
   test.afterAll(async () => {

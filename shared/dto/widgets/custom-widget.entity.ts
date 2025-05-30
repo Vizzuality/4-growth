@@ -19,7 +19,9 @@ export class CustomWidget {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @ManyToOne(() => User, (user: User) => user.customWidgets)
+  @ManyToOne(() => User, (user: User) => user.customWidgets, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
