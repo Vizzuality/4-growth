@@ -1,4 +1,3 @@
-import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import {
   PROJECTION_TYPES,
   ProjectionType,
@@ -37,5 +36,5 @@ export class ProjectionWidget {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  data?: Partial<ProjectionData>[];
+  data?: any[];
 }

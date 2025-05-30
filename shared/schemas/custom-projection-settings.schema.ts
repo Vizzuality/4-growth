@@ -1,0 +1,59 @@
+import {
+  BUBBLE_CHART_INDICATORS,
+  BUBBLE_CHART_ATTRIBUTES,
+} from '@shared/dto/projections/custom-projection-settings';
+import { PROJECTION_VISUALIZATIONS } from '@shared/dto/projections/projection-visualizations.constants';
+import { z } from 'zod';
+
+const IndicatorValue = z
+  .string()
+  .refine(
+    (val) =>
+      BUBBLE_CHART_INDICATORS.includes(
+        val as (typeof BUBBLE_CHART_INDICATORS)[number],
+      ),
+    {
+      message: 'Invalid indicator value',
+    },
+  );
+const AttributeValue = z
+  .string()
+  .refine((val) => BUBBLE_CHART_ATTRIBUTES.includes(val), {
+    message: 'Invalid attribute value',
+  });
+
+const SimpleVisualizationSchema = z.object({
+  vertical: IndicatorValue,
+});
+
+const BubbleChartSchema = z.object({
+  bubble: AttributeValue,
+  vertical: IndicatorValue,
+  horizontal: IndicatorValue,
+  color: AttributeValue,
+  size: IndicatorValue,
+});
+
+export const CustomProjectionSettingsSchema = z.object({
+  settings: z.union([
+    z.object({
+      [PROJECTION_VISUALIZATIONS.LINE_CHART]: SimpleVisualizationSchema,
+    }),
+    z.object({
+      [PROJECTION_VISUALIZATIONS.BAR_CHART]: SimpleVisualizationSchema,
+    }),
+    z.object({
+      [PROJECTION_VISUALIZATIONS.AREA_CHART]: SimpleVisualizationSchema,
+    }),
+    z.object({
+      [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: BubbleChartSchema,
+    }),
+  ]),
+});
+
+export type CustomProjectionSettingsSchemaType = z.infer<
+  typeof CustomProjectionSettingsSchema
+>;
+
+export type CustomProjectionSettingsType =
+  CustomProjectionSettingsSchemaType['settings'];
