@@ -28,6 +28,8 @@ export class PageFiltersService {
     query: FetchSpecification & SearchFiltersDTO,
   ): Promise<PageFilter[]> {
     const availablePageFilters = await this.pageFilterRepository.find();
+    if (!query.filters) return availablePageFilters;
+
     const result: PageFilter[] = await Promise.all(
       availablePageFilters.map(async (filter) => {
         const mainQuery = this.surveyAnswerRepository
