@@ -12,8 +12,8 @@ export class PageFiltersController {
   @Public()
   @TsRestHandler(c.searchFilters)
   public async searchPageFilters(): Promise<ControllerResponse> {
-    return tsRestHandler(c.searchFilters, async () => {
-      const data = await this.pageFiltersService.listFilters();
+    return tsRestHandler(c.searchFilters, async ({ query }) => {
+      const data = await this.pageFiltersService.listFilters(query);
       return { body: { data }, status: 200 };
     });
   }
