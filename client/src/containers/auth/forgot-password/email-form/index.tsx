@@ -58,7 +58,7 @@ const ForgotPasswordEmailForm: FC = () => {
         }
       })(evt);
     },
-    [form],
+    [apiResponseToast, form, toast],
   );
 
   return (

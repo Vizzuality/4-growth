@@ -28,7 +28,7 @@ function getValueIndexFromWidgetData(data: WidgetChartData) {
 }
 const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, barSize }) => {
   if (!data || data.length === 0) {
-    console.warn(
+    console.error(
       `HorizontalBarChart: Expected at least 1 data point, but received 0.`,
     );
     return <NoData />;

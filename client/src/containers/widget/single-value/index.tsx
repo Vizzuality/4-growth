@@ -18,7 +18,7 @@ const SingleValue: FC<SingleValueProps> = ({
   fill = "bg-secondary",
 }) => {
   if (!data) {
-    console.warn(
+    console.error(
       `SingleValue - ${indicator}: Expected at least 1 data point, but received 0.`,
     );
     return null;

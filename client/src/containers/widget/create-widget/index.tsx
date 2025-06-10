@@ -81,12 +81,13 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
       }
     },
     [
-      session?.accessToken,
-      session?.user.id,
-      visualization,
       indicator,
+      session?.user.id,
+      session?.accessToken,
+      visualization,
       filters,
       toast,
+      router,
     ],
   );
 

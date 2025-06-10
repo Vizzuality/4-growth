@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
@@ -36,7 +36,10 @@ export default function Explore() {
         })),
     },
   );
-  const sections = (data as SectionWithDataWidget[]) || [];
+  const sections = useMemo(
+    () => (data as SectionWithDataWidget[]) || [],
+    [data],
+  );
   const ref = useRef<HTMLDivElement>(null);
   const setIntersecting = useSetAtom(intersectingAtom);
 
@@ -68,7 +71,7 @@ export default function Explore() {
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, [ref.current, setIntersecting]);
+  }, [setIntersecting]);
 
   useEffect(() => {
     // TODO: This check can be removed if the api response is fixed,

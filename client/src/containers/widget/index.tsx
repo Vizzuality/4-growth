@@ -270,7 +270,7 @@ export default function Widget({
         </Card>
       );
     default:
-      console.warn(
+      console.error(
         `Widget: Unsupported visualization type "${visualization}" for indicator "${indicator}".`,
       );
       return null;
