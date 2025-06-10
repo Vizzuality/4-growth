@@ -7,10 +7,12 @@ import { Pie, PieChart as RePieChart } from "recharts";
 import { MAX_PIE_CHART_LABELS_COUNT, TW_CHART_COLORS } from "@/lib/constants";
 import { cn, formatNumber } from "@/lib/utils";
 
-import { ChartContainer } from "@/components/ui/chart";
 import NoData from "@/containers/no-data";
 
-const normalizePieChartData = (data: WidgetChartData): WidgetChartData => {
+import { ChartContainer } from "@/components/ui/chart";
+
+const normalizePieChartData = (data?: WidgetChartData): WidgetChartData => {
+  if (!data) return [];
   if (data.length < MAX_PIE_CHART_LABELS_COUNT) return data;
 
   const sortedData = [...data].sort((a, b) => b.value - a.value);
@@ -34,11 +36,12 @@ const PieChart: FC<PieChartProps> = ({
   className,
   legendPosition = "right",
 }) => {
+  const normalizedData = useMemo(() => normalizePieChartData(data), [data]);
+
   if (!data || data.length === 0) {
     console.error(`PieChart: Expected at least 1 data point, but received 0.`);
     return <NoData />;
   }
-  const normalizedData = useMemo(() => normalizePieChartData(data), [data]);
 
   return (
     <div

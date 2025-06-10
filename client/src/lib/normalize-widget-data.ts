@@ -1,9 +1,10 @@
-import { formatNumber } from "@/lib/utils";
 import {
   WidgetChartData,
   WidgetData,
   WidgetMapData,
 } from "@shared/dto/widgets/base-widget-data.interface";
+
+import { formatNumber } from "@/lib/utils";
 
 /**
  * Function that transforms raw count values into percentages
