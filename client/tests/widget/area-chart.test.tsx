@@ -2,6 +2,10 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import AreaChart from "@/containers/widget/area-chart";
 
+vi.mock("@/containers/no-data", () => ({
+  default: () => <div data-testid="no-data">No data</div>,
+}));
+
 describe("AreaChart", () => {
   const mockProps = {
     indicator: "Test",
@@ -44,15 +48,17 @@ describe("AreaChart", () => {
     const { rerender } = render(<AreaChart {...mockProps} />);
     expect(screen.getByText("30%")).toBeInTheDocument();
 
-    const newData = [
-      { label: "Yes", value: 10, total: 10 },
+    const twoDataPoints = [
+      { label: "Yes", value: 20, total: 20 },
       { label: "No", value: 80, total: 80 },
-      { label: "Maybe", value: 10, total: 10 },
     ];
-    rerender(<AreaChart {...mockProps} data={newData} />);
-    expect(screen.getByText("10%")).toBeInTheDocument();
+    rerender(<AreaChart {...mockProps} data={twoDataPoints} />);
+    expect(screen.getByText("20%")).toBeInTheDocument();
     expect(screen.getByText("No 80%")).toBeInTheDocument();
-    expect(screen.getByText("Maybe 10%")).toBeInTheDocument();
+
+    const oneDataPoint = [{ label: "Yes", value: 40, total: 40 }];
+    rerender(<AreaChart {...mockProps} data={oneDataPoint} />);
+    expect(screen.getByText("40%")).toBeInTheDocument();
   });
 
   it("handles empty data gracefully", () => {
@@ -62,25 +68,32 @@ describe("AreaChart", () => {
     render(<AreaChart {...mockProps} data={[]} />);
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(
-      "AreaChart - Test: Expected exactly 3 data points, but received 0.",
+      "AreaChart (Test): Invalid data format. The chart requires 1-3 data points, but received 0 points.",
     );
     expect(screen.queryByTestId("area-chart-segment")).not.toBeInTheDocument();
+    expect(screen.getByTestId("no-data")).toBeInTheDocument();
   });
 
   it("handles incorrect amount of data gracefully", () => {
     const consoleErrorSpy = vi
       .spyOn(console, "error")
       .mockImplementation(() => {});
+    const arrayLength = 4;
     render(
       <AreaChart
         {...mockProps}
-        data={[{ label: "Yes", value: 100, total: 100 }]}
+        data={Array.from({ length: arrayLength }).map((_, i) => ({
+          label: `Option ${String.fromCharCode(65 + i)}`,
+          value: 20,
+          total: 100,
+        }))}
       />,
     );
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(
-      "AreaChart - Test: Expected exactly 3 data points, but received 1.",
+      `AreaChart (Test): Invalid data format. The chart requires 1-3 data points, but received ${arrayLength} points.`,
     );
     expect(screen.queryByTestId("area-chart-segment")).not.toBeInTheDocument();
+    expect(screen.getByTestId("no-data")).toBeInTheDocument();
   });
 });
