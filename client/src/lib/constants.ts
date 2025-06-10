@@ -27,3 +27,5 @@ export const CSS_CHART_COLORS = [
   "hsl(var(--chart-11))",
   "hsl(var(--chart-12))",
 ];
+
+export const MAX_PIE_CHART_LABELS_COUNT = CSS_CHART_COLORS.length - 1;

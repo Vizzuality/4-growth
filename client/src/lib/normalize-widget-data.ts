@@ -1,3 +1,4 @@
+import { formatNumber } from "@/lib/utils";
 import {
   WidgetChartData,
   WidgetData,
@@ -90,10 +91,18 @@ function normalizeChartData(chartData: WidgetChartData): WidgetChartData {
 }
 
 /**
- * Calculates percentage and rounds to nearest integer
+ * Calculates percentage and formats it based on its value:
+ * - Returns decimal value using formatNumber if percentage is between 0 and 1
+ * - Returns rounded whole number for percentages >= 1
  */
 function calculatePercentage(value: number, total: number): number {
-  return Math.round((value / total) * 100);
+  const percentage = (value / total) * 100;
+
+  if (percentage >= 0 && percentage < 1) {
+    return formatNumber(percentage);
+  }
+
+  return Math.round(percentage);
 }
 
 export { normalizeWidgetData, getResponseRate };

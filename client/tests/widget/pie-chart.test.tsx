@@ -2,6 +2,7 @@ import { vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import PieChart from "@/containers/widget/pie-chart";
 import type { ResponsiveContainerProps } from "recharts";
+import { MAX_PIE_CHART_LABELS_COUNT } from "@/lib/constants";
 
 vi.mock("recharts", async () => {
   const mockRecharts = await vi.importActual<any>("recharts");
@@ -14,6 +15,10 @@ vi.mock("recharts", async () => {
     ),
   };
 });
+
+vi.mock("@/containers/no-data", () => ({
+  default: () => <div data-testid="no-data">No data</div>,
+}));
 
 describe("PieChart", () => {
   const mockData = [
@@ -53,6 +58,34 @@ describe("PieChart", () => {
     });
   });
 
+  it('group remaining answers under the label "Others" if number of answers exceed threshold', async () => {
+    const threshold = MAX_PIE_CHART_LABELS_COUNT;
+    const dataExceedingThreshold = [
+      ...Array.from({ length: threshold }, (_, i) => ({
+        label: `Option ${String.fromCharCode(65 + i)}`,
+        value: 20,
+        total: 100,
+      })),
+      { label: "Option Special A", value: 1, total: 100 },
+      { label: "Option Special B", value: 1, total: 100 },
+    ];
+
+    render(<PieChart data={dataExceedingThreshold} />);
+
+    await waitFor(() => {
+      for (let i = 0; i < threshold; i++) {
+        expect(
+          screen.getByText(dataExceedingThreshold[i].label),
+        ).toBeInTheDocument();
+      }
+
+      expect(screen.getByText("Others")).toBeInTheDocument();
+
+      expect(screen.queryByText("Option Special A")).not.toBeInTheDocument();
+      expect(screen.queryByText("Option Special B")).not.toBeInTheDocument();
+    });
+  });
+
   it("updates correctly when props change", async () => {
     const { container, rerender } = render(<PieChart data={mockData} />);
 
@@ -84,11 +117,11 @@ describe("PieChart", () => {
     const consoleErrorSpy = vi
       .spyOn(console, "error")
       .mockImplementation(() => {});
-    const { container } = render(<PieChart data={[]} />);
+    render(<PieChart data={[]} />);
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       "PieChart: Expected at least 1 data point, but received 0.",
     );
-    expect(container.firstChild).toBeNull();
+    expect(screen.getByTestId("no-data")).toBeInTheDocument();
   });
 });

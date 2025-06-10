@@ -71,3 +71,17 @@ export function removeFilterQueryParamValue(
 
   return updatedFilters;
 }
+
+export function formatNumber(
+  value: number,
+  options: Intl.NumberFormatOptions = {},
+) {
+  return Number(
+    new Intl.NumberFormat("en-US", {
+      style: "decimal",
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 0,
+      ...options,
+    }).format(value),
+  );
+}

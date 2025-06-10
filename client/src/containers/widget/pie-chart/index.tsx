@@ -1,14 +1,28 @@
 "use client";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Pie, PieChart as RePieChart } from "recharts";
 
-import { TW_CHART_COLORS } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { MAX_PIE_CHART_LABELS_COUNT, TW_CHART_COLORS } from "@/lib/constants";
+import { cn, formatNumber } from "@/lib/utils";
 
 import { ChartContainer } from "@/components/ui/chart";
+import NoData from "@/containers/no-data";
 
+const normalizePieChartData = (data: WidgetChartData): WidgetChartData => {
+  if (data.length < MAX_PIE_CHART_LABELS_COUNT) return data;
+
+  const sortedData = [...data].sort((a, b) => b.value - a.value);
+  const remainingValue = sortedData
+    .slice(MAX_PIE_CHART_LABELS_COUNT)
+    .reduce((acc, curr) => acc + curr.value, 0);
+
+  return [
+    ...sortedData.slice(0, MAX_PIE_CHART_LABELS_COUNT),
+    { label: "Others", value: remainingValue, total: data[0].total },
+  ];
+};
 interface PieChartProps {
   data?: WidgetChartData;
   legendPosition?: "bottom" | "right";
@@ -22,8 +36,9 @@ const PieChart: FC<PieChartProps> = ({
 }) => {
   if (!data || data.length === 0) {
     console.error(`PieChart: Expected at least 1 data point, but received 0.`);
-    return null;
+    return <NoData />;
   }
+  const normalizedData = useMemo(() => normalizePieChartData(data), [data]);
 
   return (
     <div
@@ -35,7 +50,7 @@ const PieChart: FC<PieChartProps> = ({
       <ChartContainer config={{}} className={className}>
         <RePieChart>
           <Pie
-            data={data.map((d, i) => ({
+            data={normalizedData.map((d, i) => ({
               ...d,
               fill: `hsl(var(--chart-${i + 1}))`,
             }))}
@@ -50,10 +65,11 @@ const PieChart: FC<PieChartProps> = ({
         className={cn({
           "flex justify-center": true,
           "flex-1 flex-col gap-2": legendPosition === "right",
-          "mt-8 flex-row items-start gap-6": legendPosition === "bottom",
+          "mt-8 flex-row flex-wrap items-start gap-6 pr-6":
+            legendPosition === "bottom",
         })}
       >
-        {data.map((c, i) => (
+        {normalizedData.map((c, i) => (
           <p
             key={`piechart-label-${c.label}`}
             className="flex items-center gap-x-1 text-xs"
@@ -61,7 +77,7 @@ const PieChart: FC<PieChartProps> = ({
             <span
               className={cn("block h-3 w-3 rounded-full", TW_CHART_COLORS[i])}
             ></span>
-            <span className="font-black">{c.value}%</span>
+            <span className="font-black">{formatNumber(c.value)}%</span>
             <span>{c.label}</span>
           </p>
         ))}
