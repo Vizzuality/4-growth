@@ -78,7 +78,7 @@ const NewPasswordForm: FC = () => {
         }
       })(evt);
     },
-    [form],
+    [apiResponseToast, form, params.token, router, toast],
   );
 
   return (

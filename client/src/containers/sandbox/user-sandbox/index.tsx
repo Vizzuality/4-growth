@@ -73,7 +73,17 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
         setFilters(getCustomWidgetQuery.data.filters);
       }
     }
-  }, [getCustomWidgetQuery.status]);
+  }, [
+    getCustomWidgetQuery.data?.defaultVisualization,
+    getCustomWidgetQuery.data?.filters,
+    getCustomWidgetQuery.data?.widget.indicator,
+    getCustomWidgetQuery.status,
+    indicator,
+    setFilters,
+    setIndicator,
+    setVisualization,
+    visualization,
+  ]);
 
   return (
     <Card className="p-0">

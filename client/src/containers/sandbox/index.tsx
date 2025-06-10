@@ -73,7 +73,7 @@ const Sandbox: FC = () => {
     if (!visualization || !widget.visualisations.includes(visualization)) {
       setVisualization(widget.defaultVisualization);
     }
-  }, [widget, visualization]);
+  }, [widget, visualization, setVisualization]);
 
   return <Card className="p-0">{Comp}</Card>;
 };

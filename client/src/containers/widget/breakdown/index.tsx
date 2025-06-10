@@ -21,7 +21,7 @@ interface BreakdownProps {
 
 const Breakdown: FC<BreakdownProps> = ({ data }) => {
   if (!data || data.length === 0) {
-    console.warn(`Breakdown: Expected at least 1 data point, but received 0.`);
+    console.error(`Breakdown: Expected at least 1 data point, but received 0.`);
     return <NoData />;
   }
 

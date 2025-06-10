@@ -21,7 +21,7 @@ const PieChart: FC<PieChartProps> = ({
   legendPosition = "right",
 }) => {
   if (!data || data.length === 0) {
-    console.warn(`PieChart: Expected at least 1 data point, but received 0.`);
+    console.error(`PieChart: Expected at least 1 data point, but received 0.`);
     return null;
   }
 

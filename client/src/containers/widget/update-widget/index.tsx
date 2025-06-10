@@ -45,10 +45,13 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
   const [open, setOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const setShowOverlay = useSetAtom(showOverlayAtom);
-  const handleOnOpenChange = (isOpen: boolean) => {
-    setOpen(isOpen);
-    setShowOverlay(isOpen);
-  };
+  const handleOnOpenChange = useCallback(
+    (isOpen: boolean) => {
+      setOpen(isOpen);
+      setShowOverlay(isOpen);
+    },
+    [setOpen, setShowOverlay],
+  );
   const invalidateQueries = useCallback(
     (widgetId: string) =>
       queryClient.invalidateQueries(
@@ -77,7 +80,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
       });
 
       if (status === 201) {
-        invalidateQueries(widgetId);
+        await invalidateQueries(widgetId);
         handleOnOpenChange(false);
         toast({
           description: (
@@ -99,13 +102,15 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
       }
     },
     [
-      visualization,
       indicator,
-      filters,
-      session?.accessToken,
       session?.user.id,
-      toast,
+      session?.accessToken,
+      visualization,
+      filters,
       invalidateQueries,
+      widgetId,
+      handleOnOpenChange,
+      toast,
       router,
     ],
   );
@@ -127,7 +132,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
     });
 
     if (status === 200) {
-      invalidateQueries(widgetId);
+      await invalidateQueries(widgetId);
       handleOnOpenChange(false);
       toast({
         description: "Your chart has been successfully updated",
@@ -140,13 +145,14 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
     }
   }, [
     widgetId,
+    session?.user.id,
+    session?.accessToken,
     visualization,
     indicator,
     filters,
-    session?.accessToken,
-    session?.user.id,
-    toast,
     invalidateQueries,
+    handleOnOpenChange,
+    toast,
   ]);
 
   return (

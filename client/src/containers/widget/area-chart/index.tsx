@@ -11,7 +11,7 @@ interface AreaChartProps {
 
 const AreaChart: FC<AreaChartProps> = ({ indicator, data }) => {
   if (data?.length !== 3) {
-    console.warn(
+    console.error(
       `AreaChart - ${indicator}: Expected exactly 3 data points, but received ${data?.length}.`,
     );
     return null;
