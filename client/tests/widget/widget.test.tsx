@@ -177,8 +177,8 @@ describe("Widget", () => {
   });
 
   it("renders null for unsupported visualization type", () => {
-    const consoleWarnSpy = vi
-      .spyOn(console, "warn")
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
       .mockImplementation(() => {});
     const props = {
       ...mockProps,
@@ -186,7 +186,7 @@ describe("Widget", () => {
     };
     const { container } = render(<Widget {...props} />);
 
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
       'Widget: Unsupported visualization type "pyramid_chart" for indicator "Test Indicator".',
     );
     expect(container.firstChild).toBeNull();

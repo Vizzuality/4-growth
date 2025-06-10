@@ -95,16 +95,16 @@ describe("HorizontalBarChart", () => {
   });
 
   it("handles empty data gracefully", async () => {
-    const consoleWarnSpy = vi
-      .spyOn(console, "warn")
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
       .mockImplementation(() => {});
     render(<HorizontalBarChart data={[]} />);
 
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
       "HorizontalBarChart: Expected at least 1 data point, but received 0.",
     );
     expect(screen.getByTestId("no-data")).toBeInTheDocument();
 
-    consoleWarnSpy.mockRestore();
+    consoleErrorSpy.mockRestore();
   });
 });

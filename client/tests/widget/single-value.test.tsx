@@ -72,14 +72,14 @@ describe("SingleValue", () => {
   });
 
   it("handles empty data gracefully", async () => {
-    const consoleWarnSpy = vi
-      .spyOn(console, "warn")
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
       .mockImplementation(() => {});
     const { container } = render(
       <SingleValue {...mockProps} data={undefined} />,
     );
 
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
       "SingleValue - Test: Expected at least 1 data point, but received 0.",
     );
     expect(container.firstChild).toBeNull();

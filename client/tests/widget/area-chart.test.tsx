@@ -56,24 +56,29 @@ describe("AreaChart", () => {
   });
 
   it("handles empty data gracefully", () => {
-    const consoleWarnSpy = vi
-      .spyOn(console, "warn")
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
       .mockImplementation(() => {});
     render(<AreaChart {...mockProps} data={[]} />);
 
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
       "AreaChart - Test: Expected exactly 3 data points, but received 0.",
     );
     expect(screen.queryByTestId("area-chart-segment")).not.toBeInTheDocument();
   });
 
   it("handles incorrect amount of data gracefully", () => {
-    const consoleWarnSpy = vi
-      .spyOn(console, "warn")
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
       .mockImplementation(() => {});
-    render(<AreaChart {...mockProps} data={[{ label: "Yes", value: 100 }]} />);
+    render(
+      <AreaChart
+        {...mockProps}
+        data={[{ label: "Yes", value: 100, total: 100 }]}
+      />,
+    );
 
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
       "AreaChart - Test: Expected exactly 3 data points, but received 1.",
     );
     expect(screen.queryByTestId("area-chart-segment")).not.toBeInTheDocument();
