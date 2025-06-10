@@ -81,12 +81,12 @@ describe("PieChart", () => {
   });
 
   it("handles empty data gracefully", async () => {
-    const consoleWarnSpy = vi
-      .spyOn(console, "warn")
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
       .mockImplementation(() => {});
     const { container } = render(<PieChart data={[]} />);
 
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
       "PieChart: Expected at least 1 data point, but received 0.",
     );
     expect(container.firstChild).toBeNull();
