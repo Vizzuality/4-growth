@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 import Link from "next/link";
 
-import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import {
   WIDGET_VISUALIZATIONS,
   WidgetVisualizationsType,
@@ -30,6 +29,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getRouteHref } from "@/utils/route-config";
+import { TransformedWidgetData } from "@/types";
 
 const getMenuButtonText = (v: WidgetVisualizationsType): string => {
   switch (v) {
@@ -48,7 +48,7 @@ const getMenuButtonText = (v: WidgetVisualizationsType): string => {
 
 export interface WidgetProps {
   indicator: string;
-  data: BaseWidgetWithData["data"];
+  data: TransformedWidgetData;
   visualization: WidgetVisualizationsType;
   responseRate: number;
   breakdown?: string;
@@ -130,7 +130,7 @@ export default function Widget({
     setSelectedVisualization(visualization);
   }, [visualization]);
 
-  if (isEmptyWidget(data)) {
+  if (isEmptyWidget(data.raw)) {
     return (
       <Card className={cn("relative min-h-80 p-0", className)}>
         <WidgetHeader
@@ -154,7 +154,7 @@ export default function Widget({
         )}
       >
         <WidgetHeader indicator={indicator} question={question} menu={menu} />
-        <Breakdown data={data.breakdown} />
+        <Breakdown data={data.percentages.breakdown} />
       </Card>
     );
   }
@@ -165,7 +165,7 @@ export default function Widget({
         <Card className="p-0">
           <SingleValue
             indicator={indicator}
-            data={data?.counter}
+            data={data?.percentages.counter}
             {...config?.singleValue}
           />
         </Card>
@@ -186,7 +186,7 @@ export default function Widget({
             responseRate={responseRate}
           />
           <HorizontalBarChart
-            data={data.chart}
+            data={data.raw.chart}
             {...config?.horizontalBarChart}
           />
         </Card>
@@ -207,7 +207,7 @@ export default function Widget({
             responseRate={responseRate}
           />
           <PieChart
-            data={data.chart}
+            data={data.percentages.chart}
             className="min-h-0 w-full flex-1"
             legendPosition="bottom"
             {...config?.pieChart}
@@ -230,7 +230,7 @@ export default function Widget({
             menu={menuComponent}
             responseRate={responseRate}
           />
-          <AreaChart indicator={indicator} data={data.chart} />
+          <AreaChart indicator={indicator} data={data.percentages.chart} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.NAVIGATION:
@@ -242,7 +242,7 @@ export default function Widget({
             className,
           )}
         >
-          <Navigation indicator={indicator} href={data?.navigation?.href} />
+          <Navigation indicator={indicator} href={data?.raw.navigation?.href} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.FILTER:
@@ -254,7 +254,7 @@ export default function Widget({
             className,
           )}
         >
-          <Filter indicator={indicator} href={data?.navigation?.href} />
+          <Filter indicator={indicator} href={data?.raw.navigation?.href} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.MAP:
@@ -267,10 +267,7 @@ export default function Widget({
             menu={menuComponent}
             responseRate={responseRate}
           />
-          <Map
-            // TODO: Remove hardcoded data when api response is available
-            data={data.map}
-          />
+          <Map data={data.percentages.map} />
         </Card>
       );
     default:

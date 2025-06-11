@@ -8,7 +8,6 @@ import NoData from "@/containers/no-data";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 import { ChartContainer } from "@/components/ui/chart";
-
 interface HorizontalBarChartProps {
   data?: WidgetChartData;
   barSize?: number;
@@ -21,7 +20,6 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, barSize }) => {
     );
     return <NoData />;
   }
-
   const height = data.length * 50;
   const highestValueIndex = getIndexOfLargestValue(data);
   let style: CSSProperties = {
@@ -64,7 +62,7 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, barSize }) => {
                 dominantBaseline="central"
                 fontSize={12}
               >
-                <tspan fontWeight="bold">{value}%</tspan>
+                <tspan fontWeight="bold">{value}</tspan>
                 <tspan dx="8">{entry.label}</tspan>
               </text>
             );

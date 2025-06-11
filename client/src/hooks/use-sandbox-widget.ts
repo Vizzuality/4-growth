@@ -39,7 +39,10 @@ function useSandboxWidget() {
       retry: 0,
       select: (res) => ({
         ...res.body.data,
-        data: normalizeWidgetData(res.body.data.data),
+        data: {
+          raw: res.body.data.data,
+          percentages: normalizeWidgetData(res.body.data.data),
+        },
         responseRate: getResponseRate(res.body.data.data),
       }),
     },

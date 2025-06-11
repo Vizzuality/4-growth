@@ -3,6 +3,7 @@
 import { useMemo, useRef } from "react";
 
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
+import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import { useSetAtom } from "jotai";
 
 import {
@@ -21,6 +22,7 @@ import { intersectingAtom } from "@/containers/explore/store";
 import Widget from "@/containers/widget/survey-analysis";
 
 import { useScrollSpy } from "tests/hooks/use-scroll-spy";
+import { TransformedWidgetData } from "@/types";
 
 export default function Explore() {
   const { filters } = useFilters();
@@ -33,14 +35,22 @@ export default function Explore() {
           ...d,
           baseWidgets: d.baseWidgets?.map((w) => ({
             ...w,
-            data: normalizeWidgetData(w.data),
+            data: {
+              raw: w.data,
+              percentages: normalizeWidgetData(w.data),
+            },
             responseRate: getResponseRate(w.data),
           })),
         })),
     },
   );
   const sections = useMemo(
-    () => (data as SectionWithDataWidget[]) || [],
+    () =>
+      (data as (SectionWithDataWidget & {
+        baseWidgets: (BaseWidgetWithData & {
+          data: TransformedWidgetData;
+        })[];
+      })[]) || [],
     [data],
   );
   const ref = useRef<HTMLDivElement>(null);
@@ -89,7 +99,7 @@ export default function Explore() {
                   visualisations={w.visualisations}
                   indicator={w.indicator}
                   question={w.question}
-                  data={w.data}
+                  data={w.data as TransformedWidgetData}
                   responseRate={w.responseRate}
                   className="col-span-1 last:odd:col-span-2"
                   config={{
