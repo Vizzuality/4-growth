@@ -1,5 +1,6 @@
-// export type MapScale = 1 | 2 | 3 | 4 | 5;
+import { WidgetData } from "@shared/dto/widgets/base-widget-data.interface";
 
-// export interface MapData {
-//   [key: string]: Scale;
-// }
+export interface TransformedWidgetData {
+  raw: WidgetData;
+  percentages: WidgetData;
+}
