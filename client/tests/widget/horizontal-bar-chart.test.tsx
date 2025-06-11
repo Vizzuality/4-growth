@@ -31,7 +31,7 @@ describe("HorizontalBarChart", () => {
 
     await waitFor(() => {
       mockData.forEach(({ label, value }) => {
-        const percentageElement = screen.getByText(`${value}%`);
+        const percentageElement = screen.getByText(value);
         expect(percentageElement).toHaveAttribute("font-weight", "bold");
 
         const labelElement = screen.getByText(label);
@@ -72,7 +72,7 @@ describe("HorizontalBarChart", () => {
 
     await waitFor(() => {
       mockData.forEach(({ label, value }) => {
-        expect(screen.getByText(`${value}%`)).toBeInTheDocument();
+        expect(screen.getByText(value)).toBeInTheDocument();
         expect(screen.getByText(label)).toBeInTheDocument();
       });
     });
@@ -88,7 +88,7 @@ describe("HorizontalBarChart", () => {
       const bars = container.querySelectorAll(".recharts-rectangle");
       expect(bars).toHaveLength(3);
       newData.forEach(({ label, value }) => {
-        expect(screen.getByText(`${value}%`)).toBeInTheDocument();
+        expect(screen.getByText(value)).toBeInTheDocument();
         expect(screen.getByText(label)).toBeInTheDocument();
       });
     });
