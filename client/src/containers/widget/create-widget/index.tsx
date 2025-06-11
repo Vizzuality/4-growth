@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/popover";
 import { useToast } from "@/components/ui/use-toast";
 import { getAuthHeader } from "@/utils/auth-header";
+import { getDynamicRouteHref } from "@/utils/route-config";
 
 interface CreateWidgetMenuProps {
   indicator: string | null;
@@ -72,7 +73,13 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
           ),
         });
 
-        router.push(`/sandbox/${body.data.id}`);
+        router.push(
+          getDynamicRouteHref(
+            "surveyAnalysis",
+            "sandbox",
+            String(body.data.id),
+          ),
+        );
       } else {
         toast({
           variant: "destructive",

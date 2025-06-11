@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/popover";
 import { useToast } from "@/components/ui/use-toast";
 import { getAuthHeader } from "@/utils/auth-header";
+import { getDynamicRouteHref } from "@/utils/route-config";
 
 interface UpdateWidgetMenuProps {
   widgetId: string;
@@ -93,7 +94,13 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
           ),
         });
 
-        router.push(`/sandbox/${body.data.id}`);
+        router.push(
+          getDynamicRouteHref(
+            "surveyAnalysis",
+            "sandbox",
+            String(body.data.id),
+          ),
+        );
       } else {
         toast({
           variant: "destructive",

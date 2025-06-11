@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { client, QUERY_OPTIONS } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import { TopNavToggle } from "@/containers/nav-toggle";
 import Overlay from "@/containers/overlay";
 import Sidebar from "@/containers/sidebar";
 
@@ -36,7 +37,10 @@ export default async function ExploreLayout({ children }: PropsWithChildren) {
         <div className="flex h-full flex-col gap-0.5 overflow-hidden">
           <Sidebar />
         </div>
-        <div className="flex h-full flex-col overflow-hidden">{children}</div>
+        <div className="flex h-full flex-col gap-0.5 overflow-hidden">
+          <TopNavToggle />
+          {children}
+        </div>
       </div>
     </Hydrate>
   );

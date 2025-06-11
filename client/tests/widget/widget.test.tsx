@@ -6,6 +6,7 @@ import {
   WidgetVisualizationsType,
 } from "@shared/dto/widgets/widget-visualizations.constants";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
+import { getRouteHref } from "@/utils/route-config";
 
 vi.mock("@/containers/widget/horizontal-bar-chart", async () => {
   const actual = await vi.importActual<typeof HorizontalBarChart>(
@@ -104,7 +105,8 @@ describe("Widget", () => {
 
     expect(screen.getByRole("link")).toHaveAttribute(
       "href",
-      `/sandbox?visualization=${mockProps.visualization}&indicator=${mockProps.indicator}`,
+      getRouteHref("surveyAnalysis", "sandbox") +
+        `?visualization=${mockProps.visualization}&indicator=${mockProps.indicator}`,
     );
   });
 

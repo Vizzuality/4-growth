@@ -3,6 +3,8 @@ import { FC } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { getRouteHref } from "@/utils/route-config";
+
 import UserMenu from "./user";
 
 export const classes = {
@@ -35,7 +37,10 @@ const Menu: FC = () => {
               </Link>
             </li>
             <li>
-              <Link href="/sandbox" className={classes.link}>
+              <Link
+                href={getRouteHref("surveyAnalysis", "sandbox")}
+                className={classes.link}
+              >
                 Sandbox
               </Link>
             </li>

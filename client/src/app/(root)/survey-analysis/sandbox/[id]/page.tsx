@@ -11,6 +11,7 @@ import { auth } from "@/app/auth/api/[...nextauth]/config";
 import Sandbox from "@/containers/sandbox/user-sandbox";
 
 import { getAuthHeader } from "@/utils/auth-header";
+import { getRouteHref } from "@/utils/route-config";
 
 async function fetchCustomWidget(id: string, session: Session | null) {
   try {
@@ -41,7 +42,7 @@ export default async function SandboxPage({
 
   // TODO: Add proper redirect when API returns correct http codes (in another PR)
   if (response?.status !== 200) {
-    redirect("/sandbox");
+    redirect(getRouteHref("surveyAnalysis", "sandbox"));
   }
 
   const queryClient = new QueryClient();
