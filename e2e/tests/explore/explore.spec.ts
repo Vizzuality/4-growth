@@ -2,6 +2,7 @@ import { test as base, expect } from '@playwright/test';
 import { Section } from '@shared/dto/sections/section.entity';
 import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
 import { E2eTestManager } from '@shared/lib/e2e-test-manager';
+import ROUTES from '@shared/constants/routes';
 
 type TestFixtures = {
   testManager: E2eTestManager;
@@ -49,7 +50,7 @@ test.describe('Explore E2E', () => {
     }) => {
       const count = sections.length;
 
-      await page.goto('/explore');
+      await page.goto(`/${ROUTES.surveyAnalysis.explore}`);
       await expect(
         page.locator('#sidebar-sections-list').locator('a'),
       ).toHaveCount(count);
@@ -64,7 +65,7 @@ test.describe('Explore E2E', () => {
     test('Should scroll to the correct section when clicking anchor links', async ({
       page,
     }) => {
-      await page.goto('/explore');
+      await page.goto(`/${ROUTES.surveyAnalysis.explore}`);
       const sections = await page
         .locator('#sidebar-sections-list')
         .locator('a')
@@ -89,12 +90,12 @@ test.describe('Explore E2E', () => {
       const lastSection = sections[sections.length - 1];
 
       // Direct URL navigation
-      await page.goto(`/explore#${lastSection.slug}`);
+      await page.goto(`/${ROUTES.surveyAnalysis.explore}#${lastSection.slug}`);
 
       const targetSection = page.locator(`#${lastSection.slug}`);
       await expect(targetSection).toBeInViewport();
 
-      await page.goto('/explore');
+      await page.goto(`/${ROUTES.surveyAnalysis.explore}`);
 
       // Test in-page anchor link
       const links = await page
@@ -127,7 +128,7 @@ test.describe('Explore E2E', () => {
   //     page,
   //     requiredFilter,
   //   }) => {
-  //     await page.goto('/explore');
+  //     await page.goto(`/${ROUTES.surveyAnalysis.explore}`);
 
   //     await page.getByRole('button', { name: 'Filters' }).click();
   //     await page.getByRole('button', { name: 'Add a custom filter' }).click();

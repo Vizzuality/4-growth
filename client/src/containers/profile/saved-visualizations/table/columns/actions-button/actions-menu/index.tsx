@@ -10,6 +10,8 @@ import { ArrowUpRightIcon, SquarePenIcon } from "lucide-react";
 
 import { selectedRowAtom } from "@/containers/profile/store";
 
+import { getDynamicRouteHref } from "@/utils/route-config";
+
 import { ColumnsTable } from "../..";
 
 import DeleteVisualizationButton from "./delete-visualization-button";
@@ -28,7 +30,11 @@ const ActionsMenu: FC<{
   return (
     <ul className="overflow-hidden py-2 text-xs font-medium">
       <li>
-        <Link href={`/sandbox/${id}`} className={CLASS} target="_blank">
+        <Link
+          href={getDynamicRouteHref("surveyAnalysis", "sandbox", String(id))}
+          className={CLASS}
+          target="_blank"
+        >
           <ArrowUpRightIcon />
           <span>Open in Sandbox</span>
         </Link>

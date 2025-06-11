@@ -29,6 +29,7 @@ import WidgetHeader from "@/containers/widget/widget-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { getRouteHref } from "@/utils/route-config";
 
 const getMenuButtonText = (v: WidgetVisualizationsType): string => {
   switch (v) {
@@ -98,7 +99,10 @@ export default function Widget({
             asChild
           >
             <Link
-              href={`/sandbox?visualization=${selectedVisualization}&indicator=${indicator}`}
+              href={
+                getRouteHref("surveyAnalysis", "sandbox") +
+                `?visualization=${selectedVisualization}&indicator=${indicator}`
+              }
             >
               Customize chart
             </Link>

@@ -35,11 +35,11 @@ const nextConfig = {
     return config;
   },
   async redirects() {
-    // Temporary redirect to explore page
+    // Temporary redirect to survey-analysis page
     return [
       {
         source: '/',
-        destination: '/explore',
+        destination: '/survey-analysis',
         permanent: true,
       },
     ]

@@ -1,50 +1,50 @@
 "use client";
 import { FC } from "react";
 
-import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 
-import { cn } from "@/lib/utils";
+import useRouteConfig from "@/hooks/use-route-config";
 
 import Header from "@/containers/header";
-import ExploreSidebar from "@/containers/sidebar/explore-sidebar";
-import SandboxSidebar from "@/containers/sidebar/sandbox-sidebar";
-import UserSandboxSidebar from "@/containers/sidebar/user-sandbox-sidebar";
+import { SidebarNavToggle } from "@/containers/nav-toggle";
+import ProjectionsExploreSidebar from "@/containers/sidebar/projections-sidebar/explore-sidebar";
+import ProjectionsSandboxSidebar from "@/containers/sidebar/projections-sidebar/sandbox-sidebar";
+import SurveyAnalysisExploreSidebar from "@/containers/sidebar/survey-analysis-sidebar/explore-sidebar";
+import SurveyAnalysisSandboxSidebar from "@/containers/sidebar/survey-analysis-sidebar/sandbox-sidebar";
+import SurveyAnalysisUserSandboxSidebar from "@/containers/sidebar/survey-analysis-sidebar/user-sandbox-sidebar";
 
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Sidebar: FC = () => {
-  const isExplore = usePathname().startsWith("/explore");
   const params = useParams();
-  let Component = isExplore ? ExploreSidebar : SandboxSidebar;
+  const { type, view, pathname } = useRouteConfig();
+  let Component = null;
 
-  if (params.id) {
-    Component = UserSandboxSidebar;
+  switch (type) {
+    case "projections":
+      if (view === "explore") Component = ProjectionsExploreSidebar;
+
+      if (view === "sandbox") Component = ProjectionsSandboxSidebar;
+      break;
+    case "surveyAnalysis":
+      if (view === "sandbox")
+        Component = params.id
+          ? SurveyAnalysisUserSandboxSidebar
+          : SurveyAnalysisSandboxSidebar;
+
+      if (view === "explore") Component = SurveyAnalysisExploreSidebar;
+      break;
+    default:
+      console.error(
+        `Unable to assign sidebar component for pathname '${pathname}'`,
+      );
   }
 
   return (
     <>
       <Header />
-      <div className="flex rounded-2xl bg-primary">
-        <Button
-          variant="clean"
-          className={cn("w-full", isExplore && "bg-white text-primary")}
-          asChild
-        >
-          <Link href="/explore">Explore</Link>
-        </Button>
-        <Button
-          variant="clean"
-          className={cn("w-full", !isExplore && "bg-white text-primary")}
-          asChild
-        >
-          <Link href="/sandbox">Sandbox</Link>
-        </Button>
-      </div>
-      <ScrollArea>
-        <Component />
-      </ScrollArea>
+      <SidebarNavToggle />
+      <ScrollArea>{Component && <Component />}</ScrollArea>
     </>
   );
 };
