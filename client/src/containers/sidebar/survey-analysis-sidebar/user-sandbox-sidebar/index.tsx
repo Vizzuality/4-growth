@@ -2,6 +2,7 @@ import { FC, useCallback } from "react";
 
 import { useAtom } from "jotai";
 
+import { normalizeWidgetData } from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
@@ -39,7 +40,13 @@ const UserSandboxSidebar: FC = () => {
     },
     {
       enabled: !!indicator,
-      select: (res) => res.body.data,
+      select: (res) => ({
+        ...res.body.data,
+        data: {
+          raw: res.body.data.data,
+          percentages: normalizeWidgetData(res.body.data.data),
+        },
+      }),
     },
   );
 

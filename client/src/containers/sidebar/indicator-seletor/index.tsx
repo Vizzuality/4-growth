@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 
-import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import { BaseWidget } from "@shared/dto/widgets/base-widget.entity";
 import { useSetAtom } from "jotai";
 
@@ -17,9 +16,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { SIDEBAR_POPOVER_CLASS } from "@/constants";
+import { TransformedWidget } from "@/types";
 
 interface IndicatorSelectorProps {
-  widget?: BaseWidgetWithData;
+  widget?: TransformedWidget;
   onIndicatorSelected: (indicator: string) => void;
 }
 const IndicatorSelector: FC<IndicatorSelectorProps> = ({
