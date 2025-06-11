@@ -65,12 +65,13 @@ vi.mock("@/containers/widget/breakdown", () => ({
 }));
 
 describe("Widget", () => {
+  const mockChartData = { chart: [{ label: "Test", value: 100, total: 100 }] };
   const mockProps: WidgetProps = {
     indicator: "Test Indicator",
     question: "Test Question",
     responseRate: 80,
     visualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
-    data: { chart: [{ label: "Test", value: 100, total: 100 }] },
+    data: { raw: mockChartData, percentages: mockChartData },
   };
   const menuButtonTestId = "menu-button";
 
@@ -82,7 +83,13 @@ describe("Widget", () => {
         visualizationType === WIDGET_VISUALIZATIONS.FILTER ||
         visualizationType === WIDGET_VISUALIZATIONS.NAVIGATION
       ) {
-        props = { ...props, data: { navigation: { href: "#" } } };
+        props = {
+          ...props,
+          data: {
+            raw: { navigation: { href: "#" } },
+            percentages: { navigation: { href: "#" } },
+          },
+        };
       }
 
       render(<Widget {...props} visualization={visualizationType} />);
@@ -160,17 +167,21 @@ describe("Widget", () => {
   });
 
   it("renders breakdown chart when breakdown props is passed", () => {
+    const data = {
+      breakdown: [
+        {
+          label: "Category 1",
+          data: [{ label: "Option A", value: 100, total: 100 }],
+        },
+      ],
+    };
     render(
       <Widget
         {...mockProps}
         breakdown="another-indicator"
         data={{
-          breakdown: [
-            {
-              label: "Category 1",
-              data: [{ label: "Option A", value: 100, total: 100 }],
-            },
-          ],
+          raw: data,
+          percentages: data,
         }}
       />,
     );
@@ -195,7 +206,12 @@ describe("Widget", () => {
   });
 
   it("renders no-data component when widget data is empty", async () => {
-    render(<Widget {...mockProps} data={{ chart: [] }} />);
+    render(
+      <Widget
+        {...mockProps}
+        data={{ raw: { chart: [] }, percentages: { chart: [] } }}
+      />,
+    );
 
     expect(screen.getByTestId("no-data")).toBeInTheDocument();
   });

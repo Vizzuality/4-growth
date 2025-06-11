@@ -4,7 +4,10 @@ import { FC, useEffect } from "react";
 import { useAtom } from "jotai";
 import { useSession } from "next-auth/react";
 
-import { getResponseRate } from "@/lib/normalize-widget-data";
+import {
+  getResponseRate,
+  normalizeWidgetData,
+} from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
@@ -56,6 +59,10 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
       enabled: !!indicator,
       select: (res) => ({
         ...res.body.data,
+        data: {
+          raw: res.body.data.data,
+          percentages: normalizeWidgetData(res.body.data.data),
+        },
         responseRate: getResponseRate(res.body.data.data),
       }),
     },

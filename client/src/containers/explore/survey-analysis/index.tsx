@@ -3,7 +3,6 @@
 import { useMemo, useRef } from "react";
 
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
-import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import { useSetAtom } from "jotai";
 
 import {
@@ -22,7 +21,7 @@ import { intersectingAtom } from "@/containers/explore/store";
 import Widget from "@/containers/widget/survey-analysis";
 
 import { useScrollSpy } from "tests/hooks/use-scroll-spy";
-import { TransformedWidgetData } from "@/types";
+import { TransformedWidget, TransformedWidgetData } from "@/types";
 
 export default function Explore() {
   const { filters } = useFilters();
@@ -47,9 +46,7 @@ export default function Explore() {
   const sections = useMemo(
     () =>
       (data as (SectionWithDataWidget & {
-        baseWidgets: (BaseWidgetWithData & {
-          data: TransformedWidgetData;
-        })[];
+        baseWidgets: TransformedWidget[];
       })[]) || [],
     [data],
   );

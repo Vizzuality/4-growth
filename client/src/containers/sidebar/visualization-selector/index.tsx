@@ -1,6 +1,5 @@
 import { FC, Fragment, useState } from "react";
 
-import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import {
   WidgetVisualizationsType,
   VALID_WIDGET_VISUALIZATIONS,
@@ -22,6 +21,7 @@ import {
   Tooltip,
 } from "@/components/ui/tooltip";
 import { SIDEBAR_POPOVER_CLASS } from "@/constants";
+import { TransformedWidget } from "@/types";
 
 const getVisualizationText = (value: WidgetVisualizationsType): string =>
   value
@@ -34,7 +34,7 @@ const getVisualizationText = (value: WidgetVisualizationsType): string =>
 interface VisualizationSelectorProps {
   indicator: string | null;
   visualization: WidgetVisualizationsType | null;
-  widget: BaseWidgetWithData | undefined;
+  widget: TransformedWidget | undefined;
   onVisualizationSelected: (value: WidgetVisualizationsType | null) => void;
 }
 const VisualizationSelector: FC<VisualizationSelectorProps> = ({
