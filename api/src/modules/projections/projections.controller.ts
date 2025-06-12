@@ -19,16 +19,6 @@ export class ProjectionsController {
     });
   }
 
-  // @Public()
-  // @TsRestHandler(c.getProjections)
-  // public async getProjections(): Promise<ControllerResponse> {
-  //   return tsRestHandler(c.getProjections, async ({ query }) => {
-  //     const data = await this.projectionsService.searchProjections(query);
-
-  //     return { body: { data }, status: 200 };
-  //   });
-  // }
-
   @Public()
   @TsRestHandler(c.getProjectionsWidgets)
   public async getProjectionsWidgets(): Promise<ControllerResponse> {

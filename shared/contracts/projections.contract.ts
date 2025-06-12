@@ -11,16 +11,6 @@ import { initContract } from '@ts-rest/core';
 
 const contract = initContract();
 export const projectionsContract = contract.router({
-  // getProjections: {
-  //   method: 'GET',
-  //   path: '/projections',
-  //   query: generateEntityQuerySchema(Projection).merge(SearchFiltersSchema),
-  //   responses: {
-  //     200: contract.type<ApiPaginationResponse<Projection>>(),
-  //     400: contract.type<JSONAPIError>(),
-  //     500: contract.type<JSONAPIError>(),
-  //   },
-  // },
   getProjectionsFilters: {
     method: 'GET',
     path: '/projections/filters',
