@@ -18,7 +18,7 @@ import { useScrollToHash } from "@/hooks/use-scroll-to-hash";
 import Section from "@/containers/explore/section";
 import OverviewSection from "@/containers/explore/section/overview-section";
 import { intersectingAtom } from "@/containers/explore/store";
-import Widget from "@/containers/widget";
+import Widget from "@/containers/widget/survey-analysis";
 
 import { useScrollSpy } from "tests/hooks/use-scroll-spy";
 

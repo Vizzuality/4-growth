@@ -5,8 +5,8 @@ import useFilters from "@/hooks/use-filters";
 import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
 import NoData from "@/containers/no-data";
-import Widget from "@/containers/widget";
 import CreateWidgetMenu from "@/containers/widget/create-widget";
+import Widget from "@/containers/widget/survey-analysis";
 
 import CloudOff from "@/components/icons/cloud-off";
 import MenuPointer from "@/components/icons/menu-pointer";

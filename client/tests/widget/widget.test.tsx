@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Widget, { WidgetProps } from "@/containers/widget";
+import Widget, { WidgetProps } from "@/containers/widget/survey-analysis";
 import {
   WIDGET_VISUALIZATIONS,
   WidgetVisualizationsType,

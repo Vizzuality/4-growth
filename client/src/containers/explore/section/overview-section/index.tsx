@@ -3,7 +3,7 @@ import { FC } from "react";
 import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 
 import TileMenu, { TileMenuItem } from "@/containers/explore/section/tile-menu";
-import Widget from "@/containers/widget";
+import Widget from "@/containers/widget/survey-analysis";
 
 import { Card } from "@/components/ui/card";
 
