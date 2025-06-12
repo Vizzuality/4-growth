@@ -41,6 +41,7 @@ describe('Custom Projection API', () => {
     expect(resData[0]).toHaveProperty('color');
     expect(resData[0]).toHaveProperty('vertical');
     expect(resData[0]).toHaveProperty('horizontal');
+    expect(resData[0]).toHaveProperty('size');
     expect(resData[0]).toHaveProperty('year');
   });
 
