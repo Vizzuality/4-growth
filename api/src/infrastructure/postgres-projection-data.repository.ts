@@ -4,7 +4,10 @@ import { InjectDataSource } from '@nestjs/typeorm';
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { IProjectionDataRepository } from '@api/infrastructure/projection-data-repository.interface';
 import { SearchFilterDTO } from '@shared/dto/global/search-filters';
-import { ProjectionWidget } from '@shared/dto/projections/projection-widget.entity';
+import {
+  ProjectionWidget,
+  ProjectionWidgetData,
+} from '@shared/dto/projections/projection-widget.entity';
 import { Projection } from '@shared/dto/projections/projection.entity';
 import { QueryBuilderUtils } from '@api/infrastructure/query-builder-utils';
 import {
@@ -68,8 +71,28 @@ export class PostgresProjectionDataRepository
 
   public async findProjectionWidgetData(
     dataFilters: SearchFilterDTO[],
+  ): Promise<ProjectionWidgetData[]> {
+    const queryBuilder = this.dataSource
+      .getRepository(Projection)
+      .createQueryBuilder('projection')
+      .select('projectionData.year', 'year')
+      .addSelect('SUM(projectionData.value)', 'value')
+      .innerJoin('projection.projectionData', 'projectionData')
+      .groupBy('projectionData.year')
+      .orderBy('projectionData.year', 'ASC');
+
+    QueryBuilderUtils.applySearchFilters(queryBuilder, dataFilters, {
+      alias: 'projection',
+      filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
+    });
+
+    return queryBuilder.getRawMany();
+  }
+
+  public async findProjectionCustomWidgetData(
+    dataFilters: SearchFilterDTO[],
     opts: { valueFieldAlias: string } = { valueFieldAlias: 'value' },
-  ): Promise<any[]> {
+  ): Promise<ProjectionWidgetData[]> {
     const queryBuilder = this.dataSource
       .getRepository(Projection)
       .createQueryBuilder('projection')
@@ -100,9 +123,9 @@ export class PostgresProjectionDataRepository
       case PROJECTION_VISUALIZATIONS.LINE_CHART:
       case PROJECTION_VISUALIZATIONS.BAR_CHART:
       case PROJECTION_VISUALIZATIONS.AREA_CHART:
-        return this.findProjectionWidgetData(dataFilters, {
+        return this.findProjectionCustomWidgetData(dataFilters, {
           valueFieldAlias: 'vertical',
-        });
+        }) as unknown as Promise<CustomProjection>;
       case PROJECTION_VISUALIZATIONS.BUBBLE_CHART:
         const bubble =
           PROJECTION_FILTER_NAME_TO_FIELD_NAME[
