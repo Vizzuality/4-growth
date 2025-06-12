@@ -10,6 +10,7 @@ import {
   ChartTooltipContent,
   ChartTooltip,
 } from "@/components/ui/chart";
+import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 // TODO: Replace this type when backend provides the correct one
 type ProjectionsData = Array<{
@@ -19,20 +20,6 @@ type ProjectionsData = Array<{
 interface VerticalBarChartProps {
   title: string;
   data?: ProjectionsData;
-}
-
-function getValueIndexFromWidgetData(data: ProjectionsData) {
-  let index = 0;
-  let largestValue = 0;
-
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].value > largestValue) {
-      largestValue = data[i].value;
-      index = i;
-    }
-  }
-
-  return index;
 }
 
 const VerticalBarChart: FC<VerticalBarChartProps> = ({ title, data }) => {
@@ -62,7 +49,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ title, data }) => {
     return <NoData />;
   }
 
-  const highestValueIndex = getValueIndexFromWidgetData(data);
+  const highestValueIndex = getIndexOfLargestValue(data);
 
   return (
     <ChartContainer
