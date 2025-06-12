@@ -1,3 +1,5 @@
+import Explore from "@/containers/explore/projections";
+
 export default function ProjectionsPage() {
-  return <div>Projections Page</div>;
+  return <Explore />;
 }

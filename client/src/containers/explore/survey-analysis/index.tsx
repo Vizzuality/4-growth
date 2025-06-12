@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
@@ -13,11 +13,14 @@ import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
 import useFilters from "@/hooks/use-filters";
+import { useScrollToHash } from "@/hooks/use-scroll-to-hash";
 
 import Section from "@/containers/explore/section";
 import OverviewSection from "@/containers/explore/section/overview-section";
 import { intersectingAtom } from "@/containers/explore/store";
 import Widget from "@/containers/widget";
+
+import { useScrollSpy } from "tests/hooks/use-scroll-spy";
 
 export default function Explore() {
   const { filters } = useFilters();
@@ -43,65 +46,16 @@ export default function Explore() {
   const ref = useRef<HTMLDivElement>(null);
   const setIntersecting = useSetAtom(intersectingAtom);
 
-  useEffect(() => {
-    if (!ref.current) return;
+  useScrollSpy({
+    containerRef: ref,
+    setCurrentStep: setIntersecting,
+    options: {
+      threshold: 0,
+      rootMargin: "-50% 0% -50% 0%",
+    },
+  });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionSlug = entry.target.id;
-
-            setIntersecting(sectionSlug);
-          }
-        });
-      },
-      {
-        root: ref.current,
-        threshold: 0,
-        /**
-         * This rootMargin creates a horizontal line vertically centered
-         * that will help trigger an intersection at that the very point.
-         */
-        rootMargin: "-50% 0% -50% 0%",
-      },
-    );
-
-    const sections = Array.from(ref.current.children);
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, [setIntersecting]);
-
-  useEffect(() => {
-    // TODO: This check can be removed if the api response is fixed,
-    // i.e. the api should always return all sections and only filter the widget data
-    if (sections.length === 0) return;
-
-    const handlePopState = () => {
-      const hash = window.location.hash.slice(1);
-      const id = decodeURIComponent(hash || sections[0].slug);
-      const element = document.getElementById(id);
-
-      if (element && ref.current) {
-        const containerRect = ref.current.getBoundingClientRect();
-        const elementRect = element.getBoundingClientRect();
-        const scrollTop =
-          elementRect.top - containerRect.top + ref.current.scrollTop;
-
-        ref.current.scrollTo({
-          top: scrollTop,
-        });
-      }
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
-    handlePopState();
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [sections]);
+  useScrollToHash({ containerRef: ref, sections });
 
   return (
     <div
