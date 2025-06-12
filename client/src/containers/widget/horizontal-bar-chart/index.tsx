@@ -5,9 +5,9 @@ import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface"
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
 import NoData from "@/containers/no-data";
+import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 import { ChartContainer } from "@/components/ui/chart";
-import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 interface HorizontalBarChartProps {
   data?: WidgetChartData;
