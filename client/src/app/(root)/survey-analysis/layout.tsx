@@ -6,16 +6,16 @@ import type { Metadata } from "next";
 import { client, QUERY_OPTIONS } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
-import { TopNavToggle } from "@/containers/nav-toggle";
-import Overlay from "@/containers/overlay";
-import Sidebar from "@/containers/sidebar";
+import RootLayout from "@/containers/layout/root-layout";
 
 export const metadata: Metadata = {
-  title: "Explore | 4Growth",
-  description: "Explore | 4Growth",
+  title: "Survey analysis | 4Growth",
+  description: "Survey analysis | 4Growth",
 };
 
-export default async function ExploreLayout({ children }: PropsWithChildren) {
+export default async function SurveyAnalysisLayout({
+  children,
+}: PropsWithChildren) {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: queryKeys.sections.all([]).queryKey,
@@ -32,16 +32,7 @@ export default async function ExploreLayout({ children }: PropsWithChildren) {
 
   return (
     <Hydrate state={dehydrate(queryClient)}>
-      <Overlay />
-      <div className="grid h-full grid-cols-[280px_1fr] gap-0.5">
-        <div className="flex h-full flex-col gap-0.5 overflow-hidden">
-          <Sidebar />
-        </div>
-        <div className="flex h-full flex-col gap-0.5 overflow-hidden">
-          <TopNavToggle />
-          {children}
-        </div>
-      </div>
+      <RootLayout>{children}</RootLayout>
     </Hydrate>
   );
 }

@@ -34,9 +34,14 @@ export const widgetsKeys = createQueryKeys("widgets", {
   ],
 });
 
+export const projectionsKeys = createQueryKeys("projections", {
+  widgets: null,
+});
+
 export const queryKeys = mergeQueryKeys(
   usersKeys,
   sectionsKeys,
   pageFiltersKeys,
   widgetsKeys,
+  projectionsKeys,
 );

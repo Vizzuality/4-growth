@@ -1,10 +1,10 @@
 import {
   PROJECTION_TYPES,
-  ProjectionType,
+  type ProjectionType,
 } from '@shared/dto/projections/projection-types';
 import {
   PROJECTION_VISUALIZATIONS,
-  ProjectionVisualizationsType,
+  type ProjectionVisualizationsType,
 } from '@shared/dto/projections/projection-visualizations.constants';
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 

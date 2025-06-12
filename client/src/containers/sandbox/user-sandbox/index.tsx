@@ -13,7 +13,7 @@ import {
   sandboxIndicatorAtom,
   sandboxVisualizationAtom,
 } from "@/containers/sidebar/store";
-import Widget from "@/containers/widget";
+import Widget from "@/containers/widget/survey-analysis";
 import UpdateWidgetMenu from "@/containers/widget/update-widget";
 
 import { Card } from "@/components/ui/card";
