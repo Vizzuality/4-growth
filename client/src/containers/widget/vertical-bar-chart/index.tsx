@@ -106,6 +106,8 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ title, data }) => {
                     ? "hsl(var(--accent))"
                     : "hsl(var(--secondary))"
                 }
+                // @ts-ignore - Recharts Cell radius prop accepts [number, number, number, number] for corner radius
+                // but its type definition only allows string | number | undefined
                 radius={getRadius(index, data.length)}
               />
             );
