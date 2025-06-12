@@ -4,13 +4,13 @@ import { FC, useRef, useEffect, useState } from "react";
 import { Bar, BarChart, Cell, XAxis } from "recharts";
 
 import NoData from "@/containers/no-data";
+import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 import {
   ChartContainer,
   ChartTooltipContent,
   ChartTooltip,
 } from "@/components/ui/chart";
-import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 // TODO: Replace this type when backend provides the correct one
 type ProjectionsData = Array<{
@@ -106,7 +106,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ title, data }) => {
                     ? "hsl(var(--accent))"
                     : "hsl(var(--secondary))"
                 }
-                // @ts-ignore - Recharts Cell radius prop accepts [number, number, number, number] for corner radius
+                // @ts-expect-error - Recharts Cell radius prop accepts [number, number, number, number] for corner radius
                 // but its type definition only allows string | number | undefined
                 radius={getRadius(index, data.length)}
               />
