@@ -7,25 +7,13 @@ import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 import NoData from "@/containers/no-data";
 
 import { ChartContainer } from "@/components/ui/chart";
+import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 interface HorizontalBarChartProps {
   data?: WidgetChartData;
   barSize?: number;
 }
 
-function getValueIndexFromWidgetData(data: WidgetChartData) {
-  let index = 0;
-  let largestValue = 0;
-
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].value > largestValue) {
-      largestValue = data[i].value;
-      index = i;
-    }
-  }
-
-  return index;
-}
 const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, barSize }) => {
   if (!data || data.length === 0) {
     console.error(
@@ -35,7 +23,7 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, barSize }) => {
   }
 
   const height = data.length * 50;
-  const highestValueIndex = getValueIndexFromWidgetData(data);
+  const highestValueIndex = getIndexOfLargestValue(data);
   let style: CSSProperties = {
     minHeight: "0px",
     width: "60%",
