@@ -80,16 +80,6 @@ export class ProjectionsService extends AppBaseService<
     return projectionsWidgets;
   }
 
-  public async searchProjections(
-    query: FetchSpecification & SearchFiltersDTO,
-  ): Promise<any> {
-    query.disablePagination = true;
-
-    const [projections] = await this.findAll(query);
-
-    return projections;
-  }
-
   public async extendFindAllQuery(
     query: SelectQueryBuilder<Projection>,
     fetchSpecification: FetchSpecification & SearchFiltersDTO,
