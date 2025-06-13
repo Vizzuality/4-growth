@@ -27,7 +27,7 @@ vi.mock("@/containers/no-data", () => ({
 
 describe("VerticalBarChart", () => {
   const mockProps = {
-    title: "Market potential",
+    indicator: "Market potential",
     data: [
       { year: 2020, value: 100 },
       { year: 2021, value: 50 },
@@ -63,7 +63,7 @@ describe("VerticalBarChart", () => {
           const tooltip = within(tooltipWrapper);
           expect(tooltip.getByText("Year")).toBeTruthy();
           expect(tooltip.getByText(mockProps.data[0].year)).toBeTruthy();
-          expect(tooltip.getByText(mockProps.title)).toBeTruthy();
+          expect(tooltip.getByText(mockProps.indicator)).toBeTruthy();
           expect(tooltip.getByText(mockProps.data[0].value)).toBeTruthy();
         } else {
           throw new Error("Unable to trigger tooltip in VerticalBarChart");

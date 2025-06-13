@@ -1,7 +1,7 @@
 "use client";
 import { FC, useRef, useEffect, useState } from "react";
 
-import { Bar, BarChart, Cell, XAxis } from "recharts";
+import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
 import NoData from "@/containers/no-data";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
@@ -18,11 +18,14 @@ type ProjectionsData = Array<{
   value: number;
 }>;
 interface VerticalBarChartProps {
-  title: string;
+  indicator: string;
   data?: ProjectionsData;
 }
 
-const VerticalBarChart: FC<VerticalBarChartProps> = ({ title, data }) => {
+// BAR_GAP is explicitly set to compensate for the default spacing at chart edges
+// This ensures consistent bar spacing across the entire chart width
+const BAR_GAP = 2;
+const VerticalBarChart: FC<VerticalBarChartProps> = ({ indicator, data }) => {
   const chartRef = useRef<HTMLDivElement>(null);
   const [tickMargin, setTickMargin] = useState<number>(0);
 
@@ -54,14 +57,17 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ title, data }) => {
   return (
     <ChartContainer
       config={{}}
-      className="w-full p-0 [&_.recharts-cartesian-axis-tick_text]:fill-foreground [&_.recharts-cartesian-axis-tick_text]:font-medium"
+      // The XAxis component adds default height to the chart container
+      // We use negative margin to compensate and keep the chart compact
+      // See: https://recharts.org/en-US/api/XAxis#height
+      className="-mb-[30px] [&_.recharts-cartesian-axis-tick_text]:fill-foreground [&_.recharts-cartesian-axis-tick_text]:font-medium"
       ref={chartRef}
     >
       <BarChart
-        margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+        margin={{ top: 0, left: -BAR_GAP, right: -BAR_GAP, bottom: 0 }}
         data={data}
         layout="horizontal"
-        barGap={2}
+        barCategoryGap={BAR_GAP}
         accessibilityLayer
       >
         <ChartTooltip
@@ -74,7 +80,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ title, data }) => {
                 <div className="flex gap-2">
                   <p className="flex flex-col items-end justify-end gap-2">
                     <span>Year</span>
-                    <span>{title}</span>
+                    <span>{indicator}</span>
                   </p>
                   <p className="flex flex-col gap-2">
                     <span className="font-bold">{payload[0].payload.year}</span>
@@ -93,8 +99,8 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ title, data }) => {
               index: number,
               total: number,
             ): [number, number, number, number] => {
-              if (index === 0) return [8, 8, 0, 50];
-              if (index === total - 1) return [8, 8, 50, 0];
+              if (index === 0) return [8, 8, 0, 16];
+              if (index === total - 1) return [8, 8, 16, 0];
               return [8, 8, 0, 0];
             };
 
