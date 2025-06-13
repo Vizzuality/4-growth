@@ -10,6 +10,7 @@ import {
 } from "@shared/dto/widgets/widget-visualizations.constants";
 import { useAtom } from "jotai";
 
+import { removeNaLabels } from "@/lib/normalize-widget-data";
 import { cn, isEmptyWidget } from "@/lib/utils";
 
 import MenuButton from "@/containers/menu-button";
@@ -28,8 +29,8 @@ import WidgetHeader from "@/containers/widget/widget-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { getRouteHref } from "@/utils/route-config";
 import { TransformedWidgetData } from "@/types";
+import { getRouteHref } from "@/utils/route-config";
 
 const getMenuButtonText = (v: WidgetVisualizationsType): string => {
   switch (v) {
@@ -186,7 +187,7 @@ export default function Widget({
             responseRate={responseRate}
           />
           <HorizontalBarChart
-            data={data.raw.chart}
+            data={removeNaLabels(data.raw.chart)}
             {...config?.horizontalBarChart}
           />
         </Card>

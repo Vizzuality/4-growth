@@ -78,15 +78,24 @@ function calculateTotalWithoutNA(chartData: WidgetChartData): number {
 function normalizeChartData(chartData: WidgetChartData): WidgetChartData {
   const totalWithoutNA = calculateTotalWithoutNA(chartData);
 
-  return chartData
-    .map((entry) => ({
+  return removeNaLabels(
+    chartData.map((entry) => ({
       ...entry,
       value: calculatePercentage(
         entry.value,
         totalWithoutNA === 0 ? entry.total : totalWithoutNA,
       ),
-    }))
-    .filter((c) => c.label !== "N/A");
+    })),
+  );
+}
+
+/**
+ * Filters out entries with "N/A" labels from chart data
+ * @param data - The chart data to filter
+ * @returns Filtered chart data without N/A entries
+ */
+function removeNaLabels(data?: WidgetChartData): WidgetChartData {
+  return data?.filter((c) => c.label !== "N/A") || [];
 }
 
 /**
@@ -104,4 +113,4 @@ function calculatePercentage(value: number, total: number): number {
   return Math.round(percentage);
 }
 
-export { normalizeWidgetData, getResponseRate };
+export { normalizeWidgetData, getResponseRate, removeNaLabels };

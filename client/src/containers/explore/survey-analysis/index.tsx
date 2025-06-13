@@ -20,8 +20,8 @@ import OverviewSection from "@/containers/explore/section/overview-section";
 import { intersectingAtom } from "@/containers/explore/store";
 import Widget from "@/containers/widget/survey-analysis";
 
-import { useScrollSpy } from "tests/hooks/use-scroll-spy";
 import { TransformedWidget, TransformedWidgetData } from "@/types";
+import { useScrollSpy } from "tests/hooks/use-scroll-spy";
 
 export default function Explore() {
   const { filters } = useFilters();
