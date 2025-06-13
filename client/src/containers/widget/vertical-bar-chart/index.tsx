@@ -3,6 +3,8 @@ import { FC, useRef, useEffect, useState } from "react";
 
 import { Bar, BarChart, Cell, XAxis } from "recharts";
 
+import { formatNumber } from "@/lib/utils";
+
 import NoData from "@/containers/no-data";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
@@ -85,7 +87,9 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ indicator, data }) => {
                   <p className="flex flex-col gap-2">
                     <span className="font-bold">{payload[0].payload.year}</span>
                     <span className="font-bold">
-                      {payload[0].payload.value}
+                      {formatNumber(payload[0].payload.value, {
+                        maximumFractionDigits: 0,
+                      })}
                     </span>
                   </p>
                 </div>

@@ -4,8 +4,6 @@ import {
   WidgetMapData,
 } from "@shared/dto/widgets/base-widget-data.interface";
 
-import { formatNumber } from "@/lib/utils";
-
 /**
  * Function that transforms raw count values into percentages
  */
@@ -93,14 +91,14 @@ function normalizeChartData(chartData: WidgetChartData): WidgetChartData {
 
 /**
  * Calculates percentage and formats it based on its value:
- * - Returns decimal value using formatNumber if percentage is between 0 and 1
+ * - Returns raw value if percentage is between 0 and 1
  * - Returns rounded whole number for percentages >= 1
  */
 function calculatePercentage(value: number, total: number): number {
   const percentage = (value / total) * 100;
 
   if (percentage >= 0 && percentage < 1) {
-    return formatNumber(percentage);
+    return percentage;
   }
 
   return Math.round(percentage);
