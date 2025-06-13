@@ -76,7 +76,7 @@ export function formatNumber(
   value: number,
   options: Intl.NumberFormatOptions = {},
 ) {
-  return new Intl.NumberFormat("en-DE", {
+  return new Intl.NumberFormat("en-GB", {
     style: "decimal",
     maximumFractionDigits: 2,
     minimumFractionDigits: 0,
