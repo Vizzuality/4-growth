@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { client, QUERY_OPTIONS } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
-import RootLayout from "@/containers/layout/root-layout";
+import RootLayout from "@/app/(root)/root-layout";
 
 export const metadata: Metadata = {
   title: "Projections | 4Growth",
