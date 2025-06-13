@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getRouteHref } from "@/utils/route-config";
+import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 
 const getMenuButtonText = (v: ProjectionVisualizationsType): string => {
   switch (v) {
@@ -125,6 +126,12 @@ export default function Widget({
   switch (selectedVisualization) {
     case "area_chart":
     case "bar_chart":
+      return (
+        <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
+          <WidgetHeader indicator={indicator} menu={menuComponent} />
+          <VerticalBarChart indicator={indicator} data={data} />
+        </Card>
+      );
     case "bubble_chart":
     case "line_chart":
       return (
