@@ -13,13 +13,13 @@ import { cn } from "@/lib/utils";
 import MenuButton from "@/containers/menu-button";
 import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
+import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getRouteHref } from "@/utils/route-config";
-import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 
 const getMenuButtonText = (v: ProjectionVisualizationsType): string => {
   switch (v) {

@@ -1,7 +1,7 @@
 "use client";
 import { FC, useRef, useEffect, useState } from "react";
 
-import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, Cell, XAxis } from "recharts";
 
 import NoData from "@/containers/no-data";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
