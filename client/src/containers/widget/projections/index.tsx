@@ -124,7 +124,6 @@ export default function Widget({
   }
 
   switch (selectedVisualization) {
-    case "area_chart":
     case "bar_chart":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
@@ -132,6 +131,7 @@ export default function Widget({
           <VerticalBarChart indicator={indicator} data={data} />
         </Card>
       );
+    case "area_chart":
     case "bubble_chart":
     case "line_chart":
       return (
