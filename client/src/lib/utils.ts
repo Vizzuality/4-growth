@@ -76,12 +76,10 @@ export function formatNumber(
   value: number,
   options: Intl.NumberFormatOptions = {},
 ) {
-  return Number(
-    new Intl.NumberFormat("en-US", {
-      style: "decimal",
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 0,
-      ...options,
-    }).format(value),
-  );
+  return new Intl.NumberFormat("en-DE", {
+    style: "decimal",
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
+    ...options,
+  }).format(value);
 }
