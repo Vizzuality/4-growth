@@ -13,6 +13,7 @@ import {
   BAR_GAP,
   CHART_CONTAINER_CLASS_NAME,
   CHART_MARGIN,
+  CHART_STYLES,
 } from "@/containers/widget/constants";
 
 import {
@@ -39,6 +40,7 @@ const AreaChartComponent: FC<AreaChartChartProps> = ({ indicator, data }) => {
       config={{}}
       className={CHART_CONTAINER_CLASS_NAME}
       ref={chartRef}
+      style={CHART_STYLES}
     >
       <AreaChart
         margin={CHART_MARGIN}

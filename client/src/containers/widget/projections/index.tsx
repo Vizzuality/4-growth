@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Link from "next/link";
 
@@ -70,6 +70,10 @@ export default function Widget({
   const [selectedVisualization, setSelectedVisualization] =
     useState<ProjectionVisualizationsType>(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
+  const widgetComponentProps = useMemo(
+    () => ({ indicator, data }),
+    [indicator, data],
+  );
   const menuComponent =
     menu ||
     (!visualisations && !showCustomizeWidgetButton ? undefined : (
@@ -130,21 +134,21 @@ export default function Widget({
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
-          <VerticalBarChart indicator={indicator} data={data} />
+          <VerticalBarChart {...widgetComponentProps} />
         </Card>
       );
     case "line_chart":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
-          <LineChart indicator={indicator} data={data} />
+          <LineChart {...widgetComponentProps} />
         </Card>
       );
     case "area_chart":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
-          <AreaChart indicator={indicator} data={data} />
+          <AreaChart {...widgetComponentProps} />
         </Card>
       );
     case "bubble_chart":

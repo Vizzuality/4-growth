@@ -32,7 +32,7 @@ export default function Explore() {
         </Card>
         <Card className="bg-lightgray col-span-1 bg-[url('/images/explore/overview-projections-bg.avif')] bg-cover bg-center bg-no-repeat" />
       </div>
-      <div className="grid grid-cols-2 gap-0.5 [&>*:last-child:nth-child(odd)]:col-span-2">
+      <div className="grid auto-rows-[400px] grid-cols-2 gap-0.5 [&>*:last-child:nth-child(odd)]:col-span-2">
         {data?.map((d) => (
           <Widget
             key={d.id}

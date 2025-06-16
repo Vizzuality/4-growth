@@ -13,6 +13,7 @@ import {
   BAR_GAP,
   CHART_CONTAINER_CLASS_NAME,
   CHART_MARGIN,
+  CHART_STYLES,
 } from "@/containers/widget/constants";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
@@ -45,6 +46,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ indicator, data }) => {
       config={{}}
       className={CHART_CONTAINER_CLASS_NAME}
       ref={chartRef}
+      style={CHART_STYLES}
     >
       <BarChart
         margin={CHART_MARGIN}
