@@ -1,8 +1,7 @@
-"use client";
 import { FC, useRef } from "react";
 
 import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
-import { Bar, BarChart, Cell, XAxis } from "recharts";
+import { Line, LineChart as ReLinChart, XAxis } from "recharts";
 
 import { formatNumber } from "@/lib/utils";
 
@@ -10,49 +9,36 @@ import useTickMargin from "@/hooks/use-tick-margin";
 
 import NoData from "@/containers/no-data";
 import {
-  BAR_GAP,
   CHART_CONTAINER_CLASS_NAME,
   CHART_MARGIN,
 } from "@/containers/widget/constants";
-import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 import {
   ChartContainer,
-  ChartTooltipContent,
   ChartTooltip,
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
-interface VerticalBarChartProps {
+interface LineChartProps {
   indicator: string;
   data?: ProjectionWidgetData[];
 }
-
-const VerticalBarChart: FC<VerticalBarChartProps> = ({ indicator, data }) => {
+const LineChart: FC<LineChartProps> = ({ indicator, data }) => {
   const chartRef = useRef<HTMLDivElement>(null);
   const tickMargin = useTickMargin(chartRef);
 
   if (!data || data.length === 0) {
-    console.error(
-      `VerticalBarChart: Expected at least 1 data point, but received 0.`,
-    );
+    console.error(`LineChart: Expected at least 1 data point, but received 0.`);
     return <NoData />;
   }
 
-  const highestValueIndex = getIndexOfLargestValue(data);
-
   return (
     <ChartContainer
+      ref={chartRef}
       config={{}}
       className={CHART_CONTAINER_CLASS_NAME}
-      ref={chartRef}
     >
-      <BarChart
-        margin={CHART_MARGIN}
-        data={data}
-        layout="horizontal"
-        barCategoryGap={BAR_GAP}
-        accessibilityLayer
-      >
+      <ReLinChart margin={CHART_MARGIN} data={data} accessibilityLayer>
         <ChartTooltip
           cursor={false}
           content={
@@ -78,42 +64,44 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ indicator, data }) => {
             />
           }
         />
-        <Bar dataKey="value">
-          {data.map((entry, index) => {
-            const getRadius = (
-              index: number,
-              total: number,
-            ): [number, number, number, number] => {
-              if (index === 0) return [8, 8, 0, 16];
-              if (index === total - 1) return [8, 8, 16, 0];
-              return [8, 8, 0, 0];
-            };
-
-            return (
-              <Cell
-                key={`cell-${entry.year}-${index}`}
-                fill={
-                  index === highestValueIndex
-                    ? "hsl(var(--accent))"
-                    : "hsl(var(--secondary))"
-                }
-                // @ts-expect-error - Recharts Cell radius prop accepts [number, number, number, number] for corner radius
-                // but its type definition only allows string | number | undefined
-                radius={getRadius(index, data.length)}
-              />
-            );
-          })}
-        </Bar>
+        <Line
+          dataKey="value"
+          type="linear"
+          strokeWidth={10}
+          stroke="hsl(var(--secondary))"
+          dot={false}
+        />
         <XAxis
           dataKey="year"
           tickLine={false}
           axisLine={false}
           tickMargin={tickMargin}
-          tickFormatter={(value) => (value % 10 === 0 ? value : "")}
+          interval="preserveStartEnd"
+          tick={(props) => {
+            const { x, y, payload } = props;
+
+            if (payload.value % 10 === 0) {
+              const firstTick = data[0].year === payload.value;
+              const lastTick = data[data.length - 1].year === payload.value;
+              const margin = firstTick ? 8 : lastTick ? -8 : 0;
+              return (
+                <text
+                  x={x + margin}
+                  y={y}
+                  textAnchor="middle"
+                  dominantBaseline="hanging"
+                >
+                  {payload.value}
+                </text>
+              );
+            }
+
+            return <path />;
+          }}
         />
-      </BarChart>
+      </ReLinChart>
     </ChartContainer>
   );
 };
 
-export default VerticalBarChart;
+export default LineChart;

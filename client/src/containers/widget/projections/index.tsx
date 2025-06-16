@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import MenuButton from "@/containers/menu-button";
 import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
+import LineChart from "@/containers/widget/line-chart";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
@@ -131,9 +132,15 @@ export default function Widget({
           <VerticalBarChart indicator={indicator} data={data} />
         </Card>
       );
+    case "line_chart":
+      return (
+        <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
+          <WidgetHeader indicator={indicator} menu={menuComponent} />
+          <LineChart indicator={indicator} data={data} />
+        </Card>
+      );
     case "area_chart":
     case "bubble_chart":
-    case "line_chart":
       return (
         <Card
           className={cn(
