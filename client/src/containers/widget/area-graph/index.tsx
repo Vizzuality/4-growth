@@ -6,12 +6,12 @@ import { cn } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
 
-interface AreaChartProps {
+interface AreaGraphProps {
   indicator: string;
   data?: WidgetChartData;
 }
 
-const getAreaChartCategories = (
+const getAreaGraphCategories = (
   data?: WidgetChartData,
 ): Record<"yes" | "no" | "dontKnow", WidgetChartData[number] | undefined> => {
   const categories: Record<
@@ -34,13 +34,10 @@ const getAreaChartCategories = (
   return categories;
 };
 
-const AreaChart: FC<AreaChartProps> = ({ indicator, data }) => {
-  const categories = useMemo(() => getAreaChartCategories(data), [data]);
+const AreaGraph: FC<AreaGraphProps> = ({ indicator, data }) => {
+  const categories = useMemo(() => getAreaGraphCategories(data), [data]);
 
   if (!data || data.length === 0 || data.length > 3) {
-    console.error(
-      `AreaChart (${indicator}): Invalid data format. The chart requires 1-3 data points, but received ${data?.length || 0} points.`,
-    );
     return <NoData />;
   }
 
@@ -71,8 +68,8 @@ const AreaChart: FC<AreaChartProps> = ({ indicator, data }) => {
         .filter((item): item is WidgetChartData[number] => item !== undefined)
         .map((a, i) => (
           <div
-            key={`area-chart-${indicator}-${a.label}-${a.value}`}
-            data-testid="area-chart-segment"
+            key={`area-graph-${indicator}-${a.label}-${a.value}`}
+            data-testid="area-graph-segment"
             style={{ width: `${a.value}%` }}
             className={cn(
               "flex h-full flex-col justify-end",
@@ -86,4 +83,4 @@ const AreaChart: FC<AreaChartProps> = ({ indicator, data }) => {
   );
 };
 
-export default AreaChart;
+export default AreaGraph;

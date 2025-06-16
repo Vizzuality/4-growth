@@ -28,9 +28,9 @@ vi.mock("@/containers/widget/pie-chart", () => ({
   ),
 }));
 
-vi.mock("@/containers/widget/area-chart", () => ({
+vi.mock("@/containers/widget/area-graph", () => ({
   default: () => (
-    <div data-testid={WIDGET_VISUALIZATIONS.AREA_GRAPH}>Area Chart</div>
+    <div data-testid={WIDGET_VISUALIZATIONS.AREA_GRAPH}>Area Graph</div>
   ),
 }));
 
