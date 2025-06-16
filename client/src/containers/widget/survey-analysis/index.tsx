@@ -16,7 +16,7 @@ import { cn, isEmptyWidget } from "@/lib/utils";
 import MenuButton from "@/containers/menu-button";
 import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
-import AreaChart from "@/containers/widget/area-chart";
+import AreaGraph from "@/containers/widget/area-graph";
 import Breakdown from "@/containers/widget/breakdown";
 import Filter from "@/containers/widget/filter";
 import HorizontalBarChart from "@/containers/widget/horizontal-bar-chart";
@@ -231,7 +231,7 @@ export default function Widget({
             menu={menuComponent}
             responseRate={responseRate}
           />
-          <AreaChart indicator={indicator} data={data.percentages.chart} />
+          <AreaGraph indicator={indicator} data={data.percentages.chart} />
         </Card>
       );
     case WIDGET_VISUALIZATIONS.NAVIGATION:
