@@ -11,6 +11,7 @@ import NoData from "@/containers/no-data";
 import {
   CHART_CONTAINER_CLASS_NAME,
   CHART_MARGIN,
+  CHART_STYLES,
 } from "@/containers/widget/constants";
 
 import {
@@ -37,6 +38,7 @@ const LineChart: FC<LineChartProps> = ({ indicator, data }) => {
       ref={chartRef}
       config={{}}
       className={CHART_CONTAINER_CLASS_NAME}
+      style={CHART_STYLES}
     >
       <ReLinChart margin={CHART_MARGIN} data={data} accessibilityLayer>
         <ChartTooltip

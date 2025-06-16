@@ -8,9 +8,10 @@ export const CHART_MARGIN = {
   bottom: 0,
 } as const;
 /**
- * The XAxis component adds default height to the chart container
- * We use negative margin to compensate and keep the chart compact
+ * The XAxis component adds default height of 30px to the chart container
+ * We use translateY to compensate and keep the chart compact
  * See: https://recharts.org/en-US/api/XAxis#height
  */
+export const CHART_STYLES = { height: 400 - 96, transform: "translateY(30px)" };
 export const CHART_CONTAINER_CLASS_NAME =
-  "-mb-[30px] [&_.recharts-cartesian-axis-tick_text]:fill-foreground [&_.recharts-cartesian-axis-tick_text]:font-medium" as const;
+  "[&_.recharts-cartesian-axis-tick_text]:fill-foreground [&_.recharts-cartesian-axis-tick_text]:font-medium" as const;
