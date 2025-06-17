@@ -120,7 +120,7 @@ export class DataSourceManager {
   }
 
   public async loadProjections(
-    filePath: string = `data/projections/mock-projections.json`,
+    filePath: string = `data/projections/mock-projections-with-scenarios.json`,
   ): Promise<void> {
     this.logger.log(
       `Loading initial projections from "${filePath}"`,
@@ -194,8 +194,8 @@ export class DataSourceManager {
           id: 4,
           type: PROJECTION_TYPES.SHIPMENTS,
           title: 'Shipments',
-          visualizations: [PROJECTION_VISUALIZATIONS.BAR_CHART],
-          defaultVisualization: PROJECTION_VISUALIZATIONS.BAR_CHART,
+          visualizations: [PROJECTION_VISUALIZATIONS.TABLE],
+          defaultVisualization: PROJECTION_VISUALIZATIONS.TABLE,
         },
         {
           id: 5,

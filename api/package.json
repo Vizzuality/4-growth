@@ -16,7 +16,8 @@
     "test": "jest --config ./test/jest-config.json -i",
     "typeorm": "pnpm exec ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js",
     "transform:surveys": "ts-node -r tsconfig-paths/register data/surveys/transform.ts",
-    "transform:projections": "ts-node -r tsconfig-paths/register data/projections/transform.ts"
+    "transform:projections": "ts-node -r tsconfig-paths/register data/projections/transform.ts",
+    "transform:projectionsWithScenarios": "ts-node -r tsconfig-paths/register data/projections/mock-projections-with-scenarios.ts"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "3.616.0",
