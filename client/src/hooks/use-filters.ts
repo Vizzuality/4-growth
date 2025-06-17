@@ -67,7 +67,14 @@ function useFilters() {
     [filters, setFilters],
   );
 
-  return { filters, setFilters, addFilter, removeFilterValue };
+  const removeFilter = useCallback(
+    (name: string) => {
+      setFilters(filters.filter((filter) => filter.name !== name));
+    },
+    [filters, setFilters],
+  );
+
+  return { filters, setFilters, addFilter, removeFilterValue, removeFilter };
 }
 
 const REQUIRED_KEYS = ["name", "operator", "values"];
