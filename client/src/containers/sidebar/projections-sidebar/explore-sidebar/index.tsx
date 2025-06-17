@@ -1,6 +1,9 @@
 import { FC } from "react";
 
-import ScenariosInfo from "@/containers/scenarios-info";
+import useFilters from "@/hooks/use-filters";
+
+import ScenariosInfo from "@/containers/scenarios/info";
+import ScenariosSelector from "@/containers/scenarios/selector";
 
 import {
   Accordion,
@@ -11,6 +14,7 @@ import {
 import InfoButton from "@/components/ui/info-button";
 
 const ExploreSidebar: FC = () => {
+  const { addFilter, removeFilter } = useFilters();
   return (
     <Accordion
       key="sidebar-accordion-explore"
@@ -29,7 +33,17 @@ const ExploreSidebar: FC = () => {
             </div>
           </div>
         </AccordionTrigger>
-        <AccordionContent className="py-3.5"></AccordionContent>
+        <AccordionContent className="py-3.5">
+          <ScenariosSelector
+            onSelect={(values) => {
+              if (values.length === 0) {
+                removeFilter("scenario");
+              } else {
+                addFilter({ name: "scenario", operator: "=", values });
+              }
+            }}
+          />
+        </AccordionContent>
       </AccordionItem>
     </Accordion>
   );
