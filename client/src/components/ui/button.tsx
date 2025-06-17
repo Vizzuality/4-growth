@@ -22,6 +22,7 @@ const buttonVariants = cva(
           "border border-bluish-gray-500/35 text-primary bg-transparent hover:border-bluish-gray-500 disabled:border-bluish-gray-500/35 disabled:text-primary/20 disabled:bg-transparent",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-foreground underline-offset-[3px] underline",
+        info: "bg-secondary text-foreground hover:bg-magenta-500 text-foreground",
         clean: "",
       },
       size: {
