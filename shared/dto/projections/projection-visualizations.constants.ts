@@ -3,6 +3,7 @@ export const PROJECTION_VISUALIZATIONS = {
   AREA_CHART: 'area_chart',
   BAR_CHART: 'bar_chart',
   BUBBLE_CHART: 'bubble_chart',
+  TABLE: 'table',
 } as const;
 
 export const AVIALABLE_PROJECTION_VISUALIZATIONS = Object.values(
