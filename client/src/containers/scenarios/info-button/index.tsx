@@ -40,7 +40,7 @@ const ScenarioInfoButton: FC<PropsWithChildren> = ({ children }) => {
         </div>
       </DialogTrigger>
       <DialogContent className="overflow-auto bg-white px-0 pb-0 text-navy-950 [&>button]:hidden">
-        <ScrollArea className="h-full">
+        <ScrollArea className="h-full px-4">
           <DialogHeader className="mb-4 flex w-full flex-row items-start justify-between px-4">
             <DialogTitle className="text-xl">Scenario</DialogTitle>
             <Button className="p-2" size="none" onClick={() => setOpen(false)}>
