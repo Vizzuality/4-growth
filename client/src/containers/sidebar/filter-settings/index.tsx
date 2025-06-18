@@ -2,14 +2,13 @@ import { FC, useMemo } from "react";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
-import { CountryISO3Map } from "@shared/constants/country-iso3.map";
+import { normalizeProjectionsFilterValues } from "@/lib/utils";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
 import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import { DEFAULT_FILTERS_LABEL_MAP } from "@/containers/sidebar/filter-settings/constants";
 import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
-import { normalizeProjectionsFilterValues } from "@/lib/utils";
 
 interface FilterSettingsProps {
   type: "projections" | "surveyAnalysis";
