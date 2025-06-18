@@ -18,7 +18,7 @@ export default async function ProjectionsLayout({
 }: PropsWithChildren) {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: queryKeys.projections.widgets.queryKey,
+    queryKey: queryKeys.projections.widgets([]).queryKey,
     queryFn: async () =>
       client.projections.getProjectionsWidgets.query(QUERY_OPTIONS),
   });

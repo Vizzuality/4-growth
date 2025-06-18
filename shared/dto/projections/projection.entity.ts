@@ -1,5 +1,8 @@
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
-import { PROJECTION_TYPES } from '@shared/dto/projections/projection-types';
+import {
+  PROJECTION_TYPES,
+  ProjectionScenarios,
+} from '@shared/dto/projections/projection-types';
 import {
   Entity,
   Column,
@@ -7,13 +10,6 @@ import {
   CreateDateColumn,
   OneToMany,
 } from 'typeorm';
-
-export const ProjectionScenarios = {
-  BASELINE: 'baseline',
-  REIMAGINING_PROGRESS: 'reimagining_progress',
-  THE_FRACTURED_CONTINENT: 'the_fractured_continent',
-  THE_CORPORATE_EPOCH: 'the_corporate_epoch',
-};
 
 @Entity('projections')
 export class Projection {
