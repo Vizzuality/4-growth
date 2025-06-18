@@ -38,6 +38,7 @@ export const projectionsKeys = createQueryKeys("projections", {
   widgets: (dataFilters: FilterQueryParam[]) => ({
     queryKey: [{ dataFilters }],
   }),
+  filters: null,
 });
 
 export const queryKeys = mergeQueryKeys(

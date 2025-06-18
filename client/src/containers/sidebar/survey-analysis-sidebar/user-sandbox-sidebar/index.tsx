@@ -11,6 +11,7 @@ import { FilterQueryParam } from "@/hooks/use-filters";
 
 import FilterSettings from "@/containers/sidebar/filter-settings";
 import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filters-button";
+import { SURVEY_ANALYSIS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
 import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import {
   sandboxFiltersAtom,
@@ -93,6 +94,8 @@ const UserSandboxSidebar: FC = () => {
         </div>
         <AccordionContent className="py-3.5">
           <FilterSettings
+            type="surveyAnalysis"
+            defaultFilters={SURVEY_ANALYSIS_DEFAULT_FILTERS}
             filterQueryParams={filters}
             onAddFilter={addFilter}
             onRemoveFilterValue={removeFilterValue}
