@@ -1,3 +1,5 @@
+import { ProjectionScenarios } from "@shared/dto/projections/projection-types";
+
 import DiamondLine from "@/components/icons/diamond-line";
 import Rocket from "@/components/icons/rocket";
 import Rows2 from "@/components/icons/rows-2";
@@ -7,7 +9,7 @@ import { List } from "@/components/ui/list";
 export const SCENARIOS = [
   {
     label: "Baseline",
-    value: "baseline",
+    value: ProjectionScenarios.BASELINE,
     icon: <Rows2 className="fill-current" />,
     shortDescription: (
       <p>
@@ -58,7 +60,7 @@ export const SCENARIOS = [
   },
   {
     label: "Reimagining Progress",
-    value: "reimagining-progress",
+    value: ProjectionScenarios.REIMAGINING_PROGRESS,
     icon: <Sun className="fill-current" />,
     shortDescription: (
       <p>
@@ -107,7 +109,7 @@ export const SCENARIOS = [
   },
   {
     label: "The Fractured Continent",
-    value: "fractured-continent",
+    value: ProjectionScenarios.THE_FRACTURED_CONTINENT,
     icon: <DiamondLine className="fill-current" />,
     shortDescription: (
       <p>
@@ -153,7 +155,7 @@ export const SCENARIOS = [
   },
   {
     label: "The Corporate Epoch",
-    value: "corporate-epoch",
+    value: ProjectionScenarios.THE_CORPORATE_EPOCH,
     icon: <Rocket className="fill-current" />,
     shortDescription: (
       <p>

@@ -13,8 +13,8 @@ import Title from "@/components/ui/title";
 export default function Explore() {
   const { filters } = useFilters();
   const { data } = client.projections.getProjectionsWidgets.useQuery(
-    queryKeys.projections.widgets.queryKey,
-    { query: { filters } },
+    queryKeys.projections.widgets(filters).queryKey,
+    { query: { dataFilters: filters } },
     { select: (res) => res.body.data },
   );
 
