@@ -109,14 +109,6 @@ const DialogDescription = React.forwardRef<
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
-const DialogContentContainer = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("space-y-2 text-foreground", className)} {...props} />
-);
-DialogContentContainer.displayName = "DialogContentContainer";
-
 export {
   Dialog,
   DialogPortal,
@@ -124,7 +116,6 @@ export {
   DialogClose,
   DialogTrigger,
   DialogContent,
-  DialogContentContainer,
   DialogHeader,
   DialogFooter,
   DialogTitle,

@@ -1,23 +1,13 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
 import { cn } from "@/lib/utils";
 
+import useScenarioFilter from "@/hooks/use-scenario-filter";
+
 import { SCENARIOS } from "@/containers/scenarios/constants";
 
-const ScenariosSelector: FC<{
-  onSelect: (scenarios: string[]) => void;
-}> = ({ onSelect }) => {
-  const [selectedScenarios, setSelectedScenarios] = useState<string[]>([]);
-
-  const handleScenarioChange = (value: string) => {
-    const newValues = selectedScenarios.includes(value)
-      ? selectedScenarios.filter((v) => v !== value)
-      : [...selectedScenarios, value];
-
-    setSelectedScenarios(newValues);
-    onSelect(newValues);
-  };
-
+const ScenariosSelector: FC = () => {
+  const { selectedScenarios, toggleScenario } = useScenarioFilter();
   return (
     <div className="grid grid-cols-2 gap-0.5">
       {SCENARIOS.map((s) => (
@@ -33,7 +23,7 @@ const ScenariosSelector: FC<{
             type="checkbox"
             className="sr-only"
             checked={selectedScenarios.includes(s.value)}
-            onChange={() => handleScenarioChange(s.value)}
+            onChange={() => toggleScenario(s.value)}
           />
           <div
             className={cn(
