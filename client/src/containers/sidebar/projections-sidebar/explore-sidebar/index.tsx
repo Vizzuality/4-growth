@@ -1,8 +1,11 @@
 import { FC } from "react";
 
-import useFilters from "@/hooks/use-filters";
+import { useSetAtom } from "jotai";
+
+import { showScenarioInfoAtom } from "@/app/(root)/projections/store";
 
 import ScenariosInfo from "@/containers/scenarios/info";
+import ScenarioInfoButton from "@/containers/scenarios/info-button";
 import ScenariosSelector from "@/containers/scenarios/selector";
 
 import {
@@ -11,10 +14,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import InfoButton from "@/components/ui/info-button";
+import { Button } from "@/components/ui/button";
 
 const ExploreSidebar: FC = () => {
-  const { addFilter, removeFilter } = useFilters();
+  const setShowScenarioInfo = useSetAtom(showScenarioInfoAtom);
   return (
     <Accordion
       key="sidebar-accordion-explore"
@@ -27,22 +30,20 @@ const ExploreSidebar: FC = () => {
           <div className="mr-1 flex w-full items-center justify-between">
             <span>Scenarios</span>
             <div className="inline-flex" onClick={(e) => e.stopPropagation()}>
-              <InfoButton title="Scenario">
+              <ScenarioInfoButton>
                 <ScenariosInfo />
-              </InfoButton>
+                <Button
+                  className="ml-6 mt-4"
+                  onClick={() => setShowScenarioInfo(false)}
+                >
+                  Close
+                </Button>
+              </ScenarioInfoButton>
             </div>
           </div>
         </AccordionTrigger>
         <AccordionContent className="py-3.5">
-          <ScenariosSelector
-            onSelect={(values) => {
-              if (values.length === 0) {
-                removeFilter("scenario");
-              } else {
-                addFilter({ name: "scenario", operator: "=", values });
-              }
-            }}
-          />
+          <ScenariosSelector />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
