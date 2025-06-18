@@ -1,4 +1,4 @@
-import { ProjectionScenarios } from '@shared/dto/projections/projection.entity';
+import { ProjectionScenarios } from '@shared/dto/projections/projection-types';
 import * as fs from 'fs';
 import { cloneDeep } from 'lodash';
 
