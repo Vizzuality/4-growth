@@ -9,7 +9,7 @@ const ScenariosInfo: FC = () => {
   const { selectedScenarios, toggleScenario } = useScenarioFilter();
   return (
     <div className="text-xs text-slate-500">
-      <p className="mb-4 px-4">
+      <p className="mb-4">
         Lorem ipsum dolor sit amet consectetur. Enim laoreet volutpat lobortis
         ultrices mattis amet gravida augue dapibus. Mattis risus at nisi at ut
         gravida non maecenas. Pulvinar maecenas leo felis eu eget eget ac lorem
@@ -20,6 +20,7 @@ const ScenariosInfo: FC = () => {
           <ScenarioInfoCard
             key={`scenario-info-${s.value}`}
             title={s.label}
+            icon={s.icon}
             shortDescription={s.shortDescription}
             longDescription={s.longDescription}
             isSelected={selectedScenarios.includes(s.value) || false}
