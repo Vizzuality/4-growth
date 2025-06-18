@@ -3,6 +3,8 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 import { FilterQueryParam } from "./../hooks/use-filters";
+import { ProjectionFilter } from "@shared/dto/projections/projection-filter.entity";
+import { CountryISO3Map } from "@shared/constants/country-iso3.map";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -82,4 +84,21 @@ export function formatNumber(
     minimumFractionDigits: 0,
     ...options,
   }).format(value);
+}
+
+export function normalizeProjectionsFilterValues(
+  filters: ProjectionFilter[],
+): ProjectionFilter[] {
+  return filters.map((filter) => {
+    if (filter.name === "country") {
+      return {
+        ...filter,
+        values: filter.values.map(
+          (value: string) =>
+            CountryISO3Map.getCountryNameByISO3(value) || value,
+        ),
+      };
+    }
+    return filter;
+  });
 }

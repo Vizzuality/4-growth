@@ -15,6 +15,7 @@ import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
 import AreaChart from "@/containers/widget/area-chart";
 import LineChart from "@/containers/widget/line-chart";
+import TableView from "@/containers/widget/table";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
@@ -33,6 +34,8 @@ const getMenuButtonText = (v: ProjectionVisualizationsType): string => {
       return "Show as a bar chart";
     case "bubble_chart":
       return "Show as a bubble chart";
+    case "table":
+      return "Show as a table";
     default:
       return "";
   }
@@ -149,6 +152,13 @@ export default function Widget({
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
           <AreaChart {...widgetComponentProps} />
+        </Card>
+      );
+    case "table":
+      return (
+        <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
+          <WidgetHeader indicator={indicator} menu={menuComponent} />
+          <TableView {...widgetComponentProps} />
         </Card>
       );
     case "bubble_chart":

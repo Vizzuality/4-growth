@@ -5,6 +5,7 @@ import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
 import FilterSettings from "@/containers/sidebar/filter-settings";
 import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filters-button";
+import { SURVEY_ANALYSIS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
 import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import VisualizationSelector from "@/containers/sidebar/visualization-selector";
 
@@ -54,6 +55,8 @@ const SandboxSidebar: FC = () => {
         </div>
         <AccordionContent className="py-3.5">
           <FilterSettings
+            type="surveyAnalysis"
+            defaultFilters={SURVEY_ANALYSIS_DEFAULT_FILTERS}
             filterQueryParams={filters}
             onAddFilter={addFilter}
             onRemoveFilterValue={removeFilterValue}

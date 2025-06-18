@@ -4,9 +4,14 @@ import { useSetAtom } from "jotai";
 
 import { showScenarioInfoAtom } from "@/app/(root)/projections/store";
 
+import useFilters from "@/hooks/use-filters";
+
 import ScenariosInfo from "@/containers/scenarios/info";
 import ScenarioInfoButton from "@/containers/scenarios/info-button";
 import ScenariosSelector from "@/containers/scenarios/selector";
+import FilterSettings from "@/containers/sidebar/filter-settings";
+import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filters-button";
+import { PROJECTIONS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
 
 import {
   Accordion,
@@ -18,12 +23,14 @@ import { Button } from "@/components/ui/button";
 
 const ExploreSidebar: FC = () => {
   const setShowScenarioInfo = useSetAtom(showScenarioInfoAtom);
+  const { filters, addFilter, removeFilterValue } = useFilters();
+
   return (
     <Accordion
       key="sidebar-accordion-explore"
       type="multiple"
       className="w-full overflow-y-auto"
-      defaultValue={["scenario"]}
+      defaultValue={["scenario", "filters"]}
     >
       <AccordionItem value="scenario">
         <AccordionTrigger>
@@ -44,6 +51,21 @@ const ExploreSidebar: FC = () => {
         </AccordionTrigger>
         <AccordionContent className="py-3.5">
           <ScenariosSelector />
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="filters">
+        <div className="relative">
+          <AccordionTrigger>Filters</AccordionTrigger>
+          <ClearFiltersButton />
+        </div>
+        <AccordionContent className="py-3.5">
+          <FilterSettings
+            type="projections"
+            defaultFilters={PROJECTIONS_DEFAULT_FILTERS}
+            filterQueryParams={filters}
+            onAddFilter={addFilter}
+            onRemoveFilterValue={removeFilterValue}
+          />
         </AccordionContent>
       </AccordionItem>
     </Accordion>

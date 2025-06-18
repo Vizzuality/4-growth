@@ -1,28 +1,19 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
+import { CountryISO3Map } from "@shared/constants/country-iso3.map";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
 import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
+import { DEFAULT_FILTERS_LABEL_MAP } from "@/containers/sidebar/filter-settings/constants";
 import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
-
-const DEFAULT_FILTERS = ["location-country-region", "sector"];
-const DEFAULT_FILTERS_LABEL_MAP: {
-  [key: string]: { selected: string; unSelected: string };
-} = {
-  "location-country-region": {
-    selected: "Country",
-    unSelected: "All countries",
-  },
-  sector: {
-    selected: "Sector",
-    unSelected: "All operation areas",
-  },
-} as const;
+import { normalizeProjectionsFilterValues } from "@/lib/utils";
 
 interface FilterSettingsProps {
+  type: "projections" | "surveyAnalysis";
+  defaultFilters: string[];
   filterQueryParams: FilterQueryParam[];
   onAddFilter: (newFilter: FilterQueryParam) => void;
   onRemoveFilterValue: (name: string, valueToRemove: string) => void;
@@ -30,26 +21,54 @@ interface FilterSettingsProps {
 }
 
 const FilterSettings: FC<FilterSettingsProps> = ({
+  type,
+  defaultFilters,
   filterQueryParams,
   withDataBreakdown,
   onAddFilter,
   onRemoveFilterValue,
 }) => {
-  const filtersQuery = client.pageFilter.searchFilters.useQuery(
+  const surveyAnalysisFiltersQuery = client.pageFilter.searchFilters.useQuery(
     queryKeys.pageFilters.all.queryKey,
     {},
-    { select: (res) => res.body.data },
+    { select: (res) => res.body.data, enabled: type === "surveyAnalysis" },
   );
+  const projectionsFiltersQuery =
+    client.projections.getProjectionsFilters.useQuery(
+      queryKeys.projections.filters.queryKey,
+      {},
+      {
+        select: (res) => normalizeProjectionsFilterValues(res.body.data),
+        enabled: type === "projections",
+      },
+    );
   const selectedCustomFilters = filterQueryParams.filter(
-    (f) => !DEFAULT_FILTERS.includes(f.name),
+    (f) => !defaultFilters.includes(f.name),
   );
-  const customFilters =
-    filtersQuery.data?.filter((f) => !DEFAULT_FILTERS.includes(f.name)) || [];
+
+  const allFilters = useMemo(() => {
+    if (type === "surveyAnalysis") {
+      return surveyAnalysisFiltersQuery.data || [];
+    } else {
+      return projectionsFiltersQuery.data || [];
+    }
+  }, [type, surveyAnalysisFiltersQuery.data, projectionsFiltersQuery.data]);
+
+  const customFilters = useMemo(
+    () =>
+      allFilters.filter((f) => {
+        if (type === "projections" && f.name === "scenario") {
+          return false;
+        }
+        return !defaultFilters.includes(f.name);
+      }) || [],
+    [allFilters, defaultFilters, type],
+  );
 
   return (
     <>
-      {filtersQuery.data
-        ?.filter((pageFilter) => DEFAULT_FILTERS.includes(pageFilter.name))
+      {allFilters
+        .filter((pageFilter) => defaultFilters.includes(pageFilter.name))
         .map((f) => (
           <FilterPopup
             key={`sidebar-filter-popover-${f.name}`}
@@ -58,7 +77,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({
             onAddFilter={onAddFilter}
             onRemoveFilterValue={onRemoveFilterValue}
             label={DEFAULT_FILTERS_LABEL_MAP[f.name]}
-            filters={filtersQuery.data || []}
+            filters={allFilters}
             fixedFilter={f}
           />
         ))}
