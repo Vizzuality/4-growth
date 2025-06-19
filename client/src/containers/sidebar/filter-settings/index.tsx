@@ -41,27 +41,25 @@ const FilterSettings: FC<FilterSettingsProps> = ({
         enabled: type === "projections",
       },
     );
-  const selectedCustomFilters = filterQueryParams.filter(
-    (f) => !defaultFilters.includes(f.name),
-  );
+  const selectedCustomFilters = filterQueryParams.filter((f) => {
+    if (type === "projections" && f.name === "scenario") return false;
+
+    return !defaultFilters.includes(f.name);
+  });
 
   const allFilters = useMemo(() => {
     if (type === "surveyAnalysis") {
       return surveyAnalysisFiltersQuery.data || [];
     } else {
-      return projectionsFiltersQuery.data || [];
+      return (
+        projectionsFiltersQuery.data?.filter((f) => f.name !== "scenario") || []
+      );
     }
   }, [type, surveyAnalysisFiltersQuery.data, projectionsFiltersQuery.data]);
 
   const customFilters = useMemo(
-    () =>
-      allFilters.filter((f) => {
-        if (type === "projections" && f.name === "scenario") {
-          return false;
-        }
-        return !defaultFilters.includes(f.name);
-      }) || [],
-    [allFilters, defaultFilters, type],
+    () => allFilters.filter((f) => !defaultFilters.includes(f.name)) || [],
+    [allFilters, defaultFilters],
   );
 
   return (

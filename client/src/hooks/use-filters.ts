@@ -74,7 +74,18 @@ function useFilters() {
     [filters, setFilters],
   );
 
-  return { filters, setFilters, addFilter, removeFilterValue, removeFilter };
+  const removeAllExceptScenario = useCallback(() => {
+    setFilters(filters.filter((filter) => filter.name === "scenario"));
+  }, [filters, setFilters]);
+
+  return {
+    filters,
+    setFilters,
+    addFilter,
+    removeFilterValue,
+    removeFilter,
+    removeAllExceptScenario,
+  };
 }
 
 const REQUIRED_KEYS = ["name", "operator", "values"];
