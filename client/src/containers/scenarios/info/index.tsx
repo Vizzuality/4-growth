@@ -1,5 +1,9 @@
 import { FC } from "react";
 
+import { useSetAtom } from "jotai/react";
+
+import { showScenarioInfoAtom } from "@/app/(root)/projections/store";
+
 import useScenarioFilter from "@/hooks/use-scenario-filter";
 
 import { SCENARIOS } from "@/containers/scenarios/constants";
@@ -7,6 +11,7 @@ import ScenarioInfoCard from "@/containers/scenarios/info-card";
 
 const ScenariosInfo: FC = () => {
   const { selectedScenarios, toggleScenario } = useScenarioFilter();
+  const setShowScenarioInfo = useSetAtom(showScenarioInfoAtom);
   return (
     <div className="text-xs text-slate-500">
       <p className="mb-4">
@@ -24,7 +29,10 @@ const ScenariosInfo: FC = () => {
             shortDescription={s.shortDescription}
             longDescription={s.longDescription}
             isSelected={selectedScenarios.includes(s.value) || false}
-            onSelect={() => toggleScenario(s.value)}
+            onSelect={() => {
+              toggleScenario(s.value);
+              setShowScenarioInfo(false);
+            }}
           />
         ))}
       </div>
