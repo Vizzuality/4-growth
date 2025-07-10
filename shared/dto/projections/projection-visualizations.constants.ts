@@ -6,9 +6,23 @@ export const PROJECTION_VISUALIZATIONS = {
   TABLE: 'table',
 } as const;
 
-export const AVIALABLE_PROJECTION_VISUALIZATIONS = Object.values(
+export const AVAILABLE_PROJECTION_VISUALIZATIONS = Object.values(
   PROJECTION_VISUALIZATIONS,
 );
 
 export type ProjectionVisualizationsType =
   (typeof PROJECTION_VISUALIZATIONS)[keyof typeof PROJECTION_VISUALIZATIONS];
+
+export const PROJECTION_2D_VISUALIZATIONS = {
+  LINE_CHART: 'line_chart',
+  AREA_CHART: 'area_chart',
+  BAR_CHART: 'bar_chart',
+  TABLE: 'table',
+} as const;
+
+export const AVAILABLE_PROJECTION_2D_VISUALIZATIONS = Object.values(
+  PROJECTION_2D_VISUALIZATIONS,
+);
+
+export type Projection2DVisualizationsType =
+  (typeof PROJECTION_2D_VISUALIZATIONS)[keyof typeof PROJECTION_2D_VISUALIZATIONS];

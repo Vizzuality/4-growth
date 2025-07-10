@@ -3,8 +3,8 @@ import {
   type ProjectionType,
 } from '@shared/dto/projections/projection-types';
 import {
-  PROJECTION_VISUALIZATIONS,
-  type ProjectionVisualizationsType,
+  Projection2DVisualizationsType,
+  PROJECTION_2D_VISUALIZATIONS,
 } from '@shared/dto/projections/projection-visualizations.constants';
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 
@@ -24,16 +24,16 @@ export class ProjectionWidget {
   @Column({
     name: 'visualizations',
     type: 'simple-array',
-    enum: PROJECTION_VISUALIZATIONS,
+    enum: PROJECTION_2D_VISUALIZATIONS,
   })
-  visualizations: ProjectionVisualizationsType[];
+  visualizations: Projection2DVisualizationsType[];
 
   @Column({
     name: 'default_visualization',
     type: 'enum',
-    enum: PROJECTION_VISUALIZATIONS,
+    enum: PROJECTION_2D_VISUALIZATIONS,
   })
-  defaultVisualization: ProjectionVisualizationsType;
+  defaultVisualization: Projection2DVisualizationsType;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

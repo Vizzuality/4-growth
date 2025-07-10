@@ -1,7 +1,7 @@
 import { PROJECTION_FILTER_NAME_TO_FIELD_NAME } from '@shared/dto/projections/projection-filter.entity';
 import { PROJECTION_TYPES } from '@shared/dto/projections/projection-types';
 import {
-  AVIALABLE_PROJECTION_VISUALIZATIONS,
+  AVAILABLE_PROJECTION_VISUALIZATIONS,
   PROJECTION_VISUALIZATIONS,
 } from '@shared/dto/projections/projection-visualizations.constants';
 
@@ -11,7 +11,7 @@ export const BUBBLE_CHART_ATTRIBUTES = Object.keys(
 );
 
 export const CUSTOM_PROJECTION_SETTINGS = {
-  availableVisualizations: AVIALABLE_PROJECTION_VISUALIZATIONS,
+  availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
     vertical: BUBBLE_CHART_INDICATORS,
   },

@@ -15,7 +15,10 @@ import {
 } from '@shared/dto/projections/projection-filter.entity';
 import { CountryISO3Map } from '@shared/constants/country-iso3.map';
 import { ProjectionWidget } from '@shared/dto/projections/projection-widget.entity';
-import { PROJECTION_VISUALIZATIONS } from '@shared/dto/projections/projection-visualizations.constants';
+import {
+  AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
+  PROJECTION_VISUALIZATIONS,
+} from '@shared/dto/projections/projection-visualizations.constants';
 import { PROJECTION_TYPES } from '@shared/dto/projections/projection-types';
 
 @Injectable()
@@ -173,49 +176,49 @@ export class DataSourceManager {
           id: 1,
           type: PROJECTION_TYPES.MARKET_POTENTIAL,
           title: 'Market Potential',
-          visualizations: [PROJECTION_VISUALIZATIONS.LINE_CHART],
+          visualizations: AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
           defaultVisualization: PROJECTION_VISUALIZATIONS.LINE_CHART,
         },
         {
           id: 2,
           type: PROJECTION_TYPES.ADDRESSABLE_MARKET,
           title: 'Addressable Market',
-          visualizations: [PROJECTION_VISUALIZATIONS.BAR_CHART],
+          visualizations: AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
           defaultVisualization: PROJECTION_VISUALIZATIONS.BAR_CHART,
         },
         {
           id: 3,
           type: PROJECTION_TYPES.PENETRATION,
           title: 'Penetration',
-          visualizations: [PROJECTION_VISUALIZATIONS.AREA_CHART],
+          visualizations: AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
           defaultVisualization: PROJECTION_VISUALIZATIONS.AREA_CHART,
         },
         {
           id: 4,
           type: PROJECTION_TYPES.SHIPMENTS,
           title: 'Shipments',
-          visualizations: [PROJECTION_VISUALIZATIONS.TABLE],
+          visualizations: AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
           defaultVisualization: PROJECTION_VISUALIZATIONS.TABLE,
         },
         {
           id: 5,
           type: PROJECTION_TYPES.INSTALLED_BASE,
           title: 'Installed Base',
-          visualizations: [PROJECTION_VISUALIZATIONS.BAR_CHART],
+          visualizations: AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
           defaultVisualization: PROJECTION_VISUALIZATIONS.BAR_CHART,
         },
         {
           id: 6,
           type: PROJECTION_TYPES.PRICES,
           title: 'Prices',
-          visualizations: [PROJECTION_VISUALIZATIONS.BAR_CHART],
+          visualizations: AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
           defaultVisualization: PROJECTION_VISUALIZATIONS.BAR_CHART,
         },
         {
           id: 7,
           type: PROJECTION_TYPES.REVENUES,
           title: 'Revenues',
-          visualizations: [PROJECTION_VISUALIZATIONS.BAR_CHART],
+          visualizations: AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
           defaultVisualization: PROJECTION_VISUALIZATIONS.BAR_CHART,
         },
       ]);
