@@ -3,7 +3,7 @@ import {
   type ProjectionType,
 } from '@shared/dto/projections/projection-types';
 import {
-  Projection2DVisualizationsType,
+  type Projection2DVisualizationsType,
   PROJECTION_2D_VISUALIZATIONS,
 } from '@shared/dto/projections/projection-visualizations.constants';
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
