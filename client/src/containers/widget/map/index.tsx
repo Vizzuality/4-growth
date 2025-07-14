@@ -39,11 +39,7 @@ const Map: FC<MapProps> = ({ data }) => {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  stroke={
-                    geo.properties.CONTINENT === "Europe"
-                      ? "hsl(var(--background))"
-                      : "rgb(29 39 87 / var(--tw-bg-opacity))"
-                  }
+                  stroke={"rgb(29 39 87 / var(--tw-bg-opacity))"}
                   strokeWidth="1.0"
                   className={cn(
                     "fill-map- focus:outline-none",
