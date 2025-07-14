@@ -14,9 +14,7 @@ export default function useScenarioFilter() {
 
   const toggleScenario = useCallback(
     (value: string) => {
-      if (selectedScenarios.includes(value)) {
-        removeFilter("scenario");
-      } else {
+      if (!selectedScenarios.includes(value)) {
         addFilter({ name: "scenario", operator: "=", values: [value] });
       }
     },
