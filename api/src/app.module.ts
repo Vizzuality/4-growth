@@ -19,11 +19,13 @@ import { LoggingModule } from '@api/modules/logging/logging.module';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
 import { TerminusModule } from '@nestjs/terminus';
 import { ProjectionsModule } from '@api/modules/projections/projections.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 const NODE_ENV = process.env.NODE_ENV;
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     TerminusModule.forRoot({ logger: NODE_ENV === 'test' ? false : true }),
     TsRestModule.register({
       isGlobal: true,
@@ -54,19 +56,6 @@ export class AppModule implements OnModuleInit {
   public constructor(private readonly dataSourceManager: DataSourceManager) {}
 
   public async onModuleInit() {
-    await this.dataSourceManager.loadQuestionIndicatorMap();
-    await Promise.all([
-      this.dataSourceManager.loadPageFilters(),
-      this.dataSourceManager.loadPageSections(),
-      this.dataSourceManager.loadSurveyData(),
-
-      // Projections
-      this.dataSourceManager.loadProjections(),
-    ]);
-    await Promise.all([
-      this.dataSourceManager.generateProjectionsFilters(),
-      this.dataSourceManager.generateProjectionsSettings(),
-      this.dataSourceManager.generateProjectionsWidgets(),
-    ]);
+    await this.dataSourceManager.loadInitialData();
   }
 }

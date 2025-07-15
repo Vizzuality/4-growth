@@ -1,7 +1,8 @@
 import * as dataForge from 'data-forge';
-import * as fs from 'fs';
+import * as fs from 'fs/promises';
 import { CountryISO3Map } from '@shared/constants/country-iso3.map';
 import { StringUtils } from '@api/utils/string.utils';
+import { Logger } from '@nestjs/common';
 
 const QUESTIONS = new Set([
   'What are the primary functions of these technologies in the agriculture or forestry value chain?',
@@ -71,85 +72,79 @@ const EXCLUDED_QUESTIONS = new Set([
   'I agree to be contacted again by the researchers for clarification or elaboration on my input in the discussion (optional)',
 ]);
 
-const generateSurveQuestionyMap = (rows) => {
-  const surveyQuestionMap = new Map();
+export const transform = async () => {
+  const logger = new Logger('ETL');
 
-  for (const row of rows) {
-    if (!surveyQuestionMap.has(row.surveyId)) {
-      surveyQuestionMap.set(row.surveyId, new Set());
-    }
-    surveyQuestionMap.get(row.surveyId).add(row.question);
-  }
+  const generateSurveQuestionyMap = (rows) => {
+    const surveyQuestionMap = new Map();
 
-  return surveyQuestionMap;
-};
-
-const ensureAllSurveyQuestionsHaveAnswers = (rows) => {
-  const surveyQuestionMap = generateSurveQuestionyMap(rows);
-
-  for (const [surveyId, questions] of surveyQuestionMap) {
-    if (questions.size !== QUESTIONS.size) {
-      console.log(
-        `survey_id: ${surveyId} has ${questions.size} of ${QUESTIONS.size} questions answered`,
-      );
-    }
-
-    const countryCode = rows.find(
-      (row) => row.surveyId === surveyId,
-    ).countryCode;
-
-    for (const question of QUESTIONS) {
-      if (questions.has(question) === false) {
-        rows.push({
-          surveyId,
-          question,
-          answer: 'N/A',
-          countryCode,
-        });
+    for (const row of rows) {
+      if (!surveyQuestionMap.has(row.surveyId)) {
+        surveyQuestionMap.set(row.surveyId, new Set());
       }
+      surveyQuestionMap.get(row.surveyId).add(row.question);
     }
 
-    // Search for questions that are not in the QUESTIONS set
-    for (const question of questions) {
-      if (QUESTIONS.has(question) === false) {
-        console.error(
-          `survey_id: ${surveyId} has an unexpected question: ${question}`,
+    return surveyQuestionMap;
+  };
+
+  const ensureAllSurveyQuestionsHaveAnswers = (rows) => {
+    const surveyQuestionMap = generateSurveQuestionyMap(rows);
+
+    for (const [surveyId, questions] of surveyQuestionMap) {
+      if (questions.size !== QUESTIONS.size) {
+        logger.log(
+          `survey_id: ${surveyId} has ${questions.size} of ${QUESTIONS.size} questions answered`,
         );
       }
-    }
-  }
-};
 
-const main = async () => {
+      const countryCode = rows.find(
+        (row) => row.surveyId === surveyId,
+      ).countryCode;
+
+      for (const question of QUESTIONS) {
+        if (questions.has(question) === false) {
+          rows.push({
+            surveyId,
+            question,
+            answer: 'N/A',
+            countryCode,
+          });
+        }
+      }
+
+      // Search for questions that are not in the QUESTIONS set
+      for (const question of questions) {
+        if (QUESTIONS.has(question) === false) {
+          console.error(
+            `survey_id: ${surveyId} has an unexpected question: ${question}`,
+          );
+        }
+      }
+    }
+  };
+
   const [answersDf, dateDf, questionDf, answerIdDf] = await Promise.all([
     dataForge.fromObject(
-      JSON.parse(await fs.promises.readFile('data/surveys/Answer.json', 'utf8'))
+      JSON.parse(await fs.readFile('data/surveys/Answer.json', 'utf8')).value,
+    ),
+    dataForge.fromObject(
+      JSON.parse(await fs.readFile('data/surveys/Survey_metadata.json', 'utf8'))
         .value,
     ),
     dataForge.fromObject(
       JSON.parse(
-        await fs.promises.readFile('data/surveys/Survey_metadata.json', 'utf8'),
+        await fs.readFile('data/surveys/Question_hierarchy.json', 'utf8'),
       ).value,
     ),
     dataForge.fromObject(
       JSON.parse(
-        await fs.promises.readFile(
-          'data/surveys/Question_hierarchy.json',
-          'utf8',
-        ),
-      ).value,
-    ),
-    dataForge.fromObject(
-      JSON.parse(
-        await fs.promises.readFile(
-          'data/surveys/Categorical_Answers.json',
-          'utf8',
-        ),
+        await fs.readFile('data/surveys/Categorical_Answers.json', 'utf8'),
       ).value,
     ),
   ]);
 
-  console.log('Number of surveys: ', dateDf.count());
+  logger.log(`Number of surveys: ${dateDf.count()}`);
 
   const join1 = answersDf.join(
     dateDf,
@@ -231,17 +226,17 @@ const main = async () => {
 
   ensureAllSurveyQuestionsHaveAnswers(transformedAnswers);
 
-  fs.writeFileSync(
+  await fs.writeFile(
     `${__dirname}/surveys.json`,
     JSON.stringify(transformedAnswers, null, 2),
     'utf-8',
   );
 
-  console.log(
+  logger.log(
     `\nCreated file ${__dirname}/surveys.json and it contains data for ${answersGroupByAnswers.count() - skippedSurveys} surveys.`,
   );
 };
 
 if (require.main === module) {
-  void main();
+  void transform();
 }
