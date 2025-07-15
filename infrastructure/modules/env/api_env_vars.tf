@@ -21,6 +21,8 @@ locals {
     AWS_SES_ACCESS_KEY_SECRET = aws_iam_access_key.email_user_access_key.secret
     AWS_SES_DOMAIN = module.email.mail_from_domain
     CONTACT_EMAIL = var.contact_email
+    DATA_EXTRACTION_CLIENT_ID = var.data_extraction_client_id
+    DATA_EXTRACTION_CLIENT_SECRET = var.data_extraction_client_secret
   }
   api_env_vars = {
 

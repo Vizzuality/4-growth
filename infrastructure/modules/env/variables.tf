@@ -122,3 +122,15 @@ variable "github_additional_environment_variables" {
   description = "Github additional environment-specific variables"
   default     = {}
 }
+
+variable "data_extraction_client_id" {
+  type        = string
+  description = "Client ID for the data extraction script"
+  default     = null
+}
+
+variable "data_extraction_client_secret" {
+  type        = string
+  description = "Client secret for the data extraction script"
+  default     = null
+}

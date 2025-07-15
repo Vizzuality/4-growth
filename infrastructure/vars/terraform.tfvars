@@ -6,6 +6,9 @@ github_owner="Vizzuality"
 github_token=""
 next_auth_secret=""
 auth_credentials=""
-rds_engine_version = "15.5"
+rds_engine_version = "15.12"
 rds_instance_class = "db.t3.micro"
 staging_rds_backup_retention_period = 3
+
+data_extraction_client_id=""
+data_extraction_client_secret=""
