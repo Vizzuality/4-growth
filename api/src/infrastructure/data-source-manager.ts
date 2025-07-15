@@ -20,6 +20,7 @@ import {
   PROJECTION_VISUALIZATIONS,
 } from '@shared/dto/projections/projection-visualizations.constants';
 import { PROJECTION_TYPES } from '@shared/dto/projections/projection-types';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class DataSourceManager {
@@ -27,6 +28,46 @@ export class DataSourceManager {
     private readonly logger: Logger,
     @InjectDataSource() private readonly dataSource: DataSource,
   ) {}
+
+  @Cron('0 3 * * 0')
+  public async performETL(): Promise<void> {
+    this.logger.log('Starting ETL process', this.constructor.name);
+    try {
+      const { extract } = await import(
+        `${__dirname}/../../data/surveys/extract`
+      );
+      const { transform } = await import(
+        `${__dirname}/../../data/surveys/transform`
+      );
+      await extract();
+      await transform();
+      await this.loadInitialData();
+      this.logger.log(
+        'ETL process completed successfully',
+        this.constructor.name,
+      );
+    } catch (error) {
+      this.logger.error('ETL process failed', error, this.constructor.name);
+      throw error;
+    }
+  }
+
+  public async loadInitialData() {
+    await this.loadQuestionIndicatorMap();
+    await Promise.all([
+      this.loadPageFilters(),
+      this.loadPageSections(),
+      this.loadSurveyData(),
+
+      // Projections
+      this.loadProjections(),
+    ]);
+    await Promise.all([
+      this.generateProjectionsFilters(),
+      this.generateProjectionsSettings(),
+      this.generateProjectionsWidgets(),
+    ]);
+  }
 
   public async loadQuestionIndicatorMap(): Promise<void> {
     const queryRunner = this.dataSource.createQueryRunner();
