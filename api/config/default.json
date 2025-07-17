@@ -1,5 +1,5 @@
 {
-  "db" : {
+  "db": {
     "type": "postgres",
     "username": "4growth",
     "password": "4growth",
@@ -19,7 +19,7 @@
       "region": "region",
       "domain": "random.com"
     },
-    "contactEmail": "contact@email.com"
+    "contactEmail": "contact@email.com",
+    "etlProcessEmails": "admin@example.com"
   }
 }
-

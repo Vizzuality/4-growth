@@ -1,5 +1,5 @@
 {
-  "db" : {
+  "db": {
     "username": "DB_USERNAME",
     "password": "DB_PASSWORD",
     "database": "DB_NAME",
@@ -15,11 +15,10 @@
     "ses": {
       "accessKeyId": "AWS_SES_ACCESS_KEY_ID",
       "secretAccessKey": "AWS_SES_ACCESS_KEY_SECRET",
-        "region": "AWS_REGION",
-              "domain": "AWS_SES_DOMAIN"
+      "region": "AWS_REGION",
+      "domain": "AWS_SES_DOMAIN"
     },
-    "contactEmail": "CONTACT_EMAIL"
+    "contactEmail": "CONTACT_EMAIL",
+    "etlProcessEmails": "ETL_PROCESS_EMAILS"
   }
-
 }
-

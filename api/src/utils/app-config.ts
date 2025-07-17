@@ -122,4 +122,11 @@ export class AppConfig {
   static getSESMailConfig(): APP_SES_MAIL_CONFIG {
     return this.get<APP_SES_MAIL_CONFIG>('email.ses');
   }
+
+  static getETLProcessEmails(): string[] {
+    const emailConfig = this.get<{ etlProcessEmails: string }>('email');
+    return emailConfig.etlProcessEmails
+      ? emailConfig.etlProcessEmails.split(',').map((email) => email.trim())
+      : [];
+  }
 }
