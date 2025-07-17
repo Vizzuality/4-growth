@@ -12,3 +12,4 @@ staging_rds_backup_retention_period = 3
 
 data_extraction_client_id=""
 data_extraction_client_secret=""
+etl_process_emails="alejandro.peralta@vizzuality.com,javier.lois@vizzuality.com"

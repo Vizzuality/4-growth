@@ -136,6 +136,7 @@ jobs:
             CONTACT_EMAIL=${{ secrets.CONTACT_EMAIL }}
             DATA_EXTRACTION_CLIENT_ID=${{ secrets.DATA_EXTRACTION_CLIENT_ID }}
             DATA_EXTRACTION_CLIENT_SECRET=${{ secrets.DATA_EXTRACTION_CLIENT_SECRET }}
+            ETL_PROCESS_EMAILS=${{ vars.ETL_PROCESS_EMAILS }}
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max

@@ -126,11 +126,15 @@ variable "github_additional_environment_variables" {
 variable "data_extraction_client_id" {
   type        = string
   description = "Client ID for the data extraction script"
-  default     = null
 }
 
 variable "data_extraction_client_secret" {
   type        = string
   description = "Client secret for the data extraction script"
-  default     = null
 }
+
+variable "etl_process_emails" {
+  type        = string
+  description = "Email addresses where ETL process notifications will be sent"
+}
+
