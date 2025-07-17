@@ -2,11 +2,12 @@ import { FC } from "react";
 
 import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
 
+import { formatNumber } from "@/lib/utils";
+
 import NoData from "@/containers/no-data";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { formatNumber } from "@/lib/utils";
 
 interface TableViewProps {
   indicator: string;

@@ -4,7 +4,7 @@ import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { normalizeProjectionsFilterValues } from "@/lib/utils";
 
-import { FilterQueryParam } from "@/hooks/use-filters";
+import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
 
 import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import { DEFAULT_FILTERS_LABEL_MAP } from "@/containers/sidebar/filter-settings/constants";
@@ -27,9 +27,10 @@ const FilterSettings: FC<FilterSettingsProps> = ({
   onAddFilter,
   onRemoveFilterValue,
 }) => {
+  const { filters } = useFilters();
   const surveyAnalysisFiltersQuery = client.pageFilter.searchFilters.useQuery(
-    queryKeys.pageFilters.all.queryKey,
-    {},
+    queryKeys.pageFilters.all(filters).queryKey,
+    { query: { filters } },
     { select: (res) => res.body.data, enabled: type === "surveyAnalysis" },
   );
   const projectionsFiltersQuery =
