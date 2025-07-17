@@ -22,7 +22,7 @@ export default async function SurveyAnalysisLayout({
     queryFn: async () => client.sections.getSections.query(QUERY_OPTIONS),
   });
   await queryClient.prefetchQuery({
-    queryKey: queryKeys.pageFilters.all.queryKey,
+    queryKey: queryKeys.pageFilters.all([]).queryKey,
     queryFn: async () => client.pageFilter.searchFilters.query(QUERY_OPTIONS),
   });
   await queryClient.prefetchQuery({

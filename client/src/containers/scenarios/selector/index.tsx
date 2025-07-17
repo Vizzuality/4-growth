@@ -11,7 +11,7 @@ const ScenariosSelector: FC = () => {
 
   useLayoutEffect(() => {
     toggleScenario(SCENARIOS[0].value);
-  }, []);
+  }, [toggleScenario]);
 
   return (
     <div className="grid grid-cols-2 gap-0.5">

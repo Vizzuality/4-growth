@@ -3,7 +3,7 @@ import { useCallback, useMemo } from "react";
 import useFilters from "@/hooks/use-filters";
 
 export default function useScenarioFilter() {
-  const { filters, addFilter, removeFilter } = useFilters();
+  const { filters, addFilter } = useFilters();
   const { scenarioFilter, selectedScenarios } = useMemo(() => {
     const scenarioFilter = filters.find((f) => f.name === "scenario");
     return {
@@ -18,7 +18,7 @@ export default function useScenarioFilter() {
         addFilter({ name: "scenario", operator: "=", values: [value] });
       }
     },
-    [selectedScenarios, addFilter, removeFilter],
+    [selectedScenarios, addFilter],
   );
 
   return { scenarioFilter, selectedScenarios, toggleScenario };
