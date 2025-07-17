@@ -130,6 +130,9 @@ module "dev" {
   github_owner = var.github_owner
   github_token = var.github_token
   contact_email = var.contact_email
+  data_extraction_client_id = var.data_extraction_client_id
+  data_extraction_client_secret = var.data_extraction_client_secret
+  etl_process_emails = var.etl_process_emails
 }
 
 
@@ -153,6 +156,9 @@ module "staging" {
   rds_backup_retention_period = 3
   github_owner = var.github_owner
   github_token = var.github_token
+  data_extraction_client_id = var.data_extraction_client_id
+  data_extraction_client_secret = var.data_extraction_client_secret
+  etl_process_emails = var.etl_process_emails
 }
 
 module "production" {
@@ -174,6 +180,9 @@ module "production" {
   rds_backup_retention_period = 3
   github_owner = var.github_owner
   github_token = var.github_token
+  data_extraction_client_id = var.data_extraction_client_id
+  data_extraction_client_secret = var.data_extraction_client_secret
+  etl_process_emails = var.etl_process_emails
 }
 
 module "github" {

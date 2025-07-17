@@ -25,6 +25,6 @@ locals {
     DATA_EXTRACTION_CLIENT_SECRET = var.data_extraction_client_secret
   }
   api_env_vars = {
-
+    ETL_PROCESS_EMAILS = var.etl_process_emails
   }
 }
