@@ -21,12 +21,14 @@ import {
 } from '@shared/dto/projections/projection-visualizations.constants';
 import { PROJECTION_TYPES } from '@shared/dto/projections/projection-types';
 import { Cron } from '@nestjs/schedule';
+import { EtlNotificationService } from './etl-notification.service';
 
 @Injectable()
 export class DataSourceManager {
   public constructor(
     private readonly logger: Logger,
     @InjectDataSource() private readonly dataSource: DataSource,
+    private readonly etlNotificationService: EtlNotificationService,
   ) {}
 
   @Cron('0 3 * * 0')
@@ -46,10 +48,17 @@ export class DataSourceManager {
         'ETL process completed successfully',
         this.constructor.name,
       );
+      await this.etlNotificationService.sendSuccessNotification();
     } catch (error) {
       this.logger.error('ETL process failed', error, this.constructor.name);
+      await this.etlNotificationService.sendFailureNotification(error);
       throw error;
     }
+  }
+
+  // Method to manually trigger ETL process (for testing or admin purposes)
+  public async triggerETLManually(): Promise<void> {
+    return this.performETL();
   }
 
   public async loadInitialData() {

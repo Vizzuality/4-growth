@@ -15,6 +15,7 @@ import { ApiEventsModule } from '@api/modules/api-events/api-events.module';
 import { SectionsModule } from './modules/sections/sections.module';
 import { WidgetsModule } from '@api/modules/widgets/widgets.module';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
+import { EtlNotificationService } from '@api/infrastructure/etl-notification.service';
 import { LoggingModule } from '@api/modules/logging/logging.module';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
 import { TerminusModule } from '@nestjs/terminus';
@@ -50,6 +51,7 @@ const NODE_ENV = process.env.NODE_ENV;
     ContactMailer,
     SQLAdapter, // Weird but works, let's move on. The logger was useful so the utility object became a class
     DataSourceManager,
+    EtlNotificationService,
   ],
 })
 export class AppModule implements OnModuleInit {
