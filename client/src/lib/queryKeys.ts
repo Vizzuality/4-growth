@@ -22,7 +22,9 @@ export const sectionsKeys = createQueryKeys("sections", {
 });
 
 export const pageFiltersKeys = createQueryKeys("pageFilters", {
-  all: null,
+  all: (filters: FilterQueryParam[]) => ({
+    queryKey: [{ filters }],
+  }),
 });
 
 export const widgetsKeys = createQueryKeys("widgets", {

@@ -2,6 +2,8 @@ import { FC } from "react";
 
 import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
 
+import { formatNumber } from "@/lib/utils";
+
 import NoData from "@/containers/no-data";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -29,7 +31,11 @@ const TableView: FC<TableViewProps> = ({ indicator, data }) => {
                 {d.year}
               </TableCell>
               <TableCell className="pl-6" width="50%">
-                {d.value}
+                {formatNumber(d.value, {
+                  maximumFractionDigits: 0,
+                  notation: "compact",
+                  compactDisplay: "short",
+                })}
               </TableCell>
             </TableRow>
           ))}
