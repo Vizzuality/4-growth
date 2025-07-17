@@ -6,6 +6,7 @@ import NoData from "@/containers/no-data";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { formatNumber } from "@/lib/utils";
 
 interface TableViewProps {
   indicator: string;
@@ -29,7 +30,11 @@ const TableView: FC<TableViewProps> = ({ indicator, data }) => {
                 {d.year}
               </TableCell>
               <TableCell className="pl-6" width="50%">
-                {d.value}
+                {formatNumber(d.value, {
+                  maximumFractionDigits: 0,
+                  notation: "compact",
+                  compactDisplay: "short",
+                })}
               </TableCell>
             </TableRow>
           ))}
