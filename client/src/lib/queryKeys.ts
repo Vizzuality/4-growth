@@ -38,6 +38,11 @@ export const projectionsKeys = createQueryKeys("projections", {
   widgets: (dataFilters: FilterQueryParam[]) => ({
     queryKey: [{ dataFilters }],
   }),
+  custom: (indicator: string, filters: FilterQueryParam[]) => [
+    indicator,
+    { filters },
+  ],
+  settings: null,
   filters: null,
 });
 
