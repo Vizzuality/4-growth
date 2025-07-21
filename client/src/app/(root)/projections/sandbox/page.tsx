@@ -1,3 +1,5 @@
+import Sandbox from "@/containers/sandbox/projections-sandbox";
+
 export default async function ProjectionsSandboxPage() {
-  return <div>Projections Sandbox Page</div>;
+  return <Sandbox />;
 }

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import { getServerSession } from "next-auth";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { config } from "@/app/auth/api/[...nextauth]/config";
 
@@ -27,10 +28,12 @@ export default async function RootLayout({
   return (
     <LayoutProviders session={session}>
       <html lang="en">
-        <body className={inter.className}>
-          <Toaster />
-          <main className="h-lvh">{children}</main>
-        </body>
+        <NuqsAdapter>
+          <body className={inter.className}>
+            <Toaster />
+            <main className="h-lvh">{children}</main>
+          </body>
+        </NuqsAdapter>
       </html>
     </LayoutProviders>
   );
