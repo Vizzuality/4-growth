@@ -24,13 +24,19 @@ describe("useFilters", () => {
     consoleErrorSpy.mockRestore();
   });
 
-  it("should return empty filters when filtersQuery is empty", () => {
+  it("should return default filters when filtersQuery is empty", () => {
     const mockSetFiltersQuery = vi.fn();
     (useQueryState as jest.Mock).mockReturnValue(["", mockSetFiltersQuery]);
 
     const { result } = renderHook(() => useFilters());
 
-    expect(result.current.filters).toEqual([]);
+    expect(result.current.filters).toEqual([
+      {
+        name: "scenario",
+        operator: "=",
+        values: ["baseline"],
+      },
+    ]);
   });
 
   it("should parse and validate filters from filtersQuery", () => {
