@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect } from "react";
+import { FC } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -8,10 +8,6 @@ import { SCENARIOS } from "@/containers/scenarios/constants";
 
 const ScenariosSelector: FC = () => {
   const { selectedScenarios, toggleScenario } = useScenarioFilter();
-
-  useLayoutEffect(() => {
-    toggleScenario(SCENARIOS[0].value);
-  }, [toggleScenario]);
 
   return (
     <div className="grid grid-cols-2 gap-0.5">

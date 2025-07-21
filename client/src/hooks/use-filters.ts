@@ -24,7 +24,14 @@ type ParsedFilterObject = {
 function useFilters() {
   const [filtersQuery, setFiltersQuery] = useQueryState("q");
   const filters = useMemo(() => {
-    if (!filtersQuery) return [];
+    if (!filtersQuery)
+      return [
+        {
+          name: "scenario",
+          operator: "=",
+          values: ["baseline"],
+        } as FilterQueryParam,
+      ];
 
     try {
       const parsed = qs.parse(filtersQuery);
