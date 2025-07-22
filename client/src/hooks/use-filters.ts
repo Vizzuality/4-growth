@@ -1,5 +1,7 @@
 import { useCallback, useMemo } from "react";
 
+import { usePathname } from "next/navigation";
+
 import {
   VALID_SEARCH_WIDGET_DATA_OPERATORS,
   WidgetDataFilterOperatorType,
@@ -22,16 +24,19 @@ type ParsedFilterObject = {
 } & { [key: string]: unknown };
 
 function useFilters() {
+  const pathname = usePathname();
   const [filtersQuery, setFiltersQuery] = useQueryState("q");
   const filters = useMemo(() => {
     if (!filtersQuery)
-      return [
-        {
-          name: "scenario",
-          operator: "=",
-          values: ["baseline"],
-        } as FilterQueryParam,
-      ];
+      return pathname.includes("projections")
+        ? [
+            {
+              name: "scenario",
+              operator: "=",
+              values: ["baseline"],
+            } as FilterQueryParam,
+          ]
+        : [];
 
     try {
       const parsed = qs.parse(filtersQuery);
@@ -47,7 +52,7 @@ function useFilters() {
       console.error("Error parsing filters:", error);
       return [];
     }
-  }, [filtersQuery]);
+  }, [filtersQuery, pathname]);
 
   const setFilters = useCallback(
     (newFilters: FilterQueryParam[]) => {
