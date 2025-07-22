@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { useQueryState } from "nuqs";
 import useFilters from "@/hooks/use-filters";
 import type { MockInstance } from "vitest";
+import { usePathname } from "next/navigation";
 
 vi.mock("nuqs", () => ({
   useQueryState: vi.fn(),
@@ -12,21 +13,38 @@ vi.mock("@shared/dto/global/search-widget-data-params", () => ({
   VALID_SEARCH_WIDGET_DATA_OPERATORS: ["=", "!="],
 }));
 
+vi.mock("next/navigation", () => {
+  return {
+    usePathname: vi.fn(),
+  };
+});
+
 describe("useFilters", () => {
   let consoleErrorSpy: MockInstance<typeof console.error>;
 
   beforeEach(() => {
     vi.resetAllMocks();
     consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    (usePathname as jest.Mock | ReturnType<typeof vi.fn>).mockReturnValue("/");
   });
 
   afterEach(() => {
     consoleErrorSpy.mockRestore();
   });
 
-  it("should return default filters when filtersQuery is empty", () => {
+  it("should return no filters when filtersQuery is empty", () => {
     const mockSetFiltersQuery = vi.fn();
     (useQueryState as jest.Mock).mockReturnValue(["", mockSetFiltersQuery]);
+
+    const { result } = renderHook(() => useFilters());
+
+    expect(result.current.filters).toEqual([]);
+  });
+
+  it("should return default scenario filter when filtersQuery is empty and pathname is /projections", () => {
+    const mockSetFiltersQuery = vi.fn();
+    vi.mocked(useQueryState).mockReturnValue(["", mockSetFiltersQuery]);
+    vi.mocked(usePathname).mockReturnValue("/projections");
 
     const { result } = renderHook(() => useFilters());
 
