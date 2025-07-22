@@ -134,7 +134,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
             render={({ field }) => (
               <ScrollArea maxHeight={220}>
                 <FormItem>
-                  {allValues.length && (
+                  {allValues.length ? (
                     <FormItem className="flex h-10 items-center justify-between gap-2 space-y-0 pr-3 transition-colors hover:bg-slate-200">
                       <FormLabel className="flex-1 translate-y-0 cursor-pointer select-none py-4 pl-3 pr-0 text-xs font-medium">
                         Select All
@@ -148,7 +148,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
                         />
                       </FormControl>
                     </FormItem>
-                  )}
+                  ) : null}
 
                   {formItems.map((v) => (
                     <FormItem
