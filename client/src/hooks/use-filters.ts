@@ -28,7 +28,7 @@ function useFilters() {
   const [filtersQuery, setFiltersQuery] = useQueryState("q");
   const filters = useMemo(() => {
     if (!filtersQuery)
-      return pathname.includes("projections")
+      return /^\/projections(?:\?.*)?$/.test(pathname)
         ? [
             {
               name: "scenario",
