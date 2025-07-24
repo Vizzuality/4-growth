@@ -23,7 +23,7 @@ const Sandbox: FC = () => {
     queryKeys.projections.custom(settings, filters).queryKey,
     {
       query: {
-        dataFilters: [],
+        dataFilters: filters,
         settings: settings
           ? settings
           : { line_chart: { vertical: "market-potential" } },
