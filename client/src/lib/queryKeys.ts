@@ -2,6 +2,7 @@ import {
   createQueryKeys,
   mergeQueryKeys,
 } from "@lukemorales/query-key-factory";
+import { CustomProjectionSettingsType } from "@shared/schemas/custom-projection-settings.schema";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
@@ -40,10 +41,10 @@ export const projectionsKeys = createQueryKeys("projections", {
   widgets: (dataFilters: FilterQueryParam[]) => ({
     queryKey: [{ dataFilters }],
   }),
-  custom: (indicator: string, filters: FilterQueryParam[]) => [
-    indicator,
-    { filters },
-  ],
+  custom: (
+    settings: CustomProjectionSettingsType | null,
+    filters: FilterQueryParam[],
+  ) => [{ settings, filters }],
   settings: null,
   filters: null,
 });

@@ -49,7 +49,7 @@ export const projectionsContract = contract.router({
     path: '/projections/custom-widget',
     query: SearchFiltersSchema.merge(CustomProjectionSettingsSchema),
     responses: {
-      200: contract.type<ApiResponse<CustomProjection>>(),
+      200: contract.type<ApiResponse<CustomProjection[]>>(),
       400: contract.type<JSONAPIError>(),
       500: contract.type<JSONAPIError>(),
     },

@@ -15,3 +15,4 @@ export const CHART_MARGIN = {
 export const CHART_STYLES = { height: 400 - 96, transform: "translateY(30px)" };
 export const CHART_CONTAINER_CLASS_NAME =
   "[&_.recharts-cartesian-axis-tick_text]:fill-foreground [&_.recharts-cartesian-axis-tick_text]:font-medium" as const;
+export const BUBBLE_CHART_TICK_INTERVAL = 1000;

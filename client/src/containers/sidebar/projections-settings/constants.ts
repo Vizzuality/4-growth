@@ -33,3 +33,8 @@ export const BUBBLE_CHART_ATTRIBUTE_TO_LABEL_MAP = {
   application: "Application",
   country: "Country",
 };
+
+export const BUBBLE_TOOLTIP_LABELS_MAP: { [key: string]: string } = {
+  ...PROJECTION_TYPE_TO_LABEL_MAP,
+  ...BUBBLE_CHART_ATTRIBUTE_TO_LABEL_MAP,
+};
