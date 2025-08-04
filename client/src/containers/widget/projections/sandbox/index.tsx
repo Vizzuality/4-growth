@@ -21,7 +21,7 @@ import { Card } from "@/components/ui/card";
 export interface SandboxWidgetProps {
   indicator: string;
   visualization: ProjectionVisualizationsType;
-  data?: CustomProjection[];
+  data: CustomProjection;
   className?: string;
 }
 
