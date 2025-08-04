@@ -11,4 +11,4 @@ export type BubbleProjection = {
   horizontal: number;
 };
 
-export type CustomProjection = SimpleProjection | BubbleProjection;
+export type CustomProjection = SimpleProjection[] | BubbleProjection[];
