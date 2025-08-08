@@ -1,6 +1,6 @@
 import { WidgetDataFilter } from '@shared/dto/widgets/widget-data-filter';
 import { Injectable, Logger } from '@nestjs/common';
-import { CountryISO3Map } from '@shared/constants/country-iso3.map';
+import { CountryISOMap } from '@shared/constants/country-iso.map';
 
 export type FilterClauseWithParams = [sqlCode: string, queryParams: unknown[]];
 
@@ -26,7 +26,7 @@ export class SQLAdapter {
         filterClause += '(';
         for (const filterValue of filter.values) {
           filterClause += `${alias}country_code ${filter.operator} $${++currentParamIdx} OR `;
-          queryParams.push(CountryISO3Map.getISO3ByCountryName(filterValue));
+          queryParams.push(CountryISOMap.getISO3ByCountryName(filterValue));
         }
         filterClause = filterClause.slice(0, -4);
         filterClause += ') AND ';
@@ -64,7 +64,7 @@ export class SQLAdapter {
         filterClause += '(';
         for (const filterValue of filter.values) {
           filterClause += `${alias}country_code ${filter.operator} $${++currentParamIdx} OR `;
-          queryParams.push(CountryISO3Map.getISO3ByCountryName(filterValue));
+          queryParams.push(CountryISOMap.getISO3ByCountryName(filterValue));
         }
         filterClause = filterClause.slice(0, -4);
         filterClause += ') AND ';

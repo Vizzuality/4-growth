@@ -3,7 +3,7 @@ import {
   ProjectionType,
 } from '@shared/dto/projections/projection-types';
 import { Projection } from '@shared/dto/projections/projection.entity';
-import { CountryISO3Map } from '@shared/constants/country-iso3.map';
+import { CountryISOMap } from '@shared/constants/country-iso.map';
 import * as fs from 'fs';
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 
@@ -17,7 +17,7 @@ const parseCategory = (
   for (let idx = fromIdx; idx < toIdx; idx++) {
     const element = lines[idx];
 
-    const country = CountryISO3Map.getISO3ByCountryName(element[10].trim());
+    const country = CountryISOMap.getISO3ByCountryName(element[10].trim());
     if (!country) continue;
 
     const id = idx + 1;
@@ -42,7 +42,7 @@ const parseCategory = (
       technologyType: element[7].trim(),
       region: element[8].trim(),
       unit: element[9].trim(),
-      country: CountryISO3Map.getISO3ByCountryName(element[10].trim()),
+      country: CountryISOMap.getISO3ByCountryName(element[10].trim()),
       projectionData,
     });
   }

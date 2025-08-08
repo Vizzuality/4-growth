@@ -13,7 +13,7 @@ import {
   PROJECTION_FILTER_NAME_TO_FIELD_NAME,
   ProjectionFilter,
 } from '@shared/dto/projections/projection-filter.entity';
-import { CountryISO3Map } from '@shared/constants/country-iso3.map';
+import { CountryISOMap } from '@shared/constants/country-iso.map';
 import { ProjectionWidget } from '@shared/dto/projections/projection-widget.entity';
 import {
   AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
@@ -314,7 +314,7 @@ export class DataSourceManager {
             filterName !== 'country'
               ? distinctValues
               : distinctValues.map((v) =>
-                  CountryISO3Map.getCountryNameByISO3(v),
+                  CountryISOMap.getCountryNameByISO3(v),
                 ),
         });
 
