@@ -1,4 +1,4 @@
-import { CountryISO3Map } from "@shared/constants/country-iso3.map";
+import { CountryISOMap } from "@shared/constants/country-iso.map";
 import { ProjectionFilter } from "@shared/dto/projections/projection-filter.entity";
 import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
 import { type ClassValue, clsx } from "clsx";
@@ -94,8 +94,7 @@ export function normalizeProjectionsFilterValues(
       return {
         ...filter,
         values: filter.values.map(
-          (value: string) =>
-            CountryISO3Map.getCountryNameByISO3(value) || value,
+          (value: string) => CountryISOMap.getCountryNameByISO3(value) || value,
         ),
       };
     }

@@ -1,5 +1,5 @@
 // src/utils/query-builder-utils.ts
-import { CountryISO3Map } from '@shared/constants/country-iso3.map';
+import { CountryISOMap } from '@shared/constants/country-iso.map';
 import {
   SEARCH_FILTERS_OPERATORS,
   SearchFilterDTO,
@@ -26,7 +26,7 @@ export const QueryBuilderUtils = {
 
       if (fieldName === 'country') {
         filter.values = filter.values.map(
-          (value) => CountryISO3Map.getISO3ByCountryName(value) ?? value,
+          (value) => CountryISOMap.getISO3ByCountryName(value) ?? value,
         );
       }
       const column = alias ? `${alias}.${fieldName}` : fieldName;

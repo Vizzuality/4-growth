@@ -1,6 +1,6 @@
 import * as dataForge from 'data-forge';
 import * as fs from 'fs/promises';
-import { CountryISO3Map } from '@shared/constants/country-iso3.map';
+import { CountryISOMap } from '@shared/constants/country-iso.map';
 import { StringUtils } from '@api/utils/string.utils';
 import { Logger } from '@nestjs/common';
 
@@ -156,6 +156,7 @@ export const transform = async () => {
         answerId: leftRow.Value['ID'],
         question: leftRow.Value['Subquestion'],
         answer: leftRow.Value['Categorical_Answer'],
+        language: rightRow.Value['Survey_language'],
       };
     },
   );
@@ -198,18 +199,36 @@ export const transform = async () => {
   let transformedAnswers = [];
   for (const group of answersGroupByAnswers) {
     let answers = group.toArray();
-    const countryAnswer = answers.find(
+    let countryAnswer = answers.find(
       (e) => e['question'] === 'Location (country/region)',
     );
     if (countryAnswer === undefined) {
-      console.error(
-        `survey_id: ${answers[0].surveyId} was skipped because "Location (country/region)" question has no answer (${(++skippedSurveys + '').padStart(3, '0')})`,
+      console.warn(
+        `survey_id: ${answers[0].surveyId} "Location (country/region)" question has no answer`,
       );
-      continue;
+
+      const countryName = CountryISOMap.getCountryByNamelanguage(
+        answers[0].language,
+      );
+      if (countryName === undefined) {
+        console.error(
+          `survey_id: ${answers[0].surveyId} no country code found for language ${answers[0].language} (${(++skippedSurveys + '').padStart(3, '0')})`,
+        );
+        continue;
+      }
+
+      countryAnswer = {
+        surveyId: answers[0].surveyId,
+        question: 'Location (country/region)',
+        answer: countryName,
+        language: answers[0].language,
+        answerId: answers[0].answerId,
+      };
+      answers.push(countryAnswer);
     }
 
     answers = answers.map((e) => {
-      const countryCode = CountryISO3Map.getISO3ByCountryName(
+      const countryCode = CountryISOMap.getISO3ByCountryName(
         countryAnswer.answer,
       );
       if (countryCode === undefined) throw new Error('Country code not found');
