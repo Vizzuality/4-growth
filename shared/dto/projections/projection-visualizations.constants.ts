@@ -8,7 +8,7 @@ export const PROJECTION_VISUALIZATIONS = {
 
 export const AVAILABLE_PROJECTION_VISUALIZATIONS = Object.values(
   PROJECTION_VISUALIZATIONS,
-);
+).filter((value) => value !== PROJECTION_VISUALIZATIONS.TABLE);
 
 export type ProjectionVisualizationsType =
   (typeof PROJECTION_VISUALIZATIONS)[keyof typeof PROJECTION_VISUALIZATIONS];
