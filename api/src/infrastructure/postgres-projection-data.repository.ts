@@ -3,7 +3,10 @@ import { Logger, NotFoundException } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { IProjectionDataRepository } from '@api/infrastructure/projection-data-repository.interface';
-import { SearchFilterDTO } from '@shared/dto/global/search-filters';
+import {
+  SEARCH_FILTERS_OPERATORS,
+  SearchFilterDTO,
+} from '@shared/dto/global/search-filters';
 import {
   ProjectionWidget,
   ProjectionWidgetData,
@@ -123,6 +126,12 @@ export class PostgresProjectionDataRepository
       case PROJECTION_VISUALIZATIONS.LINE_CHART:
       case PROJECTION_VISUALIZATIONS.BAR_CHART:
       case PROJECTION_VISUALIZATIONS.AREA_CHART:
+        dataFilters ??= [];
+        dataFilters.push({
+          name: 'type',
+          operator: SEARCH_FILTERS_OPERATORS.EQUALS,
+          values: [settings[widgetVisualization].vertical],
+        });
         return this.findProjectionCustomWidgetData(dataFilters, {
           valueFieldAlias: 'vertical',
         }) as unknown as Promise<CustomProjection>;
