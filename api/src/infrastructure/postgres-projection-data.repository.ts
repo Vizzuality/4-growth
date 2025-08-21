@@ -3,10 +3,7 @@ import { Logger, NotFoundException } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { IProjectionDataRepository } from '@api/infrastructure/projection-data-repository.interface';
-import {
-  SEARCH_FILTERS_OPERATORS,
-  SearchFilterDTO,
-} from '@shared/dto/global/search-filters';
+import { SearchFilterDTO } from '@shared/dto/global/search-filters';
 import {
   ProjectionWidget,
   ProjectionWidgetData,
@@ -92,27 +89,38 @@ export class PostgresProjectionDataRepository
     return queryBuilder.getRawMany();
   }
 
-  public async findProjectionCustomWidgetData(
+  public async findSimpleProjectionCustomWidgetData(
+    widgetVisualization: ProjectionVisualizationsType,
     dataFilters: SearchFilterDTO[],
-    opts: { valueFieldAlias: string } = { valueFieldAlias: 'value' },
-  ): Promise<ProjectionWidgetData[]> {
-    const queryBuilder = this.dataSource
+    settings: CustomProjectionSettingsType,
+  ): Promise<CustomProjection> {
+    const verticalAxis = settings[widgetVisualization].vertical;
+    const colorAxis =
+      PROJECTION_FILTER_NAME_TO_FIELD_NAME[settings[widgetVisualization].color];
+
+    // Y
+    const yQueryBuilder = this.dataSource
       .getRepository(Projection)
       .createQueryBuilder('projection')
       .select('projectionData.year', 'year')
-      .addSelect('SUM(projectionData.value)', opts.valueFieldAlias)
+      .addSelect('SUM(projectionData.value)', 'vertical')
+      .addSelect(`projection.${colorAxis}`, 'color')
       .innerJoin('projection.projectionData', 'projectionData')
-      .groupBy('projection.type')
-      .addGroupBy('projectionData.year')
-      .orderBy('projection.type', 'ASC')
-      .addOrderBy('projectionData.year', 'ASC');
+      .where('projection.type = :type', { type: verticalAxis })
+      .groupBy('projectionData.year')
+      .addGroupBy('projection.type')
+      .addGroupBy(`projection.${colorAxis}`)
+      .orderBy('projectionData.year')
+      .addOrderBy('projection.type')
+      .addOrderBy(`projection.${colorAxis}`);
 
-    QueryBuilderUtils.applySearchFilters(queryBuilder, dataFilters, {
+    QueryBuilderUtils.applySearchFilters(yQueryBuilder, dataFilters, {
       alias: 'projection',
       filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
     });
 
-    return queryBuilder.getRawMany();
+    const result = await yQueryBuilder.getRawMany();
+    return result;
   }
 
   public async previewProjectionCustomWidget(
@@ -125,15 +133,11 @@ export class PostgresProjectionDataRepository
     switch (widgetVisualization) {
       case PROJECTION_VISUALIZATIONS.LINE_CHART:
       case PROJECTION_VISUALIZATIONS.BAR_CHART:
-        dataFilters ??= [];
-        dataFilters.push({
-          name: 'type',
-          operator: SEARCH_FILTERS_OPERATORS.EQUALS,
-          values: [settings[widgetVisualization].vertical],
-        });
-        return this.findProjectionCustomWidgetData(dataFilters, {
-          valueFieldAlias: 'vertical',
-        }) as unknown as Promise<CustomProjection>;
+        return this.findSimpleProjectionCustomWidgetData(
+          widgetVisualization,
+          dataFilters,
+          settings,
+        );
       case PROJECTION_VISUALIZATIONS.BUBBLE_CHART:
         const bubble =
           PROJECTION_FILTER_NAME_TO_FIELD_NAME[
