@@ -241,7 +241,7 @@ export class DataSourceManager {
           type: PROJECTION_TYPES.PENETRATION,
           title: 'Penetration',
           visualizations: AVAILABLE_PROJECTION_2D_VISUALIZATIONS,
-          defaultVisualization: PROJECTION_VISUALIZATIONS.AREA_CHART,
+          defaultVisualization: PROJECTION_VISUALIZATIONS.LINE_CHART,
         },
         {
           id: 4,

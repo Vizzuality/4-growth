@@ -1,6 +1,5 @@
 export const PROJECTION_VISUALIZATIONS = {
   LINE_CHART: 'line_chart',
-  AREA_CHART: 'area_chart',
   BAR_CHART: 'bar_chart',
   BUBBLE_CHART: 'bubble_chart',
   TABLE: 'table',
@@ -15,7 +14,6 @@ export type ProjectionVisualizationsType =
 
 export const PROJECTION_2D_VISUALIZATIONS = {
   LINE_CHART: 'line_chart',
-  AREA_CHART: 'area_chart',
   BAR_CHART: 'bar_chart',
   TABLE: 'table',
 } as const;
