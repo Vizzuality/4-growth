@@ -125,7 +125,6 @@ export class PostgresProjectionDataRepository
     switch (widgetVisualization) {
       case PROJECTION_VISUALIZATIONS.LINE_CHART:
       case PROJECTION_VISUALIZATIONS.BAR_CHART:
-      case PROJECTION_VISUALIZATIONS.AREA_CHART:
         dataFilters ??= [];
         dataFilters.push({
           name: 'type',
