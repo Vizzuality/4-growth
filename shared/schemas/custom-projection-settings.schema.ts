@@ -24,6 +24,7 @@ const AttributeValue = z
 
 const SimpleVisualizationSchema = z.object({
   vertical: IndicatorValue,
+  color: AttributeValue,
 });
 
 const BubbleChartSchema = z.object({
@@ -41,9 +42,6 @@ export const CustomProjectionSettingsSchema = z.object({
     }),
     z.object({
       [PROJECTION_VISUALIZATIONS.BAR_CHART]: SimpleVisualizationSchema,
-    }),
-    z.object({
-      [PROJECTION_VISUALIZATIONS.AREA_CHART]: SimpleVisualizationSchema,
     }),
     z.object({
       [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: BubbleChartSchema,
