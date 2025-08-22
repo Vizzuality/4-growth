@@ -26,7 +26,12 @@ const Sandbox: FC = () => {
         dataFilters: filters,
         settings: settings
           ? settings
-          : { line_chart: { vertical: "market-potential" } },
+          : {
+              line_chart: {
+                vertical: "market-potential",
+                color: "application",
+              },
+            },
       },
     },
     {

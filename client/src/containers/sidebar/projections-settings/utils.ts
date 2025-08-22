@@ -1,6 +1,6 @@
 import { CustomProjectionSettingsType } from "@shared/schemas/custom-projection-settings.schema";
 
-type SimpleChartSettings = { vertical: string };
+type SimpleChartSettings = { vertical: string; color: string };
 type BubbleChartSettings = {
   vertical: string;
   bubble: string;
@@ -13,14 +13,11 @@ export function isSimpleChartSettings(
   settings: CustomProjectionSettingsType | null | undefined,
 ): settings is
   | { line_chart: SimpleChartSettings }
-  | { bar_chart: SimpleChartSettings }
-  | { area_chart: SimpleChartSettings } {
+  | { bar_chart: SimpleChartSettings } {
   return (
     !!settings &&
     typeof settings === "object" &&
-    ("line_chart" in settings ||
-      "bar_chart" in settings ||
-      "area_chart" in settings)
+    ("line_chart" in settings || "bar_chart" in settings)
   );
 }
 

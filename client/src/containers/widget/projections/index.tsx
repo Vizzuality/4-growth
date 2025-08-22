@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 import MenuButton from "@/containers/menu-button";
 import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
-import AreaChart from "@/containers/widget/area-chart";
 import LineChart from "@/containers/widget/line-chart";
 import TableView from "@/containers/widget/table";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
@@ -28,8 +27,6 @@ const getMenuButtonText = (v: ProjectionVisualizationsType): string => {
   switch (v) {
     case "line_chart":
       return "Show as a line chart";
-    case "area_chart":
-      return "Show as an area chart";
     case "bar_chart":
       return "Show as a bar chart";
     case "bubble_chart":
@@ -145,13 +142,6 @@ export default function Widget({
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
           <LineChart {...widgetComponentProps} />
-        </Card>
-      );
-    case "area_chart":
-      return (
-        <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
-          <WidgetHeader indicator={indicator} menu={menuComponent} />
-          <AreaChart {...widgetComponentProps} />
         </Card>
       );
     case "table":

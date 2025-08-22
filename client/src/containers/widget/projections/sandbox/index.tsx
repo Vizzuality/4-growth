@@ -11,7 +11,6 @@ import { ProjectionVisualizationsType } from "@shared/dto/projections/projection
 import { cn } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
-import AreaChart from "@/containers/widget/area-chart";
 import BubbleChart from "@/containers/widget/bubble-chart";
 import LineChart from "@/containers/widget/line-chart";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
@@ -57,12 +56,6 @@ export default function SandboxWidget({
       return (
         <Card className={cn("relative p-0", className)}>
           <LineChart {...simpleChartProps} />
-        </Card>
-      );
-    case "area_chart":
-      return (
-        <Card className={cn("relative p-0", className)}>
-          <AreaChart {...simpleChartProps} />
         </Card>
       );
     case "bubble_chart":
