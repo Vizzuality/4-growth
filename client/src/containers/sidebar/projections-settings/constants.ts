@@ -9,7 +9,6 @@ export const DEFAULT_PROJECTIONS_SETTINGS_LABEL_MAP: Record<string, string> = {
 
 export const VISUALIZATION_TO_LABEL_MAP = {
   line_chart: "Line chart",
-  area_chart: "Area chart",
   bar_chart: "Bar chart",
   bubble_chart: "Bubbles",
   table: "Table",

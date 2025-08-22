@@ -53,7 +53,6 @@ function useSettings() {
   const setVisualization = useCallback(
     (visualization: ProjectionVisualizationsType) => {
       switch (visualization) {
-        case "area_chart":
         case "bar_chart":
         case "line_chart":
           if (isSimpleChartSettings(settings)) {
