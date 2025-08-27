@@ -4,7 +4,7 @@ import { FC, useRef } from "react";
 import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
 import { Bar, BarChart, Cell, XAxis } from "recharts";
 
-import { formatNumber } from "@/lib/utils";
+import { cn, formatNumber } from "@/lib/utils";
 
 import useTickMargin from "@/hooks/use-tick-margin";
 
@@ -44,7 +44,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ indicator, data }) => {
   return (
     <ChartContainer
       config={{}}
-      className={CHART_CONTAINER_CLASS_NAME}
+      className={cn(CHART_CONTAINER_CLASS_NAME, "overflow-hidden")}
       ref={chartRef}
       style={CHART_STYLES}
     >

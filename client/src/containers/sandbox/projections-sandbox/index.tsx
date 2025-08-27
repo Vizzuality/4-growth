@@ -63,6 +63,7 @@ const Sandbox: FC = () => {
 
   return (
     <SandboxWidget
+      className="justify-end"
       indicator={indicator}
       visualization={visualization}
       data={data}
