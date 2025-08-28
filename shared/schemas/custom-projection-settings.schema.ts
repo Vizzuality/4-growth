@@ -1,6 +1,6 @@
 import {
-  BUBBLE_CHART_INDICATORS,
-  BUBBLE_CHART_ATTRIBUTES,
+  CHART_INDICATORS,
+  CHART_ATTRIBUTES,
 } from '@shared/dto/projections/custom-projection-settings';
 import { PROJECTION_VISUALIZATIONS } from '@shared/dto/projections/projection-visualizations.constants';
 import { z } from 'zod';
@@ -9,22 +9,34 @@ const IndicatorValue = z
   .string()
   .refine(
     (val) =>
-      BUBBLE_CHART_INDICATORS.includes(
-        val as (typeof BUBBLE_CHART_INDICATORS)[number],
-      ),
+      CHART_INDICATORS.includes(val as (typeof CHART_INDICATORS)[number]),
     {
       message: 'Invalid indicator value',
     },
   );
+
 const AttributeValue = z
   .string()
-  .refine((val) => BUBBLE_CHART_ATTRIBUTES.includes(val), {
+  .refine((val) => CHART_ATTRIBUTES.includes(val), {
     message: 'Invalid attribute value',
   });
 
+// Create a combined validator for color that accepts all three types
+const ColorValue = z
+  .string()
+  .refine(
+    (val) =>
+      CHART_INDICATORS.includes(val as (typeof CHART_INDICATORS)[number]) ||
+      CHART_ATTRIBUTES.includes(val) ||
+      val === 'scenario',
+    {
+      message: 'Invalid color value',
+    },
+  );
+
 const SimpleVisualizationSchema = z.object({
   vertical: IndicatorValue,
-  color: AttributeValue,
+  color: ColorValue,
 });
 
 const BubbleChartSchema = z.object({

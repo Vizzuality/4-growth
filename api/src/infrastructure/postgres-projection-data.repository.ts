@@ -21,6 +21,10 @@ import {
   PROJECTION_VISUALIZATIONS,
   ProjectionVisualizationsType,
 } from '@shared/dto/projections/projection-visualizations.constants';
+import {
+  CHART_ATTRIBUTES,
+  CHART_INDICATORS,
+} from '@shared/dto/projections/custom-projection-settings';
 
 export class PostgresProjectionDataRepository
   extends Repository<ProjectionData>
@@ -95,8 +99,22 @@ export class PostgresProjectionDataRepository
     settings: CustomProjectionSettingsType,
   ): Promise<CustomProjection> {
     const verticalAxis = settings[widgetVisualization].vertical;
-    const colorAxis =
-      PROJECTION_FILTER_NAME_TO_FIELD_NAME[settings[widgetVisualization].color];
+    const colorValue = settings[widgetVisualization].color;
+
+    // Determine what type of color value we have
+    const isColorAttribute = CHART_ATTRIBUTES.includes(colorValue);
+    const isColorIndicator = CHART_INDICATORS.includes(colorValue);
+    const isColorScenario = colorValue === 'scenario';
+
+    // Get the appropriate field name for the color
+    let colorAxis: string;
+    if (isColorAttribute) {
+      colorAxis = PROJECTION_FILTER_NAME_TO_FIELD_NAME[colorValue];
+    } else if (isColorIndicator) {
+      colorAxis = 'type'; // Indicators are stored in the 'type' field
+    } else if (isColorScenario) {
+      colorAxis = 'scenario'; // Scenarios are stored in the 'scenario' field
+    }
 
     // Y
     const yQueryBuilder = this.dataSource
@@ -104,15 +122,23 @@ export class PostgresProjectionDataRepository
       .createQueryBuilder('projection')
       .select('projectionData.year', 'year')
       .addSelect('SUM(projectionData.value)', 'vertical')
-      .addSelect(`projection.${colorAxis}`, 'color')
       .innerJoin('projection.projectionData', 'projectionData')
       .where('projection.type = :type', { type: verticalAxis })
       .groupBy('projectionData.year')
       .addGroupBy('projection.type')
-      .addGroupBy(`projection.${colorAxis}`)
       .orderBy('projectionData.year')
-      .addOrderBy('projection.type')
-      .addOrderBy(`projection.${colorAxis}`);
+      .addOrderBy('projection.type');
+
+    // Add color selection and grouping based on color type
+    if (!isColorScenario) {
+      yQueryBuilder.addSelect(`projection.${colorAxis}`, 'color');
+      yQueryBuilder.addGroupBy(`projection.${colorAxis}`);
+      yQueryBuilder.addOrderBy(`projection.${colorAxis}`);
+    } else {
+      yQueryBuilder.addSelect(`projection.${colorAxis}`, 'color');
+      yQueryBuilder.addGroupBy(`projection.${colorAxis}`);
+      yQueryBuilder.addOrderBy(`projection.${colorAxis}`);
+    }
 
     QueryBuilderUtils.applySearchFilters(yQueryBuilder, dataFilters, {
       alias: 'projection',
