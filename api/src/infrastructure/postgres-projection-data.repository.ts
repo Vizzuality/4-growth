@@ -226,7 +226,7 @@ export class PostgresProjectionDataRepository
           .getRepository(Projection)
           .createQueryBuilder('projection')
           .select('projectionData.year', 'year')
-          .addSelect('SUM(projectionData.value)', 'value')
+          .addSelect('SUM(projectionData.value)', 'vertical')
           .addSelect(`projection.${bubble}`, 'bubble')
           .addSelect(`projection.${color}`, 'color')
           .innerJoin('projection.projectionData', 'projectionData')
@@ -254,7 +254,7 @@ export class PostgresProjectionDataRepository
           .getRepository(Projection)
           .createQueryBuilder('projection')
           .select('projectionData.year', 'year')
-          .addSelect('SUM(projectionData.value)', 'value')
+          .addSelect('SUM(projectionData.value)', 'horizontal')
           .addSelect(`projection.${bubble}`, 'bubble')
           .addSelect(`projection.${color}`, 'color')
           .innerJoin('projection.projectionData', 'projectionData')
@@ -278,7 +278,7 @@ export class PostgresProjectionDataRepository
         );
 
         const query = `
-          SELECT size.*, vertical.value AS vertical, horizontal.value AS horizontal
+          SELECT size.*, vertical.vertical AS vertical, horizontal.horizontal AS horizontal
           FROM (${sizeQueryBuilder.getSql()}) AS size
           LEFT JOIN (${verticalQueryBuilder.getSql().replace(/\$1/, '$2')}) AS vertical
             ON size.color = vertical.color AND size.bubble = vertical.bubble AND size.year = vertical.year
@@ -286,11 +286,61 @@ export class PostgresProjectionDataRepository
             ON size.color = horizontal.color AND size.bubble = horizontal.bubble AND size.year = horizontal.year
         `;
 
-        const result = await this.dataSource.query(query, [
+        const rawData = await this.dataSource.query(query, [
           ...Object.values(sizeQueryBuilder.getParameters()),
           ...Object.values(verticalQueryBuilder.getParameters()),
           ...Object.values(horizontalQueryBuilder.getParameters()),
         ]);
+
+        // Application layer aggregation: top X colors per bubble/year, sorted by horizontal
+        const maxGroups = 6;
+        // Group by bubble and year
+        const grouped: Record<string, Record<number, any[]>> = {};
+        for (const row of rawData) {
+          const bubbleVal = row.bubble;
+          const yearVal = Number(row.year);
+          if (!grouped[bubbleVal]) grouped[bubbleVal] = {};
+          if (!grouped[bubbleVal][yearVal]) grouped[bubbleVal][yearVal] = [];
+          grouped[bubbleVal][yearVal].push(row);
+        }
+
+        const result: any[] = [];
+        for (const bubbleVal of Object.keys(grouped)) {
+          for (const yearVal of Object.keys(grouped[bubbleVal])) {
+            const rows = grouped[bubbleVal][Number(yearVal)];
+            // Sort colors by horizontal descending
+            const sortedRows = [...rows].sort(
+              (a, b) => Number(b.horizontal) - Number(a.horizontal),
+            );
+            const topColors = sortedRows.slice(0, maxGroups - 1);
+            const otherColors = sortedRows.slice(maxGroups - 1);
+            // Add top colors
+            for (const row of topColors) {
+              result.push(row);
+            }
+            // Aggregate others
+            if (otherColors.length > 0) {
+              // Aggregate all metrics for 'others'
+              const agg = otherColors.reduce(
+                (acc, r) => {
+                  acc.size += Number(r.size);
+                  acc.vertical += Number(r.vertical);
+                  acc.horizontal += Number(r.horizontal);
+                  return acc;
+                },
+                { size: 0, vertical: 0, horizontal: 0 },
+              );
+              result.push({
+                bubble: bubbleVal,
+                color: 'others',
+                year: Number(yearVal),
+                size: agg.size,
+                vertical: agg.vertical,
+                horizontal: agg.horizontal,
+              });
+            }
+          }
+        }
         return result;
       default:
         throw new NotFoundException(
