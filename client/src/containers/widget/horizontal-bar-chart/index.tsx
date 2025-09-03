@@ -20,10 +20,12 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, barSize }) => {
     );
     return <NoData />;
   }
-  const height = data.length * 50;
+  const dataLength = data.length;
+  const height = dataLength * 50;
+  const minHeight = dataLength > 10 ? height / 2 : "0px";
   const highestValueIndex = getIndexOfLargestValue(data);
   let style: CSSProperties = {
-    minHeight: "0px",
+    minHeight,
     width: "60%",
   };
 
