@@ -119,7 +119,52 @@ export class PostgresProjectionDataRepository
       filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
     });
 
-    const result = await yQueryBuilder.getRawMany();
+    const rawData = await yQueryBuilder.getRawMany();
+
+    // Group by color and year, sum vertical values
+    const grouped: Record<string, { [year: number]: number }> = {};
+    for (const row of rawData) {
+      const color = row.color;
+      const year = row.year;
+      const vertical = Number(row.vertical);
+      if (!grouped[color]) grouped[color] = {};
+      if (!grouped[color][year]) grouped[color][year] = 0;
+      grouped[color][year] += vertical;
+    }
+
+    // Calculate total sum per color
+    const colorTotals = Object.entries(grouped).map(([color, years]) => ({
+      color,
+      total: Object.values(years).reduce((a, b) => a + b, 0),
+    }));
+    // Sort by total descending
+    colorTotals.sort((a, b) => b.total - a.total);
+
+    // If more than X colors, aggregate the rest into 'others'
+    const maxGroups = 6;
+    const topColors = colorTotals.slice(0, maxGroups - 1).map((c) => c.color);
+    const otherColors = colorTotals.slice(maxGroups - 1).map((c) => c.color);
+
+    const result: any[] = [];
+    const years = Array.from(new Set(rawData.map((r) => r.year))).sort();
+    for (const year of years) {
+      // Add top colors
+      for (const color of topColors) {
+        if (grouped[color][year] !== undefined) {
+          result.push({ color, year, vertical: grouped[color][year] });
+        }
+      }
+      // Aggregate 'others'
+      if (otherColors.length > 0) {
+        const othersSum = otherColors.reduce(
+          (sum, color) => sum + (grouped[color][year] || 0),
+          0,
+        );
+        if (othersSum > 0) {
+          result.push({ color: 'others', year, vertical: othersSum });
+        }
+      }
+    }
     return result;
   }
 
@@ -133,6 +178,7 @@ export class PostgresProjectionDataRepository
     switch (widgetVisualization) {
       case PROJECTION_VISUALIZATIONS.LINE_CHART:
       case PROJECTION_VISUALIZATIONS.BAR_CHART:
+        // Only aggregate 'others' in findSimpleProjectionCustomWidgetData
         return this.findSimpleProjectionCustomWidgetData(
           widgetVisualization,
           dataFilters,
