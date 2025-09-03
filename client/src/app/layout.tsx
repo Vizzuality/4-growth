@@ -5,6 +5,8 @@ import "@/app/globals.css";
 import { getServerSession } from "next-auth";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
+import { cn } from "@/lib/utils";
+
 import { config } from "@/app/auth/api/[...nextauth]/config";
 
 import { Toaster } from "@/components/ui/toaster";
@@ -29,7 +31,7 @@ export default async function RootLayout({
     <LayoutProviders session={session}>
       <html lang="en">
         <NuqsAdapter>
-          <body className={inter.className}>
+          <body className={cn(inter.className, "overflow-hidden")}>
             <Toaster />
             <main className="h-lvh">{children}</main>
           </body>
