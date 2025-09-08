@@ -1,14 +1,13 @@
 import { BubbleProjection } from "@shared/dto/projections/custom-projection.type";
+import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
+import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 import { CustomProjectionSettingsType } from "@shared/schemas/custom-projection-settings.schema";
 
 import { isBubbleChartSettings } from "@/containers/sidebar/projections-settings/utils";
 
-interface ValueObject {
-  value: number;
-  [key: string]: string | number;
-}
-
-export function getIndexOfLargestValue(data: ValueObject[]): number {
+export function getIndexOfLargestValue(
+  data: WidgetChartData | ProjectionWidgetData[],
+): number {
   let index = 0;
   let largestValue = 0;
 
