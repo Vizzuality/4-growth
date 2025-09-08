@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import NoData from "@/containers/no-data";
 import BubbleChart from "@/containers/widget/bubble-chart";
 import LineChart from "@/containers/widget/line-chart";
+import { getSimpleChartProps } from "@/containers/widget/utils";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 
 import { Card } from "@/components/ui/card";
@@ -33,7 +34,7 @@ export default function SandboxWidget({
   const simpleChartProps = useMemo(
     () => ({
       indicator,
-      data: data?.map((obj) => ({ value: obj.vertical, year: obj.year })),
+      ...getSimpleChartProps(data),
     }),
     [indicator, data],
   );

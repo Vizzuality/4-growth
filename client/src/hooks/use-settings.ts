@@ -67,7 +67,10 @@ function useSettings() {
             }
           } else {
             setSettings({
-              [visualization]: { vertical: BUBBLE_CHART_INDICATORS[0] },
+              [visualization]: {
+                vertical: BUBBLE_CHART_INDICATORS[0],
+                color: BUBBLE_CHART_ATTRIBUTES[0],
+              },
             });
           }
           break;
@@ -131,11 +134,30 @@ function useSettings() {
     [settings, setSettings],
   );
 
+  const setChartAttribute = useCallback(
+    (key: string, value: string) => {
+      if (isBubbleChartSettings(settings)) {
+        setSettings({
+          ["bubble_chart"]: { ...settings.bubble_chart, [key]: value },
+        });
+      }
+
+      if (isSimpleChartSettings(settings)) {
+        const currentSettings = Object.values(settings)[0];
+        setSettings({
+          [Object.keys(settings)[0]]: { ...currentSettings, [key]: value },
+        });
+      }
+    },
+    [settings, setSettings],
+  );
+
   return {
     settings,
     setVisualization,
     setBubbleChartIndicator,
     setBubbleChartAttribute,
+    setChartAttribute,
   };
 }
 

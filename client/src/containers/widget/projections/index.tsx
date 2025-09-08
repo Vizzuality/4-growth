@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 
@@ -70,10 +70,6 @@ export default function Widget({
   const [selectedVisualization, setSelectedVisualization] =
     useState<ProjectionVisualizationsType>(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
-  const widgetComponentProps = useMemo(
-    () => ({ indicator, data }),
-    [indicator, data],
-  );
   const menuComponent =
     menu ||
     (!visualisations && !showCustomizeWidgetButton ? undefined : (
@@ -105,7 +101,7 @@ export default function Widget({
               <Button
                 key={`visualization-list-item-${v}`}
                 variant="clean"
-                className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+                className="block w-full rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
                 onClick={() => setSelectedVisualization(v)}
               >
                 {getMenuButtonText(v)}
@@ -134,21 +130,21 @@ export default function Widget({
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
-          <VerticalBarChart {...widgetComponentProps} />
+          <VerticalBarChart data={data} />
         </Card>
       );
     case "line_chart":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
-          <LineChart {...widgetComponentProps} />
+          <LineChart indicator={indicator} data={data} />
         </Card>
       );
     case "table":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
-          <TableView {...widgetComponentProps} />
+          <TableView indicator={indicator} data={data} />
         </Card>
       );
     case "bubble_chart":

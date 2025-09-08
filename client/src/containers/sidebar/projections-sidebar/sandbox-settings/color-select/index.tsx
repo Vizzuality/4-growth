@@ -7,29 +7,22 @@ import useSettings from "@/hooks/use-settings";
 
 import { BUBBLE_CHART_ATTRIBUTE_TO_LABEL_MAP } from "@/containers/sidebar/projections-settings/constants";
 import ProjectionsSettingsPopup from "@/containers/sidebar/projections-settings/projection-settings-popup";
-import {
-  getValues,
-  isBubbleChartSettings,
-} from "@/containers/sidebar/projections-settings/utils";
 
 function getSelectedColorOption(
   settings: CustomProjectionSettingsTypeSchema | null,
 ) {
   if (!settings) return null;
 
-  if (isBubbleChartSettings(settings)) {
-    const key = getValues(settings)[0]
-      .color as keyof typeof BUBBLE_CHART_ATTRIBUTE_TO_LABEL_MAP;
-    return { label: BUBBLE_CHART_ATTRIBUTE_TO_LABEL_MAP[key], value: key };
-  }
+  const key = Object.values(settings)[0]
+    .color as keyof typeof BUBBLE_CHART_ATTRIBUTE_TO_LABEL_MAP;
 
-  return null;
+  return { label: BUBBLE_CHART_ATTRIBUTE_TO_LABEL_MAP[key], value: key };
 }
 
 const ColorSelect: FC<{
   options: CustomProjectionSettingsType["bubble_chart"]["color"];
 }> = ({ options }) => {
-  const { settings, setBubbleChartAttribute } = useSettings();
+  const { settings, setChartAttribute } = useSettings();
   const selected = useMemo(() => getSelectedColorOption(settings), [settings]);
 
   return (
@@ -40,7 +33,7 @@ const ColorSelect: FC<{
         label: key,
         value: key,
       }))}
-      onItemClick={(v) => setBubbleChartAttribute("color", v)}
+      onItemClick={(v) => setChartAttribute("color", v)}
     />
   );
 };

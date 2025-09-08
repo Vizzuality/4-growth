@@ -1,6 +1,7 @@
 export type SimpleProjection = {
   year: number;
   vertical: number;
+  color: string;
 };
 
 export type BubbleProjection = {

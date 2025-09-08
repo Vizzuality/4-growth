@@ -36,7 +36,10 @@ const SandboxSettings: FC = () => {
     <>
       <VisualizationSelect options={data?.availableVisualizations || []} />
       {showSimpleChartSettings ? (
-        <VerticalSelect options={data?.line_chart.vertical || []} />
+        <>
+          <VerticalSelect options={data?.line_chart.vertical || []} />
+          <ColorSelect options={data?.line_chart.color || []} />
+        </>
       ) : showBubbleChartSettings ? (
         <>
           <BubbleSelect options={data?.bubble_chart.bubble || []} />

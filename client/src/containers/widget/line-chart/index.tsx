@@ -1,6 +1,5 @@
 import { FC, useRef } from "react";
 
-import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
 import { Line, LineChart as ReLinChart, XAxis } from "recharts";
 
 import { formatNumber } from "@/lib/utils";
@@ -22,9 +21,10 @@ import {
 
 interface LineChartProps {
   indicator: string;
-  data?: ProjectionWidgetData[];
+  data: Record<string, number>[];
+  colors?: (string | number)[];
 }
-const LineChart: FC<LineChartProps> = ({ indicator, data }) => {
+const LineChart: FC<LineChartProps> = ({ indicator, data, colors }) => {
   const chartRef = useRef<HTMLDivElement>(null);
   const tickMargin = useTickMargin(chartRef);
 
@@ -48,31 +48,52 @@ const LineChart: FC<LineChartProps> = ({ indicator, data }) => {
               className="rounded-2xl border-none px-4 py-2 [&>*:nth-child(2)]:hidden"
               formatter={() => null}
               labelFormatter={(_, payload) => (
-                <div className="flex gap-2">
-                  <p className="flex flex-col items-end justify-end gap-2">
-                    <span>Year</span>
-                    <span>{indicator}</span>
-                  </p>
-                  <p className="flex flex-col gap-2">
-                    <span className="font-bold">{payload[0].payload.year}</span>
-                    <span className="font-bold">
-                      {formatNumber(payload[0].payload.value, {
-                        maximumFractionDigits: 0,
-                      })}
+                <div className="space-y-2">
+                  <p className="grid grid-cols-2 gap-2">
+                    <span className="flex flex-1 justify-end">Year</span>
+                    <span className="flex flex-1 justify-start font-bold">
+                      {payload[0].payload.year}
                     </span>
                   </p>
+                  {payload.map((p) => (
+                    <p
+                      key={`tooltip-item-${p.name}-${p.value}`}
+                      className="grid grid-cols-2 gap-2"
+                    >
+                      <span className="flex flex-1 justify-end">{p.name}</span>
+                      <span className="flex flex-1 justify-start font-bold">
+                        {formatNumber(Number(p.value), {
+                          maximumFractionDigits: 0,
+                        })}
+                      </span>
+                    </p>
+                  ))}
                 </div>
               )}
             />
           }
         />
-        <Line
-          dataKey="value"
-          type="linear"
-          strokeWidth={10}
-          stroke="hsl(var(--secondary))"
-          dot={false}
-        />
+        {!colors && (
+          <Line
+            name={indicator}
+            dataKey="value"
+            type="linear"
+            strokeWidth={10}
+            stroke="hsl(var(--secondary))"
+            dot={false}
+          />
+        )}
+        {colors?.map((c, i) => (
+          <Line
+            key={`line-${c}`}
+            dataKey={c}
+            type="linear"
+            strokeWidth={10}
+            stroke={`hsl(var(--chart-${i + 1}))`}
+            dot={false}
+          />
+        ))}
+
         <XAxis
           dataKey="year"
           tickLine={false}
