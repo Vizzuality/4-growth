@@ -130,7 +130,7 @@ export default function Widget({
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
-          <VerticalBarChart data={data} />
+          <VerticalBarChart indicator={indicator} data={data} />
         </Card>
       );
     case "line_chart":

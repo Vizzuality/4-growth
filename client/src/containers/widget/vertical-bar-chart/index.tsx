@@ -32,11 +32,16 @@ const getRadius = (
 };
 
 interface VerticalBarChartProps {
+  indicator: string;
   data: Record<string, number>[];
   colors?: (string | number)[];
 }
 
-const VerticalBarChart: FC<VerticalBarChartProps> = ({ data, colors }) => {
+const VerticalBarChart: FC<VerticalBarChartProps> = ({
+  indicator,
+  data,
+  colors,
+}) => {
   const chartRef = useRef<HTMLDivElement>(null);
   const tickMargin = useTickMargin(chartRef);
 
@@ -96,7 +101,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ data, colors }) => {
           }
         />
         {!colors && (
-          <Bar dataKey="value">
+          <Bar dataKey="value" name={indicator}>
             {data.map((entry, index) => {
               return (
                 <Cell
