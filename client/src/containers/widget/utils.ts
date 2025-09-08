@@ -42,3 +42,20 @@ export function getBubbleChartProps(
 
   return { chartData, colors, years, horizontalLabel, verticalLabel };
 }
+
+export function getSimpleChartProps(data: CustomProjection) {
+  const chartData: Record<string, number>[] = [];
+  const years = Array.from(new Set(data.map((p) => p.year)));
+  const colors = Array.from(new Set(data.map((p) => p.color)));
+
+  years.forEach((year) => {
+    const values = data.filter((d) => d.year === year);
+    const obj = values.reduce(
+      (acc, curr) => ({ ...acc, [curr.color]: curr.vertical }),
+      {},
+    );
+    chartData.push({ year, ...obj });
+  });
+
+  return { data: chartData, colors };
+}
