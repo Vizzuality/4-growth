@@ -16,6 +16,9 @@ export class Projection {
   @PrimaryColumn()
   id: number;
 
+  @Column({ name: 'category', type: 'varchar', length: 100 })
+  category: string;
+
   @Column({ name: 'type', type: 'enum', enum: PROJECTION_TYPES })
   type: string;
 

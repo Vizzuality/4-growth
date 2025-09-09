@@ -173,7 +173,7 @@ export class DataSourceManager {
   }
 
   public async loadProjections(
-    filePath: string = `data/projections/mock-projections-with-scenarios.json`,
+    filePath: string = `data/projections/projections.json`,
   ): Promise<void> {
     this.logger.log(
       `Loading initial projections from "${filePath}"`,
