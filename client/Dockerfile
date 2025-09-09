@@ -12,10 +12,9 @@ RUN corepack enable pnpm
 COPY client ./client
 COPY shared ./shared
 
-RUN pnpm client:deps
-
-
-
+RUN corepack enable
+RUN COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack prepare pnpm@9.9.0 --activate
+RUN pnpm install
 
 RUN pnpm client:build
 
