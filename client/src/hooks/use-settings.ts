@@ -105,13 +105,21 @@ function useSettings() {
   const setBubbleChartIndicator = useCallback(
     (key: string, value: string) => {
       if (isSimpleChartSettings(settings)) {
-        const currentKey = getKeys(settings)[0];
-        setSettings({
-          ...settings,
-          [currentKey]: {
-            [key]: value,
-          },
-        });
+        if ("line_chart" in settings) {
+          setSettings({
+            line_chart: {
+              ...settings.line_chart,
+              [key]: value,
+            },
+          });
+        } else if ("bar_chart" in settings) {
+          setSettings({
+            bar_chart: {
+              ...settings.bar_chart,
+              [key]: value,
+            },
+          });
+        }
       }
 
       if (isBubbleChartSettings(settings)) {
@@ -143,10 +151,15 @@ function useSettings() {
       }
 
       if (isSimpleChartSettings(settings)) {
-        const currentSettings = Object.values(settings)[0];
-        setSettings({
-          [Object.keys(settings)[0]]: { ...currentSettings, [key]: value },
-        });
+        if ("line_chart" in settings) {
+          setSettings({
+            line_chart: { ...settings.line_chart, [key]: value },
+          });
+        } else if ("bar_chart" in settings) {
+          setSettings({
+            bar_chart: { ...settings.bar_chart, [key]: value },
+          });
+        }
       }
     },
     [settings, setSettings],
