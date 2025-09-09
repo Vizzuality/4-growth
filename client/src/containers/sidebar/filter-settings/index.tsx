@@ -63,22 +63,29 @@ const FilterSettings: FC<FilterSettingsProps> = ({
     [allFilters, defaultFilters],
   );
 
+  const effectiveAllFilters = useMemo(() => {
+    if (customFilters.length <= 1) {
+      return allFilters;
+    }
+    return allFilters.filter((pageFilter) =>
+      defaultFilters.includes(pageFilter.name),
+    );
+  }, [allFilters, defaultFilters, customFilters]);
+
   return (
     <>
-      {allFilters
-        .filter((pageFilter) => defaultFilters.includes(pageFilter.name))
-        .map((f) => (
-          <FilterPopup
-            key={`sidebar-filter-popover-${f.name}`}
-            name={f.name}
-            filterQueryParams={filterQueryParams}
-            onAddFilter={onAddFilter}
-            onRemoveFilterValue={onRemoveFilterValue}
-            label={DEFAULT_FILTERS_LABEL_MAP[f.name]}
-            filters={allFilters}
-            fixedFilter={f}
-          />
-        ))}
+      {effectiveAllFilters.map((f) => (
+        <FilterPopup
+          key={`sidebar-filter-popover-${f.name}`}
+          name={f.name}
+          filterQueryParams={filterQueryParams}
+          onAddFilter={onAddFilter}
+          onRemoveFilterValue={onRemoveFilterValue}
+          label={DEFAULT_FILTERS_LABEL_MAP[f.name]}
+          filters={effectiveAllFilters}
+          fixedFilter={f}
+        />
+      ))}
 
       {selectedCustomFilters.map((f) => (
         <FilterPopup
@@ -91,14 +98,16 @@ const FilterSettings: FC<FilterSettingsProps> = ({
           fixedFilter={f}
         />
       ))}
-      <FilterPopup
-        key="sidebar-filter-popover-custom"
-        name="Add a custom filter"
-        filterQueryParams={filterQueryParams}
-        onAddFilter={onAddFilter}
-        onRemoveFilterValue={onRemoveFilterValue}
-        filters={customFilters}
-      />
+      {customFilters.length > 1 && (
+        <FilterPopup
+          key="sidebar-filter-popover-custom"
+          name="More filters"
+          filterQueryParams={filterQueryParams}
+          onAddFilter={onAddFilter}
+          onRemoveFilterValue={onRemoveFilterValue}
+          filters={customFilters}
+        />
+      )}
       {withDataBreakdown && <BreakdownSelector />}
     </>
   );
