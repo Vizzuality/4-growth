@@ -39,4 +39,8 @@ export const DEFAULT_FILTERS_LABEL_MAP: Record<
     selected: "Sector",
     unSelected: "All operation areas",
   },
+  type: {
+    selected: "Type",
+    unSelected: "All types",
+  },
 } as const;

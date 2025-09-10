@@ -87,26 +87,28 @@ const FilterSettings: FC<FilterSettingsProps> = ({
         />
       ))}
 
-      {selectedCustomFilters.map((f) => (
-        <FilterPopup
-          key={`sidebar-filter-popover-${f.name}`}
-          name={f.name}
-          filterQueryParams={filterQueryParams}
-          onAddFilter={onAddFilter}
-          onRemoveFilterValue={onRemoveFilterValue}
-          filters={customFilters}
-          fixedFilter={f}
-        />
-      ))}
       {customFilters.length > 1 && (
-        <FilterPopup
-          key="sidebar-filter-popover-custom"
-          name="More filters"
-          filterQueryParams={filterQueryParams}
-          onAddFilter={onAddFilter}
-          onRemoveFilterValue={onRemoveFilterValue}
-          filters={customFilters}
-        />
+        <>
+          {selectedCustomFilters.map((f) => (
+            <FilterPopup
+              key={`sidebar-filter-popover-${f.name}`}
+              name={f.name}
+              filterQueryParams={filterQueryParams}
+              onAddFilter={onAddFilter}
+              onRemoveFilterValue={onRemoveFilterValue}
+              filters={customFilters}
+              fixedFilter={f}
+            />
+          ))}
+          <FilterPopup
+            key="sidebar-filter-popover-custom"
+            name="More filters"
+            filterQueryParams={filterQueryParams}
+            onAddFilter={onAddFilter}
+            onRemoveFilterValue={onRemoveFilterValue}
+            filters={customFilters}
+          />
+        </>
       )}
       {withDataBreakdown && <BreakdownSelector />}
     </>
