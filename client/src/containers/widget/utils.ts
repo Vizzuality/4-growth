@@ -26,15 +26,15 @@ export function getIndexOfLargestValue(
 
 const getYears = (data: BubbleProjection[] | CustomProjection): number[] =>
   Array.from(new Set(data.map((p) => p.year)));
-const getColors = (
+export function getColors(
   data: BubbleProjection[] | CustomProjection,
-): (string | number)[] => {
+): (string | number)[] {
   const colorsRaw = Array.from(new Set(data.map((p) => p.color)));
   const colors = colorsRaw.filter((c) => c !== "others");
   if (colorsRaw.includes("others")) colors.push("others");
 
   return colors;
-};
+}
 
 export function getBubbleChartProps(
   data: BubbleProjection[],

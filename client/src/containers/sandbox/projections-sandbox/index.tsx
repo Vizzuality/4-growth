@@ -75,7 +75,6 @@ const Sandbox: FC = () => {
   }, [settings]);
 
   if (!data) return null;
-  console.log(data);
 
   return (
     <SandboxWidget
