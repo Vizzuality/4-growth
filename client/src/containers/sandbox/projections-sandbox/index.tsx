@@ -1,6 +1,8 @@
 "use client";
 import { FC, useMemo } from "react";
 
+import { CountryISOMap } from "@shared/constants/country-iso.map";
+import { CustomProjection } from "@shared/dto/projections/custom-projection.type";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 
 import { client } from "@/lib/queryClient";
@@ -10,6 +12,7 @@ import useFilters from "@/hooks/use-filters";
 import useSettings from "@/hooks/use-settings";
 
 import {
+  colorIsCountry,
   getKeys,
   isBubbleChartSettings,
   isSimpleChartSettings,
@@ -37,7 +40,19 @@ const Sandbox: FC = () => {
     {
       enabled: !!settings,
       retry: 0,
-      select: (res) => res.body.data,
+      select: (res) => {
+        if (colorIsCountry(settings)) {
+          return res.body.data.map((d) => ({
+            ...d,
+            color:
+              d.color !== "others"
+                ? CountryISOMap.getCountryNameByISO3(String(d.color))
+                : d.color,
+          })) as CustomProjection;
+        }
+
+        return res.body.data;
+      },
     },
   );
   const visualization: ProjectionVisualizationsType = useMemo(() => {
@@ -60,6 +75,7 @@ const Sandbox: FC = () => {
   }, [settings]);
 
   if (!data) return null;
+  console.log(data);
 
   return (
     <SandboxWidget

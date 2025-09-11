@@ -36,3 +36,23 @@ export function getKeys<T extends object>(obj: T): (keyof T)[] {
 export function getValues<T extends object>(obj: T): T[keyof T][] {
   return Object.values(obj) as T[keyof T][];
 }
+
+export function colorIsCountry(
+  settings: CustomProjectionSettingsType | null | undefined,
+): boolean {
+  if (!settings) return false;
+
+  if ("line_chart" in settings && settings.line_chart.color === "country") {
+    return true;
+  }
+
+  if ("bar_chart" in settings && settings.bar_chart.color === "country") {
+    return true;
+  }
+
+  if ("bubble_chart" in settings && settings.bubble_chart.color === "country") {
+    return true;
+  }
+
+  return false;
+}
