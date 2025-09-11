@@ -174,8 +174,15 @@ const BubbleChart: FC<BubbleChartProps> = ({ data }) => {
           />
           <ZAxis type="number" dataKey="size" name="Size" range={[50, 5000]} />
           <Scatter data={currentDataSet}>
-            {currentDataSet.map((_, index) => (
-              <Cell key={index} fill={CSS_CHART_COLORS[index]} />
+            {currentDataSet.map((d, index) => (
+              <Cell
+                key={index}
+                fill={
+                  CSS_CHART_COLORS[
+                    colors.findIndex((color) => d.color === color)
+                  ]
+                }
+              />
             ))}
           </Scatter>
         </ScatterChart>

@@ -24,13 +24,25 @@ export function getIndexOfLargestValue(
   return index;
 }
 
+const getYears = (data: BubbleProjection[] | CustomProjection): number[] =>
+  Array.from(new Set(data.map((p) => p.year)));
+const getColors = (
+  data: BubbleProjection[] | CustomProjection,
+): (string | number)[] => {
+  const colorsRaw = Array.from(new Set(data.map((p) => p.color)));
+  const colors = colorsRaw.filter((c) => c !== "others");
+  if (colorsRaw.includes("others")) colors.push("others");
+
+  return colors;
+};
+
 export function getBubbleChartProps(
   data: BubbleProjection[],
   settings: CustomProjectionSettingsType | null,
 ) {
   const chartData: Record<number, BubbleProjection[]> = {};
-  const years = Array.from(new Set(data.map((p) => p.year)));
-  const colors = Array.from(new Set(data.map((p) => p.color)));
+  const years = getYears(data);
+
   let horizontalLabel: string = "";
   let verticalLabel: string = "";
 
@@ -43,13 +55,18 @@ export function getBubbleChartProps(
     chartData[year] = data.filter((d) => d.year === year);
   });
 
-  return { chartData, colors, years, horizontalLabel, verticalLabel };
+  return {
+    chartData,
+    colors: getColors(data),
+    years,
+    horizontalLabel,
+    verticalLabel,
+  };
 }
 
 export function getSimpleChartProps(data: CustomProjection) {
   const chartData: Record<string, number>[] = [];
-  const years = Array.from(new Set(data.map((p) => p.year)));
-  const colors = Array.from(new Set(data.map((p) => p.color)));
+  const years = getYears(data);
 
   years.forEach((year) => {
     const values = data.filter((d) => d.year === year);
@@ -60,5 +77,5 @@ export function getSimpleChartProps(data: CustomProjection) {
     chartData.push({ year, ...obj });
   });
 
-  return { data: chartData, colors };
+  return { data: chartData, colors: getColors(data) };
 }
