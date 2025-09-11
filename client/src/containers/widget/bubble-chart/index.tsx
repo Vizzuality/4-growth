@@ -11,7 +11,7 @@ import {
   Cell,
 } from "recharts";
 
-import { CSS_CHART_COLORS, TW_CHART_COLORS } from "@/lib/constants";
+import { CSS_CHART_COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 import useSettings from "@/hooks/use-settings";
@@ -23,6 +23,7 @@ import {
   BUBBLE_CHART_TICK_INTERVAL,
   CHART_CONTAINER_CLASS_NAME,
 } from "@/containers/widget/constants";
+import WidgetLegend from "@/containers/widget/legend";
 import { getBubbleChartProps } from "@/containers/widget/utils";
 
 import {
@@ -84,22 +85,6 @@ const BubbleChart: FC<BubbleChartProps> = ({ data }) => {
 
   return (
     <>
-      <div className="flex items-center justify-center gap-6 pl-6">
-        {colors.map((color, index) => (
-          <p
-            key={`bubble-chart-legend-${color}`}
-            className="flex items-center gap-x-1 text-xs"
-          >
-            <span
-              className={cn(
-                "block h-3 w-3 rounded-full",
-                TW_CHART_COLORS[index],
-              )}
-            ></span>
-            <span>{color}</span>
-          </p>
-        ))}
-      </div>
       <ChartContainer
         config={{}}
         className={cn(CHART_CONTAINER_CLASS_NAME, "aspect-auto h-full")}
@@ -143,6 +128,19 @@ const BubbleChart: FC<BubbleChartProps> = ({ data }) => {
               />
             }
           />
+          <ZAxis type="number" dataKey="size" name="Size" range={[50, 5000]} />
+          <Scatter data={currentDataSet}>
+            {currentDataSet.map((d, index) => (
+              <Cell
+                key={index}
+                fill={
+                  CSS_CHART_COLORS[
+                    colors.findIndex((color) => d.color === color)
+                  ]
+                }
+              />
+            ))}
+          </Scatter>
           <XAxis
             type="number"
             dataKey="horizontal"
@@ -172,21 +170,9 @@ const BubbleChart: FC<BubbleChartProps> = ({ data }) => {
             axisLine={false}
             tickLine={false}
           />
-          <ZAxis type="number" dataKey="size" name="Size" range={[50, 5000]} />
-          <Scatter data={currentDataSet}>
-            {currentDataSet.map((d, index) => (
-              <Cell
-                key={index}
-                fill={
-                  CSS_CHART_COLORS[
-                    colors.findIndex((color) => d.color === color)
-                  ]
-                }
-              />
-            ))}
-          </Scatter>
         </ScatterChart>
       </ChartContainer>
+      <WidgetLegend colors={colors} className="my-6" />
       <PlaybackBar
         timeMarkers={years}
         isPlaying={isPlaying}

@@ -62,7 +62,7 @@ export default function SandboxWidget({
     case "bubble_chart":
       if ("bubble" in data[0]) {
         return (
-          <Card className={cn("relative min-h-80 p-4", className)}>
+          <Card className={cn("relative min-h-80 p-6", className)}>
             <BubbleChart data={data as BubbleProjection[]} />
           </Card>
         );
