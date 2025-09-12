@@ -9,7 +9,7 @@ COPY api/package.json api/tsconfig.json ./api/
 COPY shared/package.json shared/tsconfig.json ./shared/
 
 RUN corepack enable pnpm
-
+RUN COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack prepare pnpm@9.9.0 --activate
 
 COPY api ./api
 COPY shared ./shared
