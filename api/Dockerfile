@@ -36,8 +36,8 @@ COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.json .npmrc ./
 COPY api ./api
 COPY shared ./shared
 
-RUN npm install -g pnpm@$(grep -o 'pnpm@[0-9.]*' .npmrc | cut -d@ -f2)
-RUN pnpm install
+RUN corepack enable pnpm
+RUN COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack prepare pnpm@9.9.0 --activate
 
 RUN pnpm api:build
 
