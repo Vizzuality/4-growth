@@ -26,8 +26,9 @@ export default function Explore() {
             “Projections Model”: Overview
           </Title>
           <p className="text-muted-foreground">
-            Lorem ipsum dolor sit amet consectetur. Enim laoreet volutpat
-            lobortis ultrices mattis amet gravida augue dapibus.
+            This section provides a high-level overview of the MMFT projection
+            data, allowing users to explore different scenarios and time series
+            through interactive visualizations.
           </p>
         </Card>
         <Card className="bg-lightgray col-span-1 bg-[url('/images/explore/overview-projections-bg.avif')] bg-cover bg-center bg-no-repeat" />
