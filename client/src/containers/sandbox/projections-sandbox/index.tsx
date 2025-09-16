@@ -19,6 +19,8 @@ import {
 } from "@/containers/sidebar/projections-settings/utils";
 import SandboxWidget from "@/containers/widget/projections/sandbox";
 
+import { Card } from "@/components/ui/card";
+
 const Sandbox: FC = () => {
   const { settings } = useSettings();
   const { filters } = useFilters();
@@ -74,7 +76,22 @@ const Sandbox: FC = () => {
     return "";
   }, [settings]);
 
-  if (!data) return null;
+  if (!data)
+    return (
+      <Card className="p-0">
+        <header className="space-y-1 p-8">
+          <p className="font-semibold">
+            The Sandbox allows users to create customized visualizations and
+            explore multiple data series at once by combining different
+            variables in a single graph.
+          </p>
+          <p className="font-semibold">
+            Select a visualization type and then select indicators and filters
+            to customize your view.
+          </p>
+        </header>
+      </Card>
+    );
 
   return (
     <SandboxWidget
