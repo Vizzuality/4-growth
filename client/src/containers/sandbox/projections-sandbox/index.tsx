@@ -24,7 +24,7 @@ import { Card } from "@/components/ui/card";
 const Sandbox: FC = () => {
   const { settings } = useSettings();
   const { filters } = useFilters();
-  const { data } = client.projections.getCustomProjection.useQuery(
+  const { data, isFetching } = client.projections.getCustomProjection.useQuery(
     queryKeys.projections.custom(settings, filters).queryKey,
     {
       query: {
@@ -75,6 +75,8 @@ const Sandbox: FC = () => {
 
     return "";
   }, [settings]);
+
+  if (isFetching) return null;
 
   if (!data)
     return (

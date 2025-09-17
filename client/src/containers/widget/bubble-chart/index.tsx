@@ -85,6 +85,7 @@ const BubbleChart: FC<BubbleChartProps> = ({ data }) => {
 
   return (
     <>
+      <WidgetLegend colors={colors} className="my-6" />
       <ChartContainer
         config={{}}
         className={cn(CHART_CONTAINER_CLASS_NAME, "aspect-auto h-full")}
@@ -172,7 +173,7 @@ const BubbleChart: FC<BubbleChartProps> = ({ data }) => {
           />
         </ScatterChart>
       </ChartContainer>
-      <WidgetLegend colors={colors} className="my-6" />
+
       <PlaybackBar
         timeMarkers={years}
         isPlaying={isPlaying}

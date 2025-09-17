@@ -137,7 +137,7 @@ export default function Widget({
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader indicator={indicator} menu={menuComponent} />
-          <LineChart indicator={indicator} data={data} />
+          <LineChart indicator={indicator} data={data} dataKey="value" />
         </Card>
       );
     case "table":
