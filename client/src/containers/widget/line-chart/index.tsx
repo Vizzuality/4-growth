@@ -1,17 +1,12 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 
-import { Line, LineChart as ReLinChart, XAxis } from "recharts";
+import { Line, LineChart as ReLinChart, XAxis, YAxis } from "recharts";
+import { DataKey } from "recharts/types/util/types";
 
-import { formatNumber } from "@/lib/utils";
-
-import useTickMargin from "@/hooks/use-tick-margin";
+import { cn, formatNumber } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
-import {
-  CHART_CONTAINER_CLASS_NAME,
-  CHART_MARGIN,
-  CHART_STYLES,
-} from "@/containers/widget/constants";
+import { CHART_CONTAINER_CLASS_NAME } from "@/containers/widget/constants";
 
 import {
   ChartContainer,
@@ -21,13 +16,16 @@ import {
 
 interface LineChartProps {
   indicator: string;
+  dataKey: DataKey<Record<string, string>>;
   data: Record<string, number>[];
   colors?: (string | number)[];
 }
-const LineChart: FC<LineChartProps> = ({ indicator, data, colors }) => {
-  const chartRef = useRef<HTMLDivElement>(null);
-  const tickMargin = useTickMargin(chartRef);
-
+const LineChart: FC<LineChartProps> = ({
+  indicator,
+  dataKey,
+  data,
+  colors,
+}) => {
   if (!data || data.length === 0) {
     console.error(`LineChart: Expected at least 1 data point, but received 0.`);
     return <NoData />;
@@ -35,12 +33,10 @@ const LineChart: FC<LineChartProps> = ({ indicator, data, colors }) => {
 
   return (
     <ChartContainer
-      ref={chartRef}
       config={{}}
-      className={CHART_CONTAINER_CLASS_NAME}
-      style={CHART_STYLES}
+      className={cn("h-full overflow-hidden", CHART_CONTAINER_CLASS_NAME)}
     >
-      <ReLinChart margin={CHART_MARGIN} data={data} accessibilityLayer>
+      <ReLinChart data={data} accessibilityLayer>
         <ChartTooltip
           cursor={false}
           content={
@@ -76,7 +72,7 @@ const LineChart: FC<LineChartProps> = ({ indicator, data, colors }) => {
         {!colors && (
           <Line
             name={indicator}
-            dataKey="value"
+            dataKey={dataKey}
             type="linear"
             strokeWidth={10}
             stroke="hsl(var(--secondary))"
@@ -98,7 +94,6 @@ const LineChart: FC<LineChartProps> = ({ indicator, data, colors }) => {
           dataKey="year"
           tickLine={false}
           axisLine={false}
-          tickMargin={tickMargin}
           interval="preserveStartEnd"
           tick={(props) => {
             const { x, y, payload } = props;
@@ -121,6 +116,18 @@ const LineChart: FC<LineChartProps> = ({ indicator, data, colors }) => {
 
             return <path />;
           }}
+        />
+        <YAxis
+          type="number"
+          axisLine={false}
+          tickLine={false}
+          tickFormatter={(value) =>
+            formatNumber(Number(value), {
+              maximumFractionDigits: 0,
+              notation: "compact",
+              compactDisplay: "short",
+            })
+          }
         />
       </ReLinChart>
     </ChartContainer>

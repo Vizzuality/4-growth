@@ -57,7 +57,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
   return (
     <ChartContainer
       config={{}}
-      className={cn(CHART_CONTAINER_CLASS_NAME, "overflow-hidden")}
+      className={cn(CHART_CONTAINER_CLASS_NAME, "h-full overflow-hidden")}
       ref={chartRef}
       style={CHART_STYLES}
     >
