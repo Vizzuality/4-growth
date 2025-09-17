@@ -79,8 +79,7 @@ export default function ComingSoon() {
 
       <section className="bg-[url('/images/coming-soon/gradient.jpg')] bg-cover bg-no-repeat rounded-2xl flex flex-col space-y-8 items-center py-16">
         <div className="text-center">
-          <h2 className="font-bold uppercase text-xl">Coming soon</h2>
-          <h3 className="font-bold text-4xl md:text-[56px]">Stay tuned!</h3>
+          <h2 className="font-bold text-4xl md:text-[56px]">Coming soon</h2>
         </div>
         <div className="bg-[url('/images/coming-soon/mockup.png')] bg-cover bg-center h-44 w-80 md:h-[330px] md:w-[580px] rounded-3xl px-2 md:px-0" />
       </section>
