@@ -277,19 +277,42 @@ export class PostgresProjectionDataRepository
           },
         );
 
+        // Get parameters from each query builder
+        const sizeParams = Object.values(sizeQueryBuilder.getParameters());
+        const verticalParams = Object.values(
+          verticalQueryBuilder.getParameters(),
+        );
+        const horizontalParams = Object.values(
+          horizontalQueryBuilder.getParameters(),
+        );
+
+        // Build parameter replacement mapping for vertical query
+        const verticalSql = verticalQueryBuilder
+          .getSql()
+          .replace(/\$(\d+)/g, (match, paramIndex) => {
+            return `$${Number(paramIndex) + sizeParams.length}`;
+          });
+
+        // Build parameter replacement mapping for horizontal query
+        const horizontalSql = horizontalQueryBuilder
+          .getSql()
+          .replace(/\$(\d+)/g, (match, paramIndex) => {
+            return `$${Number(paramIndex) + sizeParams.length + verticalParams.length}`;
+          });
+
         const query = `
           SELECT size.*, vertical.vertical AS vertical, horizontal.horizontal AS horizontal
           FROM (${sizeQueryBuilder.getSql()}) AS size
-          LEFT JOIN (${verticalQueryBuilder.getSql().replace(/\$1/, '$2')}) AS vertical
+          LEFT JOIN (${verticalSql}) AS vertical
             ON size.color = vertical.color AND size.bubble = vertical.bubble AND size.year = vertical.year
-          LEFT JOIN (${horizontalQueryBuilder.getSql().replace(/\$1/, '$3')}) AS horizontal
+          LEFT JOIN (${horizontalSql}) AS horizontal
             ON size.color = horizontal.color AND size.bubble = horizontal.bubble AND size.year = horizontal.year
         `;
 
         const rawData = await this.dataSource.query(query, [
-          ...Object.values(sizeQueryBuilder.getParameters()),
-          ...Object.values(verticalQueryBuilder.getParameters()),
-          ...Object.values(horizontalQueryBuilder.getParameters()),
+          ...sizeParams,
+          ...verticalParams,
+          ...horizontalParams,
         ]);
 
         // Application layer aggregation: top X colors per bubble/year, sorted by horizontal
