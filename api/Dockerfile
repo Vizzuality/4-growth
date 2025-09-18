@@ -38,6 +38,7 @@ COPY shared ./shared
 
 RUN corepack enable pnpm
 RUN COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack prepare pnpm@9.9.0 --activate
+RUN pnpm install
 
 RUN pnpm api:build
 
