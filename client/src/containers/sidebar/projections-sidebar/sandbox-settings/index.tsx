@@ -2,6 +2,7 @@ import { FC, useMemo } from "react";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
+import { getSettingsFilters } from "@/lib/utils";
 
 import useSettings from "@/hooks/use-settings";
 
@@ -20,7 +21,11 @@ const SandboxSettings: FC = () => {
   const { settings } = useSettings();
   const { data } = client.projections.getCustomProjectionSettings.useQuery(
     queryKeys.projections.settings.queryKey,
-    {},
+    {
+      query: {
+        filters: getSettingsFilters(settings),
+      },
+    },
     { select: (res) => res.body.data },
   );
   const showSimpleChartSettings: boolean = useMemo(

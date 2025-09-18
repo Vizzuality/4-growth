@@ -1,8 +1,12 @@
 import { CountryISOMap } from "@shared/constants/country-iso.map";
+import { SearchFilterOperatorType } from "@shared/dto/global/search-filters";
 import { ProjectionFilter } from "@shared/dto/projections/projection-filter.entity";
 import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
+import { CustomProjectionSettingsType } from "@shared/schemas/custom-projection-settings.schema";
+import { SearchFilterSchema } from "@shared/schemas/search-filters.schema";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { z } from "zod";
 
 import { FilterQueryParam } from "./../hooks/use-filters";
 
@@ -100,4 +104,38 @@ export function normalizeProjectionsFilterValues(
     }
     return filter;
   });
+}
+
+const operator: SearchFilterOperatorType = "=";
+
+export function getSettingsFilters(
+  settings: CustomProjectionSettingsType | null,
+): Array<z.infer<typeof SearchFilterSchema>> {
+  if (!settings) return [];
+
+  if ("line_chart" in settings) {
+    return Object.entries(settings.line_chart).map(([name, value]) => ({
+      name: name,
+      operator: operator,
+      values: [value],
+    }));
+  }
+
+  if ("bar_chart" in settings) {
+    return Object.entries(settings.bar_chart).map(([name, value]) => ({
+      name: name,
+      operator: operator,
+      values: [value],
+    }));
+  }
+
+  if ("bubble_chart" in settings) {
+    return Object.entries(settings.bubble_chart).map(([name, value]) => ({
+      name: name,
+      operator: operator,
+      values: [value],
+    }));
+  }
+
+  return [];
 }
