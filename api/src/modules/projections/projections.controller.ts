@@ -32,8 +32,8 @@ export class ProjectionsController {
   @Public()
   @TsRestHandler(c.getCustomProjectionSettings)
   public async getCustomProjectionSettings(): Promise<ControllerResponse> {
-    return tsRestHandler(c.getCustomProjectionSettings, async () => {
-      const data = this.projectionsService.getCustomProjectionSettings();
+    return tsRestHandler(c.getCustomProjectionSettings, async ({ query }) => {
+      const data = this.projectionsService.getCustomProjectionSettings(query);
 
       return { body: { data }, status: 200 };
     });

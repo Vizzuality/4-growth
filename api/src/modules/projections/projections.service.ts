@@ -18,8 +18,8 @@ import { ProjectionFilter } from '@shared/dto/projections/projection-filter.enti
 import { QueryBuilderUtils } from '@api/infrastructure/query-builder-utils';
 import { ProjectionWidget } from '@shared/dto/projections/projection-widget.entity';
 import {
-  CUSTOM_PROJECTION_SETTINGS,
   CustomProjectionSettingsType,
+  generateCustomProjectionSettings,
 } from '@shared/dto/projections/custom-projection-settings';
 import { CustomProjection } from '@shared/dto/projections/custom-projection.type';
 import { CustomProjectionSettingsSchemaType } from '@shared/schemas/custom-projection-settings.schema';
@@ -53,8 +53,10 @@ export class ProjectionsService extends AppBaseService<
     );
   }
 
-  public getCustomProjectionSettings(): CustomProjectionSettingsType {
-    return CUSTOM_PROJECTION_SETTINGS;
+  public getCustomProjectionSettings(
+    query: SearchFiltersDTO,
+  ): CustomProjectionSettingsType {
+    return generateCustomProjectionSettings(query);
   }
 
   public async getProjectionsFilters(
