@@ -1,6 +1,5 @@
 import { FC, useMemo } from "react";
 
-import { BUBBLE_CHART_INDICATORS } from "@shared/dto/projections/custom-projection-settings";
 import { CustomProjectionSettingsType as CustomProjectionSettingsTypeSchema } from "@shared/schemas/custom-projection-settings.schema";
 
 import useSettings from "@/hooks/use-settings";
@@ -20,7 +19,7 @@ function getSelectedVerticalOption(
 }
 
 const VerticalSelect: FC<{
-  options: typeof BUBBLE_CHART_INDICATORS;
+  options: readonly string[];
 }> = ({ options }) => {
   const { settings, setBubbleChartIndicator } = useSettings();
   const selected = useMemo(
@@ -33,7 +32,10 @@ const VerticalSelect: FC<{
       name="Vertical"
       selected={selected}
       options={options.map((key) => ({
-        label: PROJECTION_TYPE_TO_LABEL_MAP[key],
+        label:
+          PROJECTION_TYPE_TO_LABEL_MAP[
+            key as keyof typeof PROJECTION_TYPE_TO_LABEL_MAP
+          ],
         value: key,
       }))}
       onItemClick={(v) => setBubbleChartIndicator("vertical", v)}

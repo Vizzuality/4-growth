@@ -1,8 +1,8 @@
 import { useMemo, useCallback } from "react";
 
 import {
-  BUBBLE_CHART_ATTRIBUTES,
-  BUBBLE_CHART_INDICATORS,
+  CHART_ATTRIBUTES,
+  CHART_INDICATORS,
 } from "@shared/dto/projections/custom-projection-settings";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 import {
@@ -68,8 +68,8 @@ function useSettings() {
           } else {
             setSettings({
               [visualization]: {
-                vertical: BUBBLE_CHART_INDICATORS[0],
-                color: BUBBLE_CHART_ATTRIBUTES[0],
+                vertical: CHART_INDICATORS[0],
+                color: CHART_ATTRIBUTES[0],
               },
             });
           }
@@ -88,11 +88,11 @@ function useSettings() {
           } else {
             setSettings({
               [visualization]: {
-                bubble: BUBBLE_CHART_ATTRIBUTES[0],
-                vertical: BUBBLE_CHART_INDICATORS[0],
-                horizontal: BUBBLE_CHART_INDICATORS[1],
-                color: BUBBLE_CHART_ATTRIBUTES[1],
-                size: BUBBLE_CHART_INDICATORS[0],
+                bubble: CHART_ATTRIBUTES[0],
+                vertical: CHART_INDICATORS[0],
+                horizontal: CHART_INDICATORS[1],
+                color: CHART_ATTRIBUTES[1],
+                size: CHART_INDICATORS[0],
               },
             });
           }
@@ -124,7 +124,7 @@ function useSettings() {
 
       if (isBubbleChartSettings(settings)) {
         setSettings({
-          ["bubble_chart"]: { ...settings.bubble_chart, [key]: value },
+          ["chart"]: { ...settings.bubble_chart, [key]: value },
         });
       }
     },
@@ -135,7 +135,7 @@ function useSettings() {
     (key: string, value: string) => {
       if (isBubbleChartSettings(settings)) {
         setSettings({
-          ["bubble_chart"]: { ...settings.bubble_chart, [key]: value },
+          ["chart"]: { ...settings.bubble_chart, [key]: value },
         });
       }
     },
@@ -146,7 +146,7 @@ function useSettings() {
     (key: string, value: string) => {
       if (isBubbleChartSettings(settings)) {
         setSettings({
-          ["bubble_chart"]: { ...settings.bubble_chart, [key]: value },
+          ["chart"]: { ...settings.bubble_chart, [key]: value },
         });
       }
 
