@@ -12,7 +12,7 @@ export const PROJECTION_FILTER_NAME_TO_FIELD_NAME = {
 
 export const AVAILABLE_PROJECTION_FILTERS = Object.keys(
   PROJECTION_FILTER_NAME_TO_FIELD_NAME,
-);
+).splice(1);
 
 @Entity('projection_filters')
 export class ProjectionFilter {
