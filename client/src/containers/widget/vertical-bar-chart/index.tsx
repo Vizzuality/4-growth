@@ -1,7 +1,7 @@
 "use client";
 import { FC, useRef } from "react";
 
-import { Bar, BarChart, Cell, XAxis } from "recharts";
+import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
 import { cn, formatNumber } from "@/lib/utils";
 
@@ -140,6 +140,20 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
           axisLine={false}
           tickMargin={tickMargin}
           tickFormatter={(value) => (value % 10 === 0 ? value : "")}
+        />
+        <YAxis
+          type="number"
+          orientation="right"
+          axisLine={false}
+          tickLine={false}
+          style={{ transform: "translateY(-10px)" }}
+          tickFormatter={(value) =>
+            formatNumber(Number(value), {
+              maximumFractionDigits: 0,
+              notation: "compact",
+              compactDisplay: "short",
+            })
+          }
         />
       </BarChart>
     </ChartContainer>
