@@ -1,9 +1,11 @@
-import { vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
-import BreakdownChart from "@/containers/widget/breakdown";
-import { CSS_CHART_COLORS, TW_CHART_COLORS } from "@/lib/constants";
-import type { ResponsiveContainerProps } from "recharts";
 import { WidgetBreakdownData } from "@shared/dto/widgets/base-widget-data.interface";
+import { render, screen, waitFor } from "@testing-library/react";
+import type { ResponsiveContainerProps } from "recharts";
+import { vi } from "vitest";
+
+import { CSS_CHART_COLORS, TW_CHART_COLORS } from "@/lib/constants";
+
+import BreakdownChart from "@/containers/widget/breakdown";
 
 vi.mock("recharts", async () => {
   const mockRecharts = await vi.importActual<any>("recharts");
@@ -63,7 +65,7 @@ describe("BreakdownChart", () => {
 
     await waitFor(() => {
       const charts = container.querySelectorAll(".breakdown-chart > div");
-      expect(charts).toHaveLength(mockData.length + 1); // +1 for legend
+      expect(charts).toHaveLength(mockData.length);
 
       const bars = container.querySelectorAll(".recharts-rectangle");
       const expectedBarsCount = mockData.reduce(
