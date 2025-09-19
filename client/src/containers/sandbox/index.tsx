@@ -21,17 +21,22 @@ const Sandbox: FC = () => {
     getWidgetQuery: { data: widget, error, isFetched },
   } = useSandboxWidget();
   const { filters } = useFilters();
-  let Comp: JSX.Element | null = (
-    <header className="space-y-1 p-8">
-      <p className="font-semibold">
-        The Sandbox allows users to create customized visualizations by
-        combining data series and filters in a single graph.
-      </p>
-      <p className="font-semibold">
-        Please select an indicator and a chart type to start the visualization.
-      </p>
-    </header>
-  );
+  let Comp: JSX.Element | null = null;
+
+  if (isFetched) {
+    Comp = (
+      <header className="space-y-1 p-8">
+        <p className="font-semibold">
+          The Sandbox allows users to create customized visualizations by
+          combining data series and filters in a single graph.
+        </p>
+        <p className="font-semibold">
+          Please select an indicator and a chart type to start the
+          visualization.
+        </p>
+      </header>
+    );
+  }
 
   if (isFetched && !widget && !error) {
     Comp = (
