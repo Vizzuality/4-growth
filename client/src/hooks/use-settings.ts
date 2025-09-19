@@ -124,7 +124,7 @@ function useSettings() {
 
       if (isBubbleChartSettings(settings)) {
         setSettings({
-          ["chart"]: { ...settings.bubble_chart, [key]: value },
+          ["bubble_chart"]: { ...settings.bubble_chart, [key]: value },
         });
       }
     },
@@ -135,7 +135,7 @@ function useSettings() {
     (key: string, value: string) => {
       if (isBubbleChartSettings(settings)) {
         setSettings({
-          ["chart"]: { ...settings.bubble_chart, [key]: value },
+          ["bubble_chart"]: { ...settings.bubble_chart, [key]: value },
         });
       }
     },
@@ -146,7 +146,7 @@ function useSettings() {
     (key: string, value: string) => {
       if (isBubbleChartSettings(settings)) {
         setSettings({
-          ["chart"]: { ...settings.bubble_chart, [key]: value },
+          ["bubble_chart"]: { ...settings.bubble_chart, [key]: value },
         });
       }
 
