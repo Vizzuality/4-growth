@@ -1,8 +1,8 @@
 [
   {
     "slug": "overview",
-    "name": "Overview",
-    "description": "Overview",
+    "name": "Survey analysis overview",
+    "description": "This section provides a summary of the key findings from the survey data, including technology adoption rates and other indicators",
     "order": 1,
     "baseWidgets": [
       {
@@ -142,11 +142,7 @@
       {
         "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
         "indicator": "level-of-digitalization",
-        "visualisations": [
-          "horizontal_bar_chart",
-          "pie_chart",
-          "gauge_chart"
-        ],
+        "visualisations": ["horizontal_bar_chart", "pie_chart", "gauge_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 5
       },
