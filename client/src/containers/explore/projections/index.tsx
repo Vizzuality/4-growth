@@ -23,7 +23,7 @@ export default function Explore() {
       <div className="grid grid-cols-3 gap-0.5">
         <Card className="col-span-2 space-y-4 bg-secondary">
           <Title as="h2" className="text-xl">
-            “Projections Model”: Overview
+            Projections overview
           </Title>
           <p className="text-muted-foreground">
             This section provides a high-level overview of the MMFT projection
