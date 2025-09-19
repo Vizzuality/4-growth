@@ -121,13 +121,14 @@ const LineChart: FC<LineChartProps> = ({
           type="number"
           axisLine={false}
           tickLine={false}
-          tickFormatter={(value) =>
-            formatNumber(Number(value), {
+          tickFormatter={(value) => {
+            const roundedUp = Math.ceil(value / 1000000000) * 1000000000;
+            return formatNumber(roundedUp, {
               maximumFractionDigits: 0,
               notation: "compact",
               compactDisplay: "short",
-            })
-          }
+            });
+          }}
         />
       </ReLinChart>
     </ChartContainer>
