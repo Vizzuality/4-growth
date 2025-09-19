@@ -24,78 +24,97 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
     console.error(`Breakdown: Expected at least 1 data point, but received 0.`);
     return <NoData />;
   }
+  // get all unique labels, and assign color to it:
+  const labelColors = Array.from(
+    new Set(data.flatMap((d) => d.data).map((item) => item.label)),
+  ).reduce(
+    (acc, label, index) => {
+      acc[label] = {
+        css: CSS_CHART_COLORS[index],
+        tailwind: TW_CHART_COLORS[index],
+      };
+      return acc;
+    },
+    {} as Record<string, { css: string; tailwind: string }>,
+  );
 
   return (
-    <div className="breakdown-chart space-y-10">
-      {data.map((d) => {
-        const height = d.data.length * 10;
+    <>
+      <div className="breakdown-chart space-y-10 overflow-y-auto pb-10">
+        {data.map((d) => {
+          const height = d.data.length * 10;
 
-        return (
-          <div key={`breakdown-chart-${d.label}`}>
-            <p className="mb-1 pl-6 text-xs">{d.label}</p>
-            <ChartContainer
-              config={{}}
-              className="w-full p-0"
-              style={{ maxHeight: `${height}px` }}
-            >
-              <BarChart
-                height={height}
-                margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
-                data={d.data}
-                layout="vertical"
-                barGap={2}
-                accessibilityLayer
+          return (
+            <div key={`breakdown-chart-${d.label}`}>
+              <p className="mb-1 pl-6 text-xs">{d.label}</p>
+              <ChartContainer
+                config={{}}
+                className="w-full p-0"
+                style={{ maxHeight: `${height}px` }}
               >
-                <XAxis type="number" hide />
-                <YAxis type="category" dataKey="label" hide />
-                <Bar barSize={7} dataKey="value" radius={[0, 5, 5, 0]}>
-                  {d.data.map((entry, index) => (
-                    <Cell
-                      key={`cell-${entry.label}-${index}`}
-                      fill={CSS_CHART_COLORS[index]}
-                    />
-                  ))}
-                </Bar>
-                <ChartTooltip
-                  content={
-                    <ChartTooltipContent
-                      className="rounded-2xl border-none px-4 py-2 [&>*:nth-child(2)]:hidden"
-                      formatter={() => null}
-                      labelFormatter={(label, payload) => (
-                        <p>
-                          <span className="pr-[10px] text-[10px] font-black leading-3">
-                            {payload[0].value}%
-                          </span>
-                          <span className="text-xs">{label}</span>
-                        </p>
-                      )}
-                    />
-                  }
-                />
-              </BarChart>
-            </ChartContainer>
-          </div>
-        );
-      })}
+                <BarChart
+                  height={height}
+                  margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+                  data={d.data}
+                  layout="vertical"
+                  barGap={2}
+                  accessibilityLayer
+                >
+                  <XAxis type="number" hide />
+                  <YAxis type="category" dataKey="label" hide />
+                  <Bar barSize={7} dataKey="value" radius={[0, 5, 5, 0]}>
+                    {d.data.map((entry, index) => (
+                      <Cell
+                        key={`cell-${entry.label}-${index}`}
+                        fill={labelColors[entry.label].css}
+                      />
+                    ))}
+                  </Bar>
+                  <ChartTooltip
+                    content={
+                      <ChartTooltipContent
+                        className="rounded-2xl border-none px-4 py-2 [&>*:nth-child(2)]:hidden"
+                        formatter={() => null}
+                        labelFormatter={(label, payload) => (
+                          <p>
+                            <span className="pr-[10px] text-[10px] font-black leading-3">
+                              {payload[0].value}%
+                            </span>
+                            <span className="text-xs">{label}</span>
+                          </p>
+                        )}
+                      />
+                    }
+                  />
+                </BarChart>
+              </ChartContainer>
+            </div>
+          );
+        })}
+      </div>
+
       <div
         data-testid="breakdown-chart-legend"
         className="flex items-center gap-6 pl-6"
       >
         {[...data]
           .sort((a, b) => b.data.length - a.data.length)[0]
-          .data.map((d, i) => (
+          .data.map((d) => (
             <p
               key={`breakdown-chart-legend-${d.label}`}
               className="flex items-center gap-x-1 text-xs"
             >
               <span
-                className={cn("block h-3 w-3 rounded-full", TW_CHART_COLORS[i])}
+                className={cn(
+                  "block h-3 w-3 rounded-full",
+                  labelColors[d.label].tailwind,
+                )}
               ></span>
               <span>{d.label}</span>
             </p>
           ))}
       </div>
-    </div>
+    </>
   );
 };
 
