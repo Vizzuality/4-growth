@@ -39,10 +39,17 @@ export function addFilterQueryParam(
   } else {
     updatedFilters = filters.map((filter) => {
       if (filter.name === newFilter.name) {
+        // Merge values instead of replacing them, avoiding duplicates
+        const existingValues = new Set(filter.values);
+        newFilter.values.forEach((value) => existingValues.add(value));
+        const combinedValues = Array.from(existingValues);
+
         return {
           ...filter,
-          values: newFilter.values,
-        };
+          values: combinedValues,
+          // Update operator to IN when we have multiple values
+          operator: combinedValues.length > 1 ? "IN" : filter.operator,
+        } as FilterQueryParam;
       }
 
       return filter;

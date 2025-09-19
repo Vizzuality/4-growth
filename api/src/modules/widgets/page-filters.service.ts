@@ -68,19 +68,24 @@ export class PageFiltersService {
     for (let idx = 0; idx < filters.length; idx++) {
       const filter = filters[idx];
 
-      if (
-        filter.operator === SEARCH_FILTERS_OPERATORS.EQUALS &&
-        filter.values?.length > 0
-      ) {
+      if (filter.values?.length > 0) {
         const qiKey = `filterIndicator${idx}`;
-        const ansKey = `filterAnswer${idx}`;
 
-        filterConditions.push(
-          `(sub.questionIndicator = :${qiKey} AND sub.answer = :${ansKey})`,
-        );
-
-        subQueryParams[qiKey] = filter.name;
-        subQueryParams[ansKey] = filter.values[0];
+        if (filter.operator === SEARCH_FILTERS_OPERATORS.EQUALS) {
+          const ansKey = `filterAnswer${idx}`;
+          filterConditions.push(
+            `(sub.questionIndicator = :${qiKey} AND sub.answer = :${ansKey})`,
+          );
+          subQueryParams[qiKey] = filter.name;
+          subQueryParams[ansKey] = filter.values[0];
+        } else if (filter.operator === SEARCH_FILTERS_OPERATORS.IN) {
+          const ansKey = `filterAnswers${idx}`;
+          filterConditions.push(
+            `(sub.questionIndicator = :${qiKey} AND sub.answer IN (:...${ansKey}))`,
+          );
+          subQueryParams[qiKey] = filter.name;
+          subQueryParams[ansKey] = filter.values;
+        }
       }
     }
 
