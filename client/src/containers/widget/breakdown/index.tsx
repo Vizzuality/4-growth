@@ -25,9 +25,10 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
     return <NoData />;
   }
   // get all unique labels, and assign color to it:
-  const labelColors = Array.from(
+  const labels = Array.from(
     new Set(data.flatMap((d) => d.data).map((item) => item.label)),
-  ).reduce(
+  );
+  const labelColors = labels.reduce(
     (acc, label, index) => {
       acc[label] = {
         css: CSS_CHART_COLORS[index],
@@ -97,22 +98,20 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
         data-testid="breakdown-chart-legend"
         className="flex items-center gap-6 pl-6"
       >
-        {[...data]
-          .sort((a, b) => b.data.length - a.data.length)[0]
-          .data.map((d) => (
-            <p
-              key={`breakdown-chart-legend-${d.label}`}
-              className="flex items-center gap-x-1 text-xs"
-            >
-              <span
-                className={cn(
-                  "block h-3 w-3 rounded-full",
-                  labelColors[d.label].tailwind,
-                )}
-              ></span>
-              <span>{d.label}</span>
-            </p>
-          ))}
+        {labels.map((label) => (
+          <p
+            key={`breakdown-chart-legend-${label}`}
+            className="flex items-center gap-x-1 text-xs"
+          >
+            <span
+              className={cn(
+                "block h-3 w-3 rounded-full",
+                labelColors[label].tailwind,
+              )}
+            ></span>
+            <span>{label}</span>
+          </p>
+        ))}
       </div>
     </>
   );
