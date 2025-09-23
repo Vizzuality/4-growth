@@ -12,7 +12,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <div className="flex h-full flex-col gap-0.5 overflow-hidden">
           <Sidebar />
         </div>
-        <div className="flex h-full flex-col gap-0.5 overflow-hidden">
+        <div className="relative flex h-full flex-col gap-0.5 overflow-hidden">
           <TopNavToggle />
           {children}
         </div>
