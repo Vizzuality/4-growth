@@ -25,31 +25,33 @@ export class PageFiltersService {
   ) {}
 
   public async listFilters(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     query: FetchSpecification & SearchFiltersDTO,
   ): Promise<PageFilter[]> {
     const availablePageFilters = await this.pageFilterRepository.find();
-    if (!query.filters) return availablePageFilters;
+    return availablePageFilters;
+    // if (!query.filters) return availablePageFilters;
 
-    const result: PageFilter[] = await Promise.all(
-      availablePageFilters.map(async (filter) => {
-        const mainQuery = this.surveyAnswerRepository
-          .createQueryBuilder('sa')
-          .select('JSON_AGG(DISTINCT sa.answer)', 'values');
+    // const result: PageFilter[] = await Promise.all(
+    //   availablePageFilters.map(async (filter) => {
+    //     const mainQuery = this.surveyAnswerRepository
+    //       .createQueryBuilder('sa')
+    //       .select('JSON_AGG(DISTINCT sa.answer)', 'values');
 
-        this.applySearchFilters(mainQuery, query.filters);
+    //     this.applySearchFilters(mainQuery, query.filters);
 
-        mainQuery.andWhere('sa.questionIndicator = :targetIndicator', {
-          targetIndicator: filter.name,
-        });
+    //     mainQuery.andWhere('sa.questionIndicator = :targetIndicator', {
+    //       targetIndicator: filter.name,
+    //     });
 
-        const { values } = await mainQuery.getRawOne();
-        return {
-          name: filter.name,
-          values: values ? values : [],
-        };
-      }),
-    );
-    return result;
+    //     const { values } = await mainQuery.getRawOne();
+    //     return {
+    //       name: filter.name,
+    //       values: values ? values : [],
+    //     };
+    //   }),
+    // );
+    // return result;
   }
 
   private applySearchFilters(
