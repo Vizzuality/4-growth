@@ -1,5 +1,7 @@
 import { FC, useMemo } from "react";
 
+import { ProjectionFilter } from "@shared/dto/projections/projection-filter.entity";
+
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { normalizeProjectionsFilterValues } from "@/lib/utils";
@@ -46,7 +48,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({
     if (type === "projections" && f.name === "scenario") return false;
 
     return !defaultFilters.includes(f.name);
-  });
+  }) as unknown as ProjectionFilter[];
 
   const allFilters = useMemo(() => {
     if (type === "surveyAnalysis") {
@@ -93,6 +95,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({
             <FilterPopup
               key={`sidebar-filter-popover-${f.name}`}
               name={f.name}
+              label={{ selected: f.label, unSelected: f.label }}
               filterQueryParams={filterQueryParams}
               onAddFilter={onAddFilter}
               onRemoveFilterValue={onRemoveFilterValue}

@@ -16,11 +16,13 @@ vi.mock("jotai", async () => {
 describe("FilterSelectValues", () => {
   const mockFilter = {
     name: "location-country-region",
+    label: "Location Country Region",
     values: ["Austria", "Belgium", "Bulgaria"],
   };
   const mockItems = [
     {
       name: "level-of-reliability:-1-5",
+      label: "Level of Reliability (1-5)",
       values: ["1", "2", "3", "4", "5"],
     },
   ].concat(mockFilter);
@@ -43,13 +45,13 @@ describe("FilterSelectValues", () => {
 
   it("renders the filter name button", () => {
     render(<FilterSelectValues {...mockProps} />);
-    expect(screen.getByText("location-country-region")).toBeInTheDocument();
+    expect(screen.getByText("Location Country Region")).toBeInTheDocument();
   });
 
   it("disables the filter name button when isFixedFilter is true", () => {
     render(<FilterSelectValues {...mockProps} isFixedFilter />);
     expect(
-      screen.getByText("location-country-region").closest("button"),
+      screen.getByText("Location Country Region").closest("button"),
     ).toHaveAttribute("disabled");
   });
 
@@ -64,6 +66,7 @@ describe("FilterSelectValues", () => {
         items={[
           {
             name: "location-country-region",
+            label: "Location Country Region",
             values: [
               "Austria",
               "Belgium",

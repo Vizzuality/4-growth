@@ -6,6 +6,9 @@ export class PageFilter {
   @PrimaryColumn()
   name: string;
 
+  @Column()
+  label: string;
+
   @Column({
     type: 'text',
     transformer: CustomValueTransformers.semiColonSeparator,

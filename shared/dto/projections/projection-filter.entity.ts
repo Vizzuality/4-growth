@@ -19,6 +19,9 @@ export class ProjectionFilter {
   @PrimaryColumn()
   name: string;
 
+  @Column()
+  label: string;
+
   @Column({
     type: 'text',
     transformer: CustomValueTransformers.semiColonSeparator,

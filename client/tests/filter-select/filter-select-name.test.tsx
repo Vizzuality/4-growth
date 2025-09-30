@@ -6,10 +6,12 @@ describe("FilterSelectName", () => {
   const mockItems = [
     {
       name: "sector",
+      label: "Sector",
       values: ["Agriculture", "Forestry", "Both"],
     },
     {
       name: "level-of-reliability:-1-5",
+      label: "Level of Reliability (1-5)",
       values: ["1", "2", "3", "4", "5"],
     },
   ];
@@ -28,7 +30,7 @@ describe("FilterSelectName", () => {
 
     expect(buttons).toHaveLength(mockItems.length);
     mockItems.forEach((item) => {
-      expect(screen.getByText(item.name)).toBeInTheDocument();
+      expect(screen.getByText(item.label)).toBeInTheDocument();
     });
   });
 
@@ -37,13 +39,13 @@ describe("FilterSelectName", () => {
     const searchInput = screen.getByRole("searchbox");
     fireEvent.change(searchInput, { target: { value: "level" } });
 
-    expect(screen.getByText("level-of-reliability:-1-5")).toBeInTheDocument();
-    expect(screen.queryByText("sector")).not.toBeInTheDocument();
+    expect(screen.getByText("Level of Reliability (1-5)")).toBeInTheDocument();
+    expect(screen.queryByText("Sector")).not.toBeInTheDocument();
 
     fireEvent.change(searchInput, { target: { value: "" } });
 
     mockItems.forEach((item) => {
-      expect(screen.getByText(item.name)).toBeInTheDocument();
+      expect(screen.getByText(item.label)).toBeInTheDocument();
     });
   });
 });

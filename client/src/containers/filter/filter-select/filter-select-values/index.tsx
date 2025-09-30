@@ -104,7 +104,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
         }}
         disabled={isFixedFilter}
       >
-        <span className="text-xs font-medium">{filter?.name}</span>
+        <span className="text-xs font-medium">{filter?.label}</span>
         <TriangleDown aria-hidden="true" />
       </Button>
       <Form {...form}>

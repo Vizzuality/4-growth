@@ -310,6 +310,10 @@ export class DataSourceManager {
 
         const filter = filterRepo.create({
           name: filterName,
+          label: filterName
+            .split('_')
+            .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
+            .join(' '),
           values:
             filterName !== 'country'
               ? distinctValues

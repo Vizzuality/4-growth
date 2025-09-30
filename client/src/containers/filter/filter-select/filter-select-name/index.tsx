@@ -17,7 +17,7 @@ const FilterSelectName: FC<{ items: PageFilter[] }> = ({ items }) => {
   return (
     <SearchableList
       items={items}
-      itemKey="name"
+      itemKey="label"
       onItemClick={(filter) => {
         setCurrentFilter(filter);
         setCurrentStep(FilterSelectStep.values);

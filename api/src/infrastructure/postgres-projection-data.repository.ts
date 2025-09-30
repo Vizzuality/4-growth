@@ -11,7 +11,6 @@ import {
 import { Projection } from '@shared/dto/projections/projection.entity';
 import { QueryBuilderUtils } from '@api/infrastructure/query-builder-utils';
 import {
-  AVAILABLE_PROJECTION_FILTERS,
   PROJECTION_FILTER_NAME_TO_FIELD_NAME,
   ProjectionFilter,
 } from '@shared/dto/projections/projection-filter.entity';
@@ -34,27 +33,32 @@ export class PostgresProjectionDataRepository
   }
 
   public async searchAvailableFilters(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     filters: SearchFilterDTO[] = [],
   ): Promise<ProjectionFilter[]> {
-    const result: ProjectionFilter[] = [];
-    const repo = this.dataSource.getRepository(Projection);
-
-    for (const filterName of AVAILABLE_PROJECTION_FILTERS) {
-      const fieldName = PROJECTION_FILTER_NAME_TO_FIELD_NAME[filterName];
-      const queryBuilder = repo
-        .createQueryBuilder('projection')
-        .select(`JSON_AGG(DISTINCT projection.${fieldName})`, 'values');
-
-      QueryBuilderUtils.applySearchFilters(queryBuilder, filters, {
-        alias: 'projection',
-      });
-      const { values } = await queryBuilder.getRawOne();
-      result.push({
-        name: filterName,
-        values: values ? values : [],
-      });
-    }
+    const repo = this.dataSource.getRepository(ProjectionFilter);
+    const result = await repo.find();
     return result;
+
+    // Smart filters disabled
+    // const result: ProjectionFilter[] = [];
+    // const repo = this.dataSource.getRepository(Projection);
+    // for (const filterName of AVAILABLE_PROJECTION_FILTERS) {
+    //   const fieldName = PROJECTION_FILTER_NAME_TO_FIELD_NAME[filterName];
+    //   const queryBuilder = repo
+    //     .createQueryBuilder('projection')
+    //     .select(`JSON_AGG(DISTINCT projection.${fieldName})`, 'values');
+    //   QueryBuilderUtils.applySearchFilters(queryBuilder, filters, {
+    //     alias: 'projection',
+    //   });
+    //   const { values } = await queryBuilder.getRawOne();
+    //   result.push({
+    //     name: filterName,
+    //     label: '',
+    //     values: values ? values : [],
+    //   });
+    // }
+    // return result;
   }
 
   public async addDataToProjectionsWidgets(
