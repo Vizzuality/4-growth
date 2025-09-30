@@ -96,6 +96,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
     <Card className="p-0">
       {widget && (
         <Widget
+          title={widget.title}
           indicator={widget.indicator}
           responseRate={widget.responseRate}
           question={widget.question}

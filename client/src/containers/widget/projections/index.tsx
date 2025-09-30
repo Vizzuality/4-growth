@@ -119,7 +119,7 @@ export default function Widget({
   if (!data || data.length === 0) {
     return (
       <Card className={cn("relative min-h-80 p-0", className)}>
-        <WidgetHeader indicator={indicator} menu={menuComponent} />
+        <WidgetHeader title={indicator} menu={menuComponent} />
         <NoData />
       </Card>
     );
@@ -129,21 +129,21 @@ export default function Widget({
     case "bar_chart":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
-          <WidgetHeader indicator={indicator} menu={menuComponent} />
+          <WidgetHeader title={indicator} menu={menuComponent} />
           <VerticalBarChart indicator={indicator} data={data} />
         </Card>
       );
     case "line_chart":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
-          <WidgetHeader indicator={indicator} menu={menuComponent} />
+          <WidgetHeader title={indicator} menu={menuComponent} />
           <LineChart indicator={indicator} data={data} dataKey="value" />
         </Card>
       );
     case "table":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
-          <WidgetHeader indicator={indicator} menu={menuComponent} />
+          <WidgetHeader title={indicator} menu={menuComponent} />
           <TableView indicator={indicator} data={data} />
         </Card>
       );
@@ -156,7 +156,7 @@ export default function Widget({
             className,
           )}
         >
-          <WidgetHeader indicator={indicator} menu={menuComponent} />
+          <WidgetHeader title={indicator} menu={menuComponent} />
         </Card>
       );
 

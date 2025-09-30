@@ -13,15 +13,15 @@ import {
 } from "@/components/ui/tooltip";
 
 interface WidgetHeaderProps {
-  indicator: string;
   responseRate?: number;
+  title: string;
   question?: string;
   menu?: React.ReactNode;
   className?: string;
 }
 
 const WidgetHeader: FC<WidgetHeaderProps> = ({
-  indicator,
+  title,
   responseRate,
   question,
   menu,
@@ -31,7 +31,7 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
     <header className={cn("space-y-2 p-8", className)}>
       <div className="flex justify-between">
         <Title as="h3" className="text-base">
-          {indicator}
+          {title}
         </Title>
         <div className="flex items-center gap-2">
           {typeof responseRate === "number" && (

@@ -49,6 +49,7 @@ const getMenuButtonText = (v: WidgetVisualizationsType): string => {
 
 export interface WidgetProps {
   indicator: string;
+  title: string;
   data: TransformedWidgetData;
   visualization: WidgetVisualizationsType;
   responseRate: number;
@@ -76,6 +77,7 @@ export default function Widget({
   visualisations,
   breakdown,
   data,
+  title,
   question,
   menu,
   className,
@@ -135,7 +137,7 @@ export default function Widget({
     return (
       <Card className={cn("relative min-h-80 p-0", className)}>
         <WidgetHeader
-          indicator={indicator}
+          title={title}
           question={question}
           menu={menuComponent}
           responseRate={responseRate}
@@ -154,7 +156,7 @@ export default function Widget({
           className,
         )}
       >
-        <WidgetHeader indicator={indicator} question={question} menu={menu} />
+        <WidgetHeader title={title} question={question} menu={menu} />
         <Breakdown data={data.percentages.breakdown} />
       </Card>
     );
@@ -165,7 +167,7 @@ export default function Widget({
       return (
         <Card className="p-0">
           <SingleValue
-            indicator={indicator}
+            title={title}
             data={data?.percentages.counter}
             {...config?.singleValue}
           />
@@ -181,7 +183,7 @@ export default function Widget({
           )}
         >
           <WidgetHeader
-            indicator={indicator}
+            title={title}
             question={question}
             menu={menuComponent}
             responseRate={responseRate}
@@ -202,7 +204,7 @@ export default function Widget({
           )}
         >
           <WidgetHeader
-            indicator={indicator}
+            title={title}
             question={question}
             menu={menuComponent}
             responseRate={responseRate}
@@ -225,7 +227,7 @@ export default function Widget({
           )}
         >
           <WidgetHeader
-            indicator={indicator}
+            title={title}
             question={question}
             className="t-8 absolute left-0 z-20 w-full p-8"
             menu={menuComponent}
@@ -262,7 +264,7 @@ export default function Widget({
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader
-            indicator={indicator}
+            title={title}
             question={question}
             className="t-8 absolute left-0 z-20 w-full p-8"
             menu={menuComponent}

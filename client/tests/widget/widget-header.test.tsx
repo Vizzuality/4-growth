@@ -4,10 +4,10 @@ import WidgetHeader from "@/containers/widget/widget-header";
 
 describe("WidgetHeader", () => {
   const mockProps = {
-    indicator: "Test Indicator",
+    title: "Test Indicator",
   };
 
-  it("renders the indicator correctly", () => {
+  it("renders the title correctly", () => {
     render(<WidgetHeader {...mockProps} />);
 
     expect(screen.queryByText("Test Indicator")).toBeInTheDocument();

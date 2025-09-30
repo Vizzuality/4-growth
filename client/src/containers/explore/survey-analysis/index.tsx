@@ -95,6 +95,7 @@ export default function Explore() {
                   visualization={w.defaultVisualization}
                   visualisations={w.visualisations}
                   indicator={w.indicator}
+                  title={w.title}
                   question={w.question}
                   data={w.data as TransformedWidgetData}
                   responseRate={w.responseRate}

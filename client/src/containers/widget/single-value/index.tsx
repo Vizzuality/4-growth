@@ -7,19 +7,19 @@ import { cn } from "@/lib/utils";
 import Title from "@/components/ui/title";
 
 interface SingleValueProps {
-  indicator: string;
+  title: string;
   data?: WidgetCounterData;
   fill?: "bg-secondary" | "bg-accent";
 }
 
 const SingleValue: FC<SingleValueProps> = ({
-  indicator,
+  title,
   data,
   fill = "bg-secondary",
 }) => {
   if (!data) {
     console.error(
-      `SingleValue - ${indicator}: Expected at least 1 data point, but received 0.`,
+      `SingleValue - ${title}: Expected at least 1 data point, but received 0.`,
     );
     return null;
   }
@@ -36,7 +36,7 @@ const SingleValue: FC<SingleValueProps> = ({
       ></div>
       <div className="relative z-10 space-y-6 p-6">
         <Title as="h3" className="text-base">
-          {indicator}
+          {title}
         </Title>
         <p className="text-2xl font-semibold">{value}</p>
       </div>

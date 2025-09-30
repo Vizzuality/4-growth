@@ -4,19 +4,17 @@ import SingleValue from "@/containers/widget/single-value";
 
 describe("SingleValue", () => {
   const mockProps = {
-    indicator: "Test",
+    title: "Test",
     data: { value: 100, total: 100 },
   };
 
-  it("renders the indicator and value and updates when props change", () => {
+  it("renders the title and value and updates when props change", () => {
     const { rerender } = render(<SingleValue {...mockProps} />);
 
     expect(screen.getByText("Test")).toBeInTheDocument();
     expect(screen.getByText("100")).toBeInTheDocument();
 
-    rerender(
-      <SingleValue indicator="Test 2" data={{ value: 50, total: 100 }} />,
-    );
+    rerender(<SingleValue title="Test 2" data={{ value: 50, total: 100 }} />);
     expect(screen.getByText("Test 2")).toBeInTheDocument();
     expect(screen.getByText("50")).toBeInTheDocument();
   });

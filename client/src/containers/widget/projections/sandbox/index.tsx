@@ -52,7 +52,7 @@ export default function SandboxWidget({
     case "bar_chart":
       return (
         <Card className={cn("relative p-0", className)}>
-          <WidgetHeader indicator={indicator} className="pb-0" />
+          <WidgetHeader title={indicator} className="pb-0" />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
           <VerticalBarChart {...simpleChartProps} />
         </Card>
@@ -60,7 +60,7 @@ export default function SandboxWidget({
     case "line_chart":
       return (
         <Card className={cn("relative p-0", className)}>
-          <WidgetHeader indicator={indicator} className="pb-0" />
+          <WidgetHeader title={indicator} className="pb-0" />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
           <LineChart
             dataKey={simpleChartProps.indicator}

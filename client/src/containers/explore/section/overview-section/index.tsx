@@ -15,16 +15,18 @@ const OverviewSection: FC<OverviewSectionProps> = ({
   widgets,
   tileMenuItems,
 }) => {
+  const [firstWidget, secondWidget, thirdWidget, fourthWidget] = widgets;
   return (
     <>
       <div className="col-span-2 grid grid-cols-2 gap-0.5">
         <Widget
-          visualization={widgets[0].defaultVisualization}
-          visualisations={widgets[0].visualisations}
-          indicator={widgets[0].indicator}
-          question={widgets[0].question}
-          data={widgets[0].data}
-          responseRate={widgets[0].responseRate}
+          title={firstWidget.title}
+          visualization={firstWidget.defaultVisualization}
+          visualisations={firstWidget.visualisations}
+          indicator={firstWidget.indicator}
+          question={firstWidget.question}
+          data={firstWidget.data}
+          responseRate={firstWidget.responseRate}
           config={{
             menu: { className: "flex flex-col gap-6 py-4" },
           }}
@@ -33,28 +35,31 @@ const OverviewSection: FC<OverviewSectionProps> = ({
         <div className="grid grid-rows-2 gap-0.5">
           <div className="flex gap-0.5" data-testid="overview-single-values">
             <Widget
-              visualization={widgets[1].defaultVisualization}
-              indicator={widgets[1].indicator}
-              question={widgets[1].question}
-              data={widgets[1].data}
-              responseRate={widgets[1].responseRate}
+              title={secondWidget.title}
+              visualization={secondWidget.defaultVisualization}
+              indicator={secondWidget.indicator}
+              question={secondWidget.question}
+              data={secondWidget.data}
+              responseRate={secondWidget.responseRate}
               config={{ singleValue: { fill: "bg-secondary" } }}
             />
             <Widget
-              visualization={widgets[2].defaultVisualization}
-              indicator={widgets[2].indicator}
-              question={widgets[2].question}
-              data={widgets[2].data}
-              responseRate={widgets[2].responseRate}
+              title={thirdWidget.title}
+              visualization={thirdWidget.defaultVisualization}
+              indicator={thirdWidget.indicator}
+              question={thirdWidget.question}
+              data={thirdWidget.data}
+              responseRate={thirdWidget.responseRate}
               config={{ singleValue: { fill: "bg-accent" } }}
             />
           </div>
           <Card className="row-start-2 space-y-8 p-0 pb-6">
             <Widget
-              visualization={widgets[3].defaultVisualization}
-              indicator={widgets[3].indicator}
-              data={widgets[3].data}
-              responseRate={widgets[3].responseRate}
+              title={fourthWidget.title}
+              visualization={fourthWidget.defaultVisualization}
+              indicator={fourthWidget.indicator}
+              data={fourthWidget.data}
+              responseRate={fourthWidget.responseRate}
               config={{ horizontalBarChart: { barSize: 47 } }}
             />
           </Card>

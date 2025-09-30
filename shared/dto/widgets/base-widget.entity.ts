@@ -20,6 +20,9 @@ export class BaseWidget {
   @PrimaryColumn()
   indicator: string;
 
+  @Column({ name: 'title', nullable: true })
+  title: string;
+
   @Column({ nullable: true })
   question: string;
 
