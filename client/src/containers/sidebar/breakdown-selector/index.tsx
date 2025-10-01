@@ -45,7 +45,10 @@ const BreakdownSelector: FC = () => {
           {breakdown ? (
             <>
               <span>Breakdown by&nbsp;</span>
-              <span className="font-bold">{`${breakdown}`}&nbsp;</span>
+              <span className="font-bold">
+                {`${widgets.find((w) => w.indicator === breakdown)?.title}`}
+                &nbsp;
+              </span>
               <span
                 className="h-full p-0 align-text-bottom text-xs transition-all hover:font-extrabold"
                 onClick={(e) => {
@@ -70,7 +73,7 @@ const BreakdownSelector: FC = () => {
           items={widgets.filter((w) =>
             w.visualisations.some((v) => v !== "horizontal_bar_chart"),
           )}
-          itemKey="indicator"
+          itemKey="title"
           onItemClick={(w) => {
             setBreakdown(w.indicator);
             setShowIndicators(false);

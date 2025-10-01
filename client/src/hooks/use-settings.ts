@@ -68,8 +68,8 @@ function useSettings() {
           } else {
             setSettings({
               [visualization]: {
-                vertical: CHART_INDICATORS[0],
-                color: CHART_ATTRIBUTES[0],
+                vertical: CHART_INDICATORS[0].value,
+                color: CHART_ATTRIBUTES[0].value,
               },
             });
           }
@@ -88,11 +88,11 @@ function useSettings() {
           } else {
             setSettings({
               [visualization]: {
-                bubble: CHART_ATTRIBUTES[0],
-                vertical: CHART_INDICATORS[0],
-                horizontal: CHART_INDICATORS[1],
-                color: CHART_ATTRIBUTES[1],
-                size: CHART_INDICATORS[0],
+                bubble: CHART_ATTRIBUTES[0].value,
+                vertical: CHART_INDICATORS[0].value,
+                horizontal: CHART_INDICATORS[1].value,
+                color: CHART_ATTRIBUTES[1].value,
+                size: CHART_INDICATORS[0].value,
               },
             });
           }

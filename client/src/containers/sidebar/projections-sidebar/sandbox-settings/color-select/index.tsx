@@ -29,10 +29,7 @@ const ColorSelect: FC<{
     <ProjectionsSettingsPopup
       name="Color"
       selected={selected}
-      options={options.map((key) => ({
-        label: key,
-        value: key,
-      }))}
+      options={options}
       onItemClick={(v) => setChartAttribute("color", v)}
     />
   );

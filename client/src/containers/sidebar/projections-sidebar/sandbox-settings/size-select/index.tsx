@@ -36,10 +36,7 @@ const SizeSelect: FC<{
     <ProjectionsSettingsPopup
       name="Size"
       selected={selected}
-      options={options.map((key) => ({
-        label: key,
-        value: key,
-      }))}
+      options={options}
       onItemClick={(v) => setBubbleChartIndicator("size", v)}
     />
   );

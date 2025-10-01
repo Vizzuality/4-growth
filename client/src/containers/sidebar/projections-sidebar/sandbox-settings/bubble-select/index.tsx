@@ -36,10 +36,7 @@ const BubbleSelect: FC<{
     <ProjectionsSettingsPopup
       name="Bubble"
       selected={selected}
-      options={options.map((key) => ({
-        label: key,
-        value: key,
-      }))}
+      options={options}
       onItemClick={(v) => setBubbleChartAttribute("bubble", v)}
     />
   );

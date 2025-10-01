@@ -6,10 +6,16 @@ import {
   PROJECTION_VISUALIZATIONS,
 } from '@shared/dto/projections/projection-visualizations.constants';
 
-export const CHART_INDICATORS = Object.values(PROJECTION_TYPES);
+export const CHART_INDICATORS = Object.values(PROJECTION_TYPES).map((type) => ({
+  value: type,
+  label: type.replace(/-/g, ' ').replace(/^\w/g, (char) => char.toUpperCase()),
+}));
 export const CHART_ATTRIBUTES = Object.keys(
   PROJECTION_FILTER_NAME_TO_FIELD_NAME,
-);
+).map((key) => ({
+  value: key,
+  label: key.replace(/-/g, ' ').replace(/^\w/g, (char) => char.toUpperCase()),
+}));
 
 export const CUSTOM_PROJECTION_SETTINGS = {
   availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
@@ -30,22 +36,24 @@ export const CUSTOM_PROJECTION_SETTINGS = {
   },
 } as const;
 
+type AxisSettingsType = { value: string; label: string }[];
+
 export type CustomProjectionSettingsType = {
   availableVisualizations: typeof AVAILABLE_PROJECTION_VISUALIZATIONS;
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
-    vertical: readonly string[];
-    color: readonly string[];
+    vertical: AxisSettingsType;
+    color: AxisSettingsType;
   };
   [PROJECTION_VISUALIZATIONS.BAR_CHART]: {
-    vertical: readonly string[];
-    color: readonly string[];
+    vertical: AxisSettingsType;
+    color: AxisSettingsType;
   };
   [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: {
-    bubble: readonly string[];
-    vertical: readonly string[];
-    horizontal: readonly string[];
-    color: readonly string[];
-    size: readonly string[];
+    bubble: AxisSettingsType;
+    vertical: AxisSettingsType;
+    horizontal: AxisSettingsType;
+    color: AxisSettingsType;
+    size: AxisSettingsType;
   };
 };
 
@@ -63,11 +71,11 @@ export const generateCustomProjectionSettings = (
   }, [] as string[]);
 
   const filteredChartIndicators = CHART_INDICATORS.filter(
-    (indicator) => !usedValues.includes(indicator),
-  ) as readonly string[];
+    (indicator) => !usedValues.includes(indicator.value),
+  );
   const filteredChartAttributes = CHART_ATTRIBUTES.filter(
-    (attribute) => !usedValues.includes(attribute),
-  ) as readonly string[];
+    (attribute) => !usedValues.includes(attribute.value),
+  );
 
   return {
     availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,

@@ -39,10 +39,7 @@ const HorizontalSelect: FC<{
     <ProjectionsSettingsPopup
       name="Horizontal"
       selected={selected}
-      options={options.map((key) => ({
-        label: key,
-        value: key,
-      }))}
+      options={options}
       onItemClick={(v) => setBubbleChartIndicator("horizontal", v)}
     />
   );
