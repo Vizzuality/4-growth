@@ -19,7 +19,7 @@ function getSelectedVerticalOption(
 }
 
 const VerticalSelect: FC<{
-  options: readonly { value: string; label: string }[];
+  options: { value: string; label: string }[];
 }> = ({ options }) => {
   const { settings, setBubbleChartIndicator } = useSettings();
   const selected = useMemo(
