@@ -22,6 +22,8 @@ import {
 import { PROJECTION_TYPES } from '@shared/dto/projections/projection-types';
 import { Cron } from '@nestjs/schedule';
 import { EtlNotificationService } from './etl-notification.service';
+import { ConfigurationParams } from '@shared/dto/global/configuration-params';
+import { FSUtils } from '@api/infrastructure/fs/fs.utils';
 
 @Injectable()
 export class DataSourceManager {
@@ -62,6 +64,23 @@ export class DataSourceManager {
   }
 
   public async loadInitialData() {
+    const results = await Promise.all([
+      FSUtils.md5File(`data/filters.sql`),
+      FSUtils.md5File(`data/question-indicators.sql`),
+      FSUtils.md5File(`data/surveys/surveys.json`),
+      FSUtils.md5File(`data/sections/sections.json`),
+      FSUtils.md5File(`data/projections/projections.json`),
+    ]);
+    const latestDataVersion = results.join('-');
+
+    const configParamsRepo = this.dataSource.getRepository(ConfigurationParams);
+    const currentDataVersion = await configParamsRepo.findOne({
+      where: { param: 'data_version' },
+    });
+    if (currentDataVersion?.value === latestDataVersion) {
+      return;
+    }
+
     await this.loadQuestionIndicatorMap();
     await Promise.all([
       this.loadPageFilters(),
@@ -76,6 +95,11 @@ export class DataSourceManager {
       this.generateProjectionsSettings(),
       this.generateProjectionsWidgets(),
     ]);
+
+    await configParamsRepo.save({
+      param: 'data_version',
+      value: latestDataVersion,
+    });
   }
 
   public async loadQuestionIndicatorMap(): Promise<void> {

@@ -1,11 +1,15 @@
 import { TestManager } from 'api/test/utils/test-manager';
 import { projectionsContract as c } from '@shared/contracts/projections.contract';
+import { ConfigurationParams } from '@shared/dto/global/configuration-params';
+import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 
 describe('Projections API', () => {
   let testManager: TestManager<unknown>;
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({ logger: false });
+    await testManager.dataSource.getRepository(ConfigurationParams).clear();
+    await testManager.getModule(DataSourceManager).loadInitialData();
   });
 
   // Dynamic filters functionality has been removed - commenting out this test

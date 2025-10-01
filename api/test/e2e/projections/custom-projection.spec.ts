@@ -2,12 +2,16 @@ import { TestManager } from 'api/test/utils/test-manager';
 import { projectionsContract as c } from '@shared/contracts/projections.contract';
 import { CUSTOM_PROJECTION_SETTINGS } from '@shared/dto/projections/custom-projection-settings';
 import { PROJECTION_VISUALIZATIONS } from '@shared/dto/projections/projection-visualizations.constants';
+import { DataSourceManager } from '@api/infrastructure/data-source-manager';
+import { ConfigurationParams } from '@shared/dto/global/configuration-params';
 
 describe('Custom Projection API', () => {
   let testManager: TestManager<unknown>;
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({ logger: false });
+    await testManager.dataSource.getRepository(ConfigurationParams).clear();
+    await testManager.getModule(DataSourceManager).loadInitialData();
   });
 
   test(`${c.getCustomProjectionSettings.path} should return the settings for a custom projection`, async () => {

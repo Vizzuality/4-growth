@@ -1,3 +1,5 @@
+import { QuestionIndicatorMap } from '@shared/dto/surveys/question-widget-map.entity';
+import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
 import { TestManager } from 'api/test/utils/test-manager';
 
 describe('Page Filters API', () => {
@@ -12,6 +14,22 @@ describe('Page Filters API', () => {
   });
 
   it('Should allow users to retrieve all page filters', async () => {
+    // Given
+    const pageFiltersRepo = testManager.dataSource.getRepository(PageFilter);
+
+    const questionIndicatorMapRepo =
+      testManager.dataSource.getRepository(QuestionIndicatorMap);
+
+    await questionIndicatorMapRepo.save({
+      question: 'test-question',
+      indicator: 'test-indicator',
+    });
+    await pageFiltersRepo.save({
+      name: 'test-indicator',
+      values: ['Value 1', 'Value 2'],
+      label: 'Test Indicator',
+    });
+
     // When
     const res = await testManager.request().get('/filters');
 
