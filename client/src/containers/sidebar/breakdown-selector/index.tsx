@@ -27,7 +27,7 @@ const BreakdownSelector: FC = () => {
   );
   const [showIndicators, setShowIndicators] = useState(false);
   const setshowOverlay = useSetAtom(showOverlayAtom);
-  const widgets = data as BaseWidget[];
+  const widgets = (data ?? []) as BaseWidget[];
 
   return (
     <Popover
