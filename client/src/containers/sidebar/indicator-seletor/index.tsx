@@ -52,7 +52,7 @@ const IndicatorSelector: FC<IndicatorSelectorProps> = ({
           {widget && (
             <>
               <span>&nbsp;is&nbsp;</span>
-              <span className="font-bold">{`${widget.indicator}`}</span>
+              <span className="font-bold">{`${widget.title}`}</span>
             </>
           )}
         </Button>
@@ -68,7 +68,7 @@ const IndicatorSelector: FC<IndicatorSelectorProps> = ({
               w.visualisations.every((v) => v !== "single_value"),
             ) || []
           }
-          itemKey="indicator"
+          itemKey="title"
           onItemClick={(w) => {
             onIndicatorSelected(w.indicator);
             setShowIndicators(false);

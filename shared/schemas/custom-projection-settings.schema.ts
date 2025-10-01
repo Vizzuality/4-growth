@@ -8,17 +8,19 @@ import { z } from 'zod';
 const IndicatorValue = z
   .string()
   .refine(
-    (val) =>
-      CHART_INDICATORS.includes(val as (typeof CHART_INDICATORS)[number]),
+    (val) => !!CHART_INDICATORS.find((indicator) => indicator.value === val),
     {
       message: 'Invalid indicator value',
     },
   );
 const AttributeValue = z
   .string()
-  .refine((val) => CHART_ATTRIBUTES.includes(val), {
-    message: 'Invalid attribute value',
-  });
+  .refine(
+    (val) => !!CHART_ATTRIBUTES.find((attribute) => attribute.value === val),
+    {
+      message: 'Invalid attribute value',
+    },
+  );
 
 const SimpleVisualizationSchema = z.object({
   vertical: IndicatorValue,

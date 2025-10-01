@@ -19,7 +19,7 @@ function getSelectedVerticalOption(
 }
 
 const VerticalSelect: FC<{
-  options: readonly string[];
+  options: readonly { value: string; label: string }[];
 }> = ({ options }) => {
   const { settings, setBubbleChartIndicator } = useSettings();
   const selected = useMemo(
@@ -31,13 +31,7 @@ const VerticalSelect: FC<{
     <ProjectionsSettingsPopup
       name="Vertical"
       selected={selected}
-      options={options.map((key) => ({
-        label:
-          PROJECTION_TYPE_TO_LABEL_MAP[
-            key as keyof typeof PROJECTION_TYPE_TO_LABEL_MAP
-          ],
-        value: key,
-      }))}
+      options={options}
       onItemClick={(v) => setBubbleChartIndicator("vertical", v)}
     />
   );
