@@ -36,6 +36,7 @@ describe('PageFilterRepository', () => {
       pageFilter = await pageFilterRepository.save({
         name: 'invalid-question-indicator',
         values: [],
+        label: 'Test Invalid Filter',
       });
     } catch (err) {
       error = err;
