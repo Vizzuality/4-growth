@@ -16,12 +16,18 @@ export async function clearTestDataFromDatabase(
       )
       .map((entityMetadata: EntityMetadata) => entityMetadata.tableName);
 
+    // Remove data_version table from the entityTableNames to avoid dropping it
+    const idx = entityTableNames.indexOf('configuration_params');
+    if (idx > -1) {
+      entityTableNames.splice(idx, 1);
+    }
+
     await Promise.all(
       entityTableNames.map((entityTableName: string) =>
         queryRunner.query(`TRUNCATE TABLE "${entityTableName}" CASCADE`),
       ),
     );
-
+    entityTableNames.push('configuration_params');
     entityTableNames.push(dataSource.metadataTableName);
     entityTableNames.push(
       dataSource.options.migrationsTableName || 'migrations',
