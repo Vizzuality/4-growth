@@ -14,6 +14,7 @@ import {
 } from '@shared/dto/widgets/base-widget-data.interface';
 import { WidgetUtils } from '@shared/dto/widgets/widget.utils';
 import { SurveyAnswer } from '@shared/dto/surveys/survey-answer.entity';
+import { SEARCH_FILTERS_OPERATORS } from '@shared/dto/global/search-filters';
 
 export class PostgresSurveyAnswerRepository
   extends Repository<SurveyAnswer>
@@ -51,18 +52,13 @@ export class PostgresSurveyAnswerRepository
     sections: SectionWithDataWidget[],
     filters?: WidgetDataFilter[],
   ): Promise<SectionWithDataWidget[]> {
-    const filterClauseWithParams: FilterClauseWithParams =
-      this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
-
     const widgetDataPromises = [];
     for (let sectionIdx = 0; sectionIdx < sections.length; sectionIdx++) {
       const section = sections[sectionIdx];
       const baseWidgets = section.baseWidgets;
       for (let widgetIdx = 0; widgetIdx < baseWidgets.length; widgetIdx++) {
         const widget = baseWidgets[widgetIdx];
-        widgetDataPromises.push(
-          this.addDataToWidget(widget, filterClauseWithParams),
-        );
+        widgetDataPromises.push(this.addDataToWidget(widget, filters));
       }
     }
 
@@ -76,9 +72,7 @@ export class PostgresSurveyAnswerRepository
   ): Promise<BaseWidgetWithData> {
     const { filters, breakdownIndicator } = params;
     if (breakdownIndicator === undefined) {
-      const filterClauseWithParams =
-        this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
-      await this.addDataToWidget(widget, filterClauseWithParams);
+      await this.addDataToWidget(widget, filters);
     } else {
       const filterClauseWithParams =
         this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters, {
@@ -95,14 +89,14 @@ export class PostgresSurveyAnswerRepository
 
   private async addDataToWidget(
     widget: BaseWidgetWithData,
-    filterClauseWithParams: FilterClauseWithParams,
+    filters: WidgetDataFilter[],
   ): Promise<void> {
     widget.data = {};
 
     // Check if the indicator is an edge case
     const methodName = this.edgeCasesMethodNameMap[widget.indicator];
     if (methodName !== undefined) {
-      return this[methodName](widget, filterClauseWithParams);
+      return this[methodName](widget, filters);
     }
 
     const [supportsChart, supportsMap] =
@@ -110,13 +104,11 @@ export class PostgresSurveyAnswerRepository
 
     const dataPromises = [];
     if (supportsChart === true) {
-      dataPromises.push(
-        this.addChartDataToWidget(widget, filterClauseWithParams),
-      );
+      dataPromises.push(this.addChartDataToWidget(widget, filters));
     }
 
     if (supportsMap === true) {
-      dataPromises.push(this.addMapDataToWidget(widget));
+      dataPromises.push(this.addMapDataToWidget(widget, filters));
     }
 
     await Promise.all(dataPromises);
@@ -124,8 +116,10 @@ export class PostgresSurveyAnswerRepository
 
   private async addChartDataToWidget(
     widget: BaseWidgetWithData,
-    filterClauseWithParams: FilterClauseWithParams,
+    filters: WidgetDataFilter[],
   ): Promise<void> {
+    const filterClauseWithParams =
+      this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
     const [filterClause, queryParams] = filterClauseWithParams;
 
     const newParams = [...queryParams, widget.indicator];
@@ -146,20 +140,89 @@ export class PostgresSurveyAnswerRepository
     widget.data.chart = arr;
   }
 
-  private async addMapDataToWidget(widget: BaseWidgetWithData): Promise<void> {
-    const mapSql = `SELECT country_code as country, COUNT(survey_id)::integer AS "value" 
-    FROM ${this.answersTable}
-    GROUP BY country_code, question, answer
-    HAVING question = $1 AND answer = 'Yes' ORDER BY country_code`;
+  private async addMapDataToWidget(
+    widget: BaseWidgetWithData,
+    filters: WidgetDataFilter[],
+  ): Promise<void> {
+    const mapFilters: WidgetDataFilter[] = [
+      {
+        name: 'question_indicator',
+        operator: SEARCH_FILTERS_OPERATORS.EQUALS,
+        values: [widget.indicator],
+      },
+      {
+        name: 'answer',
+        operator: SEARCH_FILTERS_OPERATORS.EQUALS,
+        values: ['Yes', 'No'],
+      },
+    ];
 
-    const result = await this.dataSource.query(mapSql, [widget.question]);
+    const countriesFilter = filters?.find(
+      (f) => f.name === 'location-country-region',
+    );
+    if (countriesFilter) {
+      mapFilters.push(countriesFilter);
+    }
+
+    const filterClauseWithParams =
+      this.sqlAdapter.generateFilterClauseForMapWidget(mapFilters, {
+        alias: 'sa',
+      });
+
+    const [filterClause, queryParams] = filterClauseWithParams;
+    const mapSql = `
+    -- 1) Get distinct countries that appear in the survey_answers table
+WITH all_countries AS (
+  SELECT unnest(ARRAY[
+    'AUT','BEL','BGR','HRV','CYP','CZE','DNK','EST','FIN','FRA',
+    'DEU','GRC','HUN','IRL','ITA','LVA','LTU','LUX','MLT','NLD',
+    'POL','PRT','ROU','SVK','SVN','ESP','SWE'
+  ]) AS country
+),
+
+-- 2) Count Yes/No per country for the given question
+answer_counts AS (
+  SELECT
+    sa.country_code,
+    sa.answer,
+    COUNT(*) AS cnt
+  FROM ${this.answersTable} sa
+  ${filterClause}
+  GROUP BY sa.country_code, sa.answer
+),
+
+-- 3) Pivot into yes_count and total_count
+by_country AS (
+  SELECT
+    country_code,
+    SUM(CASE WHEN answer = 'Yes' THEN cnt ELSE 0 END) AS yes_cnt,
+    SUM(cnt) AS total_cnt
+  FROM answer_counts
+  GROUP BY country_code
+)
+
+-- 4) Join everything so every country from survey_answers is present
+SELECT
+  ac.country,
+  CASE
+    WHEN bc.total_cnt > 0
+      THEN 100.0 * bc.yes_cnt / bc.total_cnt   -- proportion (0-1)
+    ELSE NULL                                  -- no data for this question -> gray
+  END AS value
+FROM all_countries ac
+LEFT JOIN by_country bc
+  ON bc.country_code = ac.country
+ORDER BY ac.country;`;
+    const result = await this.dataSource.query(mapSql, queryParams);
     widget.data.map = result;
   }
 
   private async addTotalSurveysDataToWidget(
     widget: BaseWidgetWithData,
-    filterClauseWithParams: FilterClauseWithParams,
+    filters: WidgetDataFilter[],
   ): Promise<void> {
+    const filterClauseWithParams =
+      this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
     const [filterClause, queryParams] = filterClauseWithParams;
 
     const filteredCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM ${this.answersTable} ${filterClause} GROUP BY survey_id) AS survey_count`;
@@ -173,8 +236,10 @@ export class PostgresSurveyAnswerRepository
 
   private async addTotalCountriesDataToWidget(
     widget: BaseWidgetWithData,
-    filterClauseWithParams: FilterClauseWithParams,
+    filters: WidgetDataFilter[],
   ): Promise<void> {
+    const filterClauseWithParams =
+      this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
     const [filterClause, queryParams] = filterClauseWithParams;
 
     const filteredCount = `SELECT COUNT(DISTINCT country_code)::integer as "count" FROM ${this.answersTable} ${filterClause}`;
@@ -188,13 +253,14 @@ export class PostgresSurveyAnswerRepository
 
   private async addAdoptionOfTechnologyByCountryDataToWidget(
     widget: BaseWidgetWithData,
-    filterClauseWithParams: FilterClauseWithParams,
+    filters: WidgetDataFilter[],
   ): Promise<void> {
     // Best workaround to reference correct question without changing the frontend title ('Adoption of technology by country' once transformed)
     widget.indicator = 'digital-technologies-integrated';
+
     await Promise.all([
-      this.addChartDataToWidget(widget, filterClauseWithParams),
-      this.addMapDataToWidget(widget),
+      this.addChartDataToWidget(widget, filters),
+      this.addMapDataToWidget(widget, filters),
     ]);
     widget.indicator = 'adoption-of-technology-by-country';
   }

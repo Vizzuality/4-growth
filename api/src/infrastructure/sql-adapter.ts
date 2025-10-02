@@ -84,6 +84,43 @@ export class SQLAdapter {
     return [filterClause, queryParams];
   }
 
+  public generateFilterClauseForMapWidget(
+    filters?: WidgetDataFilter[],
+    opts: { alias?: string; queryParams?: unknown[] } = {},
+  ): FilterClauseWithParams {
+    opts.queryParams ??= [];
+    if (Array.isArray(filters) === false) return ['', opts.queryParams];
+
+    const { alias: rawAlias, queryParams } = opts;
+    const alias = rawAlias === undefined ? '' : `${rawAlias}.`;
+    let currentParamIdx = queryParams.length;
+
+    let filterClause: string = 'WHERE ';
+    for (const filter of filters) {
+      // Countries edge case
+      if (filter.name == 'location-country-region') {
+        filterClause += '(';
+        for (const filterValue of filter.values) {
+          filterClause += `${alias}country_code ${filter.operator} $${++currentParamIdx} OR `;
+          queryParams.push(CountryISOMap.getISO3ByCountryName(filterValue));
+        }
+        filterClause = filterClause.slice(0, -4);
+        filterClause += ') AND ';
+        continue;
+      }
+
+      filterClause += '(';
+      for (const filterValue of filter.values) {
+        filterClause += `${alias}${filter.name} ${filter.operator} $${++currentParamIdx} OR `;
+        queryParams.push(filterValue);
+      }
+      filterClause = filterClause.slice(0, -4);
+      filterClause += ') AND ';
+    }
+    filterClause = filterClause.slice(0, -4);
+    return [filterClause, queryParams];
+  }
+
   public addExpressionToFilterClause(
     filterClauseWithParams: FilterClauseWithParams = ['', []],
     newExpression: [column: string, operator: string, value: unknown],
