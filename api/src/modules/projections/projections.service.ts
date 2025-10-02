@@ -46,7 +46,7 @@ export class ProjectionsService extends AppBaseService<
   public async generateCustomProjection(
     query: SearchFiltersDTO & CustomProjectionSettingsSchemaType,
   ): Promise<CustomProjection> {
-    const { settings, dataFilters } = query;
+    const { settings, dataFilters = [] } = query;
     return this.projectionDataRepository.previewProjectionCustomWidget(
       dataFilters,
       settings,
@@ -68,16 +68,17 @@ export class ProjectionsService extends AppBaseService<
   public async getProjectionsWidgets(
     query: FetchSpecification & SearchFiltersDTO,
   ): Promise<ProjectionWidget[]> {
+    const { filters, dataFilters = [] } = query;
     const queryBuilder = this.projectionWidgetsRepository.createQueryBuilder();
     QueryBuilderUtils.applySearchFilters(
       queryBuilder,
-      query.filters as SearchFilterDTO[],
+      filters as SearchFilterDTO[],
     );
 
     const projectionsWidgets = await queryBuilder.getMany();
     await this.projectionDataRepository.addDataToProjectionsWidgets(
       projectionsWidgets,
-      query.dataFilters,
+      dataFilters,
     );
     return projectionsWidgets;
   }
