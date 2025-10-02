@@ -261,6 +261,7 @@ export default function Widget({
         </Card>
       );
     case WIDGET_VISUALIZATIONS.MAP:
+      console.log("map data", data);
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader
@@ -270,7 +271,7 @@ export default function Widget({
             menu={menuComponent}
             responseRate={responseRate}
           />
-          <Map data={data.percentages.map} />
+          <Map data={data.raw.map} />
         </Card>
       );
     default:
