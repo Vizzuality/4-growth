@@ -39,13 +39,13 @@ const Map: FC<MapProps> = ({ data }) => {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  stroke={"rgb(29 39 87 / var(--tw-bg-opacity))"}
+                  stroke={"rgb(1 1 1 / var(--tw-bg-opacity))"}
                   strokeWidth="1.0"
                   className={cn(
                     "fill-map- focus:outline-none",
-                    map[geo.properties.ADM0_A3]
+                    map[geo.properties.ADM0_A3] !== undefined
                       ? FILL_MAP[map[geo.properties.ADM0_A3]]
-                      : "fill-background",
+                      : "fill-navy-900",
                   )}
                 />
               );
@@ -64,8 +64,8 @@ const Map: FC<MapProps> = ({ data }) => {
               Number(n) === 5 && "rounded-r-full",
             )}
           >
-            {Number(n) === 1 && <p className="text-background">Low</p>}
-            {Number(n) === 5 && <p className="text-foreground">High</p>}
+            {Number(n) === 1 && <p className="text-background">0%</p>}
+            {Number(n) === 5 && <p className="text-foreground">100%</p>}
           </div>
         ))}
       </div>
