@@ -261,7 +261,6 @@ export default function Widget({
         </Card>
       );
     case WIDGET_VISUALIZATIONS.MAP:
-      console.log("map data", data);
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader
