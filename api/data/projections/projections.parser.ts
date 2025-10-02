@@ -102,13 +102,22 @@ const parseCategory = (
     const country = CountryISOMap.getISO3ByCountryName(element[10].trim());
     if (!country) continue;
 
+    const rawUnit = element[11].trim();
+    let unit: string = rawUnit;
+    if (rawUnit === 'EUR thousands') {
+      unit = 'EUR';
+    }
+
     const id = currentId++;
     const projectionData: ProjectionData[] = [];
     for (let i = 12; i < 33; i++) {
       const year = 2008 + i;
       // Remove quotes and commas, then parse as float
       const cleanValue = element[i].replace(/[",]/g, '');
-      const value: any = Number.parseFloat(cleanValue);
+      let value: any = Number.parseFloat(cleanValue);
+      if (rawUnit === 'EUR thousands') {
+        value *= 1000;
+      }
       projectionData.push({
         projection: { id } as Projection,
         year,
@@ -126,7 +135,7 @@ const parseCategory = (
       application: element[7].trim(),
       technologyType: element[8].trim(),
       region: element[9].trim(),
-      unit: element[11].trim(),
+      unit,
       country: CountryISOMap.getISO3ByCountryName(element[10].trim()),
       projectionData,
     });
