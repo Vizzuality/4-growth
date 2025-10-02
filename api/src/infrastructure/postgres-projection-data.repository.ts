@@ -67,7 +67,10 @@ export class PostgresProjectionDataRepository
   ): Promise<void> {
     await Promise.all(
       projectionWidgets.map(async (widget) => {
-        widget.data = await this.findProjectionWidgetData(dataFilters);
+        widget.data = await this.findProjectionWidgetData([
+          ...dataFilters,
+          { name: 'type', operator: '=', values: [widget.type] },
+        ]);
         return widget;
       }),
     );
@@ -81,8 +84,10 @@ export class PostgresProjectionDataRepository
       .createQueryBuilder('projection')
       .select('projectionData.year', 'year')
       .addSelect('SUM(projectionData.value)', 'value')
+      .addSelect('projection.unit', 'unit')
       .innerJoin('projection.projectionData', 'projectionData')
       .groupBy('projectionData.year')
+      .addGroupBy('projection.unit')
       .orderBy('projectionData.year', 'ASC');
 
     QueryBuilderUtils.applySearchFilters(queryBuilder, dataFilters, {
