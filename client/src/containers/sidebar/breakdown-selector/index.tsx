@@ -18,6 +18,12 @@ import {
 } from "@/components/ui/popover";
 import { SIDEBAR_POPOVER_CLASS } from "@/constants";
 
+const EXCLUDED_WIDGET_INDICATORS = [
+  "total-countries",
+  "total-surveys",
+  "adoption-of-technology-by-country",
+];
+
 const BreakdownSelector: FC = () => {
   const [breakdown, setBreakdown] = useQueryState("breakdown");
   const { data } = client.widgets.getWidgets.useQuery(
@@ -70,8 +76,10 @@ const BreakdownSelector: FC = () => {
         className={SIDEBAR_POPOVER_CLASS}
       >
         <SearchableList
-          items={widgets.filter((w) =>
-            w.visualisations.some((v) => v !== "horizontal_bar_chart"),
+          items={widgets.filter(
+            (w) =>
+              w.visualisations.some((v) => v !== "horizontal_bar_chart") &&
+              EXCLUDED_WIDGET_INDICATORS.includes(w.indicator) === false,
           )}
           itemKey="title"
           onItemClick={(w) => {
