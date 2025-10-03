@@ -277,16 +277,15 @@ ORDER BY ac.country;`;
         'main',
       );
 
-    const sqlCode = `WITH breakdown_data AS (
+    const sqlCode = `WITH breakdown_counts AS (
     SELECT 
         main_answer,
         secondary_answer,
-        COUNT(main_answer)::integer AS count,
-        SUM(COUNT(main_answer)) OVER (PARTITION BY main_answer)::integer AS total_count
+        COUNT(*)::integer AS count
     FROM (
         SELECT
-            main.answer AS main_answer,
-            secondary.answer AS secondary_answer
+            secondary.answer AS main_answer,
+            main.answer AS secondary_answer
         FROM 
             survey_answers AS main
         JOIN 
@@ -297,8 +296,14 @@ ORDER BY ac.country;`;
     ) AS s
     GROUP BY 
         main_answer, secondary_answer
-    ORDER BY 
-        main_answer, secondary_answer
+),
+breakdown_data AS (
+    SELECT 
+        main_answer,
+        secondary_answer,
+        count,
+        SUM(count) OVER (PARTITION BY main_answer)::integer AS total_count
+    FROM breakdown_counts
 )
 SELECT 
     main_answer AS label,
@@ -307,7 +312,7 @@ SELECT
             'label', secondary_answer,
             'value', count,
             'total', total_count
-        )
+        ) ORDER BY count DESC
     ) AS data
 FROM breakdown_data
 GROUP BY main_answer
