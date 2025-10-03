@@ -24,10 +24,11 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
     console.error(`Breakdown: Expected at least 1 data point, but received 0.`);
     return <NoData />;
   }
-  // get all unique labels, and assign color to it:
+  // Get all unique labels and assign colors to them
   const labels = Array.from(
     new Set(data.flatMap((d) => d.data).map((item) => item.label)),
   );
+
   const labelColors = labels.reduce(
     (acc, label, index) => {
       acc[label] = {

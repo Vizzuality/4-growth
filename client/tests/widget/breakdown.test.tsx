@@ -126,4 +126,29 @@ describe("BreakdownChart", () => {
 
     consoleErrorSpy.mockRestore();
   });
+
+  it('includes "Others" label in the legend when present in data', async () => {
+    const dataWithOthers: WidgetBreakdownData = [
+      {
+        label: "Category 1",
+        data: [
+          { label: "Option A", value: 40, total: 100 },
+          { label: "Option B", value: 30, total: 100 },
+          { label: "Others", value: 30, total: 100 },
+        ],
+      },
+    ];
+
+    renderChart(dataWithOthers);
+
+    await waitFor(() => {
+      const legendItems = screen.getByTestId("breakdown-chart-legend").children;
+      const labels = Array.from(legendItems).map(
+        (item) => item.querySelector("span:last-child")?.textContent,
+      );
+
+      // "Others" should be present in the legend
+      expect(labels).toContain("Others");
+    });
+  });
 });
