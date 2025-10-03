@@ -15,6 +15,7 @@ import {
 import { WidgetUtils } from '@shared/dto/widgets/widget.utils';
 import { SurveyAnswer } from '@shared/dto/surveys/survey-answer.entity';
 import { SEARCH_FILTERS_OPERATORS } from '@shared/dto/global/search-filters';
+import { WIDGET_VISUALIZATIONS } from '@shared/dto/widgets/widget-visualizations.constants';
 
 export class PostgresSurveyAnswerRepository
   extends Repository<SurveyAnswer>
@@ -135,6 +136,11 @@ export class PostgresSurveyAnswerRepository
     for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
       const res = totalsResult[rowIdx];
       arr.push({ label: res.key, value: res.count, total: res.total });
+    }
+    if (totalsResult.length > 3) {
+      widget.visualisations = widget.visualisations.filter(
+        (v) => v !== WIDGET_VISUALIZATIONS.AREA_GRAPH,
+      );
     }
 
     widget.data.chart = arr;
