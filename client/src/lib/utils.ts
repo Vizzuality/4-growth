@@ -47,8 +47,7 @@ export function addFilterQueryParam(
         return {
           ...filter,
           values: combinedValues,
-          // Update operator to IN when we have multiple values
-          operator: combinedValues.length > 1 ? "IN" : filter.operator,
+          operator: filter.operator,
         } as FilterQueryParam;
       }
 
