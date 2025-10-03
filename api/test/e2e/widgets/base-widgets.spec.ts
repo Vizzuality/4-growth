@@ -223,37 +223,42 @@ describe('Base Widgets', () => {
       {
         breakdown: [
           {
-            label: 'Agriculture',
+            label: 'Austria',
             data: [
               {
-                label: 'Belgium',
-                value: 2,
-                total: 2,
-              },
-            ],
-          },
-          {
-            label: 'Both',
-            data: [
-              {
-                label: 'Bulgaria',
+                label: 'Forestry',
                 value: 1,
                 total: 1,
               },
             ],
           },
           {
-            label: 'Forestry',
+            label: 'Belgium',
             data: [
               {
-                label: 'Austria',
-                value: 1,
+                label: 'Agriculture',
+                value: 2,
                 total: 2,
               },
+            ],
+          },
+          {
+            label: 'Bulgaria',
+            data: [
               {
-                label: 'Netherlands',
+                label: 'Both',
                 value: 1,
-                total: 2,
+                total: 1,
+              },
+            ],
+          },
+          {
+            label: 'Netherlands',
+            data: [
+              {
+                label: 'Forestry',
+                value: 1,
+                total: 1,
               },
             ],
           },
@@ -267,10 +272,10 @@ describe('Base Widgets', () => {
       {
         breakdown: [
           {
-            label: 'Agriculture',
+            label: 'Belgium',
             data: [
               {
-                label: 'Belgium',
+                label: 'Agriculture',
                 value: 2,
                 total: 2,
               },
