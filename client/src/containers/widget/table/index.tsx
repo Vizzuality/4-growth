@@ -24,7 +24,7 @@ const TableView: FC<TableViewProps> = ({ indicator, data }) => {
         <TableBody>
           {data.map((d) => (
             <TableRow
-              key={`${indicator}-table-row-${d.year}`}
+              key={`${indicator}-table-row-${d.year}-${d.value}`}
               className="border-b-bluish-gray-500/35 hover:bg-transparent"
             >
               <TableCell className="pl-6" width="50%">
