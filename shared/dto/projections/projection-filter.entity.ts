@@ -6,7 +6,6 @@ export const PROJECTION_FILTER_NAME_TO_FIELD_NAME = {
   scenario: 'scenario',
   technology: 'technology',
   'technology-type': 'technologyType',
-  application: 'application',
   country: 'country',
   unit: 'unit',
 };
