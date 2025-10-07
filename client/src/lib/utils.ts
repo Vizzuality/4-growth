@@ -1,3 +1,5 @@
+import { FilterQueryParam } from "@/hooks/use-filters";
+import { ADD_FILTER_MODE } from "@/lib/constants";
 import { CountryISOMap } from "@shared/constants/country-iso.map";
 import { SearchFilterOperatorType } from "@shared/dto/global/search-filters";
 import { ProjectionFilter } from "@shared/dto/projections/projection-filter.entity";
@@ -7,8 +9,6 @@ import { SearchFilterSchema } from "@shared/schemas/search-filters.schema";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
-
-import { FilterQueryParam } from "./../hooks/use-filters";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -31,6 +31,7 @@ export function isEmptyWidget(data: BaseWidgetWithData["data"]): boolean {
 export function addFilterQueryParam(
   filters: FilterQueryParam[],
   newFilter: FilterQueryParam,
+  mode: ADD_FILTER_MODE = ADD_FILTER_MODE.MERGE,
 ): FilterQueryParam[] {
   let updatedFilters = filters.slice();
 
@@ -40,15 +41,21 @@ export function addFilterQueryParam(
     updatedFilters = filters.map((filter) => {
       if (filter.name === newFilter.name) {
         // Merge values instead of replacing them, avoiding duplicates
-        const existingValues = new Set(filter.values);
-        newFilter.values.forEach((value) => existingValues.add(value));
-        const combinedValues = Array.from(existingValues);
+        if (mode === ADD_FILTER_MODE.MERGE) {
+          const existingValues = new Set(filter.values);
+          newFilter.values.forEach((value) => existingValues.add(value));
+          const combinedValues = Array.from(existingValues);
 
-        return {
-          ...filter,
-          values: combinedValues,
-          operator: filter.operator,
-        } as FilterQueryParam;
+          return {
+            ...filter,
+            values: combinedValues,
+            operator: filter.operator,
+          } as FilterQueryParam;
+        } else if (mode === ADD_FILTER_MODE.REPLACE) {
+          return newFilter;
+        }
+
+        throw Error("Invalid mode for addFilterQueryParam");
       }
 
       return filter;

@@ -29,3 +29,11 @@ export const CSS_CHART_COLORS = [
 ];
 
 export const MAX_PIE_CHART_LABELS_COUNT = CSS_CHART_COLORS.length - 1;
+
+export const ADD_FILTER_MODE = {
+  MERGE: 0,
+  REPLACE: 1,
+} as const;
+
+export type ADD_FILTER_MODE =
+  (typeof ADD_FILTER_MODE)[keyof typeof ADD_FILTER_MODE];
