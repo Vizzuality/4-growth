@@ -47,6 +47,7 @@ const SignUpForm: FC = () => {
     message: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | undefined>("");
   const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<z.infer<typeof SignUpWithPrivacyPolicySchema>>({
     resolver: zodResolver(SignUpWithPrivacyPolicySchema),
@@ -61,6 +62,8 @@ const SignUpForm: FC = () => {
   useEffect(() => {
     if (status.ok) {
       push("/auth/signin");
+    } else if (status.ok === false && status.message) {
+      setErrorMessage(status.message.toString());
     }
   }, [status, push]);
 
@@ -163,6 +166,9 @@ const SignUpForm: FC = () => {
             </FormItem>
           )}
         />
+        {errorMessage && (
+          <div className="text-center text-destructive">{errorMessage}</div>
+        )}
         <div className="!mt-10 px-8">
           <Button variant="secondary" type="submit" className="w-full">
             Sign up
