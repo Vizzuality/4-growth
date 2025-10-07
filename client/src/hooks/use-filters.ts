@@ -10,6 +10,7 @@ import { useQueryState } from "nuqs";
 import qs from "qs";
 
 import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
+import { ADD_FILTER_MODE } from "@/lib/constants";
 
 export interface FilterQueryParam {
   name: string;
@@ -66,8 +67,11 @@ function useFilters() {
   );
 
   const addFilter = useCallback(
-    (newFilter: FilterQueryParam) => {
-      setFilters(addFilterQueryParam(filters, newFilter));
+    (
+      newFilter: FilterQueryParam,
+      mode: ADD_FILTER_MODE = ADD_FILTER_MODE.MERGE,
+    ) => {
+      setFilters(addFilterQueryParam(filters, newFilter, mode));
     },
     [filters, setFilters],
   );

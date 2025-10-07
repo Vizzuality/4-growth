@@ -1,11 +1,14 @@
 import { useCallback, useMemo } from "react";
 
 import useFilters from "@/hooks/use-filters";
+import { ADD_FILTER_MODE } from "@/lib/constants";
 
 export default function useScenarioFilter() {
   const { filters, addFilter } = useFilters();
+
   const { scenarioFilter, selectedScenarios } = useMemo(() => {
     const scenarioFilter = filters.find((f) => f.name === "scenario");
+
     return {
       scenarioFilter,
       selectedScenarios: scenarioFilter?.values || [],
@@ -13,12 +16,13 @@ export default function useScenarioFilter() {
   }, [filters]);
 
   const toggleScenario = useCallback(
-    (value: string) => {
-      if (!selectedScenarios.includes(value)) {
-        addFilter({ name: "scenario", operator: "=", values: [value] });
-      }
+    (scenario: string) => {
+      addFilter(
+        { name: "scenario", operator: "=", values: [scenario] },
+        ADD_FILTER_MODE.REPLACE,
+      );
     },
-    [selectedScenarios, addFilter],
+    [addFilter],
   );
 
   return { scenarioFilter, selectedScenarios, toggleScenario };
