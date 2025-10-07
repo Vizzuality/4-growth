@@ -62,7 +62,7 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
                   barGap={2}
                   accessibilityLayer
                 >
-                  <XAxis type="number" hide />
+                  <XAxis type="number" domain={[0, 100]} hide />
                   <YAxis type="category" dataKey="label" hide />
                   <Bar barSize={7} dataKey="value" radius={[0, 5, 5, 0]}>
                     {d.data.map((entry, index) => (
