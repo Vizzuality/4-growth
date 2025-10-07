@@ -80,6 +80,7 @@ jobs:
         with:
           build-args: |
             NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}
+            NEXT_PUBLIC_GA_TRACKING_ID=${{ vars.NEXT_PUBLIC_GA_TRACKING_ID }}
             NEXTAUTH_URL=${{ vars.NEXTAUTH_URL }}
             NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
             AUTH_CREDENTIALS=${{ secrets.TF_AUTH_CREDENTIALS }}

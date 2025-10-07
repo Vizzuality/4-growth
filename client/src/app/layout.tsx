@@ -9,6 +9,9 @@ import { cn } from "@/lib/utils";
 
 import { config } from "@/app/auth/api/[...nextauth]/config";
 
+import Analytics from "@/containers/analytics";
+import CookieDialog from "@/containers/cookie-dialog";
+
 import { Toaster } from "@/components/ui/toaster";
 
 import LayoutProviders from "./providers";
@@ -33,6 +36,8 @@ export default async function RootLayout({
         <NuqsAdapter>
           <body className={cn(inter.className, "overflow-hidden")}>
             <Toaster />
+            <CookieDialog />
+            <Analytics />
             <main className="h-lvh">{children}</main>
           </body>
         </NuqsAdapter>
