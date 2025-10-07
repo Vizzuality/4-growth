@@ -3,7 +3,7 @@ import { FC, useRef } from "react";
 
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
-import { cn, formatNumber } from "@/lib/utils";
+import { cn, formatAndRoundUp, formatNumber } from "@/lib/utils";
 
 import useTickMargin from "@/hooks/use-tick-margin";
 
@@ -147,14 +147,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
           axisLine={false}
           tickLine={false}
           style={{ transform: "translateY(-10px)" }}
-          tickFormatter={(value) => {
-            const roundedUp = Math.ceil(value / 1000000000) * 1000000000;
-            return formatNumber(roundedUp, {
-              maximumFractionDigits: 0,
-              notation: "compact",
-              compactDisplay: "short",
-            });
-          }}
+          tickFormatter={formatAndRoundUp}
         />
       </BarChart>
     </ChartContainer>

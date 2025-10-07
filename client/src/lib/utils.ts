@@ -96,6 +96,20 @@ export function formatNumber(
   }).format(value);
 }
 
+export function formatAndRoundUp(value: number) {
+  if (value <= 0) return String(value);
+
+  const magnitude = Math.floor(Math.log10(value));
+  const unit = Math.pow(10, magnitude);
+  const roundedUp = Math.ceil(value / unit) * unit;
+
+  return formatNumber(roundedUp, {
+    maximumFractionDigits: 0,
+    notation: "compact",
+    compactDisplay: "short",
+  });
+}
+
 export function normalizeProjectionsFilterValues(
   filters: ProjectionFilter[],
 ): ProjectionFilter[] {

@@ -12,7 +12,7 @@ import {
 } from "recharts";
 
 import { CSS_CHART_COLORS } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { cn, formatAndRoundUp } from "@/lib/utils";
 
 import useSettings from "@/hooks/use-settings";
 
@@ -168,6 +168,7 @@ const BubbleChart: FC<BubbleChartProps> = ({ data }) => {
                 fontWeight={700}
               />
             }
+            tickFormatter={formatAndRoundUp}
             axisLine={false}
             tickLine={false}
           />
