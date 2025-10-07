@@ -7,7 +7,6 @@ export const PROJECTIONS_DEFAULT_FILTERS = [
   "country",
   "technology-type",
   "technology",
-  "application",
 ];
 
 export const DEFAULT_FILTERS_LABEL_MAP: Record<
@@ -26,10 +25,6 @@ export const DEFAULT_FILTERS_LABEL_MAP: Record<
   technology: {
     selected: "Technology",
     unSelected: "All technologies",
-  },
-  application: {
-    selected: "Application",
-    unSelected: "All applications",
   },
   "location-country-region": {
     selected: "Country",
