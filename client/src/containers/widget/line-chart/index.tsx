@@ -3,7 +3,7 @@ import { FC } from "react";
 import { Line, LineChart as ReLinChart, XAxis, YAxis } from "recharts";
 import { DataKey } from "recharts/types/util/types";
 
-import { cn, formatNumber } from "@/lib/utils";
+import { cn, formatAndRoundUp, formatNumber } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
 import { CHART_CONTAINER_CLASS_NAME } from "@/containers/widget/constants";
@@ -121,14 +121,7 @@ const LineChart: FC<LineChartProps> = ({
           type="number"
           axisLine={false}
           tickLine={false}
-          tickFormatter={(value) => {
-            const roundedUp = Math.ceil(value / 1000000000) * 1000000000;
-            return formatNumber(roundedUp, {
-              maximumFractionDigits: 0,
-              notation: "compact",
-              compactDisplay: "short",
-            });
-          }}
+          tickFormatter={formatAndRoundUp}
         />
       </ReLinChart>
     </ChartContainer>
