@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -16,7 +16,12 @@ interface NoDataProps {
   description?: string;
 }
 
-const NoData: FC<NoDataProps> = ({ className, icon, description }) => {
+const NoData: FC<PropsWithChildren<NoDataProps>> = ({
+  className,
+  icon,
+  description,
+  children,
+}) => {
   return (
     <div
       className={cn(
@@ -25,7 +30,11 @@ const NoData: FC<NoDataProps> = ({ className, icon, description }) => {
       )}
     >
       {icon || <NoDataIcon />}
-      <p>{description || "No data available for this item."}</p>
+      {children ? (
+        children
+      ) : (
+        <p>{description || "No data available for this item."}</p>
+      )}
     </div>
   );
 };

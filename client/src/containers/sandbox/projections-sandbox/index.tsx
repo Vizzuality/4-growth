@@ -11,6 +11,7 @@ import { queryKeys } from "@/lib/queryKeys";
 import useFilters from "@/hooks/use-filters";
 import useSettings from "@/hooks/use-settings";
 
+import NoData from "@/containers/no-data";
 import {
   colorIsCountry,
   getKeys,
@@ -19,6 +20,7 @@ import {
 } from "@/containers/sidebar/projections-settings/utils";
 import SandboxWidget from "@/containers/widget/projections/sandbox";
 
+import MenuPointer from "@/components/icons/menu-pointer";
 import { Card } from "@/components/ui/card";
 
 const Sandbox: FC = () => {
@@ -81,17 +83,19 @@ const Sandbox: FC = () => {
   if (!data)
     return (
       <Card className="p-0">
-        <header className="space-y-1 p-8">
-          <p className="font-semibold">
-            The Sandbox allows users to create customized visualizations and
-            explore multiple data series at once by combining different
-            variables in a single graph.
-          </p>
-          <p className="font-semibold">
-            Select a visualization type and then select indicators and filters
-            to customize your view.
-          </p>
-        </header>
+        <NoData icon={<MenuPointer />} className="m-6 gap-6">
+          <div className="text-center">
+            <p>
+              The Sandbox allows users to create customized visualizations and
+              explore multiple data series at once by combining different
+              variables in a single graph.
+            </p>
+            <p>
+              Select a visualization type and then select indicators and filters
+              to customize your view.
+            </p>
+          </div>
+        </NoData>
       </Card>
     );
 

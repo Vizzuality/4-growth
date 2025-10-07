@@ -23,28 +23,20 @@ const Sandbox: FC = () => {
   const { filters } = useFilters();
   let Comp: JSX.Element | null = null;
 
-  if (isFetched) {
+  if (!isFetched && !indicator && !widget && !error) {
     Comp = (
-      <header className="space-y-1 p-8">
-        <p className="font-semibold">
-          The Sandbox allows users to create customized visualizations by
-          combining data series and filters in a single graph.
-        </p>
-        <p className="font-semibold">
-          Please select an indicator and a chart type to start the
-          visualization.
-        </p>
-      </header>
-    );
-  }
-
-  if (isFetched && !widget && !error) {
-    Comp = (
-      <NoData
-        icon={<MenuPointer />}
-        description="Select an indicator to visualize its data."
-        className="m-6 gap-6"
-      />
+      <NoData icon={<MenuPointer />} className="m-6 gap-6">
+        <div className="text-center">
+          <p>
+            The Sandbox allows users to create customized visualizations by
+            combining data series and filters in a single graph.
+          </p>
+          <p>
+            Please select an indicator and a chart type to start the
+            visualization.
+          </p>
+        </div>
+      </NoData>
     );
   }
 
