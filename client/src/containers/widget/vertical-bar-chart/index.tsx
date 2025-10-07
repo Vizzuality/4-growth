@@ -139,6 +139,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
           tickLine={false}
           axisLine={false}
           tickMargin={tickMargin}
+          interval="preserveStartEnd"
           tickFormatter={(value) => (value % 10 === 0 ? value : "")}
         />
         <YAxis
