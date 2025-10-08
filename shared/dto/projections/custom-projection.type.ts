@@ -1,15 +1,20 @@
 export type SimpleProjection = {
-  year: number;
-  vertical: number;
-  color: string;
+  [unit: string]: {
+    year: number;
+    vertical: number;
+    color: string;
+  }[];
 };
 
 export type BubbleProjection = {
-  year: number;
-  bubble: string | number;
-  color: string | number;
-  vertical: number;
-  horizontal: number;
+  [unit: string]: {
+    year: number;
+    bubble: string | number;
+    color: string | number;
+    vertical: number;
+    horizontal: number;
+    size: number;
+  }[];
 };
 
-export type CustomProjection = SimpleProjection[] | BubbleProjection[];
+export type CustomProjection = SimpleProjection | BubbleProjection;
