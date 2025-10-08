@@ -9,8 +9,8 @@ import {
 import { useQueryState } from "nuqs";
 import qs from "qs";
 
-import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 import { ADD_FILTER_MODE } from "@/lib/constants";
+import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 
 export interface FilterQueryParam {
   name: string;

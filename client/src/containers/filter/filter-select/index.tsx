@@ -65,7 +65,9 @@ function FilterSelectSteps({
       items={items}
       defaultValues={defaultValues}
       isFixedFilter={!!fixedFilter}
-      onSubmit={(v) => onSubmit({ ...v, name: currentFilter?.name as string })}
+      onSubmit={(v) => {
+        onSubmit({ ...v, name: currentFilter?.name as string });
+      }}
     />
   );
 }

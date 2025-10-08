@@ -2,6 +2,7 @@ import { FC, useCallback } from "react";
 
 import { useAtom } from "jotai";
 
+import { ADD_FILTER_MODE } from "@/lib/constants";
 import { normalizeWidgetData } from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
@@ -53,7 +54,13 @@ const UserSandboxSidebar: FC = () => {
 
   const addFilter = useCallback(
     (newFilter: FilterQueryParam) => {
-      setFilters(addFilterQueryParam(filters, newFilter));
+      if (newFilter.values.length) {
+        setFilters(
+          addFilterQueryParam(filters, newFilter, ADD_FILTER_MODE.REPLACE),
+        );
+      } else if (newFilter.values.length === 0) {
+        setFilters(filters.filter((filter) => filter.name !== newFilter.name));
+      }
     },
     [filters, setFilters],
   );

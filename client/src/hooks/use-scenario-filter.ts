@@ -1,7 +1,8 @@
 import { useCallback, useMemo } from "react";
 
-import useFilters from "@/hooks/use-filters";
 import { ADD_FILTER_MODE } from "@/lib/constants";
+
+import useFilters from "@/hooks/use-filters";
 
 export default function useScenarioFilter() {
   const { filters, addFilter } = useFilters();

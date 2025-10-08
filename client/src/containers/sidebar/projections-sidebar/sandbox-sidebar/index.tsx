@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import { ADD_FILTER_MODE } from "@/lib/constants";
+
 import useFilters from "@/hooks/use-filters";
 
 import FilterSettings from "@/containers/sidebar/filter-settings";
@@ -39,7 +41,9 @@ const SandboxSidebar: FC = () => {
             type="projections"
             defaultFilters={PROJECTIONS_DEFAULT_FILTERS}
             filterQueryParams={filters}
-            onAddFilter={addFilter}
+            onAddFilter={(newFilter) =>
+              addFilter(newFilter, ADD_FILTER_MODE.REPLACE)
+            }
             onRemoveFilterValue={removeFilterValue}
           />
         </AccordionContent>

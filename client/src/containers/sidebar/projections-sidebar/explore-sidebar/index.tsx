@@ -2,6 +2,8 @@ import { FC } from "react";
 
 import { useSetAtom } from "jotai";
 
+import { ADD_FILTER_MODE } from "@/lib/constants";
+
 import { showScenarioInfoAtom } from "@/app/(root)/projections/store";
 
 import useFilters from "@/hooks/use-filters";
@@ -63,7 +65,9 @@ const ExploreSidebar: FC = () => {
             type="projections"
             defaultFilters={PROJECTIONS_DEFAULT_FILTERS}
             filterQueryParams={filters}
-            onAddFilter={addFilter}
+            onAddFilter={(newFilter) =>
+              addFilter(newFilter, ADD_FILTER_MODE.REPLACE)
+            }
             onRemoveFilterValue={removeFilterValue}
           />
         </AccordionContent>
