@@ -8,7 +8,12 @@ import {
 } from '@shared/dto/projections/projection-visualizations.constants';
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 
-export type ProjectionWidgetData = { year: number; value: number };
+export type ProjectionWidgetData = {
+  [unit: string]: {
+    year: number;
+    value: number;
+  }[];
+};
 
 @Entity('projection_widgets')
 export class ProjectionWidget {
@@ -38,5 +43,5 @@ export class ProjectionWidget {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  data?: ProjectionWidgetData[];
+  data?: ProjectionWidgetData;
 }
