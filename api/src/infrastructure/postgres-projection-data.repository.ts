@@ -78,8 +78,9 @@ export class PostgresProjectionDataRepository
 
   public async findProjectionWidgetData(
     dataFilters: SearchFilterDTO[],
-  ): Promise<ProjectionWidgetData[]> {
-    const queryBuilder = this.dataSource
+  ): Promise<ProjectionWidgetData> {
+    // First, build the base query with filters to get the aggregated data per year and unit
+    const baseQueryBuilder = this.dataSource
       .getRepository(Projection)
       .createQueryBuilder('projection')
       .select('projectionData.year', 'year')
@@ -90,12 +91,36 @@ export class PostgresProjectionDataRepository
       .addGroupBy('projection.unit')
       .orderBy('projectionData.year', 'ASC');
 
-    QueryBuilderUtils.applySearchFilters(queryBuilder, dataFilters, {
+    QueryBuilderUtils.applySearchFilters(baseQueryBuilder, dataFilters, {
       alias: 'projection',
       filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
     });
 
-    return queryBuilder.getRawMany();
+    // Now wrap it in a query that creates a single object with units as keys
+    const finalQuery = `
+      SELECT 
+        JSON_OBJECT_AGG(
+          unit,
+          unit_data
+        ) as data
+      FROM (
+        SELECT 
+          unit,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'year', year,
+              'value', value
+            ) 
+            ORDER BY year ASC
+          ) as unit_data
+        FROM (${baseQueryBuilder.getSql()}) as base_data
+        GROUP BY unit
+      ) as grouped_data
+    `;
+
+    const parameters = Object.values(baseQueryBuilder.getParameters());
+    const result = await this.dataSource.query(finalQuery, parameters);
+    return result[0]?.data;
   }
 
   public async findSimpleProjectionCustomWidgetData(
