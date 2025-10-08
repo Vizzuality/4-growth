@@ -40,13 +40,18 @@ describe('Custom Projection API', () => {
       });
     expect(res.status).toBe(200);
     const resData = res.body?.data;
-    expect(Array.isArray(resData)).toBe(true);
-    expect(resData[0]).toHaveProperty('bubble');
-    expect(resData[0]).toHaveProperty('color');
-    expect(resData[0]).toHaveProperty('vertical');
-    expect(resData[0]).toHaveProperty('horizontal');
-    expect(resData[0]).toHaveProperty('size');
-    expect(resData[0]).toHaveProperty('year');
+
+    const unitKeys = Object.keys(resData);
+    expect(unitKeys.length).toBeGreaterThan(0);
+
+    const firstProjectionDataForUnit = resData[unitKeys[0]];
+    expect(Array.isArray(firstProjectionDataForUnit)).toBe(true);
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('bubble');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('color');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('vertical');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('horizontal');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('size');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('year');
   });
 
   test(`${c.getCustomProjection.path} should return an error when the settings for a custom projection are incorrect`, async () => {
