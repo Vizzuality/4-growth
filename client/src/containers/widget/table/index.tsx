@@ -1,7 +1,5 @@
 import { FC } from "react";
 
-import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
-
 import { formatNumber } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
@@ -11,7 +9,7 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
 interface TableViewProps {
   indicator: string;
-  data?: ProjectionWidgetData[];
+  data?: Record<string, number>[];
 }
 const TableView: FC<TableViewProps> = ({ indicator, data }) => {
   if (!data || data.length === 0) {

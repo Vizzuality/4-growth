@@ -1,5 +1,3 @@
-import { FilterQueryParam } from "@/hooks/use-filters";
-import { ADD_FILTER_MODE } from "@/lib/constants";
 import { CountryISOMap } from "@shared/constants/country-iso.map";
 import { SearchFilterOperatorType } from "@shared/dto/global/search-filters";
 import { ProjectionFilter } from "@shared/dto/projections/projection-filter.entity";
@@ -9,6 +7,10 @@ import { SearchFilterSchema } from "@shared/schemas/search-filters.schema";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
+
+import { ADD_FILTER_MODE } from "@/lib/constants";
+
+import { FilterQueryParam } from "@/hooks/use-filters";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

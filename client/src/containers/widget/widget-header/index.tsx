@@ -17,6 +17,7 @@ interface WidgetHeaderProps {
   title: string;
   question?: string;
   menu?: React.ReactNode;
+  select?: React.ReactNode;
   className?: string;
 }
 
@@ -24,15 +25,19 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
   title,
   responseRate,
   question,
+  select,
   menu,
   className,
 }) => {
   return (
     <header className={cn("space-y-2 p-8", className)}>
-      <div className="flex justify-between">
-        <Title as="h3" className="text-base">
-          {title}
-        </Title>
+      <div className="flex flex-1 justify-between">
+        <div className="flex items-center gap-2">
+          <Title as="h3" className="min-w-fit flex-1 text-base">
+            {title}
+          </Title>
+          {select}
+        </div>
         <div className="flex items-center gap-2">
           {typeof responseRate === "number" && (
             <TooltipProvider>
