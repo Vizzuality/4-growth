@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import { ADD_FILTER_MODE } from "@/lib/constants";
+
 import useFilters from "@/hooks/use-filters";
 import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
@@ -58,7 +60,9 @@ const SandboxSidebar: FC = () => {
             type="surveyAnalysis"
             defaultFilters={SURVEY_ANALYSIS_DEFAULT_FILTERS}
             filterQueryParams={filters}
-            onAddFilter={addFilter}
+            onAddFilter={(newFilter) =>
+              addFilter(newFilter, ADD_FILTER_MODE.REPLACE)
+            }
             onRemoveFilterValue={removeFilterValue}
             withDataBreakdown
           />
