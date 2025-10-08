@@ -132,74 +132,92 @@ export class PostgresProjectionDataRepository
     const colorAxis =
       PROJECTION_FILTER_NAME_TO_FIELD_NAME[settings[widgetVisualization].color];
 
-    // Y
-    const yQueryBuilder = this.dataSource
+    // Base query with all necessary groupings and filters
+    const baseQueryBuilder = this.dataSource
       .getRepository(Projection)
       .createQueryBuilder('projection')
       .select('projectionData.year', 'year')
       .addSelect('SUM(projectionData.value)', 'vertical')
       .addSelect(`projection.${colorAxis}`, 'color')
+      .addSelect('projection.unit', 'unit')
       .innerJoin('projection.projectionData', 'projectionData')
       .where('projection.type = :type', { type: verticalAxis })
       .groupBy('projectionData.year')
       .addGroupBy('projection.type')
       .addGroupBy(`projection.${colorAxis}`)
+      .addGroupBy('projection.unit')
       .orderBy('projectionData.year')
       .addOrderBy('projection.type')
       .addOrderBy(`projection.${colorAxis}`);
 
-    QueryBuilderUtils.applySearchFilters(yQueryBuilder, dataFilters, {
+    QueryBuilderUtils.applySearchFilters(baseQueryBuilder, dataFilters, {
       alias: 'projection',
       filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
     });
 
-    const rawData = await yQueryBuilder.getRawMany();
+    // Use database-level logic to handle top colors per unit
+    const finalQuery = `
+      WITH base_data AS (
+        ${baseQueryBuilder.getSql()}
+      ),
+      unit_color_totals AS (
+        SELECT 
+          unit,
+          color,
+          SUM(vertical) as total_vertical
+        FROM base_data
+        GROUP BY unit, color
+      ),
+      ranked_colors AS (
+        SELECT 
+          unit,
+          color,
+          total_vertical,
+          ROW_NUMBER() OVER (PARTITION BY unit ORDER BY total_vertical DESC) as rank
+        FROM unit_color_totals
+      ),
+      processed_data AS (
+        SELECT 
+          bd.unit,
+          bd.year,
+          CASE 
+            WHEN rc.rank <= 5 THEN bd.color
+            ELSE 'others'
+          END as final_color,
+          SUM(bd.vertical) as vertical
+        FROM base_data bd
+        JOIN ranked_colors rc ON bd.unit = rc.unit AND bd.color = rc.color
+        GROUP BY bd.unit, bd.year, 
+                 CASE 
+                   WHEN rc.rank <= 5 THEN bd.color
+                   ELSE 'others'
+                 END
+      )
+      SELECT 
+        JSON_OBJECT_AGG(
+          unit,
+          unit_data
+        ) as data
+      FROM (
+        SELECT 
+          unit,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'year', year,
+              'color', final_color,
+              'vertical', vertical
+            ) 
+            ORDER BY year ASC, final_color
+          ) as unit_data
+        FROM processed_data
+        GROUP BY unit
+      ) as grouped_data
+    `;
 
-    // Group by color and year, sum vertical values
-    const grouped: Record<string, { [year: number]: number }> = {};
-    for (const row of rawData) {
-      const color = row.color;
-      const year = row.year;
-      const vertical = Number(row.vertical);
-      if (!grouped[color]) grouped[color] = {};
-      if (!grouped[color][year]) grouped[color][year] = 0;
-      grouped[color][year] += vertical;
-    }
+    const parameters = Object.values(baseQueryBuilder.getParameters());
+    const result = await this.dataSource.query(finalQuery, parameters);
 
-    // Calculate total sum per color
-    const colorTotals = Object.entries(grouped).map(([color, years]) => ({
-      color,
-      total: Object.values(years).reduce((a, b) => a + b, 0),
-    }));
-    // Sort by total descending
-    colorTotals.sort((a, b) => b.total - a.total);
-
-    // If more than X colors, aggregate the rest into 'others'
-    const maxGroups = 6;
-    const topColors = colorTotals.slice(0, maxGroups - 1).map((c) => c.color);
-    const otherColors = colorTotals.slice(maxGroups - 1).map((c) => c.color);
-
-    const result: any[] = [];
-    const years = Array.from(new Set(rawData.map((r) => r.year))).sort();
-    for (const year of years) {
-      // Add top colors
-      for (const color of topColors) {
-        if (grouped[color][year] !== undefined) {
-          result.push({ color, year, vertical: grouped[color][year] });
-        }
-      }
-      // Aggregate 'others'
-      if (otherColors.length > 0) {
-        const othersSum = otherColors.reduce(
-          (sum, color) => sum + (grouped[color][year] || 0),
-          0,
-        );
-        if (othersSum > 0) {
-          result.push({ color: 'others', year, vertical: othersSum });
-        }
-      }
-    }
-    return result;
+    return result[0]?.data || {};
   }
 
   public async previewProjectionCustomWidget(
@@ -231,7 +249,7 @@ export class PostgresProjectionDataRepository
           ];
         const size = settings[widgetVisualization].size;
 
-        // Z
+        // Build base queries with unit grouping
         const sizeQueryBuilder = this.dataSource
           .getRepository(Projection)
           .createQueryBuilder('projection')
@@ -239,12 +257,14 @@ export class PostgresProjectionDataRepository
           .addSelect('SUM(projectionData.value)', 'size')
           .addSelect(`projection.${bubble}`, 'bubble')
           .addSelect(`projection.${color}`, 'color')
+          .addSelect('projection.unit', 'unit')
           .innerJoin('projection.projectionData', 'projectionData')
           .where('projection.type = :type', { type: size })
           .groupBy('projectionData.year')
           .addGroupBy('projection.type')
           .addGroupBy(`projection.${bubble}`)
           .addGroupBy(`projection.${color}`)
+          .addGroupBy('projection.unit')
           .orderBy('projectionData.year')
           .addOrderBy('projection.type')
           .addOrderBy(`projection.${bubble}`)
@@ -255,7 +275,6 @@ export class PostgresProjectionDataRepository
           filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
         });
 
-        // Y
         const verticalQueryBuilder = this.dataSource
           .getRepository(Projection)
           .createQueryBuilder('projection')
@@ -263,12 +282,14 @@ export class PostgresProjectionDataRepository
           .addSelect('SUM(projectionData.value)', 'vertical')
           .addSelect(`projection.${bubble}`, 'bubble')
           .addSelect(`projection.${color}`, 'color')
+          .addSelect('projection.unit', 'unit')
           .innerJoin('projection.projectionData', 'projectionData')
           .where('projection.type = :type', { type: vertical })
           .groupBy('projectionData.year')
           .addGroupBy('projection.type')
           .addGroupBy(`projection.${bubble}`)
           .addGroupBy(`projection.${color}`)
+          .addGroupBy('projection.unit')
           .orderBy('projectionData.year')
           .addOrderBy('projection.type')
           .addOrderBy(`projection.${bubble}`)
@@ -283,7 +304,6 @@ export class PostgresProjectionDataRepository
           },
         );
 
-        // X
         const horizontalQueryBuilder = this.dataSource
           .getRepository(Projection)
           .createQueryBuilder('projection')
@@ -291,12 +311,14 @@ export class PostgresProjectionDataRepository
           .addSelect('SUM(projectionData.value)', 'horizontal')
           .addSelect(`projection.${bubble}`, 'bubble')
           .addSelect(`projection.${color}`, 'color')
+          .addSelect('projection.unit', 'unit')
           .innerJoin('projection.projectionData', 'projectionData')
           .where('projection.type = :type', { type: horizontal })
           .groupBy('projectionData.year')
           .addGroupBy('projection.type')
           .addGroupBy(`projection.${bubble}`)
           .addGroupBy(`projection.${color}`)
+          .addGroupBy('projection.unit')
           .orderBy('projectionData.year')
           .addOrderBy('projection.type')
           .addOrderBy(`projection.${bubble}`)
@@ -334,71 +356,94 @@ export class PostgresProjectionDataRepository
             return `$${Number(paramIndex) + sizeParams.length + verticalParams.length}`;
           });
 
-        const query = `
-          SELECT size.*, vertical.vertical AS vertical, horizontal.horizontal AS horizontal
-          FROM (${sizeQueryBuilder.getSql()}) AS size
-          LEFT JOIN (${verticalSql}) AS vertical
-            ON size.color = vertical.color AND size.bubble = vertical.bubble AND size.year = vertical.year
-          LEFT JOIN (${horizontalSql}) AS horizontal
-            ON size.color = horizontal.color AND size.bubble = horizontal.bubble AND size.year = horizontal.year
+        // Combined query that joins all three metrics and groups by unit
+        const combinedQuery = `
+          WITH combined_data AS (
+            SELECT 
+              size.unit,
+              size.bubble,
+              size.color,
+              size.year,
+              size.size,
+              COALESCE(vertical.vertical, 0) AS vertical,
+              COALESCE(horizontal.horizontal, 0) AS horizontal
+            FROM (${sizeQueryBuilder.getSql()}) AS size
+            LEFT JOIN (${verticalSql}) AS vertical
+              ON size.color = vertical.color 
+              AND size.bubble = vertical.bubble 
+              AND size.year = vertical.year
+              AND size.unit = vertical.unit
+            LEFT JOIN (${horizontalSql}) AS horizontal
+              ON size.color = horizontal.color 
+              AND size.bubble = horizontal.bubble 
+              AND size.year = horizontal.year
+              AND size.unit = horizontal.unit
+          ),
+          ranked_data AS (
+            SELECT 
+              unit,
+              bubble,
+              year,
+              color,
+              size,
+              vertical,
+              horizontal,
+              ROW_NUMBER() OVER (
+                PARTITION BY unit, bubble, year 
+                ORDER BY horizontal DESC
+              ) as rank
+            FROM combined_data
+          ),
+          processed_data AS (
+            SELECT 
+              unit,
+              bubble,
+              year,
+              CASE 
+                WHEN rank <= 5 THEN color::text
+                ELSE 'others'
+              END as final_color,
+              SUM(size) as size,
+              SUM(vertical) as vertical,
+              SUM(horizontal) as horizontal
+            FROM ranked_data
+            GROUP BY unit, bubble, year, 
+                     CASE 
+                       WHEN rank <= 5 THEN color::text
+                       ELSE 'others'
+                     END
+          )
+          SELECT 
+            JSON_OBJECT_AGG(
+              unit,
+              unit_data
+            ) as data
+          FROM (
+            SELECT 
+              unit,
+              JSON_AGG(
+                JSON_BUILD_OBJECT(
+                  'year', year,
+                  'bubble', bubble,
+                  'color', final_color,
+                  'size', size,
+                  'vertical', vertical,
+                  'horizontal', horizontal
+                ) 
+                ORDER BY year ASC, bubble, final_color
+              ) as unit_data
+            FROM processed_data
+            GROUP BY unit
+          ) as grouped_data
         `;
 
-        const rawData = await this.dataSource.query(query, [
+        const bubbleResult = await this.dataSource.query(combinedQuery, [
           ...sizeParams,
           ...verticalParams,
           ...horizontalParams,
         ]);
 
-        // Application layer aggregation: top X colors per bubble/year, sorted by horizontal
-        const maxGroups = 6;
-        // Group by bubble and year
-        const grouped: Record<string, Record<number, any[]>> = {};
-        for (const row of rawData) {
-          const bubbleVal = row.bubble;
-          const yearVal = Number(row.year);
-          if (!grouped[bubbleVal]) grouped[bubbleVal] = {};
-          if (!grouped[bubbleVal][yearVal]) grouped[bubbleVal][yearVal] = [];
-          grouped[bubbleVal][yearVal].push(row);
-        }
-
-        const result: any[] = [];
-        for (const bubbleVal of Object.keys(grouped)) {
-          for (const yearVal of Object.keys(grouped[bubbleVal])) {
-            const rows = grouped[bubbleVal][Number(yearVal)];
-            // Sort colors by horizontal descending
-            const sortedRows = [...rows].sort(
-              (a, b) => Number(b.horizontal) - Number(a.horizontal),
-            );
-            const topColors = sortedRows.slice(0, maxGroups - 1);
-            const otherColors = sortedRows.slice(maxGroups - 1);
-            // Add top colors
-            for (const row of topColors) {
-              result.push(row);
-            }
-            // Aggregate others
-            if (otherColors.length > 0) {
-              // Aggregate all metrics for 'others'
-              const agg = otherColors.reduce(
-                (acc, r) => {
-                  acc.size += Number(r.size);
-                  acc.vertical += Number(r.vertical);
-                  acc.horizontal += Number(r.horizontal);
-                  return acc;
-                },
-                { size: 0, vertical: 0, horizontal: 0 },
-              );
-              result.push({
-                bubble: bubbleVal,
-                color: 'others',
-                year: Number(yearVal),
-                size: agg.size,
-                vertical: agg.vertical,
-                horizontal: agg.horizontal,
-              });
-            }
-          }
-        }
-        return result;
+        return bubbleResult[0]?.data || {};
       default:
         throw new NotFoundException(
           `Visualization type ${widgetVisualization} is not supported.`,
