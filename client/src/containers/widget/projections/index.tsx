@@ -20,6 +20,15 @@ import WidgetHeader from "@/containers/widget/widget-header";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Select,
+  SelectItem,
+  SelectLabel,
+  SelectContent,
+  SelectGroup,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { getRouteHref } from "@/utils/route-config";
 
@@ -41,7 +50,7 @@ const getMenuButtonText = (v: ProjectionVisualizationsType): string => {
 export interface WidgetProps {
   indicator: string;
   visualization: ProjectionVisualizationsType;
-  data?: ProjectionWidgetData[];
+  data?: ProjectionWidgetData;
   visualisations?: ProjectionVisualizationsType[];
   menu?: React.ReactNode;
   className?: string;
@@ -67,6 +76,8 @@ export default function Widget({
   showCustomizeWidgetButton,
   config,
 }: WidgetProps) {
+  const units = data ? Object.keys(data) : [];
+  const [selectedUnit, setSelectedUnit] = useState(units[0]);
   const [selectedVisualization, setSelectedVisualization] =
     useState<ProjectionVisualizationsType>(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
@@ -111,12 +122,36 @@ export default function Widget({
         )}
       </MenuButton>
     ));
+  const selectComponent = (
+    <Select
+      value={selectedUnit}
+      onValueChange={setSelectedUnit}
+      disabled={units.length <= 1}
+    >
+      <SelectTrigger
+        className="min-w-fit flex-1 border-transparent bg-transparent disabled:cursor-default"
+        disabled={units.length <= 1}
+      >
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Unit</SelectLabel>
+          {units.map((unit) => (
+            <SelectItem key={`select-${indicator}-${unit}`} value={unit}>
+              {unit}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  );
 
   useEffect(() => {
     setSelectedVisualization(visualization);
   }, [visualization]);
 
-  if (!data || data.length === 0) {
+  if (!data || Object.keys(data).length === 0) {
     return (
       <Card className={cn("relative min-h-80 p-0", className)}>
         <WidgetHeader title={indicator} menu={menuComponent} />
@@ -129,22 +164,38 @@ export default function Widget({
     case "bar_chart":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
-          <WidgetHeader title={indicator} menu={menuComponent} />
-          <VerticalBarChart indicator={indicator} data={data} />
+          <WidgetHeader
+            title={indicator}
+            menu={menuComponent}
+            select={selectComponent}
+          />
+          <VerticalBarChart indicator={indicator} data={data[selectedUnit]} />
         </Card>
       );
     case "line_chart":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
-          <WidgetHeader title={indicator} menu={menuComponent} />
-          <LineChart indicator={indicator} data={data} dataKey="value" />
+          <WidgetHeader
+            title={indicator}
+            menu={menuComponent}
+            select={selectComponent}
+          />
+          <LineChart
+            indicator={indicator}
+            data={data[selectedUnit]}
+            dataKey="value"
+          />
         </Card>
       );
     case "table":
       return (
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
-          <WidgetHeader title={indicator} menu={menuComponent} />
-          <TableView indicator={indicator} data={data} />
+          <WidgetHeader
+            title={indicator}
+            menu={menuComponent}
+            select={selectComponent}
+          />
+          <TableView indicator={indicator} data={data[selectedUnit]} />
         </Card>
       );
     case "bubble_chart":
