@@ -32,6 +32,22 @@ export class PostgresProjectionDataRepository
     super(ProjectionData, dataSource.manager);
   }
 
+  /**
+   * Generates a SQL expression to humanize any dimension values
+   * Transforms values like 'market-potential', 'reimagining_progress', 'technology-type'
+   * to 'Market Potential', 'Reimagining Progress', 'Technology Type'
+   */
+  private getHumanizationSql(columnExpression: string): string {
+    return `
+      INITCAP(
+        REPLACE(
+          REPLACE(${columnExpression}::text, '-', ' '), 
+          '_', ' '
+        )
+      )
+    `;
+  }
+
   public async searchAvailableFilters(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     filters: SearchFilterDTO[] = [],
@@ -182,7 +198,7 @@ export class PostgresProjectionDataRepository
           bd.year,
           CASE 
             WHEN rc.rank <= 5 THEN bd.color::text
-            ELSE 'others'
+            ELSE 'Others'
           END as final_color,
           SUM(bd.vertical) as vertical
         FROM base_data bd
@@ -190,7 +206,7 @@ export class PostgresProjectionDataRepository
         GROUP BY bd.unit, bd.year, 
                  CASE 
                    WHEN rc.rank <= 5 THEN bd.color::text
-                   ELSE 'others'
+                   ELSE 'Others'
                  END
       )
       SELECT 
@@ -204,7 +220,10 @@ export class PostgresProjectionDataRepository
           JSON_AGG(
             JSON_BUILD_OBJECT(
               'year', year,
-              'color', final_color,
+              'color', CASE 
+                WHEN final_color = 'Others' THEN 'Others'
+                ELSE ${this.getHumanizationSql('final_color')}
+              END,
               'vertical', vertical
             ) 
             ORDER BY year ASC, final_color
@@ -401,7 +420,7 @@ export class PostgresProjectionDataRepository
               year,
               CASE 
                 WHEN rank <= 5 THEN color::text
-                ELSE 'others'
+                ELSE 'Others'
               END as final_color,
               SUM(size) as size,
               SUM(vertical) as vertical,
@@ -410,7 +429,7 @@ export class PostgresProjectionDataRepository
             GROUP BY unit, bubble, year, 
                      CASE 
                        WHEN rank <= 5 THEN color::text
-                       ELSE 'others'
+                       ELSE 'Others'
                      END
           )
           SELECT 
@@ -424,8 +443,11 @@ export class PostgresProjectionDataRepository
               JSON_AGG(
                 JSON_BUILD_OBJECT(
                   'year', year,
-                  'bubble', bubble,
-                  'color', final_color,
+                  'bubble', ${this.getHumanizationSql('bubble')},
+                  'color', CASE 
+                    WHEN final_color = 'Others' THEN 'Others'
+                    ELSE ${this.getHumanizationSql('final_color')}
+                  END,
                   'size', size,
                   'vertical', vertical,
                   'horizontal', horizontal
