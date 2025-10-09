@@ -181,7 +181,7 @@ export class PostgresProjectionDataRepository
           bd.unit,
           bd.year,
           CASE 
-            WHEN rc.rank <= 5 THEN bd.color
+            WHEN rc.rank <= 5 THEN bd.color::text
             ELSE 'others'
           END as final_color,
           SUM(bd.vertical) as vertical
@@ -189,7 +189,7 @@ export class PostgresProjectionDataRepository
         JOIN ranked_colors rc ON bd.unit = rc.unit AND bd.color = rc.color
         GROUP BY bd.unit, bd.year, 
                  CASE 
-                   WHEN rc.rank <= 5 THEN bd.color
+                   WHEN rc.rank <= 5 THEN bd.color::text
                    ELSE 'others'
                  END
       )
