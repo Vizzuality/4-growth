@@ -36,8 +36,17 @@ export class PostgresProjectionDataRepository
    * Generates a SQL expression to humanize any dimension values
    * Transforms values like 'market-potential', 'reimagining_progress', 'technology-type'
    * to 'Market Potential', 'Reimagining Progress', 'Technology Type'
+   * Does NOT transform country codes (keeps them as ISO3 for map functionality)
    */
-  private getHumanizationSql(columnExpression: string): string {
+  private getConditionalHumanizationSql(
+    columnExpression: string,
+    fieldName: string,
+  ): string {
+    // Don't humanize country codes - they need to stay as ISO3 for maps
+    if (fieldName === 'country') {
+      return `${columnExpression}::text`;
+    }
+
     return `
       INITCAP(
         REPLACE(
@@ -147,6 +156,7 @@ export class PostgresProjectionDataRepository
     const verticalAxis = settings[widgetVisualization].vertical;
     const colorAxis =
       PROJECTION_FILTER_NAME_TO_FIELD_NAME[settings[widgetVisualization].color];
+    const colorFieldName = settings[widgetVisualization].color;
 
     // Base query with all necessary groupings and filters
     const baseQueryBuilder = this.dataSource
@@ -222,7 +232,7 @@ export class PostgresProjectionDataRepository
               'year', year,
               'color', CASE 
                 WHEN final_color = 'Others' THEN 'Others'
-                ELSE ${this.getHumanizationSql('final_color')}
+                ELSE ${this.getConditionalHumanizationSql('final_color', colorFieldName)}
               END,
               'vertical', vertical
             ) 
@@ -267,6 +277,10 @@ export class PostgresProjectionDataRepository
             settings[widgetVisualization].color
           ];
         const size = settings[widgetVisualization].size;
+
+        // Extract field names for humanization
+        const bubbleFieldName = settings[widgetVisualization].bubble;
+        const colorFieldName = settings[widgetVisualization].color;
 
         // Build base queries with unit grouping
         const sizeQueryBuilder = this.dataSource
@@ -443,10 +457,10 @@ export class PostgresProjectionDataRepository
               JSON_AGG(
                 JSON_BUILD_OBJECT(
                   'year', year,
-                  'bubble', ${this.getHumanizationSql('bubble')},
+                  'bubble', ${this.getConditionalHumanizationSql('bubble', bubbleFieldName)},
                   'color', CASE 
                     WHEN final_color = 'Others' THEN 'Others'
-                    ELSE ${this.getHumanizationSql('final_color')}
+                    ELSE ${this.getConditionalHumanizationSql('final_color', colorFieldName)}
                   END,
                   'size', size,
                   'vertical', vertical,
