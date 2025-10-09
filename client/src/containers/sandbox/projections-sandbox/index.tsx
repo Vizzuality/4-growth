@@ -53,7 +53,7 @@ const Sandbox: FC = () => {
               payload[unit].map((d) => ({
                 ...d,
                 color:
-                  d.color !== "others"
+                  d.color !== "Others"
                     ? CountryISOMap.getCountryNameByISO3(String(d.color))
                     : d.color,
               })),
