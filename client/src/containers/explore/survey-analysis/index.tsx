@@ -97,6 +97,7 @@ export default function Explore() {
                   indicator={w.indicator}
                   title={w.title}
                   question={w.question}
+                  questionTitle={w.questionTitle}
                   data={w.data as TransformedWidgetData}
                   responseRate={w.responseRate}
                   className="col-span-1 last:odd:col-span-2"

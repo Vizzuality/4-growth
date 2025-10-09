@@ -16,6 +16,7 @@ interface WidgetHeaderProps {
   responseRate?: number;
   title: string;
   question?: string;
+  questionTitle?: string;
   menu?: React.ReactNode;
   select?: React.ReactNode;
   className?: string;
@@ -25,6 +26,7 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
   title,
   responseRate,
   question,
+  questionTitle,
   select,
   menu,
   className,
@@ -34,7 +36,7 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
       <div className="flex flex-1 justify-between">
         <div className="flex items-center gap-2">
           <Title as="h3" className="min-w-fit flex-1 text-base">
-            {title}
+            {questionTitle ?? title}
           </Title>
           {select}
         </div>
