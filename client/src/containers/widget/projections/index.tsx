@@ -145,7 +145,11 @@ export default function Widget({
             menu={menuComponent}
             select={selectComponent}
           />
-          <VerticalBarChart indicator={indicator} data={data[selectedUnit]} />
+          <VerticalBarChart
+            unit={selectedUnit}
+            indicator={indicator}
+            data={data[selectedUnit]}
+          />
         </Card>
       );
     case "line_chart":
@@ -158,6 +162,7 @@ export default function Widget({
           />
           <LineChart
             indicator={indicator}
+            unit={selectedUnit}
             data={data[selectedUnit]}
             dataKey="value"
           />
