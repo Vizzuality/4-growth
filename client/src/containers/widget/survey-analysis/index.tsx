@@ -56,6 +56,7 @@ export interface WidgetProps {
   breakdown?: string;
   visualisations?: WidgetVisualizationsType[];
   question?: string;
+  questionTitle?: string;
   menu?: React.ReactNode;
   className?: string;
   showCustomizeWidgetButton?: boolean;
@@ -79,6 +80,7 @@ export default function Widget({
   data,
   title,
   question,
+  questionTitle,
   menu,
   className,
   showCustomizeWidgetButton,
@@ -185,6 +187,7 @@ export default function Widget({
           <WidgetHeader
             title={title}
             question={question}
+            questionTitle={questionTitle}
             menu={menuComponent}
             responseRate={responseRate}
           />
