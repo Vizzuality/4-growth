@@ -71,7 +71,7 @@ export default function SandboxWidget({
             select={selectComponent}
           />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
-          <VerticalBarChart {...simpleChartProps} />
+          <VerticalBarChart unit={selectedUnit} {...simpleChartProps} />
         </Card>
       );
     case "line_chart":
@@ -84,6 +84,7 @@ export default function SandboxWidget({
           />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
           <LineChart
+            unit={selectedUnit}
             dataKey={simpleChartProps.indicator}
             {...simpleChartProps}
           />

@@ -33,12 +33,14 @@ const getRadius = (
 
 interface VerticalBarChartProps {
   indicator: string;
+  unit: string;
   data: Record<string, number>[];
   colors?: (string | number)[];
 }
 
 const VerticalBarChart: FC<VerticalBarChartProps> = ({
   indicator,
+  unit,
   data,
   colors,
 }) => {
@@ -88,10 +90,11 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
                       className="grid grid-cols-2 gap-2"
                     >
                       <span className="flex flex-1 justify-end">{p.name}</span>
-                      <span className="flex flex-1 justify-start font-bold">
+                      <span className="flex flex-1 justify-start gap-1 font-bold">
                         {formatNumber(Number(p.value), {
                           maximumFractionDigits: 0,
                         })}
+                        <span className="text-muted-foreground">{unit}</span>
                       </span>
                     </p>
                   ))}
