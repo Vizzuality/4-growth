@@ -33,14 +33,15 @@ import {
 } from "@/components/ui/chart";
 
 interface BubbleChartProps {
-  data: BubbleProjection[];
+  data: BubbleProjection;
+  unit: string;
 }
 
-const BubbleChart: FC<BubbleChartProps> = ({ data }) => {
+const BubbleChart: FC<BubbleChartProps> = ({ data, unit }) => {
   const { settings } = useSettings();
   const { chartData, colors, years, horizontalLabel, verticalLabel } = useMemo(
-    () => getBubbleChartProps(data, settings),
-    [data, settings],
+    () => getBubbleChartProps(data, unit, settings),
+    [data, unit, settings],
   );
   const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);

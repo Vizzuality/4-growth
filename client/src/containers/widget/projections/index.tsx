@@ -15,20 +15,12 @@ import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
 import LineChart from "@/containers/widget/line-chart";
 import TableView from "@/containers/widget/table";
+import UnitSelect from "@/containers/widget/unit-select";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Select,
-  SelectItem,
-  SelectLabel,
-  SelectContent,
-  SelectGroup,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { getRouteHref } from "@/utils/route-config";
 
@@ -123,28 +115,12 @@ export default function Widget({
       </MenuButton>
     ));
   const selectComponent = (
-    <Select
+    <UnitSelect
+      id={indicator}
+      items={units}
       value={selectedUnit}
       onValueChange={setSelectedUnit}
-      disabled={units.length <= 1}
-    >
-      <SelectTrigger
-        className="min-w-fit flex-1 border-transparent bg-transparent disabled:cursor-default"
-        disabled={units.length <= 1}
-      >
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Unit</SelectLabel>
-          {units.map((unit) => (
-            <SelectItem key={`select-${indicator}-${unit}`} value={unit}>
-              {unit}
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+    />
   );
 
   useEffect(() => {

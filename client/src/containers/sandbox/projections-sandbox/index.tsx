@@ -46,13 +46,19 @@ const Sandbox: FC = () => {
       retry: 0,
       select: (res) => {
         if (colorIsCountry(settings)) {
-          return res.body.data.map((d) => ({
-            ...d,
-            color:
-              d.color !== "others"
-                ? CountryISOMap.getCountryNameByISO3(String(d.color))
-                : d.color,
-          })) as CustomProjection;
+          const payload = res.body.data as CustomProjection;
+          return Object.fromEntries(
+            Object.keys(payload).map((unit) => [
+              unit,
+              payload[unit].map((d) => ({
+                ...d,
+                color:
+                  d.color !== "others"
+                    ? CountryISOMap.getCountryNameByISO3(String(d.color))
+                    : d.color,
+              })),
+            ]),
+          ) as CustomProjection;
         }
 
         return res.body.data;
