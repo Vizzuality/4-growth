@@ -9,7 +9,7 @@ import { CustomProjectionSettingsType } from "@shared/schemas/custom-projection-
 import { isBubbleChartSettings } from "@/containers/sidebar/projections-settings/utils";
 
 export function getIndexOfLargestValue(
-  data: WidgetChartData | ProjectionWidgetData[] | Record<string, number>[],
+  data: WidgetChartData | ProjectionWidgetData[""] | Record<string, number>[],
 ): number {
   let index = 0;
   let largestValue = 0;
@@ -24,12 +24,13 @@ export function getIndexOfLargestValue(
   return index;
 }
 
-const getYears = (data: BubbleProjection[] | CustomProjection): number[] =>
-  Array.from(new Set(data.map((p) => p.year)));
+const getYears = (data: CustomProjection, unit: string): number[] =>
+  Array.from(new Set(data[unit].map((p) => p.year)));
 export function getColors(
-  data: BubbleProjection[] | CustomProjection,
+  data: CustomProjection,
+  unit: string,
 ): (string | number)[] {
-  const colorsRaw = Array.from(new Set(data.map((p) => p.color)));
+  const colorsRaw = Array.from(new Set(data[unit].map((p) => p.color)));
   const colors = colorsRaw.filter((c) => c !== "others");
   if (colorsRaw.includes("others")) colors.push("others");
 
@@ -37,11 +38,12 @@ export function getColors(
 }
 
 export function getBubbleChartProps(
-  data: BubbleProjection[],
+  data: BubbleProjection,
+  unit: string,
   settings: CustomProjectionSettingsType | null,
 ) {
-  const chartData: Record<number, BubbleProjection[]> = {};
-  const years = getYears(data);
+  const chartData: Record<number, BubbleProjection[""]> = {};
+  const years = getYears(data, unit);
 
   let horizontalLabel: string = "";
   let verticalLabel: string = "";
@@ -52,24 +54,24 @@ export function getBubbleChartProps(
   }
 
   years.forEach((year) => {
-    chartData[year] = data.filter((d) => d.year === year);
+    chartData[year] = data[unit].filter((d) => d.year === year);
   });
 
   return {
     chartData,
-    colors: getColors(data),
+    colors: getColors(data, unit),
     years,
     horizontalLabel,
     verticalLabel,
   };
 }
 
-export function getSimpleChartProps(data: CustomProjection) {
+export function getSimpleChartProps(data: CustomProjection, unit: string) {
   const chartData: Record<string, number>[] = [];
-  const years = getYears(data);
+  const years = getYears(data, unit);
 
   years.forEach((year) => {
-    const values = data.filter((d) => d.year === year);
+    const values = data[unit].filter((d) => d.year === year);
     const obj = values.reduce(
       (acc, curr) => ({ ...acc, [curr.color]: curr.vertical }),
       {},
@@ -77,5 +79,5 @@ export function getSimpleChartProps(data: CustomProjection) {
     chartData.push({ year, ...obj });
   });
 
-  return { data: chartData, colors: getColors(data) };
+  return { data: chartData, colors: getColors(data, unit) };
 }

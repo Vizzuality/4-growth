@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import {
   BubbleProjection,
@@ -14,6 +14,7 @@ import NoData from "@/containers/no-data";
 import BubbleChart from "@/containers/widget/bubble-chart";
 import WidgetLegend from "@/containers/widget/legend";
 import LineChart from "@/containers/widget/line-chart";
+import UnitSelect from "@/containers/widget/unit-select";
 import { getSimpleChartProps } from "@/containers/widget/utils";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
@@ -33,26 +34,42 @@ export default function SandboxWidget({
   data,
   className,
 }: SandboxWidgetProps) {
+  const units = data ? Object.keys(data) : [];
+  const [selectedUnit, setSelectedUnit] = useState(units[0]);
   const simpleChartProps = useMemo(
     () => ({
       indicator,
-      ...getSimpleChartProps(data),
+      ...getSimpleChartProps(data, selectedUnit),
     }),
-    [indicator, data],
+    [indicator, selectedUnit, data],
   );
-  if (!data || data.length === 0) {
+
+  if (!data || Object.keys(data).length === 0) {
     return (
       <Card className={cn("relative min-h-80 p-0", className)}>
         <NoData />
       </Card>
     );
   }
+  const selectComponent = (
+    <UnitSelect
+      id={indicator}
+      items={units}
+      value={selectedUnit}
+      onValueChange={setSelectedUnit}
+      className="p-0"
+    />
+  );
 
   switch (visualization) {
     case "bar_chart":
       return (
         <Card className={cn("relative p-0", className)}>
-          <WidgetHeader title={indicator} className="pb-0" />
+          <WidgetHeader
+            title={indicator}
+            className="pb-0"
+            select={selectComponent}
+          />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
           <VerticalBarChart {...simpleChartProps} />
         </Card>
@@ -60,7 +77,11 @@ export default function SandboxWidget({
     case "line_chart":
       return (
         <Card className={cn("relative p-0", className)}>
-          <WidgetHeader title={indicator} className="pb-0" />
+          <WidgetHeader
+            title={indicator}
+            className="pb-0"
+            select={selectComponent}
+          />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
           <LineChart
             dataKey={simpleChartProps.indicator}
@@ -69,10 +90,15 @@ export default function SandboxWidget({
         </Card>
       );
     case "bubble_chart":
-      if ("bubble" in data[0]) {
+      if ("bubble" in data[selectedUnit][0]) {
         return (
           <Card className={cn("relative min-h-80 p-6", className)}>
-            <BubbleChart data={data as BubbleProjection[]} />
+            <WidgetHeader
+              title={indicator}
+              className="p-0"
+              select={selectComponent}
+            />
+            <BubbleChart data={data as BubbleProjection} unit={selectedUnit} />
           </Card>
         );
       }
