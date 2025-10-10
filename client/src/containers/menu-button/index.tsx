@@ -51,7 +51,7 @@ export default function MenuButton({
         align="end"
         className={className}
       >
-        {children}
+        <div>{children}</div>
       </PopoverContent>
     </Popover>
   );
