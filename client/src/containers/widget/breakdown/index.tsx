@@ -25,9 +25,14 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
     return <NoData />;
   }
   // Get all unique labels and assign colors to them
-  const labels = Array.from(
+  // Sort so "Others" appears last (same logic as projections)
+  const labelsRaw = Array.from(
     new Set(data.flatMap((d) => d.data).map((item) => item.label)),
   );
+  const labels = labelsRaw.filter((c) => c.toLowerCase() !== "others");
+  if (labelsRaw.some((c) => c.toLowerCase() === "others")) {
+    labels.push("Others");
+  }
 
   const labelColors = labels.reduce(
     (acc, label, index) => {
