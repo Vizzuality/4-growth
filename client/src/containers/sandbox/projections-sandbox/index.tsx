@@ -65,6 +65,14 @@ const Sandbox: FC = () => {
       },
     },
   );
+  const { data: settingsData } =
+    client.projections.getCustomProjectionSettings.useQuery(
+      queryKeys.projections.settingsAll.queryKey,
+      {
+        query: {},
+      },
+      { select: (res) => res.body.data },
+    );
   const visualization: ProjectionVisualizationsType = useMemo(() => {
     if (isSimpleChartSettings(settings)) {
       return getKeys(settings)[0];
@@ -78,11 +86,19 @@ const Sandbox: FC = () => {
   }, [settings]);
   const indicator = useMemo(() => {
     if (isSimpleChartSettings(settings)) {
-      return Object.values(settings)[0].vertical;
+      const visualization = Object.keys(settings)[0] as
+        | "line_chart"
+        | "bar_chart";
+
+      return (
+        settingsData?.[visualization].vertical.find(
+          (obj) => obj.value === Object.values(settings)[0].vertical,
+        )?.label || ""
+      );
     }
 
     return "";
-  }, [settings]);
+  }, [settings, settingsData]);
 
   if (isFetching) return null;
 

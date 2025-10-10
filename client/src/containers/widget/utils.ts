@@ -24,12 +24,17 @@ export function getIndexOfLargestValue(
   return index;
 }
 
-const getYears = (data: CustomProjection, unit: string): number[] =>
-  Array.from(new Set(data[unit].map((p) => p.year)));
+const getYears = (data: CustomProjection, unit: string): number[] => {
+  if (!data[unit]) return [];
+
+  return Array.from(new Set(data[unit].map((p) => p.year)));
+};
 export function getColors(
   data: CustomProjection,
   unit: string,
 ): (string | number)[] {
+  if (!data[unit]) return [];
+
   const colorsRaw = Array.from(new Set(data[unit].map((p) => p.color)));
   const colors = colorsRaw.filter((c) => c !== "others");
   if (colorsRaw.includes("others")) colors.push("others");

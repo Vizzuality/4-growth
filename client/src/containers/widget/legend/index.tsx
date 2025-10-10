@@ -8,7 +8,7 @@ const WidgetLegend: FC<{
   className?: HTMLHeadingElement["className"];
 }> = ({ colors, className }) => {
   return (
-    <div className={cn("flex items-center gap-6", className)}>
+    <div className={cn("flex flex-wrap items-center gap-6", className)}>
       {colors.map((color, index) => (
         <p
           key={`bubble-chart-legend-${color}`}

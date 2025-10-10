@@ -43,14 +43,6 @@ export default function SandboxWidget({
     }),
     [indicator, selectedUnit, data],
   );
-
-  if (!data || Object.keys(data).length === 0) {
-    return (
-      <Card className={cn("relative min-h-80 p-0", className)}>
-        <NoData />
-      </Card>
-    );
-  }
   const selectComponent = (
     <UnitSelect
       id={indicator}
@@ -60,6 +52,16 @@ export default function SandboxWidget({
       className="p-0"
     />
   );
+
+  if (!data || Object.keys(data).length === 0) {
+    return (
+      <Card className={cn("relative min-h-80 p-0", className)}>
+        <NoData />
+      </Card>
+    );
+  }
+
+  if (!data[selectedUnit]) return null;
 
   switch (visualization) {
     case "bar_chart":

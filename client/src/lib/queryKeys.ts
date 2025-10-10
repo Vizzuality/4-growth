@@ -46,6 +46,7 @@ export const projectionsKeys = createQueryKeys("projections", {
     filters: FilterQueryParam[],
   ) => [{ settings, filters }],
   settings: null,
+  settingsAll: null,
   filters: null,
 });
 
