@@ -50,7 +50,7 @@
   },
   {
     "slug": "general-information",
-    "name": "General Information",
+    "name": "General information",
     "description": "Captures basic organisational details (e.g. sector, size, location, stakeholder type)",
     "order": 2,
     "baseWidgets": [
@@ -103,7 +103,7 @@
   },
   {
     "slug": "governance-model",
-    "name": "Governance Model",
+    "name": "Governance model",
     "description": "Measures the impact of governance models and regulatory considerations on the digital technologies adoption",
     "order": 3,
     "baseWidgets": [
@@ -129,7 +129,7 @@
   },
   {
     "slug": "adoption-of-digital-technologies",
-    "name": "Adoption of Digital Technologies and Technology Integration",
+    "name": "Adoption of digital technologies and technology integration",
     "description": "Assesses which technologies have been implemented and how they are embedded in daily operations.",
     "order": 4,
     "baseWidgets": [
@@ -218,7 +218,7 @@
   },
   {
     "slug": "technology-performance",
-    "name": "Technology Performance",
+    "name": "Technology performance",
     "description": "Evaluates usability, functionality, and interoperability of the adopted tools",
     "order": 5,
     "baseWidgets": [
@@ -244,7 +244,7 @@
   },
   {
     "slug": "data-management-and-sharing",
-    "name": "Data Management and Data Sharing Practices",
+    "name": "Data management and data sharing practices",
     "description": "Investigates internal and external data handling procedures, governance models, and data access policies",
     "order": 6,
     "baseWidgets": [
@@ -306,7 +306,7 @@
   },
   {
     "slug": "social-benefits-and-impact",
-    "name": "Social Benefits and Impact",
+    "name": "Social benefits and impact",
     "description": "Evaluates social benefits and impact of adopting digital technologies",
     "order": 7,
     "baseWidgets": [
@@ -332,7 +332,7 @@
   },
   {
     "slug": "economic-benefits-and-impact",
-    "name": "Economic Benefits and Impact",
+    "name": "Economic benefits and impact",
     "description": "Measures financial performance outcomes such as cost-efficiency, productivity gains, or market access",
     "order": 8,
     "baseWidgets": [
@@ -367,7 +367,7 @@
   },
   {
     "slug": "environmental-and-sustainability-impact",
-    "name": "Environmental and Sustainability Impact",
+    "name": "Environmental and sustainability impact",
     "description": "Explores how digital technologies contribute to resource efficiency, emissions reduction, and sustainability targets",
     "order": 9,
     "baseWidgets": [
@@ -384,7 +384,7 @@
   },
   {
     "slug": "future-outlook",
-    "name": "Future Outlook",
+    "name": "Future outlook",
     "description": "Gathers perspectives on planned upgrades, technology trajectories, and potential barriers",
     "order": 10,
     "baseWidgets": [
