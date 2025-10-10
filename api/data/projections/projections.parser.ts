@@ -106,6 +106,8 @@ const parseCategory = (
     let unit: string = rawUnit;
     if (rawUnit === 'EUR thousands') {
       unit = 'EUR';
+    } else if (rawUnit === 'Unit') {
+      unit = 'Units';
     }
 
     const id = currentId++;
