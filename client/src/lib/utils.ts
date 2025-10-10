@@ -168,3 +168,8 @@ export function getSettingsFilters(
 
   return [];
 }
+
+const PRIVATE_PAGES = /^(\/profile|\/survey-analysis\/sandbox\/[^/]+)/;
+export function isPrivatePath(pathname: string) {
+  return PRIVATE_PAGES.test(pathname);
+}

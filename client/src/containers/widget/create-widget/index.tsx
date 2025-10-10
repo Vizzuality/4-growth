@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 
 import { client } from "@/lib/queryClient";
 
+import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 import { FilterQueryParam } from "@/hooks/use-filters";
 
 import SaveWidgetForm from "@/containers/widget/create-widget/form";
@@ -40,6 +41,7 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
   const handleOnOpenChange = (isOpen: boolean) => {
     setOpen(isOpen);
   };
+  const { redirect } = useAuthRedirect();
 
   const createWidget = useCallback(
     async (name: string) => {
@@ -81,10 +83,7 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
           ),
         );
       } else {
-        toast({
-          variant: "destructive",
-          description: "Something went wrong saving the widget.",
-        });
+        redirect();
       }
     },
     [
@@ -95,6 +94,7 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
       filters,
       toast,
       router,
+      redirect,
     ],
   );
 

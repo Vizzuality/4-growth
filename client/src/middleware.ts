@@ -3,6 +3,8 @@ import type { NextRequest } from "next/server";
 
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
 
+import { isPrivatePath } from "@/lib/utils";
+
 import { env } from "./env";
 
 const [AUTH_USER, AUTH_PASS] = (env.AUTH_CREDENTIALS || ":").split(":");
@@ -23,8 +25,6 @@ const isAuthenticated = (req: NextRequest) => {
   return auth[0] === AUTH_USER && auth[1] === AUTH_PASS;
 };
 
-const PRIVATE_PAGES = /^(\/profile)/;
-
 export default function middleware(req: NextRequestWithAuth) {
   if (isBasicAuthEnabled && !isAuthenticated(req)) {
     return new NextResponse("Authentication required", {
@@ -33,7 +33,7 @@ export default function middleware(req: NextRequestWithAuth) {
     });
   }
 
-  if (PRIVATE_PAGES.test(req.nextUrl.pathname)) {
+  if (isPrivatePath(req.nextUrl.pathname)) {
     return withAuth(req, {
       pages: {
         signIn: "/auth/signin",
