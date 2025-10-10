@@ -26,9 +26,8 @@ export default function Explore() {
             Projections overview
           </Title>
           <p className="text-muted-foreground">
-            This section provides a high-level overview of the MMFT projection
-            data, allowing users to explore different scenarios and time series
-            through interactive visualizations.
+            Explore how digital transformation could evolve across different
+            future scenarios for agriculture and forestry.
           </p>
         </Card>
         <Card className="bg-lightgray col-span-1 bg-[url('/images/explore/overview-projections-bg.avif')] bg-cover bg-center bg-no-repeat" />

@@ -2,7 +2,7 @@
   {
     "slug": "overview",
     "name": "Survey analysis overview",
-    "description": "This section provides a summary of the key findings from the survey data, including technology adoption rates and other indicators",
+    "description": "Explore how digital technologies are being adopted across Europe’s agriculture and forestry sectors.",
     "order": 1,
     "baseWidgets": [
       {
