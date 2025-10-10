@@ -115,12 +115,14 @@ export default function Widget({
         )}
         {visualisations && (
           <>
-            <Separator />
+            <div className="px-4 py-2">
+              <Separator className="bg-[#627188]" />
+            </div>
             {visualisations.map((v) => (
               <Button
                 key={`visualization-list-item-${v}`}
                 variant="clean"
-                className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+                className="block w-full rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
                 onClick={() => setSelectedVisualization(v)}
               >
                 {getMenuButtonText(v)}
