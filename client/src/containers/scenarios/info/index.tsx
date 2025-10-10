@@ -15,10 +15,9 @@ const ScenariosInfo: FC = () => {
   return (
     <div className="text-xs text-slate-500">
       <p className="mb-4">
-        Lorem ipsum dolor sit amet consectetur. Enim laoreet volutpat lobortis
-        ultrices mattis amet gravida augue dapibus. Mattis risus at nisi at ut
-        gravida non maecenas. Pulvinar maecenas leo felis eu eget eget ac lorem
-        sed. Cras morbi tellus vitae quisque quis.
+        The projections combine foresight analysis and market modelling to
+        explore potential futures up to 2040, which can be viewed under
+        different scenarios.
       </p>
       <div className="space-y-2">
         {SCENARIOS.map((s) => (
