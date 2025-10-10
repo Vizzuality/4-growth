@@ -36,8 +36,8 @@ export function getColors(
   if (!data[unit]) return [];
 
   const colorsRaw = Array.from(new Set(data[unit].map((p) => p.color)));
-  const colors = colorsRaw.filter((c) => c !== "others");
-  if (colorsRaw.includes("others")) colors.push("others");
+  const colors = colorsRaw.filter((c) => c !== "Others");
+  if (colorsRaw.includes("Others")) colors.push("Others");
 
   return colors;
 }

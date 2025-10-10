@@ -207,7 +207,7 @@ export class PostgresProjectionDataRepository
           bd.unit,
           bd.year,
           CASE 
-            WHEN rc.rank <= 5 THEN bd.color::text
+            WHEN rc.rank <= 9 THEN bd.color::text
             ELSE 'Others'
           END as final_color,
           SUM(bd.vertical) as vertical
@@ -215,7 +215,7 @@ export class PostgresProjectionDataRepository
         JOIN ranked_colors rc ON bd.unit = rc.unit AND bd.color = rc.color
         GROUP BY bd.unit, bd.year, 
                  CASE 
-                   WHEN rc.rank <= 5 THEN bd.color::text
+                   WHEN rc.rank <= 9 THEN bd.color::text
                    ELSE 'Others'
                  END
       )
@@ -412,37 +412,44 @@ export class PostgresProjectionDataRepository
               AND size.year = horizontal.year
               AND size.unit = horizontal.unit
           ),
-          ranked_data AS (
+          color_totals AS (
             SELECT 
               unit,
               bubble,
-              year,
               color,
-              size,
-              vertical,
-              horizontal,
-              ROW_NUMBER() OVER (
-                PARTITION BY unit, bubble, year 
-                ORDER BY horizontal DESC
-              ) as rank
+              SUM(horizontal) as total_horizontal
             FROM combined_data
+            GROUP BY unit, bubble, color
+          ),
+          ranked_colors AS (
+            SELECT 
+              unit,
+              bubble,
+              color,
+              total_horizontal,
+              ROW_NUMBER() OVER (
+                PARTITION BY unit, bubble 
+                ORDER BY total_horizontal DESC
+              ) as rank
+            FROM color_totals
           ),
           processed_data AS (
             SELECT 
-              unit,
-              bubble,
-              year,
+              cd.unit,
+              cd.bubble,
+              cd.year,
               CASE 
-                WHEN rank <= 5 THEN color::text
+                WHEN rc.rank <= 9 THEN cd.color::text
                 ELSE 'Others'
               END as final_color,
-              SUM(size) as size,
-              SUM(vertical) as vertical,
-              SUM(horizontal) as horizontal
-            FROM ranked_data
-            GROUP BY unit, bubble, year, 
+              SUM(cd.size) as size,
+              SUM(cd.vertical) as vertical,
+              SUM(cd.horizontal) as horizontal
+            FROM combined_data cd
+            JOIN ranked_colors rc ON cd.unit = rc.unit AND cd.bubble = rc.bubble AND cd.color = rc.color
+            GROUP BY cd.unit, cd.bubble, cd.year, 
                      CASE 
-                       WHEN rank <= 5 THEN color::text
+                       WHEN rc.rank <= 9 THEN cd.color::text
                        ELSE 'Others'
                      END
           )

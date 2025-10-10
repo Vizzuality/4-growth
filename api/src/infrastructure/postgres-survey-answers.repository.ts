@@ -327,8 +327,28 @@ ORDER BY main_answer`;
     queryParams.push(breakdownIndicator);
     const breakdown = await this.dataSource.query(sqlCode, queryParams);
 
-    // Apply "others" grouping strategy: limit to top 5 secondary answers per main answer
-    const maxGroups = 6;
+    // Apply "others" grouping strategy: limit to top 9 breakdown values globally
+    const maxGroups = 10;
+
+    // Collect all unique breakdown labels (secondary dimension) across all main categories
+    const breakdownLabelTotals = new Map<string, number>();
+    breakdown.forEach((item: any) => {
+      item.data.forEach((d: any) => {
+        const currentTotal = breakdownLabelTotals.get(d.label) || 0;
+        breakdownLabelTotals.set(d.label, currentTotal + d.value);
+      });
+    });
+
+    // Rank breakdown labels globally and determine top labels
+    const sortedBreakdownLabels = Array.from(
+      breakdownLabelTotals.entries(),
+    ).sort((a, b) => b[1] - a[1]);
+
+    const topBreakdownLabels = new Set(
+      sortedBreakdownLabels.slice(0, maxGroups - 1).map(([label]) => label),
+    );
+
+    // Apply grouping to each main category based on global top breakdown labels
     const processedBreakdown = breakdown.map((item: any) => {
       const data = item.data as Array<{
         label: string;
@@ -336,37 +356,31 @@ ORDER BY main_answer`;
         total: number;
       }>;
 
-      // If we have fewer items than the limit, return as is
-      if (data.length <= maxGroups) {
-        return item;
-      }
+      // Separate top labels and others
+      const topItems: typeof data = [];
+      let othersValue = 0;
 
-      // Sort by value descending to get top answers
-      const sortedData = [...data].sort((a, b) => b.value - a.value);
+      data.forEach((d) => {
+        if (topBreakdownLabels.has(d.label)) {
+          topItems.push(d);
+        } else {
+          othersValue += d.value;
+        }
+      });
 
-      // Keep top answers (maxGroups - 1)
-      const topAnswers = sortedData.slice(0, maxGroups - 1);
-      const remainingAnswers = sortedData.slice(maxGroups - 1);
-
-      // Aggregate remaining answers into "Others"
-      const othersSum = remainingAnswers.reduce(
-        (sum, answer) => sum + answer.value,
-        0,
-      );
-
-      // Add top answers first, then "Others" (same pattern as projections)
-      const processedData = [...topAnswers];
-      if (othersSum > 0) {
+      // Add "Others" if there are grouped items
+      const processedData = [...topItems];
+      if (othersValue > 0) {
         processedData.push({
           label: 'Others',
-          value: othersSum,
+          value: othersValue,
           total: data[0].total,
         });
       }
 
       return {
         ...item,
-        data: processedData,
+        data: processedData.length > 0 ? processedData : data,
       };
     });
 
