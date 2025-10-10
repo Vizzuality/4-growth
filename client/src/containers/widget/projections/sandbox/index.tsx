@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   BubbleProjection,
@@ -34,7 +34,7 @@ export default function SandboxWidget({
   data,
   className,
 }: SandboxWidgetProps) {
-  const units = data ? Object.keys(data) : [];
+  const units = useMemo(() => (data ? Object.keys(data) : []), [data]);
   const [selectedUnit, setSelectedUnit] = useState(units[0]);
   const simpleChartProps = useMemo(
     () => ({
@@ -52,6 +52,10 @@ export default function SandboxWidget({
       className="p-0"
     />
   );
+
+  useEffect(() => {
+    setSelectedUnit(units[0]);
+  }, [indicator, units, setSelectedUnit]);
 
   if (!data || Object.keys(data).length === 0) {
     return (
