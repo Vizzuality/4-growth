@@ -42,7 +42,11 @@ export default async function SandboxPage({
 
   // TODO: Add proper redirect when API returns correct http codes (in another PR)
   if (response?.status !== 200) {
-    redirect(getRouteHref("surveyAnalysis", "sandbox"));
+    if (response?.status === 401) {
+      redirect("/auth/signin");
+    } else {
+      redirect(getRouteHref("surveyAnalysis", "sandbox"));
+    }
   }
 
   const queryClient = new QueryClient();

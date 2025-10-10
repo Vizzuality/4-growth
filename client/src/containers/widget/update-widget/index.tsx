@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 import { FilterQueryParam } from "@/hooks/use-filters";
 
 import { showOverlayAtom } from "@/containers/overlay/store";
@@ -60,6 +61,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
       ),
     [queryClient],
   );
+  const { redirect } = useAuthRedirect();
 
   const createWidget = useCallback(
     async (name: string) => {
@@ -102,10 +104,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
           ),
         );
       } else {
-        toast({
-          variant: "destructive",
-          description: "Something went wrong saving the widget.",
-        });
+        redirect();
       }
     },
     [
@@ -119,6 +118,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
       handleOnOpenChange,
       toast,
       router,
+      redirect,
     ],
   );
 
@@ -145,10 +145,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
         description: "Your chart has been successfully updated",
       });
     } else {
-      toast({
-        variant: "destructive",
-        description: "Something went wrong updating the widget.",
-      });
+      redirect();
     }
   }, [
     widgetId,
@@ -160,6 +157,7 @@ const UpdateWidgetMenu: FC<UpdateWidgetMenuProps> = ({
     invalidateQueries,
     handleOnOpenChange,
     toast,
+    redirect,
   ]);
 
   return (

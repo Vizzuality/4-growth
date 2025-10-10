@@ -12,6 +12,8 @@ import { SessionProvider } from "next-auth/react";
 
 import { makeQueryClient } from "@/lib/queryClient";
 
+import SessionChecker from "@/components/session-checker";
+
 let browserQueryClient: QueryClient | undefined = undefined;
 
 function getQueryClient() {
@@ -38,6 +40,7 @@ export default function LayoutProviders({
     <>
       <SessionProvider session={session} basePath="/auth/api">
         <QueryClientProvider client={queryClient}>
+          <SessionChecker />
           {children}
         </QueryClientProvider>
       </SessionProvider>
