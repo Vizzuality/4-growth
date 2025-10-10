@@ -108,6 +108,8 @@ const parseCategory = (
       unit = 'EUR';
     } else if (rawUnit === 'Unit') {
       unit = 'Units';
+    } else if (rawUnit === 'Area (Ha)') {
+      unit = 'Area (ha)';
     }
 
     const id = currentId++;
