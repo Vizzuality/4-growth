@@ -1,11 +1,9 @@
 "use client";
-import { FC, useRef } from "react";
+import { FC, useState } from "react";
 
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
 import { cn, formatAndRoundUp, formatNumber } from "@/lib/utils";
-
-import useTickMargin from "@/hooks/use-tick-margin";
 
 import NoData from "@/containers/no-data";
 import {
@@ -36,6 +34,7 @@ interface VerticalBarChartProps {
   unit: string;
   data: Record<string, number>[];
   colors?: (string | number)[];
+  enableHoverStyles?: boolean;
 }
 
 const VerticalBarChart: FC<VerticalBarChartProps> = ({
@@ -43,9 +42,9 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
   unit,
   data,
   colors,
+  enableHoverStyles,
 }) => {
-  const chartRef = useRef<HTMLDivElement>(null);
-  const tickMargin = useTickMargin(chartRef);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   if (!data || data.length === 0) {
     console.error(
@@ -60,7 +59,6 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
     <ChartContainer
       config={{}}
       className={cn(CHART_CONTAINER_CLASS_NAME, "h-full overflow-hidden")}
-      ref={chartRef}
       style={CHART_STYLES}
     >
       <BarChart
@@ -68,6 +66,17 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
         data={data}
         layout="horizontal"
         barCategoryGap={BAR_GAP}
+        onMouseMove={(state) => {
+          if (
+            state.isTooltipActive &&
+            typeof state.activeTooltipIndex === "number"
+          ) {
+            setHoveredIndex(state.activeTooltipIndex);
+          } else {
+            setHoveredIndex(null);
+          }
+        }}
+        onMouseLeave={() => setHoveredIndex(null)}
         accessibilityLayer
       >
         <ChartTooltip
@@ -110,10 +119,13 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
                 <Cell
                   key={`cell-${entry.year}-${index}`}
                   fill={
-                    index === highestValueIndex
-                      ? "hsl(var(--accent))"
-                      : "hsl(var(--secondary))"
+                    enableHoverStyles && index === hoveredIndex
+                      ? "#fff"
+                      : index === highestValueIndex
+                        ? "hsl(var(--accent))"
+                        : "hsl(var(--secondary))"
                   }
+                  className="transition-colors"
                   // @ts-expect-error - Recharts Cell radius prop accepts [number, number, number, number] for corner radius
                   // but its type definition only allows string | number | undefined
                   radius={getRadius(index, data.length)}
@@ -141,17 +153,46 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
           dataKey="year"
           tickLine={false}
           axisLine={false}
-          tickMargin={tickMargin}
+          tickMargin={-30}
           interval="preserveStartEnd"
           tickFormatter={(value) => (value % 10 === 0 ? value : "")}
+          tick={({ x, y, payload, index }) => {
+            const isHovered = index === hoveredIndex;
+            if (payload.value % 10 === 0) {
+              return (
+                <text
+                  x={x}
+                  y={y}
+                  textAnchor="middle"
+                  dominantBaseline="hanging"
+                  className="transition-all"
+                  style={{
+                    fill:
+                      enableHoverStyles && isHovered
+                        ? "hsl(var(--background))"
+                        : "hsl(var(--foreground))",
+                    transition: "fill 0.2s",
+                  }}
+                >
+                  {payload.value}
+                </text>
+              );
+            }
+            return <path />;
+          }}
         />
+
         <YAxis
           type="number"
           orientation="right"
           axisLine={false}
           tickLine={false}
-          style={{ transform: "translateY(-10px)" }}
-          tickFormatter={formatAndRoundUp}
+          style={{ transform: "translate(30px, -10px)" }}
+          tick={({ x, y, payload }) => (
+            <text x={x + 30} y={y} textAnchor="end" style={{ fontSize: 12 }}>
+              {formatAndRoundUp(payload.value)}
+            </text>
+          )}
         />
       </BarChart>
     </ChartContainer>

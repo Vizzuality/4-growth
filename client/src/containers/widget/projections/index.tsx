@@ -149,6 +149,7 @@ export default function Widget({
             unit={selectedUnit}
             indicator={indicator}
             data={data[selectedUnit]}
+            enableHoverStyles
           />
         </Card>
       );

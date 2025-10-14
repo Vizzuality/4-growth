@@ -122,9 +122,14 @@ const LineChart: FC<LineChartProps> = ({
         />
         <YAxis
           type="number"
+          orientation="right"
           axisLine={false}
           tickLine={false}
-          tickFormatter={formatAndRoundUp}
+          tick={({ x, y, payload }) => (
+            <text x={x + 30} y={y} textAnchor="end" style={{ fontSize: 12 }}>
+              {formatAndRoundUp(payload.value)}
+            </text>
+          )}
         />
       </ReLinChart>
     </ChartContainer>

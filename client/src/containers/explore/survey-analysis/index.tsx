@@ -102,7 +102,7 @@ export default function Explore() {
                   responseRate={w.responseRate}
                   className="col-span-1 last:odd:col-span-2"
                   config={{
-                    menu: { className: "flex flex-col gap-6 py-4" },
+                    menu: { className: "flex flex-col gap-6" },
                     pieChart: {
                       className: "aspect-square min-h-[200px]",
                       legendPosition: "right",
