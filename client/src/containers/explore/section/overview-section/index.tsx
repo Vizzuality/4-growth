@@ -28,7 +28,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
           data={firstWidget.data}
           responseRate={firstWidget.responseRate}
           config={{
-            menu: { className: "flex flex-col gap-6 py-4" },
+            menu: { className: "flex flex-col gap-6" },
           }}
           showCustomizeWidgetButton
         />
