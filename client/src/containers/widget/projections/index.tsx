@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Link from "next/link";
 
@@ -68,7 +68,7 @@ export default function Widget({
   showCustomizeWidgetButton,
   config,
 }: WidgetProps) {
-  const units = data ? Object.keys(data) : [];
+  const units = useMemo(() => (data ? Object.keys(data) : []), [data]);
   const [selectedUnit, setSelectedUnit] = useState(units[0]);
   const [selectedVisualization, setSelectedVisualization] =
     useState<ProjectionVisualizationsType>(visualization);
@@ -126,6 +126,10 @@ export default function Widget({
   useEffect(() => {
     setSelectedVisualization(visualization);
   }, [visualization]);
+
+  useEffect(() => {
+    setSelectedUnit(units[0]);
+  }, [units, setSelectedUnit]);
 
   if (!data || Object.keys(data).length === 0) {
     return (
