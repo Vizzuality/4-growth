@@ -15,7 +15,10 @@ import BubbleChart from "@/containers/widget/bubble-chart";
 import WidgetLegend from "@/containers/widget/legend";
 import LineChart from "@/containers/widget/line-chart";
 import UnitSelect from "@/containers/widget/unit-select";
-import { getSimpleChartProps } from "@/containers/widget/utils";
+import {
+  getDefaultProjectionUnit,
+  getSimpleChartProps,
+} from "@/containers/widget/utils";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
@@ -35,7 +38,9 @@ export default function SandboxWidget({
   className,
 }: SandboxWidgetProps) {
   const units = useMemo(() => (data ? Object.keys(data) : []), [data]);
-  const [selectedUnit, setSelectedUnit] = useState(units[0]);
+  const [selectedUnit, setSelectedUnit] = useState(
+    getDefaultProjectionUnit(data, indicator),
+  );
   const simpleChartProps = useMemo(
     () => ({
       indicator,
@@ -54,8 +59,8 @@ export default function SandboxWidget({
   );
 
   useEffect(() => {
-    setSelectedUnit(units[0]);
-  }, [indicator, units, setSelectedUnit]);
+    setSelectedUnit(getDefaultProjectionUnit(data, indicator));
+  }, [indicator, units, setSelectedUnit, data]);
 
   if (!data || Object.keys(data).length === 0) {
     return (

@@ -86,3 +86,14 @@ export function getSimpleChartProps(data: CustomProjection, unit: string) {
 
   return { data: chartData, colors: getColors(data, unit) };
 }
+
+export function getDefaultProjectionUnit(
+  data?: ProjectionWidgetData | CustomProjection,
+  indicator?: string,
+): string {
+  if (indicator === "Shipments") return "Units";
+
+  if (!data || "EUR" in data) return "EUR";
+
+  return Object.keys(data)[0];
+}
