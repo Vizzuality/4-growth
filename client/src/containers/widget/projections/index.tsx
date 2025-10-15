@@ -10,6 +10,7 @@ import { useAtom } from "jotai";
 
 import { cn } from "@/lib/utils";
 
+import { focusedWidgetAtom } from "@/containers/explore/store";
 import MenuButton from "@/containers/menu-button";
 import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
@@ -66,18 +67,27 @@ export default function Widget({
   const [selectedVisualization, setSelectedVisualization] =
     useState<ProjectionVisualizationsType>(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
+  const [focusedWidget, setFocusedWidget] = useAtom(focusedWidgetAtom);
+  const highlightWidget = showOverlay && indicator === focusedWidget;
   const menuComponent =
     menu ||
     (!visualisations && !showCustomizeWidgetButton ? undefined : (
       <MenuButton
         className={className}
-        onOpenChange={setShowOverlay}
+        onOpenChange={(open) => {
+          setShowOverlay(open);
+          if (open) {
+            setFocusedWidget(indicator);
+          } else {
+            setFocusedWidget(null);
+          }
+        }}
         {...config?.menu}
       >
         {showCustomizeWidgetButton && (
           <Button
             variant="clean"
-            className="block rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+            className="block rounded-none px-4 py-3.5 text-left text-xs font-medium transition-colors hover:bg-muted"
             asChild
           >
             <Link
@@ -97,7 +107,7 @@ export default function Widget({
               <Button
                 key={`visualization-list-item-${v}`}
                 variant="clean"
-                className="block w-full rounded-none px-6 py-2 text-left transition-colors hover:bg-muted"
+                className="block w-full rounded-none px-4 py-3.5 text-left text-xs font-medium transition-colors hover:bg-muted"
                 onClick={() => setSelectedVisualization(v)}
               >
                 {getMenuButtonText(v)}
@@ -140,7 +150,9 @@ export default function Widget({
   switch (selectedVisualization) {
     case "bar_chart":
       return (
-        <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
+        <Card
+          className={cn("relative p-0", highlightWidget && "z-50", className)}
+        >
           <WidgetHeader
             title={indicator}
             question={widgetDescription}
@@ -157,7 +169,9 @@ export default function Widget({
       );
     case "line_chart":
       return (
-        <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
+        <Card
+          className={cn("relative p-0", highlightWidget && "z-50", className)}
+        >
           <WidgetHeader
             title={indicator}
             question={widgetDescription}
@@ -174,7 +188,9 @@ export default function Widget({
       );
     case "table":
       return (
-        <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
+        <Card
+          className={cn("relative p-0", highlightWidget && "z-50", className)}
+        >
           <WidgetHeader
             title={indicator}
             question={widgetDescription}
@@ -189,7 +205,7 @@ export default function Widget({
         <Card
           className={cn(
             "relative min-h-80 p-0 pb-7",
-            showOverlay && "z-50",
+            highlightWidget && "z-50",
             className,
           )}
         >
