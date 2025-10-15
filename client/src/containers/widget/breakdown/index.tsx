@@ -47,6 +47,25 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
 
   return (
     <>
+      <div
+        data-testid="breakdown-chart-legend"
+        className="mb-8 flex flex-wrap items-center gap-6 px-6"
+      >
+        {labels.map((label) => (
+          <p
+            key={`breakdown-chart-legend-${label}`}
+            className="flex items-center gap-x-1 text-xs"
+          >
+            <span
+              className={cn(
+                "block h-3 w-3 rounded-full",
+                labelColors[label].tailwind,
+              )}
+            ></span>
+            <span>{label}</span>
+          </p>
+        ))}
+      </div>
       <div className="breakdown-chart space-y-10 overflow-y-auto pb-10">
         {data.map((d) => {
           const height = d.data.length * 10;
@@ -98,26 +117,6 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
             </div>
           );
         })}
-      </div>
-
-      <div
-        data-testid="breakdown-chart-legend"
-        className="flex items-center gap-6 pl-6"
-      >
-        {labels.map((label) => (
-          <p
-            key={`breakdown-chart-legend-${label}`}
-            className="flex items-center gap-x-1 text-xs"
-          >
-            <span
-              className={cn(
-                "block h-3 w-3 rounded-full",
-                labelColors[label].tailwind,
-              )}
-            ></span>
-            <span>{label}</span>
-          </p>
-        ))}
       </div>
     </>
   );
