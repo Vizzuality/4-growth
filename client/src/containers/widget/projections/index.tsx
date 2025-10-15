@@ -16,6 +16,7 @@ import { showOverlayAtom } from "@/containers/overlay/store";
 import LineChart from "@/containers/widget/line-chart";
 import TableView from "@/containers/widget/table";
 import UnitSelect from "@/containers/widget/unit-select";
+import { getDefaultProjectionUnit } from "@/containers/widget/utils";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
@@ -69,7 +70,9 @@ export default function Widget({
   config,
 }: WidgetProps) {
   const units = useMemo(() => (data ? Object.keys(data) : []), [data]);
-  const [selectedUnit, setSelectedUnit] = useState(units[0]);
+  const [selectedUnit, setSelectedUnit] = useState(
+    getDefaultProjectionUnit(data, indicator),
+  );
   const [selectedVisualization, setSelectedVisualization] =
     useState<ProjectionVisualizationsType>(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
@@ -128,8 +131,8 @@ export default function Widget({
   }, [visualization]);
 
   useEffect(() => {
-    setSelectedUnit(units[0]);
-  }, [units, setSelectedUnit]);
+    setSelectedUnit(getDefaultProjectionUnit(data, indicator));
+  }, [units, setSelectedUnit, data, indicator]);
 
   if (!data || Object.keys(data).length === 0) {
     return (
