@@ -14,6 +14,10 @@ import MenuButton from "@/containers/menu-button";
 import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
 import LineChart from "@/containers/widget/line-chart";
+import {
+  getMenuButtonText,
+  widgetDescriptionMap,
+} from "@/containers/widget/projections/utils";
 import TableView from "@/containers/widget/table";
 import UnitSelect from "@/containers/widget/unit-select";
 import { getDefaultProjectionUnit } from "@/containers/widget/utils";
@@ -24,21 +28,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getRouteHref } from "@/utils/route-config";
-
-const getMenuButtonText = (v: ProjectionVisualizationsType): string => {
-  switch (v) {
-    case "line_chart":
-      return "Show as a line chart";
-    case "bar_chart":
-      return "Show as a bar chart";
-    case "bubble_chart":
-      return "Show as a bubble chart";
-    case "table":
-      return "Show as a table";
-    default:
-      return "";
-  }
-};
 
 export interface WidgetProps {
   indicator: string;
@@ -69,6 +58,7 @@ export default function Widget({
   showCustomizeWidgetButton,
   config,
 }: WidgetProps) {
+  const widgetDescription = widgetDescriptionMap[indicator];
   const units = useMemo(() => (data ? Object.keys(data) : []), [data]);
   const [selectedUnit, setSelectedUnit] = useState(
     getDefaultProjectionUnit(data, indicator),
@@ -137,7 +127,11 @@ export default function Widget({
   if (!data || Object.keys(data).length === 0) {
     return (
       <Card className={cn("relative min-h-80 p-0", className)}>
-        <WidgetHeader title={indicator} menu={menuComponent} />
+        <WidgetHeader
+          title={indicator}
+          question={widgetDescription}
+          menu={menuComponent}
+        />
         <NoData />
       </Card>
     );
@@ -149,6 +143,7 @@ export default function Widget({
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader
             title={indicator}
+            question={widgetDescription}
             menu={menuComponent}
             select={selectComponent}
           />
@@ -165,6 +160,7 @@ export default function Widget({
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader
             title={indicator}
+            question={widgetDescription}
             menu={menuComponent}
             select={selectComponent}
           />
@@ -181,6 +177,7 @@ export default function Widget({
         <Card className={cn("relative p-0", showOverlay && "z-50", className)}>
           <WidgetHeader
             title={indicator}
+            question={widgetDescription}
             menu={menuComponent}
             select={selectComponent}
           />
@@ -196,7 +193,11 @@ export default function Widget({
             className,
           )}
         >
-          <WidgetHeader title={indicator} menu={menuComponent} />
+          <WidgetHeader
+            title={indicator}
+            question={widgetDescription}
+            menu={menuComponent}
+          />
         </Card>
       );
 
