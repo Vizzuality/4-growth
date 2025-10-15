@@ -25,7 +25,7 @@ const NoData: FC<PropsWithChildren<NoDataProps>> = ({
   return (
     <div
       className={cn(
-        "flex h-full flex-col items-center justify-center gap-4 rounded-2xl bg-disabled-background/5 p-8 text-xs text-disabled-foreground",
+        "flex h-full flex-col items-center justify-center gap-4 rounded-2xl p-8 text-xs text-disabled-foreground",
         className,
       )}
     >
