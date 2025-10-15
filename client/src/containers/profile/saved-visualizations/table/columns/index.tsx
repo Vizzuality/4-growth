@@ -20,7 +20,7 @@ const useColumns = () => {
       cell: (cellProps) => <CellName {...cellProps} />,
     },
     {
-      accessorKey: "createdAt",
+      accessorKey: "widget.title",
       header: (headerProps) => (
         <div className="flex space-x-2 text-slate-300">
           <span className="text-sm font-medium">Indicator</span>
