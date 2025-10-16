@@ -62,7 +62,7 @@ test.describe('Custom Charts E2E', () => {
 
       await page.goto('/profile');
       await page
-        .getByRole('cell', { name: widget.defaultVisualization })
+        .getByRole('cell', { name: 'Area chart' })
         .getByRole('button')
         .click();
       await page.getByRole('button', { name: 'Rename' }).click();
@@ -83,7 +83,7 @@ test.describe('Custom Charts E2E', () => {
 
       await page.goto('/profile');
       await page
-        .getByRole('cell', { name: widget.defaultVisualization })
+        .getByRole('cell', { name: 'Area chart' })
         .getByRole('button')
         .click();
       await page.getByRole('button', { name: 'Delete', exact: true }).click();
