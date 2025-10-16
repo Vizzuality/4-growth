@@ -41,18 +41,26 @@ import { selectedRowAtom } from "../../store";
 import useColumns from "./columns";
 
 const ROWS_PER_PAGE_OPTIONS = ["10", "25", "50", "100"];
+export const DEFAULT_TABLE_OPTIONS = {
+  sorting: [],
+  pagination: {
+    page: 1,
+    size: Number(ROWS_PER_PAGE_OPTIONS[0]),
+    totalPages: 1,
+  },
+};
 
 const SavedVisualizationsTable: FC = () => {
   const columns = useColumns();
   const { data: session } = useSession();
   const [selectedRow] = useAtom(selectedRowAtom);
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [pagination, setPagination] = useState({
-    page: 1,
-    size: Number(ROWS_PER_PAGE_OPTIONS[0]),
-    totalPages: 1,
-  });
+  const [sorting, setSorting] = useState<SortingState>(
+    DEFAULT_TABLE_OPTIONS.sorting,
+  );
+  const [pagination, setPagination] = useState(
+    DEFAULT_TABLE_OPTIONS.pagination,
+  );
 
   const { data } = client.users.searchCustomWidgets.useQuery(
     queryKeys.users.userCharts(session?.user.id as string, {

@@ -33,7 +33,6 @@ const ActionsMenu: FC<{
         <Link
           href={getDynamicRouteHref("surveyAnalysis", "sandbox", String(id))}
           className={CLASS}
-          target="_blank"
         >
           <ArrowUpRightIcon />
           <span>Open in Sandbox</span>
