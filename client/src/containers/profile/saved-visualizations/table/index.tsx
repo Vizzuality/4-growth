@@ -2,6 +2,8 @@
 
 import { FC, useEffect, useState } from "react";
 
+import { useRouter } from "next/navigation";
+
 import { CustomWidget } from "@shared/dto/widgets/custom-widget.entity";
 import { SortQueryParam } from "@shared/schemas/query-param.schema";
 import {
@@ -35,6 +37,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getAuthHeader } from "@/utils/auth-header";
+import { getDynamicRouteHref } from "@/utils/route-config";
 
 import { selectedRowAtom } from "../../store";
 
@@ -54,6 +57,7 @@ const SavedVisualizationsTable: FC = () => {
   const columns = useColumns();
   const { data: session } = useSession();
   const [selectedRow] = useAtom(selectedRowAtom);
+  const router = useRouter();
 
   const [sorting, setSorting] = useState<SortingState>(
     DEFAULT_TABLE_OPTIONS.sorting,
@@ -143,10 +147,22 @@ const SavedVisualizationsTable: FC = () => {
             {table.getRowModel().rows.map((row) => (
               <tr
                 key={row.id}
-                className={cn("border-l !border-l-transparent", {
-                  "!border-l-foreground bg-navy-700":
-                    selectedRow === String(row.original.id),
-                })}
+                className={cn(
+                  "cursor-pointer border-l !border-l-transparent hover:bg-navy-700",
+                  {
+                    "!border-l-foreground bg-navy-700":
+                      selectedRow === String(row.original.id),
+                  },
+                )}
+                onClick={() =>
+                  router.push(
+                    getDynamicRouteHref(
+                      "surveyAnalysis",
+                      "sandbox",
+                      String(row.original.id),
+                    ),
+                  )
+                }
               >
                 {row.getVisibleCells().map((cell) => (
                   <td

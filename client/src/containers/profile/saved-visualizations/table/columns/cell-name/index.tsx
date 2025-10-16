@@ -15,6 +15,7 @@ import { useSession } from "next-auth/react";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
+import { cn } from "@/lib/utils";
 
 import { selectedRowAtom } from "@/containers/profile/store";
 
@@ -106,7 +107,11 @@ const CellName: FC<CellContext<ColumnsTable, unknown>> = ({
       readOnly={!isEditing}
       defaultValue={getValue() as string}
       onKeyDown={handleEnterKey}
-      className="border-l-0 bg-transparent pl-0 focus-within:bg-transparent hover:bg-transparent"
+      className={cn({
+        "border-l-0 bg-transparent pl-0 focus-within:bg-transparent hover:bg-transparent":
+          true,
+        "cursor-pointer": !isEditing,
+      })}
     />
   );
 };
