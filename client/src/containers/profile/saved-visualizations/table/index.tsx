@@ -148,7 +148,7 @@ const SavedVisualizationsTable: FC = () => {
               <tr
                 key={row.id}
                 className={cn(
-                  "cursor-pointer border-l !border-l-transparent hover:bg-navy-700",
+                  "cursor-pointer border-l !border-l-transparent transition-colors hover:bg-navy-700",
                   {
                     "!border-l-foreground bg-navy-700":
                       selectedRow === String(row.original.id),
