@@ -39,7 +39,13 @@ const ActionsMenu: FC<{
         </Link>
       </li>
       <li>
-        <button onClick={handleRename} className={CLASS}>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            handleRename();
+          }}
+          className={CLASS}
+        >
           <SquarePenIcon />
           <span>Rename</span>
         </button>

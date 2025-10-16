@@ -61,7 +61,7 @@ const DeleteVisualizationButton: FC<{ id: number }> = ({ id }) => {
   }, [id, queryClient, session?.accessToken, session?.user.id, toast]);
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
+      <AlertDialogTrigger asChild onClick={(e) => e.stopPropagation()}>
         <button type="button" className={cn(CLASS, "text-destructive")}>
           <Trash2Icon />
           <span>Delete</span>
@@ -76,12 +76,12 @@ const DeleteVisualizationButton: FC<{ id: number }> = ({ id }) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel asChild>
+          <AlertDialogCancel asChild onClick={(e) => e.stopPropagation()}>
             <Button type="button" variant="outline-alt">
               Cancel
             </Button>
           </AlertDialogCancel>
-          <AlertDialogAction asChild>
+          <AlertDialogAction asChild onClick={(e) => e.stopPropagation()}>
             <Button
               type="button"
               variant="destructive"

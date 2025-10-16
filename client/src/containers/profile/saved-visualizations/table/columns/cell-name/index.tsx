@@ -107,6 +107,10 @@ const CellName: FC<CellContext<ColumnsTable, unknown>> = ({
       readOnly={!isEditing}
       defaultValue={getValue() as string}
       onKeyDown={handleEnterKey}
+      onClick={(e) => {
+        if (!isEditing) return;
+        e.stopPropagation();
+      }}
       className={cn({
         "border-l-0 bg-transparent pl-0 focus-within:bg-transparent hover:bg-transparent":
           true,
