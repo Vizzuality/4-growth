@@ -32,7 +32,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
   const [visualization, setVisualization] = useAtom(sandboxVisualizationAtom);
   const [filters, setFilters] = useAtom(sandboxFiltersAtom);
   const getCustomWidgetQuery = client.users.findCustomWidget.useQuery(
-    queryKeys.users.userChart(session?.user.id as string).queryKey,
+    queryKeys.users.userChart(customWidgetId).queryKey,
     {
       params: {
         id: Number(customWidgetId),
@@ -70,12 +70,9 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
 
   useEffect(() => {
     if (getCustomWidgetQuery.status === "success") {
-      if (!indicator) {
-        setIndicator(getCustomWidgetQuery.data.widget.indicator);
-      }
-      if (!visualization) {
-        setVisualization(getCustomWidgetQuery.data.defaultVisualization);
-      }
+      setIndicator(getCustomWidgetQuery.data.widget.indicator);
+      setVisualization(getCustomWidgetQuery.data.defaultVisualization);
+
       if (getCustomWidgetQuery.data.filters.length) {
         setFilters(getCustomWidgetQuery.data.filters);
       }
