@@ -27,7 +27,8 @@ export default function Explore() {
           </Title>
           <p className="text-muted-foreground">
             Explore how digital transformation could evolve across different
-            future scenarios for agriculture and forestry.
+            future scenarios for forestry - with agriculture projections to
+            follow soon.
           </p>
         </Card>
         <Card className="bg-lightgray col-span-1 bg-[url('/images/explore/overview-projections-bg.avif')] bg-cover bg-center bg-no-repeat" />
