@@ -29,7 +29,10 @@ const ActionsButton = ({ row }: CellContext<ColumnsTable, unknown>) => {
         className={
           "group flex h-8 w-8 items-center rounded-full bg-foreground p-2 transition-colors hover:bg-navy-800"
         }
-        onClick={resetSelectedRow}
+        onClick={(e) => {
+          e.stopPropagation();
+          resetSelectedRow();
+        }}
       >
         <XIcon
           className="h-full w-full text-navy-700 group-hover:text-foreground"
