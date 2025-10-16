@@ -4,14 +4,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { WidgetVisualizationsType } from "@shared/dto/widgets/widget-visualizations.constants";
+import { useQueryClient } from "@tanstack/react-query";
 import { SaveIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import { client } from "@/lib/queryClient";
+import { queryKeys } from "@/lib/queryKeys";
 
 import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 import { FilterQueryParam } from "@/hooks/use-filters";
 
+import { DEFAULT_TABLE_OPTIONS } from "@/containers/profile/saved-visualizations/table";
 import SaveWidgetForm from "@/containers/widget/create-widget/form";
 
 import { Button } from "@/components/ui/button";
@@ -37,6 +40,7 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
   const { data: session } = useSession();
   const router = useRouter();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
   const handleOnOpenChange = (isOpen: boolean) => {
     setOpen(isOpen);
@@ -63,6 +67,12 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
       });
 
       if (status === 201) {
+        queryClient.invalidateQueries(
+          queryKeys.users.userCharts(
+            session?.user.id as string,
+            DEFAULT_TABLE_OPTIONS,
+          ).queryKey,
+        );
         setOpen(false);
         toast({
           description: (
@@ -95,6 +105,7 @@ const CreateWidgetMenu: FC<CreateWidgetMenuProps> = ({
       toast,
       router,
       redirect,
+      queryClient,
     ],
   );
 
