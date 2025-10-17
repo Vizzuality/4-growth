@@ -109,7 +109,13 @@ export class PostgresProjectionDataRepository
       .getRepository(Projection)
       .createQueryBuilder('projection')
       .select('projectionData.year', 'year')
-      .addSelect('SUM(projectionData.value)', 'value')
+      .addSelect(
+        `CASE 
+          WHEN projection.unit = '%' THEN AVG(projectionData.value)
+          ELSE SUM(projectionData.value)
+        END`,
+        'value',
+      )
       .addSelect('projection.unit', 'unit')
       .innerJoin('projection.projectionData', 'projectionData')
       .groupBy('projectionData.year')
