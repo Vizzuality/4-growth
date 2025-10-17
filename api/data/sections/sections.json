@@ -108,15 +108,6 @@
     "order": 3,
     "baseWidgets": [
       {
-        "title": "Governance model impact",
-        "question": "Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?",
-        "questionTitle": "Governance model impact",
-        "indicator": "governance-model-impact",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 1
-      },
-      {
         "title": "Regulatory considerations",
         "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
         "questionTitle": "Regulatory considerations",

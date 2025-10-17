@@ -14,7 +14,7 @@ INSERT INTO question_indicator_map ("indicator", "question") VALUES
     ('considerations-to-be-taken-into-account', 'Considerations to be taken into account'),
 
     -- Section 2 - Governance Model
-    ('governance-model-impact', 'Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?'),
+    -- ('governance-model-impact', 'Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?'),
     ('governance-model-type', 'What type of governance model do you operate under?'),
     ('governance-model-type-other', 'If other, please specify'),
     ('regulatory-considerations', 'Are there regulatory considerations influencing the governance of digital technology adoption?'),

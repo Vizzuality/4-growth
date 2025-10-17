@@ -11,7 +11,7 @@ INSERT INTO public.page_filters ("name", "label", "values") VALUES ('primary-are
 INSERT INTO public.page_filters ("name", "label", "values") VALUES ('organic-farming-operation', 'Organic farming operation','Yes;No;Don''t know;N/A');
 
 -- Section 2 - Governance Model
-INSERT INTO public.page_filters ("name", "label", "values") VALUES ('governance-model-impact', 'Governance model impact','Facilitated;Hindered;No impact;N/A');
+-- INSERT INTO public.page_filters ("name", "label", "values") VALUES ('governance-model-impact', 'Governance model impact','Facilitated;Hindered;No impact;N/A');
 INSERT INTO public.page_filters ("name", "label", "values") VALUES ('regulatory-considerations', 'Regulatory considerations','Yes;No;Don''t know;N/A');
 
 -- Section 3 - Adoption of Digital Technologies and Technology Integration

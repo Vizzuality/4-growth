@@ -51,7 +51,7 @@ const QUESTIONS = new Set([
   'How have digital technologies impacted job creation?',
   'What type of data do you collect?',
   'Do you share this data?',
-  'Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?',
+  // 'Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?',
   'Have you experienced social benefits through the use of digital technologies?',
   'What is the level of direct costs?',
   'Agriculture/forestry organisation size',
@@ -187,9 +187,13 @@ export const transform = async () => {
     },
   );
 
-  const filteredAnswers = join3.where(
-    (row) => row['answer'].startsWith('No categorical answer') === false,
-  );
+  const filteredAnswers = join3.where((row) => {
+    return (
+      row['answer'].startsWith('No categorical answer') === false &&
+      row['question'] !==
+        'Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?'
+    );
+  });
 
   const answersGroupByAnswers = filteredAnswers.groupBy(
     (row) => row['surveyId'],
