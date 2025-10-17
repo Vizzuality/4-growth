@@ -1,4 +1,4 @@
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Logger, Module, OnModuleInit } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from '@api/app.service';
 import { UsersModule } from '@api/modules/users/users.module';
@@ -21,7 +21,7 @@ import { SQLAdapter } from '@api/infrastructure/sql-adapter';
 import { TerminusModule } from '@nestjs/terminus';
 import { ProjectionsModule } from '@api/modules/projections/projections.module';
 import { ScheduleModule } from '@nestjs/schedule';
-
+import * as config from 'config';
 const NODE_ENV = process.env.NODE_ENV;
 
 @Module({
@@ -55,9 +55,14 @@ const NODE_ENV = process.env.NODE_ENV;
   ],
 })
 export class AppModule implements OnModuleInit {
+  private readonly logger = new Logger(this.constructor.name);
+
   public constructor(private readonly dataSourceManager: DataSourceManager) {}
 
   public async onModuleInit() {
+    this.logger.log(
+      `ETL CONFIG cronEnabled: ${config.get<boolean>('etl.cronEnabled')}`,
+    );
     await this.dataSourceManager.loadInitialData();
   }
 }

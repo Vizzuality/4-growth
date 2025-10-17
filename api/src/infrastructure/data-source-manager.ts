@@ -24,6 +24,7 @@ import { Cron } from '@nestjs/schedule';
 import { EtlNotificationService } from './etl-notification.service';
 import { ConfigurationParams } from '@shared/dto/global/configuration-params';
 import { FSUtils } from '@api/infrastructure/fs/fs.utils';
+import * as config from 'config';
 
 @Injectable()
 export class DataSourceManager {
@@ -33,7 +34,10 @@ export class DataSourceManager {
     private readonly etlNotificationService: EtlNotificationService,
   ) {}
 
-  @Cron('0 3 * * 0')
+  @Cron('0 3 * * 0', {
+    name: 'ETL Process',
+    disabled: !config.get<boolean>('etl.cronEnabled'),
+  })
   public async performETL(): Promise<void> {
     this.logger.log('Starting ETL process', this.constructor.name);
     try {

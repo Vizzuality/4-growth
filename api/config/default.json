@@ -21,5 +21,8 @@
     },
     "contactEmail": "contact@email.com",
     "etlProcessEmails": "admin@example.com"
+  },
+  "etl": {
+    "cronEnabled": false
   }
 }

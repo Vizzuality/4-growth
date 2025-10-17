@@ -20,5 +20,8 @@
     },
     "contactEmail": "CONTACT_EMAIL",
     "etlProcessEmails": "ETL_PROCESS_EMAILS"
+  },
+  "etl": {
+    "cronEnabled": "ETL_CRON_ENABLED"
   }
 }
