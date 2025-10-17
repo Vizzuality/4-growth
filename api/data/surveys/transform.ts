@@ -181,7 +181,7 @@ export const transform = async () => {
     (rightRow) => rightRow.Value['ID'],
     (leftRow, rightRow) => {
       leftRow['answerId'] = leftRow['answer'];
-      const answer = rightRow.Value['Name'].replace(/ \([\w\s]+\)/g, '');
+      const answer = rightRow.Value['Description'].replace(/ \([\w\s]+\)/g, '');
       leftRow['answer'] = answer;
       return leftRow;
     },

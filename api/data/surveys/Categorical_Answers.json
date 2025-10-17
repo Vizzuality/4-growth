@@ -10,6 +10,17 @@
       "ID": 0
     },
     {
+      "Name": "BLANKO",
+      "ExternalID": "EiQJsQxsd12sfPnRNlMIo",
+      "ID": 64214
+    },
+    {
+      "Name": "TEST1234567",
+      "Description": "TEST1234567",
+      "ExternalID": "EiQJsQxfPnRNlMIo",
+      "ID": 1452283
+    },
+    {
       "Name": "Medium-scale/Local-National",
       "Description": "Medium-scale/Local-National",
       "ExternalID": "Vidutinio masto / Vietinė – Nacionalinė",
@@ -17,2089 +28,2089 @@
     },
     {
       "Name": "5 (all languages)",
-      "Description": "5",
+      "Description": "5 (all languages)",
       "ExternalID": "5.0",
       "ID": 2045016
     },
     {
       "Name": "4 (all languages)",
-      "Description": "4",
+      "Description": "4 (all languages)",
       "ExternalID": "4.0",
       "ID": 2045017
     },
     {
       "Name": "3 (all languages)",
-      "Description": "3",
+      "Description": "3 (all languages)",
       "ExternalID": "3.0",
       "ID": 2045018
     },
     {
       "Name": "2 (all languages)",
-      "Description": "2",
+      "Description": "2 (all languages)",
       "ExternalID": "2.0",
       "ID": 2045019
     },
     {
       "Name": "1 (all languages)",
-      "Description": "1",
+      "Description": "1 (all languages)",
       "ExternalID": "1.0",
       "ID": 2045020
     },
     {
       "Name": "Sweden (fr)",
-      "Description": "Sweden",
+      "Description": "Sweden (fr)",
       "ExternalID": "Suède",
       "ID": 2045021
     },
     {
       "Name": "Data management (fr)",
-      "Description": "Data management",
+      "Description": "Data management (fr)",
       "ExternalID": "Gestion des données",
       "ID": 2045022
     },
     {
       "Name": "Belgium (fr)",
-      "Description": "Belgium",
+      "Description": "Belgium (fr)",
       "ExternalID": "Belgique",
       "ID": 2045023
     },
     {
       "Name": "Increased efficiency and productivity (fr)",
-      "Description": "Increased efficiency and productivity",
+      "Description": "Increased efficiency and productivity (fr)",
       "ExternalID": "Augmentation de l’efficacité et de la productivité",
       "ID": 2045024
     },
     {
       "Name": "Data security and privacy measures (fr)",
-      "Description": "Data security and privacy measures",
+      "Description": "Data security and privacy measures (fr)",
       "ExternalID": "Mesures de sécurité et de confidentialité des données",
       "ID": 2045025
     },
     {
       "Name": "Don't know (fr)",
-      "Description": "Don't know",
+      "Description": "Don't know (fr)",
       "ExternalID": "Je ne sais pas",
       "ID": 2045026
     },
     {
       "Name": "Market and economic data (fr)",
-      "Description": "Market and economic data",
+      "Description": "Market and economic data (fr)",
       "ExternalID": "Données de marché et économiques",
       "ID": 2045027
     },
     {
       "Name": "Advancements in existing technologies (fr)",
-      "Description": "Advancements in existing technologies",
+      "Description": "Advancements in existing technologies (fr)",
       "ExternalID": "Progrès dans les technologies existantes",
       "ID": 2045028
     },
     {
       "Name": "National and European networks (fr)",
-      "Description": "National and European networks",
+      "Description": "National and European networks (fr)",
       "ExternalID": "Réseaux nationaux et européens",
       "ID": 2045029
     },
     {
       "Name": "Crop cultivation - legumes (fr)",
-      "Description": "Crop cultivation - legumes",
+      "Description": "Crop cultivation - legumes (fr)",
       "ExternalID": "Culture de légumineuses",
       "ID": 2045030
     },
     {
       "Name": "Pest and disease data (fr)",
-      "Description": "Pest and disease data",
+      "Description": "Pest and disease data (fr)",
       "ExternalID": "Données sur les ravageurs et les maladies",
       "ID": 2045031
     },
     {
       "Name": "Smart-agri apps (fr)",
-      "Description": "Smart-agri apps",
+      "Description": "Smart-agri apps (fr)",
       "ExternalID": "Applications smart-agri",
       "ID": 2045032
     },
     {
       "Name": "Service/information provider (fr)",
-      "Description": "Service/information provider",
+      "Description": "Service/information provider (fr)",
       "ExternalID": "Fournisseur de services/information",
       "ID": 2045033
     },
     {
       "Name": "Crop cultivation - grains (fr)",
-      "Description": "Crop cultivation - grains",
+      "Description": "Crop cultivation - grains (fr)",
       "ExternalID": "Culture de céréales",
       "ID": 2045034
     },
     {
       "Name": "Farming cooperative (fr)",
-      "Description": "Farming cooperative",
+      "Description": "Farming cooperative (fr)",
       "ExternalID": "Coopérative agricole",
       "ID": 2045035
     },
     {
       "Name": "Training and skill development (fr)",
-      "Description": "Training and skill development",
+      "Description": "Training and skill development (fr)",
       "ExternalID": "Meilleure formation et éducation",
       "ID": 2045036
     },
     {
       "Name": "Traceability systems (fr)",
-      "Description": "Traceability systems",
+      "Description": "Traceability systems (fr)",
       "ExternalID": "Systèmes de traçabilité",
       "ID": 2045037
     },
     {
       "Name": "Fiber optic networks (fr)",
-      "Description": "Fiber optic networks",
+      "Description": "Fiber optic networks (fr)",
       "ExternalID": "Réseaux de fibres optiques",
       "ID": 2045038
     },
     {
       "Name": "Substantial impact (fr)",
-      "Description": "Substantial impact",
+      "Description": "Substantial impact (fr)",
       "ExternalID": "Impact substantiel",
       "ID": 2045039
     },
     {
       "Name": "No significant changes anticipated (fr)",
-      "Description": "No significant changes anticipated",
+      "Description": "No significant changes anticipated (fr)",
       "ExternalID": "Aucun changement significatif anticipé",
       "ID": 2045040
     },
     {
       "Name": "Negative (fr)",
-      "Description": "Negative",
+      "Description": "Negative (fr)",
       "ExternalID": "Négatif",
       "ID": 2045041
     },
     {
       "Name": "Positive (fr)",
-      "Description": "Positive",
+      "Description": "Positive (fr)",
       "ExternalID": "Positif",
       "ID": 2045042
     },
     {
       "Name": "Efficient resource allocation (fr)",
-      "Description": "Efficient resource allocation",
+      "Description": "Efficient resource allocation (fr)",
       "ExternalID": "Allocation efficace des ressources",
       "ID": 2045043
     },
     {
       "Name": "Yes (fr)",
-      "Description": "Yes",
+      "Description": "Yes (fr)",
       "ExternalID": "Oui",
       "ID": 2045044
     },
     {
       "Name": "Research institutes and research networks (fr)",
-      "Description": "Research institutes and research networks",
+      "Description": "Research institutes and research networks (fr)",
       "ExternalID": "Instituts de recherche et réseaux de recherche",
       "ID": 2045045
     },
     {
       "Name": "Research and Development data (fr)",
-      "Description": "Research and Development data",
+      "Description": "Research and Development data (fr)",
       "ExternalID": "Données de recherche et développement",
       "ID": 2045046
     },
     {
       "Name": "Plant propagation (fr)",
-      "Description": "Plant propagation",
+      "Description": "Plant propagation (fr)",
       "ExternalID": "Propagation des plantes",
       "ID": 2045047
     },
     {
       "Name": "No impact (fr)",
-      "Description": "No impact",
+      "Description": "Not at all (fr)",
       "ExternalID": "Aucun impact",
       "ID": 2045048
     },
     {
       "Name": "Agricultural information management systems (fr)",
-      "Description": "Agricultural information management systems",
+      "Description": "Agricultural information management systems (fr)",
       "ExternalID": "Systèmes de gestion de l’information agricole",
       "ID": 2045049
     },
     {
       "Name": "Moderate impact (fr)",
-      "Description": "Moderate impact",
+      "Description": "Moderate impact (fr)",
       "ExternalID": "Impact modéré",
       "ID": 2045050
     },
     {
       "Name": "Farm Management Software (fr)",
-      "Description": "Farm Management Software",
+      "Description": "Farm Management Software (fr)",
       "ExternalID": "Logiciel de gestion des exploitations agricoles",
       "ID": 2045051
     },
     {
       "Name": "Livestock farming - meat (fr)",
-      "Description": "Livestock farming - meat",
+      "Description": "Livestock farming - meat (fr)",
       "ExternalID": "Élevage de viande",
       "ID": 2045052
     },
     {
       "Name": "Crop services (monitoring) (fr)",
-      "Description": "Crop services (monitoring)",
+      "Description": "Crop services (monitoring) (fr)",
       "ExternalID": "Services de surveillance des cultures",
       "ID": 2045053
     },
     {
       "Name": "Cloud-based platforms (fr)",
-      "Description": "Cloud-based platforms",
+      "Description": "Cloud-based platforms (fr)",
       "ExternalID": "Plateformes basées sur le cloud",
       "ID": 2045054
     },
     {
       "Name": "Financial and operational data (fr)",
-      "Description": "Financial and operational data",
+      "Description": "Financial and operational data (fr)",
       "ExternalID": "Données financières et opérationnelles",
       "ID": 2045055
     },
     {
       "Name": "Production phase (fr)",
-      "Description": "Production phase",
+      "Description": "Production phase (fr)",
       "ExternalID": "Phase de production",
       "ID": 2045056
     },
     {
       "Name": "Integration with existing systems (fr)",
-      "Description": "Integration with existing systems",
+      "Description": "Integration with existing systems (fr)",
       "ExternalID": "Intégration avec les systèmes existants",
       "ID": 2045057
     },
     {
       "Name": "Decision-making (fr)",
-      "Description": "Decision-making",
+      "Description": "Decision-making (fr)",
       "ExternalID": "Prise de décision",
       "ID": 2045058
     },
     {
       "Name": "Completely (fr)",
-      "Description": "Completely",
+      "Description": "Completely (fr)",
       "ExternalID": "Complètement",
       "ID": 2045059
     },
     {
       "Name": "Farm management services (fr)",
-      "Description": "Farm management services",
+      "Description": "Farm management services (fr)",
       "ExternalID": "Services de gestion des exploitations agricoles",
       "ID": 2045060
     },
     {
       "Name": "Monitoring and tracking of livestock/crops (fr)",
-      "Description": "Monitoring and tracking of livestock/crops",
+      "Description": "Monitoring and tracking of livestock/crops (fr)",
       "ExternalID": "Surveillance et suivi du bétail/des cultures",
       "ID": 2045061
     },
     {
       "Name": "Small-scale/Local (fr)",
-      "Description": "Small-scale/Local",
+      "Description": "Small-scale/Local (fr)",
       "ExternalID": "Petite echelle / locale",
       "ID": 2045062
     },
     {
       "Name": "Better connectivity/Infrastructure (fr)",
-      "Description": "Better connectivity/Infrastructure",
+      "Description": "Better connectivity/Infrastructure (fr)",
       "ExternalID": "Meilleure connectivité/infrastructure",
       "ID": 2045063
     },
     {
       "Name": "Private networks (fr)",
-      "Description": "Private networks",
+      "Description": "Private networks (fr)",
       "ExternalID": "Réseaux privés",
       "ID": 2045064
     },
     {
       "Name": "Trade association (fr)",
-      "Description": "Trade association",
+      "Description": "Trade association (fr)",
       "ExternalID": "Association professionnelle",
       "ID": 2045065
     },
     {
       "Name": "No sharing (fr)",
-      "Description": "No sharing",
+      "Description": "No sharing (fr)",
       "ExternalID": "Pas de partage",
       "ID": 2045066
     },
     {
       "Name": "Weather and environmental data (fr)",
-      "Description": "Weather and environmental data",
+      "Description": "Weather and environmental data (fr)",
       "ExternalID": "Données météorologiques et environnementales",
       "ID": 2045067
     },
     {
       "Name": "Field Data Collection Apps (fr)",
-      "Description": "Field Data Collection Apps",
+      "Description": "Field Data Collection Apps (fr)",
       "ExternalID": "Applications de collecte de données sur le terrain",
       "ID": 2045068
     },
     {
       "Name": "Drones for Forest Monitoring (fr)",
-      "Description": "Drones for Forest Monitoring",
+      "Description": "Drones for Forest Monitoring (fr)",
       "ExternalID": "Drones pour la surveillance forestière",
       "ID": 2045069
     },
     {
       "Name": "Infrastructure provider (fr)",
-      "Description": "Infrastructure provider",
+      "Description": "Infrastructure provider (fr)",
       "ExternalID": "Fournisseur d’infrastructure",
       "ID": 2045070
     },
     {
       "Name": "Yes, e-mail: (fr)",
-      "Description": "Yes, e-mail:",
+      "Description": "Yes, e-mail: (fr)",
       "ExternalID": "Oui), courriel:",
       "ID": 2045071
     },
     {
       "Name": "Restricted sharing (fr)",
-      "Description": "Restricted sharing",
+      "Description": "Restricted sharing (fr)",
       "ExternalID": "Partage restreint",
       "ID": 2045072
     },
     {
       "Name": "Precision Agriculture Technology (fr)",
-      "Description": "Precision Agriculture Technology",
+      "Description": "Precision Agriculture Technology (fr)",
       "ExternalID": "Technologie d’agriculture de précision",
       "ID": 2045073
     },
     {
       "Name": "Agricultural machinery and equipment services (fr)",
-      "Description": "Agricultural machinery and equipment services",
+      "Description": "Agricultural machinery and equipment services (fr)",
       "ExternalID": "Services de machines et d’équipements agricoles",
       "ID": 2045074
     },
     {
       "Name": "High (fr)",
-      "Description": "High",
+      "Description": "High (fr)",
       "ExternalID": "Élevé",
       "ID": 2045075
     },
     {
       "Name": "Soil data (fr)",
-      "Description": "Soil data",
+      "Description": "Soil data (fr)",
       "ExternalID": "Données sur le sol",
       "ID": 2045076
     },
     {
       "Name": "On-premises servers/local storage facilities (fr)",
-      "Description": "On-premises servers/local storage facilities",
+      "Description": "On-premises servers/local storage facilities (fr)",
       "ExternalID": "Serveurs sur site/Installations de stockage locales",
       "ID": 2045077
     },
     {
       "Name": "Improved decision-making (fr)",
-      "Description": "Improved decision-making",
+      "Description": "Improved decision-making (fr)",
       "ExternalID": "Amélioration de la prise de décision",
       "ID": 2045078
     },
     {
       "Name": "Contract Farming or Forestry (fr)",
-      "Description": "Contract Farming or Forestry",
+      "Description": "Contract Farming or Forestry (fr)",
       "ExternalID": "Agriculture ou foresterie contractuelle",
       "ID": 2045079
     },
     {
       "Name": "Standardisation efforts/Regulatory support (fr)",
-      "Description": "Standardisation efforts/Regulatory support",
+      "Description": "Standardisation efforts/Regulatory support (fr)",
       "ExternalID": "Efforts de normalisation/Soutien réglementaire",
       "ID": 2045080
     },
     {
       "Name": "Training and skill development (fr)",
-      "Description": "Training and skill development",
+      "Description": "Training and skill development (fr)",
       "ExternalID": "Formation et développement des compétences",
       "ID": 2045081
     },
     {
       "Name": "More income/Access to funding (fr)",
-      "Description": "More income/Access to funding",
+      "Description": "More income/Access to funding (fr)",
       "ExternalID": "Plus de revenus/Accès aux financements",
       "ID": 2045082
     },
     {
       "Name": "Mixed farming (crops and animal) (fr)",
-      "Description": "Mixed farming (crops and animal)",
+      "Description": "Mixed farming (crops and animal) (fr)",
       "ExternalID": "Agriculture mixte cultures et animaux",
       "ID": 2045083
     },
     {
       "Name": "IoT Devices (fr)",
-      "Description": "IoT Devices",
+      "Description": "IoT Devices (fr)",
       "ExternalID": "Appareils IoT",
       "ID": 2045084
     },
     {
       "Name": "Other namely (fr)",
-      "Description": "Other namely",
+      "Description": "Other namely (fr)",
       "ExternalID": "Autre:",
       "ID": 2045086
     },
     {
       "Name": "Economic benefits (fr)",
-      "Description": "Economic benefits",
+      "Description": "Economic benefits (fr)",
       "ExternalID": "Avantages économiques",
       "ID": 2045087
     },
     {
       "Name": "Partially (fr)",
-      "Description": "Partially",
+      "Description": "Partially (fr)",
       "ExternalID": "Partiellement",
       "ID": 2045088
     },
     {
       "Name": "Traceability and transparency (fr)",
-      "Description": "Traceability and transparency",
+      "Description": "Traceability and transparency (fr)",
       "ExternalID": "Traçabilité et transparence",
       "ID": 2045089
     },
     {
       "Name": "Impede (fr)",
-      "Description": "Impede",
+      "Description": "Impede (fr)",
       "ExternalID": "En entravant",
       "ID": 2045090
     },
     {
       "Name": "Enhanced safety and monitoring (fr)",
-      "Description": "Enhanced safety and monitoring",
+      "Description": "Enhanced safety and monitoring (fr)",
       "ExternalID": "Sécurité et surveillance améliorées",
       "ID": 2045091
     },
     {
       "Name": "Smart irrigation systems (fr)",
-      "Description": "Smart irrigation systems",
+      "Description": "Smart irrigation systems (fr)",
       "ExternalID": "Systèmes d’irrigation intelligents",
       "ID": 2045092
     },
     {
       "Name": "Hindered (fr)",
-      "Description": "Hindered",
+      "Description": "Impede (fr)",
       "ExternalID": "Entravé",
       "ID": 2045093
     },
     {
       "Name": "Farm-level data (fr)",
-      "Description": "Farm-level data",
+      "Description": "Farm-level data (fr)",
       "ExternalID": "Données au niveau de l’exploitation",
       "ID": 2045094
     },
     {
       "Name": "Monitoring (fr)",
-      "Description": "Monitoring",
+      "Description": "Monitoring (fr)",
       "ExternalID": "Surveillance",
       "ID": 2045095
     },
     {
       "Name": "Precision farming (fr)",
-      "Description": "Precision farming",
+      "Description": "Precision farming (fr)",
       "ExternalID": "Agriculture de précision",
       "ID": 2045096
     },
     {
       "Name": "Preliminary (fr)",
-      "Description": "Preliminary",
+      "Description": "Low (fr)",
       "ExternalID": "Préliminaire",
       "ID": 2045097
     },
     {
       "Name": "Wireless internet (fr)",
-      "Description": "Wireless internet",
+      "Description": "Wireless internet (fr)",
       "ExternalID": "Internet sans fil",
       "ID": 2045098
     },
     {
       "Name": "Research Databases (fr)",
-      "Description": "Research Databases",
+      "Description": "Research Databases (fr)",
       "ExternalID": "Bases de données de recherche",
       "ID": 2045099
     },
     {
       "Name": "On-farm activities (fr)",
-      "Description": "On-farm activities",
+      "Description": "On-farm activities (fr)",
       "ExternalID": "Activités sur le terrain",
       "ID": 2045100
     },
     {
       "Name": "Contribute (fr)",
-      "Description": "Contribute",
+      "Description": "Contribute (fr)",
       "ExternalID": "En contribuant",
       "ID": 2045101
     },
     {
       "Name": "Corporate Agriculture or Forestry (fr)",
-      "Description": "Corporate Agriculture or Forestry",
+      "Description": "Corporate Agriculture or Forestry (fr)",
       "ExternalID": "Agriculture ou foresterie d’entreprise",
       "ID": 2045102
     },
     {
       "Name": "Inventory and equipment data (fr)",
-      "Description": "Inventory and equipment data",
+      "Description": "Inventory and equipment data (fr)",
       "ExternalID": "Données d’inventaire et d’équipement",
       "ID": 2045103
     },
     {
       "Name": "Planning and Management (fr)",
-      "Description": "Planning and Management",
+      "Description": "Planning and Management (fr)",
       "ExternalID": "Planification et gestion",
       "ID": 2045104
     },
     {
       "Name": "Initial investment (fr)",
-      "Description": "Initial investment",
+      "Description": "Initial investment (fr)",
       "ExternalID": "Investissement initial",
       "ID": 2045105
     },
     {
       "Name": "Supply chain data (fr)",
-      "Description": "Supply chain data",
+      "Description": "Supply chain data (fr)",
       "ExternalID": "Données de la chaîne d’approvisionnement",
       "ID": 2045106
     },
     {
       "Name": "Crop health and disease detection (fr)",
-      "Description": "Crop health and disease detection",
+      "Description": "Crop health and disease detection (fr)",
       "ExternalID": "Détection de la santé et des maladies des cultures",
       "ID": 2045107
     },
     {
       "Name": "Livestock data (fr)",
-      "Description": "Livestock data",
+      "Description": "Livestock data (fr)",
       "ExternalID": "Données sur le bétail",
       "ID": 2045108
     },
     {
       "Name": "Post-harvest handling services (fr)",
-      "Description": "Post-harvest handling services",
+      "Description": "Post-harvest handling services (fr)",
       "ExternalID": "Services de manutention post-récolte",
       "ID": 2045109
     },
     {
       "Name": "Advisory group (fr)",
-      "Description": "Advisory group",
+      "Description": "Advisory group (fr)",
       "ExternalID": "Groupe consultatif",
       "ID": 2045110
     },
     {
       "Name": "Remote sensing and geospatial data (fr)",
-      "Description": "Remote sensing and geospatial data",
+      "Description": "Remote sensing and geospatial data (fr)",
       "ExternalID": "Données de télédétection et géospatiales",
       "ID": 2045111
     },
     {
       "Name": "Advanced (fr)",
-      "Description": "Advanced",
+      "Description": "Advanced (fr)",
       "ExternalID": "Avancé",
       "ID": 2045112
     },
     {
       "Name": "GPS devices (fr)",
-      "Description": "GPS devices",
+      "Description": "GPS devices (fr)",
       "ExternalID": "Appareils GPS",
       "ID": 2045113
     },
     {
       "Name": "Medium-scale/Local-National (fr)",
-      "Description": "Medium-scale/Local-National",
+      "Description": "Medium-scale/Local-National (fr)",
       "ExternalID": "Moyenne echelle / local-national",
       "ID": 2045114
     },
     {
       "Name": "Harvesting and distribution (fr)",
-      "Description": "Harvesting and distribution",
+      "Description": "Harvesting and distribution (fr)",
       "ExternalID": "Récolte et distribution",
       "ID": 2045115
     },
     {
       "Name": "Improved management (fr)",
-      "Description": "Improved management",
+      "Description": "Improved management (fr)",
       "ExternalID": "Amélioration de la gestion",
       "ID": 2045116
     },
     {
       "Name": "Remote sensing platforms (fr)",
-      "Description": "Remote sensing platforms",
+      "Description": "Remote sensing platforms (fr)",
       "ExternalID": "Plateformes de télédétection",
       "ID": 2045117
     },
     {
       "Name": "Cellular networks (fr)",
-      "Description": "Cellular networks",
+      "Description": "Cellular networks (fr)",
       "ExternalID": "Réseaux cellulaires",
       "ID": 2045118
     },
     {
       "Name": "Both (fr)",
-      "Description": "Both",
+      "Description": "Both (fr)",
       "ExternalID": "Les deux",
       "ID": 2045119
     },
     {
       "Name": "Crop cultivation - vegetables (fr)",
-      "Description": "Crop cultivation - vegetables",
+      "Description": "Crop cultivation - vegetables (fr)",
       "ExternalID": "Culture de légumes",
       "ID": 2045120
     },
     {
       "Name": "Satellite internet (fr)",
-      "Description": "Satellite internet",
+      "Description": "Satellite internet (fr)",
       "ExternalID": "Internet par satellite",
       "ID": 2045121
     },
     {
       "Name": "Wired internet (fr)",
-      "Description": "Wired internet",
+      "Description": "Wired internet (fr)",
       "ExternalID": "Internet filaire",
       "ID": 2045122
     },
     {
       "Name": "Farm Management Information Systems (fr)",
-      "Description": "Farm Management Information Systems",
+      "Description": "Farm Management Information Systems (fr)",
       "ExternalID": "Systèmes d’information pour la gestion des exploitations agricoles",
       "ID": 2045123
     },
     {
       "Name": "Neutral (fr)",
-      "Description": "Neutral",
+      "Description": "Negligible impact (fr)",
       "ExternalID": "Neutre",
       "ID": 2045124
     },
     {
       "Name": "Automated machinery and robotics (fr)",
-      "Description": "Automated machinery and robotics",
+      "Description": "Automated machinery and robotics (fr)",
       "ExternalID": "Machinerie automatisée et robotique",
       "ID": 2045125
     },
     {
       "Name": "Early detection of issues (fr)",
-      "Description": "Early detection of issues",
+      "Description": "Early detection of issues (fr)",
       "ExternalID": "Détection précoce des problèmes",
       "ID": 2045126
     },
     {
       "Name": "Smart irrigation and water conservation (fr)",
-      "Description": "Smart irrigation and water conservation",
+      "Description": "Smart irrigation and water conservation (fr)",
       "ExternalID": "Systèmes d’irrigation intelligents et conservation de l’eau",
       "ID": 2045127
     },
     {
       "Name": "Crop and yield data (fr)",
-      "Description": "Crop and yield data",
+      "Description": "Crop and yield data (fr)",
       "ExternalID": "Données sur les cultures et les rendements",
       "ID": 2045128
     },
     {
       "Name": "Large-scale/National-International (fr)",
-      "Description": "Large-scale/National-International",
+      "Description": "Large-scale/National-International (fr)",
       "ExternalID": "Grande echelle / national-international",
       "ID": 2045129
     },
     {
       "Name": "Geographic Information Systems (GIS) (fr)",
-      "Description": "Geographic Information Systems (GIS)",
+      "Description": "Geographic Information Systems (GIS) (fr)",
       "ExternalID": "Systèmes d’information géographique SIG",
       "ID": 2045130
     },
     {
       "Name": "Energy (fr)",
-      "Description": "Energy",
+      "Description": "Energy (fr)",
       "ExternalID": "Énergie",
       "ID": 2045131
     },
     {
       "Name": "Laptop computers (fr)",
-      "Description": "Laptop computers",
+      "Description": "Laptop computers (fr)",
       "ExternalID": "Ordinateurs portables",
       "ID": 2045132
     },
     {
       "Name": "Maintenance and upgrades (fr)",
-      "Description": "Maintenance and upgrades",
+      "Description": "Maintenance and upgrades (fr)",
       "ExternalID": "Maintenance et mises à niveau",
       "ID": 2045133
     },
     {
       "Name": "Supply chain optimisation (fr)",
-      "Description": "Supply chain optimisation",
+      "Description": "Supply chain optimisation (fr)",
       "ExternalID": "Optimisation de la chaîne d’approvisionnement",
       "ID": 2045134
     },
     {
       "Name": "Agricultural machinery equipped with IoT (Internet of Things) sensors (fr)",
-      "Description": "Agricultural machinery equipped with IoT (Internet of Things) sensors",
+      "Description": "Agricultural machinery equipped with IoT (Internet of Things) sensors (fr)",
       "ExternalID": "Machines agricoles équipées de capteurs IoT Internet des objets",
       "ID": 2045135
     },
     {
       "Name": "Negligible impact (fr)",
-      "Description": "Negligible impact",
+      "Description": "Negligible impact (fr)",
       "ExternalID": "Impact négligeable",
       "ID": 2045136
     },
     {
       "Name": "Digital technology provider (fr)",
-      "Description": "Digital technology provider",
+      "Description": "Digital technology provider (fr)",
       "ExternalID": "Fournisseur de technologie numérique",
       "ID": 2045137
     },
     {
       "Name": "Desktop computers (fr)",
-      "Description": "Desktop computers",
+      "Description": "Desktop computers (fr)",
       "ExternalID": "Ordinateurs de bureau",
       "ID": 2045138
     },
     {
       "Name": "No (fr)",
-      "Description": "No",
+      "Description": "Not at all (fr)",
       "ExternalID": "Non",
       "ID": 2045139
     },
     {
       "Name": "Crop cultivation - fruits (fr)",
-      "Description": "Crop cultivation - fruits",
+      "Description": "Crop cultivation - fruits (fr)",
       "ExternalID": "Culture de fruits",
       "ID": 2045140
     },
     {
       "Name": "Low-power Wide-area network (fr)",
-      "Description": "Low-power Wide-area network",
+      "Description": "Low-power Wide-area network (fr)",
       "ExternalID": "Réseau étendu à faible puissance Low-Power Wide-Area Network",
       "ID": 2045141
     },
     {
       "Name": "Environmental data (fr)",
-      "Description": "Environmental data",
+      "Description": "Environmental data (fr)",
       "ExternalID": "Données environnementales",
       "ID": 2045142
     },
     {
       "Name": "Tablets (fr)",
-      "Description": "Tablets",
+      "Description": "Tablets (fr)",
       "ExternalID": "Tablettes",
       "ID": 2045143
     },
     {
       "Name": "Farming association (fr)",
-      "Description": "Farming association",
+      "Description": "Farming association (fr)",
       "ExternalID": "Association agricole",
       "ID": 2045144
     },
     {
       "Name": "Farmer/agricultural producers (fr)",
-      "Description": "Farmer/agricultural producers",
+      "Description": "Farmer/agricultural producers (fr)",
       "ExternalID": "Agriculteur/producteurs agricoles",
       "ID": 2045145
     },
     {
       "Name": "Fully integrated (fr)",
-      "Description": "Fully integrated",
+      "Description": "Fully integrated (fr)",
       "ExternalID": "Complètement intégré",
       "ID": 2045146
     },
     {
       "Name": "Forester (fr)",
-      "Description": "Forester",
+      "Description": "Forester (fr)",
       "ExternalID": "Forestier",
       "ID": 2045147
     },
     {
       "Name": "Moderate (fr)",
-      "Description": "Moderate",
+      "Description": "Moderate (fr)",
       "ExternalID": "Modéré",
       "ID": 2045149
     },
     {
       "Name": "Yes, e-mail: (fr)",
-      "Description": "Yes, e-mail:",
+      "Description": "Yes, e-mail: (fr)",
       "ExternalID": "Oui, courriel:",
       "ID": 2045150
     },
     {
       "Name": "Mixed farming (crops and animal) (fr)",
-      "Description": "Mixed farming (crops and animal)",
+      "Description": "Mixed farming (crops and animal) (fr)",
       "ExternalID": "Agriculture mixte (cultures et animaux)",
       "ID": 2045151
     },
     {
       "Name": "Agricultural machinery equipped with IoT (Internet of Things) sensors (fr)",
-      "Description": "Agricultural machinery equipped with IoT (Internet of Things) sensors",
+      "Description": "Agricultural machinery equipped with IoT (Internet of Things) sensors (fr)",
       "ExternalID": "Machines agricoles équipées de capteurs IoT (Internet des objets)",
       "ID": 2045152
     },
     {
       "Name": "Geographic Information Systems (GIS) (fr)",
-      "Description": "Geographic Information Systems (GIS)",
+      "Description": "Geographic Information Systems (GIS) (fr)",
       "ExternalID": "Systèmes d’information géographique (SIG)",
       "ID": 2045153
     },
     {
       "Name": "Secure data centers advanced security measures (fr)",
-      "Description": "Secure data centers advanced security measures",
+      "Description": "Secure data centers advanced security measures (fr)",
       "ExternalID": "Centres de données sécurisés (mesures de sécurité avancées)",
       "ID": 2045154
     },
     {
       "Name": "Low-power Wide-area network (fr)",
-      "Description": "Low-power Wide-area network",
+      "Description": "Low-power Wide-area network (fr)",
       "ExternalID": "Réseau étendu à faible puissance (Low-Power Wide-Area Network)",
       "ID": 2045155
     },
     {
       "Name": "25% (multiple languages)",
-      "Description": "25%",
+      "Description": "25% (multiple languages)",
       "ExternalID": "< 25%",
       "ID": 2045156
     },
     {
       "Name": "50% (multiple languages)",
-      "Description": "50%",
+      "Description": "50% (multiple languages)",
       "ExternalID": "< 50%",
       "ID": 2045157
     },
     {
       "Name": "75% (all languages)",
-      "Description": "75%",
+      "Description": "75% (all languages)",
       "ExternalID": "< 75%",
       "ID": 2045158
     },
     {
       "Name": "90% (all languages)",
-      "Description": "90%",
+      "Description": "90% (all languages)",
       "ExternalID": "> 90%",
       "ID": 2045159
     },
     {
       "Name": "Advanced (en)",
-      "Description": "Advanced",
+      "Description": "Advanced (en)",
       "ExternalID": "Advanced",
       "ID": 2045160
     },
     {
       "Name": "Advanced education (en)",
-      "Description": "Advanced education",
+      "Description": "Advanced education (en)",
       "ExternalID": "Advanced education",
       "ID": 2045161
     },
     {
       "Name": "Advancements in existing technologies (en)",
-      "Description": "Advancements in existing technologies",
+      "Description": "Advancements in existing technologies (en)",
       "ExternalID": "Advancements in existing technologies",
       "ID": 2045162
     },
     {
       "Name": "Agricultural machinery and equipment services (en)",
-      "Description": "Agricultural machinery and equipment services",
+      "Description": "Agricultural machinery and equipment services (en)",
       "ExternalID": "Agricultural machinery and equipment services",
       "ID": 2045163
     },
     {
       "Name": "Agricultural machinery equipped with IoT (Internet of Things) sensors (en)",
-      "Description": "Agricultural machinery equipped with IoT (Internet of Things) sensors",
+      "Description": "Agricultural machinery equipped with IoT (Internet of Things) sensors (en)",
       "ExternalID": "Agricultural machinery equipped with IoT (Internet of Things) sensors",
       "ID": 2045164
     },
     {
       "Name": "Agriculture (en)",
-      "Description": "Agriculture",
+      "Description": "Agriculture (en)",
       "ExternalID": "Agriculture",
       "ID": 2045165
     },
     {
       "Name": "Austria (multiple languages)",
-      "Description": "Austria",
+      "Description": "Austria (multiple languages)",
       "ExternalID": "Austria",
       "ID": 2045166
     },
     {
       "Name": "Automated machinery and robotics 1 (en)",
-      "Description": "Automated machinery and robotics 1",
+      "Description": "Automated machinery and robotics 1 (en)",
       "ExternalID": "Automated machinery and robotics 1",
       "ID": 2045167
     },
     {
       "Name": "Basic education (en)",
-      "Description": "Basic education",
+      "Description": "Basic education (en)",
       "ExternalID": "Basic education",
       "ID": 2045168
     },
     {
       "Name": "Belgium (en)",
-      "Description": "Belgium",
+      "Description": "Belgium (en)",
       "ExternalID": "Belgium",
       "ID": 2045169
     },
     {
       "Name": "Both (en)",
-      "Description": "Both",
+      "Description": "Both (en)",
       "ExternalID": "Both",
       "ID": 2045170
     },
     {
       "Name": "Bulgaria (en)",
-      "Description": "Bulgaria",
+      "Description": "Bulgaria (en)",
       "ExternalID": "Bulgaria",
       "ID": 2045171
     },
     {
       "Name": "Cellular networks (en)",
-      "Description": "Cellular networks",
+      "Description": "Cellular networks (en)",
       "ExternalID": "Cellular networks",
       "ID": 2045172
     },
     {
       "Name": "Community Supported Agriculture or Forestry (en)",
-      "Description": "Community Supported Agriculture or Forestry",
+      "Description": "Community Supported Agriculture or Forestry (en)",
       "ExternalID": "Community Supported Agriculture or Forestry",
       "ID": 2045173
     },
     {
       "Name": "Completely (en)",
-      "Description": "Completely",
+      "Description": "Completely (en)",
       "ExternalID": "Completely",
       "ID": 2045174
     },
     {
       "Name": "Connectivity infrastructure (en)",
-      "Description": "Connectivity infrastructure",
+      "Description": "Connectivity infrastructure (en)",
       "ExternalID": "Connectivity infrastructure",
       "ID": 2045175
     },
     {
       "Name": "Contract Farming or Forestry (en)",
-      "Description": "Contract Farming or Forestry",
+      "Description": "Contract Farming or Forestry (en)",
       "ExternalID": "Contract Farming or Forestry",
       "ID": 2045176
     },
     {
       "Name": "Contribute (en)",
-      "Description": "Contribute",
+      "Description": "Contribute (en)",
       "ExternalID": "Contribute",
       "ID": 2045177
     },
     {
       "Name": "Cooperative Agriculture or Forestry (en)",
-      "Description": "Cooperative Agriculture or Forestry",
+      "Description": "Cooperative Agriculture or Forestry (en)",
       "ExternalID": "Cooperative Agriculture or Forestry",
       "ID": 2045178
     },
     {
       "Name": "Corporate Agriculture or Forestry (en)",
-      "Description": "Corporate Agriculture or Forestry",
+      "Description": "Corporate Agriculture or Forestry (en)",
       "ExternalID": "Corporate Agriculture or Forestry",
       "ID": 2045179
     },
     {
       "Name": "Croatia (en)",
-      "Description": "Croatia",
+      "Description": "Croatia (en)",
       "ExternalID": "Croatia",
       "ID": 2045180
     },
     {
       "Name": "Crop and yield data (en)",
-      "Description": "Crop and yield data",
+      "Description": "Crop and yield data (en)",
       "ExternalID": "Crop and yield data",
       "ID": 2045181
     },
     {
       "Name": "Crop cultivation - fruits (en)",
-      "Description": "Crop cultivation - fruits",
+      "Description": "Crop cultivation - fruits (en)",
       "ExternalID": "Crop cultivation - fruits",
       "ID": 2045182
     },
     {
       "Name": "Crop cultivation - grains (en)",
-      "Description": "Crop cultivation - grains",
+      "Description": "Crop cultivation - grains (en)",
       "ExternalID": "Crop cultivation - grains",
       "ID": 2045183
     },
     {
       "Name": "Crop cultivation - legumes (en)",
-      "Description": "Crop cultivation - legumes",
+      "Description": "Crop cultivation - legumes (en)",
       "ExternalID": "Crop cultivation - legumes",
       "ID": 2045184
     },
     {
       "Name": "Crop cultivation - vegetables (en)",
-      "Description": "Crop cultivation - vegetables",
+      "Description": "Crop cultivation - vegetables (en)",
       "ExternalID": "Crop cultivation - vegetables",
       "ID": 2045185
     },
     {
       "Name": "Crop health and disease detection (en)",
-      "Description": "Crop health and disease detection",
+      "Description": "Crop health and disease detection (en)",
       "ExternalID": "Crop health and disease detection",
       "ID": 2045186
     },
     {
       "Name": "Crop services (monitoring) (multiple languages)",
-      "Description": "Crop services (monitoring)",
+      "Description": "Crop services (monitoring) (multiple languages)",
       "ExternalID": "Crop Services (monitoring)",
       "ID": 2045187
     },
     {
       "Name": "Cyprus (en)",
-      "Description": "Cyprus",
+      "Description": "Cyprus (en)",
       "ExternalID": "Cyprus",
       "ID": 2045188
     },
     {
       "Name": "Czechia (en)",
-      "Description": "Czechia",
+      "Description": "Czechia (en)",
       "ExternalID": "Czechia",
       "ID": 2045189
     },
     {
       "Name": "Data association/organisation/coalition (en)",
-      "Description": "Data association/organisation/coalition",
+      "Description": "Data association/organisation/coalition (en)",
       "ExternalID": "Data association/organisation/coalition",
       "ID": 2045190
     },
     {
       "Name": "Data management (en)",
-      "Description": "Data management",
+      "Description": "Data management (en)",
       "ExternalID": "Data management",
       "ID": 2045191
     },
     {
       "Name": "Data provider (en)",
-      "Description": "Data provider",
+      "Description": "Data provider (en)",
       "ExternalID": "Data provider",
       "ID": 2045192
     },
     {
       "Name": "Data security and privacy measures (en)",
-      "Description": "Data security and privacy measures",
+      "Description": "Data security and privacy measures (en)",
       "ExternalID": "Data security and privacy measures",
       "ID": 2045193
     },
     {
       "Name": "Decision-making (en)",
-      "Description": "Decision-making",
+      "Description": "Decision-making (en)",
       "ExternalID": "Decision-making",
       "ID": 2045194
     },
     {
       "Name": "Denmark (en)",
-      "Description": "Denmark",
+      "Description": "Denmark (en)",
       "ExternalID": "Denmark",
       "ID": 2045195
     },
     {
       "Name": "Desktop computers (multiple languages)",
-      "Description": "Desktop computers",
+      "Description": "Desktop computers (multiple languages)",
       "ExternalID": "Desktop computers",
       "ID": 2045196
     },
     {
       "Name": "Digital technology provider (en)",
-      "Description": "Digital technology provider",
+      "Description": "Digital technology provider (en)",
       "ExternalID": "Digital technology provider",
       "ID": 2045197
     },
     {
       "Name": "Don't know (en)",
-      "Description": "Don't know",
+      "Description": "Don't know (en)",
       "ExternalID": "Don't know",
       "ID": 2045198
     },
     {
       "Name": "Drones for Forest Monitoring (en)",
-      "Description": "Drones for Forest Monitoring",
+      "Description": "Drones for Forest Monitoring (en)",
       "ExternalID": "Drones for Forest Monitoring",
       "ID": 2045199
     },
     {
       "Name": "Early detection of issues (en)",
-      "Description": "Early detection of issues",
+      "Description": "Early detection of issues (en)",
       "ExternalID": "Early detection of issues",
       "ID": 2045200
     },
     {
       "Name": "Early-career/Entry level (en)",
-      "Description": "Early-career/Entry level",
+      "Description": "Early-career/Entry level (en)",
       "ExternalID": "Early-career/Entry level",
       "ID": 2045201
     },
     {
       "Name": "Earth Observation (EO) data (en)",
-      "Description": "Earth Observation (EO) data",
+      "Description": "Earth Observation (EO) data (en)",
       "ExternalID": "Earth Observation (EO) data",
       "ID": 2045202
     },
     {
       "Name": "Economic benefits (en)",
-      "Description": "Economic benefits",
+      "Description": "Economic benefits (en)",
       "ExternalID": "Economic benefits",
       "ID": 2045203
     },
     {
       "Name": "Efficient resource allocation (en)",
-      "Description": "Efficient resource allocation",
+      "Description": "Efficient resource allocation (en)",
       "ExternalID": "Efficient resource allocation",
       "ID": 2045204
     },
     {
       "Name": "Emergence of new technologies (en)",
-      "Description": "Emergence of new technologies",
+      "Description": "Emergence of new technologies (en)",
       "ExternalID": "Emergence of new technologies",
       "ID": 2045205
     },
     {
       "Name": "Energy (en)",
-      "Description": "Energy",
+      "Description": "Energy (en)",
       "ExternalID": "Energy",
       "ID": 2045206
     },
     {
       "Name": "Enhanced safety and monitoring (en)",
-      "Description": "Enhanced safety and monitoring",
+      "Description": "Enhanced safety and monitoring (en)",
       "ExternalID": "Enhanced safety and monitoring",
       "ID": 2045207
     },
     {
       "Name": "Environmental data (en)",
-      "Description": "Environmental data",
+      "Description": "Environmental data (en)",
       "ExternalID": "Environmental data",
       "ID": 2045208
     },
     {
       "Name": "Estonia (en)",
-      "Description": "Estonia",
+      "Description": "Estonia (en)",
       "ExternalID": "Estonia",
       "ID": 2045209
     },
     {
       "Name": "Experts (en)",
-      "Description": "Experts",
+      "Description": "Experts (en)",
       "ExternalID": "Experts",
       "ID": 2045210
     },
     {
       "Name": "Facilitated (en)",
-      "Description": "Facilitated",
+      "Description": "Facilitated (en)",
       "ExternalID": "Facilitated",
       "ID": 2045211
     },
     {
       "Name": "Farm Management Information Systems (en)",
-      "Description": "Farm Management Information Systems",
+      "Description": "Farm Management Information Systems (en)",
       "ExternalID": "Farm Management Information Systems",
       "ID": 2045212
     },
     {
       "Name": "Farm management services (multiple languages)",
-      "Description": "Farm management services",
+      "Description": "Farm management services (multiple languages)",
       "ExternalID": "Farm management services",
       "ID": 2045213
     },
     {
       "Name": "Farm Management Software (en)",
-      "Description": "Farm Management Software",
+      "Description": "Farm Management Software (en)",
       "ExternalID": "Farm Management Software",
       "ID": 2045214
     },
     {
       "Name": "Farmer/agricultural producers (en)",
-      "Description": "Farmer/agricultural producers",
+      "Description": "Farmer/agricultural producers (en)",
       "ExternalID": "Farmer/agricultural producers",
       "ID": 2045215
     },
     {
       "Name": "Farming association (en)",
-      "Description": "Farming association",
+      "Description": "Farming association (en)",
       "ExternalID": "Farming association",
       "ID": 2045216
     },
     {
       "Name": "Farming cooperative (en)",
-      "Description": "Farming cooperative",
+      "Description": "Farming cooperative (en)",
       "ExternalID": "Farming cooperative",
       "ID": 2045217
     },
     {
       "Name": "Farm-level data (en)",
-      "Description": "Farm-level data",
+      "Description": "Farm-level data (en)",
       "ExternalID": "Farm-level data",
       "ID": 2045218
     },
     {
       "Name": "Felling (en)",
-      "Description": "Felling",
+      "Description": "Felling (en)",
       "ExternalID": "Felling",
       "ID": 2045219
     },
     {
       "Name": "Fiber optic networks (en)",
-      "Description": "Fiber optic networks",
+      "Description": "Fiber optic networks (en)",
       "ExternalID": "Fiber optic networks",
       "ID": 2045220
     },
     {
       "Name": "Field Data Collection Apps (en)",
-      "Description": "Field Data Collection Apps",
+      "Description": "Field Data Collection Apps (en)",
       "ExternalID": "Field Data Collection Apps",
       "ID": 2045221
     },
     {
       "Name": "Financial and operational data (en)",
-      "Description": "Financial and operational data",
+      "Description": "Financial and operational data (en)",
       "ExternalID": "Financial and operational data",
       "ID": 2045222
     },
     {
       "Name": "Finland (en)",
-      "Description": "Finland",
+      "Description": "Finland (en)",
       "ExternalID": "Finland",
       "ID": 2045223
     },
     {
       "Name": "Forest conservation - thinning, pruning, weed & pest control (en)",
-      "Description": "Forest conservation - thinning, pruning, weed & pest control",
+      "Description": "Forest conservation - thinning, pruning, weed & pest control (en)",
       "ExternalID": "Forest conservation - thinning, pruning, weed & pest control",
       "ID": 2045224
     },
     {
       "Name": "Forest Fire Management (en)",
-      "Description": "Forest Fire Management",
+      "Description": "Forest Fire Management (en)",
       "ExternalID": "Forest Fire Management",
       "ID": 2045225
     },
     {
       "Name": "Forest Fire Prediction and Monitoring systems (en)",
-      "Description": "Forest Fire Prediction and Monitoring systems",
+      "Description": "Forest Fire Prediction and Monitoring systems (en)",
       "ExternalID": "Forest Fire Prediction and Monitoring systems",
       "ID": 2045226
     },
     {
       "Name": "Forest industry association (en)",
-      "Description": "Forest industry association",
+      "Description": "Forest industry association (en)",
       "ExternalID": "Forest industry association",
       "ID": 2045227
     },
     {
       "Name": "Forest Inventory Management Software (en)",
-      "Description": "Forest Inventory Management Software",
+      "Description": "Forest Inventory Management Software (en)",
       "ExternalID": "Forest Inventory Management Software",
       "ID": 2045228
     },
     {
       "Name": "Forest Inventory Tools (en)",
-      "Description": "Forest Inventory Tools",
+      "Description": "Forest Inventory Tools (en)",
       "ExternalID": "Forest Inventory Tools",
       "ID": 2045229
     },
     {
       "Name": "Forest Management Software (en)",
-      "Description": "Forest Management Software",
+      "Description": "Forest Management Software (en)",
       "ExternalID": "Forest Management Software",
       "ID": 2045230
     },
     {
       "Name": "Forest operator (en)",
-      "Description": "Forest operator",
+      "Description": "Forest operator (en)",
       "ExternalID": "Forest operator",
       "ID": 2045231
     },
     {
       "Name": "Forest owner (en)",
-      "Description": "Forest owner",
+      "Description": "Forest owner (en)",
       "ExternalID": "Forest owner",
       "ID": 2045232
     },
     {
       "Name": "Forest product processor (en)",
-      "Description": "Forest product processor",
+      "Description": "Forest product processor (en)",
       "ExternalID": "Forest product processor",
       "ID": 2045233
     },
     {
       "Name": "Forester (en)",
-      "Description": "Forester",
+      "Description": "Forester (en)",
       "ExternalID": "Forester",
       "ID": 2045234
     },
     {
       "Name": "Forestry (en)",
-      "Description": "Forestry",
+      "Description": "Forestry (en)",
       "ExternalID": "Forestry",
       "ID": 2045235
     },
     {
       "Name": "Forestry association (en)",
-      "Description": "Forestry association",
+      "Description": "Forestry association (en)",
       "ExternalID": "Forestry association",
       "ID": 2045236
     },
     {
       "Name": "Forestry inventory and mapping (en)",
-      "Description": "Forestry inventory and mapping",
+      "Description": "Forestry inventory and mapping (en)",
       "ExternalID": "Forestry inventory and mapping",
       "ID": 2045237
     },
     {
       "Name": "France (en)",
-      "Description": "France",
+      "Description": "France (en)",
       "ExternalID": "France",
       "ID": 2045238
     },
     {
       "Name": "Fully integrated (en)",
-      "Description": "Fully integrated",
+      "Description": "Fully integrated (en)",
       "ExternalID": "Fully integrated",
       "ID": 2045239
     },
     {
       "Name": "Germany (en)",
-      "Description": "Germany",
+      "Description": "Germany (en)",
       "ExternalID": "Germany",
       "ID": 2045240
     },
     {
       "Name": "GPS devices (en)",
-      "Description": "GPS devices",
+      "Description": "GPS devices (en)",
       "ExternalID": "GPS devices",
       "ID": 2045241
     },
     {
       "Name": "Greece (en)",
-      "Description": "Greece",
+      "Description": "Greece (en)",
       "ExternalID": "Greece",
       "ID": 2045242
     },
     {
       "Name": "Harvesting and distribution (en)",
-      "Description": "Harvesting and distribution",
+      "Description": "Harvesting and distribution (en)",
       "ExternalID": "Harvesting and distribution",
       "ID": 2045243
     },
     {
       "Name": "High (en)",
-      "Description": "High",
+      "Description": "High (en)",
       "ExternalID": "High",
       "ID": 2045244
     },
     {
       "Name": "High education (en)",
-      "Description": "High education",
+      "Description": "High education (en)",
       "ExternalID": "High education",
       "ID": 2045245
     },
     {
       "Name": "Hindered (en)",
-      "Description": "Hindered",
+      "Description": "Impede (en)",
       "ExternalID": "Hindered",
       "ID": 2045246
     },
     {
       "Name": "Hungary (en)",
-      "Description": "Hungary",
+      "Description": "Hungary (en)",
       "ExternalID": "Hungary",
       "ID": 2045247
     },
     {
       "Name": "Impede (en)",
-      "Description": "Impede",
+      "Description": "Impede (en)",
       "ExternalID": "Impede",
       "ID": 2045248
     },
     {
       "Name": "Improved decision-making (en)",
-      "Description": "Improved decision-making",
+      "Description": "Improved decision-making (en)",
       "ExternalID": "Improved decision-making",
       "ID": 2045249
     },
     {
       "Name": "Improved forest management (en)",
-      "Description": "Improved forest management",
+      "Description": "Improved forest management (en)",
       "ExternalID": "Improved forest management",
       "ID": 2045250
     },
     {
       "Name": "Increased efficiency and productivity (en)",
-      "Description": "Increased efficiency and productivity",
+      "Description": "Increased efficiency and productivity (en)",
       "ExternalID": "Increased efficiency and productivity",
       "ID": 2045251
     },
     {
       "Name": "Infrastructure provider (en)",
-      "Description": "Infrastructure provider",
+      "Description": "Infrastructure provider (en)",
       "ExternalID": "Infrastructure provider",
       "ID": 2045252
     },
     {
       "Name": "Initial investment (en)",
-      "Description": "Initial investment",
+      "Description": "Initial investment (en)",
       "ExternalID": "Initial investment",
       "ID": 2045253
     },
     {
       "Name": "Integration with existing systems (en)",
-      "Description": "Integration with existing systems",
+      "Description": "Integration with existing systems (en)",
       "ExternalID": "Integration with existing systems",
       "ID": 2045254
     },
     {
       "Name": "Inventory and equipment data (en)",
-      "Description": "Inventory and equipment data",
+      "Description": "Inventory and equipment data (en)",
       "ExternalID": "Inventory and equipment data",
       "ID": 2045255
     },
     {
       "Name": "IoT Devices (en)",
-      "Description": "IoT Devices",
+      "Description": "IoT Devices (en)",
       "ExternalID": "IoT Devices",
       "ID": 2045256
     },
     {
       "Name": "IoT networks (en)",
-      "Description": "IoT networks",
+      "Description": "IoT networks (en)",
       "ExternalID": "IoT networks",
       "ID": 2045257
     },
     {
       "Name": "Ireland (en)",
-      "Description": "Ireland",
+      "Description": "Ireland (en)",
       "ExternalID": "Ireland",
       "ID": 2045258
     },
     {
       "Name": "Italy (en)",
-      "Description": "Italy",
+      "Description": "Italy (en)",
       "ExternalID": "Italy",
       "ID": 2045259
     },
     {
       "Name": "Land trust and conservation Agriculture or Forestry (en)",
-      "Description": "Land trust and conservation Agriculture or Forestry",
+      "Description": "Land trust and conservation Agriculture or Forestry (en)",
       "ExternalID": "Land trust and conservation Agriculture or Forestry",
       "ID": 2045260
     },
     {
       "Name": "Laptop computers (en)",
-      "Description": "Laptop computers",
+      "Description": "Laptop computers (en)",
       "ExternalID": "Laptop computers",
       "ID": 2045261
     },
     {
       "Name": "Large-scale/National-International (multiple languages)",
-      "Description": "Large-scale/National-International",
+      "Description": "Large-scale/National-International (multiple languages)",
       "ExternalID": "Large-scale/National-International",
       "ID": 2045262
     },
     {
       "Name": "Latvia (en)",
-      "Description": "Latvia",
+      "Description": "Latvia (en)",
       "ExternalID": "Latvia",
       "ID": 2045263
     },
     {
       "Name": "Lithuania (en)",
-      "Description": "Lithuania",
+      "Description": "Lithuania (en)",
       "ExternalID": "Lithuania",
       "ID": 2045264
     },
     {
       "Name": "Livestock data (en)",
-      "Description": "Livestock data",
+      "Description": "Livestock data (en)",
       "ExternalID": "Livestock data",
       "ID": 2045265
     },
     {
       "Name": "Livestock farming - dairy (en)",
-      "Description": "Livestock farming - dairy",
+      "Description": "Livestock farming - dairy (en)",
       "ExternalID": "Livestock farming - dairy",
       "ID": 2045266
     },
     {
       "Name": "Livestock farming - meat (en)",
-      "Description": "Livestock farming - meat",
+      "Description": "Livestock farming - meat (en)",
       "ExternalID": "Livestock farming - meat",
       "ID": 2045267
     },
     {
       "Name": "Livestock farming - other (en)",
-      "Description": "Livestock farming - other",
+      "Description": "Livestock farming - other (en)",
       "ExternalID": "Livestock farming - other",
       "ID": 2045268
     },
     {
       "Name": "Low (en)",
-      "Description": "Low",
+      "Description": "Low (en)",
       "ExternalID": "Low",
       "ID": 2045269
     },
     {
       "Name": "Low-power Wide-area network (en)",
-      "Description": "Low-power Wide-area network",
+      "Description": "Low-power Wide-area network (en)",
       "ExternalID": "Low-power Wide-area network",
       "ID": 2045270
     },
     {
       "Name": "Luxembourg (en)",
-      "Description": "Luxembourg",
+      "Description": "Luxembourg (en)",
       "ExternalID": "Luxembourg",
       "ID": 2045271
     },
     {
       "Name": "Maintenance and upgrades (en)",
-      "Description": "Maintenance and upgrades",
+      "Description": "Maintenance and upgrades (en)",
       "ExternalID": "Maintenance and upgrades",
       "ID": 2045272
     },
     {
       "Name": "Malta (en)",
-      "Description": "Malta",
+      "Description": "Malta (en)",
       "ExternalID": "Malta",
       "ID": 2045273
     },
     {
       "Name": "Market and economic data (en)",
-      "Description": "Market and economic data",
+      "Description": "Market and economic data (en)",
       "ExternalID": "Market and economic data",
       "ID": 2045274
     },
     {
       "Name": "Medium-scale/Local-National (multiple languages)",
-      "Description": "Medium-scale/Local-National",
+      "Description": "Medium-scale/Local-National (multiple languages)",
       "ExternalID": "Medium-scale/Local-National",
       "ID": 2045275
     },
     {
       "Name": "Mid-level professionals (en)",
-      "Description": "Mid-level professionals",
+      "Description": "Mid-level professionals (en)",
       "ExternalID": "Mid-level professionals",
       "ID": 2045276
     },
     {
       "Name": "Mixed farming (crops and animal) (en)",
-      "Description": "Mixed farming (crops and animal)",
+      "Description": "Mixed farming (crops and animal) (en)",
       "ExternalID": "Mixed farming (crops and animal)",
       "ID": 2045277
     },
     {
       "Name": "Moderate (en)",
-      "Description": "Moderate",
+      "Description": "Moderate (en)",
       "ExternalID": "Moderate",
       "ID": 2045278
     },
     {
       "Name": "Moderate impact (en)",
-      "Description": "Moderate impact",
+      "Description": "Moderate impact (en)",
       "ExternalID": "Moderate impact",
       "ID": 2045279
     },
     {
       "Name": "Monitoring (en)",
-      "Description": "Monitoring",
+      "Description": "Monitoring (en)",
       "ExternalID": "Monitoring",
       "ID": 2045280
     },
     {
       "Name": "Monitoring and tracking of livestock/crops (en)",
-      "Description": "Monitoring and tracking of livestock/crops",
+      "Description": "Monitoring and tracking of livestock/crops (en)",
       "ExternalID": "Monitoring and tracking of livestock/crops",
       "ID": 2045281
     },
     {
       "Name": "National and European networks (en)",
-      "Description": "National and European networks",
+      "Description": "National and European networks (en)",
       "ExternalID": "National and European networks",
       "ID": 2045282
     },
     {
       "Name": "Negative (en)",
-      "Description": "Negative",
+      "Description": "Negative (en)",
       "ExternalID": "Negative",
       "ID": 2045283
     },
     {
       "Name": "Negligible impact (en)",
-      "Description": "Negligible impact",
+      "Description": "Negligible impact (en)",
       "ExternalID": "Negligible impact",
       "ID": 2045284
     },
     {
       "Name": "Netherlands (en)",
-      "Description": "Netherlands",
+      "Description": "Netherlands (en)",
       "ExternalID": "Netherlands",
       "ID": 2045285
     },
     {
       "Name": "Neutral (multiple languages)",
-      "Description": "Neutral",
+      "Description": "Negligible impact (multiple languages)",
       "ExternalID": "Neutral",
       "ID": 2045286
     },
     {
       "Name": "NGO/Advisory group (en)",
-      "Description": "NGO/Advisory group",
+      "Description": "NGO/Advisory group (en)",
       "ExternalID": "NGO/Advisory group",
       "ID": 2045287
     },
     {
       "Name": "No (multiple languages)",
-      "Description": "No",
+      "Description": "Not at all (multiple languages)",
       "ExternalID": "No",
       "ID": 2045288
     },
     {
       "Name": "No impact (en)",
-      "Description": "No impact",
+      "Description": "Not at all (en)",
       "ExternalID": "No impact",
       "ID": 2045289
     },
     {
       "Name": "No sharing (en)",
-      "Description": "No sharing",
+      "Description": "No sharing (en)",
       "ExternalID": "No sharing",
       "ID": 2045290
     },
     {
       "Name": "No significant changes anticipated (en)",
-      "Description": "No significant changes anticipated",
+      "Description": "No significant changes anticipated (en)",
       "ExternalID": "No significant changes anticipated",
       "ID": 2045291
     },
     {
       "Name": "Non-Timber Forest Products (NTFPs) (en)",
-      "Description": "Non-Timber Forest Products (NTFPs)",
+      "Description": "Non-Timber Forest Products (NTFPs) (en)",
       "ExternalID": "Non-Timber Forest Products (NTFPs)",
       "ID": 2045292
     },
     {
       "Name": "Not at all (en)",
-      "Description": "Not at all",
+      "Description": "Not at all (en)",
       "ExternalID": "Not at all",
       "ID": 2045293
     },
     {
       "Name": "On-farm activities (en)",
-      "Description": "On-farm activities",
+      "Description": "On-farm activities (en)",
       "ExternalID": "On-farm activities",
       "ID": 2045294
     },
     {
       "Name": "Open sharing (en)",
-      "Description": "Open sharing",
+      "Description": "Open sharing (en)",
       "ExternalID": "Open sharing",
       "ID": 2045295
     },
     {
       "Name": "Partially (en)",
-      "Description": "Partially",
+      "Description": "Partially (en)",
       "ExternalID": "Partially",
       "ID": 2045296
     },
     {
       "Name": "Pest and disease data (en)",
-      "Description": "Pest and disease data",
+      "Description": "Pest and disease data (en)",
       "ExternalID": "Pest and disease data",
       "ID": 2045297
     },
     {
       "Name": "Planning and Management (en)",
-      "Description": "Planning and Management",
+      "Description": "Planning and Management (en)",
       "ExternalID": "Planning and Management",
       "ID": 2045298
     },
     {
       "Name": "Plant propagation (en)",
-      "Description": "Plant propagation",
+      "Description": "Plant propagation (en)",
       "ExternalID": "Plant propagation",
       "ID": 2045299
     },
     {
       "Name": "Platform provider (en)",
-      "Description": "Platform provider",
+      "Description": "Platform provider (en)",
       "ExternalID": "Platform provider",
       "ID": 2045300
     },
     {
       "Name": "Poland (en)",
-      "Description": "Poland",
+      "Description": "Poland (en)",
       "ExternalID": "Poland",
       "ID": 2045301
     },
     {
       "Name": "Portugal (en)",
-      "Description": "Portugal",
+      "Description": "Portugal (en)",
       "ExternalID": "Portugal",
       "ID": 2045302
     },
     {
       "Name": "Positive (en)",
-      "Description": "Positive",
+      "Description": "Positive (en)",
       "ExternalID": "Positive",
       "ID": 2045303
     },
     {
       "Name": "Post-harvest handling services (en)",
-      "Description": "Post-harvest handling services",
+      "Description": "Post-harvest handling services (en)",
       "ExternalID": "Post-harvest handling services",
       "ID": 2045304
     },
     {
       "Name": "Precision Agriculture Technology (en)",
-      "Description": "Precision Agriculture Technology",
+      "Description": "Precision Agriculture Technology (en)",
       "ExternalID": "Precision Agriculture Technology",
       "ID": 2045305
     },
     {
       "Name": "Precision farming (en)",
-      "Description": "Precision farming",
+      "Description": "Precision farming (en)",
       "ExternalID": "Precision farming",
       "ID": 2045306
     },
     {
       "Name": "Preliminary (en)",
-      "Description": "Preliminary",
+      "Description": "Low (en)",
       "ExternalID": "Preliminary",
       "ID": 2045307
     },
     {
       "Name": "Private networks (en)",
-      "Description": "Private networks",
+      "Description": "Private networks (en)",
       "ExternalID": "Private networks",
       "ID": 2045308
     },
     {
       "Name": "Production phase (en)",
-      "Description": "Production phase",
+      "Description": "Production phase (en)",
       "ExternalID": "Production phase",
       "ID": 2045309
     },
     {
       "Name": "Reforestation (en)",
-      "Description": "Reforestation",
+      "Description": "Reforestation (en)",
       "ExternalID": "Reforestation",
       "ID": 2045310
     },
     {
       "Name": "Remote sensing and geospatial data (en)",
-      "Description": "Remote sensing and geospatial data",
+      "Description": "Remote sensing and geospatial data (en)",
       "ExternalID": "Remote sensing and geospatial data",
       "ID": 2045311
     },
     {
       "Name": "Remote sensing platforms (en)",
-      "Description": "Remote sensing platforms",
+      "Description": "Remote sensing platforms (en)",
       "ExternalID": "Remote sensing platforms",
       "ID": 2045312
     },
     {
       "Name": "Research and Development data (en)",
-      "Description": "Research and Development data",
+      "Description": "Research and Development data (en)",
       "ExternalID": "Research and Development data",
       "ID": 2045313
     },
     {
       "Name": "Research Databases (en)",
-      "Description": "Research Databases",
+      "Description": "Research Databases (en)",
       "ExternalID": "Research Databases",
       "ID": 2045314
     },
     {
       "Name": "Research institutes and research networks (en)",
-      "Description": "Research institutes and research networks",
+      "Description": "Research institutes and research networks (en)",
       "ExternalID": "Research institutes and research networks",
       "ID": 2045315
     },
     {
       "Name": "Restricted sharing (en)",
-      "Description": "Restricted sharing",
+      "Description": "Restricted sharing (en)",
       "ExternalID": "Restricted sharing",
       "ID": 2045316
     },
     {
       "Name": "Romania (en)",
-      "Description": "Romania",
+      "Description": "Romania (en)",
       "ExternalID": "Romania",
       "ID": 2045317
     },
     {
       "Name": "Satellite internet (en)",
-      "Description": "Satellite internet",
+      "Description": "Satellite internet (en)",
       "ExternalID": "Satellite internet",
       "ID": 2045318
     },
     {
       "Name": "Service/information provider (en)",
-      "Description": "Service/information provider",
+      "Description": "Service/information provider (en)",
       "ExternalID": "Service/information provider",
       "ID": 2045319
     },
     {
       "Name": "Slovakia (en)",
-      "Description": "Slovakia",
+      "Description": "Slovakia (en)",
       "ExternalID": "Slovakia",
       "ID": 2045320
     },
     {
       "Name": "Slovenia (en)",
-      "Description": "Slovenia",
+      "Description": "Slovenia (en)",
       "ExternalID": "Slovenia",
       "ID": 2045321
     },
     {
       "Name": "Small-scale/Local (multiple languages)",
-      "Description": "Small-scale/Local",
+      "Description": "Small-scale/Local (multiple languages)",
       "ExternalID": "Small-scale/Local",
       "ID": 2045322
     },
     {
       "Name": "Smart irrigation and water conservation (en)",
-      "Description": "Smart irrigation and water conservation",
+      "Description": "Smart irrigation and water conservation (en)",
       "ExternalID": "Smart irrigation and water conservation",
       "ID": 2045323
     },
     {
       "Name": "Smart irrigation systems (en)",
-      "Description": "Smart irrigation systems",
+      "Description": "Smart irrigation systems (en)",
       "ExternalID": "Smart irrigation systems",
       "ID": 2045324
     },
     {
       "Name": "Smart-agri apps (en)",
-      "Description": "Smart-agri apps",
+      "Description": "Smart-agri apps (en)",
       "ExternalID": "Smart-agri apps",
       "ID": 2045325
     },
     {
       "Name": "Smartphones (multiple languages)",
-      "Description": "Smartphones",
+      "Description": "Smartphones (multiple languages)",
       "ExternalID": "Smartphones",
       "ID": 2045326
     },
     {
       "Name": "Socio-economic data (en)",
-      "Description": "Socio-economic data",
+      "Description": "Socio-economic data (en)",
       "ExternalID": "Socio-economic data",
       "ID": 2045327
     },
     {
       "Name": "Soil data (en)",
-      "Description": "Soil data",
+      "Description": "Soil data (en)",
       "ExternalID": "Soil data",
       "ID": 2045328
     },
     {
       "Name": "Spain (en)",
-      "Description": "Spain",
+      "Description": "Spain (en)",
       "ExternalID": "Spain",
       "ID": 2045329
     },
     {
       "Name": "Substantial impact (en)",
-      "Description": "Substantial impact",
+      "Description": "Substantial impact (en)",
       "ExternalID": "Substantial impact",
       "ID": 2045330
     },
     {
       "Name": "Supply chain data (en)",
-      "Description": "Supply chain data",
+      "Description": "Supply chain data (en)",
       "ExternalID": "Supply chain data",
       "ID": 2045331
     },
     {
       "Name": "Supply chain optimisation (en)",
-      "Description": "Supply chain optimisation",
+      "Description": "Supply chain optimisation (en)",
       "ExternalID": "Supply chain optimisation",
       "ID": 2045332
     },
     {
       "Name": "Sweden (en)",
-      "Description": "Sweden",
+      "Description": "Sweden (en)",
       "ExternalID": "Sweden",
       "ID": 2045333
     },
     {
       "Name": "Tablets (multiple languages)",
-      "Description": "Tablets",
+      "Description": "Tablets (multiple languages)",
       "ExternalID": "Tablets",
       "ID": 2045334
     },
     {
       "Name": "Technical and vocational education (en)",
-      "Description": "Technical and vocational education",
+      "Description": "Technical and vocational education (en)",
       "ExternalID": "Technical and vocational education",
       "ID": 2045335
     },
     {
       "Name": "Traceability and transparency (en)",
-      "Description": "Traceability and transparency",
+      "Description": "Traceability and transparency (en)",
       "ExternalID": "Traceability and transparency",
       "ID": 2045336
     },
     {
       "Name": "Traceability systems (en)",
-      "Description": "Traceability systems",
+      "Description": "Traceability systems (en)",
       "ExternalID": "Traceability systems",
       "ID": 2045337
     },
     {
       "Name": "Trade association (en)",
-      "Description": "Trade association",
+      "Description": "Trade association (en)",
       "ExternalID": "Trade association",
       "ID": 2045338
     },
     {
       "Name": "Traditional/Subsistence Agriculture or Forestry (en)",
-      "Description": "Traditional/Subsistence Agriculture or Forestry",
+      "Description": "Traditional/Subsistence Agriculture or Forestry (en)",
       "ExternalID": "Traditional/Subsistence Agriculture or Forestry",
       "ID": 2045339
     },
     {
       "Name": "Training and skill development (en)",
-      "Description": "Training and skill development",
+      "Description": "Training and skill development (en)",
       "ExternalID": "Training and skill development",
       "ID": 2045340
     },
     {
       "Name": "Transportation of logs (en)",
-      "Description": "Transportation of logs",
+      "Description": "Transportation of logs (en)",
       "ExternalID": "Transportation of logs",
       "ID": 2045341
     },
     {
       "Name": "Weather and environmental data (en)",
-      "Description": "Weather and environmental data",
+      "Description": "Weather and environmental data (en)",
       "ExternalID": "Weather and environmental data",
       "ID": 2045342
     },
     {
       "Name": "Where and how do you store this data? (4GROWTH) (en)",
-      "Description": "Where and how do you store this data? (4GROWTH)",
+      "Description": "Where and how do you store this data? (4GROWTH) (en)",
       "ExternalID": "Where and how do you store this data? (4GROWTH)",
       "ID": 2045343
     },
     {
       "Name": "Wildlife management (en)",
-      "Description": "Wildlife management",
+      "Description": "Wildlife management (en)",
       "ExternalID": "Wildlife management",
       "ID": 2045344
     },
     {
       "Name": "Wired internet (en)",
-      "Description": "Wired internet",
+      "Description": "Wired internet (en)",
       "ExternalID": "Wired internet",
       "ID": 2045345
     },
     {
       "Name": "Wireless internet (en)",
-      "Description": "Wireless internet",
+      "Description": "Wireless internet (en)",
       "ExternalID": "Wireless internet",
       "ID": 2045346
     },
     {
       "Name": "Yes (en)",
-      "Description": "Yes",
+      "Description": "Yes (en)",
       "ExternalID": "Yes",
       "ID": 2045347
     },
     {
       "Name": "Other namely 1 (en)",
-      "Description": "Other namely 1",
+      "Description": "Other namely 1 (en)",
       "ExternalID": "Other namely 1",
       "ID": 2045348
     },
     {
       "Name": "On-premises servers/local storage facilities (en)",
-      "Description": "On-premises servers/local storage facilities",
+      "Description": "On-premises servers/local storage facilities (en)",
       "ExternalID": "On-premises servers/local storage facilities",
       "ID": 2045349
     },
     {
       "Name": "Data warehouses (en)",
-      "Description": "Data warehouses",
+      "Description": "Data warehouses (en)",
       "ExternalID": "Data warehouses",
       "ID": 2045350
     },
     {
       "Name": "More income/Access to funding (en)",
-      "Description": "More income/Access to funding",
+      "Description": "More income/Access to funding (en)",
       "ExternalID": "More income/Access to funding",
       "ID": 2045351
     },
     {
       "Name": "Better connectivity/Infrastructure (en)",
-      "Description": "Better connectivity/Infrastructure",
+      "Description": "Better connectivity/Infrastructure (en)",
       "ExternalID": "Better connectivity/Infrastructure",
       "ID": 2045352
     },
     {
       "Name": "No categorical answer (all languages)",
-      "Description": "No categorical answer",
+      "Description": "No categorical answer (all languages)",
       "ExternalID": "No categorical answer",
       "ID": 2045353
     },
     {
       "Name": "Yes, e-mail: (en)",
-      "Description": "Yes, e-mail:",
+      "Description": "Yes, e-mail: (en)",
       "ExternalID": "Yes, e-mail:",
       "ID": 2045354
     },
     {
       "Name": "Cloud-based platforms (en)",
-      "Description": "Cloud-based platforms",
+      "Description": "Cloud-based platforms (en)",
       "ExternalID": "Cloud-based platforms",
       "ID": 2045355
     },
     {
       "Name": "NGO (en)",
-      "Description": "NGO",
+      "Description": "NGO (en)",
       "ExternalID": "NGO",
       "ID": 2045356
     },
     {
       "Name": "Agricultural information management systems (en)",
-      "Description": "Agricultural information management systems",
+      "Description": "Agricultural information management systems (en)",
       "ExternalID": "Agricultural information management systems",
       "ID": 2045357
     },
     {
       "Name": "Advisory group (en)",
-      "Description": "Advisory group",
+      "Description": "Advisory group (en)",
       "ExternalID": "Advisory group",
       "ID": 2045358
     },
     {
       "Name": "Improved management (en)",
-      "Description": "Improved management",
+      "Description": "Improved management (en)",
       "ExternalID": "Improved management",
       "ID": 2045359
     },
     {
       "Name": "Geographic Information Systems (GIS) (en)",
-      "Description": "Geographic Information Systems (GIS)",
+      "Description": "Geographic Information Systems (GIS) (en)",
       "ExternalID": "Geographic Information Systems (GIS)",
       "ID": 2045360
     },
     {
       "Name": "Standardisation efforts/Regulatory support (en)",
-      "Description": "Standardisation efforts/Regulatory support",
+      "Description": "Standardisation efforts/Regulatory support (en)",
       "ExternalID": "Standardisation efforts/Regulatory support",
       "ID": 2045361
     },
     {
       "Name": "Other namely (en)",
-      "Description": "Other namely",
+      "Description": "Other namely (en)",
       "ExternalID": "Other namely",
       "ID": 2045362
     },
     {
       "Name": "Automated machinery and robotics (en)",
-      "Description": "Automated machinery and robotics",
+      "Description": "Automated machinery and robotics (en)",
       "ExternalID": "Automated machinery and robotics",
       "ID": 2045363
     },
     {
       "Name": "Better training and education (en)",
-      "Description": "Better training and education",
+      "Description": "Better training and education (en)",
       "ExternalID": "Better training and education",
       "ID": 2045364
     },
     {
       "Name": "Hybrid storage solutions (on-premises and cloud) (en)",
-      "Description": "Hybrid storage solutions (on-premises and cloud)",
+      "Description": "Hybrid storage solutions (on-premises and cloud) (en)",
       "ExternalID": "Hybrid storage solutions (on-premises and cloud)",
       "ID": 2045365
     },
@@ -2537,7 +2548,7 @@
     },
     {
       "Name": "No impact (es)",
-      "Description": "No impact (es)",
+      "Description": "Not at all (es)",
       "ExternalID": "Sin impacto",
       "ID": 2051052
     },
@@ -2987,7 +2998,7 @@
     },
     {
       "Name": "Preliminary (es)",
-      "Description": "Preliminary (es)",
+      "Description": "Low (es)",
       "ExternalID": "Preliminar",
       "ID": 2051129
     },
@@ -3155,13 +3166,13 @@
     },
     {
       "Name": "No (nl)",
-      "Description": "No (nl)",
+      "Description": "Not at all (nl)",
       "ExternalID": "Nee",
       "ID": 2052486
     },
     {
       "Name": "Neutral (nl)",
-      "Description": "Neutral (nl)",
+      "Description": "Negligible impact (nl)",
       "ExternalID": "Neutraal",
       "ID": 2052487
     },
@@ -3251,7 +3262,7 @@
     },
     {
       "Name": "Preliminary (nl)",
-      "Description": "Preliminary (nl)",
+      "Description": "Low (nl)",
       "ExternalID": "Voorbarig/Startend",
       "ID": 2052626
     },
@@ -3281,7 +3292,7 @@
     },
     {
       "Name": "Hindered (nl)",
-      "Description": "Hindered (nl)",
+      "Description": "Impede (nl)",
       "ExternalID": "belemmert",
       "ID": 2052631
     },
@@ -4247,7 +4258,7 @@
     },
     {
       "Name": "Hindered (fi)",
-      "Description": "Hindered (fi)",
+      "Description": "Impede (fi)",
       "ExternalID": "Estänyt",
       "ID": 2088866
     },
@@ -4391,19 +4402,19 @@
     },
     {
       "Name": "Neutral (fi)",
-      "Description": "Neutral (fi)",
+      "Description": "Negligible impact (fi)",
       "ExternalID": "Neutraali",
       "ID": 2088892
     },
     {
-      "Name": "No",
-      "Description": "No",
+      "Name": "No (fi)",
+      "Description": "Not at all (fi)",
       "ExternalID": "Ei",
       "ID": 2088893
     },
     {
       "Name": "No impact (fi)",
-      "Description": "No impact (fi)",
+      "Description": "Not at all (fi)",
       "ExternalID": "Ei vaikutusta",
       "ID": 2088894
     },
@@ -4487,7 +4498,7 @@
     },
     {
       "Name": "Preliminary (fi)",
-      "Description": "Preliminary (fi)",
+      "Description": "Low (fi)",
       "ExternalID": "Alustava",
       "ID": 2088908
     },
@@ -4697,7 +4708,7 @@
     },
     {
       "Name": "No impact (el)",
-      "Description": "No impact (el)",
+      "Description": "Not at all (el)",
       "ExternalID": "Καθόλου",
       "ID": 2089036
     },
@@ -4871,7 +4882,7 @@
     },
     {
       "Name": "Preliminary (el)",
-      "Description": "Preliminary (el)",
+      "Description": "Low (el)",
       "ExternalID": "Προκαταρκτικό",
       "ID": 2089069
     },
@@ -4949,7 +4960,7 @@
     },
     {
       "Name": "No impact (el)",
-      "Description": "No impact (el)",
+      "Description": "Not at all (el)",
       "ExternalID": "Κανένα αντίκτυπο",
       "ID": 2089083
     },
@@ -5567,7 +5578,7 @@
     },
     {
       "Name": "Neutral (multiple languages)",
-      "Description": "Neutral (multiple languages)",
+      "Description": "Negligible impact (multiple languages)",
       "ExternalID": "Turejo neutralu poveiki",
       "ID": 2097556
     },
@@ -5639,7 +5650,7 @@
     },
     {
       "Name": "Hindered (lt)",
-      "Description": "Hindered (lt)",
+      "Description": "Impede (lt)",
       "ExternalID": "Kliude",
       "ID": 2097569
     },
@@ -5687,7 +5698,7 @@
     },
     {
       "Name": "No (multiple languages)",
-      "Description": "No (multiple languages)",
+      "Description": "Not at all (multiple languages)",
       "ExternalID": "Nera",
       "ID": 2097577
     },
@@ -5981,7 +5992,7 @@
     },
     {
       "Name": "Hindered (lt)",
-      "Description": "Hindered (lt)",
+      "Description": "Impede (lt)",
       "ExternalID": "Kliudo",
       "ID": 2097628
     },
@@ -6053,7 +6064,7 @@
     },
     {
       "Name": "No impact (lt)",
-      "Description": "No impact (lt)",
+      "Description": "Not at all (lt)",
       "ExternalID": "Neturi jokio poveikio",
       "ID": 2097640
     },
@@ -6190,6 +6201,12 @@
       "ID": 2097663
     },
     {
+      "Name": "Test123",
+      "Description": "Test",
+      "ExternalID": "EiQJsQxfdsf2nRNlMIo",
+      "ID": 2098804
+    },
+    {
       "Name": "Impede (lt)",
       "Description": "Impede (lt)",
       "ExternalID": "Kliudė",
@@ -6203,7 +6220,7 @@
     },
     {
       "Name": "Positive impact (lt)",
-      "Description": "Positive impact (lt)",
+      "Description": "Positive (lt)",
       "ExternalID": "Turėjo teigiamą poveikiį",
       "ID": 2099187
     },
@@ -6227,13 +6244,13 @@
     },
     {
       "Name": "No (el)",
-      "Description": "No (el)",
+      "Description": "Not at all (el)",
       "ExternalID": "Maža / vietinė",
       "ID": 2099196
     },
     {
       "Name": "Neutral (el)",
-      "Description": "Neutral (el)",
+      "Description": "Negligible impact (el)",
       "ExternalID": "Ουδέτερη",
       "ID": 2099197
     },
@@ -6263,7 +6280,7 @@
     },
     {
       "Name": "No (lt)",
-      "Description": "No (lt)",
+      "Description": "Not at all (lt)",
       "ExternalID": "Ne",
       "ID": 2099202
     },
@@ -6293,19 +6310,19 @@
     },
     {
       "Name": "No (multiple languages)",
-      "Description": "No (multiple languages)",
+      "Description": "Not at all (multiple languages)",
       "ExternalID": "όχι",
       "ID": 2089084
     },
     {
       "Name": "No (multiple languages)",
-      "Description": "No (multiple languages)",
+      "Description": "Not at all (multiple languages)",
       "ExternalID": "Όχι",
       "ID": 2089085
     },
     {
       "Name": "Neutral (multiple languages)",
-      "Description": "Neutral (multiple languages)",
+      "Description": "Negligible impact (multiple languages)",
       "ExternalID": "Ουδέτερη",
       "ID": 2089087
     },
@@ -6353,7 +6370,7 @@
     },
     {
       "Name": "No (multiple languages)",
-      "Description": "No (multiple languages)",
+      "Description": "Not at all (multiple languages)",
       "ExternalID": "Ne",
       "ID": 2097567
     },
