@@ -15,7 +15,10 @@ export const env = createEnv({
       process.env.VERCEL ? z.string() : z.string().url().min(1),
     ),
     NEXTAUTH_SECRET: z.string().min(1),
-    AUTH_CREDENTIALS: z.string().min(3).includes(":").optional(),
+    AUTH_CREDENTIALS: z.preprocess(
+      (val) => (val === "" ? undefined : val),
+      z.string().min(3).includes(":").optional(),
+    ),
   },
   /*
    * Environment variables available on the client (and server).
