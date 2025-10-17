@@ -8,10 +8,10 @@ terraform {
 
   // TF does not allow vars here. Use main vars or module outputs for other variables
   backend "s3" {
-    bucket = "4-growth-terraform-state"
-    key = "state"
-    region = "eu-west-3"
-    profile = "4-growth"
+    bucket         = "4-growth-terraform-state"
+    key            = "state"
+    region         = "eu-west-3"
+    profile        = "4-growth"
     dynamodb_table = "4-growth-terraform-state-lock"
   }
 
@@ -79,23 +79,23 @@ locals {
 
 
 
-module state {
-  source = "./modules/state"
+module "state" {
+  source       = "./modules/state"
   project_name = var.project_name
-  aws_region = var.aws_region
-  aws_profile = var.aws_profile
+  aws_region   = var.aws_region
+  aws_profile  = var.aws_profile
 }
 
-module client_ecr {
-  source = "./modules/ecr"
+module "client_ecr" {
+  source       = "./modules/ecr"
   project_name = var.project_name
-  repo_name = "client"
+  repo_name    = "client"
 }
 
-module api_ecr {
-  source = "./modules/ecr"
+module "api_ecr" {
+  source       = "./modules/ecr"
   project_name = var.project_name
-  repo_name = "api"
+  repo_name    = "api"
 }
 
 module "iam" {
@@ -124,15 +124,23 @@ module "dev" {
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
   cname_prefix                                  = "4-growth-dev-environment"
-  rds_instance_class = "db.t3.micro"
-  rds_engine_version = "15.12"
-  rds_backup_retention_period = 3
-  github_owner = var.github_owner
-  github_token = var.github_token
-  contact_email = var.contact_email
-  data_extraction_client_id = var.data_extraction_client_id
-  data_extraction_client_secret = var.data_extraction_client_secret
-  etl_process_emails = var.etl_process_emails
+  rds_instance_class                            = "db.t3.micro"
+  rds_engine_version                            = "15.12"
+  rds_backup_retention_period                   = 3
+  github_owner                                  = var.github_owner
+  github_token                                  = var.github_token
+  contact_email                                 = var.contact_email
+  data_extraction_client_id                     = var.data_extraction_client_id
+  data_extraction_client_secret                 = var.data_extraction_client_secret
+  etl_process_emails                            = var.etl_process_emails
+
+  github_additional_environment_variables = {
+    ETL_CRON_ENABLED = "true"
+  }
+
+  github_additional_environment_secrets = {
+    TF_AUTH_CREDENTIALS = var.auth_credentials
+  }
 }
 
 
@@ -151,14 +159,21 @@ module "staging" {
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
   cname_prefix                                  = "4-growth-staging-environment"
-  rds_instance_class = "db.t3.micro"
-  rds_engine_version = "15.12"
-  rds_backup_retention_period = 3
-  github_owner = var.github_owner
-  github_token = var.github_token
-  data_extraction_client_id = var.data_extraction_client_id
-  data_extraction_client_secret = var.data_extraction_client_secret
-  etl_process_emails = var.etl_process_emails
+  rds_instance_class                            = "db.t3.micro"
+  rds_engine_version                            = "15.12"
+  rds_backup_retention_period                   = 3
+  github_owner                                  = var.github_owner
+  github_token                                  = var.github_token
+  data_extraction_client_id                     = var.data_extraction_client_id
+  data_extraction_client_secret                 = var.data_extraction_client_secret
+  etl_process_emails                            = var.etl_process_emails
+
+  github_additional_environment_variables = {
+    ETL_CRON_ENABLED = "true"
+  }
+  github_additional_environment_secrets = {
+    TF_AUTH_CREDENTIALS = var.auth_credentials
+  }
 }
 
 module "production" {
@@ -175,14 +190,14 @@ module "production" {
   ec2_instance_type                             = "t3.small"
   elasticbeanstalk_iam_service_linked_role_name = aws_iam_service_linked_role.elasticbeanstalk.name
   repo_name                                     = var.project_name
-  rds_instance_class = "db.t3.micro"
-  rds_engine_version = "15.12"
-  rds_backup_retention_period = 3
-  github_owner = var.github_owner
-  github_token = var.github_token
-  data_extraction_client_id = var.data_extraction_client_id
-  data_extraction_client_secret = var.data_extraction_client_secret
-  etl_process_emails = var.etl_process_emails
+  rds_instance_class                            = "db.t3.micro"
+  rds_engine_version                            = "15.12"
+  rds_backup_retention_period                   = 3
+  github_owner                                  = var.github_owner
+  github_token                                  = var.github_token
+  data_extraction_client_id                     = var.data_extraction_client_id
+  data_extraction_client_secret                 = var.data_extraction_client_secret
+  etl_process_emails                            = var.etl_process_emails
 }
 
 module "github" {
@@ -197,7 +212,6 @@ module "github" {
     TF_CLIENT_REPOSITORY_NAME          = module.client_ecr.repository_name
     TF_API_REPOSITORY_NAME             = module.api_ecr.repository_name
     TF_AWS_REGION                      = var.aws_region
-    TF_AUTH_CREDENTIALS                = var.auth_credentials
   }
 }
 
