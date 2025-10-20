@@ -18,7 +18,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
   const [firstWidget, secondWidget, thirdWidget, fourthWidget] = widgets;
   return (
     <>
-      <div className="col-span-2 grid grid-cols-2 gap-0.5">
+      <div className="grid grid-cols-1 gap-0.5 lg:col-span-2 lg:grid-cols-2">
         <Widget
           title={firstWidget.title}
           visualization={firstWidget.defaultVisualization}

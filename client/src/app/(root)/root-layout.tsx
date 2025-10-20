@@ -8,8 +8,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Overlay />
-      <div className="grid h-full grid-cols-[280px_1fr] gap-0.5">
-        <div className="flex h-full flex-col gap-0.5 overflow-hidden">
+      <div className="grid h-full grid-cols-1 md:grid-cols-[280px_1fr] md:gap-0.5">
+        <div className="hidden h-full flex-col gap-0.5 overflow-hidden md:flex">
           <Sidebar />
         </div>
         <div className="relative flex h-full flex-col gap-0.5 overflow-hidden">

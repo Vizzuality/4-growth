@@ -56,7 +56,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
       aria-labelledby={`${getSidebarLinkId(slug)} ${getInPageLinkId(slug)}`}
     >
       {isOverview ? (
-        <div className="col-span-2 mb-0.5 grid grid-cols-2 gap-0.5">
+        <div className="mb-0.5 grid grid-cols-1 grid-rows-[auto_250px] gap-0.5 lg:col-span-2 lg:grid-cols-2 lg:grid-rows-1">
           <Card className="space-y-4 bg-secondary">
             <Title as="h2" className="text-xl">
               {name}
@@ -98,7 +98,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
           </Popover>
         </header>
       )}
-      <div className="grid grid-cols-2 gap-0.5">{children}</div>
+      <div className="grid grid-cols-1 gap-0.5 lg:grid-cols-2">{children}</div>
     </section>
   );
 };

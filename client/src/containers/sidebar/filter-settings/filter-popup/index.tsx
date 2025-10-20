@@ -67,7 +67,7 @@ const FilterPopup: FC<FilterPopupProps> = ({
   const selectedFilter = filterQueryParams.find((f) => f.name === name);
 
   return (
-    <Popover onOpenChange={handleFiltersPopupChange} open={showPopup}>
+    <Popover onOpenChange={handleFiltersPopupChange} open={showPopup} modal>
       <PopoverTrigger asChild>
         <Button
           variant="clean"
