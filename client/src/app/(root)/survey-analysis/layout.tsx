@@ -8,6 +8,8 @@ import { queryKeys } from "@/lib/queryKeys";
 
 import RootLayout from "@/app/(root)/root-layout";
 
+import BottomBar from "@/containers/bottom-bar";
+
 export const metadata: Metadata = {
   title: "Survey analysis | 4Growth",
   description: "Survey analysis | 4Growth",
@@ -32,7 +34,10 @@ export default async function SurveyAnalysisLayout({
 
   return (
     <Hydrate state={dehydrate(queryClient)}>
-      <RootLayout>{children}</RootLayout>
+      <RootLayout>
+        {children}
+        <BottomBar />
+      </RootLayout>
     </Hydrate>
   );
 }

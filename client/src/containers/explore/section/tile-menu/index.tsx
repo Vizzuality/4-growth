@@ -28,7 +28,7 @@ const TileMenu: FC<TileMenuProps> = ({ items, className }) => {
     <nav
       id="in-page-sections-list"
       aria-labelledby="in-page-nav-title"
-      className={cn("grid grid-cols-3 gap-0.5", className)}
+      className={cn("grid grid-cols-2 gap-0.5 md:grid-cols-3", className)}
     >
       <h2 id="in-page-nav-title" className="sr-only">
         Sections navigation

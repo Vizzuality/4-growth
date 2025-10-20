@@ -1,9 +1,11 @@
 import { Inter } from "next/font/google";
+import { headers } from "next/headers";
 
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import { getServerSession } from "next-auth";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { UAParser } from "ua-parser-js";
 
 import { cn } from "@/lib/utils";
 
@@ -11,10 +13,18 @@ import { config } from "@/app/auth/api/[...nextauth]/config";
 
 import Analytics from "@/containers/analytics";
 import CookieDialog from "@/containers/cookie-dialog";
+import DesktopViewDialog from "@/containers/desktop-view-dialog";
 
 import { Toaster } from "@/components/ui/toaster";
 
 import LayoutProviders from "./providers";
+
+export const isMobileDevice = (): boolean => {
+  const ua = headers().get("user-agent") || "";
+  const device = new UAParser(ua).getDevice();
+
+  return device.type === "mobile";
+};
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,6 +48,7 @@ export default async function RootLayout({
             <Toaster />
             <CookieDialog />
             <Analytics />
+            {isMobileDevice() && <DesktopViewDialog />}
             <main className="h-lvh">{children}</main>
           </body>
         </NuqsAdapter>

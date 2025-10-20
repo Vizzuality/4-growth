@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import useRouteConfig from "@/hooks/use-route-config";
 
+import Header from "@/containers/header";
+
 import { Toggle, ToggleButton } from "@/components/ui/toggle";
 import { getRouteHref } from "@/utils/route-config";
 
@@ -28,19 +30,24 @@ export function TopNavToggle() {
   const { type, view } = useRouteConfig();
 
   return (
-    <Toggle>
-      <ToggleButton
-        isSelected={view === "explore"}
-        isSelectedClassName="bg-secondary"
-      >
-        <Link href={getRouteHref(type, "explore")}>Explore</Link>
-      </ToggleButton>
-      <ToggleButton
-        isSelected={view === "sandbox"}
-        isSelectedClassName="bg-secondary"
-      >
-        <Link href={getRouteHref(type, "sandbox")}>Sandbox</Link>
-      </ToggleButton>
-    </Toggle>
+    <>
+      <div className="md:hidden">
+        <Header />
+      </div>
+      <Toggle>
+        <ToggleButton
+          isSelected={view === "explore"}
+          isSelectedClassName="bg-secondary"
+        >
+          <Link href={getRouteHref(type, "explore")}>Explore</Link>
+        </ToggleButton>
+        <ToggleButton
+          isSelected={view === "sandbox"}
+          isSelectedClassName="bg-secondary"
+        >
+          <Link href={getRouteHref(type, "sandbox")}>Sandbox</Link>
+        </ToggleButton>
+      </Toggle>
+    </>
   );
 }

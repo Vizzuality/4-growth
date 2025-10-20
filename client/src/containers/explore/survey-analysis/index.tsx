@@ -100,7 +100,7 @@ export default function Explore() {
                   questionTitle={w.questionTitle}
                   data={w.data as TransformedWidgetData}
                   responseRate={w.responseRate}
-                  className="col-span-1 last:odd:col-span-2"
+                  className="md:col-span-1 md:last:odd:col-span-2"
                   config={{
                     menu: { className: "flex flex-col gap-6" },
                     pieChart: {

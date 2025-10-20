@@ -20,8 +20,8 @@ export default function Explore() {
 
   return (
     <div className="overflow-y-auto pb-32">
-      <div className="grid grid-cols-3 gap-0.5">
-        <Card className="col-span-2 space-y-4 bg-secondary">
+      <div className="grid grid-cols-1 grid-rows-[auto_250px] gap-0.5 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-3">
+        <Card className="space-y-4 bg-secondary lg:col-span-2">
           <Title as="h2" className="text-xl">
             Projections overview
           </Title>
@@ -31,9 +31,9 @@ export default function Explore() {
             follow soon.
           </p>
         </Card>
-        <Card className="bg-lightgray col-span-1 bg-[url('/images/explore/overview-projections-bg.avif')] bg-cover bg-center bg-no-repeat" />
+        <Card className="bg-lightgray bg-[url('/images/explore/overview-projections-bg.avif')] bg-cover bg-center bg-no-repeat lg:col-span-1" />
       </div>
-      <div className="grid auto-rows-[400px] grid-cols-2 gap-0.5 [&>*:last-child:nth-child(odd)]:col-span-2">
+      <div className="grid auto-rows-[400px] grid-cols-1 gap-0.5 lg:grid-cols-2 [&>*:last-child:nth-child(odd)]:col-span-2">
         {data?.map((d) => (
           <Widget
             key={d.id}
