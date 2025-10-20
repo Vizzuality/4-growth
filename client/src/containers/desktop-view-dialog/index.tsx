@@ -17,11 +17,13 @@ const DesktopViewDialog: FC = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="w-full max-w-[600px] bg-white text-popover-foreground">
         <DialogHeader className="space-y-4">
-          <DialogTitle>Best Viewed on Desktop</DialogTitle>
+          <DialogTitle className="text-[24px]">
+            Best viewed on desktop
+          </DialogTitle>
           <DialogDescription className="text-[#627188]">
-            The platform is currently optimized for desktop viewing. For the
-            best experience, please access it using a desktop or laptop. Some
-            features may be limited or display differently on mobile devices.
+            The platform is optimized for larger screens. Some features may be
+            limited on smaller devices. The mobile version will be available
+            soon.
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
