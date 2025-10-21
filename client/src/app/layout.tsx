@@ -20,7 +20,7 @@ import { Toaster } from "@/components/ui/toaster";
 import LayoutProviders from "./providers";
 
 export const isMobileDevice = (): boolean => {
-  const ua = headers().get("user-agent") || "";
+  const ua = headers().get("user-agent") || "unknown";
 
   return Bowser.getParser(ua).getPlatformType() === "mobile";
 };
