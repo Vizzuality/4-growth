@@ -27,8 +27,8 @@ const FiltersSheet: FC<{ withDataBreakdown?: boolean }> = ({
       <SheetTrigger asChild>
         <Button className="w-full">Filters</Button>
       </SheetTrigger>
-      <SheetContent className="h-screen w-screen bg-navy-900" side="bottom">
-        <SheetHeader>
+      <SheetContent className="h-full w-screen bg-navy-900" side="bottom">
+        <SheetHeader className="text-left">
           <SheetTitle>Filters</SheetTitle>
         </SheetHeader>
         <div className="py-3.5">

@@ -31,7 +31,7 @@ export function TopNavToggle() {
 
   return (
     <>
-      <div className="md:hidden">
+      <div className="sticky md:hidden">
         <Header />
       </div>
       <Toggle>
