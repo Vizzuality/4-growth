@@ -20,12 +20,13 @@ import OverviewSection from "@/containers/explore/section/overview-section";
 import { intersectingAtom } from "@/containers/explore/store";
 import Widget from "@/containers/widget/survey-analysis";
 
+import { Spinner } from "@/components/ui/spinner";
 import { TransformedWidget, TransformedWidgetData } from "@/types";
 import { useScrollSpy } from "tests/hooks/use-scroll-spy";
 
 export default function Explore() {
   const { filters } = useFilters();
-  const { data } = client.sections.getSections.useQuery(
+  const { data, isFetching } = client.sections.getSections.useQuery(
     queryKeys.sections.all(filters).queryKey,
     { query: { filters } },
     {
@@ -63,6 +64,14 @@ export default function Explore() {
   });
 
   useScrollToHash({ containerRef: ref, sections });
+
+  if (isFetching) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center">
+        <Spinner className="size-10" />
+      </div>
+    );
+  }
 
   return (
     <div

@@ -8,8 +8,8 @@ export default async function SandboxPage() {
     <>
       <Sandbox />
       <BottomBar>
-        <FiltersSheet withDataBreakdown />
         <SettingsSheet />
+        <FiltersSheet withDataBreakdown />
       </BottomBar>
     </>
   );

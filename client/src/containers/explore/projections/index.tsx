@@ -8,15 +8,24 @@ import useFilters from "@/hooks/use-filters";
 import Widget from "@/containers/widget/projections";
 
 import { Card } from "@/components/ui/card";
+import { Spinner } from "@/components/ui/spinner";
 import Title from "@/components/ui/title";
 
 export default function Explore() {
   const { filters } = useFilters();
-  const { data } = client.projections.getProjectionsWidgets.useQuery(
-    queryKeys.projections.widgets(filters).queryKey,
-    { query: { dataFilters: filters } },
-    { select: (res) => res.body.data },
-  );
+  const { data, isFetching } =
+    client.projections.getProjectionsWidgets.useQuery(
+      queryKeys.projections.widgets(filters).queryKey,
+      { query: { dataFilters: filters } },
+      { select: (res) => res.body.data },
+    );
+
+  if (isFetching)
+    return (
+      <div className="flex h-full flex-col items-center justify-center">
+        <Spinner className="size-10" />
+      </div>
+    );
 
   return (
     <div className="overflow-y-auto pb-32">

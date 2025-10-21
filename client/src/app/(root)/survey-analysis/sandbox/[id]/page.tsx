@@ -62,8 +62,8 @@ export default async function SandboxPage({
     <Hydrate state={dehydrate(queryClient)}>
       <Sandbox customWidgetId={id} />
       <BottomBar>
-        <FiltersSheet />
         <SettingsSheet />
+        <FiltersSheet />
       </BottomBar>
     </Hydrate>
   );

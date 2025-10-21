@@ -38,7 +38,7 @@ const ProjectionsSettingsPopup = <T,>({
   };
 
   return (
-    <Popover onOpenChange={handleFiltersPopupChange} open={showPopup}>
+    <Popover onOpenChange={handleFiltersPopupChange} open={showPopup} modal>
       <PopoverTrigger asChild>
         <Button
           variant="clean"

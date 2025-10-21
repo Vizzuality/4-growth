@@ -9,6 +9,9 @@ catalogs:
     '@types/node':
       specifier: 20.14.2
       version: 20.14.2
+    typeorm:
+      specifier: 0.3.20
+      version: 0.3.20
     typescript:
       specifier: 5.4.5
       version: 5.4.5

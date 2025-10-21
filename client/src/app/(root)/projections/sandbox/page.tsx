@@ -3,6 +3,9 @@ import { dehydrate, Hydrate, QueryClient } from "@tanstack/react-query";
 import { client, QUERY_OPTIONS } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import BottomBar from "@/containers/bottom-bar";
+import FiltersSheet from "@/containers/bottom-bar/projections/filters-sheet";
+import SettingsSheet from "@/containers/bottom-bar/projections/settings-sheet";
 import Sandbox from "@/containers/sandbox/projections-sandbox";
 
 export default async function ProjectionsSandboxPage() {
@@ -16,6 +19,10 @@ export default async function ProjectionsSandboxPage() {
   return (
     <Hydrate state={dehydrate(queryClient)}>
       <Sandbox />
+      <BottomBar>
+        <SettingsSheet />
+        <FiltersSheet />
+      </BottomBar>
     </Hydrate>
   );
 }

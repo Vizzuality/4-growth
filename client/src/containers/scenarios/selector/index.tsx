@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 
 import { cn } from "@/lib/utils";
@@ -10,12 +11,12 @@ const ScenariosSelector: FC = () => {
   const { selectedScenarios, toggleScenario } = useScenarioFilter();
 
   return (
-    <div className="grid grid-cols-2 gap-0.5">
+    <div className="grid grid-cols-1 gap-0.5 md:grid-cols-2">
       {SCENARIOS.map((s) => (
         <label
           key={`scenario-selector-${s.value}`}
           className={cn({
-            "group relative flex cursor-pointer select-none flex-col items-start gap-4 rounded-2xl p-4 transition-colors":
+            "group relative flex cursor-pointer select-none flex-row items-center gap-4 rounded-2xl p-4 transition-colors md:flex-col md:items-start":
               true,
             "bg-secondary": selectedScenarios.includes(s.value),
           })}
