@@ -53,7 +53,7 @@ const SettingsSheet: FC = () => {
       <SheetTrigger asChild>
         <Button className="w-full">Settings</Button>
       </SheetTrigger>
-      <SheetContent className="h-screen w-screen bg-navy-900" side="bottom">
+      <SheetContent className="h-full w-screen bg-navy-900" side="bottom">
         <SheetHeader>
           <SheetTitle>Settings</SheetTitle>
         </SheetHeader>
