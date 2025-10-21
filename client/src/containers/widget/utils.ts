@@ -91,7 +91,7 @@ export function getDefaultProjectionUnit(
   data?: ProjectionWidgetData | CustomProjection,
   indicator?: string,
 ): string {
-  if (indicator === "Shipments") return "Units";
+  if (data && "Units" in data && indicator === "Shipments") return "Units";
 
   if (!data || "EUR" in data) return "EUR";
 
