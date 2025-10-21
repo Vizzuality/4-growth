@@ -11,12 +11,14 @@ export const metadata: Metadata = {
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
-    <div className="grid h-full grid-cols-12 space-x-0.5">
-      <div className="col-span-8 flex h-full flex-col space-y-0.5">
+    <div className="h-full space-x-0.5 space-y-0.5 overflow-y-auto md:grid md:grid-cols-12 md:space-y-0 xl:col-span-8">
+      <div className="flex flex-col space-y-0.5 md:col-span-6 md:h-full">
         <Header />
-        <div className="h-full rounded-2xl bg-[url('/images/fields.avif')] bg-cover bg-center bg-no-repeat" />
+        <div className="hidden h-full rounded-2xl bg-[url('/images/fields.avif')] bg-cover bg-center bg-no-repeat md:block" />
       </div>
-      <div className="col-span-4 rounded-2xl bg-primary py-20">{children}</div>
+      <div className="xl:col-pan-4 rounded-2xl bg-primary py-20 md:col-span-6">
+        {children}
+      </div>
     </div>
   );
 }
