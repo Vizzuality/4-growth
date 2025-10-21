@@ -46,7 +46,7 @@ const useColumns = () => {
         </div>
       ),
       cell: (cellProps) => (
-        <div className="flex items-center justify-between pr-6">
+        <div className="flex items-center justify-between md:pr-6">
           <span>
             {WIDGET_VISUALIZATIONS_MAP[cellProps.getValue() as string]}
           </span>

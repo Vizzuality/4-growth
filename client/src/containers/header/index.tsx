@@ -6,6 +6,8 @@ import Link from "next/link";
 
 import { Menu as MenuIcon } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+
 import { Overlay } from "@/components/ui/overlay";
 import {
   Popover,
@@ -16,11 +18,16 @@ import { getRouteHref } from "@/utils/route-config";
 
 import Menu from "./menu";
 
-const Header: FC = () => {
+const Header: FC<{ className?: string }> = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="flex items-center justify-between rounded-2xl bg-accent p-4">
+    <header
+      className={cn(
+        "flex items-center justify-between rounded-2xl bg-accent p-4",
+        className,
+      )}
+    >
       <Link href={getRouteHref("surveyAnalysis", "explore")}>
         <div className="h-[72px] w-[160px] space-y-3 bg-logo bg-no-repeat">
           <h1 className="overflow-hidden whitespace-nowrap indent-[100%]">

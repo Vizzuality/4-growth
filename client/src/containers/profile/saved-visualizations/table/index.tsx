@@ -19,6 +19,8 @@ import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { cn } from "@/lib/utils";
 
+import NoData from "@/containers/no-data";
+
 import {
   Pagination,
   PaginationContent,
@@ -28,7 +30,6 @@ import {
   PaginationFirstPage,
   PaginationLastPage,
 } from "@/components/ui/pagination";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectTrigger,
@@ -36,6 +37,8 @@ import {
   SelectContent,
   SelectValue,
 } from "@/components/ui/select";
+import { Spinner } from "@/components/ui/spinner";
+import { ScrollableTable, TableBody } from "@/components/ui/table";
 import { getAuthHeader } from "@/utils/auth-header";
 import { getDynamicRouteHref } from "@/utils/route-config";
 
@@ -66,7 +69,7 @@ const SavedVisualizationsTable: FC = () => {
     DEFAULT_TABLE_OPTIONS.pagination,
   );
 
-  const { data } = client.users.searchCustomWidgets.useQuery(
+  const { data, isFetching } = client.users.searchCustomWidgets.useQuery(
     queryKeys.users.userCharts(session?.user.id as string, {
       sorting,
       pagination,
@@ -116,76 +119,83 @@ const SavedVisualizationsTable: FC = () => {
     }
   }, [data]);
 
-  if (!data?.data?.length) return;
+  if (isFetching) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center">
+        <Spinner className="size-10" />
+      </div>
+    );
+  }
+
+  if (!data?.data?.length)
+    return <NoData description="No visualizations saved" />;
 
   return (
-    <>
-      <ScrollArea className="h-full">
-        <table className="w-full">
-          <thead className="sticky top-0 bg-navy-900">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className={cn("pb-3 text-left", {
-                      "pl-8": header.column.id === "name",
-                    })}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody className="divide-y divide-bluish-gray-500/35 text-sm">
-            {table.getRowModel().rows.map((row) => (
-              <tr
-                key={row.id}
-                className={cn(
-                  "cursor-pointer border-l !border-l-transparent transition-colors hover:bg-navy-700",
-                  {
-                    "!border-l-foreground bg-navy-700":
-                      selectedRow === String(row.original.id),
-                  },
-                )}
-                onClick={() =>
-                  router.push(
-                    getDynamicRouteHref(
-                      "surveyAnalysis",
-                      "sandbox",
-                      String(row.original.id),
-                    ),
-                  )
-                }
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <td
-                    key={cell.id}
-                    className={cn("py-3", {
-                      "pl-8": cell.column.id === "name",
-                    })}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </ScrollArea>
+    <div className="relative flex h-full flex-1 flex-col overflow-hidden">
+      <ScrollableTable>
+        <thead className="sticky top-0 bg-navy-900">
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th
+                  key={header.id}
+                  className={cn("pb-3 text-left", {
+                    "pl-8": header.column.id === "name",
+                  })}
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <TableBody className="divide-y divide-bluish-gray-500/35 text-sm">
+          {table.getRowModel().rows.map((row) => (
+            <tr
+              key={row.id}
+              className={cn(
+                "cursor-pointer border-l !border-l-transparent transition-colors hover:bg-navy-700",
+                {
+                  "!border-l-foreground bg-navy-700":
+                    selectedRow === String(row.original.id),
+                },
+              )}
+              onClick={() =>
+                router.push(
+                  getDynamicRouteHref(
+                    "surveyAnalysis",
+                    "sandbox",
+                    String(row.original.id),
+                  ),
+                )
+              }
+            >
+              {row.getVisibleCells().map((cell) => (
+                <td
+                  key={cell.id}
+                  className={cn("py-3", {
+                    "pl-8": cell.column.id === "name",
+                  })}
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </TableBody>
+      </ScrollableTable>
       <div className="sticky bottom-0 grid grid-cols-12 bg-navy-900 px-6">
-        <div className="col-span-6 flex items-center">
+        <div className="col-span-1 flex items-center xl:col-span-6">
           {/* <span className="text-sm text-slate-300">
             1 of 100 row(s) selected.
           </span> */}
         </div>
-        <div className="col-span-6 flex items-center justify-between space-x-8">
+        <div className="col-span-12 flex items-center justify-between space-x-8 xl:col-span-6">
           <div className="flex items-center space-x-2">
             <span className="text-sm font-medium">Rows per page</span>
             <Select
@@ -258,7 +268,7 @@ const SavedVisualizationsTable: FC = () => {
           </Pagination>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
