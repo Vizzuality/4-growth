@@ -80,7 +80,7 @@ const FilterPopup: FC<FilterPopupProps> = ({
                   // This fix follows the previous pattern which covers differents use cases in a hacky way.
                   label?.selected ??
                     filters.find((f) => f.name === selectedFilter?.name)?.label
-                }
+                }{" "}
                 <FilterItemButton
                   value={selectedFilter.values[0]}
                   onClick={(value) => onRemoveFilterValue(name, value)}
