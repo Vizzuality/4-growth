@@ -42,6 +42,7 @@ const IndicatorSelector: FC<IndicatorSelectorProps> = ({
         setShowIndicators(o);
         setshowOverlay(o);
       }}
+      modal
     >
       <PopoverTrigger asChild>
         <Button

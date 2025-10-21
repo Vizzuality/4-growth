@@ -37,13 +37,13 @@ export function TopNavToggle() {
       <Toggle>
         <ToggleButton
           isSelected={view === "explore"}
-          isSelectedClassName="bg-secondary"
+          isSelectedClassName="bg-white text-navy-950 md:bg-secondary md:text-white"
         >
           <Link href={getRouteHref(type, "explore")}>Explore</Link>
         </ToggleButton>
         <ToggleButton
           isSelected={view === "sandbox"}
-          isSelectedClassName="bg-secondary"
+          isSelectedClassName="bg-white text-navy-950 md:bg-secondary md:text-white"
         >
           <Link href={getRouteHref(type, "sandbox")}>Sandbox</Link>
         </ToggleButton>

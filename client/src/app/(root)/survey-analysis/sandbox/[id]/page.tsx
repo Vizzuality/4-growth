@@ -8,6 +8,9 @@ import { queryKeys } from "@/lib/queryKeys";
 
 import { auth } from "@/app/auth/api/[...nextauth]/config";
 
+import BottomBar from "@/containers/bottom-bar";
+import FiltersSheet from "@/containers/bottom-bar/survey-analysis/filters-sheet/user-sandbox";
+import SettingsSheet from "@/containers/bottom-bar/survey-analysis/settings-sheet/user-sandbox";
 import Sandbox from "@/containers/sandbox/user-sandbox";
 
 import { getAuthHeader } from "@/utils/auth-header";
@@ -58,6 +61,10 @@ export default async function SandboxPage({
   return (
     <Hydrate state={dehydrate(queryClient)}>
       <Sandbox customWidgetId={id} />
+      <BottomBar>
+        <FiltersSheet />
+        <SettingsSheet />
+      </BottomBar>
     </Hydrate>
   );
 }

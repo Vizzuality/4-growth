@@ -73,6 +73,7 @@ const VisualizationSelector: FC<VisualizationSelectorProps> = ({
         setShowVisualizations(o);
         setShowOverlay(o);
       }}
+      modal
     >
       <PopoverTrigger asChild>
         <Button
