@@ -38,6 +38,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(config);
+  const isMobile = isMobileDevice();
 
   return (
     <LayoutProviders session={session}>
@@ -47,8 +48,10 @@ export default async function RootLayout({
             <Toaster />
             <CookieDialog />
             <Analytics />
-            {isMobileDevice() && <DesktopViewDialog />}
-            <main className="h-lvh">{children}</main>
+            {isMobile && <DesktopViewDialog />}
+            <main className={cn({ "h-lvh": !isMobile, "h-dvh": isMobile })}>
+              {children}
+            </main>
           </body>
         </NuqsAdapter>
       </html>
