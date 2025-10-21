@@ -69,7 +69,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
   );
 
   useEffect(() => {
-    if (getCustomWidgetQuery.status === "success") {
+    if (getCustomWidgetQuery.status === "success" && !visualization) {
       setIndicator(getCustomWidgetQuery.data.widget.indicator);
       setVisualization(getCustomWidgetQuery.data.defaultVisualization);
 

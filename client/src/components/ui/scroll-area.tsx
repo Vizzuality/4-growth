@@ -12,12 +12,16 @@ export interface ScrollAreaProps
    * maximum height of scroll-area in pixels
    */
   maxHeight?: number;
+  /**
+   * When true, adds a horizontal scrollbar to the scroll area
+   */
+  hasHorizontalScroll?: boolean;
 }
 
 const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
   ScrollAreaProps
->(({ className, children, maxHeight, ...props }, ref) => (
+>(({ className, children, maxHeight, hasHorizontalScroll, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
     className={cn("relative overflow-hidden", className)}
@@ -30,6 +34,7 @@ const ScrollArea = React.forwardRef<
       {children}
     </ScrollAreaPrimitive.Viewport>
     <ScrollBar />
+    {hasHorizontalScroll && <ScrollBar orientation="horizontal" />}
     <ScrollAreaPrimitive.Corner />
   </ScrollAreaPrimitive.Root>
 ));
