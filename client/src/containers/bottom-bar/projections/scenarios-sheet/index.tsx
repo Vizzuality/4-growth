@@ -17,7 +17,7 @@ const ScenariosSheet: FC = () => {
       <SheetTrigger asChild>
         <Button className="w-full">Scenarios</Button>
       </SheetTrigger>
-      <SheetContent className="h-screen w-screen bg-navy-900" side="bottom">
+      <SheetContent className="h-full w-screen bg-navy-900" side="bottom">
         <SheetHeader className="mb-4">
           <SheetTitle>Scenarios</SheetTitle>
         </SheetHeader>
