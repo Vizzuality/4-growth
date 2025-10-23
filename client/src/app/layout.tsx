@@ -13,7 +13,6 @@ import { config } from "@/app/auth/api/[...nextauth]/config";
 
 import Analytics from "@/containers/analytics";
 import CookieDialog from "@/containers/cookie-dialog";
-import DesktopViewDialog from "@/containers/desktop-view-dialog";
 
 import { Toaster } from "@/components/ui/toaster";
 
@@ -48,7 +47,6 @@ export default async function RootLayout({
             <Toaster />
             <CookieDialog />
             <Analytics />
-            {isMobile && <DesktopViewDialog />}
             <main className={cn({ "h-lvh": !isMobile, "h-dvh": isMobile })}>
               {children}
             </main>

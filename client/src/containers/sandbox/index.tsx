@@ -28,12 +28,7 @@ const Sandbox: FC = () => {
       <NoData icon={<MenuPointer />} className="m-6 gap-6">
         <div className="text-center">
           <p>
-            The Sandbox allows users to create customized visualizations by
-            combining data series and filters in a single graph.
-          </p>
-          <p>
-            Please select an indicator and a chart type to start the
-            visualization.
+            Select an indicator in Settings to start your custom visualization
           </p>
         </div>
       </NoData>
