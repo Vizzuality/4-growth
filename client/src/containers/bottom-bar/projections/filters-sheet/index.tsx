@@ -26,6 +26,7 @@ const FiltersSheet: FC = () => {
   const handleSubmitButtonClick = () => {
     setFilters(newFilters);
     setOpen(false);
+    setNewFilters([]);
   };
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const FiltersSheet: FC = () => {
         <Button className="w-full">Filters</Button>
       </SheetTrigger>
       <SheetContent
-        className="max-h-fit w-screen justify-between rounded-t-2xl border-t-navy-900 bg-navy-900 px-0 pb-0"
+        className="h-full max-h-[80%] w-screen justify-between rounded-t-2xl border-t-navy-900 bg-navy-900 px-0 pb-0"
         side="bottom"
       >
         <SheetHeader className="mb-6">
@@ -46,7 +47,7 @@ const FiltersSheet: FC = () => {
           <SheetDescription className="sr-only">Filters</SheetDescription>
         </SheetHeader>
         <FilterSettings defaultFilters={PROJECTIONS_DEFAULT_FILTERS} />
-        <div className="mt-[70%]">
+        <div className="absolute bottom-0 left-0 w-full">
           <Button className="w-full" onClick={handleSubmitButtonClick}>
             Apply
           </Button>
