@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 
-import { ProjectionFilter } from "@shared/dto/projections/projection-filter.entity";
+import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 
 import { useFilterSettings } from "@/containers/bottom-bar/projections/filters-sheet/filter-settings/hooks";
 import FilterSelect from "@/containers/filter/filter-select";
@@ -16,8 +16,8 @@ import {
 } from "@/components/ui/sheet";
 
 interface Props {
-  allFilters: ProjectionFilter[];
-  fixedFilter?: ProjectionFilter;
+  allFilters: PageFilter[];
+  fixedFilter?: PageFilter;
   name: string;
   label?: {
     selected: string;
