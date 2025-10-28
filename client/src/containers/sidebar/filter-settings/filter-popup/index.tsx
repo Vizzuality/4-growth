@@ -2,12 +2,12 @@ import { FC, useState } from "react";
 
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { useSetAtom } from "jotai";
-import { CircleXIcon } from "lucide-react";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
 import FilterSelect from "@/containers/filter/filter-select";
 import { showOverlayAtom } from "@/containers/overlay/store";
+import FilterItemButton from "@/containers/sidebar/filter-settings/button";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -29,25 +29,6 @@ interface FilterPopupProps {
   };
   fixedFilter?: PageFilter;
 }
-
-const FilterItemButton: FC<{
-  value: string;
-
-  onClick: (value: string) => void;
-}> = ({ value, onClick }) => {
-  return (
-    <span className="inline-flex items-center gap-2">
-      <span className="font-bold">{value}&nbsp;</span>
-      <CircleXIcon
-        className="h-4 w-4 transition-colors hover:text-white/80"
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick(value);
-        }}
-      />
-    </span>
-  );
-};
 
 const FilterPopup: FC<FilterPopupProps> = ({
   name,
