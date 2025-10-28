@@ -1,44 +1,55 @@
 "use client";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
-import { ADD_FILTER_MODE } from "@/lib/constants";
+import { useAtom } from "jotai";
 
 import useFilters from "@/hooks/use-filters";
 
-import FilterSettings from "@/containers/sidebar/filter-settings";
+import FilterSettings from "@/containers/bottom-bar/projections/filters-sheet/filter-settings";
+import { FilterSettingsAtom } from "@/containers/bottom-bar/projections/filters-sheet/filter-settings/store";
 import { PROJECTIONS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
 
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 
 const FiltersSheet: FC = () => {
-  const { filters, addFilter, removeFilterValue } = useFilters();
+  const [open, setOpen] = useState(false);
+  const { filters, setFilters } = useFilters();
+  const [newFilters, setNewFilters] = useAtom(FilterSettingsAtom);
+  const handleSubmitButtonClick = () => {
+    setFilters(newFilters);
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    setNewFilters(filters);
+  }, [filters, setNewFilters]);
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button className="w-full">Filters</Button>
       </SheetTrigger>
-      <SheetContent className="h-full w-screen bg-navy-900" side="bottom">
-        <SheetHeader>
-          <SheetTitle>Filters</SheetTitle>
+      <SheetContent
+        className="max-h-fit w-screen justify-between rounded-t-2xl border-t-navy-900 bg-navy-900 px-0 pb-0"
+        side="bottom"
+      >
+        <SheetHeader className="mb-6">
+          <SheetTitle className="px-4 text-left text-base">Filters</SheetTitle>
+          <SheetDescription className="sr-only">Filters</SheetDescription>
         </SheetHeader>
-        <div className="py-3.5">
-          <FilterSettings
-            type="projections"
-            defaultFilters={PROJECTIONS_DEFAULT_FILTERS}
-            filterQueryParams={filters}
-            onAddFilter={(newFilter) =>
-              addFilter(newFilter, ADD_FILTER_MODE.REPLACE)
-            }
-            onRemoveFilterValue={removeFilterValue}
-          />
+        <FilterSettings defaultFilters={PROJECTIONS_DEFAULT_FILTERS} />
+        <div className="mt-[70%]">
+          <Button className="w-full" onClick={handleSubmitButtonClick}>
+            Apply
+          </Button>
         </div>
       </SheetContent>
     </Sheet>
