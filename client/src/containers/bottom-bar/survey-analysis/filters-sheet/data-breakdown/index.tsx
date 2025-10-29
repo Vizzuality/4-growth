@@ -1,21 +1,24 @@
 import { FC, useState } from "react";
 
 import { BaseWidget } from "@shared/dto/widgets/base-widget.entity";
-import { useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import { breakdownAtom } from "@/containers/bottom-bar/filters-sheet/store";
 import { showOverlayAtom } from "@/containers/overlay/store";
 import SearchableList from "@/containers/searchable-list";
 
 import { Button } from "@/components/ui/button";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { SIDEBAR_POPOVER_CLASS } from "@/constants";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const EXCLUDED_WIDGET_INDICATORS = [
   "total-countries",
@@ -23,12 +26,8 @@ const EXCLUDED_WIDGET_INDICATORS = [
   "adoption-of-technology-by-country",
 ];
 
-interface Props {
-  breakdown: string | null;
-  setBreakdown: (value: string | null) => void;
-}
-
-const BreakdownSelector: FC<Props> = ({ breakdown, setBreakdown }) => {
+const BreakdownSelector: FC = () => {
+  const [breakdown, setBreakdown] = useAtom(breakdownAtom);
   const { data } = client.widgets.getWidgets.useQuery(
     queryKeys.widgets.all.queryKey,
     { query: {} },
@@ -39,14 +38,14 @@ const BreakdownSelector: FC<Props> = ({ breakdown, setBreakdown }) => {
   const widgets = (data ?? []) as BaseWidget[];
 
   return (
-    <Popover
+    <Sheet
       open={showIndicators}
       onOpenChange={(o) => {
         setShowIndicators(o);
         setshowOverlay(o);
       }}
     >
-      <PopoverTrigger asChild>
+      <SheetTrigger>
         <Button
           variant="clean"
           className="inline-block h-full w-full whitespace-pre-wrap rounded-none px-4 py-3.5 text-left font-normal transition-colors hover:bg-secondary"
@@ -72,12 +71,18 @@ const BreakdownSelector: FC<Props> = ({ breakdown, setBreakdown }) => {
             <span>Add a data breakdown</span>
           )}
         </Button>
-      </PopoverTrigger>
-      <PopoverContent
-        align="start"
+      </SheetTrigger>
+      <SheetContent
+        className="flex h-full max-h-[70%] w-screen flex-col justify-between overflow-hidden rounded-t-2xl bg-slate-100 p-0 text-background"
         side="bottom"
-        className={SIDEBAR_POPOVER_CLASS}
+        hideCloseButton
       >
+        <SheetHeader className="sr-only">
+          <SheetTitle className="sr-only">Data breakdown</SheetTitle>
+          <SheetDescription className="sr-only">
+            Data breakdown
+          </SheetDescription>
+        </SheetHeader>
         <SearchableList
           items={widgets.filter(
             (w) =>
@@ -90,10 +95,9 @@ const BreakdownSelector: FC<Props> = ({ breakdown, setBreakdown }) => {
             setShowIndicators(false);
             setshowOverlay(false);
           }}
-          maxHeight={220}
         />
-      </PopoverContent>
-    </Popover>
+      </SheetContent>
+    </Sheet>
   );
 };
 

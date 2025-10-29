@@ -1,10 +1,13 @@
 import { FC } from "react";
 
+import { useQueryState } from "nuqs";
+
 import { ADD_FILTER_MODE } from "@/lib/constants";
 
 import useFilters from "@/hooks/use-filters";
 import useSandboxWidget from "@/hooks/use-sandbox-widget";
 
+import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import FilterSettings from "@/containers/sidebar/filter-settings";
 import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filters-button";
 import { SURVEY_ANALYSIS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
@@ -20,6 +23,7 @@ import {
 
 const SandboxSidebar: FC = () => {
   const { filters, addFilter, removeFilterValue } = useFilters();
+  const [breakdown, setBreakdown] = useQueryState("breakdown");
   const {
     indicator,
     visualization,
@@ -64,7 +68,10 @@ const SandboxSidebar: FC = () => {
               addFilter(newFilter, ADD_FILTER_MODE.REPLACE)
             }
             onRemoveFilterValue={removeFilterValue}
-            withDataBreakdown
+          />
+          <BreakdownSelector
+            breakdown={breakdown}
+            setBreakdown={setBreakdown}
           />
         </AccordionContent>
       </AccordionItem>

@@ -1,3 +1,4 @@
+"use client";
 import { FC, useMemo } from "react";
 
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
@@ -5,14 +6,20 @@ import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
-import FilterSettingsButton from "@/containers/bottom-bar/projections/filters-sheet/filter-settings/button";
-import { useFilterSettings } from "@/containers/bottom-bar/projections/filters-sheet/filter-settings/hooks";
+import { useFilterSettings } from "@/containers/bottom-bar/filters-sheet/hooks";
+import FilterSettingsButton from "@/containers/bottom-bar/projections/filter-settings/button";
+import BreakdownSelector from "@/containers/bottom-bar/survey-analysis/filters-sheet/data-breakdown";
+import { DEFAULT_FILTERS_LABEL_MAP } from "@/containers/sidebar/filter-settings/constants";
 
 interface FilterSettingsProps {
   defaultFilters: string[];
+  withDataBreakdown?: boolean;
 }
 
-const FilterSettings: FC<FilterSettingsProps> = ({ defaultFilters }) => {
+const FilterSettings: FC<FilterSettingsProps> = ({
+  defaultFilters,
+  withDataBreakdown,
+}) => {
   const { filters } = useFilterSettings();
   const surveyAnalysisFiltersQuery = client.pageFilter.searchFilters.useQuery(
     queryKeys.pageFilters.all(filters).queryKey,
@@ -50,6 +57,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({ defaultFilters }) => {
           allFilters={effectiveAllFilters}
           fixedFilter={f}
           name={f.name}
+          label={DEFAULT_FILTERS_LABEL_MAP[f.name]}
         />
       ))}
       {customFilters.length > 1 && (
@@ -60,6 +68,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({ defaultFilters }) => {
               allFilters={effectiveAllFilters}
               fixedFilter={f}
               name={f.name}
+              label={DEFAULT_FILTERS_LABEL_MAP[f.name]}
             />
           ))}
           <FilterSettingsButton
@@ -69,6 +78,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({ defaultFilters }) => {
           />
         </>
       )}
+      {withDataBreakdown && <BreakdownSelector />}
     </div>
   );
 };

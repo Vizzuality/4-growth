@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 
-import { useFilterSettings } from "@/containers/bottom-bar/projections/filters-sheet/filter-settings/hooks";
+import { useFilterSettings } from "@/containers/bottom-bar/filters-sheet/hooks";
 import FilterSelect from "@/containers/filter/filter-select";
 import FilterItemButton from "@/containers/sidebar/filter-settings/button";
 

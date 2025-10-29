@@ -10,11 +10,13 @@ import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
+import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import FilterSettings from "@/containers/sidebar/filter-settings";
 import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filters-button";
 import { SURVEY_ANALYSIS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
 import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import {
+  sandboxBreakdownAtom,
   sandboxFiltersAtom,
   sandboxIndicatorAtom,
   sandboxVisualizationAtom,
@@ -30,6 +32,7 @@ import {
 
 const UserSandboxSidebar: FC = () => {
   const [filters, setFilters] = useAtom(sandboxFiltersAtom);
+  const [breakdown, setBreakdown] = useAtom(sandboxBreakdownAtom);
   const [indicator, setIndicator] = useAtom(sandboxIndicatorAtom);
   const [visualization, setVisualization] = useAtom(sandboxVisualizationAtom);
   const getWidgetQuery = client.widgets.getWidget.useQuery(
@@ -106,7 +109,10 @@ const UserSandboxSidebar: FC = () => {
             filterQueryParams={filters}
             onAddFilter={addFilter}
             onRemoveFilterValue={removeFilterValue}
-            withDataBreakdown
+          />
+          <BreakdownSelector
+            breakdown={breakdown}
+            setBreakdown={setBreakdown}
           />
         </AccordionContent>
       </AccordionItem>

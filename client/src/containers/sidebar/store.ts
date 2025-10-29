@@ -7,6 +7,7 @@ import { useHydrateAtoms } from "jotai/utils";
 import { FilterQueryParam } from "@/hooks/use-filters";
 
 export const sandboxFiltersAtom = atom<FilterQueryParam[]>([]);
+export const sandboxBreakdownAtom = atom<string | null>(null);
 export const sandboxIndicatorAtom = atom<string | null>(null);
 export const sandboxVisualizationAtom = atom<WidgetVisualizationsType | null>(
   null,

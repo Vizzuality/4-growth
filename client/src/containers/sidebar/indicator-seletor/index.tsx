@@ -75,6 +75,7 @@ const IndicatorSelector: FC<IndicatorSelectorProps> = ({
             setShowIndicators(false);
             setshowOverlay(false);
           }}
+          maxHeight={220}
         />
       </PopoverContent>
     </Popover>
