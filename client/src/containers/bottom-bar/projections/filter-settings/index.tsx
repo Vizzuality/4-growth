@@ -1,10 +1,12 @@
+"use client";
 import { FC, useMemo } from "react";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { normalizeProjectionsFilterValues } from "@/lib/utils";
 
-import FilterSettingsButton from "@/containers/bottom-bar/projections/filters-sheet/filter-settings/button";
+import FilterSettingsButton from "@/containers/bottom-bar/projections/filter-settings/button";
+import { DEFAULT_FILTERS_LABEL_MAP } from "@/containers/sidebar/filter-settings/constants";
 
 interface FilterSettingsProps {
   defaultFilters: string[];
@@ -48,6 +50,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({ defaultFilters }) => {
           allFilters={effectiveAllFilters}
           fixedFilter={f}
           name={f.name}
+          label={DEFAULT_FILTERS_LABEL_MAP[f.name]}
         />
       ))}
     </div>

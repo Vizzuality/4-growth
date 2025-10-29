@@ -1,7 +1,7 @@
 "use client";
 import { FC, useEffect } from "react";
 
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { useSession } from "next-auth/react";
 
 import {
@@ -12,6 +12,7 @@ import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
 import {
+  sandboxBreakdownAtom,
   sandboxFiltersAtom,
   sandboxIndicatorAtom,
   sandboxVisualizationAtom,
@@ -31,6 +32,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
   const [indicator, setIndicator] = useAtom(sandboxIndicatorAtom);
   const [visualization, setVisualization] = useAtom(sandboxVisualizationAtom);
   const [filters, setFilters] = useAtom(sandboxFiltersAtom);
+  const breakdown = useAtomValue(sandboxBreakdownAtom);
   const getCustomWidgetQuery = client.users.findCustomWidget.useQuery(
     queryKeys.users.userChart(customWidgetId).queryKey,
     {
@@ -48,11 +50,13 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
     },
   );
   const { data: widget } = client.widgets.getWidget.useQuery(
-    queryKeys.widgets.one(indicator || "", filters).queryKey,
+    queryKeys.widgets.one(indicator || "", filters, breakdown || undefined)
+      .queryKey,
     {
       params: { id: indicator! },
       query: {
         filters: filters,
+        breakdown: breakdown || undefined,
       },
     },
     {
@@ -109,6 +113,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
           }
           className="col-span-1 last:odd:col-span-2"
           config={{ menu: { className: "flex flex-col py-4" } }}
+          breakdown={breakdown || undefined}
         />
       )}
     </Card>

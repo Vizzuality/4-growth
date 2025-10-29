@@ -22,6 +22,7 @@ const FilterSelectName: FC<{ items: PageFilter[] }> = ({ items }) => {
         setCurrentFilter(filter);
         setCurrentStep(FilterSelectStep.values);
       }}
+      maxHeight={220}
     />
   );
 };

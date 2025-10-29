@@ -20,6 +20,7 @@ interface SearchableListProps<T> {
    * For example, if T is { id: number, name: string }, itemKey could be 'name'.
    */
   itemKey: keyof T & string;
+  maxHeight?: number;
   /**
    * Callback function that is called when an item is clicked.
    * @param value The full item object that was clicked.
@@ -29,6 +30,7 @@ interface SearchableListProps<T> {
 
 function SearchableList<T>({
   items,
+  maxHeight,
   itemKey,
   onItemClick,
 }: SearchableListProps<T>) {
@@ -58,7 +60,7 @@ function SearchableList<T>({
         <Input
           type="search"
           variant="secondary"
-          className="px-4 pb-2 pr-10 pt-4"
+          className="bg-foreground px-4 pb-2 pr-10 pt-4"
           onChange={handleOnInputChange}
         />
         <div className="absolute right-4 top-1/2 -translate-y-1/2 transform">
@@ -66,7 +68,7 @@ function SearchableList<T>({
         </div>
       </div>
       <Separator className="bg-bluish-gray-500 bg-opacity-35" />
-      <ScrollArea className="bg-slate-100" maxHeight={220}>
+      <ScrollArea className="bg-slate-100" maxHeight={maxHeight}>
         {filteredItems.map((item, index) => (
           <div key={`searchable-list-item-${index}`}>
             <Button

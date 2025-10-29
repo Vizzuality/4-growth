@@ -7,7 +7,7 @@ import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
-import { FilterSettingsAtom } from "@/containers/bottom-bar/projections/filters-sheet/filter-settings/store";
+import { FilterSettingsAtom } from "@/containers/bottom-bar/filters-sheet/store";
 
 export function useFilterSettings() {
   const [newFilters, setNewFilters] = useAtom(FilterSettingsAtom);

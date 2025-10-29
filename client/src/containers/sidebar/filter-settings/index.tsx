@@ -8,7 +8,6 @@ import { normalizeProjectionsFilterValues } from "@/lib/utils";
 
 import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
 
-import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import { DEFAULT_FILTERS_LABEL_MAP } from "@/containers/sidebar/filter-settings/constants";
 import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
 
@@ -18,14 +17,12 @@ interface FilterSettingsProps {
   filterQueryParams: FilterQueryParam[];
   onAddFilter: (newFilter: FilterQueryParam) => void;
   onRemoveFilterValue: (name: string, valueToRemove: string) => void;
-  withDataBreakdown?: boolean;
 }
 
 const FilterSettings: FC<FilterSettingsProps> = ({
   type,
   defaultFilters,
   filterQueryParams,
-  withDataBreakdown,
   onAddFilter,
   onRemoveFilterValue,
 }) => {
@@ -113,7 +110,6 @@ const FilterSettings: FC<FilterSettingsProps> = ({
           />
         </>
       )}
-      {withDataBreakdown && <BreakdownSelector />}
     </>
   );
 };

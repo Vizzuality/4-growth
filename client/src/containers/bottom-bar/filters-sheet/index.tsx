@@ -2,15 +2,14 @@
 import { FC, PropsWithChildren, useEffect, useState } from "react";
 
 import { useAtom } from "jotai";
+import { useQueryState } from "nuqs";
+
+import useFilters from "@/hooks/use-filters";
 
 import {
   breakdownAtom,
   FilterSettingsAtom,
 } from "@/containers/bottom-bar/filters-sheet/store";
-import {
-  sandboxBreakdownAtom,
-  sandboxFiltersAtom,
-} from "@/containers/sidebar/store";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -25,10 +24,10 @@ import {
 
 const FiltersSheet: FC<PropsWithChildren> = ({ children }) => {
   const [open, setOpen] = useState(false);
-  const [filters, setFilters] = useAtom(sandboxFiltersAtom);
+  const { filters, setFilters } = useFilters();
   const [newFilters, setNewFilters] = useAtom(FilterSettingsAtom);
   const [newBreakdown, setNewBreakdown] = useAtom(breakdownAtom);
-  const [breakdown, setBreakdown] = useAtom(sandboxBreakdownAtom);
+  const [breakdown, setBreakdown] = useQueryState("breakdown");
   const handleSubmitButtonClick = () => {
     setFilters(newFilters);
     setBreakdown(newBreakdown);
