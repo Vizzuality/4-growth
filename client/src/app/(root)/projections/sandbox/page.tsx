@@ -4,8 +4,11 @@ import { client, QUERY_OPTIONS } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
 import BottomBar from "@/containers/bottom-bar";
+import FiltersSheet from "@/containers/bottom-bar/filters-sheet";
+import FilterSettings from "@/containers/bottom-bar/projections/filter-settings";
 import SettingsSheet from "@/containers/bottom-bar/projections/settings-sheet";
 import Sandbox from "@/containers/sandbox/projections-sandbox";
+import { PROJECTIONS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
 
 export default async function ProjectionsSandboxPage() {
   const queryClient = new QueryClient();
@@ -20,7 +23,9 @@ export default async function ProjectionsSandboxPage() {
       <Sandbox />
       <BottomBar>
         <SettingsSheet />
-        {/* <FiltersSheet /> */}
+        <FiltersSheet>
+          <FilterSettings defaultFilters={PROJECTIONS_DEFAULT_FILTERS} />
+        </FiltersSheet>
       </BottomBar>
     </Hydrate>
   );
