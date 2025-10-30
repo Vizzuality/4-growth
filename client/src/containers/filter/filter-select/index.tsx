@@ -19,6 +19,7 @@ export interface FilterSelectProps {
   items: PageFilter[];
   defaultValues: string[];
   fixedFilter?: PageFilter;
+  maxHeight?: number;
   onSubmit: (values: FilterSelectForm & { name: string }) => void;
 }
 
@@ -26,6 +27,7 @@ const FilterSelect: FC<FilterSelectProps> = ({
   items,
   defaultValues,
   fixedFilter,
+  maxHeight,
   onSubmit,
 }) => {
   return (
@@ -40,6 +42,7 @@ const FilterSelect: FC<FilterSelectProps> = ({
           defaultValues={defaultValues}
           fixedFilter={fixedFilter}
           items={items}
+          maxHeight={maxHeight}
           onSubmit={onSubmit}
         />
       </AtomsHydrator>
@@ -51,13 +54,14 @@ function FilterSelectSteps({
   fixedFilter,
   defaultValues,
   items,
+  maxHeight,
   onSubmit,
 }: FilterSelectProps) {
   const currentStep = useAtomValue(currentStepAtom);
   const currentFilter = useAtomValue(currentFilterAtom);
 
   if (currentStep === FilterSelectStep.name) {
-    return <FilterSelectName items={items} />;
+    return <FilterSelectName items={items} maxHeight={maxHeight} />;
   }
 
   return (
@@ -68,6 +72,7 @@ function FilterSelectSteps({
       onSubmit={(v) => {
         onSubmit({ ...v, name: currentFilter?.name as string });
       }}
+      maxHeight={maxHeight}
     />
   );
 }

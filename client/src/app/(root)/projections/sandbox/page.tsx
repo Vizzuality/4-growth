@@ -4,7 +4,6 @@ import { client, QUERY_OPTIONS } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
 import BottomBar from "@/containers/bottom-bar";
-import FiltersSheet from "@/containers/bottom-bar/projections/filters-sheet";
 import SettingsSheet from "@/containers/bottom-bar/projections/settings-sheet";
 import Sandbox from "@/containers/sandbox/projections-sandbox";
 
@@ -21,7 +20,7 @@ export default async function ProjectionsSandboxPage() {
       <Sandbox />
       <BottomBar>
         <SettingsSheet />
-        <FiltersSheet />
+        {/* <FiltersSheet /> */}
       </BottomBar>
     </Hydrate>
   );

@@ -10,7 +10,10 @@ import {
 } from "@/containers/filter/filter-select/store";
 import SearchableList from "@/containers/searchable-list";
 
-const FilterSelectName: FC<{ items: PageFilter[] }> = ({ items }) => {
+const FilterSelectName: FC<{ items: PageFilter[]; maxHeight?: number }> = ({
+  items,
+  maxHeight,
+}) => {
   const setCurrentFilter = useSetAtom(currentFilterAtom);
   const setCurrentStep = useSetAtom(currentStepAtom);
 
@@ -22,7 +25,7 @@ const FilterSelectName: FC<{ items: PageFilter[] }> = ({ items }) => {
         setCurrentFilter(filter);
         setCurrentStep(FilterSelectStep.values);
       }}
-      maxHeight={220}
+      maxHeight={maxHeight}
     />
   );
 };

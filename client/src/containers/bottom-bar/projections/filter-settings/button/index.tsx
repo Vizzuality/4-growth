@@ -70,7 +70,7 @@ const FilterSettingsButton: FC<Props> = ({
       </Button>
       <Sheet open={showFilterSelect} onOpenChange={setShowFilterSelect}>
         <SheetContent
-          className="max-h-fit w-screen justify-between rounded-t-2xl bg-foreground p-0 text-background"
+          className="flex h-full max-h-[70%] w-screen flex-col justify-between overflow-hidden rounded-t-2xl bg-slate-100 p-0 text-background"
           side="bottom"
           hideCloseButton
         >

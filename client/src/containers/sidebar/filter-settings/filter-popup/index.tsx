@@ -96,6 +96,7 @@ const FilterPopup: FC<FilterPopupProps> = ({
             onAddFilter(values);
             handleFiltersPopupChange(false);
           }}
+          maxHeight={220}
         />
       </PopoverContent>
     </Popover>
