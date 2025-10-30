@@ -7,7 +7,9 @@ import useScenarioFilter from "@/hooks/use-scenario-filter";
 
 import { SCENARIOS } from "@/containers/scenarios/constants";
 
-const ScenariosSelector: FC = () => {
+const ScenariosSelector: FC<{ onToggleScenario?: () => void }> = ({
+  onToggleScenario,
+}) => {
   const { selectedScenarios, toggleScenario } = useScenarioFilter();
 
   return (
@@ -25,7 +27,11 @@ const ScenariosSelector: FC = () => {
             type="checkbox"
             className="sr-only"
             checked={selectedScenarios.includes(s.value)}
-            onChange={() => toggleScenario(s.value)}
+            onChange={() => {
+              toggleScenario(s.value);
+
+              if (onToggleScenario) onToggleScenario();
+            }}
           />
           <div
             className={cn(
