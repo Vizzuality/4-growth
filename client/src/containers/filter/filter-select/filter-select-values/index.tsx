@@ -39,6 +39,7 @@ export interface FilterSelectValuesProps {
   items: PageFilter[];
   defaultValues: string[];
   isFixedFilter?: boolean;
+  maxHeight?: number;
   onSubmit: (values: FilterSelectForm) => void;
 }
 
@@ -46,6 +47,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
   items,
   defaultValues,
   isFixedFilter,
+  maxHeight,
   onSubmit,
 }) => {
   const filter = useAtomValue(currentFilterAtom);
@@ -132,7 +134,7 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
             control={form.control}
             name="values"
             render={({ field }) => (
-              <ScrollArea maxHeight={220}>
+              <ScrollArea maxHeight={maxHeight}>
                 <FormItem>
                   {allValues.length ? (
                     <FormItem className="flex h-10 items-center justify-between gap-2 space-y-0 pr-3 transition-colors hover:bg-slate-200">

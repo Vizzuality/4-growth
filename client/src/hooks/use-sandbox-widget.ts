@@ -52,6 +52,7 @@ function useSandboxWidget() {
     indicator,
     visualization,
     breakdown,
+    filters,
     setIndicator,
     setVisualization,
     getWidgetQuery,
