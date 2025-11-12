@@ -108,8 +108,8 @@ const About: FC = () => {
               height={80}
             />
             <Image
-              src="/images/about/logos/foodscale-hub.avif"
-              alt="FoodScale Hub"
+              src="/images/about/logos/reframe-food.avif"
+              alt="Reframe.food"
               width={212}
               height={80}
             />
