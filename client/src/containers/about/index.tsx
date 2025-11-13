@@ -107,12 +107,15 @@ const About: FC = () => {
               width={212}
               height={80}
             />
-            <Image
-              src="/images/about/logos/reframe-food.avif"
-              alt="Reframe.food"
-              width={212}
-              height={80}
-            />
+            <div className="flex items-center justify-center">
+              <Image
+                src="/images/about/logos/reframe-food.avif"
+                alt="Reframe.food"
+                width={255}
+                height={80}
+                className="h-[35px] w-auto"
+              />
+            </div>
             <Image
               src="/images/about/logos/aristotle-university-thessaloniki.avif"
               alt="Aristotle University of Thessaloniki"
