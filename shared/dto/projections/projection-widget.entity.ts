@@ -44,4 +44,6 @@ export class ProjectionWidget {
   createdAt: Date;
 
   data?: ProjectionWidgetData;
+
+  description?: string;
 }

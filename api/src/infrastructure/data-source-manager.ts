@@ -8,6 +8,7 @@ import { QuestionIndicatorMap } from '@shared/dto/surveys/question-widget-map.en
 import { Section } from '@shared/dto/sections/section.entity';
 import { Projection } from '@shared/dto/projections/projection.entity';
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
+import { ProjectionType } from '@shared/dto/projections/projection-type.entity';
 import {
   AVAILABLE_PROJECTION_FILTERS,
   PROJECTION_FILTER_NAME_TO_FIELD_NAME,
@@ -74,6 +75,7 @@ export class DataSourceManager {
       FSUtils.md5File(`data/surveys/surveys.json`),
       FSUtils.md5File(`data/sections/sections.json`),
       FSUtils.md5File(`data/projections/projections.json`),
+      FSUtils.md5File(`data/projections/projection-types.json`),
     ]);
     const latestDataVersion = results.join('-');
 
@@ -86,6 +88,7 @@ export class DataSourceManager {
     }
 
     await this.loadQuestionIndicatorMap();
+    await this.loadProjectionTypes();
     await Promise.all([
       this.loadPageFilters(),
       this.loadPageSections(),
@@ -191,6 +194,37 @@ export class DataSourceManager {
         answer.questionIndicator = foundQuestionIndicator.indicator;
         await answersRepository.save(answer);
       }
+      await queryRunner.commitTransaction();
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw err;
+    } finally {
+      await queryRunner.release();
+    }
+  }
+
+  public async loadProjectionTypes(
+    filePath: string = `data/projections/projection-types.json`,
+  ): Promise<void> {
+    this.logger.log(
+      `Loading projection types from "${filePath}"`,
+      this.constructor.name,
+    );
+
+    const queryRunner = this.dataSource.createQueryRunner();
+    try {
+      await queryRunner.startTransaction();
+      const projectionTypeRepo =
+        queryRunner.manager.getRepository(ProjectionType);
+      await queryRunner.query(
+        `TRUNCATE ${projectionTypeRepo.metadata.tableName} CASCADE`,
+      );
+
+      const projectionTypes = JSON.parse(
+        await fs.promises.readFile(filePath, 'utf-8'),
+      ) as ProjectionType[];
+
+      await projectionTypeRepo.insert(projectionTypes);
       await queryRunner.commitTransaction();
     } catch (err) {
       await queryRunner.rollbackTransaction();

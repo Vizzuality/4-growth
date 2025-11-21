@@ -1,0 +1,30 @@
+[
+  {
+    "id": "market-potential",
+    "description": "Market Potential represents the total potential market size for a given technology, application, or segment."
+  },
+  {
+    "id": "addressable-market",
+    "description": "Addressable Market represents the portion of the market potential that can realistically be addressed or captured."
+  },
+  {
+    "id": "penetration",
+    "description": "Penetration measures the percentage of the addressable market that has been captured or is expected to be captured."
+  },
+  {
+    "id": "shipments",
+    "description": "Shipments represents the number of units shipped or delivered during a specific time period."
+  },
+  {
+    "id": "installed-base",
+    "description": "Installed Base represents the total number of units currently in use or installed in the market."
+  },
+  {
+    "id": "prices",
+    "description": "Prices represents the average selling prices or price trends for products or services in the market."
+  },
+  {
+    "id": "revenues",
+    "description": "Revenues represents the total revenue generated or projected to be generated from sales in the market."
+  }
+]

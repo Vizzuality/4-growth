@@ -1,4 +1,5 @@
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
+import { ProjectionType } from '@shared/dto/projections/projection-type.entity';
 import {
   PROJECTION_TYPES,
   ProjectionScenarios,
@@ -9,6 +10,8 @@ import {
   PrimaryColumn,
   CreateDateColumn,
   OneToMany,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity('projections')
@@ -19,6 +22,8 @@ export class Projection {
   @Column({ name: 'category', type: 'varchar', length: 100 })
   category: string;
 
+  @ManyToOne(() => ProjectionType)
+  @JoinColumn({ name: 'type', referencedColumnName: 'id' })
   @Column({ name: 'type', type: 'enum', enum: PROJECTION_TYPES })
   type: string;
 

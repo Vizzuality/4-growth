@@ -69,13 +69,28 @@ export class ProjectionsService extends AppBaseService<
     query: FetchSpecification & SearchFiltersDTO,
   ): Promise<ProjectionWidget[]> {
     const { filters, dataFilters = [] } = query;
-    const queryBuilder = this.projectionWidgetsRepository.createQueryBuilder();
+    const queryBuilder = this.projectionWidgetsRepository
+      .createQueryBuilder('projections_widget')
+      .addSelect('projection_type.description', 'description')
+      .leftJoin(
+        'projection_types',
+        'projection_type',
+        'projections_widget.type::text = projection_type.id::text',
+      );
+
     QueryBuilderUtils.applySearchFilters(
       queryBuilder,
       filters as SearchFilterDTO[],
     );
 
-    const projectionsWidgets = await queryBuilder.getMany();
+    const result = await queryBuilder.getRawAndEntities();
+    // TODO: This is a workaround to include the description field from projection_types.
+    // Due to time constraints this manual mapping works for now.
+    const projectionsWidgets = result.entities.map((entity, index) => ({
+      ...entity,
+      description: result.raw[index]?.description,
+    }));
+
     await this.projectionDataRepository.addDataToProjectionsWidgets(
       projectionsWidgets,
       dataFilters,

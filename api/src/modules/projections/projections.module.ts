@@ -10,6 +10,7 @@ import { ProjectionsService } from '@api/modules/projections/projections.service
 import { PostgresProjectionDataRepository } from '@api/infrastructure/postgres-projection-data.repository';
 import { ProjectionDataRepository } from '@api/infrastructure/projection-data-repository.interface';
 import { ProjectionFilter } from '@shared/dto/projections/projection-filter.entity';
+import { ProjectionType } from '@shared/dto/projections/projection-type.entity';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ProjectionFilter } from '@shared/dto/projections/projection-filter.enti
       ProjectionData,
       ProjectionWidget,
       ProjectionFilter,
+      ProjectionType,
     ]),
     forwardRef(() => AuthModule),
   ],

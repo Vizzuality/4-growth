@@ -11,6 +11,7 @@ import { QuestionIndicatorMap } from '@shared/dto/surveys/question-widget-map.en
 import { Projection } from '@shared/dto/projections/projection.entity';
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { ProjectionFilter } from '@shared/dto/projections/projection-filter.entity';
+import { ProjectionType } from '@shared/dto/projections/projection-type.entity';
 import { ProjectionWidget } from '@shared/dto/projections/projection-widget.entity';
 import { ConfigurationParams } from '@shared/dto/global/configuration-params';
 
@@ -28,5 +29,6 @@ export const DB_ENTITIES: MixedList<Function | string | EntitySchema> = [
   ProjectionData,
   ProjectionWidget,
   ProjectionFilter,
+  ProjectionType,
   ConfigurationParams,
 ];
