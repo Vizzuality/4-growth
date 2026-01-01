@@ -54,6 +54,7 @@ export interface WidgetProps {
   data: TransformedWidgetData;
   visualization: WidgetVisualizationsType;
   responseRate: number;
+  absoluteValue: number;
   breakdown?: string;
   visualisations?: WidgetVisualizationsType[];
   question?: string;
@@ -75,6 +76,7 @@ export interface WidgetProps {
 export default function Widget({
   indicator,
   responseRate,
+  absoluteValue,
   visualization,
   visualisations,
   breakdown,
@@ -202,6 +204,7 @@ export default function Widget({
             questionTitle={questionTitle}
             menu={menuComponent}
             responseRate={responseRate}
+            absoluteValue={absoluteValue}
           />
           <HorizontalBarChart
             data={removeNaLabels(data.raw.chart)}
@@ -223,6 +226,7 @@ export default function Widget({
             question={question}
             menu={menuComponent}
             responseRate={responseRate}
+            absoluteValue={absoluteValue}
           />
           <PieChart
             data={data.percentages.chart}
@@ -247,6 +251,7 @@ export default function Widget({
             className="t-8 absolute left-0 z-20 w-full p-8"
             menu={menuComponent}
             responseRate={responseRate}
+            absoluteValue={absoluteValue}
           />
           <AreaGraph indicator={indicator} data={data.percentages.chart} />
         </Card>
@@ -286,6 +291,7 @@ export default function Widget({
             className="t-8 absolute left-0 z-20 w-full p-8"
             menu={menuComponent}
             responseRate={responseRate}
+            absoluteValue={absoluteValue}
           />
           <Map data={data.raw.map} />
         </Card>

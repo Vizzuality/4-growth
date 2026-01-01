@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from "react";
 import { WidgetVisualizationsType } from "@shared/dto/widgets/widget-visualizations.constants";
 
 import {
+  getAbsoluteValue,
   getResponseRate,
   normalizeWidgetData,
 } from "@/lib/normalize-widget-data";
@@ -61,6 +62,7 @@ const SettingsSheet: FC = () => {
           percentages: normalizeWidgetData(res.body.data.data),
         },
         responseRate: getResponseRate(res.body.data.data),
+        absoluteValue: getAbsoluteValue(res.body.data.data),
       }),
     },
   );

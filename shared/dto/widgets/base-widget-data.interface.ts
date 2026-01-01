@@ -49,4 +49,5 @@ export class BaseWidgetWithData extends BaseWidget {
   data: WidgetData;
   // TODO: Move this to client type definitions, since it's computed on the frontend side
   responseRate: number;
+  absoluteValue: number;
 }

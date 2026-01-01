@@ -15,6 +15,7 @@ import {
 interface WidgetHeaderProps {
   responseRate?: number;
   title: string;
+  absoluteValue?: number;
   question?: string;
   questionTitle?: string;
   menu?: React.ReactNode;
@@ -24,6 +25,7 @@ interface WidgetHeaderProps {
 
 const WidgetHeader: FC<WidgetHeaderProps> = ({
   title,
+  absoluteValue,
   responseRate,
   question,
   questionTitle,
@@ -41,24 +43,30 @@ const WidgetHeader: FC<WidgetHeaderProps> = ({
           {select}
         </div>
         <div className="flex items-center gap-2">
-          {typeof responseRate === "number" && (
-            <TooltipProvider>
-              <Tooltip delayDuration={350}>
-                <TooltipTrigger>
-                  <p
-                    data-testid="response-rate"
-                    className="inline-flex items-center gap-1 rounded-full bg-primary p-2 text-2xs font-medium text-muted-foreground"
-                  >
-                    <ClipboardCheckIcon className="h-4 w-4" strokeWidth={1.5} />
-                    <span>{responseRate}%</span>
-                  </p>
-                </TooltipTrigger>
-                <TooltipContent className="rounded-full border-none bg-background px-2 py-1 text-xs text-foreground">
-                  <p>Response rate</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          )}
+          {typeof responseRate === "number" &&
+            typeof absoluteValue === "number" && (
+              <TooltipProvider>
+                <Tooltip delayDuration={350}>
+                  <TooltipTrigger>
+                    <p
+                      data-testid="response-rate"
+                      className="inline-flex items-center gap-1 rounded-full bg-primary p-2 text-2xs font-medium text-muted-foreground"
+                    >
+                      <ClipboardCheckIcon
+                        className="h-4 w-4"
+                        strokeWidth={1.5}
+                      />
+                      <span>
+                        {absoluteValue} ({responseRate}%)
+                      </span>
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent className="rounded-full border-none bg-background px-2 py-1 text-xs text-foreground">
+                    <p>Response rate</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
           {menu}
         </div>
       </div>

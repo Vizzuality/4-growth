@@ -5,6 +5,7 @@ import { WidgetVisualizationsType } from "@shared/dto/widgets/widget-visualizati
 import { useAtom, useAtomValue } from "jotai";
 
 import {
+  getAbsoluteValue,
   getResponseRate,
   normalizeWidgetData,
 } from "@/lib/normalize-widget-data";
@@ -61,6 +62,7 @@ const SettingsSheet: FC = () => {
           percentages: normalizeWidgetData(res.body.data.data),
         },
         responseRate: getResponseRate(res.body.data.data),
+        absoluteValue: getAbsoluteValue(res.body.data.data),
       }),
     },
   );

@@ -43,6 +43,15 @@ function getResponseRate(data: WidgetData) {
 }
 
 /**
+ * Calculates the absolute value of the widget
+ */
+function getAbsoluteValue(data: WidgetData) {
+  if (!data.chart || data.chart.length === 0) return 0;
+
+  return calculateTotalWithoutNA(data.chart);
+}
+
+/**
  * Calculates percentage values for map data based on total count
  */
 function normalizeMapData(mapData: WidgetMapData): WidgetMapData {
@@ -113,4 +122,9 @@ function calculatePercentage(value: number, total: number): number {
   return Math.round(percentage);
 }
 
-export { normalizeWidgetData, getResponseRate, removeNaLabels };
+export {
+  normalizeWidgetData,
+  getResponseRate,
+  removeNaLabels,
+  getAbsoluteValue,
+};

@@ -6,6 +6,7 @@ import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
 
 import {
+  getAbsoluteValue,
   getResponseRate,
   normalizeWidgetData,
 } from "@/lib/normalize-widget-data";
@@ -40,6 +41,7 @@ export default function Explore() {
               percentages: normalizeWidgetData(w.data),
             },
             responseRate: getResponseRate(w.data),
+            absoluteValue: getAbsoluteValue(w.data),
           })),
         })),
     },
@@ -109,6 +111,7 @@ export default function Explore() {
                   questionTitle={w.questionTitle}
                   data={w.data as TransformedWidgetData}
                   responseRate={w.responseRate}
+                  absoluteValue={w.absoluteValue}
                   className="md:col-span-1 md:last:odd:col-span-2"
                   config={{
                     menu: { className: "flex flex-col gap-6" },

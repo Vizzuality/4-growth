@@ -5,6 +5,7 @@ import {
 import { parseAsStringEnum, useQueryState } from "nuqs";
 
 import {
+  getAbsoluteValue,
   getResponseRate,
   normalizeWidgetData,
 } from "@/lib/normalize-widget-data";
@@ -44,6 +45,7 @@ function useSandboxWidget() {
           percentages: normalizeWidgetData(res.body.data.data),
         },
         responseRate: getResponseRate(res.body.data.data),
+        absoluteValue: getAbsoluteValue(res.body.data.data),
       }),
     },
   );
