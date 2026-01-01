@@ -47,8 +47,11 @@ const Menu: FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/contact-us" className={classes.link}>
-            Contact Us{" "}
+          <Link
+            href="https://4growth-project.eu/contact/ "
+            className={classes.link}
+          >
+            Contact Us
           </Link>
         </li>
         <UserMenu />
