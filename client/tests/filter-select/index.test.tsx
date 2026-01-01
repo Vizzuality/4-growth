@@ -26,6 +26,7 @@ describe("FilterSelect", () => {
     items: [
       {
         name: "sector",
+        label: "Sector",
         values: ["Agriculture", "Forestry", "Both"],
       },
     ],
@@ -33,6 +34,7 @@ describe("FilterSelect", () => {
   };
   const fixedFilter = {
     name: "level-of-reliability:-1-5",
+    label: "Level of Reliability (1-5)",
     values: ["1", "2", "3", "4", "5"],
   };
 
