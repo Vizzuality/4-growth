@@ -68,8 +68,10 @@ describe("Widget", () => {
   const mockChartData = { chart: [{ label: "Test", value: 100, total: 100 }] };
   const mockProps: WidgetProps = {
     indicator: "Test Indicator",
+    title: "Test Title",
     question: "Test Question",
     responseRate: 80,
+    absoluteValue: 100,
     visualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
     data: { raw: mockChartData, percentages: mockChartData },
   };

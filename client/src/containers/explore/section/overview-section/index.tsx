@@ -27,6 +27,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
           question={firstWidget.question}
           data={firstWidget.data}
           responseRate={firstWidget.responseRate}
+          absoluteValue={firstWidget.absoluteValue}
           config={{
             menu: { className: "flex flex-col gap-6" },
           }}
@@ -41,6 +42,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
               question={secondWidget.question}
               data={secondWidget.data}
               responseRate={secondWidget.responseRate}
+              absoluteValue={secondWidget.absoluteValue}
               config={{ singleValue: { fill: "bg-secondary" } }}
             />
             <Widget
@@ -50,6 +52,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
               question={thirdWidget.question}
               data={thirdWidget.data}
               responseRate={thirdWidget.responseRate}
+              absoluteValue={thirdWidget.absoluteValue}
               config={{ singleValue: { fill: "bg-accent" } }}
             />
           </div>
@@ -60,6 +63,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
               indicator={fourthWidget.indicator}
               data={fourthWidget.data}
               responseRate={fourthWidget.responseRate}
+              absoluteValue={fourthWidget.absoluteValue}
               config={{ horizontalBarChart: { barSize: 47 } }}
             />
           </Card>

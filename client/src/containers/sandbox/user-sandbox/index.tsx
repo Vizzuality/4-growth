@@ -5,6 +5,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { useSession } from "next-auth/react";
 
 import {
+  getAbsoluteValue,
   getResponseRate,
   normalizeWidgetData,
 } from "@/lib/normalize-widget-data";
@@ -68,6 +69,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
           percentages: normalizeWidgetData(res.body.data.data),
         },
         responseRate: getResponseRate(res.body.data.data),
+        absoluteValue: getAbsoluteValue(res.body.data.data),
       }),
     },
   );
@@ -100,6 +102,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
           title={widget.title}
           indicator={widget.indicator}
           responseRate={widget.responseRate}
+          absoluteValue={widget.absoluteValue}
           question={widget.question}
           visualization={visualization || widget.defaultVisualization}
           data={widget.data}
