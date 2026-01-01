@@ -28,6 +28,7 @@ vi.mock("@/containers/no-data", () => ({
 describe("VerticalBarChart", () => {
   const mockProps = {
     indicator: "Market potential",
+    unit: "USD",
     data: [
       { year: 2020, value: 100 },
       { year: 2021, value: 50 },

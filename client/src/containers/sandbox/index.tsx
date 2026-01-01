@@ -42,6 +42,7 @@ const Sandbox: FC = () => {
         breakdown={breakdown || undefined}
         indicator={widget.indicator}
         responseRate={widget.responseRate}
+        absoluteValue={widget.absoluteValue}
         question={widget.question}
         visualization={visualization || widget.defaultVisualization}
         data={widget.data}
