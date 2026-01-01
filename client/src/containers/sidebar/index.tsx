@@ -7,6 +7,7 @@ import useRouteConfig from "@/hooks/use-route-config";
 
 import Header from "@/containers/header";
 import { SidebarNavToggle } from "@/containers/nav-toggle";
+import FeedbackButton from "@/containers/sidebar/feedback-button";
 import ProjectionsExploreSidebar from "@/containers/sidebar/projections-sidebar/explore-sidebar";
 import ProjectionsSandboxSidebar from "@/containers/sidebar/projections-sidebar/sandbox-sidebar";
 import SurveyAnalysisExploreSidebar from "@/containers/sidebar/survey-analysis-sidebar/explore-sidebar";
@@ -45,6 +46,7 @@ const Sidebar: FC = () => {
       <Header />
       <SidebarNavToggle />
       <ScrollArea>{Component && <Component />}</ScrollArea>
+      <FeedbackButton />
     </>
   );
 };
