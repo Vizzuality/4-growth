@@ -13,8 +13,6 @@ export class AddWaveColumnToSurveyAnswers1769988994210
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(
-      `ALTER TABLE "survey_answers" DROP COLUMN "wave"`,
-    );
+    await queryRunner.query(`ALTER TABLE "survey_answers" DROP COLUMN "wave"`);
   }
 }
