@@ -149,7 +149,10 @@ export class DataSourceManager {
     const queryRunner = this.dataSource.createQueryRunner();
     try {
       await queryRunner.startTransaction();
-      const sectionsRepository = this.dataSource.getRepository(Section);
+      const sectionsRepository = queryRunner.manager.getRepository(Section);
+      await queryRunner.query(
+        `TRUNCATE ${sectionsRepository.metadata.tableName} CASCADE`,
+      );
       const sections =
         await SectionsJSONParser.parseSectionsFromFile(sectionsfilePath);
       await sectionsRepository.save(sections);
