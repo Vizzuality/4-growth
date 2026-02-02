@@ -17,6 +17,7 @@
     "typeorm": "pnpm exec ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js",
     "extract:surveys": "ts-node -r tsconfig-paths/register data/surveys/extract.ts",
     "transform:surveys": "ts-node -r tsconfig-paths/register data/surveys/transform.ts",
+    "transform:surveys:wave2": "ts-node -r tsconfig-paths/register data/surveys/transform-wave2-csv.ts",
     "transform:projections": "ts-node -r tsconfig-paths/register data/projections/transform.ts",
     "transform:projectionsWithScenarios": "ts-node -r tsconfig-paths/register data/projections/mock-projections-with-scenarios.ts"
   },
