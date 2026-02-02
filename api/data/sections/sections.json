@@ -2,7 +2,7 @@
   {
     "slug": "overview",
     "name": "Survey analysis overview",
-    "description": "Explore how digital technologies are being adopted across Europe’s agriculture and forestry sectors.",
+    "description": "Explore how digital technologies are being adopted across Europe's agriculture and forestry sectors.",
     "order": 1,
     "baseWidgets": [
       {
@@ -73,48 +73,40 @@
         "sectionOrder": 2
       },
       {
-        "title": "Primary Area of Operation in agriculture",
-        "question": "Primary area of operation in agriculture",
-        "questionTitle": "Primary area (agriculture)",
-        "indicator": "primary-area-of-operation-in-agriculture",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
-        "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 3
-      },
-      {
         "title": "Primary Area of Operation in forestry",
         "question": "Primary area of operation in forestry",
         "questionTitle": "Primary area (forestry)",
         "indicator": "primary-area-of-operation-in-forestry",
         "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 3
+      },
+      {
+        "title": "Organisation size",
+        "question": "Agriculture/forestry organisation size",
+        "questionTitle": "Organisation size",
+        "indicator": "organisation-size",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 4
       },
       {
-        "title": "Organic farming operation",
-        "question": "Organic farming operation",
-        "questionTitle": "Organic farming",
-        "indicator": "organic-farming-operation",
+        "title": "Type of organisation",
+        "question": "What type of organisation are you?",
+        "questionTitle": "Organisation type",
+        "indicator": "organisation-type",
         "visualisations": ["horizontal_bar_chart", "pie_chart"],
-        "defaultVisualization": "pie_chart",
+        "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 5
-      }
-    ]
-  },
-  {
-    "slug": "governance-model",
-    "name": "Governance model",
-    "description": "Measures the impact of governance models and regulatory considerations on the digital technologies adoption",
-    "order": 3,
-    "baseWidgets": [
+      },
       {
-        "title": "Regulatory considerations",
-        "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
-        "questionTitle": "Regulatory considerations",
-        "indicator": "regulatory-considerations",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 2
+        "title": "Geographical reach of services",
+        "question": "What is the geographical reach of the services that you offer?",
+        "questionTitle": "Geographical reach",
+        "indicator": "geographical-reach",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 6
       }
     ]
   },
@@ -122,7 +114,7 @@
     "slug": "adoption-of-digital-technologies",
     "name": "Adoption of digital technologies and technology integration",
     "description": "Assesses which technologies have been implemented and how they are embedded in daily operations.",
-    "order": 4,
+    "order": 3,
     "baseWidgets": [
       {
         "title": "Integration of digital technologies",
@@ -145,29 +137,11 @@
       {
         "title": "Type of digital technology used for forestry",
         "question": "What type of digital technology has been used for forestry?",
-        "questionTitle": "Forestry technology type ",
+        "questionTitle": "Forestry technology type",
         "indicator": "technology-type-forestry",
         "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 3
-      },
-      {
-        "title": "Goals or challenges prompting adoption",
-        "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
-        "questionTitle": "Goals or challenges",
-        "indicator": "goals-or-challenges",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 4
-      },
-      {
-        "title": "Level of digitalization in farming/forestry practices",
-        "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
-        "questionTitle": "Level of digitalization",
-        "indicator": "level-of-digitalization",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "gauge_chart"],
-        "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 5
       },
       {
         "title": "Primary functions of technologies in the value chain",
@@ -176,25 +150,7 @@
         "indicator": "primary-functions",
         "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 6
-      },
-      {
-        "title": "Adoption level of these technologies",
-        "question": "What is the adoption level of these technologies?",
-        "questionTitle": "Adoption level",
-        "indicator": "adoption-level",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 7
-      },
-      {
-        "title": "Challenges in the adoption of digital technologies",
-        "question": "Have you encountered challenges in the adoption of digital technologies?",
-        "questionTitle": "Challenges in the adoption",
-        "indicator": "challenges-in-the-adoption",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 8
+        "sectionOrder": 4
       },
       {
         "title": "Barriers hindering further integration",
@@ -203,7 +159,51 @@
         "indicator": "barriers",
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 9
+        "sectionOrder": 5
+      }
+    ]
+  },
+  {
+    "slug": "technology-providers",
+    "name": "Technology providers",
+    "description": "Insights from technology providers serving the agricultural and forestry sectors.",
+    "order": 4,
+    "baseWidgets": [
+      {
+        "title": "Products/services targeted at agriculture and forestry",
+        "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
+        "questionTitle": "Agri-forestry percentage",
+        "indicator": "tech-provider-agri-forestry-percentage",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 1
+      },
+      {
+        "title": "Sales model",
+        "question": "What sales model do you primarily use for your products/services?",
+        "questionTitle": "Sales model",
+        "indicator": "tech-provider-sales-model",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 2
+      },
+      {
+        "title": "Primary user types",
+        "question": "What type of users do you primarily provide your technology to?",
+        "questionTitle": "User types",
+        "indicator": "tech-provider-user-type",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 3
+      },
+      {
+        "title": "Data types generated or relied upon",
+        "question": "What types of data do your products or services generate or rely on?",
+        "questionTitle": "Data types",
+        "indicator": "tech-provider-data-types",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 4
       }
     ]
   },
@@ -214,22 +214,93 @@
     "order": 5,
     "baseWidgets": [
       {
-        "title": "Perceived limitations or challenges",
-        "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
-        "questionTitle": "Limitations or challenges",
-        "indicator": "limitations-or-challenges",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 1
-      },
-      {
         "title": "Network connectivity",
         "question": "Do you have network connectivity?",
         "questionTitle": "Network connectivity",
         "indicator": "network-connectivity",
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
         "defaultVisualization": "pie_chart",
+        "sectionOrder": 1
+      },
+      {
+        "title": "Type of network connectivity",
+        "question": "What network connectivity do you use?",
+        "questionTitle": "Network type",
+        "indicator": "network-connectivity-type",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 2
+      },
+      {
+        "title": "Network reliability",
+        "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
+        "questionTitle": "Network reliability",
+        "indicator": "level-of-reliability",
+        "visualisations": ["horizontal_bar_chart", "pie_chart", "gauge_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 3
+      },
+      {
+        "title": "Further adoption with better connectivity",
+        "question": "Would you further adopt digital technologies if you had better network connectivity?",
+        "questionTitle": "Adoption with connectivity",
+        "indicator": "further-adoption-with-connectivity",
+        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "defaultVisualization": "pie_chart",
+        "sectionOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "associated-costs-prerequisites",
+    "name": "Associated costs and prerequisites",
+    "description": "Technology provider insights on costs, market research, and service offerings.",
+    "order": 6,
+    "baseWidgets": [
+      {
+        "title": "Cost structure for technology implementation",
+        "question": "Can you provide insights into the cost structure associated with implementing and maintaining your technology?",
+        "questionTitle": "Cost structure",
+        "indicator": "tech-provider-cost-structure",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 1
+      },
+      {
+        "title": "Market research before development",
+        "question": "Do you conduct market research or needs assessments before developing digital solutions for agriculture and forestry?",
+        "questionTitle": "Market research",
+        "indicator": "tech-provider-market-research",
+        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "defaultVisualization": "pie_chart",
+        "sectionOrder": 2
+      },
+      {
+        "title": "Market penetration strategies",
+        "question": "Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?",
+        "questionTitle": "Market strategies",
+        "indicator": "tech-provider-market-penetration",
+        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "defaultVisualization": "pie_chart",
+        "sectionOrder": 3
+      },
+      {
+        "title": "After-sales service and support",
+        "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
+        "questionTitle": "After-sales support",
+        "indicator": "tech-provider-aftersales",
+        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "defaultVisualization": "pie_chart",
+        "sectionOrder": 4
+      },
+      {
+        "title": "User needs prioritization in development",
+        "question": "Do you prioritize user needs within the agricultural and forestry sectors during the development phase?",
+        "questionTitle": "User priorities",
+        "indicator": "tech-provider-user-priorities",
+        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "defaultVisualization": "pie_chart",
+        "sectionOrder": 5
       }
     ]
   },
@@ -237,17 +308,8 @@
     "slug": "data-management-and-sharing",
     "name": "Data management and data sharing practices",
     "description": "Investigates internal and external data handling procedures, governance models, and data access policies",
-    "order": 6,
+    "order": 7,
     "baseWidgets": [
-      {
-        "title": "Data collection from farming/forestry activities",
-        "question": "Is data collected from your farming/forestry activities?",
-        "questionTitle": "Data collection",
-        "indicator": "data-collection",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 1
-      },
       {
         "title": "Type of data collected",
         "question": "What type of data do you collect?",
@@ -255,7 +317,7 @@
         "indicator": "type-of-data-collected",
         "visualisations": ["horizontal_bar_chart", "pie_chart"],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 2
+        "sectionOrder": 1
       },
       {
         "title": "Payment for data",
@@ -264,7 +326,42 @@
         "indicator": "data-payments",
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
         "defaultVisualization": "pie_chart",
+        "sectionOrder": 2
+      },
+      {
+        "title": "Tools or platforms for data collection",
+        "question": "What type of tools or platforms do you use to collect data?",
+        "questionTitle": "Data collection tools",
+        "indicator": "types-of-tools-or-platforms",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 3
+      },
+      {
+        "title": "Ability to operate without data",
+        "question": "Would you be able to operate without this data?",
+        "questionTitle": "Operate without data",
+        "indicator": "operate-without-data",
+        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "defaultVisualization": "pie_chart",
+        "sectionOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "data-storage-and-flows",
+    "name": "Data storage and flows",
+    "description": "Explores data storage practices and data sharing flows.",
+    "order": 8,
+    "baseWidgets": [
+      {
+        "title": "Data storage methods",
+        "question": "Where and how do you store this data?",
+        "questionTitle": "Data storage",
+        "indicator": "data-storage",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 1
       },
       {
         "title": "Data sharing practices",
@@ -273,51 +370,16 @@
         "indicator": "data-sharing",
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 4
-      },
-      {
-        "title": "Challenges in data sharing and interoperability",
-        "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
-        "questionTitle": "Data sharing challenges",
-        "indicator": "challenges-in-data-sharing",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 5
-      },
-      {
-        "title": "Contribution of data management and sharing practices",
-        "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
-        "questionTitle": "Data sharing contribution",
-        "indicator": "overall-contribution",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
-        "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 6
-      }
-    ]
-  },
-  {
-    "slug": "social-benefits-and-impact",
-    "name": "Social benefits and impact",
-    "description": "Evaluates social benefits and impact of adopting digital technologies",
-    "order": 7,
-    "baseWidgets": [
-      {
-        "title": "Social benefits",
-        "question": "Have you experienced social benefits through the use of digital technologies?",
-        "questionTitle": "Social benefits",
-        "indicator": "social-benefits",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 1
-      },
-      {
-        "title": "Overall social impact",
-        "question": "What is the overall social impact of adopting digital technologies?",
-        "questionTitle": "Social impact",
-        "indicator": "overall-social-impact",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
-        "defaultVisualization": "horizontal_bar_chart",
         "sectionOrder": 2
+      },
+      {
+        "title": "Data recipients",
+        "question": "To whom and where do you send this data?",
+        "questionTitle": "Data recipients",
+        "indicator": "data-recipients",
+        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 3
       }
     ]
   },
@@ -325,7 +387,7 @@
     "slug": "economic-benefits-and-impact",
     "name": "Economic benefits and impact",
     "description": "Measures financial performance outcomes such as cost-efficiency, productivity gains, or market access",
-    "order": 8,
+    "order": 9,
     "baseWidgets": [
       {
         "title": "Cost savings or increased efficiency",
@@ -335,24 +397,6 @@
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
         "defaultVisualization": "pie_chart",
         "sectionOrder": 1
-      },
-      {
-        "title": "Savings in inputs due to digital technologies",
-        "question": "Have you seen savings in inputs due to digital technologies?",
-        "questionTitle": "Savings in inputs",
-        "indicator": "savings-in-inputs",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "pie_chart",
-        "sectionOrder": 2
-      },
-      {
-        "title": "Overall economic impact",
-        "question": "What is the overall economic impact of implementing digital technologies",
-        "questionTitle": "Overall economic impact",
-        "indicator": "overall-economic-impact",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
-        "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 3
       }
     ]
   },
@@ -360,15 +404,15 @@
     "slug": "environmental-and-sustainability-impact",
     "name": "Environmental and sustainability impact",
     "description": "Explores how digital technologies contribute to resource efficiency, emissions reduction, and sustainability targets",
-    "order": 9,
+    "order": 10,
     "baseWidgets": [
       {
-        "title": "Environmental benefits",
-        "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
-        "questionTitle": "Effects on biodiversity",
-        "indicator": "effects-on-biodiversity",
+        "title": "Sustainability and environmental practices",
+        "question": "Have digital technologies contributed to sustainability and environmental practices?",
+        "questionTitle": "Sustainability",
+        "indicator": "sustainability",
         "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
-        "defaultVisualization": "horizontal_bar_chart",
+        "defaultVisualization": "pie_chart",
         "sectionOrder": 1
       }
     ]
@@ -377,7 +421,7 @@
     "slug": "future-outlook",
     "name": "Future outlook",
     "description": "Gathers perspectives on planned upgrades, technology trajectories, and potential barriers",
-    "order": 10,
+    "order": 11,
     "baseWidgets": [
       {
         "title": "Plans to expand or upgrade digital infrastructure",

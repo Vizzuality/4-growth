@@ -73,6 +73,7 @@ export class DataSourceManager {
       FSUtils.md5File(`data/filters.sql`),
       FSUtils.md5File(`data/question-indicators.sql`),
       FSUtils.md5File(`data/surveys/surveys.json`),
+      FSUtils.md5File(`data/surveys/surveys-wave2.json`),
       FSUtils.md5File(`data/sections/sections.json`),
       FSUtils.md5File(`data/projections/projections.json`),
       FSUtils.md5File(`data/projections/projection-types.json`),
@@ -92,7 +93,8 @@ export class DataSourceManager {
     await Promise.all([
       this.loadPageFilters(),
       this.loadPageSections(),
-      this.loadSurveyData(),
+      this.loadSurveyData('data/surveys/surveys.json', 1),
+      this.loadSurveyData('data/surveys/surveys-wave2.json', 2),
 
       // Projections
       this.loadProjections(),
@@ -163,9 +165,10 @@ export class DataSourceManager {
 
   public async loadSurveyData(
     surveysfilePath: string = `data/surveys/surveys.json`,
+    wave: number = 1,
   ): Promise<void> {
     this.logger.log(
-      `Loading initial data from "${surveysfilePath}"`,
+      `Loading Wave ${wave} data from "${surveysfilePath}"`,
       this.constructor.name,
     );
 
@@ -192,6 +195,7 @@ export class DataSourceManager {
           continue;
         }
         answer.questionIndicator = foundQuestionIndicator.indicator;
+        answer.wave = wave;
         await answersRepository.save(answer);
       }
       await queryRunner.commitTransaction();
