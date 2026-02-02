@@ -182,9 +182,15 @@ export class DataSourceManager {
     const questionIndicatorMapRepo =
       this.dataSource.getRepository(QuestionIndicatorMap);
     const allMappings = await questionIndicatorMapRepo.find();
-    const indicatorByQuestion = new Map(
-      allMappings.map((m) => [m.question, m.indicator]),
-    );
+    const indicatorsByQuestion = new Map<string, string[]>();
+    for (const m of allMappings) {
+      const existing = indicatorsByQuestion.get(m.question);
+      if (existing) {
+        existing.push(m.indicator);
+      } else {
+        indicatorsByQuestion.set(m.question, [m.indicator]);
+      }
+    }
 
     const queryRunner = this.dataSource.createQueryRunner();
     try {
@@ -192,17 +198,21 @@ export class DataSourceManager {
       const answersRepository = this.dataSource.getRepository(SurveyAnswer);
       const deduped = new Map<string, SurveyAnswer>();
       for (const answer of answers) {
-        const indicator = indicatorByQuestion.get(answer.question);
-        if (indicator === undefined) {
+        const indicators = indicatorsByQuestion.get(answer.question);
+        if (indicators === undefined) {
           this.logger.warn(
             `Cannot load survey data for '${answer.question}'. Question indicator not found.`,
             this.constructor.name,
           );
           continue;
         }
-        answer.questionIndicator = indicator;
-        answer.wave = wave;
-        deduped.set(`${answer.surveyId}:${indicator}`, answer);
+        for (const indicator of indicators) {
+          deduped.set(`${answer.surveyId}:${indicator}`, {
+            ...answer,
+            questionIndicator: indicator,
+            wave,
+          });
+        }
       }
       const batch = Array.from(deduped.values());
       const CHUNK_SIZE = 500;
