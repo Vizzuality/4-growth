@@ -116,7 +116,7 @@ export default function Explore() {
                   config={{
                     menu: { className: "flex flex-col gap-6" },
                     pieChart: {
-                      className: "aspect-square min-h-[200px]",
+                      className: "aspect-square min-h-[200px] max-w-[400px]",
                       legendPosition: "right",
                     },
                     horizontalBarChart: { barSize: 47 },
