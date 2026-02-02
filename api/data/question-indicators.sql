@@ -112,5 +112,33 @@ INSERT INTO question_indicator_map ("indicator", "question") VALUES
     -- Not questions in the survey but widgets in the overview section
     ('total-countries', ''),
     ('total-surveys', ''),
-    ('adoption-of-technology-by-country', 'Has your organisation integrated digital technologies into its workflows?')
+    ('adoption-of-technology-by-country', 'Has your organisation integrated digital technologies into its workflows?'),
+
+    -- Wave 2 New Questions
+
+    -- New W2 General Information
+    ('organisation-type', 'What type of organisation are you?'),
+    ('geographical-reach', 'What is the geographical reach of the services that you offer?'),
+
+    -- New W2 Technology Performance
+    ('further-adoption-with-connectivity', 'Would you further adopt digital technologies if you had better network connectivity?'),
+
+    -- New W2 Data Management
+    ('operate-without-data', 'Would you be able to operate without this data?'),
+
+    -- New W2 Data Storage & Flows
+    ('data-recipients', 'To whom and where do you send this data?'),
+
+    -- New W2 Tech Providers section
+    ('tech-provider-agri-forestry-percentage', 'What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?'),
+    ('tech-provider-sales-model', 'What sales model do you primarily use for your products/services?'),
+    ('tech-provider-user-type', 'What type of users do you primarily provide your technology to?'),
+    ('tech-provider-data-types', 'What types of data do your products or services generate or rely on?'),
+
+    -- New W2 Associated Costs (tech providers)
+    ('tech-provider-cost-structure', 'Can you provide insights into the cost structure associated with implementing and maintaining your technology?'),
+    ('tech-provider-market-research', 'Do you conduct market research or needs assessments before developing digital solutions for agriculture and forestry?'),
+    ('tech-provider-market-penetration', 'Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?'),
+    ('tech-provider-aftersales', 'Do you offer any after-sales service, support, or warranty for your products or services?'),
+    ('tech-provider-user-priorities', 'Do you prioritize user needs within the agricultural and forestry sectors during the development phase?')
 ON CONFLICT (indicator) DO UPDATE SET question = EXCLUDED.question;
