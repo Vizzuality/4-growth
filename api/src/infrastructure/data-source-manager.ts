@@ -176,27 +176,38 @@ export class DataSourceManager {
       await fs.promises.readFile(surveysfilePath, 'utf-8'),
     );
 
-    const questionIndicatorMap =
+    const questionIndicatorMapRepo =
       this.dataSource.getRepository(QuestionIndicatorMap);
+    const allMappings = await questionIndicatorMapRepo.find();
+    const indicatorByQuestion = new Map(
+      allMappings.map((m) => [m.question, m.indicator]),
+    );
 
     const queryRunner = this.dataSource.createQueryRunner();
     try {
       await queryRunner.startTransaction();
       const answersRepository = this.dataSource.getRepository(SurveyAnswer);
+      const deduped = new Map<string, SurveyAnswer>();
       for (const answer of answers) {
-        const foundQuestionIndicator = await questionIndicatorMap.findOneBy({
-          question: answer.question,
-        });
-        if (foundQuestionIndicator === null) {
+        const indicator = indicatorByQuestion.get(answer.question);
+        if (indicator === undefined) {
           this.logger.warn(
             `Cannot load survey data for '${answer.question}'. Question indicator not found.`,
             this.constructor.name,
           );
           continue;
         }
-        answer.questionIndicator = foundQuestionIndicator.indicator;
+        answer.questionIndicator = indicator;
         answer.wave = wave;
-        await answersRepository.save(answer);
+        deduped.set(`${answer.surveyId}:${indicator}`, answer);
+      }
+      const batch = Array.from(deduped.values());
+      const CHUNK_SIZE = 500;
+      for (let i = 0; i < batch.length; i += CHUNK_SIZE) {
+        await answersRepository.upsert(batch.slice(i, i + CHUNK_SIZE), [
+          'surveyId',
+          'questionIndicator',
+        ]);
       }
       await queryRunner.commitTransaction();
     } catch (err) {
