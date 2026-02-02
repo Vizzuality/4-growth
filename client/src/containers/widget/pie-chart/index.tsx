@@ -47,7 +47,7 @@ const PieChart: FC<PieChartProps> = ({
     <div
       className={cn({
         "flex flex-1 gap-x-8 pl-6": true,
-        "min-h-0 flex-col": legendPosition === "bottom",
+        "min-h-0 flex-col justify-between": legendPosition === "bottom",
       })}
     >
       <ChartContainer config={{}} className={className}>
@@ -75,12 +75,18 @@ const PieChart: FC<PieChartProps> = ({
         {normalizedData.map((c, i) => (
           <p
             key={`piechart-label-${c.label}`}
-            className="flex items-center gap-x-1 text-xs"
+            className={cn({
+              "flex items-start gap-x-1 text-xs": true,
+              "flex-1": legendPosition === "bottom",
+            })}
           >
-            <span
-              className={cn("block h-3 w-3 rounded-full", TW_CHART_COLORS[i])}
-            ></span>
-            <span className="font-black">{formatNumber(c.value)}%</span>
+            <span className="flex items-center gap-x-1">
+              <span
+                className={cn("block h-3 w-3 rounded-full", TW_CHART_COLORS[i])}
+              ></span>
+              <span className="font-black">{formatNumber(c.value)}%</span>
+            </span>
+
             <span>{c.label}</span>
           </p>
         ))}
