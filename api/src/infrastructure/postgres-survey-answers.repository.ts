@@ -25,8 +25,6 @@ export class PostgresSurveyAnswerRepository
   private readonly edgeCasesMethodNameMap: Record<string, string> = {
     'total-surveys': this.addTotalSurveysDataToWidget.name,
     'total-countries': this.addTotalCountriesDataToWidget.name,
-    'adoption-of-technology-by-country':
-      this.addAdoptionOfTechnologyByCountryDataToWidget.name,
   };
 
   public constructor(
@@ -252,20 +250,6 @@ ORDER BY ac.country;`;
       this.dataSource.query(totalCount),
     ]);
     widget.data.counter = { value, total };
-  }
-
-  private async addAdoptionOfTechnologyByCountryDataToWidget(
-    widget: BaseWidgetWithData,
-    filters: WidgetDataFilter[],
-  ): Promise<void> {
-    // Best workaround to reference correct question without changing the frontend title ('Adoption of technology by country' once transformed)
-    widget.indicator = 'digital-technologies-integrated';
-
-    await Promise.all([
-      this.addChartDataToWidget(widget, filters),
-      this.addMapDataToWidget(widget, filters),
-    ]);
-    widget.indicator = 'adoption-of-technology-by-country';
   }
 
   private async addBreakdownDataToWidget(

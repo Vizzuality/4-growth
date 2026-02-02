@@ -135,4 +135,52 @@ describe('PostgresSurveyAnswerRepository - Map Data', () => {
     // 2 Yes out of 3 total = 66.67%
     expect(Number(albEntry.value)).toBeCloseTo(66.67, 0);
   });
+
+  it('should return chart and map data for adoption-of-technology-by-country indicator directly', async () => {
+    const INDICATOR = 'adoption-of-technology-by-country';
+
+    await testManager
+      .mocks()
+      .ensureQuestionIndicatorMapExists(testManager.getDataSource(), {
+        indicator: INDICATOR,
+        question: 'Has your organisation integrated digital technologies?',
+      });
+
+    const answersRepo = testManager.getDataSource().getRepository(SurveyAnswer);
+    await answersRepo.save([
+      {
+        surveyId: 'adopt-1',
+        questionIndicator: INDICATOR,
+        question: 'Has your organisation integrated digital technologies?',
+        answer: 'Yes',
+        countryCode: 'ESP',
+      },
+      {
+        surveyId: 'adopt-2',
+        questionIndicator: INDICATOR,
+        question: 'Has your organisation integrated digital technologies?',
+        answer: 'No',
+        countryCode: 'ESP',
+      },
+    ]);
+
+    const widget: BaseWidgetWithData = {
+      indicator: INDICATOR,
+      visualisations: [
+        WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
+        WIDGET_VISUALIZATIONS.MAP,
+      ],
+      defaultVisualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
+      data: {},
+      responseRate: 0,
+      absoluteValue: 0,
+    } as BaseWidgetWithData;
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {});
+
+    expect(widget.data.chart).toBeDefined();
+    expect(widget.data.chart.length).toBeGreaterThan(0);
+    expect(widget.data.map).toBeDefined();
+    expect(widget.data.map.length).toBeGreaterThan(0);
+  });
 });
