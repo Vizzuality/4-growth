@@ -18,4 +18,7 @@ export class SurveyAnswer {
   @Column({ name: 'country_code', nullable: false })
   @Index('idx_survey_answers_country_code')
   countryCode: string;
+
+  @Column({ nullable: false, default: 1 })
+  wave: number;
 }
