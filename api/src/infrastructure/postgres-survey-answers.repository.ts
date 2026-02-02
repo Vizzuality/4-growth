@@ -179,11 +179,8 @@ export class PostgresSurveyAnswerRepository
     const mapSql = `
     -- 1) Get distinct countries that appear in the survey_answers table
 WITH all_countries AS (
-  SELECT unnest(ARRAY[
-    'AUT','BEL','BGR','HRV','CYP','CZE','DNK','EST','FIN','FRA',
-    'DEU','GRC','HUN','IRL','ITA','LVA','LTU','LUX','MLT','NLD',
-    'POL','PRT','ROU','SVK','SVN','ESP','SWE'
-  ]) AS country
+  SELECT DISTINCT country_code AS country
+  FROM ${this.answersTable}
 ),
 
 -- 2) Count Yes/No per country for the given question
