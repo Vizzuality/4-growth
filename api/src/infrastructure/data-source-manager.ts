@@ -42,6 +42,7 @@ export class DataSourceManager {
   public async performETL(): Promise<void> {
     this.logger.log('Starting ETL process', this.constructor.name);
     try {
+      // Wave 1 extraction and transformation
       const { extract } = await import(
         `${__dirname}/../../data/surveys/extract`
       );
@@ -50,6 +51,17 @@ export class DataSourceManager {
       );
       await extract();
       await transform();
+
+      // Wave 2 extraction and transformation (OData)
+      const { extractWave2 } = await import(
+        `${__dirname}/../../data/surveys/extract-wave2`
+      );
+      const { transformWave2 } = await import(
+        `${__dirname}/../../data/surveys/transform-wave2`
+      );
+      await extractWave2();
+      await transformWave2();
+
       await this.loadInitialData();
       this.logger.log(
         'ETL process completed successfully',
