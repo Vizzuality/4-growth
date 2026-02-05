@@ -12,7 +12,7 @@ export class SurveyAnswer {
   @Column({ nullable: false })
   question: string;
 
-  @Column({ nullable: false })
+  @PrimaryColumn({ nullable: false })
   answer: string;
 
   @Column({ name: 'country_code', nullable: false })
