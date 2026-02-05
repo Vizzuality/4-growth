@@ -208,6 +208,8 @@ export class DataSourceManager {
     try {
       await queryRunner.startTransaction();
       const answersRepository = this.dataSource.getRepository(SurveyAnswer);
+      // Use Map to deduplicate exact duplicates (same surveyId + indicator + answer)
+      // but preserve different answers for the same surveyId + indicator (multi-select)
       const deduped = new Map<string, SurveyAnswer>();
       for (const answer of answers) {
         const indicators = indicatorsByQuestion.get(answer.question);
@@ -219,7 +221,9 @@ export class DataSourceManager {
           continue;
         }
         for (const indicator of indicators) {
-          deduped.set(`${answer.surveyId}:${indicator}`, {
+          // Key includes answer to preserve multi-select, dedupe exact duplicates
+          const key = `${answer.surveyId}:${indicator}:${answer.answer}`;
+          deduped.set(key, {
             ...answer,
             questionIndicator: indicator,
             wave,
@@ -232,6 +236,7 @@ export class DataSourceManager {
         await answersRepository.upsert(batch.slice(i, i + CHUNK_SIZE), [
           'surveyId',
           'questionIndicator',
+          'answer',
         ]);
       }
       await queryRunner.commitTransaction();
