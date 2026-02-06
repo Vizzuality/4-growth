@@ -29,6 +29,9 @@ export class BaseWidget {
   @Column({ name: 'question_title', nullable: true })
   questionTitle: string;
 
+  @Column({ nullable: true })
+  description: string;
+
   @ManyToOne(() => Section, (section: Section) => section.baseWidgets)
   @JoinColumn({ name: 'section_id', referencedColumnName: 'order' })
   section: Section;
