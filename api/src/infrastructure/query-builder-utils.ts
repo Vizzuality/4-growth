@@ -33,14 +33,26 @@ export const QueryBuilderUtils = {
       const paramKey = `filter_${idx}`;
       switch (filter.operator) {
         case SEARCH_FILTERS_OPERATORS.EQUALS:
-          query.andWhere(`${column} = :${paramKey}`, {
-            [paramKey]: filter.values[0],
-          });
+          if (filter.values.length > 1) {
+            query.andWhere(`${column} IN (:...${paramKey})`, {
+              [paramKey]: filter.values,
+            });
+          } else {
+            query.andWhere(`${column} = :${paramKey}`, {
+              [paramKey]: filter.values[0],
+            });
+          }
           break;
         case SEARCH_FILTERS_OPERATORS.NOT_EQUALS:
-          query.andWhere(`${column} != :${paramKey}`, {
-            [paramKey]: filter.values[0],
-          });
+          if (filter.values.length > 1) {
+            query.andWhere(`${column} NOT IN (:...${paramKey})`, {
+              [paramKey]: filter.values,
+            });
+          } else {
+            query.andWhere(`${column} != :${paramKey}`, {
+              [paramKey]: filter.values[0],
+            });
+          }
           break;
         case SEARCH_FILTERS_OPERATORS.IN:
           query.andWhere(`${column} IN (:...${paramKey})`, {
