@@ -1,3 +1,4 @@
+import { createHash } from 'crypto';
 import * as fs from 'fs';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
@@ -91,7 +92,9 @@ export class DataSourceManager {
       FSUtils.md5File(`data/projections/projection-types.json`),
       FSUtils.md5Directory(`${__dirname}/../migrations`),
     ]);
-    const latestDataVersion = results.join('-');
+    const latestDataVersion = createHash('md5')
+      .update(results.join(''))
+      .digest('hex');
 
     const configParamsRepo = this.dataSource.getRepository(ConfigurationParams);
     const currentDataVersion = await configParamsRepo.findOne({
