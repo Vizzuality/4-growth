@@ -17,34 +17,46 @@
           "map"
         ],
         "defaultVisualization": "map",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       },
       {
         "title": "Total number of countries",
         "question": "",
         "questionTitle": "",
         "indicator": "total-countries",
-        "visualisations": ["single_value"],
+        "visualisations": [
+          "single_value"
+        ],
         "defaultVisualization": "single_value",
-        "sectionOrder": 2
+        "sectionOrder": 2,
+        "description": ""
       },
       {
         "title": "Total number of surveys",
         "question": "",
         "questionTitle": "",
         "indicator": "total-surveys",
-        "visualisations": ["single_value", "map"],
+        "visualisations": [
+          "single_value",
+          "map"
+        ],
         "defaultVisualization": "single_value",
-        "sectionOrder": 3
+        "sectionOrder": 3,
+        "description": ""
       },
       {
         "title": "Sector",
         "question": "Sector (agri/forestry/both)",
         "questionTitle": "Sector",
         "indicator": "sector",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 4
+        "sectionOrder": 4,
+        "description": ""
       }
     ]
   },
@@ -59,54 +71,78 @@
         "question": "Type of stakeholder",
         "questionTitle": "Stakeholder type",
         "indicator": "type-of-stakeholder",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       },
       {
         "title": "Location",
         "question": "Location (country/region)",
         "questionTitle": "Location",
         "indicator": "location-country-region",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 2
+        "sectionOrder": 2,
+        "description": ""
       },
       {
         "title": "Primary Area of Operation in forestry",
         "question": "Primary area of operation in forestry",
         "questionTitle": "Primary area (forestry)",
         "indicator": "primary-area-of-operation-in-forestry",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 3
+        "sectionOrder": 3,
+        "description": ""
       },
       {
         "title": "Organisation size",
         "question": "Agriculture/forestry organisation size",
         "questionTitle": "Organisation size",
         "indicator": "organisation-size",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 4
+        "sectionOrder": 4,
+        "description": ""
       },
       {
         "title": "Type of organisation",
         "question": "What type of organisation are you?",
         "questionTitle": "Organisation type",
         "indicator": "organisation-type",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 5
+        "sectionOrder": 5,
+        "description": ""
       },
       {
         "title": "Geographical reach of services",
         "question": "What is the geographical reach of the services that you offer?",
         "questionTitle": "Geographical reach",
         "indicator": "geographical-reach",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 6
+        "sectionOrder": 6,
+        "description": ""
       }
     ]
   },
@@ -121,45 +157,67 @@
         "question": "Has your organisation integrated digital technologies into its workflows?",
         "questionTitle": "Digital technologies integration",
         "indicator": "digital-technologies-integrated",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       },
       {
         "title": "Type of digital technology used for agriculture",
         "question": "What type of digital technology has been used for agriculture?",
         "questionTitle": "Agriculture technology type",
         "indicator": "technology-type-agriculture",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 2
+        "sectionOrder": 2,
+        "description": ""
       },
       {
         "title": "Type of digital technology used for forestry",
         "question": "What type of digital technology has been used for forestry?",
         "questionTitle": "Forestry technology type",
         "indicator": "technology-type-forestry",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 3
+        "sectionOrder": 3,
+        "description": ""
       },
       {
         "title": "Primary functions of technologies in the value chain",
         "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
         "questionTitle": "Primary functions",
         "indicator": "primary-functions",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 4
+        "sectionOrder": 4,
+        "description": ""
       },
       {
         "title": "Barriers hindering further integration",
         "question": "Are there specific barriers hindering further integration?",
         "questionTitle": "Integration barriers",
         "indicator": "barriers",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 5
+        "sectionOrder": 5,
+        "description": ""
       }
     ]
   },
@@ -174,36 +232,52 @@
         "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
         "questionTitle": "Agri-forestry percentage",
         "indicator": "tech-provider-agri-forestry-percentage",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       },
       {
         "title": "Sales model",
         "question": "What sales model do you primarily use for your products/services?",
         "questionTitle": "Sales model",
         "indicator": "tech-provider-sales-model",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 2
+        "sectionOrder": 2,
+        "description": ""
       },
       {
         "title": "Primary user types",
         "question": "What type of users do you primarily provide your technology to?",
         "questionTitle": "User types",
         "indicator": "tech-provider-user-type",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 3
+        "sectionOrder": 3,
+        "description": ""
       },
       {
         "title": "Data types generated or relied upon",
         "question": "What types of data do your products or services generate or rely on?",
         "questionTitle": "Data types",
         "indicator": "tech-provider-data-types",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 4
+        "sectionOrder": 4,
+        "description": ""
       }
     ]
   },
@@ -218,36 +292,55 @@
         "question": "Do you have network connectivity?",
         "questionTitle": "Network connectivity",
         "indicator": "network-connectivity",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       },
       {
         "title": "Type of network connectivity",
         "question": "What network connectivity do you use?",
         "questionTitle": "Network type",
         "indicator": "network-connectivity-type",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 2
+        "sectionOrder": 2,
+        "description": ""
       },
       {
         "title": "Network reliability",
         "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
         "questionTitle": "Network reliability",
         "indicator": "level-of-reliability",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "gauge_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "gauge_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 3
+        "sectionOrder": 3,
+        "description": ""
       },
       {
         "title": "Further adoption with better connectivity",
         "question": "Would you further adopt digital technologies if you had better network connectivity?",
         "questionTitle": "Adoption with connectivity",
         "indicator": "further-adoption-with-connectivity",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 4
+        "sectionOrder": 4,
+        "description": ""
       }
     ]
   },
@@ -262,45 +355,69 @@
         "question": "Can you provide insights into the cost structure associated with implementing and maintaining your technology?",
         "questionTitle": "Cost structure",
         "indicator": "tech-provider-cost-structure",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       },
       {
         "title": "Market research before development",
         "question": "Do you conduct market research or needs assessments before developing digital solutions for agriculture and forestry?",
         "questionTitle": "Market research",
         "indicator": "tech-provider-market-research",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 2
+        "sectionOrder": 2,
+        "description": ""
       },
       {
         "title": "Market penetration strategies",
         "question": "Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?",
         "questionTitle": "Market strategies",
         "indicator": "tech-provider-market-penetration",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 3
+        "sectionOrder": 3,
+        "description": ""
       },
       {
         "title": "After-sales service and support",
         "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
         "questionTitle": "After-sales support",
         "indicator": "tech-provider-aftersales",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 4
+        "sectionOrder": 4,
+        "description": ""
       },
       {
         "title": "User needs prioritization in development",
         "question": "Do you prioritize user needs within the agricultural and forestry sectors during the development phase?",
         "questionTitle": "User priorities",
         "indicator": "tech-provider-user-priorities",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 5
+        "sectionOrder": 5,
+        "description": ""
       }
     ]
   },
@@ -315,36 +432,54 @@
         "question": "What type of data do you collect?",
         "questionTitle": "Type of data collected",
         "indicator": "type-of-data-collected",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       },
       {
         "title": "Payment for data",
         "question": "Do you pay for this data?",
         "questionTitle": "Data payment",
         "indicator": "data-payments",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 2
+        "sectionOrder": 2,
+        "description": ""
       },
       {
         "title": "Tools or platforms for data collection",
         "question": "What type of tools or platforms do you use to collect data?",
         "questionTitle": "Data collection tools",
         "indicator": "types-of-tools-or-platforms",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 3
+        "sectionOrder": 3,
+        "description": ""
       },
       {
         "title": "Ability to operate without data",
         "question": "Would you be able to operate without this data?",
         "questionTitle": "Operate without data",
         "indicator": "operate-without-data",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 4
+        "sectionOrder": 4,
+        "description": ""
       }
     ]
   },
@@ -359,27 +494,40 @@
         "question": "Where and how do you store this data?",
         "questionTitle": "Data storage",
         "indicator": "data-storage",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       },
       {
         "title": "Data sharing practices",
         "question": "Do you share this data?",
         "questionTitle": "Data sharing",
         "indicator": "data-sharing",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 2
+        "sectionOrder": 2,
+        "description": ""
       },
       {
         "title": "Data recipients",
         "question": "To whom and where do you send this data?",
         "questionTitle": "Data recipients",
         "indicator": "data-recipients",
-        "visualisations": ["horizontal_bar_chart", "pie_chart"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 3
+        "sectionOrder": 3,
+        "description": ""
       }
     ]
   },
@@ -394,9 +542,14 @@
         "question": "Have digital technologies resulted in cost savings or increased efficiency?",
         "questionTitle": "Cost savings",
         "indicator": "cost-savings-efficiency",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       }
     ]
   },
@@ -411,9 +564,14 @@
         "question": "Have digital technologies contributed to sustainability and environmental practices?",
         "questionTitle": "Sustainability",
         "indicator": "sustainability",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       }
     ]
   },
@@ -428,9 +586,14 @@
         "question": "Are there plans to expand or upgrade your current digital infrastructure?",
         "questionTitle": "Expansion plans",
         "indicator": "plans-to-expand-or-upgrade",
-        "visualisations": ["horizontal_bar_chart", "pie_chart", "area_graph"],
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart",
+          "area_graph"
+        ],
         "defaultVisualization": "pie_chart",
-        "sectionOrder": 1
+        "sectionOrder": 1,
+        "description": ""
       }
     ]
   }
