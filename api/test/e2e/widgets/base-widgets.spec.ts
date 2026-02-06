@@ -101,6 +101,27 @@ describe('Base Widgets', () => {
     expect(noneFound.body.data).toHaveLength(0);
   });
 
+  it('Should return the description field when retrieving a widget by its id', async () => {
+    // Given
+    const dataSourceManager = testManager.testApp.get(DataSourceManager);
+    await dataSourceManager.loadQuestionIndicatorMap();
+    await dataSourceManager.loadSurveyData(TEST_SURVEYS_DATA_PATH);
+
+    const indicator = 'total-surveys';
+    const description = 'This is a test description';
+    await mocks.createBaseWidget({
+      indicator,
+      description,
+    });
+
+    // When
+    const result = await testManager.request().get(`/widgets/${indicator}`);
+    const returnedWidget = result.body.data;
+
+    // Then
+    expect(returnedWidget.description).toBe(description);
+  });
+
   it('Should retrieve a widget with its data by its id (indicator)', async () => {
     // Given
     const dataSourceManager = testManager.testApp.get(DataSourceManager);
