@@ -149,7 +149,7 @@ export class PostgresProjectionDataRepository
       ) as grouped_data
     `;
 
-    const parameters = Object.values(baseQueryBuilder.getParameters());
+    const parameters = Object.values(baseQueryBuilder.getParameters()).flat();
     const result = await this.dataSource.query(finalQuery, parameters);
     return result[0]?.data;
   }
@@ -249,7 +249,7 @@ export class PostgresProjectionDataRepository
       ) as grouped_data
     `;
 
-    const parameters = Object.values(baseQueryBuilder.getParameters());
+    const parameters = Object.values(baseQueryBuilder.getParameters()).flat();
     const result = await this.dataSource.query(finalQuery, parameters);
 
     return result[0]?.data || {};
@@ -373,13 +373,15 @@ export class PostgresProjectionDataRepository
         );
 
         // Get parameters from each query builder
-        const sizeParams = Object.values(sizeQueryBuilder.getParameters());
+        const sizeParams = Object.values(
+          sizeQueryBuilder.getParameters(),
+        ).flat();
         const verticalParams = Object.values(
           verticalQueryBuilder.getParameters(),
-        );
+        ).flat();
         const horizontalParams = Object.values(
           horizontalQueryBuilder.getParameters(),
-        );
+        ).flat();
 
         // Build parameter replacement mapping for vertical query
         const verticalSql = verticalQueryBuilder
