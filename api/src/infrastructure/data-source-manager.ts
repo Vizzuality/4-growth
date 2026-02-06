@@ -89,6 +89,7 @@ export class DataSourceManager {
       FSUtils.md5File(`data/sections/sections.json`),
       FSUtils.md5File(`data/projections/projections.json`),
       FSUtils.md5File(`data/projections/projection-types.json`),
+      FSUtils.md5Directory(`${__dirname}/../migrations`),
     ]);
     const latestDataVersion = results.join('-');
 
