@@ -1,30 +1,30 @@
 [
   {
     "id": "market-potential",
-    "description": "Market Potential represents the total potential market size for a given technology, application, or segment."
+    "description": "Market potential represents the total number of products that could be in use if every possible user or application adopted the technology. In other words, it reflects the maximum possible reach of a product within its market. The unit of measurement is units, representing market size."
   },
   {
     "id": "addressable-market",
-    "description": "Addressable Market represents the portion of the market potential that can realistically be addressed or captured."
+    "description": "The addressable market indicates the portion of the total market potential that can realistically be reached or served, considering current accessibility, infrastructure, and economic conditions. Like market potential, the unit of measurement is units, representing market size."
   },
   {
     "id": "penetration",
-    "description": "Penetration measures the percentage of the addressable market that has been captured or is expected to be captured."
+    "description": "Penetration measures the extent to which the addressable market has already been reached. It is expressed as a percentage, calculated as: Penetration (%) = Installed Base / Addressable Market x 100. This metric shows how much of the addressable market has been realised through actual adoption."
   },
   {
     "id": "shipments",
-    "description": "Shipments represents the number of units shipped or delivered during a specific time period."
+    "description": "Shipments represent the number of products purchased within a given period. Where relevant, technologies are divided into hardware, software, and service components. For example, in the case of recording and mapping technologies, a farmer may purchase hardware (e.g. a drone), software (e.g. mapping software to process drone data), and/or service (e.g. outsourcing mapping to a third-party provider). Units for shipments vary by component. Hardware shipments are measured in units (each representing a purchased device), while software shipments are measured in no. of subscriptions. Shipments are calculated by dividing revenue by price."
   },
   {
     "id": "installed-base",
-    "description": "Installed Base represents the total number of units currently in use or installed in the market."
+    "description": "The installed base refers to the total number of products currently in use. Depending on the technology component, this may be measured in units (for hardware) or subscriptions (for software). The installed base is calculated by summing shipments over the product's lifetime, accounting for equipment reaching end of life or software licenses that have expired. This provides an accurate picture of the technologies actively in operation."
   },
   {
     "id": "prices",
-    "description": "Prices represents the average selling prices or price trends for products or services in the market."
+    "description": "Price refers to the average cost of the product, measured in euros (EUR)."
   },
   {
     "id": "revenues",
-    "description": "Revenues represents the total revenue generated or projected to be generated from sales in the market."
+    "description": "Revenue represents the total revenue generated from product sales or subscriptions. It is measured in euros (EUR)."
   }
 ]
