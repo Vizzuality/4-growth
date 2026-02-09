@@ -1,0 +1,45 @@
+[project]
+name = "data-processing"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    # Add your name here
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+data-processing = "data_processing:main"
+
+[build-system]
+requires = ["uv_build>=0.9.14,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "ruff>=0.14.14",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src"]
+extend-include = ["*.ipynb"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+    "F",  # flake8, general linter
+    "W",  # pycodestyle warnings
+    "E",  # pycodestyle errors
+    "I",  # isort, sort imports
+    "UP", # pyupgrade
+    "PL", # pyling, more linting rules
+]
+
+ignore = [
+    "E501",  # line too long, managed by format
+]
