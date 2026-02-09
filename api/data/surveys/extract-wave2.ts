@@ -5,14 +5,8 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: envFilePath });
 }
 
-import { Logger } from '@nestjs/common';
-import { z } from 'zod';
-import {
-  getAccessToken,
-  fetchWithPagination,
-  saveEntityData,
-  WAVE2_BASE_URL,
-} from './odata-client';
+import { WAVE2_BASE_URL } from './odata-client';
+import { extractWave } from './extract-wave';
 
 export const WAVE2_ENTITIES = [
   // Core survey data entities
@@ -59,54 +53,12 @@ export const WAVE2_ENTITIES = [
 const OUTPUT_DIR = `${__dirname}/wave2`;
 
 export const extractWave2 = async (): Promise<void> => {
-  const logger = new Logger('ETL-Wave2-Extract');
-
-  logger.log('Starting Wave 2 OData extraction...');
-
-  // Validate environment variables
-  const envSchema = z.object({
-    DATA_EXTRACTION_CLIENT_ID: z.string(),
-    DATA_EXTRACTION_CLIENT_SECRET: z.string(),
+  await extractWave({
+    waveNumber: 2,
+    baseUrl: WAVE2_BASE_URL,
+    entities: WAVE2_ENTITIES,
+    outputDir: OUTPUT_DIR,
   });
-  const parsedEnv = envSchema.safeParse(process.env);
-
-  if (!parsedEnv.success) {
-    logger.error(
-      `Invalid environment variables: ${parsedEnv.error.toString()}`,
-    );
-    throw new Error('Invalid environment variables to perform data extraction');
-  }
-
-  logger.log('Environment variables validated successfully');
-
-  logger.log('Requesting OAuth2 access token...');
-  const token = await getAccessToken(
-    parsedEnv.data.DATA_EXTRACTION_CLIENT_ID,
-    parsedEnv.data.DATA_EXTRACTION_CLIENT_SECRET,
-  );
-  logger.log('Access token retrieved successfully');
-
-  // Extract each entity
-  for (const entity of WAVE2_ENTITIES) {
-    const entityUrl = `${WAVE2_BASE_URL}/${entity}`;
-    const outputPath = `${OUTPUT_DIR}/${entity}.json`;
-
-    logger.log(`Extracting entity: ${entity}`);
-    logger.log(`  URL: ${entityUrl}`);
-
-    try {
-      const data = await fetchWithPagination(token, entityUrl);
-      await saveEntityData(data, outputPath);
-      logger.log(`  Saved ${data.length} records to ${outputPath}`);
-    } catch (error) {
-      logger.error(
-        `  Failed to extract ${entity}: ${(error as Error).message}`,
-      );
-      throw error;
-    }
-  }
-
-  logger.log(`\nWave 2 extraction complete. Files saved to: ${OUTPUT_DIR}`);
 };
 
 // Run if called directly
