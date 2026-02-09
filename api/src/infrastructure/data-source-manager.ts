@@ -63,6 +63,16 @@ export class DataSourceManager {
       await extractWave2();
       await transformWave2();
 
+      // Wave 3 extraction and transformation (OData)
+      const { extractWave3 } = await import(
+        `${__dirname}/../../data/surveys/extract-wave3`
+      );
+      const { transformWave3 } = await import(
+        `${__dirname}/../../data/surveys/transform-wave3`
+      );
+      await extractWave3();
+      await transformWave3();
+
       await this.loadInitialData();
       this.logger.log(
         'ETL process completed successfully',
@@ -87,6 +97,7 @@ export class DataSourceManager {
       FSUtils.md5File(`data/question-indicators.sql`),
       FSUtils.md5File(`data/surveys/surveys.json`),
       FSUtils.md5File(`data/surveys/surveys-wave2.json`),
+      FSUtils.md5File(`data/surveys/surveys-wave3.json`),
       FSUtils.md5File(`data/sections/sections.json`),
       FSUtils.md5File(`data/projections/projections.json`),
       FSUtils.md5File(`data/projections/projection-types.json`),
@@ -111,6 +122,7 @@ export class DataSourceManager {
       this.loadPageSections(),
       this.loadSurveyData('data/surveys/surveys.json', 1),
       this.loadSurveyData('data/surveys/surveys-wave2.json', 2),
+      this.loadSurveyData('data/surveys/surveys-wave3.json', 3),
 
       // Projections
       this.loadProjections(),
