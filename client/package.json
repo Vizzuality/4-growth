@@ -37,6 +37,7 @@
     "bowser": "2.12.1",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
+    "dompurify": "3.3.1",
     "fuse.js": "7.0.0",
     "jiti": "1.21.3",
     "jotai": "2.9.0",
@@ -56,6 +57,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "0.5.19",
     "@testing-library/jest-dom": "6.4.8",
     "@testing-library/react": "^15.0.7",
     "@testing-library/react-hooks": "8.0.1",

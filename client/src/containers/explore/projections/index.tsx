@@ -5,6 +5,7 @@ import { queryKeys } from "@/lib/queryKeys";
 
 import useFilters from "@/hooks/use-filters";
 
+import MoreInfoDialog from "@/containers/dialog/more-info";
 import Widget from "@/containers/widget/projections";
 
 import { Card } from "@/components/ui/card";
@@ -47,12 +48,14 @@ export default function Explore() {
           <Widget
             key={d.id}
             indicator={d.title}
+            description={d.description}
             data={d.data}
             visualisations={d.visualizations}
             visualization={d.defaultVisualization}
           />
         ))}
       </div>
+      <MoreInfoDialog />
     </div>
   );
 }
