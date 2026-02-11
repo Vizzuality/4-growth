@@ -27,7 +27,7 @@ const MoreInfoDialog = () => {
         <DialogHeader>
           <DialogTitle>{info?.title}</DialogTitle>
         </DialogHeader>
-        <DialogDescription className="text-[#627188]">
+        <DialogDescription className="text-[#627188]" asChild>
           <div
             className="prose text-xs"
             dangerouslySetInnerHTML={{ __html: description }}
