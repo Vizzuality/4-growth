@@ -2,12 +2,11 @@ import { FC } from "react";
 
 import Link from "next/link";
 
-import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
+import { WidgetVisualizationsType } from "@shared/dto/widgets/widget-visualizations.constants";
 import { useSetAtom } from "jotai";
 
 import { infoAtom } from "@/containers/dialog/store";
 import MenuButton from "@/containers/menu-button";
-import { getMenuButtonText } from "@/containers/widget/projections/utils";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -16,14 +15,27 @@ import { getRouteHref } from "@/utils/route-config";
 const btnClassName =
   "block w-full rounded-none px-4 py-3.5 text-left text-xs font-medium transition-colors hover:bg-muted";
 
+const getMenuButtonText = (v: WidgetVisualizationsType): string => {
+  switch (v) {
+    case "horizontal_bar_chart":
+      return "Show as a bar chart";
+    case "pie_chart":
+      return "Show as a pie chart";
+    case "area_graph":
+      return "Show as an area chart";
+    case "map":
+      return "Show as a map";
+    default:
+      return "";
+  }
+};
+
 interface WidgetMenuProps {
-  visualisations?: ProjectionVisualizationsType[];
-  selectedVisualization: ProjectionVisualizationsType;
+  visualisations?: WidgetVisualizationsType[];
+  selectedVisualization: WidgetVisualizationsType;
   showCustomizeWidgetButton?: boolean;
   info?: { title: string; description: string };
-  setSelectedVisualization: (
-    visualization: ProjectionVisualizationsType,
-  ) => void;
+  setSelectedVisualization: (visualization: WidgetVisualizationsType) => void;
   className?: string;
   setShowOverlay: (open: boolean) => void;
   setFocusedWidget: (indicator: string | null) => void;
@@ -70,7 +82,7 @@ const WidgetMenu: FC<WidgetMenuProps> = ({
           <Button variant="clean" className={btnClassName} asChild>
             <Link
               href={
-                getRouteHref("projections", "sandbox") +
+                getRouteHref("surveyAnalysis", "sandbox") +
                 `?visualization=${selectedVisualization}&indicator=${indicator}`
               }
             >

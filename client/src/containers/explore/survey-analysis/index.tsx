@@ -16,6 +16,7 @@ import { queryKeys } from "@/lib/queryKeys";
 import useFilters from "@/hooks/use-filters";
 import { useScrollToHash } from "@/hooks/use-scroll-to-hash";
 
+import MoreInfoDialog from "@/containers/dialog/more-info";
 import Section from "@/containers/explore/section";
 import OverviewSection from "@/containers/explore/section/overview-section";
 import { intersectingAtom } from "@/containers/explore/store";
@@ -106,6 +107,7 @@ export default function Explore() {
                   visualization={w.defaultVisualization}
                   visualisations={w.visualisations}
                   indicator={w.indicator}
+                  description={w.description}
                   title={w.title}
                   question={w.question}
                   questionTitle={w.questionTitle}
@@ -128,6 +130,7 @@ export default function Explore() {
           </Section>
         );
       })}
+      <MoreInfoDialog />
     </div>
   );
 }

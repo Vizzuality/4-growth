@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import Link from "next/link";
-
 import {
   WIDGET_VISUALIZATIONS,
   WidgetVisualizationsType,
@@ -14,7 +12,6 @@ import { removeNaLabels } from "@/lib/normalize-widget-data";
 import { cn, isEmptyWidget } from "@/lib/utils";
 
 import { focusedWidgetAtom } from "@/containers/explore/store";
-import MenuButton from "@/containers/menu-button";
 import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
 import AreaGraph from "@/containers/widget/area-graph";
@@ -25,28 +22,11 @@ import Map from "@/containers/widget/map";
 import Navigation from "@/containers/widget/navigation";
 import PieChart from "@/containers/widget/pie-chart";
 import SingleValue from "@/containers/widget/single-value";
+import WidgetMenu from "@/containers/widget/survey-analysis/menu";
 import WidgetHeader from "@/containers/widget/widget-header";
 
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { TransformedWidgetData } from "@/types";
-import { getRouteHref } from "@/utils/route-config";
-
-const getMenuButtonText = (v: WidgetVisualizationsType): string => {
-  switch (v) {
-    case "horizontal_bar_chart":
-      return "Show as a bar chart";
-    case "pie_chart":
-      return "Show as a pie chart";
-    case "area_graph":
-      return "Show as an area chart";
-    case "map":
-      return "Show as a map";
-    default:
-      return "";
-  }
-};
 
 export interface WidgetProps {
   indicator: string;
@@ -55,6 +35,7 @@ export interface WidgetProps {
   visualization: WidgetVisualizationsType;
   responseRate: number;
   absoluteValue: number;
+  description?: string;
   breakdown?: string;
   visualisations?: WidgetVisualizationsType[];
   question?: string;
@@ -82,6 +63,7 @@ export default function Widget({
   breakdown,
   data,
   title,
+  description,
   question,
   questionTitle,
   menu,
@@ -94,56 +76,19 @@ export default function Widget({
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
   const [focusedWidget, setFocusedWidget] = useAtom(focusedWidgetAtom);
   const highlightWidget = showOverlay && indicator === focusedWidget;
-  const menuComponent =
-    menu ||
-    (!visualisations && !showCustomizeWidgetButton ? undefined : (
-      <MenuButton
-        className={cn("p-0", className)}
-        onOpenChange={(open) => {
-          setShowOverlay(open);
-          if (open) {
-            setFocusedWidget(indicator);
-          } else {
-            setFocusedWidget(null);
-          }
-        }}
-        {...config?.menu}
-      >
-        {showCustomizeWidgetButton && (
-          <Button
-            variant="clean"
-            className="block rounded-none px-4 py-3.5 text-left text-xs font-medium transition-colors hover:bg-muted"
-            asChild
-          >
-            <Link
-              href={
-                getRouteHref("surveyAnalysis", "sandbox") +
-                `?visualization=${selectedVisualization}&indicator=${indicator}`
-              }
-            >
-              Customize chart
-            </Link>
-          </Button>
-        )}
-        {visualisations && (
-          <>
-            <div className="px-4 py-2">
-              <Separator className="bg-[#627188]" />
-            </div>
-            {visualisations.map((v) => (
-              <Button
-                key={`visualization-list-item-${v}`}
-                variant="clean"
-                className="block w-full rounded-none px-4 py-3.5 text-left text-xs font-medium transition-colors hover:bg-muted"
-                onClick={() => setSelectedVisualization(v)}
-              >
-                {getMenuButtonText(v)}
-              </Button>
-            ))}
-          </>
-        )}
-      </MenuButton>
-    ));
+  const menuComponent = menu || (
+    <WidgetMenu
+      visualisations={visualisations}
+      info={description ? { title: indicator, description } : undefined}
+      selectedVisualization={selectedVisualization}
+      showCustomizeWidgetButton={showCustomizeWidgetButton}
+      setShowOverlay={setShowOverlay}
+      setFocusedWidget={setFocusedWidget}
+      setSelectedVisualization={setSelectedVisualization}
+      indicator={indicator}
+      className={cn("p-0", config?.menu?.className)}
+    />
+  );
 
   useEffect(() => {
     setSelectedVisualization(visualization);

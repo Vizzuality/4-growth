@@ -21,6 +21,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
       <div className="grid grid-cols-1 gap-0.5 lg:col-span-2 lg:grid-cols-2">
         <Widget
           title={firstWidget.title}
+          description={firstWidget.description}
           visualization={firstWidget.defaultVisualization}
           visualisations={firstWidget.visualisations}
           indicator={firstWidget.indicator}
@@ -37,6 +38,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
           <div className="flex gap-0.5" data-testid="overview-single-values">
             <Widget
               title={secondWidget.title}
+              description={secondWidget.description}
               visualization={secondWidget.defaultVisualization}
               indicator={secondWidget.indicator}
               question={secondWidget.question}
@@ -47,6 +49,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
             />
             <Widget
               title={thirdWidget.title}
+              description={thirdWidget.description}
               visualization={thirdWidget.defaultVisualization}
               indicator={thirdWidget.indicator}
               question={thirdWidget.question}
@@ -59,6 +62,7 @@ const OverviewSection: FC<OverviewSectionProps> = ({
           <Card className="row-start-2 space-y-8 p-0 pb-6">
             <Widget
               title={fourthWidget.title}
+              description={fourthWidget.description}
               visualization={fourthWidget.defaultVisualization}
               indicator={fourthWidget.indicator}
               data={fourthWidget.data}
