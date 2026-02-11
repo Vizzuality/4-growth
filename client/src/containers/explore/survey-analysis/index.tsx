@@ -2,6 +2,8 @@
 
 import { useMemo, useRef } from "react";
 
+import dynamic from "next/dynamic";
+
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
 
@@ -16,7 +18,6 @@ import { queryKeys } from "@/lib/queryKeys";
 import useFilters from "@/hooks/use-filters";
 import { useScrollToHash } from "@/hooks/use-scroll-to-hash";
 
-import MoreInfoDialog from "@/containers/dialog/more-info";
 import Section from "@/containers/explore/section";
 import OverviewSection from "@/containers/explore/section/overview-section";
 import { intersectingAtom } from "@/containers/explore/store";
@@ -25,6 +26,10 @@ import Widget from "@/containers/widget/survey-analysis";
 import { Spinner } from "@/components/ui/spinner";
 import { TransformedWidget, TransformedWidgetData } from "@/types";
 import { useScrollSpy } from "tests/hooks/use-scroll-spy";
+
+const MoreInfoDialog = dynamic(() => import("@/containers/dialog/more-info"), {
+  ssr: false,
+});
 
 export default function Explore() {
   const { filters } = useFilters();

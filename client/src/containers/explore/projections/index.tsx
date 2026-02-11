@@ -1,16 +1,21 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
 import useFilters from "@/hooks/use-filters";
 
-import MoreInfoDialog from "@/containers/dialog/more-info";
 import Widget from "@/containers/widget/projections";
 
 import { Card } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
 import Title from "@/components/ui/title";
+
+const MoreInfoDialog = dynamic(() => import("@/containers/dialog/more-info"), {
+  ssr: false,
+});
 
 export default function Explore() {
   const { filters } = useFilters();
