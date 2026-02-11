@@ -9,119 +9,71 @@ import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { ProjectionScenarios } from '@shared/dto/projections/projection-types';
 import { parse } from 'csv-parse/sync';
 
-// Helper function to find section boundaries dynamically
-const findSectionBoundaries = (lines: string[][]) => {
-  const sections = [];
-
-  // Define section patterns and their corresponding projection types
-  const sectionPatterns = [
-    {
-      pattern: /A\.\s*Market potential/,
-      type: PROJECTION_TYPES.MARKET_POTENTIAL,
-    },
-    {
-      pattern: /B\.\s*Addressable market/,
-      type: PROJECTION_TYPES.ADDRESSABLE_MARKET,
-    },
-    { pattern: /C\.\s*Penetration/, type: PROJECTION_TYPES.PENETRATION },
-    { pattern: /D\.\s*Shipments/, type: PROJECTION_TYPES.SHIPMENTS },
-    {
-      pattern: /E\.\s*Installed base/,
-      type: PROJECTION_TYPES.INSTALLED_BASE,
-    },
-    { pattern: /F\.\s*Prices/, type: PROJECTION_TYPES.PRICES },
-    { pattern: /G\.\s*Revenues/, type: PROJECTION_TYPES.REVENUES },
-  ];
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-
-    // Check if any cell in this line matches any section pattern
-    const matchedSection = sectionPatterns.find((section) =>
-      line.some((cell) => section.pattern.test(cell)),
-    );
-
-    if (matchedSection) {
-      // Find the start of data (skip header rows after section title)
-      let dataStartIdx = i + 1;
-      while (
-        dataStartIdx < lines.length &&
-        (lines[dataStartIdx].length === 0 ||
-          lines[dataStartIdx].some((cell) => cell.includes('Tech #')) ||
-          lines[dataStartIdx].every((cell) => cell.trim() === ''))
-      ) {
-        dataStartIdx++;
-      }
-
-      sections.push({
-        type: matchedSection.type,
-        startIdx: dataStartIdx,
-        headerIdx: i,
-      });
-    }
-  }
-
-  // Set end indices for each section
-  for (let i = 0; i < sections.length; i++) {
-    if (i < sections.length - 1) {
-      sections[i].endIdx = sections[i + 1].headerIdx - 1;
-    } else {
-      // For the last section, find the END marker or use end of file
-      let endIdx = lines.length;
-      for (let j = sections[i].startIdx; j < lines.length; j++) {
-        if (lines[j].some((cell) => cell.includes('END'))) {
-          endIdx = j;
-          break;
-        }
-      }
-      sections[i].endIdx = endIdx;
-    }
-  }
-
-  return sections;
+const mapIndicatorToType = (indicator: string): ProjectionType | null => {
+  const map: Record<string, ProjectionType> = {
+    market_potential: PROJECTION_TYPES.MARKET_POTENTIAL,
+    addressable_market: PROJECTION_TYPES.ADDRESSABLE_MARKET,
+    penetration: PROJECTION_TYPES.PENETRATION,
+    shipments: PROJECTION_TYPES.SHIPMENTS,
+    installed_base: PROJECTION_TYPES.INSTALLED_BASE,
+    prices: PROJECTION_TYPES.PRICES,
+    revenues: PROJECTION_TYPES.REVENUES,
+  };
+  return map[indicator.trim()] ?? null;
 };
 
-const parseCategory = (
-  lines: string[][],
-  fromIdx: number,
-  toIdx: number,
-  type: ProjectionType,
-  scenario: ProjectionScenarios,
-  category: string,
-  startId: number,
+const normalizeUnit = (rawUnit: string): string => {
+  const trimmed = rawUnit.trim();
+  if (trimmed === 'EUR') return 'EUR';
+  if (trimmed === 'Unit') return 'Units';
+  if (trimmed === 'Area (Ha)') return 'Area (ha)';
+  if (
+    trimmed === 'No. of subscriptions' ||
+    trimmed === 'No.of subsriptions'
+  ) {
+    return 'No. of subscriptions';
+  }
+  return trimmed;
+};
+
+const parseFromFile = async (
+  filePath: string,
+  opts: { category?: string; scenario?: string; startId?: number } = {},
 ) => {
+  const { category, scenario, startId = 1 } = opts;
+
+  const fileContent = await fs.promises.readFile(filePath, 'utf-8');
+  const lines: string[][] = parse(fileContent, {
+    skip_empty_lines: true,
+    relaxQuotes: true,
+  });
+
   const result: Projection[] = [];
   let currentId = startId;
 
-  for (let idx = fromIdx; idx < toIdx; idx++) {
-    const element = lines[idx];
+  // Skip header row (index 0), iterate data rows
+  for (let idx = 1; idx < lines.length; idx++) {
+    const row = lines[idx];
+    if (!row || row.length < 30) continue;
 
-    // Skip empty lines or lines that don't have enough data
-    if (!element || element.length < 12 || !element[10]) continue;
+    const indicatorRaw = row[29];
+    const type = mapIndicatorToType(indicatorRaw);
+    if (!type) continue;
 
-    const country = CountryISOMap.getISO3ByCountryName(element[10].trim());
+    const countryName = row[6]?.trim();
+    const country = CountryISOMap.getISO3ByCountryName(countryName);
     if (!country) continue;
 
-    const rawUnit = element[11].trim();
-    let unit: string = rawUnit;
-    if (rawUnit === 'EUR thousands') {
-      unit = 'EUR';
-    } else if (rawUnit === 'Unit') {
-      unit = 'Units';
-    } else if (rawUnit === 'Area (Ha)') {
-      unit = 'Area (ha)';
-    }
+    const rawUnit = row[7];
+    const unit = normalizeUnit(rawUnit);
 
     const id = currentId++;
     const projectionData: ProjectionData[] = [];
-    for (let i = 12; i < 33; i++) {
-      const year = 2008 + i;
-      // Remove quotes and commas, then parse as float
-      const cleanValue = element[i].replace(/[",]/g, '');
-      let value: any = Number.parseFloat(cleanValue);
-      if (rawUnit === 'EUR thousands') {
-        value *= 1000;
-      }
+
+    // Columns 8-28 correspond to years 2020-2040
+    for (let i = 8; i <= 28; i++) {
+      const year = 2012 + i; // 2012 + 8 = 2020, 2012 + 28 = 2040
+      const value = Number.parseFloat(row[i]);
       projectionData.push({
         projection: { id } as Projection,
         year,
@@ -134,50 +86,15 @@ const parseCategory = (
       category,
       type,
       scenario,
-      technology: element[3].trim(),
-      subsegment: element[5].trim(),
-      application: element[7].trim(),
-      technologyType: element[8].trim(),
-      region: element[9].trim(),
+      technology: row[1]?.trim(),
+      subsegment: row[3]?.trim(),
+      application: 'Total',
+      technologyType: row[4]?.trim(),
+      region: row[5]?.trim(),
       unit,
-      country: CountryISOMap.getISO3ByCountryName(element[10].trim()),
+      country,
       projectionData,
     });
-  }
-  return { projections: result, nextId: currentId };
-};
-
-const parseFromFile = async (
-  filePath: string,
-  opts: { category?: string; scenario?: string; startId?: number } = {},
-) => {
-  const { category, scenario, startId = 1 } = opts;
-
-  const fileContent = await fs.promises.readFile(filePath, 'utf-8');
-  const lines = parse(fileContent, {
-    skip_empty_lines: true,
-    relaxQuotes: true,
-  });
-
-  // Find section boundaries dynamically
-  const sections = findSectionBoundaries(lines);
-
-  const result: Projection[] = [];
-  let currentId = startId;
-
-  // Parse each section
-  for (const section of sections) {
-    const { projections, nextId } = parseCategory(
-      lines,
-      section.startIdx,
-      section.endIdx,
-      section.type,
-      scenario,
-      category,
-      currentId,
-    );
-    result.push(...projections);
-    currentId = nextId;
   }
 
   return { projections: result, nextId: currentId };
