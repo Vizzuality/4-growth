@@ -106,6 +106,19 @@
         "description": ""
       },
       {
+        "title": "Primary Area of Operation in agriculture",
+        "question": "Primary area of operation in agriculture",
+        "questionTitle": "Primary area (agriculture)",
+        "indicator": "primary-area-of-operation-in-agriculture",
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 4,
+        "description": ""
+      },
+      {
         "title": "Organisation size",
         "question": "Agriculture/forestry organisation size",
         "questionTitle": "Organisation size",
@@ -115,7 +128,7 @@
           "pie_chart"
         ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 4,
+        "sectionOrder": 5,
         "description": ""
       },
       {
@@ -128,7 +141,7 @@
           "pie_chart"
         ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 5,
+        "sectionOrder": 6,
         "description": ""
       },
       {
@@ -141,7 +154,7 @@
           "pie_chart"
         ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 6,
+        "sectionOrder": 7,
         "description": ""
       }
     ]
