@@ -100,6 +100,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
       {widget && (
         <Widget
           title={widget.title}
+          description={widget.description}
           indicator={widget.indicator}
           responseRate={widget.responseRate}
           absoluteValue={widget.absoluteValue}

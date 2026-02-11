@@ -39,6 +39,7 @@ const Sandbox: FC = () => {
     Comp = (
       <Widget
         title={widget.title}
+        description={widget.description}
         breakdown={breakdown || undefined}
         indicator={widget.indicator}
         responseRate={widget.responseRate}
