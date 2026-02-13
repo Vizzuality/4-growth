@@ -46,7 +46,8 @@ const PieChart: FC<PieChartProps> = ({
   return (
     <div
       className={cn({
-        "flex flex-1 gap-x-8 pl-6": true,
+        "flex flex-1 flex-wrap items-center justify-center gap-4 gap-x-8 pl-6":
+          true,
         "min-h-0 flex-col justify-between": legendPosition === "bottom",
       })}
     >
@@ -66,7 +67,7 @@ const PieChart: FC<PieChartProps> = ({
       </ChartContainer>
       <div
         className={cn({
-          "flex justify-center": true,
+          "flex min-w-[200px] justify-center": true,
           "flex-1 flex-col gap-2": legendPosition === "right",
           "mt-8 flex-row flex-wrap items-start gap-6 pr-6":
             legendPosition === "bottom",

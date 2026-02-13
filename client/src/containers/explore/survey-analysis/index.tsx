@@ -119,7 +119,7 @@ export default function Explore() {
                   data={w.data as TransformedWidgetData}
                   responseRate={w.responseRate}
                   absoluteValue={w.absoluteValue}
-                  className="md:col-span-1 md:last:odd:col-span-2"
+                  className="lg:col-span-1 lg:last:odd:col-span-2"
                   config={{
                     menu: { className: "flex flex-col gap-6" },
                     pieChart: {
