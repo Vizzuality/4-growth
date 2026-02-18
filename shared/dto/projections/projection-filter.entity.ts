@@ -8,6 +8,7 @@ export const PROJECTION_FILTER_NAME_TO_FIELD_NAME = {
   'technology-type': 'technologyType',
   country: 'country',
   unit: 'unit',
+  category: 'category',
 };
 
 export const AVAILABLE_PROJECTION_FILTERS = Object.keys(
