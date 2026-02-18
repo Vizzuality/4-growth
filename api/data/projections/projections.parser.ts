@@ -6,7 +6,6 @@ import { Projection } from '@shared/dto/projections/projection.entity';
 import { CountryISOMap } from '@shared/constants/country-iso.map';
 import * as fs from 'fs';
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
-import { ProjectionScenarios } from '@shared/dto/projections/projection-types';
 import { parse } from 'csv-parse/sync';
 
 const mapIndicatorToType = (indicator: string): ProjectionType | null => {
@@ -27,13 +26,19 @@ const normalizeUnit = (rawUnit: string): string => {
   if (trimmed === 'EUR') return 'EUR';
   if (trimmed === 'Unit') return 'Units';
   if (trimmed === 'Area (Ha)') return 'Area (ha)';
-  if (
-    trimmed === 'No. of subscriptions' ||
-    trimmed === 'No.of subsriptions'
-  ) {
+  if (trimmed === 'No. of subscriptions' || trimmed === 'No.of subsriptions') {
     return 'No. of subscriptions';
   }
   return trimmed;
+};
+
+const DEFAULT_UNIT_BY_TYPE: Record<string, string> = {
+  [PROJECTION_TYPES.PENETRATION]: '%',
+  [PROJECTION_TYPES.PRICES]: 'EUR',
+  [PROJECTION_TYPES.REVENUES]: 'EUR',
+  [PROJECTION_TYPES.ADDRESSABLE_MARKET]: 'EUR',
+  [PROJECTION_TYPES.SHIPMENTS]: 'Units',
+  [PROJECTION_TYPES.INSTALLED_BASE]: 'Units',
 };
 
 const parseFromFile = async (
@@ -51,28 +56,74 @@ const parseFromFile = async (
   const result: Projection[] = [];
   let currentId = startId;
 
+  // Detect format from header row content.
+  // Forestry: 30 cols (Tech#, Technology, Subseg#, Subsegment, TechType, Region, Country, Unit, 2020..2040, Indicator)
+  // Agriculture baseline: 29 cols (Tech#, Technology, TechSubcategory, TechType, Units, Region, Country, 2020..2040, Indicator)
+  // Agriculture scenarios: 28 cols (Tech#, Technology, TechSubcategory, TechType, Region, Country, 2020..2040, Indicator) — no Units column
+  const header = lines[0];
+  const hasUnitsCol = header?.some((h) => h.trim().toLowerCase() === 'units');
+  const colCount = header?.length ?? 0;
+  const isForestry = colCount >= 30;
+
+  // Build column index map based on detected format
+  const col = isForestry
+    ? {
+        subsegment: 3,
+        techType: 4,
+        unit: 7,
+        region: 5,
+        country: 6,
+        yearStart: 8,
+        yearEnd: 28,
+        indicator: 29,
+        minCols: 30,
+      }
+    : hasUnitsCol
+      ? {
+          subsegment: 2,
+          techType: 3,
+          unit: 4,
+          region: 5,
+          country: 6,
+          yearStart: 7,
+          yearEnd: 27,
+          indicator: 28,
+          minCols: 29,
+        }
+      : {
+          subsegment: 2,
+          techType: 3,
+          unit: -1,
+          region: 4,
+          country: 5,
+          yearStart: 6,
+          yearEnd: 26,
+          indicator: 27,
+          minCols: 28,
+        };
+
   // Skip header row (index 0), iterate data rows
   for (let idx = 1; idx < lines.length; idx++) {
     const row = lines[idx];
-    if (!row || row.length < 30) continue;
+    if (!row || row.length < col.minCols) continue;
 
-    const indicatorRaw = row[29];
+    const indicatorRaw = row[col.indicator];
     const type = mapIndicatorToType(indicatorRaw);
     if (!type) continue;
 
-    const countryName = row[6]?.trim();
+    const countryName = row[col.country]?.trim();
     const country = CountryISOMap.getISO3ByCountryName(countryName);
     if (!country) continue;
 
-    const rawUnit = row[7];
-    const unit = normalizeUnit(rawUnit);
+    const rawUnit = col.unit >= 0 ? row[col.unit] : '';
+    const unit =
+      normalizeUnit(rawUnit) || DEFAULT_UNIT_BY_TYPE[type] || 'Units';
 
     const id = currentId++;
     const projectionData: ProjectionData[] = [];
 
-    // Columns 8-28 correspond to years 2020-2040
-    for (let i = 8; i <= 28; i++) {
-      const year = 2012 + i; // 2012 + 8 = 2020, 2012 + 28 = 2040
+    for (let i = col.yearStart; i <= col.yearEnd; i++) {
+      const year = 2020 + (i - col.yearStart);
       const value = Number.parseFloat(row[i]);
       projectionData.push({
         projection: { id } as Projection,
@@ -87,10 +138,10 @@ const parseFromFile = async (
       type,
       scenario,
       technology: row[1]?.trim(),
-      subsegment: row[3]?.trim(),
+      subsegment: row[col.subsegment]?.trim() || 'Total',
       application: 'Total',
-      technologyType: row[4]?.trim(),
-      region: row[5]?.trim(),
+      technologyType: row[col.techType]?.trim(),
+      region: row[col.region]?.trim(),
       unit,
       country,
       projectionData,
