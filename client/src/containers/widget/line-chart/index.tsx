@@ -3,10 +3,11 @@ import { FC } from "react";
 import { Line, LineChart as ReLinChart, XAxis, YAxis } from "recharts";
 import { DataKey } from "recharts/types/util/types";
 
-import { cn, formatAndRoundUp, formatNumber } from "@/lib/utils";
+import { cn, formatAndRoundUp } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
 import { CHART_CONTAINER_CLASS_NAME } from "@/containers/widget/constants";
+import ProjectionsTooltip from "@/containers/widget/tooltip/projections";
 
 import {
   ChartContainer,
@@ -46,28 +47,7 @@ const LineChart: FC<LineChartProps> = ({
               className="rounded-2xl border-none px-4 py-2 [&>*:nth-child(2)]:hidden"
               formatter={() => null}
               labelFormatter={(_, payload) => (
-                <div className="space-y-2">
-                  <p className="grid grid-cols-2 gap-2">
-                    <span className="flex flex-1 justify-end">Year</span>
-                    <span className="flex flex-1 justify-start font-bold">
-                      {payload[0].payload.year}
-                    </span>
-                  </p>
-                  {payload.map((p) => (
-                    <p
-                      key={`tooltip-item-${p.name}-${p.value}`}
-                      className="grid grid-cols-2 gap-2"
-                    >
-                      <span className="flex flex-1 justify-end">{p.name}</span>
-                      <span className="flex flex-1 justify-start gap-1 font-bold">
-                        {formatNumber(Number(p.value), {
-                          maximumFractionDigits: 0,
-                        })}
-                        <span className="text-muted-foreground">{unit}</span>
-                      </span>
-                    </p>
-                  ))}
-                </div>
+                <ProjectionsTooltip payload={payload} unit={unit} />
               )}
             />
           }

@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
-import { cn, formatAndRoundUp, formatNumber } from "@/lib/utils";
+import { cn, formatAndRoundUp } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
 import {
@@ -12,6 +12,7 @@ import {
   CHART_MARGIN,
   CHART_STYLES,
 } from "@/containers/widget/constants";
+import ProjectionsTooltip from "@/containers/widget/tooltip/projections";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 import {
@@ -86,28 +87,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
               className="rounded-2xl border-none px-4 py-2 [&>*:nth-child(2)]:hidden"
               formatter={() => null}
               labelFormatter={(_, payload) => (
-                <div className="space-y-2">
-                  <p className="grid grid-cols-2 gap-2">
-                    <span className="flex flex-1 justify-end">Year</span>
-                    <span className="flex flex-1 justify-start font-bold">
-                      {payload[0].payload.year}
-                    </span>
-                  </p>
-                  {payload.map((p) => (
-                    <p
-                      key={`tooltip-item-${p.name}-${p.value}`}
-                      className="grid grid-cols-2 gap-2"
-                    >
-                      <span className="flex flex-1 justify-end">{p.name}</span>
-                      <span className="flex flex-1 justify-start gap-1 font-bold">
-                        {formatNumber(Number(p.value), {
-                          maximumFractionDigits: 0,
-                        })}
-                        <span className="text-muted-foreground">{unit}</span>
-                      </span>
-                    </p>
-                  ))}
-                </div>
+                <ProjectionsTooltip payload={payload} unit={unit} />
               )}
             />
           }
