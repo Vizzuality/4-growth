@@ -23,8 +23,8 @@ const mapIndicatorToType = (indicator: string): ProjectionType | null => {
 
 const normalizeUnit = (rawUnit: string): string => {
   const trimmed = rawUnit.trim();
-  if (trimmed === 'EUR') return 'EUR';
-  if (trimmed === 'Unit') return 'Units';
+  if (trimmed === 'EUR' || trimmed === 'Euros') return 'EUR';
+  if (trimmed === 'Unit' || trimmed === 'Unwit') return 'Units';
   if (trimmed === 'Area (Ha)') return 'Area (ha)';
   if (trimmed === 'No. of subscriptions' || trimmed === 'No.of subsriptions') {
     return 'No. of subscriptions';
