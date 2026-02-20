@@ -22,6 +22,14 @@ jest.mock('../../data/surveys/transform-wave2', () => ({
   transformWave2: jest.fn(),
 }));
 
+jest.mock('../../data/surveys/extract-wave3', () => ({
+  extractWave3: jest.fn(),
+}));
+
+jest.mock('../../data/surveys/transform-wave3', () => ({
+  transformWave3: jest.fn(),
+}));
+
 describe('ETL Process Email', () => {
   let dataSourceManager: DataSourceManager;
   let etlNotificationService: EtlNotificationService;
@@ -30,6 +38,8 @@ describe('ETL Process Email', () => {
   let mockTransform: jest.Mock;
   let mockExtractWave2: jest.Mock;
   let mockTransformWave2: jest.Mock;
+  let mockExtractWave3: jest.Mock;
+  let mockTransformWave3: jest.Mock;
 
   beforeEach(async () => {
     // Mock the imported functions
@@ -39,10 +49,16 @@ describe('ETL Process Email', () => {
     const transformWave2Module = await import(
       '../../data/surveys/transform-wave2'
     );
+    const extractWave3Module = await import('../../data/surveys/extract-wave3');
+    const transformWave3Module = await import(
+      '../../data/surveys/transform-wave3'
+    );
     mockExtract = extractModule.extract as jest.Mock;
     mockTransform = transformModule.transform as jest.Mock;
     mockExtractWave2 = extractWave2Module.extractWave2 as jest.Mock;
     mockTransformWave2 = transformWave2Module.transformWave2 as jest.Mock;
+    mockExtractWave3 = extractWave3Module.extractWave3 as jest.Mock;
+    mockTransformWave3 = transformWave3Module.transformWave3 as jest.Mock;
 
     // Mock DataSource
     mockDataSource = {
@@ -108,6 +124,8 @@ describe('ETL Process Email', () => {
       mockTransform.mockResolvedValue(undefined);
       mockExtractWave2.mockResolvedValue(undefined);
       mockTransformWave2.mockResolvedValue(undefined);
+      mockExtractWave3.mockResolvedValue(undefined);
+      mockTransformWave3.mockResolvedValue(undefined);
       const sendSuccessNotificationSpy = jest.spyOn(
         etlNotificationService,
         'sendSuccessNotification',
@@ -121,6 +139,8 @@ describe('ETL Process Email', () => {
       expect(mockTransform).toHaveBeenCalledTimes(1);
       expect(mockExtractWave2).toHaveBeenCalledTimes(1);
       expect(mockTransformWave2).toHaveBeenCalledTimes(1);
+      expect(mockExtractWave3).toHaveBeenCalledTimes(1);
+      expect(mockTransformWave3).toHaveBeenCalledTimes(1);
       expect(dataSourceManager.loadInitialData).toHaveBeenCalledTimes(1);
       expect(sendSuccessNotificationSpy).toHaveBeenCalledTimes(1);
       expect(
@@ -221,6 +241,8 @@ describe('ETL Process Email', () => {
       mockTransform.mockResolvedValue(undefined);
       mockExtractWave2.mockResolvedValue(undefined);
       mockTransformWave2.mockResolvedValue(undefined);
+      mockExtractWave3.mockResolvedValue(undefined);
+      mockTransformWave3.mockResolvedValue(undefined);
       jest
         .spyOn(dataSourceManager, 'loadInitialData')
         .mockRejectedValue(testError);
@@ -264,6 +286,16 @@ describe('ETL Process Email', () => {
         return Promise.resolve();
       });
 
+      mockExtractWave3.mockImplementation(() => {
+        callOrder.push('extractWave3');
+        return Promise.resolve();
+      });
+
+      mockTransformWave3.mockImplementation(() => {
+        callOrder.push('transformWave3');
+        return Promise.resolve();
+      });
+
       jest
         .spyOn(dataSourceManager, 'loadInitialData')
         .mockImplementation(() => {
@@ -280,6 +312,8 @@ describe('ETL Process Email', () => {
         'transform',
         'extractWave2',
         'transformWave2',
+        'extractWave3',
+        'transformWave3',
         'loadInitialData',
       ]);
     });
@@ -292,6 +326,8 @@ describe('ETL Process Email', () => {
       mockTransform.mockResolvedValue(undefined);
       mockExtractWave2.mockResolvedValue(undefined);
       mockTransformWave2.mockResolvedValue(undefined);
+      mockExtractWave3.mockResolvedValue(undefined);
+      mockTransformWave3.mockResolvedValue(undefined);
       const performETLSpy = jest.spyOn(dataSourceManager, 'performETL');
       const sendSuccessNotificationSpy = jest.spyOn(
         etlNotificationService,

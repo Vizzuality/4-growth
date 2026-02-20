@@ -5,10 +5,15 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: envFilePath });
 }
 
-import { WAVE2_BASE_URL } from './odata-client';
 import { extractWave } from './extract-wave';
 
-export const WAVE2_ENTITIES = [
+// TODO: Update this URL when the actual Wave 3 OData endpoint is available
+const WAVE3_BASE_URL =
+  'https://dataservices.wser.wur.nl/odata/FOURGROWTH%20Wave%20Three';
+
+// TODO: Update this list when the actual Wave 3 entity structure is known.
+// Initially using the same entities as Wave 2.
+export const WAVE3_ENTITIES = [
   // Core survey data entities
   'Root', // Central entity with Identifier
   'General_Information_4GROWTH', // Sector, stakeholder type, country, size
@@ -50,26 +55,26 @@ export const WAVE2_ENTITIES = [
   'After_sales_support',
 ];
 
-const OUTPUT_DIR = `${__dirname}/wave2`;
+const OUTPUT_DIR = `${__dirname}/wave3`;
 
-export const extractWave2 = async (): Promise<void> => {
+export const extractWave3 = async (): Promise<void> => {
   await extractWave({
-    waveNumber: 2,
-    baseUrl: WAVE2_BASE_URL,
-    entities: WAVE2_ENTITIES,
+    waveNumber: 3,
+    baseUrl: WAVE3_BASE_URL,
+    entities: WAVE3_ENTITIES,
     outputDir: OUTPUT_DIR,
   });
 };
 
 // Run if called directly
 if (require.main === module) {
-  extractWave2()
+  extractWave3()
     .then(() => {
-      console.log('Wave 2 extraction completed successfully');
+      console.log('Wave 3 extraction completed successfully');
       process.exit(0);
     })
     .catch((error) => {
-      console.error('Wave 2 extraction failed:', error);
+      console.error('Wave 3 extraction failed:', error);
       process.exit(1);
     });
 }

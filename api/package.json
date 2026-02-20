@@ -19,6 +19,8 @@
     "transform:surveys": "ts-node -r tsconfig-paths/register data/surveys/transform.ts",
     "extract:surveys:wave2": "ts-node -r tsconfig-paths/register data/surveys/extract-wave2.ts",
     "transform:surveys:wave2": "ts-node -r tsconfig-paths/register data/surveys/transform-wave2.ts",
+    "extract:surveys:wave3": "ts-node -r tsconfig-paths/register data/surveys/extract-wave3.ts",
+    "transform:surveys:wave3": "ts-node -r tsconfig-paths/register data/surveys/transform-wave3.ts",
     "transform:projections": "ts-node -r tsconfig-paths/register data/projections/transform.ts",
     "transform:projectionsWithScenarios": "ts-node -r tsconfig-paths/register data/projections/mock-projections-with-scenarios.ts"
   },
