@@ -58,10 +58,8 @@ const parseFromFile = async (
 
   // Detect format from header row content.
   // Forestry: 30 cols (Tech#, Technology, Subseg#, Subsegment, TechType, Region, Country, Unit, 2020..2040, Indicator)
-  // Agriculture baseline: 29 cols (Tech#, Technology, TechSubcategory, TechType, Units, Region, Country, 2020..2040, Indicator)
-  // Agriculture scenarios: 28 cols (Tech#, Technology, TechSubcategory, TechType, Region, Country, 2020..2040, Indicator) — no Units column
+  // Agriculture: 29 cols (Tech#, Technology, TechSubcategory, TechType, Units, Region, Country, 2020..2040, Indicator)
   const header = lines[0];
-  const hasUnitsCol = header?.some((h) => h.trim().toLowerCase() === 'units');
   const colCount = header?.length ?? 0;
   const isForestry = colCount >= 30;
 
@@ -78,29 +76,17 @@ const parseFromFile = async (
         indicator: 29,
         minCols: 30,
       }
-    : hasUnitsCol
-      ? {
-          subsegment: 2,
-          techType: 3,
-          unit: 4,
-          region: 5,
-          country: 6,
-          yearStart: 7,
-          yearEnd: 27,
-          indicator: 28,
-          minCols: 29,
-        }
-      : {
-          subsegment: 2,
-          techType: 3,
-          unit: -1,
-          region: 4,
-          country: 5,
-          yearStart: 6,
-          yearEnd: 26,
-          indicator: 27,
-          minCols: 28,
-        };
+    : {
+        subsegment: 2,
+        techType: 3,
+        unit: 4,
+        region: 5,
+        country: 6,
+        yearStart: 7,
+        yearEnd: 27,
+        indicator: 28,
+        minCols: 29,
+      };
 
   // Skip header row (index 0), iterate data rows
   for (let idx = 1; idx < lines.length; idx++) {
@@ -115,7 +101,7 @@ const parseFromFile = async (
     const country = CountryISOMap.getISO3ByCountryName(countryName);
     if (!country) continue;
 
-    const rawUnit = col.unit >= 0 ? row[col.unit] : '';
+    const rawUnit = row[col.unit];
     const unit =
       normalizeUnit(rawUnit) || DEFAULT_UNIT_BY_TYPE[type] || 'Units';
 
