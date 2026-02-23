@@ -8,6 +8,7 @@ import { ProjectionVisualizationsType } from "@shared/dto/projections/projection
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
 import useFilters from "@/hooks/use-filters";
 import useSettings from "@/hooks/use-settings";
 
@@ -26,6 +27,7 @@ import { Card } from "@/components/ui/card";
 const Sandbox: FC = () => {
   const { settings } = useSettings();
   const { filters } = useFilters();
+  const { isCategorySelected } = useProjectionsCategoryFilter();
   const { data, isFetching } = client.projections.getCustomProjection.useQuery(
     queryKeys.projections.custom(settings, filters).queryKey,
     {
@@ -101,6 +103,18 @@ const Sandbox: FC = () => {
   }, [settings, settingsData]);
 
   if (isFetching) return null;
+
+  if (!isCategorySelected) {
+    return (
+      <Card className="p-0">
+        <NoData icon={<MenuPointer />} className="m-6 gap-6">
+          <div className="text-center">
+            <p>Select an operation area to start your custom visualization</p>
+          </div>
+        </NoData>
+      </Card>
+    );
+  }
 
   if (!data)
     return (

@@ -1,9 +1,7 @@
 "use client";
 import { FC, useState } from "react";
 
-import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
-
-import ScenariosSelector from "@/containers/scenarios/selector";
+import ProjectionsCategorySelector from "@/containers/sidebar/projections-sidebar/category-selector";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -15,16 +13,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const ScenariosSheet: FC = () => {
+const CategorySheet: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const { isCategorySelected } = useProjectionsCategoryFilter();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button disabled={!isCategorySelected} className="w-full">
-          Scenarios
-        </Button>
+        <Button className="w-full">Op. area</Button>
       </SheetTrigger>
       <SheetContent
         className="h-full max-h-[80%] w-screen rounded-t-2xl border-t-navy-900 bg-navy-900 px-0 pb-0"
@@ -32,14 +27,16 @@ const ScenariosSheet: FC = () => {
       >
         <SheetHeader className="mb-6">
           <SheetTitle className="px-4 text-left text-base">
-            Scenarios
+            Operation area
           </SheetTitle>
-          <SheetDescription className="sr-only">Scenarios</SheetDescription>
+          <SheetDescription className="sr-only">
+            Operation area
+          </SheetDescription>
         </SheetHeader>
-        <ScenariosSelector onToggleScenario={() => setOpen(false)} />
+        <ProjectionsCategorySelector onSelect={() => setOpen(false)} />
       </SheetContent>
     </Sheet>
   );
 };
 
-export default ScenariosSheet;
+export default CategorySheet;

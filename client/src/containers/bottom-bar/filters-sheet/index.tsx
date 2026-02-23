@@ -4,6 +4,7 @@ import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import { useQueryState } from "nuqs";
 
+import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
 import useFilters from "@/hooks/use-filters";
 
 import {
@@ -28,6 +29,7 @@ const FiltersSheet: FC<PropsWithChildren> = ({ children }) => {
   const [newFilters, setNewFilters] = useAtom(FilterSettingsAtom);
   const [newBreakdown, setNewBreakdown] = useAtom(breakdownAtom);
   const [breakdown, setBreakdown] = useQueryState("breakdown");
+  const { isCategorySelected } = useProjectionsCategoryFilter();
   const handleSubmitButtonClick = () => {
     setFilters(newFilters);
     setBreakdown(newBreakdown);
@@ -62,7 +64,9 @@ const FiltersSheet: FC<PropsWithChildren> = ({ children }) => {
       }}
     >
       <SheetTrigger asChild>
-        <Button className="w-full">Filters</Button>
+        <Button disabled={!isCategorySelected} className="w-full">
+          Filters
+        </Button>
       </SheetTrigger>
       <SheetContent
         className="flex h-full max-h-[80%] w-screen flex-col justify-between rounded-t-2xl border-t-navy-900 bg-navy-900 px-0 pb-0"
