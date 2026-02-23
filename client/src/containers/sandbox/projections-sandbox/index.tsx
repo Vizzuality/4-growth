@@ -108,8 +108,11 @@ const Sandbox: FC = () => {
     return (
       <Card className="p-0">
         <NoData icon={<MenuPointer />} className="m-6 gap-6">
-          <div className="text-center">
-            <p>Select an operation area to start your custom visualization</p>
+          <div className="text-center text-sm">
+            <p>
+              Select an <span className="font-bold">Operation area</span> to
+              start your custom visualization
+            </p>
           </div>
         </NoData>
       </Card>
