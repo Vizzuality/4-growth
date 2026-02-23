@@ -26,9 +26,10 @@ const Sandbox: FC = () => {
   if (!isFetched && !indicator && !widget && !error) {
     Comp = (
       <NoData icon={<MenuPointer />} className="m-6 gap-6">
-        <div className="text-center">
+        <div className="text-center text-sm">
           <p>
-            Select an indicator in Settings to start your custom visualization
+            Select an <span className="font-bold">indicator</span> in Settings
+            to start your custom visualization
           </p>
         </div>
       </NoData>
