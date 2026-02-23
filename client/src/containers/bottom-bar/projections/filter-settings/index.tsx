@@ -8,6 +8,8 @@ import { normalizeProjectionsFilterValues } from "@/lib/utils";
 import FilterSettingsButton from "@/containers/bottom-bar/projections/filter-settings/button";
 import { DEFAULT_FILTERS_LABEL_MAP } from "@/containers/sidebar/filter-settings/constants";
 
+import { filterProjectionsFilters } from "@/utils/filters";
+
 interface FilterSettingsProps {
   defaultFilters: string[];
 }
@@ -23,8 +25,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({ defaultFilters }) => {
     );
 
   const allFilters = useMemo(
-    () =>
-      projectionsFiltersQuery.data?.filter((f) => f.name !== "scenario") || [],
+    () => filterProjectionsFilters(projectionsFiltersQuery?.data),
     [projectionsFiltersQuery.data],
   );
 

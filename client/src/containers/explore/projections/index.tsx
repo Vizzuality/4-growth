@@ -5,10 +5,13 @@ import dynamic from "next/dynamic";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
 import useFilters from "@/hooks/use-filters";
 
+import NoData from "@/containers/no-data";
 import Widget from "@/containers/widget/projections";
 
+import { MenuPointer } from "@/components/icons/menu-pointer";
 import { Card } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
 import Title from "@/components/ui/title";
@@ -25,6 +28,23 @@ export default function Explore() {
       { query: { dataFilters: filters } },
       { select: (res) => res.body.data },
     );
+
+  const { isCategorySelected } = useProjectionsCategoryFilter();
+
+  if (!isCategorySelected) {
+    return (
+      <Card className="p-0">
+        <NoData icon={<MenuPointer />} className="m-6 gap-6">
+          <div className="text-center text-sm">
+            <p>
+              Select an <span className="font-bold">Operation area</span> to
+              start your custom visualization
+            </p>
+          </div>
+        </NoData>
+      </Card>
+    );
+  }
 
   if (isFetching)
     return (
