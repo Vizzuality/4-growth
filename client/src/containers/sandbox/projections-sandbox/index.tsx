@@ -123,7 +123,7 @@ const Sandbox: FC = () => {
     return (
       <Card className="p-0">
         <NoData icon={<MenuPointer />} className="m-6 gap-6">
-          <div className="text-center">
+          <div className="text-center text-sm">
             <p>
               Select a visualization type and then select indicators and filters
               to customize your view.
