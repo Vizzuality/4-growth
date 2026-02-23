@@ -11,6 +11,8 @@ import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
 import { DEFAULT_FILTERS_LABEL_MAP } from "@/containers/sidebar/filter-settings/constants";
 import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
 
+import { filterProjectionsFilters } from "@/utils/filters";
+
 interface FilterSettingsProps {
   type: "projections" | "surveyAnalysis";
   defaultFilters: string[];
@@ -43,6 +45,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({
     );
   const selectedCustomFilters = filterQueryParams.filter((f) => {
     if (type === "projections" && f.name === "scenario") return false;
+    if (type === "projections" && f.name === "category") return false;
 
     return !defaultFilters.includes(f.name);
   }) as unknown as ProjectionFilter[];
@@ -51,9 +54,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({
     if (type === "surveyAnalysis") {
       return surveyAnalysisFiltersQuery.data || [];
     } else {
-      return (
-        projectionsFiltersQuery.data?.filter((f) => f.name !== "scenario") || []
-      );
+      return filterProjectionsFilters(projectionsFiltersQuery?.data);
     }
   }, [type, surveyAnalysisFiltersQuery.data, projectionsFiltersQuery.data]);
 

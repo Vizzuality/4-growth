@@ -30,13 +30,13 @@ function useFilters() {
   const filters = useMemo(() => {
     if (!filtersQuery)
       return /^\/projections(?:\?.*)?$/.test(pathname)
-        ? [
+        ? ([
             {
               name: "scenario",
               operator: "=",
               values: ["baseline"],
-            } as FilterQueryParam,
-          ]
+            },
+          ] as FilterQueryParam[])
         : [];
 
     try {
@@ -90,8 +90,12 @@ function useFilters() {
     [filters, setFilters],
   );
 
-  const removeAllExceptScenario = useCallback(() => {
-    setFilters(filters.filter((filter) => filter.name === "scenario"));
+  const removeAll = useCallback(() => {
+    setFilters(
+      filters.filter(
+        (filter) => filter.name === "scenario" || filter.name === "category",
+      ),
+    );
   }, [filters, setFilters]);
 
   return {
@@ -100,7 +104,7 @@ function useFilters() {
     addFilter,
     removeFilterValue,
     removeFilter,
-    removeAllExceptScenario,
+    removeAll,
   };
 }
 
