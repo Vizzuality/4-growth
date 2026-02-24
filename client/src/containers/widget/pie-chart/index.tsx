@@ -11,19 +11,26 @@ import NoData from "@/containers/no-data";
 
 import { ChartContainer } from "@/components/ui/chart";
 
+const sortDataByValueDescending = (data: WidgetChartData): WidgetChartData => {
+  return [...data].sort((a, b) => b.value - a.value);
+};
+
 const normalizePieChartData = (data?: WidgetChartData): WidgetChartData => {
   if (!data) return [];
-  if (data.length < MAX_PIE_CHART_LABELS_COUNT) return data;
+  const sortedData = sortDataByValueDescending(data);
 
-  const sortedData = [...data].sort((a, b) => b.value - a.value);
-  const remainingValue = sortedData
-    .slice(MAX_PIE_CHART_LABELS_COUNT)
-    .reduce((acc, curr) => acc + curr.value, 0);
+  if (sortedData.length > MAX_PIE_CHART_LABELS_COUNT) {
+    const remainingValue = sortedData
+      .slice(MAX_PIE_CHART_LABELS_COUNT)
+      .reduce((acc, curr) => acc + curr.value, 0);
 
-  return [
-    ...sortedData.slice(0, MAX_PIE_CHART_LABELS_COUNT),
-    { label: "Others", value: remainingValue, total: data[0].total },
-  ];
+    return [
+      ...sortedData.slice(0, MAX_PIE_CHART_LABELS_COUNT),
+      { label: "Others", value: remainingValue, total: data[0].total },
+    ];
+  }
+
+  return sortedData;
 };
 interface PieChartProps {
   data?: WidgetChartData;
