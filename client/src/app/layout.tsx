@@ -18,8 +18,8 @@ import { Toaster } from "@/components/ui/toaster";
 
 import LayoutProviders from "./providers";
 
-export const isMobileDevice = (): boolean => {
-  const ua = headers().get("user-agent") || "unknown";
+export const isMobileDevice = async (): Promise<boolean> => {
+  const ua = (await headers()).get("user-agent") || "unknown";
 
   return Bowser.getParser(ua).getPlatformType() === "mobile";
 };
@@ -37,7 +37,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(config);
-  const isMobile = isMobileDevice();
+  const isMobile = await isMobileDevice();
 
   return (
     <LayoutProviders session={session}>
