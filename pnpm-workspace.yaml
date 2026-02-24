@@ -9,3 +9,5 @@ catalog:
   "@types/node": 20.14.2
   typescript: 5.4.5
   typeorm: 0.3.20
+  bcrypt: 6.0.0
+  "@types/bcrypt": 6.0.0
