@@ -22,11 +22,10 @@ export async function clearTestDataFromDatabase(
       entityTableNames.splice(idx, 1);
     }
 
-    await Promise.all(
-      entityTableNames.map((entityTableName: string) =>
-        queryRunner.query(`TRUNCATE TABLE "${entityTableName}" CASCADE`),
-      ),
-    );
+    if (entityTableNames.length > 0) {
+      const tableList = entityTableNames.map((t) => `"${t}"`).join(', ');
+      await queryRunner.query(`TRUNCATE TABLE ${tableList} CASCADE`);
+    }
     entityTableNames.push('configuration_params');
     entityTableNames.push(dataSource.metadataTableName);
     entityTableNames.push(
