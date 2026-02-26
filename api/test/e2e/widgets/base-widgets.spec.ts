@@ -32,7 +32,12 @@ describe('Base Widgets', () => {
     });
 
     beforeEach(async () => {
-      await testManager.getDataSource().getRepository(BaseWidget).delete({});
+      await testManager
+        .getDataSource()
+        .getRepository(BaseWidget)
+        .createQueryBuilder()
+        .delete()
+        .execute();
     });
 
     it('Should return the description field when retrieving a widget by its id', async () => {

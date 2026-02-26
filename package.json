@@ -14,5 +14,33 @@
     "shared:deps": "pnpm --filter shared install",
     "all:prod": "pnpm run build:client && pnpm run build:api && pnpm run start:client:prod & pnpm run start:api:prod"
   },
-  "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
+  "packageManager": "pnpm@10.30.2+sha512.36cdc707e7b7940a988c9c1ecf88d084f8514b5c3f085f53a2e244c2921d3b2545bc20dd4ebe1fc245feec463bb298aecea7a63ed1f7680b877dc6379d8d0cb4",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core"
+    ],
+    "overrides": {
+      "d3-color": "3.1.0",
+      "express": ">=4.21.2",
+      "qs": "6.14.2",
+      "cross-spawn": "7.0.5",
+      "glob": ">=10.5.0",
+      "class-validator": "0.14.4",
+      "validator": ">=13.15.22",
+      "lodash": "4.17.23",
+      "micromatch": "4.0.8",
+      "ws": "8.18.3",
+      "diff": "4.0.4",
+      "webpack": "5.104.1",
+      "nanoid": "3.3.11",
+      "jsonwebtoken": "9.0.3",
+      "@babel/runtime": "7.26.10",
+      "@babel/helpers": "7.26.10",
+      "tmp": "0.2.5",
+      "@angular-devkit/core>ajv": "8.18.0",
+      "minimatch@>=9.0.0": ">=9.0.7",
+      "minimatch@<4.0.0": "3.1.4",
+      "fast-xml-parser": ">=5.3.8"
+    }
+  }
 }
