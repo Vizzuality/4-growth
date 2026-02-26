@@ -6,7 +6,6 @@
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",
-    "@types/lodash": "catalog:",
     "@types/node": "catalog:",
     "tsc-alias": "1.8.10",
     "typescript": "catalog:"
