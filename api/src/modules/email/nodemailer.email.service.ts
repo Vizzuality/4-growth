@@ -9,7 +9,7 @@ import {
 } from '@api/modules/email/email.service.interface';
 import * as nodemailer from 'nodemailer';
 import { AppConfig } from '@api/utils/app-config';
-import * as aws from '@aws-sdk/client-ses';
+import { SESv2Client, SendEmailCommand } from '@aws-sdk/client-sesv2';
 
 @Injectable()
 export class NodemailerEmailService implements IEmailServiceInterface {
@@ -20,11 +20,13 @@ export class NodemailerEmailService implements IEmailServiceInterface {
   constructor() {
     const { accessKeyId, secretAccessKey, region, domain } =
       this.getMailConfig();
-    const ses = new aws.SESClient({
+    const sesClient = new SESv2Client({
       region,
       credentials: { accessKeyId, secretAccessKey },
     });
-    this.transporter = nodemailer.createTransport({ SES: { ses, aws } });
+    this.transporter = nodemailer.createTransport({
+      SES: { sesClient, SendEmailCommand },
+    });
     this.domain = domain;
   }
 
