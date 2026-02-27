@@ -36,9 +36,8 @@ describe('ETL Process Email', () => {
     const extractModule = await import('../../data/surveys/extract');
     const transformModule = await import('../../data/surveys/transform');
     const extractWave2Module = await import('../../data/surveys/extract-wave2');
-    const transformWave2Module = await import(
-      '../../data/surveys/transform-wave2'
-    );
+    const transformWave2Module =
+      await import('../../data/surveys/transform-wave2');
     mockExtract = extractModule.extract as jest.Mock;
     mockTransform = transformModule.transform as jest.Mock;
     mockExtractWave2 = extractWave2Module.extractWave2 as jest.Mock;

@@ -7,6 +7,7 @@ async function bootstrap() {
   // Disable express header
   const expressApp = app.getHttpAdapter().getInstance();
   expressApp.disable('x-powered-by');
+  expressApp.set('query parser', 'extended');
 
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
