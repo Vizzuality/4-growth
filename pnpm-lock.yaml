@@ -90,13 +90,13 @@ importers:
         specifier: 3.999.0
         version: 3.999.0
       '@nestjs/common':
-        specifier: ^11.1.14
+        specifier: 11.1.14
         version: 11.1.14(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/config':
         specifier: 4.0.3
         version: 4.0.3(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@nestjs/core':
-        specifier: ^11.1.14
+        specifier: 11.1.14
         version: 11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.14)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/jwt':
         specifier: 11.0.2
@@ -105,7 +105,7 @@ importers:
         specifier: 11.0.5
         version: 11.0.5(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(passport@0.7.0)
       '@nestjs/platform-express':
-        specifier: ^11.1.14
+        specifier: 11.1.14
         version: 11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14)
       '@nestjs/schedule':
         specifier: 6.1.1
@@ -114,7 +114,7 @@ importers:
         specifier: 11.1.1
         version: 11.1.1(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14)(@nestjs/typeorm@11.0.0(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@0.3.28(pg@8.11.6)(ts-node@10.9.2(@swc/core@1.15.13)(@types/node@25.3.0)(typescript@5.9.3))))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@0.3.28(pg@8.11.6)(ts-node@10.9.2(@swc/core@1.15.13)(@types/node@25.3.0)(typescript@5.9.3)))
       '@nestjs/typeorm':
-        specifier: ^11.0.0
+        specifier: 11.0.0
         version: 11.0.0(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@0.3.28(pg@8.11.6)(ts-node@10.9.2(@swc/core@1.15.13)(@types/node@25.3.0)(typescript@5.9.3)))
       '@ts-rest/nest':
         specifier: 3.52.1
@@ -132,7 +132,7 @@ importers:
         specifier: 0.14.4
         version: 0.14.4
       config:
-        specifier: ^4.4.1
+        specifier: 4.4.1
         version: 4.4.1
       jsonapi-serializer:
         specifier: 3.6.9
@@ -153,10 +153,10 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       reflect-metadata:
-        specifier: ^0.2.2
+        specifier: 0.2.2
         version: 0.2.2
       rxjs:
-        specifier: ^7.8.2
+        specifier: 7.8.2
         version: 7.8.2
       shared:
         specifier: workspace:*
@@ -172,13 +172,13 @@ importers:
         version: 3.25.76
     devDependencies:
       '@nestjs/cli':
-        specifier: ^11.0.16
+        specifier: 11.0.16
         version: 11.0.16(@swc/core@1.15.13)(@types/node@25.3.0)
       '@nestjs/schematics':
-        specifier: ^11.0.9
+        specifier: 11.0.9
         version: 11.0.9(chokidar@4.0.3)(typescript@5.9.3)
       '@nestjs/testing':
-        specifier: ^11.1.14
+        specifier: 11.1.14
         version: 11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14)(@nestjs/platform-express@11.1.14)
       '@types/bcrypt':
         specifier: 'catalog:'
@@ -187,7 +187,7 @@ importers:
         specifier: 3.3.5
         version: 3.3.5
       '@types/express':
-        specifier: ^5.0.6
+        specifier: 5.0.6
         version: 5.0.6
       '@types/jest':
         specifier: 'catalog:'
@@ -214,7 +214,7 @@ importers:
         specifier: 1.0.38
         version: 1.0.38
       '@types/supertest':
-        specifier: ^7.2.0
+        specifier: 7.2.0
         version: 7.2.0
       csv-parse:
         specifier: 6.1.0
@@ -235,22 +235,22 @@ importers:
         specifier: 'catalog:'
         version: 5.5.5(@types/eslint@8.56.10)(eslint-config-prettier@10.1.8(eslint@10.0.2(jiti@1.21.7)))(eslint@10.0.2(jiti@1.21.7))(prettier@3.8.1)
       jest:
-        specifier: ^30.2.0
+        specifier: 30.2.0
         version: 30.2.0(@types/node@25.3.0)(ts-node@10.9.2(@swc/core@1.15.13)(@types/node@25.3.0)(typescript@5.9.3))
       prettier:
         specifier: 'catalog:'
         version: 3.8.1
       supertest:
-        specifier: ^7.2.2
+        specifier: 7.2.2
         version: 7.2.2
       ts-jest:
-        specifier: ^29.4.6
+        specifier: 29.4.6
         version: 29.4.6(@babel/core@7.29.0)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0)(jest@30.2.0(@types/node@25.3.0)(ts-node@10.9.2(@swc/core@1.15.13)(@types/node@25.3.0)(typescript@5.9.3)))(typescript@5.9.3)
       ts-node:
         specifier: 'catalog:'
         version: 10.9.2(@swc/core@1.15.13)(@types/node@25.3.0)(typescript@5.9.3)
       tsconfig-paths:
-        specifier: ^4.2.0
+        specifier: 4.2.0
         version: 4.2.0
       typescript:
         specifier: 'catalog:'
@@ -3697,9 +3697,6 @@ packages:
 
   '@types/qs@6.14.0':
     resolution: {integrity: sha512-eOunJqu0K1923aExK6y8p6fsihYEn/BYuQ4g0CxAAgFc4b/ZLN4CrsRZ55srTdqoiLzU2B2evC+apEIxprEzkQ==}
-
-  '@types/qs@6.9.18':
-    resolution: {integrity: sha512-kK7dgTYDyGqS+e2Q4aK9X3D7q234CIZ1Bv0q/7Z5IwRDoADNU81xXJK/YVyLbLTZCoIwUoDoffFeF+p/eIklAA==}
 
   '@types/range-parser@1.2.7':
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
@@ -11331,7 +11328,7 @@ snapshots:
   '@types/express-serve-static-core@5.1.1':
     dependencies:
       '@types/node': 25.3.0
-      '@types/qs': 6.9.18
+      '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
 
@@ -11424,8 +11421,6 @@ snapshots:
   '@types/prop-types@15.7.12': {}
 
   '@types/qs@6.14.0': {}
-
-  '@types/qs@6.9.18': {}
 
   '@types/range-parser@1.2.7': {}
 
@@ -12194,7 +12189,7 @@ snapshots:
       bytes: 3.1.2
       content-type: 1.0.5
       debug: 4.4.3
-      http-errors: 2.0.0
+      http-errors: 2.0.1
       iconv-lite: 0.7.2
       on-finished: 2.4.1
       qs: 6.14.2
@@ -13346,7 +13341,7 @@ snapshots:
       etag: 1.8.1
       finalhandler: 2.1.1
       fresh: 2.0.0
-      http-errors: 2.0.0
+      http-errors: 2.0.1
       merge-descriptors: 2.0.0
       mime-types: 3.0.2
       on-finished: 2.4.1
@@ -13358,7 +13353,7 @@ snapshots:
       router: 2.2.0
       send: 1.2.1
       serve-static: 2.2.1
-      statuses: 2.0.1
+      statuses: 2.0.2
       type-is: 2.0.1
       vary: 1.1.2
     transitivePeerDependencies:
@@ -13449,7 +13444,7 @@ snapshots:
       escape-html: 1.0.3
       on-finished: 2.4.1
       parseurl: 1.3.3
-      statuses: 2.0.1
+      statuses: 2.0.2
     transitivePeerDependencies:
       - supports-color
 
