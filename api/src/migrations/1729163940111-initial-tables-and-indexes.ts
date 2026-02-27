@@ -1,8 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class InitialTablesAndIndexes1729163940111
-  implements MigrationInterface
-{
+export class InitialTablesAndIndexes1729163940111 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
       `CREATE TYPE "public"."base_widgets_default_visualization_enum" AS ENUM('single_value', 'map', 'horizontal_bar_chart', 'pie_chart', 'area_graph', 'filter', 'navigation')`,

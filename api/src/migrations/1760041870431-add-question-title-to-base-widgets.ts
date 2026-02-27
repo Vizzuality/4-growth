@@ -1,8 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AddQuestionTitleToBaseWidgets1760041870431
-  implements MigrationInterface
-{
+export class AddQuestionTitleToBaseWidgets1760041870431 implements MigrationInterface {
   name = 'AddQuestionTitleToBaseWidgets1760041870431';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
