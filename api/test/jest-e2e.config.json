@@ -7,6 +7,7 @@
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
+  "transformIgnorePatterns": ["node_modules/(?!.*uuid)"],
   "moduleNameMapper": {
     "^@api/(.*)$": "<rootDir>/src/$1",
     "^@client/(.*)$": "<rootDir>/../client/src/$1",
