@@ -35,9 +35,8 @@ describe('Wave 2 OData Extraction', () => {
 
   describe('OAuth Token Request', () => {
     it('should request token with correct OAuth2 parameters', async () => {
-      const { getAccessToken } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { getAccessToken } =
+        await import('../../data/surveys/odata-client');
 
       mockedAxios.post.mockResolvedValueOnce({
         data: { access_token: 'mock-token-123' },
@@ -67,9 +66,8 @@ describe('Wave 2 OData Extraction', () => {
     });
 
     it('should return access token on successful authentication', async () => {
-      const { getAccessToken } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { getAccessToken } =
+        await import('../../data/surveys/odata-client');
 
       mockedAxios.post.mockResolvedValueOnce({
         data: { access_token: 'valid-token-xyz' },
@@ -81,9 +79,8 @@ describe('Wave 2 OData Extraction', () => {
     });
 
     it('should throw error on authentication failure', async () => {
-      const { getAccessToken } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { getAccessToken } =
+        await import('../../data/surveys/odata-client');
 
       mockedAxios.post.mockRejectedValueOnce({
         response: {
@@ -98,9 +95,8 @@ describe('Wave 2 OData Extraction', () => {
 
   describe('Wave 2 Endpoint Usage', () => {
     it('should use correct Wave 2 OData base URL', async () => {
-      const { WAVE2_BASE_URL } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { WAVE2_BASE_URL } =
+        await import('../../data/surveys/odata-client');
 
       expect(WAVE2_BASE_URL).toBe(
         'https://dataservices.wser.wur.nl/odata/FOURGROWTH%20Wave%20Two',
@@ -108,9 +104,8 @@ describe('Wave 2 OData Extraction', () => {
     });
 
     it('should extract all required Wave 2 entities', async () => {
-      const { WAVE2_ENTITIES } = await import(
-        '../../data/surveys/extract-wave2'
-      );
+      const { WAVE2_ENTITIES } =
+        await import('../../data/surveys/extract-wave2');
 
       // Core entities required for Wave 2 (actual OData entity names)
       expect(WAVE2_ENTITIES).toContain('Root');
@@ -128,9 +123,8 @@ describe('Wave 2 OData Extraction', () => {
 
   describe('OData Pagination Handling', () => {
     it('should fetch all pages when @odata.nextLink is present', async () => {
-      const { fetchWithPagination } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { fetchWithPagination } =
+        await import('../../data/surveys/odata-client');
 
       // First page with nextLink
       mockedAxios.get.mockResolvedValueOnce({
@@ -174,9 +168,8 @@ describe('Wave 2 OData Extraction', () => {
     });
 
     it('should return data from single page when no nextLink is present', async () => {
-      const { fetchWithPagination } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { fetchWithPagination } =
+        await import('../../data/surveys/odata-client');
 
       mockedAxios.get.mockResolvedValueOnce({
         data: {
@@ -194,9 +187,8 @@ describe('Wave 2 OData Extraction', () => {
     });
 
     it('should include Authorization header in paginated requests', async () => {
-      const { fetchWithPagination } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { fetchWithPagination } =
+        await import('../../data/surveys/odata-client');
 
       mockedAxios.get.mockResolvedValueOnce({
         data: { value: [{ id: 1 }] },
@@ -217,9 +209,8 @@ describe('Wave 2 OData Extraction', () => {
 
   describe('File Writing', () => {
     it('should write extracted data to JSON files in wave2 directory', async () => {
-      const { saveEntityData } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { saveEntityData } =
+        await import('../../data/surveys/odata-client');
 
       const testData = [{ id: 1, name: 'test' }];
       const outputPath = join(tmpDir, 'test-entity.json');
@@ -233,9 +224,8 @@ describe('Wave 2 OData Extraction', () => {
     });
 
     it('should create output directory if it does not exist', async () => {
-      const { saveEntityData } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { saveEntityData } =
+        await import('../../data/surveys/odata-client');
 
       const nestedDir = join(tmpDir, 'nested', 'wave2');
       const outputPath = join(nestedDir, 'entity.json');
@@ -249,9 +239,8 @@ describe('Wave 2 OData Extraction', () => {
 
   describe('Error Handling', () => {
     it('should throw descriptive error on 401 Unauthorized', async () => {
-      const { fetchWithPagination } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { fetchWithPagination } =
+        await import('../../data/surveys/odata-client');
 
       mockedAxios.get.mockRejectedValueOnce({
         response: {
@@ -267,9 +256,8 @@ describe('Wave 2 OData Extraction', () => {
     });
 
     it('should throw descriptive error on 404 Not Found', async () => {
-      const { fetchWithPagination } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { fetchWithPagination } =
+        await import('../../data/surveys/odata-client');
 
       mockedAxios.get.mockRejectedValueOnce({
         response: {
@@ -285,9 +273,8 @@ describe('Wave 2 OData Extraction', () => {
     });
 
     it('should throw descriptive error on timeout', async () => {
-      const { fetchWithPagination } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { fetchWithPagination } =
+        await import('../../data/surveys/odata-client');
 
       mockedAxios.get.mockRejectedValueOnce({
         code: 'ECONNABORTED',
@@ -300,9 +287,8 @@ describe('Wave 2 OData Extraction', () => {
     });
 
     it('should throw descriptive error on network failure', async () => {
-      const { fetchWithPagination } = await import(
-        '../../data/surveys/odata-client'
-      );
+      const { fetchWithPagination } =
+        await import('../../data/surveys/odata-client');
 
       mockedAxios.get.mockRejectedValueOnce({
         code: 'ENOTFOUND',
