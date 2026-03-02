@@ -24,7 +24,7 @@ const mapIndicatorToType = (indicator: string): ProjectionType | null => {
 const normalizeUnit = (rawUnit: string): string => {
   const trimmed = rawUnit.trim();
   if (trimmed === 'EUR' || trimmed === 'Euros') return 'EUR';
-  if (trimmed === 'Unit' || trimmed === 'Unwit') return 'Units';
+  if (trimmed === 'Unit') return 'Units';
   if (trimmed === 'Area (Ha)') return 'Area (ha)';
   if (trimmed === 'No. of subscriptions' || trimmed === 'No.of subsriptions') {
     return 'No. of subscriptions';
@@ -36,9 +36,10 @@ const DEFAULT_UNIT_BY_TYPE: Record<string, string> = {
   [PROJECTION_TYPES.PENETRATION]: '%',
   [PROJECTION_TYPES.PRICES]: 'EUR',
   [PROJECTION_TYPES.REVENUES]: 'EUR',
-  [PROJECTION_TYPES.ADDRESSABLE_MARKET]: 'EUR',
+  [PROJECTION_TYPES.ADDRESSABLE_MARKET]: 'Units',
   [PROJECTION_TYPES.SHIPMENTS]: 'Units',
   [PROJECTION_TYPES.INSTALLED_BASE]: 'Units',
+  [PROJECTION_TYPES.MARKET_POTENTIAL]: 'Units',
 };
 
 const parseFromFile = async (
