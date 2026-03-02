@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   BubbleProjection,
   CustomProjection,
+  SimpleProjection,
 } from "@shared/dto/projections/custom-projection.type";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 
@@ -44,7 +45,7 @@ export default function SandboxWidget({
   const simpleChartProps = useMemo(
     () => ({
       indicator,
-      ...getSimpleChartProps(data, selectedUnit),
+      ...getSimpleChartProps(data as SimpleProjection, selectedUnit),
     }),
     [indicator, selectedUnit, data],
   );
