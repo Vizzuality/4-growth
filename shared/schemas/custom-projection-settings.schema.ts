@@ -50,6 +50,7 @@ export const CustomProjectionSettingsSchema = z.object({
       [PROJECTION_VISUALIZATIONS.TABLE]: SimpleVisualizationSchema,
     }),
   ]),
+  breakdown: AttributeValue.optional(),
 });
 
 export type CustomProjectionSettingsSchemaType = z.infer<
