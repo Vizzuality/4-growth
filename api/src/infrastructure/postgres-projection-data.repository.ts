@@ -1,5 +1,5 @@
 import { DataSource, Repository } from 'typeorm';
-import { Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Logger, NotFoundException } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { IProjectionDataRepository } from '@api/infrastructure/projection-data-repository.interface';
@@ -258,10 +258,26 @@ export class PostgresProjectionDataRepository
   public async previewProjectionCustomWidget(
     dataFilters: SearchFilterDTO[],
     settings: CustomProjectionSettingsType,
+    breakdown?: string,
   ): Promise<CustomProjection> {
     const widgetVisualization = Object.keys(
       settings,
     )[0] as ProjectionVisualizationsType;
+
+    if (breakdown) {
+      if (widgetVisualization === PROJECTION_VISUALIZATIONS.BUBBLE_CHART) {
+        throw new BadRequestException(
+          'Breakdown is not supported for bubble chart visualizations',
+        );
+      }
+      return this.findBreakdownProjectionData(
+        widgetVisualization,
+        dataFilters,
+        settings,
+        breakdown,
+      );
+    }
+
     switch (widgetVisualization) {
       case PROJECTION_VISUALIZATIONS.TABLE:
         const tableSettings = (settings as { table: { vertical: string } })
@@ -507,5 +523,132 @@ export class PostgresProjectionDataRepository
           `Visualization type ${widgetVisualization} is not supported.`,
         );
     }
+  }
+
+  private async findBreakdownProjectionData(
+    widgetVisualization: ProjectionVisualizationsType,
+    dataFilters: SearchFilterDTO[],
+    settings: CustomProjectionSettingsType,
+    breakdown: string,
+  ): Promise<CustomProjection> {
+    const verticalAxis = settings[widgetVisualization].vertical;
+    const breakdownFieldName =
+      PROJECTION_FILTER_NAME_TO_FIELD_NAME[breakdown] || breakdown;
+
+    const baseQueryBuilder = this.dataSource
+      .getRepository(Projection)
+      .createQueryBuilder('projection')
+      .select('projectionData.year', 'year')
+      .addSelect(
+        `CASE
+          WHEN projection.unit = '%' THEN AVG(projectionData.value)
+          ELSE SUM(projectionData.value)
+        END`,
+        'value',
+      )
+      .addSelect('projection.unit', 'unit')
+      .addSelect(`projection.${breakdownFieldName}`, 'breakdown_group')
+      .innerJoin('projection.projectionData', 'projectionData')
+      .where('projection.type = :type', { type: verticalAxis })
+      .groupBy('projectionData.year')
+      .addGroupBy('projection.unit')
+      .addGroupBy(`projection.${breakdownFieldName}`)
+      .orderBy('projectionData.year', 'ASC');
+
+    QueryBuilderUtils.applySearchFilters(baseQueryBuilder, dataFilters, {
+      alias: 'projection',
+      filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
+    });
+
+    const finalQuery = `
+      WITH base_data AS (
+        ${baseQueryBuilder.getSql()}
+      ),
+      global_breakdown_totals AS (
+        SELECT
+          breakdown_group,
+          SUM(value) as total_value
+        FROM base_data
+        GROUP BY breakdown_group
+      ),
+      ranked_breakdown AS (
+        SELECT
+          breakdown_group,
+          total_value,
+          ROW_NUMBER() OVER (ORDER BY total_value DESC) as rank
+        FROM global_breakdown_totals
+      ),
+      processed_data AS (
+        SELECT
+          bd.unit,
+          bd.year,
+          CASE
+            WHEN rb.rank <= 9 THEN bd.breakdown_group::text
+            ELSE 'Others'
+          END as final_group,
+          SUM(bd.value) as value
+        FROM base_data bd
+        JOIN ranked_breakdown rb ON bd.breakdown_group = rb.breakdown_group
+        GROUP BY bd.unit, bd.year,
+                 CASE
+                   WHEN rb.rank <= 9 THEN bd.breakdown_group::text
+                   ELSE 'Others'
+                 END
+      ),
+      year_totals AS (
+        SELECT
+          unit,
+          year,
+          SUM(value) as total
+        FROM processed_data
+        GROUP BY unit, year
+      ),
+      breakdown_groups AS (
+        SELECT
+          pd.unit,
+          CASE
+            WHEN pd.final_group = 'Others' THEN 'Others'
+            ELSE ${this.getConditionalHumanizationSql('pd.final_group', breakdown)}
+          END as group_label,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'label', pd.year::text,
+              'value', pd.value,
+              'total', yt.total
+            )
+            ORDER BY pd.year ASC
+          ) as data
+        FROM processed_data pd
+        JOIN year_totals yt ON pd.unit = yt.unit AND pd.year = yt.year
+        GROUP BY pd.unit, pd.final_group,
+                 CASE
+                   WHEN pd.final_group = 'Others' THEN 'Others'
+                   ELSE ${this.getConditionalHumanizationSql('pd.final_group', breakdown)}
+                 END
+      )
+      SELECT
+        JSON_OBJECT_AGG(
+          unit,
+          unit_data
+        ) as data
+      FROM (
+        SELECT
+          unit,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'label', group_label,
+              'data', data
+            )
+            ORDER BY group_label
+          ) as unit_data
+        FROM breakdown_groups
+        GROUP BY unit
+      ) as grouped_data
+    `;
+
+    const parameters = Object.values(baseQueryBuilder.getParameters()).flat();
+    const result = await this.dataSource.query(finalQuery, parameters);
+
+    return result[0]?.data || {};
   }
 }
