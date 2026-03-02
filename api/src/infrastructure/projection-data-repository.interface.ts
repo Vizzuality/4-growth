@@ -20,5 +20,6 @@ export interface IProjectionDataRepository extends Repository<ProjectionData> {
   previewProjectionCustomWidget(
     dataFilters: SearchFilterDTO[],
     settings: CustomProjectionSettingsType,
+    breakdown?: string,
   ): Promise<CustomProjection>;
 }
