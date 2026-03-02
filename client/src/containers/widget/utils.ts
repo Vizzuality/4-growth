@@ -25,7 +25,10 @@ export function getIndexOfLargestValue(
   return index;
 }
 
-const getYears = (data: CustomProjection, unit: string): number[] => {
+const getYears = (
+  data: SimpleProjection | BubbleProjection,
+  unit: string,
+): number[] => {
   if (!data[unit]) return [];
 
   return Array.from(new Set(data[unit].map((p) => p.year)));
