@@ -1,6 +1,7 @@
 import {
   BubbleProjection,
   CustomProjection,
+  SimpleProjection,
 } from "@shared/dto/projections/custom-projection.type";
 import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
 import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
@@ -30,7 +31,7 @@ const getYears = (data: CustomProjection, unit: string): number[] => {
   return Array.from(new Set(data[unit].map((p) => p.year)));
 };
 export function getColors(
-  data: CustomProjection,
+  data: SimpleProjection | BubbleProjection,
   unit: string,
 ): (string | number)[] {
   if (!data[unit]) return [];
@@ -71,7 +72,7 @@ export function getBubbleChartProps(
   };
 }
 
-export function getSimpleChartProps(data: CustomProjection, unit: string) {
+export function getSimpleChartProps(data: SimpleProjection, unit: string) {
   const chartData: Record<string, number>[] = [];
   const years = getYears(data, unit);
 

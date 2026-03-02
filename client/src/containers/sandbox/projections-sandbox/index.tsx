@@ -2,7 +2,10 @@
 import { FC, useMemo } from "react";
 
 import { CountryISOMap } from "@shared/constants/country-iso.map";
-import { CustomProjection } from "@shared/dto/projections/custom-projection.type";
+import {
+  CustomProjection,
+  SimpleProjection,
+} from "@shared/dto/projections/custom-projection.type";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 
 import { client } from "@/lib/queryClient";
@@ -48,7 +51,7 @@ const Sandbox: FC = () => {
       retry: 0,
       select: (res) => {
         if (colorIsCountry(settings)) {
-          const payload = res.body.data as CustomProjection;
+          const payload = res.body.data as SimpleProjection;
           return Object.fromEntries(
             Object.keys(payload).map((unit) => [
               unit,
