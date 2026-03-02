@@ -34,6 +34,10 @@ export const CUSTOM_PROJECTION_SETTINGS = {
     color: CHART_ATTRIBUTES,
     size: CHART_INDICATORS,
   },
+  [PROJECTION_VISUALIZATIONS.TABLE]: {
+    vertical: CHART_INDICATORS,
+    color: CHART_ATTRIBUTES,
+  },
 } as const;
 
 type AxisSettingsType = { value: string; label: string }[];
@@ -54,6 +58,10 @@ export type CustomProjectionSettingsType = {
     horizontal: AxisSettingsType;
     color: AxisSettingsType;
     size: AxisSettingsType;
+  };
+  [PROJECTION_VISUALIZATIONS.TABLE]: {
+    vertical: AxisSettingsType;
+    color: AxisSettingsType;
   };
 };
 
@@ -93,6 +101,10 @@ export const generateCustomProjectionSettings = (
       horizontal: filteredChartIndicators,
       color: filteredChartAttributes,
       size: filteredChartIndicators,
+    },
+    [PROJECTION_VISUALIZATIONS.TABLE]: {
+      vertical: filteredChartIndicators,
+      color: filteredChartAttributes,
     },
   } as CustomProjectionSettingsType;
 };

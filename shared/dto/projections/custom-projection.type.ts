@@ -17,4 +17,11 @@ export type BubbleProjection = {
   }[];
 };
 
-export type CustomProjection = SimpleProjection | BubbleProjection;
+export type TableProjection = {
+  [unit: string]: {
+    year: number;
+    value: number;
+  }[];
+};
+
+export type CustomProjection = SimpleProjection | BubbleProjection | TableProjection;
