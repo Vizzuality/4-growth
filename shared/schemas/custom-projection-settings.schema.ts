@@ -46,6 +46,9 @@ export const CustomProjectionSettingsSchema = z.object({
     z.object({
       [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: BubbleChartSchema,
     }),
+    z.object({
+      [PROJECTION_VISUALIZATIONS.TABLE]: SimpleVisualizationSchema,
+    }),
   ]),
 });
 
