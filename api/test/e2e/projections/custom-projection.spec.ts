@@ -54,6 +54,32 @@ describe('Custom Projection API', () => {
     expect(firstProjectionDataForUnit[0]).toHaveProperty('year');
   });
 
+  test(`${c.getCustomProjection.path} should return a table custom projection with year/value data`, async () => {
+    const res = await testManager
+      .request()
+      .get(c.getCustomProjection.path)
+      .query({
+        settings: {
+          [PROJECTION_VISUALIZATIONS.TABLE]: {
+            vertical: 'market-potential',
+            color: 'country',
+          },
+        },
+      });
+    expect(res.status).toBe(200);
+    const resData = res.body?.data;
+
+    const unitKeys = Object.keys(resData);
+    expect(unitKeys.length).toBeGreaterThan(0);
+
+    const firstProjectionDataForUnit = resData[unitKeys[0]];
+    expect(Array.isArray(firstProjectionDataForUnit)).toBe(true);
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('year');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('value');
+    expect(firstProjectionDataForUnit[0]).not.toHaveProperty('color');
+    expect(firstProjectionDataForUnit[0]).not.toHaveProperty('vertical');
+  });
+
   test(`${c.getCustomProjection.path} should return an error when the settings for a custom projection are incorrect`, async () => {
     const res = await testManager
       .request()
