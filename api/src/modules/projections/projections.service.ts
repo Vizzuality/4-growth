@@ -46,10 +46,11 @@ export class ProjectionsService extends AppBaseService<
   public async generateCustomProjection(
     query: SearchFiltersDTO & CustomProjectionSettingsSchemaType,
   ): Promise<CustomProjection> {
-    const { settings, dataFilters = [] } = query;
+    const { settings, dataFilters = [], breakdown } = query;
     return this.projectionDataRepository.previewProjectionCustomWidget(
       dataFilters,
       settings,
+      breakdown,
     );
   }
 
