@@ -263,6 +263,13 @@ export class PostgresProjectionDataRepository
       settings,
     )[0] as ProjectionVisualizationsType;
     switch (widgetVisualization) {
+      case PROJECTION_VISUALIZATIONS.TABLE:
+        const tableSettings = (settings as { table: { vertical: string } })
+          .table;
+        return this.findProjectionWidgetData([
+          ...dataFilters,
+          { name: 'type', operator: '=', values: [tableSettings.vertical] },
+        ]);
       case PROJECTION_VISUALIZATIONS.LINE_CHART:
       case PROJECTION_VISUALIZATIONS.BAR_CHART:
         // Only aggregate 'others' in findSimpleProjectionCustomWidgetData
