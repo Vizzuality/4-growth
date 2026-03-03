@@ -41,7 +41,8 @@
       "minimatch@<4.0.0": "3.1.4",
       "fast-xml-parser": ">=5.3.8",
       "@nestjs/platform-express>multer": "2.1.0",
-      "nestjs-base-service>express": "4.21.2"
+      "nestjs-base-service>express": "4.21.2",
+      "terser-webpack-plugin>serialize-javascript": "7.0.3"
     }
   }
 }
