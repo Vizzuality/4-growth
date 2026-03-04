@@ -55,6 +55,7 @@ function useSettings() {
       switch (visualization) {
         case "bar_chart":
         case "line_chart":
+        case "table":
           if (isSimpleChartSettings(settings)) {
             const currentVisualization: ProjectionVisualizationsType =
               getKeys(settings)[0];
@@ -119,6 +120,10 @@ function useSettings() {
               [key]: value,
             },
           });
+        } else if ("table" in settings) {
+          setSettings({
+            table: { ...settings.table, [key]: value },
+          });
         }
       }
 
@@ -158,6 +163,10 @@ function useSettings() {
         } else if ("bar_chart" in settings) {
           setSettings({
             bar_chart: { ...settings.bar_chart, [key]: value },
+          });
+        } else if ("table" in settings) {
+          setSettings({
+            table: { ...settings.table, [key]: value },
           });
         }
       }

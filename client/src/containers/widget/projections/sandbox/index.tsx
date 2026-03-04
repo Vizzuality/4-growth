@@ -24,6 +24,7 @@ import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
 import { Card } from "@/components/ui/card";
+import TableView from "@/containers/widget/table";
 
 export interface SandboxWidgetProps {
   indicator: string;
@@ -116,6 +117,20 @@ export default function SandboxWidget({
         );
       }
       return null;
+    case "table":
+      return (
+        <Card className={cn("relative p-0", className)}>
+          <WidgetHeader
+            title={indicator}
+            className="pb-0"
+            select={selectComponent}
+          />
+          <TableView
+            indicator={indicator}
+            data={data[selectedUnit] as Record<string, number>[]}
+          />
+        </Card>
+      );
     default:
       console.error(
         `Widget: Unsupported visualization type "${visualization}" for indicator "${indicator}".`,
