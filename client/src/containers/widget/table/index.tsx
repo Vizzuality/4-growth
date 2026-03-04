@@ -30,7 +30,8 @@ const TableView: FC<TableViewProps> = ({ indicator, data }) => {
               </TableCell>
               <TableCell className="pl-6" width="50%">
                 {formatNumber(d.value, {
-                  maximumFractionDigits: 0,
+                  maximumFractionDigits:
+                    Math.abs(d.value) > 0 && Math.abs(d.value) < 1 ? 2 : 0,
                   notation: "compact",
                   compactDisplay: "short",
                 })}
