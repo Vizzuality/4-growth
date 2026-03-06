@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 import { Line, LineChart as ReLinChart, XAxis, YAxis } from "recharts";
 import { DataKey } from "recharts/types/util/types";
@@ -29,6 +29,16 @@ const LineChart: FC<LineChartProps> = ({
   data,
   colors,
 }) => {
+  const yDomain = useMemo((): [number, number] => {
+    const keys = colors?.map(String) ?? [String(dataKey)];
+    const values = data.flatMap((d) => keys.map((k) => d[k]).filter((v) => v != null));
+    if (values.length === 0) return [0, 1];
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const padding = (max - min) * 0.05 || 1;
+    return [min - padding, max + padding];
+  }, [data, dataKey, colors]);
+
   if (!data || data.length === 0) {
     console.error(`LineChart: Expected at least 1 data point, but received 0.`);
     return <NoData />;
@@ -103,6 +113,7 @@ const LineChart: FC<LineChartProps> = ({
         <YAxis
           type="number"
           orientation="right"
+          domain={yDomain}
           axisLine={false}
           tickLine={false}
           tick={({ x, y, payload }) => (
