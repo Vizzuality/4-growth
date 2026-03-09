@@ -16,22 +16,26 @@ export const CHART_ATTRIBUTES = Object.keys(
   value: key,
   label: key.replace(/-/g, ' ').replace(/^\w/g, (char) => char.toUpperCase()),
 }));
+const COLOR_EXCLUDED_ATTRIBUTES = ['unit', 'category'];
+export const CHART_COLOR_ATTRIBUTES = CHART_ATTRIBUTES.filter(
+  (attr) => !COLOR_EXCLUDED_ATTRIBUTES.includes(attr.value),
+);
 
 export const CUSTOM_PROJECTION_SETTINGS = {
   availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
     vertical: CHART_INDICATORS,
-    color: CHART_ATTRIBUTES,
+    color: CHART_COLOR_ATTRIBUTES,
   },
   [PROJECTION_VISUALIZATIONS.BAR_CHART]: {
     vertical: CHART_INDICATORS,
-    color: CHART_ATTRIBUTES,
+    color: CHART_COLOR_ATTRIBUTES,
   },
   [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: {
     bubble: CHART_ATTRIBUTES,
     vertical: CHART_INDICATORS,
     horizontal: CHART_INDICATORS,
-    color: CHART_ATTRIBUTES,
+    color: CHART_COLOR_ATTRIBUTES,
     size: CHART_INDICATORS,
   },
   [PROJECTION_VISUALIZATIONS.TABLE]: {
@@ -84,22 +88,25 @@ export const generateCustomProjectionSettings = (
   const filteredChartAttributes = CHART_ATTRIBUTES.filter(
     (attribute) => !usedValues.includes(attribute.value),
   );
+  const filteredChartColorAttributes = CHART_COLOR_ATTRIBUTES.filter(
+    (attribute) => !usedValues.includes(attribute.value),
+  );
 
   return {
     availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
     [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
       vertical: filteredChartIndicators,
-      color: filteredChartAttributes,
+      color: filteredChartColorAttributes,
     },
     [PROJECTION_VISUALIZATIONS.BAR_CHART]: {
       vertical: filteredChartIndicators,
-      color: filteredChartAttributes,
+      color: filteredChartColorAttributes,
     },
     [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: {
       bubble: filteredChartAttributes,
       vertical: filteredChartIndicators,
       horizontal: filteredChartIndicators,
-      color: filteredChartAttributes,
+      color: filteredChartColorAttributes,
       size: filteredChartIndicators,
     },
     [PROJECTION_VISUALIZATIONS.TABLE]: {
