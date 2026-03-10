@@ -17,8 +17,14 @@ export const CHART_ATTRIBUTES = Object.keys(
   label: key.replace(/-/g, ' ').replace(/^\w/g, (char) => char.toUpperCase()),
 }));
 
+export const OTHERS_AGGREGATION_OPTIONS = [
+  { value: 'visible', label: 'Visible' },
+  { value: 'hidden', label: 'Hidden' },
+] as const;
+
 export const CUSTOM_PROJECTION_SETTINGS = {
   availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
+  othersAggregation: OTHERS_AGGREGATION_OPTIONS,
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
     vertical: CHART_INDICATORS,
     color: CHART_ATTRIBUTES,
@@ -44,6 +50,7 @@ type AxisSettingsType = { value: string; label: string }[];
 
 export type CustomProjectionSettingsType = {
   availableVisualizations: typeof AVAILABLE_PROJECTION_VISUALIZATIONS;
+  othersAggregation: typeof OTHERS_AGGREGATION_OPTIONS;
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
     vertical: AxisSettingsType;
     color: AxisSettingsType;
@@ -87,6 +94,7 @@ export const generateCustomProjectionSettings = (
 
   return {
     availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
+    othersAggregation: OTHERS_AGGREGATION_OPTIONS,
     [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
       vertical: filteredChartIndicators,
       color: filteredChartAttributes,
