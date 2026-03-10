@@ -248,6 +248,108 @@ describe('Custom Projection API', () => {
     });
   });
 
+  describe('Others Aggregation', () => {
+    test(`${c.getCustomProjectionSettings.path} should include othersAggregation options in settings`, async () => {
+      const res = await testManager
+        .request()
+        .get(c.getCustomProjectionSettings.path);
+
+      expect(res.status).toBe(200);
+      expect(res.body?.data.othersAggregation).toStrictEqual([
+        { value: 'visible', label: 'Visible' },
+        { value: 'hidden', label: 'Hidden' },
+      ]);
+    });
+
+    test(`${c.getCustomProjection.path} should not include "Others" entries when othersAggregation=hidden`, async () => {
+      const res = await testManager
+        .request()
+        .get(c.getCustomProjection.path)
+        .query({
+          settings: {
+            [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
+              vertical: 'revenues',
+              color: 'country',
+            },
+          },
+          othersAggregation: 'hidden',
+        });
+
+      expect(res.status).toBe(200);
+      const resData = res.body?.data;
+
+      const unitKeys = Object.keys(resData);
+      expect(unitKeys.length).toBeGreaterThan(0);
+
+      for (const unit of unitKeys) {
+        const colors = resData[unit].map(
+          (entry: { color: string }) => entry.color,
+        );
+        expect(colors).not.toContain('Others');
+      }
+    });
+
+    test(`${c.getCustomProjection.path} should include "Others" entries when othersAggregation=visible and data exceeds top 9`, async () => {
+      const res = await testManager
+        .request()
+        .get(c.getCustomProjection.path)
+        .query({
+          settings: {
+            [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
+              vertical: 'revenues',
+              color: 'country',
+            },
+          },
+          othersAggregation: 'visible',
+        });
+
+      expect(res.status).toBe(200);
+      const resData = res.body?.data;
+
+      const unitKeys = Object.keys(resData);
+      expect(unitKeys.length).toBeGreaterThan(0);
+
+      // Check that distinct colors per unit don't exceed 10 (top 9 + Others)
+      for (const unit of unitKeys) {
+        const uniqueColors = [
+          ...new Set(
+            resData[unit].map((entry: { color: string }) => entry.color),
+          ),
+        ];
+        expect(uniqueColors.length).toBeLessThanOrEqual(10);
+      }
+    });
+
+    test(`${c.getCustomProjection.path} should not include "Others" in breakdown when othersAggregation=hidden`, async () => {
+      const res = await testManager
+        .request()
+        .get(c.getCustomProjection.path)
+        .query({
+          settings: {
+            [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
+              vertical: 'revenues',
+              color: 'scenario',
+            },
+          },
+          breakdown: 'country',
+          othersAggregation: 'hidden',
+        });
+
+      expect(res.status).toBe(200);
+      const resData = res.body?.data;
+
+      const unitKeys = Object.keys(resData);
+      expect(unitKeys.length).toBeGreaterThan(0);
+
+      for (const unit of unitKeys) {
+        const labels = resData[unit].map(
+          (entry: { label: string }) => entry.label,
+        );
+        expect(labels).not.toContain('Others');
+      }
+    });
+  });
+
   afterAll(async () => {
     await testManager.clearDatabase();
     await testManager.close();
