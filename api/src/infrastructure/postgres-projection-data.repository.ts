@@ -89,6 +89,26 @@ export class PostgresProjectionDataRepository
     // return result;
   }
 
+  public async countDistinctColorValues(
+    colorFieldName: string,
+    dataFilters: SearchFilterDTO[],
+  ): Promise<number> {
+    const fieldName =
+      PROJECTION_FILTER_NAME_TO_FIELD_NAME[colorFieldName] || colorFieldName;
+    const queryBuilder = this.dataSource
+      .getRepository(Projection)
+      .createQueryBuilder('projection')
+      .select(`COUNT(DISTINCT projection.${fieldName})`, 'count');
+
+    QueryBuilderUtils.applySearchFilters(queryBuilder, dataFilters, {
+      alias: 'projection',
+      filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
+    });
+
+    const result = await queryBuilder.getRawOne();
+    return parseInt(result?.count || '0', 10);
+  }
+
   public async addDataToProjectionsWidgets(
     projectionWidgets: ProjectionWidget[],
     dataFilters: SearchFilterDTO[],

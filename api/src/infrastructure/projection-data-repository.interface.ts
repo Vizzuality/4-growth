@@ -20,6 +20,10 @@ export interface IProjectionDataRepository extends Repository<ProjectionData> {
     dataFilters: SearchFilterDTO[],
   ): Promise<void>;
   findProjectionWidgetData(dataFilters: SearchFilterDTO[]): Promise<any>;
+  countDistinctColorValues(
+    colorFieldName: string,
+    dataFilters: SearchFilterDTO[],
+  ): Promise<number>;
   previewProjectionCustomWidget(
     dataFilters: SearchFilterDTO[],
     settings: CustomProjectionSettingsType,
