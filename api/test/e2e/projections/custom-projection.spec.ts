@@ -76,6 +76,11 @@ describe('Custom Projection API', () => {
     expect(Array.isArray(firstProjectionDataForUnit)).toBe(true);
     expect(firstProjectionDataForUnit[0]).toHaveProperty('year');
     expect(firstProjectionDataForUnit[0]).toHaveProperty('value');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('scenario');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('technology');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('technologyType');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('country');
+    expect(firstProjectionDataForUnit[0]).toHaveProperty('category');
     expect(firstProjectionDataForUnit[0]).not.toHaveProperty('color');
     expect(firstProjectionDataForUnit[0]).not.toHaveProperty('vertical');
   });
