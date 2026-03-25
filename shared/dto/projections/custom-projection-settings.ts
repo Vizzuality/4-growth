@@ -28,7 +28,6 @@ export const OTHERS_AGGREGATION_OPTIONS = [
 
 export const CUSTOM_PROJECTION_SETTINGS = {
   availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
-  othersAggregation: OTHERS_AGGREGATION_OPTIONS,
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
     vertical: CHART_INDICATORS,
     color: CHART_COLOR_ATTRIBUTES,
@@ -54,7 +53,7 @@ type AxisSettingsType = { value: string; label: string }[];
 
 export type CustomProjectionSettingsType = {
   availableVisualizations: typeof AVAILABLE_PROJECTION_VISUALIZATIONS;
-  othersAggregation: typeof OTHERS_AGGREGATION_OPTIONS;
+  othersAggregation?: typeof OTHERS_AGGREGATION_OPTIONS;
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
     vertical: AxisSettingsType;
     color: AxisSettingsType;
@@ -79,47 +78,57 @@ export type CustomProjectionSettingsType = {
 // Workaround to be able to generate custom projection settings removing selected indicator to prevent visualizing the same indicator in multiple axes
 export const generateCustomProjectionSettings = (
   query: SearchFiltersDTO = {},
-) => {
+  includeOthersAggregation = true,
+): CustomProjectionSettingsType => {
   const { filters } = query;
 
-  if (!filters) return CUSTOM_PROJECTION_SETTINGS;
+  let chartIndicators = CHART_INDICATORS;
+  let chartAttributes = CHART_ATTRIBUTES;
+  let chartColorAttributes = CHART_COLOR_ATTRIBUTES;
 
-  const usedValues = filters.reduce((acc, filter) => {
-    acc.push(...(filter.values as string[]));
-    return acc;
-  }, [] as string[]);
+  if (filters) {
+    const usedValues = filters.reduce((acc, filter) => {
+      acc.push(...(filter.values as string[]));
+      return acc;
+    }, [] as string[]);
 
-  const filteredChartIndicators = CHART_INDICATORS.filter(
-    (indicator) => !usedValues.includes(indicator.value),
-  );
-  const filteredChartAttributes = CHART_ATTRIBUTES.filter(
-    (attribute) => !usedValues.includes(attribute.value),
-  );
-  const filteredChartColorAttributes = CHART_COLOR_ATTRIBUTES.filter(
-    (attribute) => !usedValues.includes(attribute.value),
-  );
+    chartIndicators = CHART_INDICATORS.filter(
+      (indicator) => !usedValues.includes(indicator.value),
+    );
+    chartAttributes = CHART_ATTRIBUTES.filter(
+      (attribute) => !usedValues.includes(attribute.value),
+    );
+    chartColorAttributes = CHART_COLOR_ATTRIBUTES.filter(
+      (attribute) => !usedValues.includes(attribute.value),
+    );
+  }
 
-  return {
+  const settings: CustomProjectionSettingsType = {
     availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
-    othersAggregation: OTHERS_AGGREGATION_OPTIONS,
     [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
-      vertical: filteredChartIndicators,
-      color: filteredChartColorAttributes,
+      vertical: chartIndicators,
+      color: chartColorAttributes,
     },
     [PROJECTION_VISUALIZATIONS.BAR_CHART]: {
-      vertical: filteredChartIndicators,
-      color: filteredChartColorAttributes,
+      vertical: chartIndicators,
+      color: chartColorAttributes,
     },
     [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: {
-      bubble: filteredChartAttributes,
-      vertical: filteredChartIndicators,
-      horizontal: filteredChartIndicators,
-      color: filteredChartColorAttributes,
-      size: filteredChartIndicators,
+      bubble: chartAttributes,
+      vertical: chartIndicators,
+      horizontal: chartIndicators,
+      color: chartColorAttributes,
+      size: chartIndicators,
     },
     [PROJECTION_VISUALIZATIONS.TABLE]: {
-      vertical: filteredChartIndicators,
-      color: filteredChartAttributes,
+      vertical: chartIndicators,
+      color: chartAttributes,
     },
-  } as CustomProjectionSettingsType;
+  };
+
+  if (includeOthersAggregation) {
+    settings.othersAggregation = OTHERS_AGGREGATION_OPTIONS;
+  }
+
+  return settings;
 };
