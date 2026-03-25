@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { CustomWidget } from '../widgets/custom-widget.entity';
+import { SavedProjection } from '../projections/saved-projection.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -25,4 +26,7 @@ export class User {
 
   @OneToMany(() => CustomWidget, (customWidget) => customWidget.user)
   customWidgets: CustomWidget[];
+
+  @OneToMany(() => SavedProjection, (sp) => sp.user)
+  savedProjections: SavedProjection[];
 }
