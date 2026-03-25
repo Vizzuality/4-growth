@@ -20,7 +20,7 @@ interface ProjectionsSettingsOption<T> {
 interface ProjectionsSettingsPopupProps<T> {
   name: string;
   selected: ProjectionsSettingsOption<T> | null;
-  options: ProjectionsSettingsOption<T>[];
+  options: readonly ProjectionsSettingsOption<T>[];
   onItemClick: (value: T) => void;
 }
 

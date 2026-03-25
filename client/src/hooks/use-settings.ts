@@ -8,8 +8,9 @@ import { ProjectionVisualizationsType } from "@shared/dto/projections/projection
 import {
   CustomProjectionSettingsSchema,
   CustomProjectionSettingsType,
+  OthersAggregationValues,
 } from "@shared/schemas/custom-projection-settings.schema";
-import { useQueryState } from "nuqs";
+import { parseAsStringLiteral, useQueryState } from "nuqs";
 import qs from "qs";
 
 import {
@@ -20,6 +21,10 @@ import {
 
 function useSettings() {
   const [settingsQuery, setSettingsQuery] = useQueryState("s");
+  const [othersAggregation, setOthersAggregation] = useQueryState(
+    "othersAggregation",
+    parseAsStringLiteral(OthersAggregationValues).withDefault("visible"),
+  );
   const settings: CustomProjectionSettingsType | null = useMemo(() => {
     if (!settingsQuery) return null;
     try {
@@ -176,10 +181,12 @@ function useSettings() {
 
   return {
     settings,
+    othersAggregation,
     setVisualization,
     setBubbleChartIndicator,
     setBubbleChartAttribute,
     setChartAttribute,
+    setOthersAggregation,
   };
 }
 

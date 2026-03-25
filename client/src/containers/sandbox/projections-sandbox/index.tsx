@@ -28,11 +28,11 @@ import MenuPointer from "@/components/icons/menu-pointer";
 import { Card } from "@/components/ui/card";
 
 const Sandbox: FC = () => {
-  const { settings } = useSettings();
+  const { settings, othersAggregation } = useSettings();
   const { filters } = useFilters();
   const { isCategorySelected } = useProjectionsCategoryFilter();
   const { data, isFetching } = client.projections.getCustomProjection.useQuery(
-    queryKeys.projections.custom(settings, filters).queryKey,
+    queryKeys.projections.custom(settings, filters, othersAggregation).queryKey,
     {
       query: {
         dataFilters: filters,
@@ -44,6 +44,7 @@ const Sandbox: FC = () => {
                 color: "application",
               },
             },
+        othersAggregation,
       },
     },
     {

@@ -2,7 +2,10 @@ import {
   createQueryKeys,
   mergeQueryKeys,
 } from "@lukemorales/query-key-factory";
-import { CustomProjectionSettingsType } from "@shared/schemas/custom-projection-settings.schema";
+import {
+  CustomProjectionSettingsType,
+  OthersAggregationType,
+} from "@shared/schemas/custom-projection-settings.schema";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
@@ -44,7 +47,8 @@ export const projectionsKeys = createQueryKeys("projections", {
   custom: (
     settings: CustomProjectionSettingsType | null,
     filters: FilterQueryParam[],
-  ) => [{ settings, filters }],
+    othersAggregation: OthersAggregationType,
+  ) => [settings ?? undefined, filters, othersAggregation],
   settings: null,
   settingsAll: null,
   filters: null,
