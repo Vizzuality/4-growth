@@ -55,10 +55,26 @@ export class ProjectionsService extends AppBaseService<
     );
   }
 
-  public getCustomProjectionSettings(
+  public async getCustomProjectionSettings(
     query: SearchFiltersDTO,
-  ): CustomProjectionSettingsType {
-    return generateCustomProjectionSettings(query);
+  ): Promise<CustomProjectionSettingsType> {
+    const { filters, dataFilters = [] } = query;
+    const colorFilter = filters?.find((f) => f.name === 'color');
+    const colorAttribute = colorFilter?.values?.[0] as string | undefined;
+
+    let includeOthersAggregation = true;
+    if (colorAttribute) {
+      const distinctCount =
+        await this.projectionDataRepository.countDistinctColorValues(
+          colorAttribute,
+          dataFilters,
+        );
+      includeOthersAggregation = distinctCount > 9;
+    } else {
+      includeOthersAggregation = false;
+    }
+
+    return generateCustomProjectionSettings(query, includeOthersAggregation);
   }
 
   public async getProjectionsFilters(
