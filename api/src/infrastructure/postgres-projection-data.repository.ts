@@ -177,6 +177,61 @@ export class PostgresProjectionDataRepository
     return result[0]?.data;
   }
 
+  public async findProjectionTableData(
+    dataFilters: SearchFilterDTO[],
+    indicator: string,
+  ): Promise<CustomProjection> {
+    const baseQueryBuilder = this.dataSource
+      .getRepository(Projection)
+      .createQueryBuilder('projection')
+      .select('projectionData.year', 'year')
+      .addSelect('projectionData.value', 'value')
+      .addSelect('projection.scenario', 'scenario')
+      .addSelect('projection.technology', 'technology')
+      .addSelect('projection.technologyType', 'technology_type')
+      .addSelect('projection.country', 'country')
+      .addSelect('projection.category', 'category')
+      .addSelect('projection.unit', 'unit')
+      .innerJoin('projection.projectionData', 'projectionData')
+      .where('projection.type = :type', { type: indicator })
+      .orderBy('projectionData.year', 'ASC');
+
+    QueryBuilderUtils.applySearchFilters(baseQueryBuilder, dataFilters, {
+      alias: 'projection',
+      filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
+    });
+
+    const finalQuery = `
+      SELECT
+        JSON_OBJECT_AGG(
+          unit,
+          unit_data
+        ) as data
+      FROM (
+        SELECT
+          unit,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'year', year,
+              'value', value,
+              'scenario', ${this.getConditionalHumanizationSql('scenario', 'scenario')},
+              'technology', ${this.getConditionalHumanizationSql('technology', 'technology')},
+              'technologyType', ${this.getConditionalHumanizationSql('technology_type', 'technology-type')},
+              'country', ${this.getConditionalHumanizationSql('country', 'country')},
+              'category', category
+            )
+            ORDER BY year ASC
+          ) as unit_data
+        FROM (${baseQueryBuilder.getSql()}) as base_data
+        GROUP BY unit
+      ) as grouped_data
+    `;
+
+    const parameters = Object.values(baseQueryBuilder.getParameters()).flat();
+    const result = await this.dataSource.query(finalQuery, parameters);
+    return result[0]?.data || {};
+  }
+
   public async findSimpleProjectionCustomWidgetData(
     widgetVisualization: ProjectionVisualizationsType,
     dataFilters: SearchFilterDTO[],
@@ -320,10 +375,10 @@ export class PostgresProjectionDataRepository
       case PROJECTION_VISUALIZATIONS.TABLE:
         const tableSettings = (settings as { table: { vertical: string } })
           .table;
-        return this.findProjectionWidgetData([
-          ...dataFilters,
-          { name: 'type', operator: '=', values: [tableSettings.vertical] },
-        ]);
+        return this.findProjectionTableData(
+          dataFilters,
+          tableSettings.vertical,
+        );
       case PROJECTION_VISUALIZATIONS.LINE_CHART:
       case PROJECTION_VISUALIZATIONS.BAR_CHART:
         // Only aggregate 'others' in findSimpleProjectionCustomWidgetData

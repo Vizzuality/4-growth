@@ -21,6 +21,11 @@ export type TableProjection = {
   [unit: string]: {
     year: number;
     value: number;
+    scenario: string;
+    technology: string;
+    technologyType: string;
+    country: string;
+    category: string;
   }[];
 };
 

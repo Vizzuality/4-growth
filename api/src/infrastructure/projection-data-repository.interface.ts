@@ -24,6 +24,10 @@ export interface IProjectionDataRepository extends Repository<ProjectionData> {
     colorFieldName: string,
     dataFilters: SearchFilterDTO[],
   ): Promise<number>;
+  findProjectionTableData(
+    dataFilters: SearchFilterDTO[],
+    indicator: string,
+  ): Promise<CustomProjection>;
   previewProjectionCustomWidget(
     dataFilters: SearchFilterDTO[],
     settings: CustomProjectionSettingsType,
