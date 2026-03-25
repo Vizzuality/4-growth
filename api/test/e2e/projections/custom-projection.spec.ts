@@ -249,10 +249,32 @@ describe('Custom Projection API', () => {
   });
 
   describe('Others Aggregation', () => {
-    test(`${c.getCustomProjectionSettings.path} should include othersAggregation options in settings`, async () => {
+    test(`${c.getCustomProjectionSettings.path} should not include othersAggregation when no color attribute is selected`, async () => {
       const res = await testManager
         .request()
         .get(c.getCustomProjectionSettings.path);
+
+      expect(res.status).toBe(200);
+      expect(res.body?.data.othersAggregation).toBeUndefined();
+    });
+
+    test(`${c.getCustomProjectionSettings.path} should not include othersAggregation when color attribute has few distinct values`, async () => {
+      const res = await testManager
+        .request()
+        .get(
+          `${c.getCustomProjectionSettings.path}?filters[0][name]=color&filters[0][operator]==&filters[0][values][0]=scenario`,
+        );
+
+      expect(res.status).toBe(200);
+      expect(res.body?.data.othersAggregation).toBeUndefined();
+    });
+
+    test(`${c.getCustomProjectionSettings.path} should include othersAggregation when color attribute has many distinct values`, async () => {
+      const res = await testManager
+        .request()
+        .get(
+          `${c.getCustomProjectionSettings.path}?filters[0][name]=color&filters[0][operator]==&filters[0][values][0]=country`,
+        );
 
       expect(res.status).toBe(200);
       expect(res.body?.data.othersAggregation).toStrictEqual([
