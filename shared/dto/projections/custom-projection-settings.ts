@@ -26,6 +26,11 @@ export const OTHERS_AGGREGATION_OPTIONS = [
   { value: 'hidden', label: 'Hidden' },
 ] as const;
 
+const NON_COLOR_ATTRIBUTES = ['unit', 'category'];
+export const CHART_COLOR_ATTRIBUTES = CHART_ATTRIBUTES.filter(
+  (attr) => !NON_COLOR_ATTRIBUTES.includes(attr.value),
+);
+
 export const CUSTOM_PROJECTION_SETTINGS = {
   availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
@@ -92,33 +97,32 @@ export const generateCustomProjectionSettings = (
       return acc;
     }, [] as string[]);
 
-    chartIndicators = CHART_INDICATORS.filter(
-      (indicator) => !usedValues.includes(indicator.value),
-    );
-    chartAttributes = CHART_ATTRIBUTES.filter(
-      (attribute) => !usedValues.includes(attribute.value),
-    );
-    chartColorAttributes = CHART_COLOR_ATTRIBUTES.filter(
-      (attribute) => !usedValues.includes(attribute.value),
-    );
-  }
+  const filteredChartIndicators = CHART_INDICATORS.filter(
+    (indicator) => !usedValues.includes(indicator.value),
+  );
+  const filteredChartAttributes = CHART_ATTRIBUTES.filter(
+    (attribute) => !usedValues.includes(attribute.value),
+  );
+  const filteredChartColorAttributes = CHART_COLOR_ATTRIBUTES.filter(
+    (attribute) => !usedValues.includes(attribute.value),
+  );
 
   const settings: CustomProjectionSettingsType = {
     availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
     [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
-      vertical: chartIndicators,
-      color: chartColorAttributes,
+      vertical: filteredChartIndicators,
+      color: filteredChartColorAttributes,
     },
     [PROJECTION_VISUALIZATIONS.BAR_CHART]: {
-      vertical: chartIndicators,
-      color: chartColorAttributes,
+      vertical: filteredChartIndicators,
+      color: filteredChartColorAttributes,
     },
     [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: {
-      bubble: chartAttributes,
-      vertical: chartIndicators,
-      horizontal: chartIndicators,
-      color: chartColorAttributes,
-      size: chartIndicators,
+      bubble: filteredChartAttributes,
+      vertical: filteredChartIndicators,
+      horizontal: filteredChartIndicators,
+      color: filteredChartColorAttributes,
+      size: filteredChartIndicators,
     },
     [PROJECTION_VISUALIZATIONS.TABLE]: {
       vertical: chartIndicators,
