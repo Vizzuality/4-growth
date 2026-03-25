@@ -16,7 +16,7 @@ export class SavedProjection {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @ManyToOne(() => User, (user: User) => user.savedProjections, {
+  @ManyToOne(() => User, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'user_id' })

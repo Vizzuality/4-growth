@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { tsRestHandler, TsRestHandler } from '@ts-rest/nest';
-import { usersContract as c } from '@shared/contracts/users.contract';
+import { savedProjectionsContract as c } from '@shared/contracts/saved-projections.contract';
 import { ControllerResponse } from '@api/types/controller.type';
 import { SavedProjectionService } from '@api/modules/projections/saved-projections.service';
 import { AuthorizeByUserIdParam } from '@api/decorators/authorize';
