@@ -16,6 +16,8 @@ import HorizontalSelect from "@/containers/sidebar/projections-sidebar/sandbox-s
 import SizeSelect from "@/containers/sidebar/projections-sidebar/sandbox-settings/size-select";
 import VerticalSelect from "@/containers/sidebar/projections-sidebar/sandbox-settings/vertical-select";
 import VisualizationSelect from "@/containers/sidebar/projections-sidebar/sandbox-settings/visualization-select";
+import OthersSelect from "@/containers/sidebar/projections-sidebar/sandbox-settings/others-select";
+import { OTHERS_AGGREGATION_OPTIONS } from "@shared/dto/projections/custom-projection-settings";
 
 const SandboxSettings: FC = () => {
   const { settings } = useSettings();
@@ -44,6 +46,9 @@ const SandboxSettings: FC = () => {
         <>
           <VerticalSelect options={data?.line_chart.vertical || []} />
           <ColorSelect options={data?.line_chart.color || []} />
+          <OthersSelect
+            options={data?.othersAggregation || OTHERS_AGGREGATION_OPTIONS}
+          />
         </>
       ) : showBubbleChartSettings ? (
         <>
@@ -52,6 +57,9 @@ const SandboxSettings: FC = () => {
           <HorizontalSelect options={data?.bubble_chart.horizontal || []} />
           <ColorSelect options={data?.bubble_chart.color || []} />
           <SizeSelect options={data?.bubble_chart.size || []} />
+          <OthersSelect
+            options={data?.othersAggregation || OTHERS_AGGREGATION_OPTIONS}
+          />
         </>
       ) : null}
     </>
