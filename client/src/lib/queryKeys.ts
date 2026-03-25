@@ -1,3 +1,4 @@
+import { SearchFiltersSchema } from "@shared/schemas/search-filters.schema";
 import {
   createQueryKeys,
   mergeQueryKeys,
@@ -8,6 +9,7 @@ import {
 } from "@shared/schemas/custom-projection-settings.schema";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
+import z from "zod";
 
 export const usersKeys = createQueryKeys("users", {
   detail: (userId: string) => [userId],
@@ -49,7 +51,9 @@ export const projectionsKeys = createQueryKeys("projections", {
     filters: FilterQueryParam[],
     othersAggregation: OthersAggregationType,
   ) => [settings ?? undefined, filters, othersAggregation],
-  settings: null,
+  settings: (filters?: z.infer<typeof SearchFiltersSchema>["filters"]) => [
+    { filters },
+  ],
   settingsAll: null,
   filters: null,
 });

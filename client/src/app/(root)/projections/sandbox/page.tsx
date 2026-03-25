@@ -15,7 +15,7 @@ import { PROJECTIONS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-setting
 export default async function ProjectionsSandboxPage() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: queryKeys.projections.settings.queryKey,
+    queryKey: queryKeys.projections.settings().queryKey,
     queryFn: async () =>
       client.projections.getCustomProjectionSettings.query(QUERY_OPTIONS),
   });
