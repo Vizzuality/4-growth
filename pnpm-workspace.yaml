@@ -4,6 +4,24 @@ packages:
   - "shared/**"
   - "e2e/**"
 
+onlyBuiltDependencies:
+  - "@nestjs/core"
+
+overrides:
+  # d3-color: security fix — forces 3.1.0 across all d3 consumers
+  d3-color: 3.1.0
+  # qs: blanket override needed — express 4.21.2 (via nestjs-base-service) declares exact qs 6.13.0
+  qs: 6.15.0
+  # nestjs-base-service ships outdated transitive deps; scope overrides to that parent
+  "nestjs-base-service>express": "4.21.2"
+  "nestjs-base-service>class-validator": "0.14.4"
+  "nestjs-base-service>lodash": "4.17.23"
+  # @aws-sdk/xml-builder ships vulnerable fast-xml-parser (GHSA-8gc5-j5rx-235r)
+  "@aws-sdk/xml-builder>fast-xml-parser": "5.5.8"
+  # @nestjs/core and @nestjs/platform-express ship path-to-regexp 8.3.0 (GHSA-j3q9-mxjg-w52f)
+  "@nestjs/core>path-to-regexp": "8.4.0"
+  "@nestjs/platform-express>path-to-regexp": "8.4.0"
+
 catalog:
   # Core
   zod: 3.25.76
@@ -30,5 +48,3 @@ catalog:
   "@types/qs": 6.14.0
   class-transformer: 0.5.1
   class-validator: 0.14.4
-
-# Note: overrides are in root package.json (pnpm.overrides) — pnpm 9.x does not read them from here
