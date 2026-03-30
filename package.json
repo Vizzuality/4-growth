@@ -28,6 +28,8 @@
       "@angular-devkit/core>ajv": "8.18.0",
       "@aws-sdk/xml-builder>fast-xml-parser": "5.5.8",
 
+      "@nestjs/core>path-to-regexp": "8.4.0",
+      "@nestjs/platform-express>path-to-regexp": "8.4.0",
       "nestjs-base-service>express": "4.21.2",
       "terser-webpack-plugin>serialize-javascript": "7.0.3"
     }
