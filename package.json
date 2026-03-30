@@ -26,7 +26,7 @@
       "class-validator": "0.14.4",
       "lodash": "4.17.23",
       "@angular-devkit/core>ajv": "8.18.0",
-      "fast-xml-parser": ">=5.3.8",
+      "@aws-sdk/xml-builder>fast-xml-parser": "5.5.8",
 
       "nestjs-base-service>express": "4.21.2",
       "terser-webpack-plugin>serialize-javascript": "7.0.3"
