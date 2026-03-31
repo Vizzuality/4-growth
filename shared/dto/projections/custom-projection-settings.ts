@@ -85,13 +85,12 @@ export const generateCustomProjectionSettings = (
 
   let chartIndicators = CHART_INDICATORS;
   let chartAttributes = CHART_ATTRIBUTES;
-  let chartColorAttributes = CHART_COLOR_ATTRIBUTES;
 
-  if (filters) {
-    const usedValues = filters.reduce((acc, filter) => {
+  const usedValues =
+    filters?.reduce((acc, filter) => {
       acc.push(...(filter.values as string[]));
       return acc;
-    }, [] as string[]);
+    }, [] as string[]) || [];
 
   const filteredChartIndicators = CHART_INDICATORS.filter(
     (indicator) => !usedValues.includes(indicator.value),
