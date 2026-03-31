@@ -16,10 +16,6 @@ export const CHART_ATTRIBUTES = Object.keys(
   value: key,
   label: key.replace(/-/g, ' ').replace(/^\w/g, (char) => char.toUpperCase()),
 }));
-const COLOR_EXCLUDED_ATTRIBUTES = ['unit', 'category'];
-export const CHART_COLOR_ATTRIBUTES = CHART_ATTRIBUTES.filter(
-  (attr) => !COLOR_EXCLUDED_ATTRIBUTES.includes(attr.value),
-);
 
 export const OTHERS_AGGREGATION_OPTIONS = [
   { value: 'visible', label: 'Visible' },
