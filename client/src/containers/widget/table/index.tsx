@@ -1,5 +1,13 @@
-import { FC, useMemo, useState } from "react";
+import { FC, useCallback, useMemo, useState } from "react";
 
+import {
+  flexRender,
+  getCoreRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+  type ColumnDef,
+} from "@tanstack/react-table";
 import { ArrowDownIcon, ArrowUpDownIcon, ArrowUpIcon } from "lucide-react";
 
 import { cn, formatNumber } from "@/lib/utils";
@@ -16,48 +24,91 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-type SortColumnKey = "year" | "value";
-
-const COLUMN_KEYS: SortColumnKey[] = ["year", "value"];
+function humanizeColumnKey(key: string): string {
+  return key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
 
 interface TableViewProps {
   indicator: string;
   data?: Record<string, number>[];
   headings?: string[];
 }
+
 const TableView: FC<TableViewProps> = ({ indicator, data, headings }) => {
-  const [sortColumn, setSortColumn] = useState<SortColumnKey | null>(null);
-  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
-  const displayHeadings = headings?.length
-    ? headings
-    : (["Year", "Value"] as const);
+  const [sorting, setSorting] = useState<SortingState>([]);
 
-  const sortedData = useMemo(() => {
+  const columnKeys = useMemo(() => {
     if (!data?.length) return [];
-    if (!sortColumn) return data;
-    const next = [...data];
-    next.sort((a, b) => {
-      const av = a[sortColumn];
-      const bv = b[sortColumn];
-      const cmp = av < bv ? -1 : av > bv ? 1 : 0;
-      return sortDir === "asc" ? cmp : -cmp;
-    });
-    return next;
-  }, [data, sortColumn, sortDir]);
+    return Object.keys(data[0]);
+  }, [data]);
 
-  const onHeaderClick = (key: SortColumnKey) => {
-    if (sortColumn === key) {
-      if (sortDir === "asc") {
-        setSortDir("desc");
-      } else {
-        setSortColumn(null);
-        setSortDir("asc");
-      }
-    } else {
-      setSortColumn(key);
-      setSortDir("asc");
-    }
-  };
+  const displayHeadings = useMemo(() => {
+    if (!columnKeys.length) return [];
+    if (headings?.length === columnKeys.length) return headings;
+    return columnKeys.map(humanizeColumnKey);
+  }, [columnKeys, headings]);
+
+  const onHeaderClick = useCallback((columnId: string) => {
+    setSorting((prev) => {
+      const current = prev.find((s) => s.id === columnId);
+      if (!current) return [{ id: columnId, desc: false }];
+      if (!current.desc) return [{ id: columnId, desc: true }];
+      return [];
+    });
+  }, []);
+
+  const columns = useMemo<ColumnDef<Record<string, number>>[]>(() => {
+    return columnKeys.map((key, i) => ({
+      id: key,
+      accessorKey: key,
+      header: ({ column }) => {
+        const sorted = column.getIsSorted();
+        const label = displayHeadings[i] ?? key;
+
+        return (
+          <button
+            type="button"
+            className={cn({
+              "inline-flex w-full items-center gap-1.5 text-left font-medium text-muted-foreground transition-colors hover:text-foreground": true,
+              "font-semibold text-foreground": Boolean(sorted),
+            })}
+            onClick={() => onHeaderClick(column.id)}
+          >
+            <span>{label}</span>
+            {!sorted && (
+              <ArrowUpDownIcon className="h-4 w-4 shrink-0 opacity-50" />
+            )}
+            {sorted === "asc" && <ArrowUpIcon className="h-4 w-4 shrink-0" />}
+            {sorted === "desc" && (
+              <ArrowDownIcon className="h-4 w-4 shrink-0" />
+            )}
+          </button>
+        );
+      },
+      cell: ({ row, column }) => {
+        const v = row.getValue(column.id) as number;
+        if (column.id === "value") {
+          return formatNumber(v, {
+            maximumFractionDigits: 3,
+            minimumFractionDigits: 0,
+            notation: "compact",
+            compactDisplay: "short",
+          });
+        }
+
+        return v;
+      },
+    }));
+  }, [columnKeys, displayHeadings, onHeaderClick]);
+
+  const table = useReactTable({
+    data: data ?? [],
+    columns,
+    state: { sorting },
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+  });
 
   if (!data || data.length === 0) {
     return <NoData />;
@@ -67,68 +118,43 @@ const TableView: FC<TableViewProps> = ({ indicator, data, headings }) => {
     <ScrollArea className="h-full">
       <Table>
         <TableHeader>
-          <TableRow className="border-none hover:bg-transparent">
-            {displayHeadings.map((heading, i) => {
-              const columnKey = COLUMN_KEYS[i];
-
-              if (!columnKey) {
-                return (
-                  <TableHead key={`table-view-heading-${heading}`}>
-                    {heading}
-                  </TableHead>
-                );
-              }
-
-              const sorted = sortColumn === columnKey;
-
-              return (
-                <TableHead
-                  key={`table-view-heading-${heading}`}
-                  className="pl-6"
-                >
-                  <button
-                    type="button"
-                    className={cn({
-                      "inline-flex w-full items-center gap-1.5 text-left font-medium text-muted-foreground transition-colors hover:text-foreground": true,
-                      "font-semibold text-foreground": sorted,
-                    })}
-                    onClick={() => onHeaderClick(columnKey)}
-                  >
-                    <span>{heading}</span>
-                    {!sorted && (
-                      <ArrowUpDownIcon className="h-4 w-4 shrink-0 opacity-50" />
-                    )}
-                    {sorted && sortDir === "asc" && (
-                      <ArrowUpIcon className="h-4 w-4 shrink-0" />
-                    )}
-                    {sorted && sortDir === "desc" && (
-                      <ArrowDownIcon className="h-4 w-4 shrink-0" />
-                    )}
-                  </button>
-                </TableHead>
-              );
-            })}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {sortedData.map((d) => (
+          {table.getHeaderGroups().map((headerGroup) => (
             <TableRow
-              key={`${indicator}-table-row-${d.year}-${d.value}`}
-              className="border-b-bluish-gray-500/35 hover:bg-transparent"
+              key={headerGroup.id}
+              className="border-none hover:bg-transparent"
             >
-              <TableCell className="pl-6" width="50%">
-                {d.year}
-              </TableCell>
-              <TableCell className="pl-6" width="50%">
-                {formatNumber(d.value, {
-                  maximumFractionDigits: 3,
-                  minimumFractionDigits: 0,
-                  notation: "compact",
-                  compactDisplay: "short",
-                })}
-              </TableCell>
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id} className="pl-6">
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                </TableHead>
+              ))}
             </TableRow>
           ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows.map((row) => {
+            const cells = row.getVisibleCells();
+            const colWidth =
+              cells.length > 0 ? `${100 / cells.length}%` : undefined;
+
+            return (
+              <TableRow
+                key={`${indicator}-table-row-${row.id}`}
+                className="border-b-bluish-gray-500/35 hover:bg-transparent"
+              >
+                {cells.map((cell) => (
+                  <TableCell key={cell.id} className="pl-6" width={colWidth}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </ScrollArea>
