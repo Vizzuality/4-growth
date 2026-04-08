@@ -79,7 +79,6 @@ export default function SandboxWidget({
 
   if (!data[selectedUnit]) return null;
 
-  console.log({ breakdown, data });
   if (breakdown && isBreakdownProjection(data)) {
     return (
       <Card className={cn("relative p-0", className)}>
