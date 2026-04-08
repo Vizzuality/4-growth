@@ -50,7 +50,13 @@ export const projectionsKeys = createQueryKeys("projections", {
     settings: CustomProjectionSettingsType | null,
     filters: FilterQueryParam[],
     othersAggregation: OthersAggregationType,
-  ) => [settings ?? undefined, filters, othersAggregation],
+    breakdown?: string,
+  ) => [
+    settings ?? undefined,
+    filters,
+    othersAggregation,
+    breakdown ?? undefined,
+  ],
   settings: (filters?: z.infer<typeof SearchFiltersSchema>["filters"]) => [
     { filters },
   ],

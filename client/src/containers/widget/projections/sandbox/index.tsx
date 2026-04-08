@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import {
+  BreakdownProjection,
   BubbleProjection,
   CustomProjection,
   SimpleProjection,
@@ -25,11 +26,14 @@ import WidgetHeader from "@/containers/widget/widget-header";
 
 import { Card } from "@/components/ui/card";
 import TableView from "@/containers/widget/table";
+import Breakdown from "@/containers/widget/breakdown";
+import { isBreakdownProjection } from "@/containers/widget/projections/utils";
 
 export interface SandboxWidgetProps {
   indicator: string;
   visualization: ProjectionVisualizationsType;
   data: CustomProjection;
+  breakdown?: string;
   className?: string;
 }
 
@@ -37,6 +41,7 @@ export default function SandboxWidget({
   indicator,
   visualization,
   data,
+  breakdown,
   className,
 }: SandboxWidgetProps) {
   const units = useMemo(() => (data ? Object.keys(data) : []), [data]);
@@ -73,6 +78,20 @@ export default function SandboxWidget({
   }
 
   if (!data[selectedUnit]) return null;
+
+  console.log({ breakdown, data });
+  if (breakdown && isBreakdownProjection(data)) {
+    return (
+      <Card className={cn("relative p-0", className)}>
+        <WidgetHeader
+          title={indicator}
+          className="pb-0"
+          select={selectComponent}
+        />
+        <Breakdown data={data[selectedUnit]} />
+      </Card>
+    );
+  }
 
   switch (visualization) {
     case "bar_chart":

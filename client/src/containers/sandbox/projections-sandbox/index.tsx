@@ -26,13 +26,20 @@ import SandboxWidget from "@/containers/widget/projections/sandbox";
 
 import MenuPointer from "@/components/icons/menu-pointer";
 import { Card } from "@/components/ui/card";
+import { useQueryState } from "nuqs";
 
 const Sandbox: FC = () => {
   const { settings, othersAggregation } = useSettings();
   const { filters } = useFilters();
   const { isCategorySelected } = useProjectionsCategoryFilter();
+  const [breakdown] = useQueryState("breakdown");
   const { data, isFetching } = client.projections.getCustomProjection.useQuery(
-    queryKeys.projections.custom(settings, filters, othersAggregation).queryKey,
+    queryKeys.projections.custom(
+      settings,
+      filters,
+      othersAggregation,
+      breakdown || undefined,
+    ).queryKey,
     {
       query: {
         dataFilters: filters,
@@ -45,6 +52,7 @@ const Sandbox: FC = () => {
               },
             },
         othersAggregation,
+        breakdown: breakdown || undefined,
       },
     },
     {
@@ -143,6 +151,7 @@ const Sandbox: FC = () => {
       indicator={indicator}
       visualization={visualization}
       data={data}
+      breakdown={breakdown || undefined}
     />
   );
 };
