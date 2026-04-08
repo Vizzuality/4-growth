@@ -17,9 +17,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import BreakdownSelector from "@/containers/sidebar/projections-sidebar/breakdown-selector";
+import { useQueryState } from "nuqs";
 
 const SandboxSidebar: FC = () => {
   const { filters, addFilter, removeFilterValue } = useFilters();
+  const [breakdown, setBreakdown] = useQueryState("breakdown");
   const { selectedCategories, isCategorySelected } =
     useProjectionsCategoryFilter();
   const [openItems, setOpenItems] = useState<string[]>(
@@ -76,6 +79,10 @@ const SandboxSidebar: FC = () => {
               addFilter(newFilter, ADD_FILTER_MODE.REPLACE)
             }
             onRemoveFilterValue={removeFilterValue}
+          />
+          <BreakdownSelector
+            breakdown={breakdown}
+            setBreakdown={setBreakdown}
           />
         </AccordionContent>
       </AccordionItem>

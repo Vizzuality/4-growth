@@ -1,3 +1,4 @@
+import { VISUALIZATION_TO_LABEL_MAP } from "@/containers/sidebar/projections-settings/constants";
 import { CustomProjectionSettingsType } from "@shared/schemas/custom-projection-settings.schema";
 
 type SimpleChartSettings = { vertical: string; color: string };
@@ -56,4 +57,16 @@ export function colorIsCountry(
   }
 
   return false;
+}
+
+export function getSelectedVisualizationOption(
+  settings: CustomProjectionSettingsType | null,
+) {
+  if (!settings) return null;
+
+  const key = Object.keys(
+    settings,
+  )[0] as keyof typeof VISUALIZATION_TO_LABEL_MAP;
+
+  return { label: VISUALIZATION_TO_LABEL_MAP[key], value: key };
 }

@@ -1,3 +1,4 @@
+import { BreakdownProjection, CustomProjection } from "@shared/dto/projections/custom-projection.type";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 
 export const getMenuButtonText = (v: ProjectionVisualizationsType): string => {
@@ -27,3 +28,23 @@ export const widgetDescriptionMap: Record<string, string> = {
   Revenues: "Revenue generated from the product.",
   Prices: "Average price of the product. ",
 };
+
+const isRecord = (val: unknown): val is Record<string, unknown> =>
+  val !== null && typeof val === "object" && !Array.isArray(val);
+
+const isBreakdownEntry = (val: unknown): boolean =>
+  isRecord(val) &&
+  typeof val.label === "string" &&
+  typeof val.value === "number" &&
+  typeof val.total === "number";
+
+const isBreakdownGroup = (val: unknown): boolean =>
+  isRecord(val) &&
+  typeof val.label === "string" &&
+  Array.isArray(val.data) &&
+  val.data.every(isBreakdownEntry);
+
+export const isBreakdownProjection = (data: CustomProjection): data is BreakdownProjection =>
+  Object.values(data).every(
+    (units) => Array.isArray(units) && units.every(isBreakdownGroup),
+  );
