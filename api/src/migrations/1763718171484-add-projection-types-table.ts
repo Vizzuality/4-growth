@@ -1,8 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AddProjectionTypesTable1763718171484
-  implements MigrationInterface
-{
+export class AddProjectionTypesTable1763718171484 implements MigrationInterface {
   name = 'AddProjectionTypesTable1763718171484';
 
   public async up(queryRunner: QueryRunner): Promise<void> {

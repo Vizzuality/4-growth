@@ -51,6 +51,7 @@ describe('Password Recovery', () => {
     const responseNoEmailInBody = await testManager
       .request()
       .post(`/auth/recover-password`)
+      .send({})
       .set('Authorization', `Bearer ${authToken}`);
 
     expect(responseNoEmailInBody.status).toBe(400);

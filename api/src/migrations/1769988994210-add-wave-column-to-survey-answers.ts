@@ -1,8 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AddWaveColumnToSurveyAnswers1769988994210
-  implements MigrationInterface
-{
+export class AddWaveColumnToSurveyAnswers1769988994210 implements MigrationInterface {
   name = 'AddWaveColumnToSurveyAnswers1769988994210';
 
   public async up(queryRunner: QueryRunner): Promise<void> {

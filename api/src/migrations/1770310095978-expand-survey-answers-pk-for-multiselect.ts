@@ -1,8 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class ExpandSurveyAnswersPkForMultiselect1770310095978
-  implements MigrationInterface
-{
+export class ExpandSurveyAnswersPkForMultiselect1770310095978 implements MigrationInterface {
   name = 'ExpandSurveyAnswersPkForMultiselect1770310095978';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
