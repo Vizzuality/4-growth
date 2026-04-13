@@ -75,7 +75,7 @@
     "csv-parse": "6.1.0",
     "data-forge": "1.10.4",
     "dotenv": "17.3.1",
-    "eslint": "catalog:",
+    "eslint": "10.2.0",
     "eslint-config-prettier": "catalog:",
     "eslint-plugin-prettier": "catalog:",
     "jest": "30.3.0",
