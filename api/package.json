@@ -57,7 +57,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@nestjs/cli": "11.0.16",
+    "@nestjs/cli": "11.0.19",
     "@nestjs/schematics": "11.0.9",
     "@nestjs/testing": "11.1.14",
     "@types/bcrypt": "catalog:",
