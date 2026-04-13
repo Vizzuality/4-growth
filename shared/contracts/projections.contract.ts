@@ -8,8 +8,15 @@ import { CustomProjectionSettingsSchema } from '@shared/schemas/custom-projectio
 import { generateEntityQuerySchema } from '@shared/schemas/query-param.schema';
 import { SearchFiltersSchema } from '@shared/schemas/search-filters.schema';
 import { initContract } from '@ts-rest/core';
+import { z } from 'zod';
 
 const contract = initContract();
+
+const CsvResponse = contract.otherResponse({
+  contentType: 'text/csv; charset=utf-8',
+  body: z.string(),
+});
+
 export const projectionsContract = contract.router({
   getProjectionsFilters: {
     method: 'GET',
@@ -53,5 +60,29 @@ export const projectionsContract = contract.router({
       400: contract.type<JSONAPIError>(),
       500: contract.type<JSONAPIError>(),
     },
+  },
+  exportProjectionWidget: {
+    method: 'GET',
+    path: '/projections/widgets/:id/export',
+    pathParams: z.object({ id: z.coerce.number() }),
+    query: SearchFiltersSchema,
+    responses: {
+      200: CsvResponse,
+      400: contract.type<JSONAPIError>(),
+      404: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
+    },
+    summary: "Download a projection widget's data as a CSV file",
+  },
+  exportCustomProjection: {
+    method: 'GET',
+    path: '/projections/custom-widget/export',
+    query: SearchFiltersSchema.merge(CustomProjectionSettingsSchema),
+    responses: {
+      200: CsvResponse,
+      400: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
+    },
+    summary: "Download a custom projection's data as a CSV file",
   },
 });
