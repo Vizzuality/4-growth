@@ -1,4 +1,5 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Res } from '@nestjs/common';
+import type { Response } from 'express';
 import { tsRestHandler, TsRestHandler } from '@ts-rest/nest';
 import { projectionsContract as c } from '@shared/contracts/projections.contract';
 import { ControllerResponse } from '@api/types/controller.type';
@@ -48,6 +49,41 @@ export class ProjectionsController {
         await this.projectionsService.generateCustomProjection(query);
 
       return { body: { data }, status: 200 };
+    });
+  }
+
+  @Public()
+  @TsRestHandler(c.exportProjectionWidget)
+  public async exportProjectionWidget(
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<ControllerResponse> {
+    return tsRestHandler(
+      c.exportProjectionWidget,
+      async ({ params: { id }, query }) => {
+        const { csv, filename } =
+          await this.projectionsService.exportProjectionWidgetCsv(id, query);
+        res.setHeader(
+          'Content-Disposition',
+          `attachment; filename="${filename}"`,
+        );
+        return { body: csv, status: 200 };
+      },
+    );
+  }
+
+  @Public()
+  @TsRestHandler(c.exportCustomProjection)
+  public async exportCustomProjection(
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<ControllerResponse> {
+    return tsRestHandler(c.exportCustomProjection, async ({ query }) => {
+      const { csv, filename } =
+        await this.projectionsService.exportCustomProjectionCsv(query);
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename="${filename}"`,
+      );
+      return { body: csv, status: 200 };
     });
   }
 }
