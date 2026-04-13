@@ -45,7 +45,7 @@
     "config": "4.4.1",
     "jsonapi-serializer": "3.6.9",
     "lodash": "catalog:",
-    "nodemailer": "8.0.4",
+    "nodemailer": "8.0.5",
     "passport": "0.7.0",
     "passport-jwt": "4.0.1",
     "passport-local": "1.0.0",
