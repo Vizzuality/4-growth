@@ -25,6 +25,14 @@ overrides:
   # @nestjs/core and @nestjs/platform-express ship path-to-regexp 8.3.0 (GHSA-j3q9-mxjg-w52f)
   "@nestjs/core>path-to-regexp": "8.4.0"
   "@nestjs/platform-express>path-to-regexp": "8.4.0"
+  # Dev-only transitive overrides — parents don't ship patched versions yet
+  "flat-cache>flatted": "3.4.2"
+  "minimatch>brace-expansion": "2.0.3"
+  "postcss-load-config>yaml": "2.8.3"
+  "http-proxy-agent>@tootallnate/once": "3.0.1"
+  "micromatch>picomatch": "2.3.2"
+  "anymatch>picomatch": "2.3.2"
+  "readdirp>picomatch": "2.3.2"
 
 catalog:
   # Core
