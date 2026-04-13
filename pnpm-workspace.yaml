@@ -17,14 +17,8 @@ overrides:
   "express>path-to-regexp": "0.1.13"
   "nestjs-base-service>class-validator": "0.14.4"
   "nestjs-base-service>lodash": "4.18.1"
-  "recharts>lodash": "4.18.1"
-  # @aws-sdk/xml-builder ships vulnerable fast-xml-parser (GHSA-8gc5-j5rx-235r)
-  # next-auth declares nodemailer ^7.0.7 as optional peer, but patches require >=8.0.4
-  "next-auth>nodemailer": "8.0.5"
+  # @aws-sdk/xml-builder@3.972.8 ships vulnerable fast-xml-parser 5.3.6 (GHSA-8gc5-j5rx-235r)
   "@aws-sdk/xml-builder>fast-xml-parser": "5.5.8"
-  # @nestjs/core and @nestjs/platform-express ship path-to-regexp 8.3.0 (GHSA-j3q9-mxjg-w52f)
-  "@nestjs/core>path-to-regexp": "8.4.0"
-  "@nestjs/platform-express>path-to-regexp": "8.4.0"
   # Dev-only transitive overrides — parents don't ship patched versions yet
   "flat-cache>flatted": "3.4.2"
   "minimatch>brace-expansion": "2.0.3"
