@@ -15,7 +15,8 @@ overrides:
   # nestjs-base-service ships outdated transitive deps; scope overrides to that parent
   "nestjs-base-service>express": "4.21.2"
   "nestjs-base-service>class-validator": "0.14.4"
-  "nestjs-base-service>lodash": "4.17.23"
+  "nestjs-base-service>lodash": "4.18.1"
+  "recharts>lodash": "4.18.1"
   # @aws-sdk/xml-builder ships vulnerable fast-xml-parser (GHSA-8gc5-j5rx-235r)
   "@aws-sdk/xml-builder>fast-xml-parser": "5.5.8"
   # @nestjs/core and @nestjs/platform-express ship path-to-regexp 8.3.0 (GHSA-j3q9-mxjg-w52f)
@@ -43,7 +44,7 @@ catalog:
   ts-node: 10.9.2
   # Shared libraries
   "@types/lodash": 4.17.24
-  lodash: 4.17.23
+  lodash: 4.18.1
   qs: 6.15.0
   "@types/qs": 6.14.0
   class-transformer: 0.5.1
