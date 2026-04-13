@@ -1,6 +1,12 @@
 import { AppBaseService } from '@api/utils/app-base.service';
 import { AppInfoDTO } from '@api/utils/info.dto';
-import { Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
 import { Repository, SelectQueryBuilder } from 'typeorm';
@@ -12,6 +18,16 @@ import {
   ISurveyAnswerRepository,
   SurveyAnswerRepository,
 } from '@api/infrastructure/survey-answer-repository.interface';
+import {
+  NonExportableWidgetError,
+  serializeWidgetDataToCsv,
+  WidgetDataField,
+} from '@api/modules/widgets/csv/widget-data.csv';
+import { buildCsvFilename } from '@api/modules/widgets/csv/filename';
+import {
+  WIDGET_VISUALIZATIONS,
+  WidgetVisualizationsType,
+} from '@shared/dto/widgets/widget-visualizations.constants';
 
 @Injectable()
 export class WidgetsService extends AppBaseService<
@@ -77,5 +93,59 @@ export class WidgetsService extends AppBaseService<
       });
 
     return baseWidgetWithData;
+  }
+
+  public async exportWidgetCsv(
+    id: string,
+    query: FetchSpecification & SearchWidgetDataParamsSchema,
+    now: Date = new Date(),
+  ): Promise<{ csv: string; filename: string }> {
+    const widget = await this.findWidgetWithDataById(id, query);
+    const preferredField = pickPreferredDataField(
+      query.breakdown,
+      widget.defaultVisualization,
+    );
+    try {
+      const csv = serializeWidgetDataToCsv(widget.data, preferredField);
+      const titleForFilename =
+        firstNonBlank(widget.title, widget.question) ?? widget.indicator;
+      const filename = buildCsvFilename(titleForFilename, now);
+      return { csv, filename };
+    } catch (error) {
+      if (error instanceof NonExportableWidgetError) {
+        throw new BadRequestException(error.message);
+      }
+      throw error;
+    }
+  }
+}
+
+function firstNonBlank(
+  ...values: Array<string | null | undefined>
+): string | undefined {
+  for (const value of values) {
+    if (value && value.trim().length > 0) {
+      return value;
+    }
+  }
+  return undefined;
+}
+
+function pickPreferredDataField(
+  breakdown: string | undefined,
+  visualization: WidgetVisualizationsType | undefined,
+): WidgetDataField | undefined {
+  if (breakdown) return 'breakdown';
+  switch (visualization) {
+    case WIDGET_VISUALIZATIONS.SINGLE_VALUE:
+      return 'counter';
+    case WIDGET_VISUALIZATIONS.MAP:
+      return 'map';
+    case WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART:
+    case WIDGET_VISUALIZATIONS.PIE_CHART:
+    case WIDGET_VISUALIZATIONS.AREA_GRAPH:
+      return 'chart';
+    default:
+      return undefined;
   }
 }

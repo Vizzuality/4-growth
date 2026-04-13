@@ -12,6 +12,12 @@ import { BaseWidgetWithData } from '@shared/dto/widgets/base-widget-data.interfa
 import { SearchWidgetDataParamsSchema } from '@shared/schemas/search-widget-data-params.schema';
 
 const contract = initContract();
+
+const CsvResponse = contract.otherResponse({
+  contentType: 'text/csv; charset=utf-8',
+  body: z.string(),
+});
+
 export const widgetsContract = contract.router({
   getWidgets: {
     method: 'GET',
@@ -42,5 +48,20 @@ export const widgetsContract = contract.router({
       500: contract.type<JSONAPIError>(),
     },
     summary: 'Get a widget by id',
+  },
+  exportWidget: {
+    method: 'GET',
+    path: '/widgets/:id/export',
+    pathParams: z.object({
+      id: z.coerce.string(),
+    }),
+    query: SearchWidgetDataParamsSchema,
+    responses: {
+      200: CsvResponse,
+      400: contract.type<JSONAPIError>(),
+      404: contract.type<JSONAPIError>(),
+      500: contract.type<JSONAPIError>(),
+    },
+    summary: "Download a widget's data as a CSV file",
   },
 });

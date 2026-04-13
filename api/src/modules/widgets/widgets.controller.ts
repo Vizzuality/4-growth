@@ -1,4 +1,5 @@
-import { Controller, HttpStatus } from '@nestjs/common';
+import { Controller, HttpStatus, Res } from '@nestjs/common';
+import type { Response } from 'express';
 import { WidgetsService } from './widgets.service';
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { widgetsContract as c } from '@shared/contracts/base-widgets.contract';
@@ -27,6 +28,24 @@ export class WidgetsController {
         query,
       );
       return { body: { data: widget }, status: HttpStatus.OK };
+    });
+  }
+
+  @Public()
+  @TsRestHandler(c.exportWidget)
+  public async exportWidget(
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<ControllerResponse> {
+    return tsRestHandler(c.exportWidget, async ({ params: { id }, query }) => {
+      const { csv, filename } = await this.widgetsService.exportWidgetCsv(
+        id,
+        query,
+      );
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename="${filename}"`,
+      );
+      return { body: csv, status: HttpStatus.OK };
     });
   }
 }
