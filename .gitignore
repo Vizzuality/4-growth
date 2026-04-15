@@ -39,3 +39,8 @@ Thumbs.db
 
 # Data files located in data-processing
 data-processing/data/**
+
+# Claude
+.claude/
+AGENTS.md
+CLAUDE.md
