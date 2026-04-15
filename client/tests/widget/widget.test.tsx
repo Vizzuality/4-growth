@@ -64,6 +64,14 @@ vi.mock("@/containers/widget/breakdown", () => ({
   default: () => <div data-testid="breakdown">Breakdown Chart</div>,
 }));
 
+vi.mock("@/hooks/use-filters", () => ({
+  default: () => ({ filters: [] }),
+}));
+
+vi.mock("@/env", () => ({
+  env: { NEXT_PUBLIC_API_URL: "http://localhost:4000" },
+}));
+
 describe("Widget", () => {
   const mockChartData = { chart: [{ label: "Test", value: 100, total: 100 }] };
   const mockProps: WidgetProps = {
@@ -100,10 +108,10 @@ describe("Widget", () => {
     });
   });
 
-  it("Hides the menu if no menuItems or visualisations are passed", () => {
+  it("Always shows the menu (download is always available)", () => {
     render(<Widget {...mockProps} />);
 
-    expect(screen.queryByTestId(menuButtonTestId)).not.toBeInTheDocument();
+    expect(screen.getByTestId(menuButtonTestId)).toBeInTheDocument();
   });
 
   it("renders the customize chart button with the correct href value", () => {
@@ -112,7 +120,7 @@ describe("Widget", () => {
     const menuButton = screen.getByTestId(menuButtonTestId);
     fireEvent.click(menuButton);
 
-    expect(screen.getByRole("link")).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Customize chart" })).toHaveAttribute(
       "href",
       getRouteHref("surveyAnalysis", "sandbox") +
         `?visualization=${mockProps.visualization}&indicator=${mockProps.indicator}`,

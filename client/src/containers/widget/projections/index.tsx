@@ -5,8 +5,11 @@ import { useEffect, useMemo, useState } from "react";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
 import { useAtom } from "jotai";
+import qs from "qs";
 
+import { env } from "@/env";
 import { cn } from "@/lib/utils";
+import useFilters from "@/hooks/use-filters";
 
 import { focusedWidgetAtom } from "@/containers/explore/store";
 import NoData from "@/containers/no-data";
@@ -23,6 +26,7 @@ import WidgetHeader from "@/containers/widget/widget-header";
 import { Card } from "@/components/ui/card";
 
 export interface WidgetProps {
+  id: number;
   indicator: string;
   visualization: ProjectionVisualizationsType;
   data?: ProjectionWidgetData;
@@ -42,6 +46,7 @@ export interface WidgetProps {
 }
 
 export default function Widget({
+  id,
   indicator,
   visualization,
   visualisations,
@@ -60,6 +65,11 @@ export default function Widget({
     useState<ProjectionVisualizationsType>(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
   const [focusedWidget, setFocusedWidget] = useAtom(focusedWidgetAtom);
+  const { filters } = useFilters();
+  const downloadUrl = `${env.NEXT_PUBLIC_API_URL}/projections/widgets/${id}/export?${qs.stringify(
+    { filters },
+    { encode: false },
+  )}`;
   const highlightWidget = showOverlay && indicator === focusedWidget;
   const menuComponent = (
     <WidgetMenu
@@ -71,6 +81,7 @@ export default function Widget({
       setFocusedWidget={setFocusedWidget}
       setSelectedVisualization={setSelectedVisualization}
       indicator={indicator}
+      downloadUrl={downloadUrl}
       className={config?.menu?.className}
     />
   );
