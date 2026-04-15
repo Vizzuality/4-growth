@@ -71,6 +71,7 @@ export default function Explore() {
         {data?.map((d) => (
           <Widget
             key={d.id}
+            id={d.id}
             indicator={d.title}
             description={d.description}
             data={d.data}

@@ -7,6 +7,9 @@ import {
   SimpleProjection,
 } from "@shared/dto/projections/custom-projection.type";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
+import qs from "qs";
+
+import { env } from "@/env";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
@@ -137,12 +140,18 @@ const Sandbox: FC = () => {
       </Card>
     );
 
+  const downloadUrl = `${env.NEXT_PUBLIC_API_URL}/projections/custom-widget/export?${qs.stringify(
+    { filters, settings, othersAggregation },
+    { encode: false },
+  )}`;
+
   return (
     <SandboxWidget
       className="justify-end"
       indicator={indicator}
       visualization={visualization}
       data={data}
+      downloadUrl={downloadUrl}
     />
   );
 };

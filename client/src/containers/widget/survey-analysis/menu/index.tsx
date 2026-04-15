@@ -40,6 +40,7 @@ interface WidgetMenuProps {
   setShowOverlay: (open: boolean) => void;
   setFocusedWidget: (indicator: string | null) => void;
   indicator: string;
+  downloadUrl?: string;
 }
 
 const WidgetMenu: FC<WidgetMenuProps> = ({
@@ -49,12 +50,13 @@ const WidgetMenu: FC<WidgetMenuProps> = ({
   info,
   className,
   indicator,
+  downloadUrl,
   setSelectedVisualization,
   setShowOverlay,
   setFocusedWidget,
 }) => {
   const setInfo = useSetAtom(infoAtom);
-  if (!visualisations && !showCustomizeWidgetButton) return null;
+  if (!visualisations && !showCustomizeWidgetButton && !downloadUrl) return null;
 
   return (
     <>
@@ -88,6 +90,13 @@ const WidgetMenu: FC<WidgetMenuProps> = ({
             >
               Customize chart
             </Link>
+          </Button>
+        )}
+        {downloadUrl && (
+          <Button variant="clean" className={btnClassName} asChild>
+            <a href={downloadUrl} download>
+              Download as CSV
+            </a>
           </Button>
         )}
         {visualisations && (

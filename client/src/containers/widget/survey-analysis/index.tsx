@@ -7,6 +7,10 @@ import {
   WidgetVisualizationsType,
 } from "@shared/dto/widgets/widget-visualizations.constants";
 import { useAtom } from "jotai";
+import qs from "qs";
+
+import { env } from "@/env";
+import useFilters from "@/hooks/use-filters";
 
 import { removeNaLabels } from "@/lib/normalize-widget-data";
 import { cn, isEmptyWidget } from "@/lib/utils";
@@ -76,6 +80,11 @@ export default function Widget({
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
   const [focusedWidget, setFocusedWidget] = useAtom(focusedWidgetAtom);
   const highlightWidget = showOverlay && indicator === focusedWidget;
+  const { filters } = useFilters();
+  const downloadUrl = `${env.NEXT_PUBLIC_API_URL}/widgets/${indicator}/export?${qs.stringify(
+    { filters, ...(breakdown ? { breakdown } : {}) },
+    { encode: false },
+  )}`;
   const menuComponent = menu || (
     <WidgetMenu
       visualisations={visualisations}
@@ -86,6 +95,7 @@ export default function Widget({
       setFocusedWidget={setFocusedWidget}
       setSelectedVisualization={setSelectedVisualization}
       indicator={indicator}
+      downloadUrl={downloadUrl}
       className={cn("p-0", config?.menu?.className)}
     />
   );
@@ -117,7 +127,7 @@ export default function Widget({
           className,
         )}
       >
-        <WidgetHeader title={title} question={question} menu={menu} />
+        <WidgetHeader title={title} question={question} menu={menuComponent} />
         <Breakdown data={data.percentages.breakdown} />
       </Card>
     );
