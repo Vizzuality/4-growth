@@ -50,7 +50,9 @@ const SandboxSettings: FC = () => {
       {showSimpleChartSettings ? (
         <>
           <VerticalSelect options={data?.line_chart.vertical || []} />
-          <ColorSelect options={data?.line_chart.color || []} />
+          {!(settings && "table" in settings) && (
+            <ColorSelect options={data?.line_chart.color || []} />
+          )}
           {!!data?.othersAggregation && (
             <OthersSelect options={data?.othersAggregation} />
           )}
