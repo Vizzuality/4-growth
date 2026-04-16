@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from "react";
+import { FC, useCallback, useMemo, useRef, useState } from "react";
 
 import {
   flexRender,
@@ -7,7 +7,9 @@ import {
   SortingState,
   useReactTable,
   type ColumnDef,
+  type Row,
 } from "@tanstack/react-table";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { ArrowDownIcon, ArrowUpDownIcon, ArrowUpIcon } from "lucide-react";
 
 import { cn, formatNumber } from "@/lib/utils";
@@ -24,6 +26,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+const ROW_HEIGHT = 40;
+const VIRTUALIZATION_THRESHOLD = 500;
+
 function humanizeColumnKey(key: string): string {
   return key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
@@ -36,6 +41,7 @@ interface TableViewProps {
 
 const TableView: FC<TableViewProps> = ({ indicator, data, headings }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const columnKeys = useMemo(() => {
     if (!data?.length) return [];
@@ -110,54 +116,104 @@ const TableView: FC<TableViewProps> = ({ indicator, data, headings }) => {
     getSortedRowModel: getSortedRowModel(),
   });
 
+  const rows = table.getRowModel().rows;
+  const enableVirtualization = rows.length > VIRTUALIZATION_THRESHOLD;
+
+  const virtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => scrollRef.current,
+    estimateSize: () => ROW_HEIGHT,
+    overscan: 20,
+    enabled: enableVirtualization,
+  });
+
   if (!data || data.length === 0) {
     return <NoData />;
   }
 
-  return (
-    <ScrollArea className="h-full">
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow
-              key={headerGroup.id}
-              className="border-none hover:bg-transparent"
-            >
-              {headerGroup.headers.map((header) => (
-                <TableHead key={header.id} className="pl-6">
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows.map((row) => {
-            const cells = row.getVisibleCells();
-            const colWidth =
-              cells.length > 0 ? `${100 / cells.length}%` : undefined;
+  const renderRow = (row: Row<Record<string, number>>) => {
+    const cells = row.getVisibleCells();
+    const colWidth = cells.length > 0 ? `${100 / cells.length}%` : undefined;
 
-            return (
+    return cells.map((cell) => (
+      <TableCell key={cell.id} className="pl-6" width={colWidth}>
+        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+      </TableCell>
+    ));
+  };
+
+  const headerContent = table.getHeaderGroups().map((headerGroup) => (
+    <TableRow key={headerGroup.id} className="border-none hover:bg-transparent">
+      {headerGroup.headers.map((header) => (
+        <TableHead key={header.id} className="pl-6">
+          {header.isPlaceholder
+            ? null
+            : flexRender(header.column.columnDef.header, header.getContext())}
+        </TableHead>
+      ))}
+    </TableRow>
+  ));
+
+  if (!enableVirtualization) {
+    return (
+      <ScrollArea className="h-full">
+        <Table>
+          <TableHeader>{headerContent}</TableHeader>
+          <TableBody>
+            {rows.map((row) => (
               <TableRow
                 key={`${indicator}-table-row-${row.id}`}
                 className="border-b-bluish-gray-500/35 hover:bg-transparent"
               >
-                {cells.map((cell) => (
-                  <TableCell key={cell.id} className="pl-6" width={colWidth}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+                {renderRow(row)}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </ScrollArea>
+    );
+  }
+
+  const virtualItems = virtualizer.getVirtualItems();
+  const paddingTop = virtualItems.length > 0 ? virtualItems[0].start : 0;
+  const paddingBottom =
+    virtualItems.length > 0
+      ? virtualizer.getTotalSize() - virtualItems[virtualItems.length - 1].end
+      : 0;
+
+  return (
+    <div ref={scrollRef} className="relative h-full w-full overflow-auto">
+      <table className="w-full caption-bottom text-sm">
+        <TableHeader className="sticky top-0 z-10 bg-primary shadow-[0_1px_3px_0_rgba(0,0,0,0.1)]">
+          {headerContent}
+        </TableHeader>
+        <TableBody>
+          {paddingTop > 0 && (
+            <tr>
+              <td style={{ height: paddingTop }} />
+            </tr>
+          )}
+          {virtualItems.map((virtualRow) => {
+            const row = rows[virtualRow.index];
+            return (
+              <TableRow
+                key={`${indicator}-table-row-${row.id}`}
+                data-index={virtualRow.index}
+                ref={virtualizer.measureElement}
+                className="border-b-bluish-gray-500/35 hover:bg-transparent"
+              >
+                {renderRow(row)}
               </TableRow>
             );
           })}
+          {paddingBottom > 0 && (
+            <tr>
+              <td style={{ height: paddingBottom }} />
+            </tr>
+          )}
         </TableBody>
-      </Table>
-    </ScrollArea>
+      </table>
+    </div>
   );
 };
 
