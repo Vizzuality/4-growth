@@ -327,6 +327,9 @@ importers:
       '@tanstack/react-table':
         specifier: 8.19.4
         version: 8.19.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/react-virtual':
+        specifier: 3.13.23
+        version: 3.13.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ts-rest/react-query':
         specifier: 3.51.1
         version: 3.51.1(@tanstack/react-query@4.43.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@ts-rest/core@3.51.1(@types/node@25.3.0)(zod@3.25.76))(react@18.3.1)(zod@3.25.76)
@@ -3462,9 +3465,18 @@ packages:
       react: '>=16.8'
       react-dom: '>=16.8'
 
+  '@tanstack/react-virtual@3.13.23':
+    resolution: {integrity: sha512-XnMRnHQ23piOVj2bzJqHrRrLg4r+F86fuBcwteKfbIjJrtGxb4z7tIvPVAe4B+4UVwo9G4Giuz5fmapcrnZ0OQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   '@tanstack/table-core@8.19.4':
     resolution: {integrity: sha512-7P3yk4rbMuFAeZ6lQ3DD98BYXzd/vN6Pr4vETr/gfpGpu9LA/kqIyDhXBuJA8ZBpk1jaZNxkm64HxBUxSiUVyw==}
     engines: {node: '>=12'}
+
+  '@tanstack/virtual-core@3.13.23':
+    resolution: {integrity: sha512-zSz2Z2HNyLjCplANTDyl3BcdQJc2k1+yyFoKhNRmCr7V7dY8o8q5m8uFTI1/Pg1kL+Hgrz6u3Xo6eFUB7l66cg==}
 
   '@testing-library/dom@10.1.0':
     resolution: {integrity: sha512-wdsYKy5zupPyLCW2Je5DLHSxSfbIp6h80WoHOQc+RPtmPGA52O9x5MJEkv92Sjonpq+poOAtUKhh1kBGAXBrNA==}
@@ -11281,7 +11293,15 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
+  '@tanstack/react-virtual@3.13.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@tanstack/virtual-core': 3.13.23
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   '@tanstack/table-core@8.19.4': {}
+
+  '@tanstack/virtual-core@3.13.23': {}
 
   '@testing-library/dom@10.1.0':
     dependencies:
