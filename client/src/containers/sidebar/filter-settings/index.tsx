@@ -1,17 +1,26 @@
 import { FC, useMemo } from "react";
 
 import { ProjectionFilter } from "@shared/dto/projections/projection-filter.entity";
+import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { normalizeProjectionsFilterValues } from "@/lib/utils";
 
 import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
+import useSettings from "@/hooks/use-settings";
 
+import { SCENARIOS } from "@/containers/scenarios/constants";
 import { DEFAULT_FILTERS_LABEL_MAP } from "@/containers/sidebar/filter-settings/constants";
 import FilterPopup from "@/containers/sidebar/filter-settings/filter-popup";
 
 import { filterProjectionsFilters } from "@/utils/filters";
+
+const SCENARIO_PAGE_FILTER = {
+  name: "scenario",
+  label: "Scenario",
+  values: SCENARIOS.map((s) => s.value),
+} as PageFilter;
 
 interface FilterSettingsProps {
   type: "projections" | "surveyAnalysis";
@@ -29,6 +38,10 @@ const FilterSettings: FC<FilterSettingsProps> = ({
   onRemoveFilterValue,
 }) => {
   const { filters } = useFilters();
+  const { settings } = useSettings();
+  const isTableVisualization =
+    type === "projections" && settings !== null && "table" in settings;
+
   const surveyAnalysisFiltersQuery = client.pageFilter.searchFilters.useQuery(
     queryKeys.pageFilters.all(filters).queryKey,
     { query: { filters } },
@@ -64,13 +77,21 @@ const FilterSettings: FC<FilterSettingsProps> = ({
   );
 
   const effectiveAllFilters = useMemo(() => {
+    let filters;
     if (customFilters.length <= 1) {
-      return allFilters;
+      filters = allFilters;
+    } else {
+      filters = allFilters.filter((pageFilter) =>
+        defaultFilters.includes(pageFilter.name),
+      );
     }
-    return allFilters.filter((pageFilter) =>
-      defaultFilters.includes(pageFilter.name),
-    );
-  }, [allFilters, defaultFilters, customFilters]);
+
+    if (isTableVisualization) {
+      return [...filters, SCENARIO_PAGE_FILTER];
+    }
+
+    return filters;
+  }, [allFilters, defaultFilters, customFilters, isTableVisualization]);
 
   return (
     <>

@@ -38,4 +38,8 @@ export const DEFAULT_FILTERS_LABEL_MAP: Record<
     selected: "Type",
     unSelected: "All types",
   },
+  scenario: {
+    selected: "Scenario",
+    unSelected: "All scenarios",
+  },
 } as const;
