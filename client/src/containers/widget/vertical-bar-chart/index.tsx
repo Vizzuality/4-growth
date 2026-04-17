@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
+import { getCssChartColor } from "@/lib/constants";
 import { cn, formatAndRoundUp } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
@@ -120,7 +121,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
               return (
                 <Cell
                   key={`cell-${entry.year}-${index}`}
-                  fill={`hsl(var(--chart-${i + 1}))`}
+                  fill={getCssChartColor(c, i)}
                   // @ts-expect-error - Recharts Cell radius prop accepts [number, number, number, number] for corner radius
                   // but its type definition only allows string | number | undefined
                   radius={getRadius(index, data.length)}

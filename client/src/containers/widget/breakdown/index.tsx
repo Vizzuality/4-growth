@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import { WidgetBreakdownData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
-import { CSS_CHART_COLORS, TW_CHART_COLORS } from "@/lib/constants";
+import { getCssChartColor, getTwChartColor } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
@@ -38,8 +38,8 @@ const Breakdown: FC<BreakdownProps> = ({ data }) => {
   const labelColors = labels.reduce(
     (acc, label, index) => {
       acc[label] = {
-        css: CSS_CHART_COLORS[index],
-        tailwind: TW_CHART_COLORS[index],
+        css: getCssChartColor(label, index),
+        tailwind: getTwChartColor(label, index),
       };
       return acc;
     },

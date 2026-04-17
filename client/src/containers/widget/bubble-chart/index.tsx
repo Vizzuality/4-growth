@@ -11,7 +11,7 @@ import {
   Cell,
 } from "recharts";
 
-import { CSS_CHART_COLORS } from "@/lib/constants";
+import { getCssChartColor } from "@/lib/constants";
 import { cn, formatAndRoundUp } from "@/lib/utils";
 
 import useSettings from "@/hooks/use-settings";
@@ -135,11 +135,10 @@ const BubbleChart: FC<BubbleChartProps> = ({ data, unit }) => {
             {currentDataSet.map((d, index) => (
               <Cell
                 key={index}
-                fill={
-                  CSS_CHART_COLORS[
-                    colors.findIndex((color) => d.color === color)
-                  ]
-                }
+                fill={getCssChartColor(
+                  d.color,
+                  colors.findIndex((color) => d.color === color),
+                )}
               />
             ))}
           </Scatter>

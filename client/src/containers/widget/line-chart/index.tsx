@@ -3,6 +3,7 @@ import { FC, useMemo } from "react";
 import { Line, LineChart as ReLinChart, XAxis, YAxis } from "recharts";
 import { DataKey } from "recharts/types/util/types";
 
+import { getCssChartColor } from "@/lib/constants";
 import { cn, formatAndRoundUp } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
@@ -78,7 +79,7 @@ const LineChart: FC<LineChartProps> = ({
             dataKey={c}
             type="linear"
             strokeWidth={10}
-            stroke={`hsl(var(--chart-${i + 1}))`}
+            stroke={getCssChartColor(c, i)}
             dot={false}
           />
         ))}
