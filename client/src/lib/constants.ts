@@ -30,6 +30,26 @@ export const CSS_CHART_COLORS = [
 
 export const MAX_PIE_CHART_LABELS_COUNT = CSS_CHART_COLORS.length - 1;
 
+export const OTHERS_LABEL = "Others";
+export const OTHERS_TW_COLOR = "bg-chart-12";
+export const OTHERS_CSS_COLOR = "hsl(var(--chart-12))";
+
+export function getTwChartColor(
+  identifier: string | number | undefined,
+  index: number,
+): string {
+  return identifier === OTHERS_LABEL ? OTHERS_TW_COLOR : TW_CHART_COLORS[index];
+}
+
+export function getCssChartColor(
+  identifier: string | number | undefined,
+  index: number,
+): string {
+  return identifier === OTHERS_LABEL
+    ? OTHERS_CSS_COLOR
+    : CSS_CHART_COLORS[index];
+}
+
 export const ADD_FILTER_MODE = {
   MERGE: 0,
   REPLACE: 1,

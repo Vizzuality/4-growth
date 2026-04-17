@@ -4,7 +4,7 @@ import {
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
-import { TW_CHART_COLORS } from "@/lib/constants";
+import { getTwChartColor } from "@/lib/constants";
 import { cn, formatNumber } from "@/lib/utils";
 
 const ProjectionsTooltip = ({
@@ -29,7 +29,10 @@ const ProjectionsTooltip = ({
         >
           <span className="flex flex-1 items-center justify-end gap-x-1">
             <span
-              className={cn("block h-3 w-3 rounded-full", TW_CHART_COLORS[i])}
+              className={cn(
+                "block h-3 w-3 rounded-full",
+                getTwChartColor(p.name, i),
+              )}
             ></span>
             <span>{p.name}</span>
           </span>

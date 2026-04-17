@@ -4,7 +4,11 @@ import { FC, useMemo } from "react";
 import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Pie, PieChart as RePieChart } from "recharts";
 
-import { MAX_PIE_CHART_LABELS_COUNT, TW_CHART_COLORS } from "@/lib/constants";
+import {
+  getCssChartColor,
+  getTwChartColor,
+  MAX_PIE_CHART_LABELS_COUNT,
+} from "@/lib/constants";
 import { cn, formatNumber } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
@@ -53,8 +57,7 @@ const PieChart: FC<PieChartProps> = ({
   return (
     <div
       className={cn({
-        "flex flex-1 flex-wrap items-center justify-center gap-4 gap-x-8 pl-6":
-          true,
+        "flex flex-1 flex-wrap items-center justify-center gap-4 gap-x-8 pl-6": true,
         "min-h-0 flex-col justify-between": legendPosition === "bottom",
       })}
     >
@@ -63,7 +66,7 @@ const PieChart: FC<PieChartProps> = ({
           <Pie
             data={normalizedData.map((d, i) => ({
               ...d,
-              fill: `hsl(var(--chart-${i + 1}))`,
+              fill: getCssChartColor(d.label, i),
             }))}
             dataKey="value"
             nameKey="label"
@@ -90,7 +93,10 @@ const PieChart: FC<PieChartProps> = ({
           >
             <span className="flex items-center gap-x-1">
               <span
-                className={cn("block h-3 w-3 rounded-full", TW_CHART_COLORS[i])}
+                className={cn(
+                  "block h-3 w-3 rounded-full",
+                  getTwChartColor(c.label, i),
+                )}
               ></span>
               <span className="font-black">{formatNumber(c.value)}%</span>
             </span>
