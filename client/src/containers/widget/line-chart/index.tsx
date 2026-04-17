@@ -4,7 +4,7 @@ import { Line, LineChart as ReLinChart, XAxis, YAxis } from "recharts";
 import { DataKey } from "recharts/types/util/types";
 
 import { getCssChartColor } from "@/lib/constants";
-import { cn, formatProjectionValue } from "@/lib/utils";
+import { cn, formatProjectionValue, getYAxisTicks } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
 import { CHART_CONTAINER_CLASS_NAME } from "@/containers/widget/constants";
@@ -115,6 +115,7 @@ const LineChart: FC<LineChartProps> = ({
           type="number"
           orientation="right"
           domain={yDomain}
+          ticks={getYAxisTicks(yDomain)}
           axisLine={false}
           tickLine={false}
           tick={({ x, y, payload }) => (

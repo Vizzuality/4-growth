@@ -1,10 +1,10 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
 import { getCssChartColor } from "@/lib/constants";
-import { cn, formatProjectionValue } from "@/lib/utils";
+import { cn, formatProjectionValue, getYAxisTicks } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
 import {
@@ -47,6 +47,16 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
   enableHoverStyles,
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const yDomain = useMemo((): [number, number] => {
+    const keys = colors ? colors.map(String) : ["value"];
+    const values = data.flatMap((d) => keys.map((k) => d[k]).filter((v) => v != null));
+    if (values.length === 0) return [0, 1];
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const padding = (max - min) * 0.05 || 1;
+    return [min - padding, max + padding];
+  }, [data, colors]);
 
   if (!data || data.length === 0) {
     console.error(
@@ -166,6 +176,8 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
         <YAxis
           type="number"
           orientation="right"
+          domain={yDomain}
+          ticks={getYAxisTicks(yDomain)}
           axisLine={false}
           tickLine={false}
           style={{ transform: "translate(30px, -10px)" }}
