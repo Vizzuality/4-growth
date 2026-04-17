@@ -38,7 +38,7 @@ const ProjectionsTooltip = ({
           </span>
           <span className="flex flex-1 justify-start gap-1 font-bold">
             {formatNumber(Number(p.value), {
-              maximumFractionDigits: 0,
+              maximumFractionDigits: 2,
             })}
             <span className="text-muted-foreground">{unit}</span>
           </span>
