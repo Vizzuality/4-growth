@@ -105,6 +105,24 @@ export function formatNumber(
   }).format(value);
 }
 
+export function formatProjectionValue(value: number) {
+  const absValue = Math.abs(value);
+
+  if (absValue >= 1000) {
+    return formatNumber(value, {
+      notation: "compact",
+      compactDisplay: "short",
+      maximumFractionDigits: 1,
+    });
+  }
+
+  if (absValue >= 0) {
+    return formatNumber(value, { maximumFractionDigits: 2 });
+  }
+
+  return formatNumber(value, { maximumFractionDigits: 4 });
+}
+
 export function formatAndRoundUp(value: number) {
   if (value <= 0) return String(value);
 

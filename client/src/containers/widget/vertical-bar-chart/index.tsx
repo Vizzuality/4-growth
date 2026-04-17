@@ -4,7 +4,7 @@ import { FC, useState } from "react";
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
 import { getCssChartColor } from "@/lib/constants";
-import { cn, formatAndRoundUp } from "@/lib/utils";
+import { cn, formatProjectionValue } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
 import {
@@ -171,7 +171,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
           style={{ transform: "translate(30px, -10px)" }}
           tick={({ x, y, payload }) => (
             <text x={x + 30} y={y} textAnchor="end" style={{ fontSize: 12 }}>
-              {formatAndRoundUp(payload.value)}
+              {formatProjectionValue(payload.value)}
             </text>
           )}
         />
