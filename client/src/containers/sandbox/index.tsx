@@ -48,7 +48,7 @@ const Sandbox: FC = () => {
         question={widget.question}
         visualization={visualization || widget.defaultVisualization}
         data={widget.data}
-        menu={
+        extraHeaderActions={
           <CreateWidgetMenu
             indicator={indicator}
             visualization={visualization}
