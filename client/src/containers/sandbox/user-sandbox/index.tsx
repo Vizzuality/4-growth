@@ -107,7 +107,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
           question={widget.question}
           visualization={visualization || widget.defaultVisualization}
           data={widget.data}
-          menu={
+          extraHeaderActions={
             <UpdateWidgetMenu
               widgetId={customWidgetId}
               indicator={indicator}

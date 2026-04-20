@@ -45,6 +45,8 @@ export interface WidgetProps {
   question?: string;
   questionTitle?: string;
   menu?: React.ReactNode;
+  /** Shown next to the default menu (e.g. save widget); keeps CSV and visualization actions */
+  extraHeaderActions?: React.ReactNode;
   className?: string;
   showCustomizeWidgetButton?: boolean;
   config?: {
@@ -71,6 +73,7 @@ export default function Widget({
   question,
   questionTitle,
   menu,
+  extraHeaderActions,
   className,
   showCustomizeWidgetButton,
   config,
@@ -85,7 +88,7 @@ export default function Widget({
     { filters, ...(breakdown ? { breakdown } : {}) },
     { encode: false },
   )}`;
-  const menuComponent = menu || (
+  const defaultMenu = (
     <WidgetMenu
       visualisations={visualisations}
       info={description ? { title: indicator, description } : undefined}
@@ -99,6 +102,16 @@ export default function Widget({
       className={cn("p-0", config?.menu?.className)}
     />
   );
+  const menuComponent =
+    menu ??
+    (extraHeaderActions ? (
+      <div className="flex items-center gap-2">
+        {defaultMenu}
+        {extraHeaderActions}
+      </div>
+    ) : (
+      defaultMenu
+    ));
 
   useEffect(() => {
     setSelectedVisualization(visualization);
