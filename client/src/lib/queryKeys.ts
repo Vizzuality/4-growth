@@ -19,6 +19,15 @@ export const usersKeys = createQueryKeys("users", {
     userId,
     options,
   ],
+  savedProjection: (savedProjectionId: string) => [
+    "saved-projection",
+    savedProjectionId,
+  ],
+  savedProjections: (userId: string, options: Record<string, unknown>) => [
+    "saved-projections",
+    userId,
+    options,
+  ],
 });
 
 export const sectionsKeys = createQueryKeys("sections", {

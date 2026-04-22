@@ -1,5 +1,5 @@
 "use client";
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo, useRef } from "react";
 
 import { CountryISOMap } from "@shared/constants/country-iso.map";
 import {
@@ -8,6 +8,7 @@ import {
 } from "@shared/dto/projections/custom-projection.type";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 import qs from "qs";
+import { useSession } from "next-auth/react";
 
 import { env } from "@/env";
 
@@ -15,8 +16,9 @@ import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
 import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
-import useFilters from "@/hooks/use-filters";
+import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
 import useSettings from "@/hooks/use-settings";
+import { getAuthHeader } from "@/utils/auth-header";
 
 import NoData from "@/containers/no-data";
 import {
@@ -25,14 +27,66 @@ import {
   isBubbleChartSettings,
   isSimpleChartSettings,
 } from "@/containers/sidebar/projections-settings/utils";
+import CreateSavedProjectionMenu from "@/containers/widget/create-saved-projection";
+import UpdateSavedProjectionMenu from "@/containers/widget/update-saved-projection";
 import SandboxWidget from "@/containers/widget/projections/sandbox";
 
 import MenuPointer from "@/components/icons/menu-pointer";
 import { Card } from "@/components/ui/card";
 
-const Sandbox: FC = () => {
+interface SandboxProps {
+  savedProjectionId?: string;
+}
+
+const Sandbox: FC<SandboxProps> = ({ savedProjectionId }) => {
+  const { data: session } = useSession();
   const { settings, othersAggregation } = useSettings();
-  const { filters } = useFilters();
+  const { filters, setFilters } = useFilters();
+  const initialized = useRef(false);
+
+  const savedProjectionQuery =
+    client.savedProjections.findSavedProjection.useQuery(
+      queryKeys.users.savedProjection(savedProjectionId ?? "").queryKey,
+      {
+        params: {
+          id: Number(savedProjectionId),
+          userId: session?.user?.id as string,
+        },
+        extraHeaders: {
+          ...getAuthHeader(session?.accessToken as string),
+        },
+      },
+      {
+        enabled: !!savedProjectionId && !!session,
+        select: (data) => data.body.data,
+      },
+    );
+
+  useEffect(() => {
+    if (
+      savedProjectionQuery.status === "success" &&
+      savedProjectionQuery.data &&
+      !initialized.current
+    ) {
+      initialized.current = true;
+      const { settings: savedSettings, dataFilters } =
+        savedProjectionQuery.data;
+
+      if (savedSettings?.settings) {
+        const settingsStr = qs.stringify(
+          { settings: savedSettings.settings },
+          { encode: false },
+        );
+        const url = new URL(window.location.href);
+        url.searchParams.set("s", settingsStr);
+        window.history.replaceState(null, "", url.toString());
+      }
+
+      if (dataFilters?.length) {
+        setFilters(dataFilters as FilterQueryParam[]);
+      }
+    }
+  }, [savedProjectionQuery.status, savedProjectionQuery.data, setFilters]);
   const { isCategorySelected } = useProjectionsCategoryFilter();
   const { data, isFetching } = client.projections.getCustomProjection.useQuery(
     queryKeys.projections.custom(settings, filters, othersAggregation).queryKey,
@@ -152,6 +206,22 @@ const Sandbox: FC = () => {
       visualization={visualization}
       data={data}
       downloadUrl={downloadUrl}
+      save={
+        savedProjectionId ? (
+          <UpdateSavedProjectionMenu
+            savedProjectionId={savedProjectionId}
+            settings={settings}
+            filters={filters}
+            othersAggregation={othersAggregation}
+          />
+        ) : (
+          <CreateSavedProjectionMenu
+            settings={settings}
+            filters={filters}
+            othersAggregation={othersAggregation}
+          />
+        )
+      }
     />
   );
 };

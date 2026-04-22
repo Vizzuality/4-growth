@@ -34,6 +34,7 @@ export interface SandboxWidgetProps {
   data: CustomProjection;
   className?: string;
   downloadUrl?: string;
+  save?: React.ReactNode;
 }
 
 const btnClassName =
@@ -45,6 +46,7 @@ export default function SandboxWidget({
   data,
   className,
   downloadUrl,
+  save,
 }: SandboxWidgetProps) {
   const units = useMemo(() => (data ? Object.keys(data) : []), [data]);
   const [selectedUnit, setSelectedUnit] = useState(
@@ -66,7 +68,7 @@ export default function SandboxWidget({
       className="p-0"
     />
   );
-  const menuComponent = downloadUrl ? (
+  const downloadMenu = downloadUrl ? (
     <MenuButton>
       <Button variant="clean" className={btnClassName} asChild>
         <a href={downloadUrl} download>
@@ -75,6 +77,13 @@ export default function SandboxWidget({
       </Button>
     </MenuButton>
   ) : undefined;
+  const menuComponent =
+    downloadMenu || save ? (
+      <div className="flex items-center gap-2">
+        {downloadMenu}
+        {save}
+      </div>
+    ) : undefined;
 
   useEffect(() => {
     setSelectedUnit(getDefaultProjectionUnit(data, indicator));

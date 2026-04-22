@@ -23,9 +23,9 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { getAuthHeader } from "@/utils/auth-header";
 
-import { ColumnsTable } from "../";
+import { SavedVisualizationRow } from "../";
 
-const CellName: FC<CellContext<ColumnsTable, unknown>> = ({
+const CellName: FC<CellContext<SavedVisualizationRow, unknown>> = ({
   getValue,
   row,
 }) => {
@@ -44,25 +44,45 @@ const CellName: FC<CellContext<ColumnsTable, unknown>> = ({
       >[0],
     ) => {
       if (evt.code === "Enter" && isEditing) {
-        const response = await client.users.updateCustomWidget.mutation({
-          params: {
-            userId: session?.user.id as string,
-            id: Number(row.original.id),
-          },
-          body: {
-            name: evt.currentTarget.value,
-          },
-          extraHeaders: {
-            ...getAuthHeader(session?.accessToken as string),
-          },
-        });
+        const { tool, id } = row.original;
+
+        const response =
+          tool === "Survey Analysis"
+            ? await client.users.updateCustomWidget.mutation({
+                params: {
+                  userId: session?.user.id as string,
+                  id: Number(id),
+                },
+                body: {
+                  name: evt.currentTarget.value,
+                },
+                extraHeaders: {
+                  ...getAuthHeader(session?.accessToken as string),
+                },
+              })
+            : await client.savedProjections.updateSavedProjection.mutation({
+                params: {
+                  userId: session?.user.id as string,
+                  id: Number(id),
+                },
+                body: {
+                  name: evt.currentTarget.value,
+                },
+                extraHeaders: {
+                  ...getAuthHeader(session?.accessToken as string),
+                },
+              });
 
         if (response.status === 200) {
           queryClient.invalidateQueries(
             queryKeys.users.userCharts(session?.user.id as string, {}).queryKey,
-            {
-              exact: false,
-            },
+            { exact: false },
+          );
+          queryClient.invalidateQueries(
+            queryKeys.users
+              .savedProjections(session?.user.id as string, {})
+              .queryKey,
+            { exact: false },
           );
 
           toast({
@@ -85,7 +105,7 @@ const CellName: FC<CellContext<ColumnsTable, unknown>> = ({
     [
       isEditing,
       queryClient,
-      row.original.id,
+      row.original,
       session?.accessToken,
       session?.user.id,
       toast,
