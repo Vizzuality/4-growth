@@ -17,6 +17,8 @@ overrides:
   "express>path-to-regexp": "0.1.13"
   "nestjs-base-service>class-validator": "0.14.4"
   "nestjs-base-service>lodash": "4.18.1"
+  # axios ships stale follow-redirects 1.15.11 in lockfile (GHSA-r4q5-vmmm-2653)
+  "axios>follow-redirects": "1.16.0"
   # @aws-sdk/xml-builder@3.972.8 ships vulnerable fast-xml-parser 5.3.6 (GHSA-8gc5-j5rx-235r)
   "@aws-sdk/xml-builder>fast-xml-parser": "5.5.8"
   # Dev-only transitive overrides — parents don't ship patched versions yet
