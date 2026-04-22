@@ -12,11 +12,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import { ColumnsTable } from "..";
+import { SavedVisualizationRow } from "..";
 
 import ActionsMenu from "./actions-menu";
 
-const ActionsButton = ({ row }: CellContext<ColumnsTable, unknown>) => {
+const ActionsButton = ({
+  row,
+}: CellContext<SavedVisualizationRow, unknown>) => {
   const [selectedRow] = useAtom(selectedRowAtom);
   const resetSelectedRow = useResetAtom(selectedRowAtom);
 
@@ -54,7 +56,7 @@ const ActionsButton = ({ row }: CellContext<ColumnsTable, unknown>) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent align="end">
-        <ActionsMenu id={row.original.id} />
+        <ActionsMenu id={row.original.id} tool={row.original.tool} />
       </PopoverContent>
     </Popover>
   );
