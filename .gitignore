@@ -40,6 +40,9 @@ Thumbs.db
 # Data files located in data-processing
 data-processing/data/**
 
+# Docs (generated specs, design docs)
+docs/
+
 # Claude
 .claude/
 AGENTS.md
