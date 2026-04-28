@@ -108,7 +108,7 @@ const SandboxMenu: FC<SandboxMenuProps> = ({
         </PopoverContent>
       </Popover>
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="bg-popover p-0 text-popover-foreground">
           <DialogDescription className="sr-only">
             Enter a name for your visualization
           </DialogDescription>

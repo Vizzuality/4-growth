@@ -33,7 +33,7 @@ const SaveWidgetForm: FC<SaveWidgetFormProps> = ({ onSubmit }) => {
 
   return (
     <div className="space-y-6">
-      <DialogTitle className="text-base">Save chart</DialogTitle>
+      <DialogTitle className="px-8 pt-6 text-base">Save chart</DialogTitle>
       <Form {...form}>
         <form
           className="space-y-6"

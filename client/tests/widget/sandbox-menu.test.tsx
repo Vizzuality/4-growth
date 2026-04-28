@@ -119,7 +119,9 @@ describe("SandboxMenu", () => {
     fireEvent.click(screen.getByTestId("sandbox-menu-button"));
 
     await waitFor(() => {
-      expect(screen.getByText("Update saved visualization")).toBeInTheDocument();
+      expect(
+        screen.getByText("Update saved visualization"),
+      ).toBeInTheDocument();
     });
 
     fireEvent.click(screen.getByText("Update saved visualization"));
