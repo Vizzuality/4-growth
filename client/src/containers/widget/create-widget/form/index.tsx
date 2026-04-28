@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import { DialogTitle } from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -15,7 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Title from "@/components/ui/title";
 
 interface SaveWidgetFormProps {
   onSubmit: (name: string) => void;
@@ -32,10 +32,8 @@ const SaveWidgetForm: FC<SaveWidgetFormProps> = ({ onSubmit }) => {
   });
 
   return (
-    <div className="w-[366px] space-y-6 pt-6">
-      <Title as="h2" className="px-8 text-base">
-        Save chart
-      </Title>
+    <div className="space-y-6">
+      <DialogTitle className="text-base">Save chart</DialogTitle>
       <Form {...form}>
         <form
           className="space-y-6"
@@ -61,7 +59,7 @@ const SaveWidgetForm: FC<SaveWidgetFormProps> = ({ onSubmit }) => {
               </FormItem>
             )}
           />
-          <div className="px-0.5 pb-0.5">
+          <div>
             <Button type="submit" className="w-full">
               Save
             </Button>
