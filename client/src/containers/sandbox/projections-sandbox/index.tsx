@@ -1,5 +1,8 @@
 "use client";
-import { FC, useEffect, useMemo, useRef } from "react";
+import { FC, useCallback, useEffect, useMemo, useRef } from "react";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { CountryISOMap } from "@shared/constants/country-iso.map";
 import {
@@ -7,32 +10,36 @@ import {
   SimpleProjection,
 } from "@shared/dto/projections/custom-projection.type";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
+import { useQueryClient } from "@tanstack/react-query";
 import qs from "qs";
 import { useSession } from "next-auth/react";
-
-import { env } from "@/env";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
 import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
 import useSettings from "@/hooks/use-settings";
+
+import { buildProjectionDownloadUrl } from "@/utils/download-url";
 import { getAuthHeader } from "@/utils/auth-header";
+import { getDynamicRouteHref } from "@/utils/route-config";
 
 import NoData from "@/containers/no-data";
+import { DEFAULT_TABLE_OPTIONS } from "@/containers/profile/saved-visualizations/table";
 import {
   colorIsCountry,
   getKeys,
   isBubbleChartSettings,
   isSimpleChartSettings,
 } from "@/containers/sidebar/projections-settings/utils";
-import CreateSavedProjectionMenu from "@/containers/widget/create-saved-projection";
-import UpdateSavedProjectionMenu from "@/containers/widget/update-saved-projection";
+import SandboxMenu from "@/containers/widget/sandbox-menu";
 import SandboxWidget from "@/containers/widget/projections/sandbox";
 
 import MenuPointer from "@/components/icons/menu-pointer";
 import { Card } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
 
 interface SandboxProps {
   savedProjectionId?: string;
@@ -40,6 +47,10 @@ interface SandboxProps {
 
 const Sandbox: FC<SandboxProps> = ({ savedProjectionId }) => {
   const { data: session } = useSession();
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
+  const { redirect } = useAuthRedirect();
   const { settings, othersAggregation } = useSettings();
   const { filters, setFilters } = useFilters();
   const initialized = useRef(false);
@@ -87,6 +98,7 @@ const Sandbox: FC<SandboxProps> = ({ savedProjectionId }) => {
       }
     }
   }, [savedProjectionQuery.status, savedProjectionQuery.data, setFilters]);
+
   const { isCategorySelected } = useProjectionsCategoryFilter();
   const { data, isFetching } = client.projections.getCustomProjection.useQuery(
     queryKeys.projections.custom(settings, filters, othersAggregation).queryKey,
@@ -163,6 +175,113 @@ const Sandbox: FC<SandboxProps> = ({ savedProjectionId }) => {
     return "";
   }, [settings, settingsData]);
 
+  const createSavedProjection = useCallback(
+    async (name: string) => {
+      if (!settings) return;
+
+      const { status, body } =
+        await client.savedProjections.createSavedProjection.mutation({
+          params: {
+            userId: session?.user.id as string,
+          },
+          body: {
+            name,
+            settings: { settings, othersAggregation },
+            dataFilters: filters,
+          },
+          extraHeaders: {
+            ...getAuthHeader(session?.accessToken as string),
+          },
+        });
+
+      if (status === 201) {
+        if (savedProjectionId) {
+          await queryClient.invalidateQueries(
+            queryKeys.users.savedProjection(savedProjectionId).queryKey,
+          );
+        }
+        queryClient.invalidateQueries(
+          queryKeys.users.savedProjections(
+            session?.user.id as string,
+            DEFAULT_TABLE_OPTIONS,
+          ).queryKey,
+        );
+        toast({
+          description: (
+            <>
+              <p>Your chart has been successfully saved in </p>
+              <Link href="/profile" className="font-bold underline">
+                your profile.
+              </Link>
+            </>
+          ),
+        });
+
+        router.push(
+          getDynamicRouteHref(
+            "projections",
+            "sandbox",
+            String(body.data.id),
+          ),
+        );
+      } else {
+        redirect();
+      }
+    },
+    [
+      settings,
+      othersAggregation,
+      session?.user.id,
+      session?.accessToken,
+      filters,
+      savedProjectionId,
+      queryClient,
+      toast,
+      router,
+      redirect,
+    ],
+  );
+
+  const updateSavedProjection = useCallback(async () => {
+    if (!settings || !savedProjectionId) return;
+
+    const { status } =
+      await client.savedProjections.updateSavedProjection.mutation({
+        params: {
+          id: Number(savedProjectionId),
+          userId: session?.user.id as string,
+        },
+        body: {
+          settings: { settings, othersAggregation },
+          dataFilters: filters,
+        },
+        extraHeaders: {
+          ...getAuthHeader(session?.accessToken as string),
+        },
+      });
+
+    if (status === 200) {
+      await queryClient.invalidateQueries(
+        queryKeys.users.savedProjection(savedProjectionId).queryKey,
+      );
+      toast({
+        description: "Your chart has been successfully updated",
+      });
+    } else {
+      redirect();
+    }
+  }, [
+    settings,
+    othersAggregation,
+    savedProjectionId,
+    session?.user.id,
+    session?.accessToken,
+    filters,
+    queryClient,
+    toast,
+    redirect,
+  ]);
+
   if (isFetching) return null;
 
   if (!isCategorySelected) {
@@ -194,10 +313,11 @@ const Sandbox: FC<SandboxProps> = ({ savedProjectionId }) => {
       </Card>
     );
 
-  const downloadUrl = `${env.NEXT_PUBLIC_API_URL}/projections/custom-widget/export?${qs.stringify(
-    { filters, settings, othersAggregation },
-    { encode: false },
-  )}`;
+  const downloadUrl = buildProjectionDownloadUrl(
+    filters,
+    settings,
+    othersAggregation,
+  );
 
   return (
     <SandboxWidget
@@ -205,22 +325,12 @@ const Sandbox: FC<SandboxProps> = ({ savedProjectionId }) => {
       indicator={indicator}
       visualization={visualization}
       data={data}
-      downloadUrl={downloadUrl}
-      save={
-        savedProjectionId ? (
-          <UpdateSavedProjectionMenu
-            savedProjectionId={savedProjectionId}
-            settings={settings}
-            filters={filters}
-            othersAggregation={othersAggregation}
-          />
-        ) : (
-          <CreateSavedProjectionMenu
-            settings={settings}
-            filters={filters}
-            othersAggregation={othersAggregation}
-          />
-        )
+      menu={
+        <SandboxMenu
+          downloadUrl={downloadUrl}
+          onSave={createSavedProjection}
+          onUpdate={savedProjectionId ? updateSavedProjection : undefined}
+        />
       }
     />
   );

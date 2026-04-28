@@ -12,7 +12,6 @@ import { ProjectionVisualizationsType } from "@shared/dto/projections/projection
 import { cn } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
-import MenuButton from "@/containers/menu-button";
 import BubbleChart from "@/containers/widget/bubble-chart";
 import WidgetLegend from "@/containers/widget/legend";
 import LineChart from "@/containers/widget/line-chart";
@@ -24,7 +23,6 @@ import {
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import TableView from "@/containers/widget/table";
 
@@ -33,20 +31,15 @@ export interface SandboxWidgetProps {
   visualization: ProjectionVisualizationsType;
   data: CustomProjection;
   className?: string;
-  downloadUrl?: string;
-  save?: React.ReactNode;
+  menu?: React.ReactNode;
 }
-
-const btnClassName =
-  "block w-full rounded-none px-4 py-3.5 text-left text-xs font-medium transition-colors hover:bg-muted";
 
 export default function SandboxWidget({
   indicator,
   visualization,
   data,
   className,
-  downloadUrl,
-  save,
+  menu,
 }: SandboxWidgetProps) {
   const units = useMemo(() => (data ? Object.keys(data) : []), [data]);
   const [selectedUnit, setSelectedUnit] = useState(
@@ -68,22 +61,6 @@ export default function SandboxWidget({
       className="p-0"
     />
   );
-  const downloadMenu = downloadUrl ? (
-    <MenuButton>
-      <Button variant="clean" className={btnClassName} asChild>
-        <a href={downloadUrl} download>
-          Download as CSV
-        </a>
-      </Button>
-    </MenuButton>
-  ) : undefined;
-  const menuComponent =
-    downloadMenu || save ? (
-      <div className="flex items-center gap-2">
-        {downloadMenu}
-        {save}
-      </div>
-    ) : undefined;
 
   useEffect(() => {
     setSelectedUnit(getDefaultProjectionUnit(data, indicator));
@@ -107,7 +84,7 @@ export default function SandboxWidget({
             title={indicator}
             className="pb-0"
             select={selectComponent}
-            menu={menuComponent}
+            menu={menu}
           />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
           <VerticalBarChart unit={selectedUnit} {...simpleChartProps} />
@@ -120,7 +97,7 @@ export default function SandboxWidget({
             title={indicator}
             className="pb-0"
             select={selectComponent}
-            menu={menuComponent}
+            menu={menu}
           />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
           <LineChart
@@ -138,7 +115,7 @@ export default function SandboxWidget({
               title={indicator}
               className="p-0"
               select={selectComponent}
-              menu={menuComponent}
+              menu={menu}
             />
             <BubbleChart data={data as BubbleProjection} unit={selectedUnit} />
           </Card>
@@ -152,7 +129,7 @@ export default function SandboxWidget({
             title={indicator}
             className="pb-0"
             select={selectComponent}
-            menu={menuComponent}
+            menu={menu}
           />
           <TableView
             indicator={indicator}

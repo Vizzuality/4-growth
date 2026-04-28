@@ -20,7 +20,6 @@ import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 
 import { buildWidgetDownloadUrl } from "@/utils/download-url";
 
-import { DEFAULT_TABLE_OPTIONS } from "@/containers/profile/saved-visualizations/table";
 import {
   sandboxBreakdownAtom,
   sandboxFiltersAtom,
