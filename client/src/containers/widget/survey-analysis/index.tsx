@@ -7,10 +7,9 @@ import {
   WidgetVisualizationsType,
 } from "@shared/dto/widgets/widget-visualizations.constants";
 import { useAtom } from "jotai";
-import qs from "qs";
-
-import { env } from "@/env";
 import useFilters from "@/hooks/use-filters";
+
+import { buildWidgetDownloadUrl } from "@/utils/download-url";
 
 import { removeNaLabels } from "@/lib/normalize-widget-data";
 import { cn, isEmptyWidget } from "@/lib/utils";
@@ -84,10 +83,7 @@ export default function Widget({
   const [focusedWidget, setFocusedWidget] = useAtom(focusedWidgetAtom);
   const highlightWidget = showOverlay && indicator === focusedWidget;
   const { filters } = useFilters();
-  const downloadUrl = `${env.NEXT_PUBLIC_API_URL}/widgets/${indicator}/export?${qs.stringify(
-    { filters, ...(breakdown ? { breakdown } : {}) },
-    { encode: false },
-  )}`;
+  const downloadUrl = buildWidgetDownloadUrl(indicator, filters, breakdown);
   const defaultMenu = (
     <WidgetMenu
       visualisations={visualisations}
