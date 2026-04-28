@@ -1,6 +1,10 @@
 "use client";
-import { FC, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { useQueryClient } from "@tanstack/react-query";
 import { useAtom, useAtomValue } from "jotai";
 import { useSession } from "next-auth/react";
 
@@ -12,17 +16,24 @@ import {
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import { useAuthRedirect } from "@/hooks/use-auth-redirect";
+
+import { buildWidgetDownloadUrl } from "@/utils/download-url";
+
+import { DEFAULT_TABLE_OPTIONS } from "@/containers/profile/saved-visualizations/table";
 import {
   sandboxBreakdownAtom,
   sandboxFiltersAtom,
   sandboxIndicatorAtom,
   sandboxVisualizationAtom,
 } from "@/containers/sidebar/store";
+import SandboxMenu from "@/containers/widget/sandbox-menu";
 import Widget from "@/containers/widget/survey-analysis";
-import UpdateWidgetMenu from "@/containers/widget/update-widget";
 
 import { Card } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
 import { getAuthHeader } from "@/utils/auth-header";
+import { getDynamicRouteHref } from "@/utils/route-config";
 
 interface SandboxProps {
   customWidgetId: string;
@@ -30,6 +41,10 @@ interface SandboxProps {
 
 const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
   const { data: session } = useSession();
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
+  const { redirect } = useAuthRedirect();
   const [indicator, setIndicator] = useAtom(sandboxIndicatorAtom);
   const [visualization, setVisualization] = useAtom(sandboxVisualizationAtom);
   const [filters, setFilters] = useAtom(sandboxFiltersAtom);
@@ -74,6 +89,103 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
     },
   );
 
+  const createWidget = useCallback(
+    async (name: string) => {
+      if (!indicator) return;
+
+      const { status, body } = await client.users.createCustomWidget.mutation({
+        params: {
+          userId: session?.user.id as string,
+        },
+        body: {
+          name,
+          defaultVisualization: visualization as string,
+          widgetIndicator: indicator,
+          filters,
+        },
+        extraHeaders: {
+          ...getAuthHeader(session?.accessToken as string),
+        },
+      });
+
+      if (status === 201) {
+        await queryClient.invalidateQueries(
+          queryKeys.users.userChart(customWidgetId).queryKey,
+        );
+        toast({
+          description: (
+            <>
+              <p>Your chart has been successfully saved in </p>
+              <Link href="/profile" className="font-bold underline">
+                your profile.
+              </Link>
+            </>
+          ),
+        });
+
+        router.push(
+          getDynamicRouteHref(
+            "surveyAnalysis",
+            "sandbox",
+            String(body.data.id),
+          ),
+        );
+      } else {
+        redirect();
+      }
+    },
+    [
+      indicator,
+      session?.user.id,
+      session?.accessToken,
+      visualization,
+      filters,
+      queryClient,
+      customWidgetId,
+      toast,
+      router,
+      redirect,
+    ],
+  );
+
+  const updateWidget = useCallback(async () => {
+    const { status } = await client.users.updateCustomWidget.mutation({
+      params: {
+        id: Number(customWidgetId),
+        userId: session?.user.id as string,
+      },
+      body: {
+        defaultVisualization: visualization || undefined,
+        widgetIndicator: indicator || undefined,
+        filters,
+      },
+      extraHeaders: {
+        ...getAuthHeader(session?.accessToken as string),
+      },
+    });
+
+    if (status === 200) {
+      await queryClient.invalidateQueries(
+        queryKeys.users.userChart(customWidgetId).queryKey,
+      );
+      toast({
+        description: "Your chart has been successfully updated",
+      });
+    } else {
+      redirect();
+    }
+  }, [
+    customWidgetId,
+    session?.user.id,
+    session?.accessToken,
+    visualization,
+    indicator,
+    filters,
+    queryClient,
+    toast,
+    redirect,
+  ]);
+
   useEffect(() => {
     if (getCustomWidgetQuery.status === "success" && !visualization) {
       setIndicator(getCustomWidgetQuery.data.widget.indicator);
@@ -107,12 +219,16 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
           question={widget.question}
           visualization={visualization || widget.defaultVisualization}
           data={widget.data}
+          hideDownloadCsv
           extraHeaderActions={
-            <UpdateWidgetMenu
-              widgetId={customWidgetId}
-              indicator={indicator}
-              visualization={visualization}
-              filters={filters}
+            <SandboxMenu
+              downloadUrl={buildWidgetDownloadUrl(
+                widget.indicator,
+                filters,
+                breakdown || undefined,
+              )}
+              onSave={createWidget}
+              onUpdate={updateWidget}
             />
           }
           className="col-span-1 last:odd:col-span-2"
