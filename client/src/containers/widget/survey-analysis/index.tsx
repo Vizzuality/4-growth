@@ -46,6 +46,7 @@ export interface WidgetProps {
   menu?: React.ReactNode;
   /** Shown next to the default menu (e.g. save widget); keeps CSV and visualization actions */
   extraHeaderActions?: React.ReactNode;
+  hideDownloadCsv?: boolean;
   className?: string;
   showCustomizeWidgetButton?: boolean;
   config?: {
@@ -73,6 +74,7 @@ export default function Widget({
   questionTitle,
   menu,
   extraHeaderActions,
+  hideDownloadCsv,
   className,
   showCustomizeWidgetButton,
   config,
@@ -94,7 +96,7 @@ export default function Widget({
       setFocusedWidget={setFocusedWidget}
       setSelectedVisualization={setSelectedVisualization}
       indicator={indicator}
-      downloadUrl={downloadUrl}
+      downloadUrl={hideDownloadCsv ? undefined : downloadUrl}
       className={cn("p-0", config?.menu?.className)}
     />
   );
