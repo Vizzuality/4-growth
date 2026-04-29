@@ -20,7 +20,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Separator } from "@/components/ui/separator";
 
 const btnClassName =
   "block w-full rounded-none px-4 py-3.5 text-left text-xs font-medium transition-colors hover:bg-muted";
@@ -73,7 +72,7 @@ const SandboxMenu: FC<SandboxMenuProps> = ({
           className="p-0"
           onClick={() => setPopoverOpen(false)}
         >
-          <div className="flex flex-col py-4">
+          <div className="flex flex-col">
             {session ? (
               <Button
                 variant="clean"
@@ -96,9 +95,6 @@ const SandboxMenu: FC<SandboxMenuProps> = ({
                 Update saved visualization
               </Button>
             )}
-            <div className="px-4 py-2">
-              <Separator />
-            </div>
             <Button variant="clean" className={btnClassName} asChild>
               <a href={downloadUrl} download>
                 Download as CSV
