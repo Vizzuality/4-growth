@@ -19,7 +19,9 @@
     "overrides": {
       "next>postcss": "8.5.12",
       "typeorm>uuid": "14.0.0",
-      "next-auth>uuid": "14.0.0"
+      "next-auth>uuid": "14.0.0",
+      "d3-interpolate>d3-color": "3.1.0",
+      "d3-transition>d3-color": "3.1.0"
     }
   }
 }
