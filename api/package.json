@@ -54,7 +54,7 @@
     "rxjs": "7.8.2",
     "shared": "workspace:*",
     "typeorm": "catalog:",
-    "uuid": "13.0.0",
+    "uuid": "14.0.0",
     "zod": "catalog:"
   },
   "devDependencies": {
