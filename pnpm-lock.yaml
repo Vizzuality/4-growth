@@ -72,7 +72,7 @@ overrides:
   nestjs-base-service>class-validator: 0.14.4
   nestjs-base-service>lodash: 4.18.1
   axios>follow-redirects: 1.16.0
-  '@aws-sdk/xml-builder>fast-xml-parser': 5.5.8
+  '@aws-sdk/xml-builder>fast-xml-parser': 5.8.0
   flat-cache>flatted: 3.4.2
   minimatch>brace-expansion: 2.0.3
   postcss-load-config>yaml: 2.8.3
@@ -1912,6 +1912,9 @@ packages:
   '@noble/hashes@1.8.0':
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
     engines: {node: ^14.21.3 || >=16}
+
+  '@nodable/entities@2.1.0':
+    resolution: {integrity: sha512-nyT7T3nbMyBI/lvr6L5TyWbFJAI9FTgVRakNoBqCD+PmID8DzFrrNdLLtHMwMszOtqZa8PAOV24ZqDnQrhQINA==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -5296,11 +5299,11 @@ packages:
   fast-uri@3.1.0:
     resolution: {integrity: sha512-iPeeDKJSWf4IEOasVVrknXpaBV0IApz/gp7S2bb7Z4Lljbl2MGJRqInZiUrQwV16cpzw/D3S5j5Julj/gT52AA==}
 
-  fast-xml-builder@1.1.4:
-    resolution: {integrity: sha512-f2jhpN4Eccy0/Uz9csxh3Nu6q4ErKxf0XIsasomfOihuSUa3/xw6w8dnOtCDgEItQFJG8KyXPzQXzcODDrrbOg==}
+  fast-xml-builder@1.2.0:
+    resolution: {integrity: sha512-00aAWieqff+ZJhsXA4g1g7M8k+7AYoMUUHF+/zFb5U6Uv/P0Vl4QZo84/IcufzYalLuEj9928bXN9PbbFzMF0Q==}
 
-  fast-xml-parser@5.5.8:
-    resolution: {integrity: sha512-Z7Fh2nVQSb2d+poDViM063ix2ZGt9jmY1nWhPfHBOK2Hgnb/OW3P4Et3P/81SEej0J7QbWtJqxO05h8QYfK7LQ==}
+  fast-xml-parser@5.8.0:
+    resolution: {integrity: sha512-6bIM7fsJxeo3uXv7OncQYsBAMPJ7V16Slahl/6M98C/i2q+vB1+4a0MtrvYwDFEUrwDSbAmeLDRXsOBwrL7yAg==}
     hasBin: true
 
   fastq@1.17.1:
@@ -6698,8 +6701,8 @@ packages:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
     engines: {node: '>=8'}
 
-  path-expression-matcher@1.2.0:
-    resolution: {integrity: sha512-DwmPWeFn+tq7TiyJ2CxezCAirXjFxvaiD03npak3cRjlP9+OjTmSy1EpIrEbh+l6JgUundniloMLDQ/6VTdhLQ==}
+  path-expression-matcher@1.5.0:
+    resolution: {integrity: sha512-cbrerZV+6rvdQrrD+iGMcZFEiiSrbv9Tfdkvnusy6y0x0GKBXREFg/Y65GhIfm0tnLntThhzCnfKwp1WRjeCyQ==}
     engines: {node: '>=14.0.0'}
 
   path-is-absolute@1.0.1:
@@ -7513,8 +7516,8 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  strnum@2.2.2:
-    resolution: {integrity: sha512-DnR90I+jtXNSTXWdwrEy9FakW7UX+qUZg28gj5fk2vxxl7uS/3bpI4fjFYVmdK9etptYBPNkpahuQnEwhwECqA==}
+  strnum@2.3.0:
+    resolution: {integrity: sha512-ums3KNd42PGyx5xaoVTO1mjU1bH3NpY4vsrVlnv9PNGqQj8wd7rJ6nEypLrJ7z5vxK5RP0yMLo6J/Gsm62DI5Q==}
 
   strtok3@10.3.4:
     resolution: {integrity: sha512-KIy5nylvC5le1OdaaoCJ07L+8iQzJHGH6pWDuzS+d07Cu7n1MZ2x26P8ZKIWfbK02+XIL8Mp4RkWeqdUCrDMfg==}
@@ -8226,6 +8229,10 @@ packages:
     resolution: {integrity: sha512-EvGK8EJ3DhaHfbRlETOWAS5pO9MZITeauHKJyb8wyajUfQUenkIg2MvLDTZ4T/TgIcm3HU0TFBgWWboAZ30UHg==}
     engines: {node: '>=18'}
 
+  xml-naming@0.1.0:
+    resolution: {integrity: sha512-k8KO9hrMyNk6tUWqUfkTEZbezRRpONVOzUTnc97VnCvyj6Tf9lyUR9EDAIeiVLv56jsMcoXEwjW8Kv5yPY52lw==}
+    engines: {node: '>=16.0.0'}
+
   xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
 
@@ -8697,7 +8704,7 @@ snapshots:
   '@aws-sdk/xml-builder@3.972.8':
     dependencies:
       '@smithy/types': 4.13.0
-      fast-xml-parser: 5.5.8
+      fast-xml-parser: 5.8.0
       tslib: 2.8.1
 
   '@aws/lambda-invoke-store@0.2.3': {}
@@ -9806,6 +9813,8 @@ snapshots:
       third-party-capital: 1.0.20
 
   '@noble/hashes@1.8.0': {}
+
+  '@nodable/entities@2.1.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -13512,15 +13521,18 @@ snapshots:
 
   fast-uri@3.1.0: {}
 
-  fast-xml-builder@1.1.4:
+  fast-xml-builder@1.2.0:
     dependencies:
-      path-expression-matcher: 1.2.0
+      path-expression-matcher: 1.5.0
+      xml-naming: 0.1.0
 
-  fast-xml-parser@5.5.8:
+  fast-xml-parser@5.8.0:
     dependencies:
-      fast-xml-builder: 1.1.4
-      path-expression-matcher: 1.2.0
-      strnum: 2.2.2
+      '@nodable/entities': 2.1.0
+      fast-xml-builder: 1.2.0
+      path-expression-matcher: 1.5.0
+      strnum: 2.3.0
+      xml-naming: 0.1.0
 
   fastq@1.17.1:
     dependencies:
@@ -15097,7 +15109,7 @@ snapshots:
 
   path-exists@4.0.0: {}
 
-  path-expression-matcher@1.2.0: {}
+  path-expression-matcher@1.5.0: {}
 
   path-is-absolute@1.0.1: {}
 
@@ -15973,7 +15985,7 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  strnum@2.2.2: {}
+  strnum@2.3.0: {}
 
   strtok3@10.3.4:
     dependencies:
@@ -16730,6 +16742,8 @@ snapshots:
       signal-exit: 4.1.0
 
   xml-name-validator@5.0.0: {}
+
+  xml-naming@0.1.0: {}
 
   xmlchars@2.2.0: {}
 

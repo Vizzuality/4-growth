@@ -19,8 +19,9 @@ overrides:
   "nestjs-base-service>lodash": "4.18.1"
   # axios ships stale follow-redirects 1.15.11 in lockfile (GHSA-r4q5-vmmm-2653)
   "axios>follow-redirects": "1.16.0"
-  # @aws-sdk/xml-builder@3.972.8 ships vulnerable fast-xml-parser 5.3.6 (GHSA-8gc5-j5rx-235r)
-  "@aws-sdk/xml-builder>fast-xml-parser": "5.5.8"
+  # @aws-sdk/xml-builder ships vulnerable fast-xml-parser <5.7.0 (GHSA-8gc5-j5rx-235r)
+  # 5.8.0 also pulls fast-xml-builder >=1.2.0 fixing GHSA-5wm8-gmm8-39j9
+  "@aws-sdk/xml-builder>fast-xml-parser": "5.8.0"
   # Dev-only transitive overrides — parents don't ship patched versions yet
   "flat-cache>flatted": "3.4.2"
   "minimatch>brace-expansion": "2.0.3"
