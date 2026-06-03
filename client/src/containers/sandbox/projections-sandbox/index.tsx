@@ -330,6 +330,8 @@ const Sandbox: FC<SandboxProps> = ({ savedProjectionId }) => {
           downloadUrl={downloadUrl}
           onSave={createSavedProjection}
           onUpdate={savedProjectionId ? updateSavedProjection : undefined}
+          chartId={indicator}
+          chartTitle={indicator}
         />
       }
     />
