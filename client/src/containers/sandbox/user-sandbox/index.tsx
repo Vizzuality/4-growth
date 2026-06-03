@@ -228,6 +228,8 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
               )}
               onSave={createWidget}
               onUpdate={updateWidget}
+              chartId={widget.indicator}
+              chartTitle={widget.title}
             />
           }
           className="col-span-1 last:odd:col-span-2"

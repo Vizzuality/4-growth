@@ -142,6 +142,8 @@ const Sandbox: FC = () => {
           <SandboxMenu
             downloadUrl={downloadUrl}
             onSave={createWidget}
+            chartId={widget.indicator}
+            chartTitle={widget.title}
           />
         }
         className="col-span-1 last:odd:col-span-2"

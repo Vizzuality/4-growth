@@ -7,6 +7,7 @@ import Link from "next/link";
 import { EllipsisIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 
+import DownloadCsvLink from "@/containers/widget/download-csv-link";
 import SaveWidgetForm from "@/containers/widget/create-widget/form";
 
 import { Button } from "@/components/ui/button";
@@ -28,12 +29,16 @@ interface SandboxMenuProps {
   downloadUrl: string;
   onSave: (name: string) => void;
   onUpdate?: () => void;
+  chartId?: string;
+  chartTitle?: string;
 }
 
 const SandboxMenu: FC<SandboxMenuProps> = ({
   downloadUrl,
   onSave,
   onUpdate,
+  chartId,
+  chartTitle,
 }) => {
   const { data: session } = useSession();
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -96,9 +101,13 @@ const SandboxMenu: FC<SandboxMenuProps> = ({
               </Button>
             )}
             <Button variant="clean" className={btnClassName} asChild>
-              <a href={downloadUrl} download>
+              <DownloadCsvLink
+                downloadUrl={downloadUrl}
+                chartId={chartId}
+                chartTitle={chartTitle}
+              >
                 Download as CSV
-              </a>
+              </DownloadCsvLink>
             </Button>
           </div>
         </PopoverContent>
