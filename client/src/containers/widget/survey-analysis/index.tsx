@@ -34,6 +34,7 @@ import { TransformedWidgetData } from "@/types";
 export interface WidgetProps {
   indicator: string;
   title: string;
+  section?: string;
   data: TransformedWidgetData;
   visualization: WidgetVisualizationsType;
   responseRate: number;
@@ -69,6 +70,7 @@ export default function Widget({
   breakdown,
   data,
   title,
+  section,
   description,
   question,
   questionTitle,
@@ -96,6 +98,8 @@ export default function Widget({
       setFocusedWidget={setFocusedWidget}
       setSelectedVisualization={setSelectedVisualization}
       indicator={indicator}
+      chartTitle={title}
+      section={section}
       downloadUrl={hideDownloadCsv ? undefined : downloadUrl}
       className={cn("p-0", config?.menu?.className)}
     />
