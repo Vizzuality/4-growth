@@ -114,6 +114,7 @@ export default function Explore() {
                   indicator={w.indicator}
                   description={w.description}
                   title={w.title}
+                  section={s.name}
                   question={w.question}
                   questionTitle={w.questionTitle}
                   data={w.data as TransformedWidgetData}
