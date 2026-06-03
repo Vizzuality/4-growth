@@ -18,4 +18,12 @@ describe("slugify", () => {
   it("returns an empty string when there are no alphanumeric characters", () => {
     expect(slugify("!!!")).toBe("");
   });
+
+  it("preserves digits", () => {
+    expect(slugify("Widget 42")).toBe("widget-42");
+  });
+
+  it("collapses consecutive separators into a single hyphen", () => {
+    expect(slugify("foo   &   bar")).toBe("foo-bar");
+  });
 });
