@@ -7,6 +7,7 @@ import { useSetAtom } from "jotai";
 
 import { infoAtom } from "@/containers/dialog/store";
 import MenuButton from "@/containers/menu-button";
+import DownloadCsvLink from "@/containers/widget/download-csv-link";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -41,6 +42,8 @@ interface WidgetMenuProps {
   setFocusedWidget: (indicator: string | null) => void;
   indicator: string;
   downloadUrl?: string;
+  chartTitle?: string;
+  section?: string;
 }
 
 const WidgetMenu: FC<WidgetMenuProps> = ({
@@ -51,6 +54,8 @@ const WidgetMenu: FC<WidgetMenuProps> = ({
   className,
   indicator,
   downloadUrl,
+  chartTitle,
+  section,
   setSelectedVisualization,
   setShowOverlay,
   setFocusedWidget,
@@ -94,9 +99,14 @@ const WidgetMenu: FC<WidgetMenuProps> = ({
         )}
         {downloadUrl && (
           <Button variant="clean" className={btnClassName} asChild>
-            <a href={downloadUrl} download>
+            <DownloadCsvLink
+              downloadUrl={downloadUrl}
+              chartId={indicator}
+              chartTitle={chartTitle}
+              section={section}
+            >
               Download as CSV
-            </a>
+            </DownloadCsvLink>
           </Button>
         )}
         {visualisations && (
