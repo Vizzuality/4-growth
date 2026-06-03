@@ -81,6 +81,7 @@ export default function Widget({
       setFocusedWidget={setFocusedWidget}
       setSelectedVisualization={setSelectedVisualization}
       indicator={indicator}
+      chartTitle={indicator}
       downloadUrl={downloadUrl}
       className={config?.menu?.className}
     />
