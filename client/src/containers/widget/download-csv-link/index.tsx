@@ -1,6 +1,6 @@
 "use client";
 
-import { AnchorHTMLAttributes, forwardRef } from "react";
+import React, { AnchorHTMLAttributes, forwardRef } from "react";
 
 import { sendGAEvent } from "@next/third-parties/google";
 import { useAtomValue } from "jotai";
@@ -26,7 +26,9 @@ const DownloadCsvLink = forwardRef<HTMLAnchorElement, DownloadCsvLinkProps>(
   ) => {
     const analyticsConsent = useAtomValue(analyticsConsentAtom);
 
-    const handleClick = () => {
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      anchorProps.onClick?.(event);
+
       if (!analyticsConsent) return;
 
       const slug = chartTitle ? slugify(chartTitle) : "";

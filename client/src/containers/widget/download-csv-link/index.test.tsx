@@ -84,6 +84,14 @@ describe("DownloadCsvLink", () => {
     expect(sendGAEvent).not.toHaveBeenCalled();
   });
 
+  it("does not fire the event when consent is explicitly false", () => {
+    renderWithConsent(false, { chartId: "q1", chartTitle: "Adoption" });
+
+    fireEvent.click(screen.getByText("Download as CSV"));
+
+    expect(sendGAEvent).not.toHaveBeenCalled();
+  });
+
   it("renders a download anchor pointing at the export URL", () => {
     renderWithConsent(true, { chartId: "q1" });
 
