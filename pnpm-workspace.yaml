@@ -24,6 +24,8 @@ overrides:
   "@aws-sdk/xml-builder>fast-xml-parser": "5.8.0"
   # typeorm declares uuid ^11.1.0 but lockfile resolves 11.1.0 (GHSA-w5hq-g745-h8pq)
   "typeorm>uuid": "11.1.1"
+  # next bundles postcss <8.5.10 (GHSA-qx2v-qp2m-jg93 — XSS via unescaped </style> in CSS stringify)
+  "next>postcss": "8.5.15"
   # jsdom (test env) ships undici <7.28.0 (GHSA-vxpw-j846-p89q, GHSA-hm92-r4w5-c3mj, GHSA-vmh5-mc38-953g + others)
   "jsdom>undici": "7.28.0"
   # Dev-only transitive overrides — parents don't ship patched versions yet
