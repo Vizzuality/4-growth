@@ -144,6 +144,8 @@ const Sandbox: FC = () => {
             onSave={createWidget}
             chartId={widget.indicator}
             chartTitle={widget.title}
+            section="survey-analysis-sandbox"
+            visualisationType={visualization || widget.defaultVisualization}
           />
         }
         className="col-span-1 last:odd:col-span-2"

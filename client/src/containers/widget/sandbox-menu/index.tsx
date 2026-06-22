@@ -31,6 +31,8 @@ interface SandboxMenuProps {
   onUpdate?: () => void;
   chartId?: string;
   chartTitle?: string;
+  section?: string;
+  visualisationType?: string;
 }
 
 const SandboxMenu: FC<SandboxMenuProps> = ({
@@ -39,6 +41,8 @@ const SandboxMenu: FC<SandboxMenuProps> = ({
   onUpdate,
   chartId,
   chartTitle,
+  section,
+  visualisationType,
 }) => {
   const { data: session } = useSession();
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -105,6 +109,8 @@ const SandboxMenu: FC<SandboxMenuProps> = ({
                 downloadUrl={downloadUrl}
                 chartId={chartId}
                 chartTitle={chartTitle}
+                section={section}
+                visualisationType={visualisationType}
               >
                 Download as CSV
               </DownloadCsvLink>

@@ -17,6 +17,7 @@ function renderWithConsent(
     chartId: string;
     chartTitle: string;
     section: string;
+    visualisationType: string;
   }> = {},
 ) {
   const store = createStore();
@@ -40,6 +41,7 @@ describe("DownloadCsvLink", () => {
       chartId: "q1",
       chartTitle: "Adoption & Impact",
       section: "Overview",
+      visualisationType: "horizontal_bar_chart",
     });
 
     fireEvent.click(screen.getByText("Download as CSV"));
@@ -52,8 +54,11 @@ describe("DownloadCsvLink", () => {
         chart_id: "q1",
         chart_title: "Adoption & Impact",
         section: "Overview",
+        visualisation_type: "horizontal_bar_chart",
         file_name: "adoption-impact.csv",
+        file_extension: "csv",
         export_format: "csv",
+        page_location: window.location.href,
       },
     );
   });
@@ -70,8 +75,11 @@ describe("DownloadCsvLink", () => {
         chart_id: "q1",
         chart_title: "not_available",
         section: "not_available",
+        visualisation_type: "not_available",
         file_name: "not_available",
+        file_extension: "csv",
         export_format: "csv",
+        page_location: window.location.href,
       },
     );
   });

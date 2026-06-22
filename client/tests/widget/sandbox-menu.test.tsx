@@ -39,7 +39,16 @@ describe("SandboxMenu", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockedUseSession.mockReturnValue({
-      data: { user: { id: "1" }, accessToken: "token", expires: "" },
+      data: {
+        user: {
+          id: "1",
+          email: "user@example.com",
+          createdAt: new Date(0),
+          customWidgets: [],
+        },
+        accessToken: "token",
+        expires: "",
+      },
       status: "authenticated",
       update: vi.fn(),
     });
@@ -162,6 +171,8 @@ describe("SandboxMenu", () => {
           {...defaultProps}
           chartId="indicator-1"
           chartTitle="My Chart Title"
+          section="survey-analysis-sandbox"
+          visualisationType="horizontal_bar_chart"
         />
       </Provider>,
     );
@@ -180,9 +191,12 @@ describe("SandboxMenu", () => {
       {
         chart_id: "indicator-1",
         chart_title: "My Chart Title",
-        section: "not_available",
+        section: "survey-analysis-sandbox",
+        visualisation_type: "horizontal_bar_chart",
         file_name: "my-chart-title.csv",
+        file_extension: "csv",
         export_format: "csv",
+        page_location: window.location.href,
       },
     );
   });
