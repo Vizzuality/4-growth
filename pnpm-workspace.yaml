@@ -11,7 +11,8 @@ overrides:
   # d3-color: security fix — forces 3.1.0 across all d3 consumers
   d3-color: 3.1.0
   # qs: blanket override needed — express 4.21.2 (via nestjs-base-service) declares exact qs 6.13.0
-  qs: 6.15.0
+  # 6.15.2 fixes remotely-triggerable DoS in qs.stringify (GHSA-q8mj-m7cp-5q26)
+  qs: 6.15.2
   # nestjs-base-service ships outdated transitive deps; scope overrides to that parent
   "nestjs-base-service>express": "4.21.2"
   "express>path-to-regexp": "0.1.13"
@@ -59,7 +60,7 @@ catalog:
   # Shared libraries
   "@types/lodash": 4.17.24
   lodash: 4.18.1
-  qs: 6.15.0
+  qs: 6.15.2
   "@types/qs": 6.14.0
   class-transformer: 0.5.1
   class-validator: 0.14.4
