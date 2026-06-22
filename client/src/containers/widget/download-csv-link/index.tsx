@@ -17,11 +17,20 @@ export interface DownloadCsvLinkProps
   chartId?: string;
   chartTitle?: string;
   section?: string;
+  visualisationType?: string;
 }
 
 const DownloadCsvLink = forwardRef<HTMLAnchorElement, DownloadCsvLinkProps>(
   (
-    { downloadUrl, chartId, chartTitle, section, children, ...anchorProps },
+    {
+      downloadUrl,
+      chartId,
+      chartTitle,
+      section,
+      visualisationType,
+      children,
+      ...anchorProps
+    },
     ref,
   ) => {
     const analyticsConsent = useAtomValue(analyticsConsentAtom);
@@ -37,8 +46,11 @@ const DownloadCsvLink = forwardRef<HTMLAnchorElement, DownloadCsvLinkProps>(
         chart_id: chartId || NOT_AVAILABLE,
         chart_title: chartTitle || NOT_AVAILABLE,
         section: section || NOT_AVAILABLE,
+        visualisation_type: visualisationType || NOT_AVAILABLE,
         file_name: slug ? `${slug}.csv` : NOT_AVAILABLE,
+        file_extension: "csv",
         export_format: "csv",
+        page_location: window.location.href,
       });
     };
 

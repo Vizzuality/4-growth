@@ -332,6 +332,8 @@ const Sandbox: FC<SandboxProps> = ({ savedProjectionId }) => {
           onUpdate={savedProjectionId ? updateSavedProjection : undefined}
           chartId={indicator}
           chartTitle={indicator}
+          section="projections-sandbox"
+          visualisationType={visualization}
         />
       }
     />

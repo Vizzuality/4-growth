@@ -82,6 +82,7 @@ export default function Widget({
       setSelectedVisualization={setSelectedVisualization}
       indicator={indicator}
       chartTitle={indicator}
+      section="projections"
       downloadUrl={downloadUrl}
       className={config?.menu?.className}
     />

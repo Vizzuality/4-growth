@@ -92,6 +92,7 @@ const WidgetMenu: FC<WidgetMenuProps> = ({
               chartId={indicator}
               chartTitle={chartTitle}
               section={section}
+              visualisationType={selectedVisualization}
             >
               Download as CSV
             </DownloadCsvLink>
