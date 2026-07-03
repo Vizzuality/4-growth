@@ -31,6 +31,8 @@ overrides:
   "next>postcss": "8.5.15"
   # jsdom (test env) ships undici <7.28.0 (GHSA-vxpw-j846-p89q, GHSA-hm92-r4w5-c3mj, GHSA-vmh5-mc38-953g + others)
   "jsdom>undici": "7.28.0"
+  # @nestjs/platform-express ships multer <2.2.0 — DoS via nested fields and aborted uploads (GHSA-72gw-mp4g-v24j, GHSA-3p4h-7m6x-2hcm)
+  "@nestjs/platform-express>multer": "2.2.0"
   # Dev-only transitive overrides — parents don't ship patched versions yet
   "flat-cache>flatted": "3.4.2"
   "minimatch>brace-expansion": "2.0.3"
