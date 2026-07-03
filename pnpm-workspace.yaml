@@ -47,7 +47,7 @@ catalog:
   zod: 3.25.76
   "@types/node": 25.3.0
   typescript: 5.9.3
-  typeorm: 0.3.28
+  typeorm: 0.3.29
   bcrypt: 6.0.0
   "@types/bcrypt": 6.0.0
   # Linting & formatting
