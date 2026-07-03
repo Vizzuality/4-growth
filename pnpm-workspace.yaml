@@ -46,6 +46,9 @@ overrides:
   # supertest>superagent and axios both ship form-data <4.0.6 — CRLF injection in multipart field names (GHSA-hmw2-7cc7-3qxx)
   "superagent>form-data": "4.0.6"
   "axios>form-data": "4.0.6"
+  # @istanbuljs/load-nyc-config ships js-yaml 3.x and cosmiconfig ships js-yaml 4.1.1 — quadratic DoS (GHSA-h67p-54hq-rp68)
+  "@istanbuljs/load-nyc-config>js-yaml": "4.3.0"
+  "cosmiconfig>js-yaml": "4.3.0"
 
 catalog:
   # Core
