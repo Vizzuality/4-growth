@@ -4,6 +4,7 @@
   "description": "4-growth platform",
   "scripts": {
     "api:deps": "pnpm --filter api install",
+    "dev": "pnpm api:dev & pnpm client:dev & wait",
     "api:dev": "pnpm --filter api run start:dev",
     "api:build": "pnpm --filter api run build",
     "api:prod": "NODE_ENV=production pnpm --filter api run start:prod",
