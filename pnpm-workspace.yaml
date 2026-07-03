@@ -33,6 +33,8 @@ overrides:
   "jsdom>undici": "7.28.0"
   # @nestjs/platform-express ships multer <2.2.0 — DoS via nested fields and aborted uploads (GHSA-72gw-mp4g-v24j, GHSA-3p4h-7m6x-2hcm)
   "@nestjs/platform-express>multer": "2.2.0"
+  # @angular-devkit/core>ajv ships fast-uri <=3.1.1 — path traversal + host confusion (GHSA-q3j6-qgpj-74h6, GHSA-v39h-62p7-jpjc)
+  "ajv>fast-uri": "3.1.2"
   # Dev-only transitive overrides — parents don't ship patched versions yet
   "flat-cache>flatted": "3.4.2"
   "minimatch>brace-expansion": "2.0.3"
