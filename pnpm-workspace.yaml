@@ -43,6 +43,9 @@ overrides:
   "micromatch>picomatch": "2.3.2"
   "anymatch>picomatch": "2.3.2"
   "readdirp>picomatch": "2.3.2"
+  # supertest>superagent and axios both ship form-data <4.0.6 — CRLF injection in multipart field names (GHSA-hmw2-7cc7-3qxx)
+  "superagent>form-data": "4.0.6"
+  "axios>form-data": "4.0.6"
 
 catalog:
   # Core
