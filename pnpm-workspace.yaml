@@ -46,6 +46,11 @@ overrides:
   # vulnerable lines are dev-only: 3.x via jest coverage, 4.x via the nest cli
   "@istanbuljs/load-nyc-config>js-yaml": "3.15.0"
   "cosmiconfig>js-yaml": "4.3.0"
+  # @babel/core <7.29.6: arbitrary file read via sourceMappingURL comment (GHSA-4x5r-pxfx-6jf8).
+  # Dev-only (babel/jest transpile toolchain). Full override rather than scoped: the tree
+  # resolves a single shared version (7.29.0) as a peer of dozens of @babel/plugin-*
+  # packages, and 7.29.6 is a same-minor patch, so there is no other major to break.
+  "@babel/core": "7.29.6"
   "flat-cache>flatted": "3.4.2"
   "minimatch>brace-expansion": "2.0.3"
   "postcss-load-config>yaml": "2.8.3"
