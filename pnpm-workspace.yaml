@@ -22,6 +22,9 @@ overrides:
   # axios declares ^4.0.5 and supertest's superagent pins <4.0.6; scope to both parents
   "axios>form-data": "4.0.6"
   "superagent>form-data": "4.0.6"
+  # multer <2.2.0: DoS via deeply nested field names (GHSA-72gw-mp4g-v24j) and
+  # incomplete cleanup of aborted uploads (GHSA-3p4h-7m6x-2hcm); pulled by @nestjs/platform-express
+  "@nestjs/platform-express>multer": "2.2.0"
   # @aws-sdk/xml-builder ships vulnerable fast-xml-parser <5.7.0 (GHSA-8gc5-j5rx-235r)
   # 5.8.0 also pulls fast-xml-builder >=1.2.0 fixing GHSA-5wm8-gmm8-39j9
   "@aws-sdk/xml-builder>fast-xml-parser": "5.8.0"
