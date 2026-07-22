@@ -33,11 +33,14 @@ overrides:
   "jsdom>undici": "7.28.0"
   # @nestjs/platform-express ships multer <2.2.0 — DoS via nested fields and aborted uploads (GHSA-72gw-mp4g-v24j, GHSA-3p4h-7m6x-2hcm)
   "@nestjs/platform-express>multer": "2.2.0"
-  # @angular-devkit/core>ajv ships fast-uri <=3.1.1 — path traversal + host confusion (GHSA-q3j6-qgpj-74h6, GHSA-v39h-62p7-jpjc)
-  "ajv>fast-uri": "3.1.2"
+  # @angular-devkit/core>ajv ships fast-uri <=3.1.3 — host confusion via IDN + backslash (GHSA-4c8g-83qw-93j6, GHSA-v2hh-gcrm-f6hx)
+  "ajv>fast-uri": "3.1.4"
+  # next ships sharp <0.35.0 — inherited libvips CVEs (GHSA-f88m-g3jw-g9cj)
+  "next>sharp": "0.35.3"
+  # body-parser: GHSA-v422-hmwv-36x6 — patched versions (1.20.6, 2.3.0) not yet released on npm; revisit when available
   # Dev-only transitive overrides — parents don't ship patched versions yet
   "flat-cache>flatted": "3.4.2"
-  "minimatch>brace-expansion": "2.0.3"
+  "minimatch>brace-expansion": "2.1.2"
   "postcss-load-config>yaml": "2.8.3"
   "http-proxy-agent>@tootallnate/once": "3.0.1"
   "micromatch>picomatch": "2.3.2"
@@ -57,7 +60,7 @@ catalog:
   zod: 3.25.76
   "@types/node": 25.3.0
   typescript: 5.9.3
-  typeorm: 0.3.29
+  typeorm: 0.3.31
   bcrypt: 6.0.0
   "@types/bcrypt": 6.0.0
   # Linting & formatting
