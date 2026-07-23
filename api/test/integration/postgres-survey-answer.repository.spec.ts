@@ -9,6 +9,27 @@ import {
 } from '@api/infrastructure/survey-answer-repository.interface';
 import { BaseWidgetWithData } from '@shared/dto/widgets/base-widget-data.interface';
 import { WIDGET_VISUALIZATIONS } from '@shared/dto/widgets/widget-visualizations.constants';
+import { SEARCH_WIDGET_DATA_OPERATORS } from '@shared/dto/global/search-widget-data-params';
+
+const makeChartWidget = (indicator: string): BaseWidgetWithData =>
+  ({
+    indicator,
+    visualisations: [WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART],
+    defaultVisualization: WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
+    data: {},
+    responseRate: 0,
+    absoluteValue: 0,
+  }) as BaseWidgetWithData;
+
+const makeMapWidget = (indicator: string): BaseWidgetWithData =>
+  ({
+    indicator,
+    visualisations: [WIDGET_VISUALIZATIONS.MAP],
+    defaultVisualization: WIDGET_VISUALIZATIONS.MAP,
+    data: {},
+    responseRate: 0,
+    absoluteValue: 0,
+  }) as BaseWidgetWithData;
 
 describe('PostgresSurveyAnswerRepository', () => {
   let testManager: TestManager<unknown>;
@@ -182,5 +203,258 @@ describe('PostgresSurveyAnswerRepository - Map Data', () => {
     expect(widget.data.chart.length).toBeGreaterThan(0);
     expect(widget.data.map).toBeDefined();
     expect(widget.data.map.length).toBeGreaterThan(0);
+  });
+});
+
+describe('PostgresSurveyAnswerRepository - data-source filter', () => {
+  let testManager: TestManager<unknown>;
+  let surveyAnswerRepo: ISurveyAnswerRepository;
+
+  const INDICATOR = 'ds-filter-test-indicator';
+  const QUESTION = 'Test question for data-source filter';
+  const BREAKDOWN_INDICATOR = 'ds-filter-breakdown-indicator';
+
+  beforeAll(async () => {
+    testManager = await TestManager.createTestManager({ logger: false });
+    surveyAnswerRepo = testManager.getModule<ISurveyAnswerRepository>(
+      SurveyAnswerRepository,
+    );
+
+    const dataSource = testManager.getDataSource();
+    await testManager
+      .mocks()
+      .ensureQuestionIndicatorMapExists(dataSource, {
+        indicator: INDICATOR,
+        question: QUESTION,
+      });
+    await testManager
+      .mocks()
+      .ensureQuestionIndicatorMapExists(dataSource, {
+        indicator: BREAKDOWN_INDICATOR,
+        question: 'Breakdown axis question',
+      });
+
+    const answersRepo = dataSource.getRepository(SurveyAnswer);
+    await answersRepo.save([
+      // Survey rows in Spain
+      {
+        surveyId: 'sv-ds-1',
+        questionIndicator: INDICATOR,
+        question: QUESTION,
+        answer: 'Yes',
+        countryCode: 'ESP',
+        dataSource: 'survey',
+      },
+      {
+        surveyId: 'sv-ds-2',
+        questionIndicator: INDICATOR,
+        question: QUESTION,
+        answer: 'Yes',
+        countryCode: 'ESP',
+        dataSource: 'survey',
+      },
+      {
+        surveyId: 'sv-ds-3',
+        questionIndicator: INDICATOR,
+        question: QUESTION,
+        answer: 'No',
+        countryCode: 'ESP',
+        dataSource: 'survey',
+      },
+      // Automated rows in France
+      {
+        surveyId: 'auto_ds-1',
+        questionIndicator: INDICATOR,
+        question: QUESTION,
+        answer: 'No',
+        countryCode: 'FRA',
+        dataSource: 'automated',
+      },
+      {
+        surveyId: 'auto_ds-2',
+        questionIndicator: INDICATOR,
+        question: QUESTION,
+        answer: 'Yes',
+        countryCode: 'FRA',
+        dataSource: 'automated',
+      },
+      // Breakdown axis rows (same survey IDs so the JOIN works)
+      {
+        surveyId: 'sv-ds-1',
+        questionIndicator: BREAKDOWN_INDICATOR,
+        question: 'Breakdown axis question',
+        answer: 'GroupA',
+        countryCode: 'ESP',
+        dataSource: 'survey',
+      },
+      {
+        surveyId: 'auto_ds-1',
+        questionIndicator: BREAKDOWN_INDICATOR,
+        question: 'Breakdown axis question',
+        answer: 'GroupB',
+        countryCode: 'FRA',
+        dataSource: 'automated',
+      },
+    ]);
+  });
+
+  afterAll(async () => {
+    await testManager.clearDatabase();
+    await testManager.close();
+  });
+
+  it('should return only survey rows when filtering by data-source = survey', async () => {
+    const widget = makeChartWidget(INDICATOR);
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {
+      filters: [
+        {
+          name: 'data-source',
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['survey'],
+        },
+      ],
+    });
+
+    expect(widget.data.chart).toBeDefined();
+    const total = widget.data.chart.reduce(
+      (sum: number, item: any) => sum + item.value,
+      0,
+    );
+    expect(total).toBe(3); // 3 survey rows, 0 automated
+    expect(widget.data.chart).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ label: 'Yes', value: 2 }),
+        expect.objectContaining({ label: 'No', value: 1 }),
+      ]),
+    );
+  });
+
+  it('should return only automated rows when filtering by data-source = automated', async () => {
+    const widget = makeChartWidget(INDICATOR);
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {
+      filters: [
+        {
+          name: 'data-source',
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['automated'],
+        },
+      ],
+    });
+
+    expect(widget.data.chart).toBeDefined();
+    const total = widget.data.chart.reduce(
+      (sum: number, item: any) => sum + item.value,
+      0,
+    );
+    expect(total).toBe(2); // 2 automated rows, 0 survey
+    expect(widget.data.chart).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ label: 'Yes', value: 1 }),
+        expect.objectContaining({ label: 'No', value: 1 }),
+      ]),
+    );
+  });
+
+  it('should return all rows from both sources when no data-source filter is applied', async () => {
+    const widget = makeChartWidget(INDICATOR);
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, { filters: [] });
+
+    expect(widget.data.chart).toBeDefined();
+    const total = widget.data.chart.reduce(
+      (sum: number, item: any) => sum + item.value,
+      0,
+    );
+    expect(total).toBe(5); // 3 survey + 2 automated
+  });
+
+  it('should combine data-source filter with location-country-region filter', async () => {
+    const widget = makeChartWidget(INDICATOR);
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {
+      filters: [
+        {
+          name: 'data-source',
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['survey'],
+        },
+        {
+          name: 'location-country-region',
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['Spain'],
+        },
+      ],
+    });
+
+    // Only ESP survey rows survive both filters
+    const total = widget.data.chart.reduce(
+      (sum: number, item: any) => sum + item.value,
+      0,
+    );
+    expect(total).toBe(3);
+    // No FRA automated rows should appear
+    expect(
+      widget.data.chart.every((item: any) => item.value <= 3),
+    ).toBe(true);
+  });
+
+  it('should filter map data by data-source and only show countries with matching rows', async () => {
+    const widget = makeMapWidget(INDICATOR);
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {
+      filters: [
+        {
+          name: 'data-source',
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['automated'],
+        },
+      ],
+    });
+
+    expect(widget.data.map).toBeDefined();
+    const fraEntry = widget.data.map.find((e: any) => e.country === 'FRA');
+    const espEntry = widget.data.map.find((e: any) => e.country === 'ESP');
+
+    // FRA has automated data → should have a computed value
+    expect(fraEntry).toBeDefined();
+    expect(fraEntry.value).not.toBeNull();
+
+    // ESP only has survey data → should have no value when filtering to automated
+    expect(espEntry?.value ?? null).toBeNull();
+  });
+
+  it('should filter breakdown data by data-source', async () => {
+    const widget = makeChartWidget(INDICATOR);
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {
+      filters: [
+        {
+          name: 'data-source',
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['survey'],
+        },
+      ],
+      breakdownIndicator: BREAKDOWN_INDICATOR,
+    });
+
+    expect(widget.data.breakdown).toBeDefined();
+    // Only the survey pair (sv-ds-1) is present: GroupA with Yes
+    expect(widget.data.breakdown).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          label: 'GroupA',
+          data: expect.arrayContaining([
+            expect.objectContaining({ label: 'Yes' }),
+          ]),
+        }),
+      ]),
+    );
+    // GroupB belongs only to automated rows — must not appear
+    const groupBEntry = widget.data.breakdown.find(
+      (item: any) => item.label === 'GroupB',
+    );
+    expect(groupBEntry).toBeUndefined();
   });
 });

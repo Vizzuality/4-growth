@@ -1,4 +1,4 @@
-import { QueryFailedError, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { TestManager } from 'api/test/utils/test-manager';
 import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
@@ -25,27 +25,21 @@ describe('PageFilterRepository', () => {
     await testManager.close();
   });
 
-  it('should should throw an error when a base widget is created with an invalid question->indicator combination', async () => {
+  it('should allow saving a page filter whose name is not a question indicator', async () => {
     // Given
     await dataSourceManager.loadQuestionIndicatorMap();
 
-    // When
-    let pageFilter;
-    let error;
-    try {
-      pageFilter = await pageFilterRepository.save({
-        name: 'invalid-question-indicator',
-        values: [],
-        label: 'Test Invalid Filter',
-      });
-    } catch (err) {
-      error = err;
-    }
+    // When — data-source is a metadata filter not backed by a question indicator;
+    // the FK that used to enforce this was intentionally dropped (see migration
+    // 1775000000000-add-data-source-to-survey-answers).
+    const pageFilter = await pageFilterRepository.save({
+      name: 'data-source',
+      values: ['survey', 'automated'],
+      label: 'Data source',
+    });
 
     // Then
-    expect(pageFilter).toBeUndefined();
-    expect(error).toBeInstanceOf(QueryFailedError);
-    expect(error.severity).toBe('ERROR');
-    expect(error.constraint).toBe('FK_question_indicator_map');
+    expect(pageFilter).toBeDefined();
+    expect(pageFilter.name).toBe('data-source');
   });
 });

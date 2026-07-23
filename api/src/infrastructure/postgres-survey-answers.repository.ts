@@ -168,6 +168,11 @@ export class PostgresSurveyAnswerRepository
       mapFilters.push(countriesFilter);
     }
 
+    const dataSourceFilter = filters?.find((f) => f.name === 'data-source');
+    if (dataSourceFilter) {
+      mapFilters.push(dataSourceFilter);
+    }
+
     const filterClauseWithParams =
       this.sqlAdapter.generateFilterClauseForMapWidget(mapFilters, {
         alias: 'sa',
