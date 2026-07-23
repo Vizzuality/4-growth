@@ -71,6 +71,18 @@ export class SQLAdapter {
         continue;
       }
 
+      // data-source edge case — maps to the data_source column, not a question/answer pair
+      if (filter.name === 'data-source') {
+        filterClause += '(';
+        for (const filterValue of filter.values) {
+          filterClause += `${alias}data_source ${filter.operator} $${++currentParamIdx} OR `;
+          queryParams.push(filterValue);
+        }
+        filterClause = filterClause.slice(0, -4);
+        filterClause += ') AND ';
+        continue;
+      }
+
       filterClause += `(${alias}question_indicator = '${filter.name}' AND (`;
 
       for (const filterValue of filter.values) {
@@ -103,6 +115,18 @@ export class SQLAdapter {
         for (const filterValue of filter.values) {
           filterClause += `${alias}country_code ${filter.operator} $${++currentParamIdx} OR `;
           queryParams.push(CountryISOMap.getISO3ByCountryName(filterValue));
+        }
+        filterClause = filterClause.slice(0, -4);
+        filterClause += ') AND ';
+        continue;
+      }
+
+      // data-source edge case — maps to the data_source column (hyphen not valid in SQL identifier)
+      if (filter.name === 'data-source') {
+        filterClause += '(';
+        for (const filterValue of filter.values) {
+          filterClause += `${alias}data_source ${filter.operator} $${++currentParamIdx} OR `;
+          queryParams.push(filterValue);
         }
         filterClause = filterClause.slice(0, -4);
         filterClause += ') AND ';

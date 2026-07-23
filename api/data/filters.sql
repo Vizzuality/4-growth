@@ -54,3 +54,6 @@ INSERT INTO public.page_filters ("name", "label", "values") VALUES ('sustainabil
 
 -- Section 10 - Future Outlook
 INSERT INTO public.page_filters ("name", "label", "values") VALUES ('plans-to-expand-or-upgrade', 'Plans to expand or upgrade','Yes;No;Don''t know;N/A');
+
+-- Data source (metadata filter — not a survey question indicator)
+INSERT INTO public.page_filters ("name", "label", "values") VALUES ('data-source', 'Data source', 'survey;automated');
