@@ -121,7 +121,7 @@ export class DataSourceManager {
       this.generateProjectionsWidgets(),
     ]);
 
-    await this.seedAutomatedData();
+    await this.seedAutomatedMockData();
 
     await configParamsRepo.save({
       param: 'data_version',
@@ -255,8 +255,8 @@ export class DataSourceManager {
     }
   }
 
-  public async seedAutomatedData(): Promise<void> {
-    if (process.env.NODE_ENV === 'production') {
+  public async seedAutomatedMockData(): Promise<void> {
+    if (!process.env.SEED_AUTOMATED_MOCK_DATA) {
       return;
     }
 
