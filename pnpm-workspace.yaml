@@ -23,8 +23,6 @@ overrides:
   "@aws-sdk/xml-builder>fast-xml-parser": "5.8.0"
   # typeorm declares uuid ^11.1.0 but lockfile resolves 11.1.0 (GHSA-w5hq-g745-h8pq)
   "typeorm>uuid": "11.1.1"
-  # next-auth declares uuid ^8.3.2 (vulnerable); v11 still exports the `v4` it imports (GHSA-w5hq-g745-h8pq)
-  "next-auth>uuid": "11.1.1"
   # next bundles postcss <8.5.10 (GHSA-qx2v-qp2m-jg93 — XSS via unescaped </style> in CSS stringify)
   "next>postcss": "8.5.15"
   # @nestjs/platform-express ships multer <2.2.0 — DoS via nested fields and aborted uploads (GHSA-72gw-mp4g-v24j, GHSA-3p4h-7m6x-2hcm)

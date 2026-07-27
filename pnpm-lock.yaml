@@ -73,7 +73,6 @@ overrides:
   nestjs-base-service>lodash: 4.18.1
   '@aws-sdk/xml-builder>fast-xml-parser': 5.8.0
   typeorm>uuid: 11.1.1
-  next-auth>uuid: 11.1.1
   next>postcss: 8.5.15
   '@nestjs/platform-express>multer': 2.2.0
   ajv>fast-uri: 3.1.4
@@ -361,8 +360,8 @@ importers:
         specifier: 15.5.18
         version: 15.5.18(@playwright/test@1.58.2)(@types/node@25.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-auth:
-        specifier: 4.24.13
-        version: 4.24.13(next@15.5.18(@playwright/test@1.58.2)(@types/node@25.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 4.24.15
+        version: 4.24.15(next@15.5.18(@playwright/test@1.58.2)(@types/node@25.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       nuqs:
         specifier: 2.4.3
         version: 2.4.3(next@15.5.18(@playwright/test@1.58.2)(@types/node@25.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
@@ -6086,8 +6085,8 @@ packages:
       '@nestjs/common': ^6.1.1 || ^5.6.2 || ^7.0.0 || ^8.0.0 || ^9.0.0
       typeorm: ^0.3.0
 
-  next-auth@4.24.13:
-    resolution: {integrity: sha512-sgObCfcfL7BzIK76SS5TnQtc3yo2Oifp/yIpfv6fMfeBOiBJkDWF3A2y9+yqnmJ4JKc2C+nMjSjmgDeTwgN1rQ==}
+  next-auth@4.24.15:
+    resolution: {integrity: sha512-NnjYtjrSOAx/TIVFGTX4IfI/9yHnNpi4B7FuLUwuV20v2Zxgr2OGP/YN0ynJuI7y8QOnTBPitfOdEXZrVvhIuA==}
     peerDependencies:
       '@auth/core': 0.34.3
       next: ^12.2.5 || ^13 || ^14 || ^15 || ^16
@@ -13856,7 +13855,7 @@ snapshots:
       '@nestjs/common': 11.1.19(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       typeorm: 0.3.31(pg@8.11.6)(ts-node@10.9.2(@swc/core@1.15.13)(@types/node@25.3.0)(typescript@5.9.3))
 
-  next-auth@4.24.13(next@15.5.18(@playwright/test@1.58.2)(@types/node@25.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next-auth@4.24.15(next@15.5.18(@playwright/test@1.58.2)(@types/node@25.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.29.2
       '@panva/hkdf': 1.1.1
