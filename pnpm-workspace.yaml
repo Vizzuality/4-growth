@@ -25,12 +25,8 @@ overrides:
   "typeorm>uuid": "11.1.1"
   # next-auth declares uuid ^8.3.2 (vulnerable); v11 still exports the `v4` it imports (GHSA-w5hq-g745-h8pq)
   "next-auth>uuid": "11.1.1"
-  # vite pulls esbuild 0.27.3 as optional dep (<0.28.1) — dev-server arbitrary file read on Windows (GHSA-g7r4-m6w7-qqqr)
-  "vite>esbuild": "0.28.1"
   # next bundles postcss <8.5.10 (GHSA-qx2v-qp2m-jg93 — XSS via unescaped </style> in CSS stringify)
   "next>postcss": "8.5.15"
-  # jsdom (test env) ships undici <7.28.0 (GHSA-vxpw-j846-p89q, GHSA-hm92-r4w5-c3mj, GHSA-vmh5-mc38-953g + others)
-  "jsdom>undici": "7.28.0"
   # @nestjs/platform-express ships multer <2.2.0 — DoS via nested fields and aborted uploads (GHSA-72gw-mp4g-v24j, GHSA-3p4h-7m6x-2hcm)
   "@nestjs/platform-express>multer": "2.2.0"
   # @angular-devkit/core>ajv ships fast-uri <=3.1.3 — host confusion via IDN + backslash (GHSA-4c8g-83qw-93j6, GHSA-v2hh-gcrm-f6hx)
@@ -39,21 +35,7 @@ overrides:
   "next>sharp": "0.35.3"
   # body-parser: GHSA-v422-hmwv-36x6 — patched versions (1.20.6, 2.3.0) not yet released on npm; revisit when available
   # Dev-only transitive overrides — parents don't ship patched versions yet
-  "flat-cache>flatted": "3.4.2"
   "minimatch>brace-expansion": "2.1.2"
-  "postcss-load-config>yaml": "2.8.3"
-  "http-proxy-agent>@tootallnate/once": "3.0.1"
-  "micromatch>picomatch": "2.3.2"
-  "anymatch>picomatch": "2.3.2"
-  "readdirp>picomatch": "2.3.2"
-  # supertest>superagent and axios both ship form-data <4.0.6 — CRLF injection in multipart field names (GHSA-hmw2-7cc7-3qxx)
-  "superagent>form-data": "4.0.6"
-  "axios>form-data": "4.0.6"
-  # @istanbuljs/load-nyc-config ships js-yaml 3.x and cosmiconfig ships js-yaml 4.1.1 — quadratic DoS (GHSA-h67p-54hq-rp68)
-  "@istanbuljs/load-nyc-config>js-yaml": "4.3.0"
-  "cosmiconfig>js-yaml": "4.3.0"
-  # multiple jest sub-paths ship @babel/core <=7.29.0 — arbitrary file read via sourceMappingURL (GHSA-4x5r-pxfx-6jf8)
-  "@babel/core": "7.29.6"
 
 catalog:
   # Core
