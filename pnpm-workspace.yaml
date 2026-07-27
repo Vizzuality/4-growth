@@ -18,6 +18,11 @@ overrides:
   "express>path-to-regexp": "0.1.13"
   "nestjs-base-service>class-validator": "0.14.4"
   "nestjs-base-service>lodash": "4.18.1"
+  # body-parser: invalid `limit` value silently disables size enforcement (GHSA-v422-hmwv-36x6)
+  # pnpm override selectors support one parent level only, so scope by the
+  # resolved express major (4.x pins body-parser exactly; 5.x needs the range raised)
+  "express@4>body-parser": "1.20.6"
+  "express@5>body-parser": "2.3.0"
   # @aws-sdk/xml-builder ships vulnerable fast-xml-parser <5.7.0 (GHSA-8gc5-j5rx-235r)
   # 5.8.0 also pulls fast-xml-builder >=1.2.0 fixing GHSA-5wm8-gmm8-39j9
   "@aws-sdk/xml-builder>fast-xml-parser": "5.8.0"
@@ -31,7 +36,6 @@ overrides:
   "ajv>fast-uri": "3.1.4"
   # next ships sharp <0.35.0 — inherited libvips CVEs (GHSA-f88m-g3jw-g9cj)
   "next>sharp": "0.35.3"
-  # body-parser: GHSA-v422-hmwv-36x6 — patched versions (1.20.6, 2.3.0) not yet released on npm; revisit when available
   # Dev-only transitive overrides — parents don't ship patched versions yet
   "minimatch>brace-expansion": "2.1.2"
 
