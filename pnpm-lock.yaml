@@ -69,15 +69,12 @@ overrides:
   qs: 6.15.2
   nestjs-base-service>express: 4.21.2
   express>path-to-regexp: 0.1.13
-  nestjs-base-service>class-validator: 0.14.4
   nestjs-base-service>lodash: 4.18.1
+  nestjs-base-service>class-validator: 0.14.4
   express@4>body-parser: 1.20.6
-  express@5>body-parser: 2.3.0
   '@aws-sdk/xml-builder>fast-xml-parser': 5.8.0
-  typeorm>uuid: 11.1.1
   next>postcss: 8.5.23
   '@nestjs/platform-express>multer': 2.2.0
-  ajv>fast-uri: 3.1.4
   next>sharp: 0.35.3
 
 importers:
