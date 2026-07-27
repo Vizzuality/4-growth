@@ -36,8 +36,11 @@ overrides:
   "ajv>fast-uri": "3.1.4"
   # next ships sharp <0.35.0 — inherited libvips CVEs (GHSA-f88m-g3jw-g9cj)
   "next>sharp": "0.35.3"
-  # Dev-only transitive overrides — parents don't ship patched versions yet
-  "minimatch>brace-expansion": "2.1.2"
+  # brace-expansion GHSA-mh99-v99m-4gvg is patched only in 5.0.8; 5.x replaced the
+  # CJS default export with a named one, so minimatch 3.x (^1.1.7) and 9.x (^2.0.2)
+  # crash on it. No override: minimatch 10.x resolves the patched 5.0.8 from its own
+  # ^5.0.2 range, and the older two stay on unpatched-but-working releases. Their
+  # glob patterns are build config and typeorm entity paths, never user input.
 
 catalog:
   # Core
