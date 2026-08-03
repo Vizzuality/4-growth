@@ -7,6 +7,7 @@ const COUNTRY_NAMES_ISO = [
   { name: 'Bosnia and Herzegovina', language: 'BA', iso3: 'BIH' },
   { name: 'Bulgaria', language: 'BG', iso3: 'BGR' },
   { name: 'Croatia', language: 'HR', iso3: 'HRV' },
+  { name: 'Cyprus', language: 'CY', iso3: 'CYP' },
   { name: 'Czechia', language: 'CZ', iso3: 'CZE' },
   { name: 'Denmark', language: 'DK', iso3: 'DNK' },
   { name: 'Estonia', language: 'EE', iso3: 'EST' },
@@ -61,7 +62,10 @@ const getCountryNameByISO3 = (iso3: string): string | undefined => {
 };
 
 const getCountryByNamelanguage = (language: string): string | undefined => {
-  return COUNTRY_NAMES_ISO.find((r) => r.language === language)?.name;
+  return (
+    COUNTRY_NAMES_ISO.find((r) => r.language === language)?.name ??
+    COUNTRY_NAMES_ISO.find((r) => r.language === language.split('-')[0])?.name
+  );
 };
 
 export const CountryISOMap = {
