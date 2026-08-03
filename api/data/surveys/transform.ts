@@ -72,8 +72,16 @@ const EXCLUDED_QUESTIONS = new Set([
   'I agree to be contacted again by the researchers for clarification or elaboration on my input in the discussion (optional)',
 ]);
 
-export const transform = async () => {
+export const transform = async (
+  inputDir = 'data/surveys',
+  outputPath = `${__dirname}/surveys.json`,
+) => {
   const logger = new Logger('ETL');
+
+  const readJson = async (path: string) => {
+    const parsed = JSON.parse(await fs.readFile(path, 'utf8'));
+    return Array.isArray(parsed) ? parsed : parsed.value;
+  };
 
   const generateSurveQuestionyMap = (rows) => {
     const surveyQuestionMap = new Map();
@@ -125,23 +133,10 @@ export const transform = async () => {
   };
 
   const [answersDf, dateDf, questionDf, answerIdDf] = await Promise.all([
-    dataForge.fromObject(
-      JSON.parse(await fs.readFile('data/surveys/Answer.json', 'utf8')).value,
-    ),
-    dataForge.fromObject(
-      JSON.parse(await fs.readFile('data/surveys/Survey_metadata.json', 'utf8'))
-        .value,
-    ),
-    dataForge.fromObject(
-      JSON.parse(
-        await fs.readFile('data/surveys/Question_hierarchy.json', 'utf8'),
-      ).value,
-    ),
-    dataForge.fromObject(
-      JSON.parse(
-        await fs.readFile('data/surveys/Categorical_Answers.json', 'utf8'),
-      ).value,
-    ),
+    dataForge.fromObject(await readJson(`${inputDir}/Answer.json`)),
+    dataForge.fromObject(await readJson(`${inputDir}/Survey_metadata.json`)),
+    dataForge.fromObject(await readJson(`${inputDir}/Question_hierarchy.json`)),
+    dataForge.fromObject(await readJson(`${inputDir}/Categorical_Answers.json`)),
   ]);
 
   logger.log(`Number of surveys: ${dateDf.count()}`);
@@ -167,8 +162,9 @@ export const transform = async () => {
     (rightRow) => rightRow.Value['ID'],
     (leftRow, rightRow) => {
       leftRow['questionId'] = leftRow['question'];
+      const questionText = rightRow.Value['Level3'] || rightRow.Value['Level2'] || '';
       const question = StringUtils.capitalizeFirstLetter(
-        rightRow.Value['Level2'].replace(/:/g, ''),
+        questionText.replace(/:/g, '').trim(),
       );
       leftRow['question'] = question;
       return leftRow;
@@ -231,11 +227,15 @@ export const transform = async () => {
       answers.push(countryAnswer);
     }
 
-    answers = answers.map((e) => {
-      const countryCode = CountryISOMap.getISO3ByCountryName(
-        countryAnswer.answer,
+    const countryCode = CountryISOMap.getISO3ByCountryName(countryAnswer.answer);
+    if (countryCode === undefined) {
+      console.error(
+        `survey_id: ${answers[0].surveyId} country code not found for "${countryAnswer.answer}" (${(++skippedSurveys + '').padStart(3, '0')})`,
       );
-      if (countryCode === undefined) throw new Error('Country code not found');
+      continue;
+    }
+
+    answers = answers.map((e) => {
       e['countryCode'] = countryCode;
       return e;
     });
@@ -250,13 +250,13 @@ export const transform = async () => {
   ensureAllSurveyQuestionsHaveAnswers(transformedAnswers);
 
   await fs.writeFile(
-    `${__dirname}/surveys.json`,
+    outputPath,
     JSON.stringify(transformedAnswers, null, 2),
     'utf-8',
   );
 
   logger.log(
-    `\nCreated file ${__dirname}/surveys.json and it contains data for ${answersGroupByAnswers.count() - skippedSurveys} surveys.`,
+    `\nCreated file ${outputPath} and it contains data for ${answersGroupByAnswers.count() - skippedSurveys} surveys.`,
   );
 };
 
