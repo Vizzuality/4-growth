@@ -50,6 +50,17 @@ export function getCssChartColor(
     : CSS_CHART_COLORS[index];
 }
 
+export const EXTERNAL_LINKS = [
+  {
+    label: "Feedback",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSdmPZl2WSBP4NYwdtfMA9H97LRR7wctc_5ceASHrtgojcfjLQ/viewform",
+  },
+  {
+    label: "Tutorials",
+    href: "https://4growth-project.eu/newsroom/#deliverables",
+  },
+] as const;
+
 export const ADD_FILTER_MODE = {
   MERGE: 0,
   REPLACE: 1,

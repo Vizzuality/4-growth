@@ -1,6 +1,5 @@
 import BottomBar from "@/containers/bottom-bar";
 import CategorySheet from "@/containers/bottom-bar/category-sheet";
-import FeedbackButton from "@/containers/bottom-bar/feedback-button";
 import FiltersSheet from "@/containers/bottom-bar/filters-sheet";
 import FilterSettings from "@/containers/bottom-bar/projections/filter-settings";
 import ScenariosSheet from "@/containers/bottom-bar/projections/scenarios-sheet";
@@ -17,7 +16,6 @@ export default function ProjectionsPage() {
         <FiltersSheet>
           <FilterSettings defaultFilters={PROJECTIONS_DEFAULT_FILTERS} />
         </FiltersSheet>
-        <FeedbackButton />
       </BottomBar>
     </>
   );
