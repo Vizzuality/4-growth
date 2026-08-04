@@ -23,6 +23,7 @@
     "etlProcessEmails": "admin@example.com"
   },
   "etl": {
-    "cronEnabled": false
+    "cronEnabled": false,
+    "seedAutomatedMockData": false
   }
 }
