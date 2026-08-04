@@ -16,6 +16,9 @@
       "domain": "random.com"
     },
     "contactEmail": "contact@email.com"
+  },
+  "etl": {
+    "seedAutomatedMockData": true
   }
 }
 

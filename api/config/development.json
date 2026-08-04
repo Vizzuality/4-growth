@@ -3,6 +3,9 @@
     "username": "4growth",
     "password": "4growth",
     "database": "4growth-dev"
+  },
+  "etl": {
+    "seedAutomatedMockData": true
   }
 }
 

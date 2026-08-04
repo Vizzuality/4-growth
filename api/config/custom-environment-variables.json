@@ -22,6 +22,10 @@
     "etlProcessEmails": "ETL_PROCESS_EMAILS"
   },
   "etl": {
-    "cronEnabled": "ETL_CRON_ENABLED"
+    "cronEnabled": "ETL_CRON_ENABLED",
+    "seedAutomatedMockData": {
+      "__name": "SEED_AUTOMATED_MOCK_DATA",
+      "__format": "boolean"
+    }
   }
 }

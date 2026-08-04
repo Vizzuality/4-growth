@@ -135,7 +135,8 @@ module "dev" {
   etl_process_emails                            = var.etl_process_emails
 
   github_additional_environment_variables = {
-    ETL_CRON_ENABLED = "true"
+    ETL_CRON_ENABLED         = "true"
+    SEED_AUTOMATED_MOCK_DATA = "true"
   }
 
   github_additional_environment_secrets = {
@@ -169,7 +170,8 @@ module "staging" {
   etl_process_emails                            = var.etl_process_emails
 
   github_additional_environment_variables = {
-    ETL_CRON_ENABLED = "true"
+    ETL_CRON_ENABLED         = "true"
+    SEED_AUTOMATED_MOCK_DATA = "true"
   }
   github_additional_environment_secrets = {
     TF_AUTH_CREDENTIALS = var.auth_credentials
