@@ -256,7 +256,7 @@ export class DataSourceManager {
   }
 
   public async seedAutomatedMockData(): Promise<void> {
-    if (!process.env.SEED_AUTOMATED_MOCK_DATA) {
+    if (!config.get<boolean>('etl.seedAutomatedMockData')) {
       return;
     }
 
