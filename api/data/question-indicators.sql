@@ -141,4 +141,14 @@ INSERT INTO question_indicator_map ("indicator", "question") VALUES
     ('tech-provider-market-penetration', 'Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?'),
     ('tech-provider-aftersales', 'Do you offer any after-sales service, support, or warranty for your products or services?'),
     ('tech-provider-user-priorities', 'Do you prioritize user needs within the agricultural and forestry sectors during the development phase?')
+
+    -- PENDING TEAM DECISION: the two Wave 2 questions below use rephrased versions of existing Wave 1 indicators.
+    -- Option A: reuse the same indicator IDs (sustainability, cost-savings-efficiency) — this would ON CONFLICT
+    --   UPDATE the existing rows, overwriting the Wave 1 question texts and breaking Wave 1 data loading.
+    --   Would also violate the FK from survey_answers referencing the old (indicator, question) pair.
+    -- Option B: create new indicator IDs — requires a TypeORM migration for new BaseWidget rows.
+    -- Until a decision is made, these questions are skipped by loadSurveyData with a warning.
+    -- ('sustainability', 'Digital technologies have positively contributed to sustainability and environmental practices in our organization.'),
+    -- ('cost-savings-efficiency', 'Digital technologies have resulted in cost savings or increased efficiency in our operations.'),
+
 ON CONFLICT (indicator) DO UPDATE SET question = EXCLUDED.question;
