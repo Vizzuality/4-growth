@@ -64,6 +64,23 @@ const QUESTIONS = new Set([
   'Primary area of operation in forestry',
   'Location (country/region)',
   'Are there regulatory considerations influencing the governance of digital technology adoption?',
+  // Wave 2/3 questions
+  'Can you provide insights into the cost structure associated with implementing and maintaining your technology?',
+  'Digital technologies have positively contributed to sustainability and environmental practices in our organization.',
+  'Digital technologies have resulted in cost savings or increased efficiency in our operations.',
+  'Do you conduct market research or needs assessments before developing digital solutions for agriculture and forestry?',
+  'Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?',
+  'Do you offer any after-sales service, support, or warranty for your products or services?',
+  'Do you prioritize user needs within the agricultural and forestry sectors during the development phase?',
+  'To whom and where do you send this data?',
+  'What is the geographical reach of the services that you offer?',
+  'What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?',
+  'What sales model do you primarily use for your products/services?',
+  'What type of organisation are you?',
+  'What type of users do you primarily provide your technology to?',
+  'What types of data do your products or services generate or rely on?',
+  'Would you be able to operate without this data?',
+  'Would you further adopt digital technologies if you had better network connectivity?',
 ]);
 
 const EXCLUDED_QUESTIONS = new Set([
@@ -165,7 +182,7 @@ export const transform = async (
       const questionText = rightRow.Value['Level3'] || rightRow.Value['Level2'] || '';
       const question = StringUtils.capitalizeFirstLetter(
         questionText.replace(/:/g, '').trim(),
-      );
+      ).replace(/\bTo who\b/g, 'To whom');
       leftRow['question'] = question;
       return leftRow;
     },
