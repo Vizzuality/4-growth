@@ -111,7 +111,10 @@ const parseFromFile = async (
 
     for (let i = col.yearStart; i <= col.yearEnd; i++) {
       const year = 2020 + (i - col.yearStart);
-      const value = Number.parseFloat(row[i]);
+      const rawValue = Number.parseFloat(row[i]);
+      // Penetration arrives as a fraction (0–1); scale to percentage points for display
+      const value =
+        type === PROJECTION_TYPES.PENETRATION ? rawValue * 100 : rawValue;
       projectionData.push({
         projection: { id } as Projection,
         year,
