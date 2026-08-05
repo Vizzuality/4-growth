@@ -16,6 +16,7 @@ import { WidgetUtils } from '@shared/dto/widgets/widget.utils';
 import { SurveyAnswer } from '@shared/dto/surveys/survey-answer.entity';
 import { SEARCH_FILTERS_OPERATORS } from '@shared/dto/global/search-filters';
 import { WIDGET_VISUALIZATIONS } from '@shared/dto/widgets/widget-visualizations.constants';
+import { DATA_SOURCE_FILTER_NAME } from '@shared/constants/page-filters';
 
 export class PostgresSurveyAnswerRepository
   extends Repository<SurveyAnswer>
@@ -168,7 +169,9 @@ export class PostgresSurveyAnswerRepository
       mapFilters.push(countriesFilter);
     }
 
-    const dataSourceFilter = filters?.find((f) => f.name === 'data-source');
+    const dataSourceFilter = filters?.find(
+      (f) => f.name === DATA_SOURCE_FILTER_NAME,
+    );
     if (dataSourceFilter) {
       mapFilters.push(dataSourceFilter);
     }
