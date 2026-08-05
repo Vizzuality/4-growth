@@ -1,4 +1,8 @@
+import { DATA_SOURCE_FILTER_NAME } from "@/lib/constants";
+
+// Order here drives the order the filters render in the sidebar.
 export const SURVEY_ANALYSIS_DEFAULT_FILTERS = [
+  DATA_SOURCE_FILTER_NAME,
   "location-country-region",
   "sector",
 ];
@@ -13,6 +17,10 @@ export const DEFAULT_FILTERS_LABEL_MAP: Record<
   string,
   { selected: string; unSelected: string }
 > = {
+  [DATA_SOURCE_FILTER_NAME]: {
+    selected: "Data is",
+    unSelected: "Data is",
+  },
   country: {
     selected: "Country",
     unSelected: "All countries",

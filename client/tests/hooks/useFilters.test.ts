@@ -161,4 +161,88 @@ describe("useFilters", () => {
     "filters[0][name]=sector&filters[0][operator]==&filters[0][values]=",
     "Filter at index 0 has invalid 'values': expected a non-empty array",
   );
+
+  describe("data source default", () => {
+    const SURVEY_DATA_SOURCE = {
+      name: "data-source",
+      operator: "=",
+      values: ["survey"],
+    };
+
+    const mockSetFiltersQuery = vi.fn();
+
+    beforeEach(() => {
+      vi.mocked(useQueryState).mockReturnValue(["", mockSetFiltersQuery]);
+      vi.mocked(usePathname).mockReturnValue("/survey-analysis");
+    });
+
+    it.each(["/survey-analysis", "/survey-analysis/sandbox"])(
+      "seeds the survey data source on %s when there is no filters query",
+      (pathname) => {
+        vi.mocked(usePathname).mockReturnValue(pathname);
+
+        const { result } = renderHook(() => useFilters());
+
+        expect(result.current.filters).toEqual([SURVEY_DATA_SOURCE]);
+      },
+    );
+
+    it("merges the data source default into a filters query that omits it", () => {
+      vi.mocked(useQueryState).mockReturnValue([
+        "filters[0][name]=sector&filters[0][operator]==&filters[0][values][0]=Retail",
+        mockSetFiltersQuery,
+      ]);
+
+      const { result } = renderHook(() => useFilters());
+
+      expect(result.current.filters).toEqual([
+        SURVEY_DATA_SOURCE,
+        { name: "sector", operator: "=", values: ["Retail"] },
+      ]);
+    });
+
+    it("preserves an explicitly selected data source", () => {
+      vi.mocked(useQueryState).mockReturnValue([
+        "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=survey&filters[0][values][1]=automated",
+        mockSetFiltersQuery,
+      ]);
+
+      const { result } = renderHook(() => useFilters());
+
+      expect(result.current.filters).toEqual([
+        { name: "data-source", operator: "=", values: ["survey", "automated"] },
+      ]);
+    });
+
+    it("never applies the data source default on projections", () => {
+      vi.mocked(usePathname).mockReturnValue("/projections");
+      vi.mocked(useQueryState).mockReturnValue([
+        "filters[0][name]=country&filters[0][operator]==&filters[0][values][0]=Spain",
+        mockSetFiltersQuery,
+      ]);
+
+      const { result } = renderHook(() => useFilters());
+
+      expect(result.current.filters).toEqual([
+        { name: "country", operator: "=", values: ["Spain"] },
+      ]);
+    });
+
+    it("keeps the chosen data source when clearing all filters", () => {
+      vi.mocked(useQueryState).mockReturnValue([
+        "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=automated&filters[1][name]=sector&filters[1][operator]==&filters[1][values][0]=Retail",
+        mockSetFiltersQuery,
+      ]);
+
+      const { result } = renderHook(() => useFilters());
+
+      act(() => {
+        result.current.removeAll();
+      });
+
+      expect(mockSetFiltersQuery).toHaveBeenCalledWith(
+        "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=automated",
+      );
+    });
+  });
 });

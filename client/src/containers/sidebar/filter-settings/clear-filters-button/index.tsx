@@ -2,18 +2,14 @@ import { FC } from "react";
 
 import { Trash2Icon } from "lucide-react";
 
-import useFilters from "@/hooks/use-filters";
+import useFilters, { hasClearableFilters } from "@/hooks/use-filters";
 
 import { Button } from "@/components/ui/button";
 
 const ClearFiltersButton: FC = () => {
   const { filters, removeAll } = useFilters();
 
-  if (
-    filters.length === 0 ||
-    filters.every((f) => f.name === "scenario" || f.name === "category")
-  )
-    return null;
+  if (!hasClearableFilters(filters)) return null;
 
   return (
     <Button

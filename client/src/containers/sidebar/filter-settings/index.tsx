@@ -86,6 +86,14 @@ const FilterSettings: FC<FilterSettingsProps> = ({
       );
     }
 
+    // The filters endpoint has no ORDER BY, so sidebar order comes from defaultFilters.
+    const orderOf = (name: string) => {
+      const index = defaultFilters.indexOf(name);
+      return index === -1 ? defaultFilters.length : index;
+    };
+
+    filters = [...filters].sort((a, b) => orderOf(a.name) - orderOf(b.name));
+
     if (isTableVisualization) {
       return [...filters, SCENARIO_PAGE_FILTER];
     }

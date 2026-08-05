@@ -9,13 +9,56 @@ import {
 import { useQueryState } from "nuqs";
 import qs from "qs";
 
-import { ADD_FILTER_MODE } from "@/lib/constants";
+import {
+  ADD_FILTER_MODE,
+  DATA_SOURCE_FILTER_NAME,
+  DEFAULT_DATA_SOURCE_VALUES,
+} from "@/lib/constants";
 import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 
 export interface FilterQueryParam {
   name: string;
   operator: WidgetDataFilterOperatorType;
   values: string[];
+}
+
+const SURVEY_ANALYSIS_PATHNAME = /^\/survey-analysis(?:\/|$)/;
+const PROJECTIONS_PATHNAME = /^\/projections(?:\?.*)?$/;
+
+// Filters that survive "Clear all" — so clearing them is never offered as a no-op.
+const PRESERVED_FILTER_NAMES = [
+  "scenario",
+  "category",
+  DATA_SOURCE_FILTER_NAME,
+];
+
+export const isPreservedFilter = (name: string) =>
+  PRESERVED_FILTER_NAMES.includes(name);
+
+export const hasClearableFilters = (filters: FilterQueryParam[]) =>
+  filters.some((filter) => !isPreservedFilter(filter.name));
+
+/**
+ * Survey analysis always sends an explicit data source; absence of the filter
+ * means all sources to the API, which is not the resting state we want.
+ * Must never apply to projections — that query path has no data-source branch,
+ * so the filter would be read as a question indicator and match nothing.
+ */
+export function withDataSourceDefault(
+  filters: FilterQueryParam[],
+): FilterQueryParam[] {
+  if (filters.some((filter) => filter.name === DATA_SOURCE_FILTER_NAME)) {
+    return filters;
+  }
+
+  return [
+    {
+      name: DATA_SOURCE_FILTER_NAME,
+      operator: "=",
+      values: [...DEFAULT_DATA_SOURCE_VALUES],
+    },
+    ...filters,
+  ];
 }
 
 type ParsedFilterObject = {
@@ -28,8 +71,12 @@ function useFilters() {
   const pathname = usePathname();
   const [filtersQuery, setFiltersQuery] = useQueryState("q");
   const filters = useMemo(() => {
+    const isSurveyAnalysis = SURVEY_ANALYSIS_PATHNAME.test(pathname);
+    const applyDefaults = (parsed: FilterQueryParam[]) =>
+      isSurveyAnalysis ? withDataSourceDefault(parsed) : parsed;
+
     if (!filtersQuery)
-      return /^\/projections(?:\?.*)?$/.test(pathname)
+      return PROJECTIONS_PATHNAME.test(pathname)
         ? ([
             {
               name: "scenario",
@@ -37,7 +84,7 @@ function useFilters() {
               values: ["baseline"],
             },
           ] as FilterQueryParam[])
-        : [];
+        : applyDefaults([]);
 
     try {
       const parsed = qs.parse(filtersQuery);
@@ -46,12 +93,14 @@ function useFilters() {
         throw new Error("Filters must be an array");
       }
 
-      return parsed.filters.map((filter, index: number) =>
-        validateFilterQueryParam(filter as ParsedFilterObject, index),
+      return applyDefaults(
+        parsed.filters.map((filter, index: number) =>
+          validateFilterQueryParam(filter as ParsedFilterObject, index),
+        ),
       );
     } catch (error) {
       console.error("Error parsing filters:", error);
-      return [];
+      return applyDefaults([]);
     }
   }, [filtersQuery, pathname]);
 
@@ -91,11 +140,7 @@ function useFilters() {
   );
 
   const removeAll = useCallback(() => {
-    setFilters(
-      filters.filter(
-        (filter) => filter.name === "scenario" || filter.name === "category",
-      ),
-    );
+    setFilters(filters.filter((filter) => isPreservedFilter(filter.name)));
   }, [filters, setFilters]);
 
   return {
