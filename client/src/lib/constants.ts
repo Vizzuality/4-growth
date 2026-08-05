@@ -70,7 +70,7 @@ export type ADD_FILTER_MODE =
   (typeof ADD_FILTER_MODE)[keyof typeof ADD_FILTER_MODE];
 
 // Filter name is hyphenated, the survey_answers column is data_source, the entity property is dataSource.
-export const DATA_SOURCE_FILTER_NAME = "data-source";
+export { DATA_SOURCE_FILTER_NAME } from "@shared/constants/page-filters";
 
 export const DATA_SOURCE_OPTIONS: { label: string; values: string[] }[] = [
   { label: "Survey responses", values: ["survey"] },
@@ -79,6 +79,28 @@ export const DATA_SOURCE_OPTIONS: { label: string; values: string[] }[] = [
 ];
 
 export const DEFAULT_DATA_SOURCE_VALUES = ["survey"];
+
+/**
+ * Comparison series order. The chart fills the first source solid and hatches the
+ * rest, so it and the sidebar legend that explains it both sort by this — pinning
+ * them together rather than to the order the filter values happen to arrive in.
+ */
+export const DATA_SOURCE_ORDER = ["survey", "automated"];
+
+/** Legend-length names; the option labels are too long to underline inline */
+export const DATA_SOURCE_SHORT_LABELS: Record<string, string> = {
+  survey: "Survey",
+  automated: "Automated",
+};
+
+export function compareDataSources(a: string, b: string): number {
+  const rank = (source: string) => {
+    const index = DATA_SOURCE_ORDER.indexOf(source);
+    return index === -1 ? DATA_SOURCE_ORDER.length : index;
+  };
+
+  return rank(a) - rank(b);
+}
 
 export function getDataSourceOptionLabel(values: string[]): string | undefined {
   const key = [...values].sort().join("|");

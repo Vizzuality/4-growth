@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   WIDGET_VISUALIZATIONS,
@@ -11,6 +11,7 @@ import useFilters from "@/hooks/use-filters";
 
 import { buildWidgetDownloadUrl } from "@/utils/download-url";
 
+import { compareDataSources, DATA_SOURCE_FILTER_NAME } from "@/lib/constants";
 import { removeNaLabels } from "@/lib/normalize-widget-data";
 import { cn, isEmptyWidget } from "@/lib/utils";
 
@@ -25,6 +26,8 @@ import Map from "@/containers/widget/map";
 import Navigation from "@/containers/widget/navigation";
 import PieChart from "@/containers/widget/pie-chart";
 import SingleValue from "@/containers/widget/single-value";
+import SingleValueBySource from "@/containers/widget/single-value/by-source";
+import SourceComparisonChart from "@/containers/widget/source-comparison-chart";
 import WidgetMenu from "@/containers/widget/survey-analysis/menu";
 import WidgetHeader from "@/containers/widget/widget-header";
 
@@ -83,14 +86,37 @@ export default function Widget({
 }: WidgetProps) {
   const [selectedVisualization, setSelectedVisualization] =
     useState(visualization);
+  // Present only when more than one data source is selected. Rendering is forced
+  // to bars while comparing, without touching the stored visualization choice, so
+  // leaving comparison restores whatever the user had picked.
+  const bySource = useMemo(() => {
+    const sources = data.percentages.bySource;
+
+    return (
+      sources &&
+      [...sources].sort((a, b) => compareDataSources(a.source, b.source))
+    );
+  }, [data.percentages.bySource]);
+  const isComparingSources = (bySource?.length ?? 0) > 1;
+  const disabledVisualisations = isComparingSources
+    ? visualisations?.filter(
+        (v) => v !== WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
+      )
+    : undefined;
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
   const [focusedWidget, setFocusedWidget] = useAtom(focusedWidgetAtom);
   const highlightWidget = showOverlay && indicator === focusedWidget;
   const { filters } = useFilters();
+  // The breakdown response carries no bySource — that path replaces the whole
+  // payload — so the combined-sources note reads the filter instead.
+  const hasMultipleSourcesSelected =
+    (filters.find((f) => f.name === DATA_SOURCE_FILTER_NAME)?.values.length ??
+      0) > 1;
   const downloadUrl = buildWidgetDownloadUrl(indicator, filters, breakdown);
   const defaultMenu = (
     <WidgetMenu
       visualisations={visualisations}
+      disabledVisualisations={disabledVisualisations}
       info={description ? { title: indicator, description } : undefined}
       selectedVisualization={selectedVisualization}
       showCustomizeWidgetButton={showCustomizeWidgetButton}
@@ -143,7 +169,44 @@ export default function Widget({
         )}
       >
         <WidgetHeader title={title} question={question} menu={menuComponent} />
+        {hasMultipleSourcesSelected && (
+          <p className="px-8 pb-2 text-xs text-bluish-gray-500">
+            Survey + Automated (combined)
+          </p>
+        )}
         <Breakdown data={data.percentages.breakdown} />
+      </Card>
+    );
+  }
+
+  if (isComparingSources) {
+    const isCounterWidget = bySource?.some((s) => s.data.counter !== undefined);
+
+    if (isCounterWidget) {
+      return (
+        <Card className="p-0">
+          <SingleValueBySource title={title} data={bySource} />
+        </Card>
+      );
+    }
+
+    return (
+      <Card
+        className={cn(
+          "relative min-h-80 p-0 pb-7",
+          highlightWidget && "z-50",
+          className,
+        )}
+      >
+        <WidgetHeader
+          title={title}
+          question={question}
+          questionTitle={questionTitle}
+          menu={menuComponent}
+          responseRate={responseRate}
+          absoluteValue={absoluteValue}
+        />
+        <SourceComparisonChart data={bySource} />
       </Card>
     );
   }
