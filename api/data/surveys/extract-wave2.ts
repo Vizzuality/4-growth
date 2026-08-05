@@ -21,6 +21,7 @@ export const WAVE2_ENTITIES = [
   'Environmental_and_sustainability_impact_4GROWTH', // Environmental impact
   'Future_outlook_4GROWTH', // Future plans
   'Associated_costs_and_prerequisites', // Costs (provider focus)
+  'Additional_comments_4GROWTH',
 
   // Reference tables for categorical answer descriptions
   'European_countries',
