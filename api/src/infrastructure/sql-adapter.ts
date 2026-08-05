@@ -14,7 +14,8 @@ export class SQLAdapter {
     opts: { alias?: string; queryParams?: unknown[] } = {},
   ): FilterClauseWithParams {
     opts.queryParams ??= [];
-    if (Array.isArray(filters) === false) return ['', opts.queryParams];
+    if (Array.isArray(filters) === false || filters.length === 0)
+      return ['', opts.queryParams];
 
     const { alias: rawAlias, queryParams } = opts;
     const alias = rawAlias === undefined ? '' : `${rawAlias}.`;
@@ -52,7 +53,8 @@ export class SQLAdapter {
     opts: { alias?: string; queryParams?: unknown[] } = {},
   ): FilterClauseWithParams {
     opts.queryParams ??= [];
-    if (Array.isArray(filters) === false) return ['', opts.queryParams];
+    if (Array.isArray(filters) === false || filters.length === 0)
+      return ['', opts.queryParams];
 
     const { alias: rawAlias, queryParams } = opts;
     const alias = rawAlias === undefined ? '' : `${rawAlias}.`;
@@ -102,7 +104,8 @@ export class SQLAdapter {
     opts: { alias?: string; queryParams?: unknown[] } = {},
   ): FilterClauseWithParams {
     opts.queryParams ??= [];
-    if (Array.isArray(filters) === false) return ['', opts.queryParams];
+    if (Array.isArray(filters) === false || filters.length === 0)
+      return ['', opts.queryParams];
 
     const { alias: rawAlias, queryParams } = opts;
     const alias = rawAlias === undefined ? '' : `${rawAlias}.`;
@@ -144,6 +147,20 @@ export class SQLAdapter {
     }
     filterClause = filterClause.slice(0, -4);
     return [filterClause, queryParams];
+  }
+
+  /**
+   * Same as generateFilterClauseFromWidgetDataFilters but without the leading
+   * WHERE, for composing into an existing clause. Returns '' when there is
+   * nothing to filter on.
+   */
+  public generatePredicateFromWidgetDataFilters(
+    filters?: WidgetDataFilter[],
+    opts: { alias?: string; queryParams?: unknown[] } = {},
+  ): FilterClauseWithParams {
+    const [clause, queryParams] =
+      this.generateFilterClauseFromWidgetDataFilters(filters, opts);
+    return [clause.replace(/^WHERE /, ''), queryParams];
   }
 
   public addExpressionToFilterClause(
