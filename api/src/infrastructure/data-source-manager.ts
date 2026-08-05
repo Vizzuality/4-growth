@@ -53,26 +53,6 @@ export class DataSourceManager {
       await extract();
       await transform();
 
-      // Wave 2 extraction and transformation (OData)
-      const { extractWave2 } = await import(
-        `${__dirname}/../../data/surveys/extract-wave2`
-      );
-      const { transformWave2 } = await import(
-        `${__dirname}/../../data/surveys/transform-wave2`
-      );
-      await extractWave2();
-      await transformWave2();
-
-      // Wave 3 extraction and transformation (OData)
-      const { extractWave3 } = await import(
-        `${__dirname}/../../data/surveys/extract-wave3`
-      );
-      const { transformWave3 } = await import(
-        `${__dirname}/../../data/surveys/transform-wave3`
-      );
-      await extractWave3();
-      await transformWave3();
-
       await this.loadInitialData();
       this.logger.log(
         'ETL process completed successfully',
