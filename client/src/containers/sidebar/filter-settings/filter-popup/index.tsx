@@ -13,6 +13,7 @@ import { FilterQueryParam } from "@/hooks/use-filters";
 import FilterSelect from "@/containers/filter/filter-select";
 import { showOverlayAtom } from "@/containers/overlay/store";
 import FilterItemButton from "@/containers/sidebar/filter-settings/button";
+import DataSourceFilterLabel from "@/containers/sidebar/filter-settings/data-source-label";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -52,6 +53,9 @@ const FilterPopup: FC<FilterPopupProps> = ({
   };
   const selectedFilter = filterQueryParams.find((f) => f.name === name);
   const isDataSource = name === DATA_SOURCE_FILTER_NAME;
+  // A single source needs no legend: there is nothing for the underlines to tell apart
+  const isComparingSources =
+    isDataSource && (selectedFilter?.values.length ?? 0) > 1;
 
   return (
     <Popover onOpenChange={handleFiltersPopupChange} open={showPopup} modal>
@@ -68,16 +72,20 @@ const FilterPopup: FC<FilterPopupProps> = ({
                   label?.selected ??
                     filters.find((f) => f.name === selectedFilter?.name)?.label
                 }{" "}
-                <FilterItemButton
-                  value={selectedFilter.values[0]}
-                  displayValue={
-                    isDataSource
-                      ? getDataSourceOptionLabel(selectedFilter.values)
-                      : undefined
-                  }
-                  removable={!isDataSource}
-                  onClick={(value) => onRemoveFilterValue(name, value)}
-                />
+                {isComparingSources ? (
+                  <DataSourceFilterLabel values={selectedFilter.values} />
+                ) : (
+                  <FilterItemButton
+                    value={selectedFilter.values[0]}
+                    displayValue={
+                      isDataSource
+                        ? getDataSourceOptionLabel(selectedFilter.values)
+                        : undefined
+                    }
+                    removable={!isDataSource}
+                    onClick={(value) => onRemoveFilterValue(name, value)}
+                  />
+                )}
               </span>
               {!isDataSource && (
                 <ul>
