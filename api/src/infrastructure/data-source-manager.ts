@@ -53,6 +53,20 @@ export class DataSourceManager {
       await extract();
       await transform();
 
+      // Wave 2: extract OData entities → wrangle to 4 JSON files → transform to surveys-wave2.json
+      const { extractWave2 } = await import(
+        `${__dirname}/../../data/surveys/extract-wave2`
+      );
+      const { wrangleWave2 } = await import(
+        `${__dirname}/../../data/surveys/wrangle-wave2`
+      );
+      const { transformWave2v2 } = await import(
+        `${__dirname}/../../data/surveys/transform-wave2-v2`
+      );
+      await extractWave2();
+      await wrangleWave2();
+      await transformWave2v2();
+
       await this.loadInitialData();
       this.logger.log(
         'ETL process completed successfully',
