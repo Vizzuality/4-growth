@@ -1,6 +1,7 @@
 import { WidgetDataFilter } from '@shared/dto/widgets/widget-data-filter';
 import { Injectable, Logger } from '@nestjs/common';
 import { CountryISOMap } from '@shared/constants/country-iso.map';
+import { DATA_SOURCE_FILTER_NAME } from '@shared/constants/page-filters';
 
 export type FilterClauseWithParams = [sqlCode: string, queryParams: unknown[]];
 
@@ -72,7 +73,7 @@ export class SQLAdapter {
       }
 
       // data-source edge case — maps to the data_source column, not a question/answer pair
-      if (filter.name === 'data-source') {
+      if (filter.name === DATA_SOURCE_FILTER_NAME) {
         filterClause += '(';
         for (const filterValue of filter.values) {
           filterClause += `${alias}data_source ${filter.operator} $${++currentParamIdx} OR `;
@@ -122,7 +123,7 @@ export class SQLAdapter {
       }
 
       // data-source edge case — maps to the data_source column (hyphen not valid in SQL identifier)
-      if (filter.name === 'data-source') {
+      if (filter.name === DATA_SOURCE_FILTER_NAME) {
         filterClause += '(';
         for (const filterValue of filter.values) {
           filterClause += `${alias}data_source ${filter.operator} $${++currentParamIdx} OR `;
