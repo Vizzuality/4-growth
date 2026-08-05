@@ -11,10 +11,11 @@ export interface WaveExtractConfig {
   baseUrl: string;
   entities: string[];
   outputDir: string;
+  scope?: string;
 }
 
 export const extractWave = async (config: WaveExtractConfig): Promise<void> => {
-  const { waveNumber, baseUrl, entities, outputDir } = config;
+  const { waveNumber, baseUrl, entities, outputDir, scope } = config;
   const logger = new Logger(`ETL-Wave${waveNumber}-Extract`);
 
   logger.log(`Starting Wave ${waveNumber} OData extraction...`);
@@ -39,6 +40,7 @@ export const extractWave = async (config: WaveExtractConfig): Promise<void> => {
   const token = await getAccessToken(
     parsedEnv.data.DATA_EXTRACTION_CLIENT_ID,
     parsedEnv.data.DATA_EXTRACTION_CLIENT_SECRET,
+    scope,
   );
   logger.log('Access token retrieved successfully');
 
