@@ -67,6 +67,39 @@ describe("normalizeWidgetData", () => {
 
     expect(result.counter).toEqual({ value: 10, total: 20 });
   });
+
+  it("should round a share below 1% to 2 decimals", () => {
+    const input: WidgetData = {
+      chart: [
+        { label: "Yes", value: 1, total: 240 },
+        { label: "No", value: 239, total: 240 },
+      ],
+    };
+
+    const result = normalizeWidgetData(input);
+
+    expect(result.chart?.[0].value).toBe(0.42);
+  });
+
+  it("should normalize each source against its own total", () => {
+    const input: WidgetData = {
+      bySource: [
+        {
+          source: "survey",
+          data: { chart: [{ label: "Yes", value: 1, total: 240 }] },
+        },
+        {
+          source: "automated",
+          data: { chart: [{ label: "Yes", value: 3, total: 8 }] },
+        },
+      ],
+    };
+
+    const result = normalizeWidgetData(input);
+
+    expect(result.bySource?.[0].data.chart?.[0].value).toBe(100);
+    expect(result.bySource?.[1].data.chart?.[0].value).toBe(100);
+  });
 });
 
 describe("getResponseRate", () => {
