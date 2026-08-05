@@ -27,6 +27,19 @@ function normalizeWidgetData(widgetData: WidgetData): WidgetData {
       .filter((d) => d.label !== "N/A");
   }
 
+  // Normalized per source, so each one sums to 100% against its own total rather
+  // than against the combined total — otherwise the smaller source always looks
+  // negligible regardless of its distribution.
+  if (result.bySource) {
+    result.bySource = result.bySource.map((s) => ({
+      ...s,
+      data: {
+        ...s.data,
+        ...(s.data.chart ? { chart: normalizeChartData(s.data.chart) } : {}),
+      },
+    }));
+  }
+
   return result;
 }
 
@@ -108,15 +121,16 @@ function removeNaLabels(data?: WidgetChartData): WidgetChartData {
 }
 
 /**
- * Calculates percentage and formats it based on its value:
- * - Returns raw value if percentage is between 0 and 1
- * - Returns rounded whole number for percentages >= 1
+ * Calculates percentage and rounds it based on its value:
+ * - Below 1, to 2 decimals: a whole number would collapse the value to 0 and
+ *   make a real response indistinguishable from missing data
+ * - At or above 1, to a whole number
  */
 function calculatePercentage(value: number, total: number): number {
   const percentage = (value / total) * 100;
 
   if (percentage >= 0 && percentage < 1) {
-    return percentage;
+    return Math.round(percentage * 100) / 100;
   }
 
   return Math.round(percentage);
