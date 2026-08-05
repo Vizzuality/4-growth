@@ -68,3 +68,22 @@ export const ADD_FILTER_MODE = {
 
 export type ADD_FILTER_MODE =
   (typeof ADD_FILTER_MODE)[keyof typeof ADD_FILTER_MODE];
+
+// Filter name is hyphenated, the survey_answers column is data_source, the entity property is dataSource.
+export const DATA_SOURCE_FILTER_NAME = "data-source";
+
+export const DATA_SOURCE_OPTIONS: { label: string; values: string[] }[] = [
+  { label: "Survey responses", values: ["survey"] },
+  { label: "Automated web data", values: ["automated"] },
+  { label: "Survey and Automated", values: ["survey", "automated"] },
+];
+
+export const DEFAULT_DATA_SOURCE_VALUES = ["survey"];
+
+export function getDataSourceOptionLabel(values: string[]): string | undefined {
+  const key = [...values].sort().join("|");
+
+  return DATA_SOURCE_OPTIONS.find(
+    (option) => [...option.values].sort().join("|") === key,
+  )?.label;
+}

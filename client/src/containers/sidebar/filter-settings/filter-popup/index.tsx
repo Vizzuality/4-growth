@@ -3,6 +3,11 @@ import { FC, useState } from "react";
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { useSetAtom } from "jotai";
 
+import {
+  DATA_SOURCE_FILTER_NAME,
+  getDataSourceOptionLabel,
+} from "@/lib/constants";
+
 import { FilterQueryParam } from "@/hooks/use-filters";
 
 import FilterSelect from "@/containers/filter/filter-select";
@@ -46,6 +51,7 @@ const FilterPopup: FC<FilterPopupProps> = ({
     setShowOverlay(open);
   };
   const selectedFilter = filterQueryParams.find((f) => f.name === name);
+  const isDataSource = name === DATA_SOURCE_FILTER_NAME;
 
   return (
     <Popover onOpenChange={handleFiltersPopupChange} open={showPopup} modal>
@@ -64,19 +70,27 @@ const FilterPopup: FC<FilterPopupProps> = ({
                 }{" "}
                 <FilterItemButton
                   value={selectedFilter.values[0]}
+                  displayValue={
+                    isDataSource
+                      ? getDataSourceOptionLabel(selectedFilter.values)
+                      : undefined
+                  }
+                  removable={!isDataSource}
                   onClick={(value) => onRemoveFilterValue(name, value)}
                 />
               </span>
-              <ul>
-                {selectedFilter.values.slice(1).map((v) => (
-                  <li key={`selected-filter-${v}`}>
-                    <FilterItemButton
-                      value={v}
-                      onClick={(value) => onRemoveFilterValue(name, value)}
-                    />
-                  </li>
-                ))}
-              </ul>
+              {!isDataSource && (
+                <ul>
+                  {selectedFilter.values.slice(1).map((v) => (
+                    <li key={`selected-filter-${v}`}>
+                      <FilterItemButton
+                        value={v}
+                        onClick={(value) => onRemoveFilterValue(name, value)}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              )}
             </>
           ) : (
             label?.unSelected || name

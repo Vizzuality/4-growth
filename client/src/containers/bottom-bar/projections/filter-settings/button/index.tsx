@@ -2,6 +2,11 @@ import { FC, useState } from "react";
 
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 
+import {
+  DATA_SOURCE_FILTER_NAME,
+  getDataSourceOptionLabel,
+} from "@/lib/constants";
+
 import { useFilterSettings } from "@/containers/bottom-bar/filters-sheet/hooks";
 import FilterSelect from "@/containers/filter/filter-select";
 import FilterItemButton from "@/containers/sidebar/filter-settings/button";
@@ -34,6 +39,7 @@ const FilterSettingsButton: FC<Props> = ({
   const [showFilterSelect, setShowFilterSelect] = useState<boolean>(false);
   const { filters, removeFilterValue, addFilter } = useFilterSettings();
   const selectedFilter = filters.find((f) => f.name === name);
+  const isDataSource = name === DATA_SOURCE_FILTER_NAME;
 
   return (
     <>
@@ -50,19 +56,27 @@ const FilterSettingsButton: FC<Props> = ({
                   ?.label}{" "}
               <FilterItemButton
                 value={selectedFilter.values[0]}
+                displayValue={
+                  isDataSource
+                    ? getDataSourceOptionLabel(selectedFilter.values)
+                    : undefined
+                }
+                removable={!isDataSource}
                 onClick={(value) => removeFilterValue(name, value)}
               />
             </span>
-            <ul>
-              {selectedFilter.values.slice(1).map((v) => (
-                <li key={`selected-filter-${v}`}>
-                  <FilterItemButton
-                    value={v}
-                    onClick={(value) => removeFilterValue(name, value)}
-                  />
-                </li>
-              ))}
-            </ul>
+            {!isDataSource && (
+              <ul>
+                {selectedFilter.values.slice(1).map((v) => (
+                  <li key={`selected-filter-${v}`}>
+                    <FilterItemButton
+                      value={v}
+                      onClick={(value) => removeFilterValue(name, value)}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
           </>
         ) : (
           label?.unSelected || name

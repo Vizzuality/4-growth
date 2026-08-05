@@ -41,12 +41,20 @@ const FilterSettings: FC<FilterSettingsProps> = ({
   ) as unknown as PageFilter[];
 
   const effectiveAllFilters = useMemo(() => {
-    if (customFilters.length <= 1) {
-      return allFilters;
-    }
-    return allFilters.filter((pageFilter) =>
-      defaultFilters.includes(pageFilter.name),
-    );
+    const filters =
+      customFilters.length <= 1
+        ? allFilters
+        : allFilters.filter((pageFilter) =>
+            defaultFilters.includes(pageFilter.name),
+          );
+
+    // The filters endpoint has no ORDER BY, so sheet order comes from defaultFilters.
+    const orderOf = (name: string) => {
+      const index = defaultFilters.indexOf(name);
+      return index === -1 ? defaultFilters.length : index;
+    };
+
+    return [...filters].sort((a, b) => orderOf(a.name) - orderOf(b.name));
   }, [allFilters, defaultFilters, customFilters]);
 
   return (

@@ -17,6 +17,7 @@ import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
 import { useAuthRedirect } from "@/hooks/use-auth-redirect";
+import { withDataSourceDefault } from "@/hooks/use-filters";
 
 import { buildWidgetDownloadUrl } from "@/utils/download-url";
 
@@ -190,9 +191,8 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
       setIndicator(getCustomWidgetQuery.data.widget.indicator);
       setVisualization(getCustomWidgetQuery.data.defaultVisualization);
 
-      if (getCustomWidgetQuery.data.filters.length) {
-        setFilters(getCustomWidgetQuery.data.filters);
-      }
+      // Widgets saved before data-source existed carry no entry for it.
+      setFilters(withDataSourceDefault(getCustomWidgetQuery.data.filters));
     }
   }, [
     getCustomWidgetQuery.data?.defaultVisualization,

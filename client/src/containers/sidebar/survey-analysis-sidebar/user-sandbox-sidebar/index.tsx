@@ -8,7 +8,10 @@ import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 
-import { FilterQueryParam } from "@/hooks/use-filters";
+import {
+  FilterQueryParam,
+  withDataSourceDefault,
+} from "@/hooks/use-filters";
 
 import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import FilterSettings from "@/containers/sidebar/filter-settings";
@@ -61,8 +64,12 @@ const UserSandboxSidebar: FC = () => {
         setFilters(
           addFilterQueryParam(filters, newFilter, ADD_FILTER_MODE.REPLACE),
         );
-      } else if (newFilter.values.length === 0) {
-        setFilters(filters.filter((filter) => filter.name !== newFilter.name));
+      } else {
+        setFilters(
+          withDataSourceDefault(
+            filters.filter((filter) => filter.name !== newFilter.name),
+          ),
+        );
       }
     },
     [filters, setFilters],
