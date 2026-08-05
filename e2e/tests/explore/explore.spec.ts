@@ -98,10 +98,11 @@ test.describe('Explore E2E', () => {
       await page.goto(`/${ROUTES.surveyAnalysis.explore}`);
 
       // Test in-page anchor link
-      const links = await page
-        .locator('#in-page-sections-list')
-        .locator('a')
-        .all();
+      const inPageLinks = page.locator('#in-page-sections-list').locator('a');
+      // all() snapshots the DOM without waiting, and the sections container is
+      // replaced by a spinner while the sections query is in flight
+      await expect(inPageLinks).toHaveCount(sections.length);
+      const links = await inPageLinks.all();
       const lastLink = links[links.length - 1];
 
       const lastLinkHref = await lastLink.getAttribute('href');
