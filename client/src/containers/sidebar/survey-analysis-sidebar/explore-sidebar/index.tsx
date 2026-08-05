@@ -24,7 +24,7 @@ const ExploreSidebar: FC = () => {
       key="sidebar-accordion-explore"
       type="multiple"
       className="w-full overflow-y-auto"
-      defaultValue={["explore-sections"]}
+      defaultValue={["explore-filters", "explore-sections"]}
     >
       <AccordionItem value="explore-filters">
         <div className="relative">
