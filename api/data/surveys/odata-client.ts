@@ -32,17 +32,20 @@ export const OAUTH_TOKEN_URL =
 export const OAUTH_SCOPE =
   'https://wageningenur4.onmicrosoft.com/odataAPIPoc/.default';
 
+export const WAVE2_OAUTH_SCOPE = 'https://dataservices.wser.wur.nl/.default';
+
 export const WAVE2_BASE_URL =
   'https://dataservices.wser.wur.nl/odata/FOURGROWTH%20Wave%20Two';
 
 export async function getAccessToken(
   clientId: string,
   clientSecret: string,
+  scope: string = OAUTH_SCOPE,
 ): Promise<string> {
   const params = new URLSearchParams();
   params.append('client_id', clientId);
   params.append('client_secret', clientSecret);
-  params.append('scope', OAUTH_SCOPE);
+  params.append('scope', scope);
   params.append('grant_type', 'client_credentials');
 
   try {
