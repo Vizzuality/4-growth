@@ -168,4 +168,101 @@ describe('data-source filter — API', () => {
       expect(res.body.data.data.chart).toEqual([]);
     });
   });
+
+  describe('source comparison', () => {
+    const OVERLAP_ANSWER = 'AutomatedOnlyAnswer';
+    const bothSources =
+      `?filters[0][name]=data-source&filters[0][operator]==` +
+      `&filters[0][values][0]=survey&filters[0][values][1]=automated`;
+
+    beforeAll(async () => {
+      // An automated row that shares a survey_id with existing survey rows.
+      // Filtering data-source at survey level would pull that survey's *survey*
+      // rows into the automated result; filtering at row level must not.
+      await testManager.getDataSource().query(`
+        INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code, wave, data_source)
+        SELECT survey_id, question_indicator, question, '${OVERLAP_ANSWER}', country_code, wave, 'automated'
+        FROM survey_answers
+        WHERE question_indicator = '${TEST_INDICATOR}' AND data_source = 'survey'
+        LIMIT 1
+        ON CONFLICT DO NOTHING
+      `);
+    });
+
+    const sumChart = (chart: { value: number }[]) =>
+      chart.reduce((sum, entry) => sum + entry.value, 0);
+
+    it('should not leak survey rows of a survey that also has automated rows', async () => {
+      const res = await testManager
+        .request()
+        .get(
+          `/widgets/${TEST_INDICATOR}?filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=automated`,
+        );
+
+      expect(res.status).toBe(200);
+      const chart = res.body.data.data.chart;
+      expect(chart.map((c: { label: string }) => c.label)).toContain(
+        OVERLAP_ANSWER,
+      );
+      // 2 rows on auto_test_ survey ids + 1 on an overlapping survey id.
+      // Survey-level filtering would additionally pull that survey's own rows.
+      expect(sumChart(chart)).toBe(3);
+    });
+
+    it('should split the chart per source, summing to the merged chart', async () => {
+      const res = await testManager
+        .request()
+        .get(`/widgets/${TEST_INDICATOR}${bothSources}`);
+
+      expect(res.status).toBe(200);
+      const { chart, bySource } = res.body.data.data;
+
+      expect(bySource).toHaveLength(2);
+      expect(bySource.map((s: { source: string }) => s.source)).toEqual([
+        'survey',
+        'automated',
+      ]);
+      expect(
+        sumChart(
+          bySource.flatMap(
+            (s: { data: { chart: { value: number }[] } }) => s.data.chart,
+          ),
+        ),
+      ).toBe(sumChart(chart));
+    });
+
+    it('should give each source its own total, not the combined one', async () => {
+      const res = await testManager
+        .request()
+        .get(`/widgets/${TEST_INDICATOR}${bothSources}`);
+
+      const { chart, bySource } = res.body.data.data;
+      const mergedTotal = chart[0].total;
+
+      for (const { data } of bySource) {
+        expect(data.chart[0].total).toBe(sumChart(data.chart));
+        expect(data.chart[0].total).toBeLessThan(mergedTotal);
+      }
+    });
+
+    it('should omit bySource when a single source is requested', async () => {
+      const res = await testManager
+        .request()
+        .get(
+          `/widgets/${TEST_INDICATOR}?filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=survey`,
+        );
+
+      expect(res.status).toBe(200);
+      expect(res.body.data.data.bySource).toBeUndefined();
+    });
+
+    it('should omit bySource when no data-source filter is sent', async () => {
+      const res = await testManager
+        .request()
+        .get(`/widgets/${TEST_INDICATOR}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.data.data.bySource).toBeUndefined();
+    });
+  });
 });

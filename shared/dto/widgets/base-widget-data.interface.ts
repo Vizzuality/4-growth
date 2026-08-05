@@ -6,7 +6,25 @@ export interface WidgetData {
   counter?: WidgetCounterData;
   map?: WidgetMapData;
   navigation?: WidgetNavigationData;
+  /**
+   * Per-source slices, present only when more than one data source is selected.
+   * The keys above stay merged across sources, so single-source responses are
+   * unchanged. Nested rather than flattened so each source keeps its own total,
+   * which is what lets percentages be computed per source.
+   */
+  bySource?: WidgetSourceSplit;
 }
+
+/**
+ * No `map` member: comparison always renders as bars, so a per-source map would
+ * never be displayed.
+ */
+export type WidgetSourceData = Pick<WidgetData, 'chart' | 'counter'>;
+
+export type WidgetSourceSplit = Array<{
+  source: string;
+  data: WidgetSourceData;
+}>;
 
 /**
  * Data for maps

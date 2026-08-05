@@ -11,6 +11,7 @@ import {
 import {
   BaseWidgetWithData,
   WidgetChartData,
+  WidgetSourceData,
 } from '@shared/dto/widgets/base-widget-data.interface';
 import { WidgetUtils } from '@shared/dto/widgets/widget.utils';
 import { SurveyAnswer } from '@shared/dto/surveys/survey-answer.entity';
@@ -87,6 +88,45 @@ export class PostgresSurveyAnswerRepository
     return widget;
   }
 
+  private splitDataSourceFilter(filters?: WidgetDataFilter[]): {
+    dataSourceFilter?: WidgetDataFilter;
+    scopeFilters?: WidgetDataFilter[];
+  } {
+    return {
+      dataSourceFilter: filters?.find(
+        (f) => f.name === DATA_SOURCE_FILTER_NAME,
+      ),
+      scopeFilters: filters?.filter((f) => f.name !== DATA_SOURCE_FILTER_NAME),
+    };
+  }
+
+  /**
+   * Only an explicit multi-value data-source filter is a comparison. Omitting the
+   * filter still means "all sources", but it keeps the legacy merged-only response
+   * so existing API consumers see no change.
+   */
+  private isSourceComparison(
+    dataSourceFilter?: WidgetDataFilter,
+  ): dataSourceFilter is WidgetDataFilter {
+    return (dataSourceFilter?.values?.length ?? 0) > 1;
+  }
+
+  private appendSourceData(
+    widget: BaseWidgetWithData,
+    source: string,
+    data: WidgetSourceData,
+  ): void {
+    widget.data.bySource ??= [];
+    const existing = widget.data.bySource.find((s) => s.source === source);
+
+    if (existing === undefined) {
+      widget.data.bySource.push({ source, data });
+      return;
+    }
+
+    Object.assign(existing.data, data);
+  }
+
   private async addDataToWidget(
     widget: BaseWidgetWithData,
     filters: WidgetDataFilter[],
@@ -118,31 +158,58 @@ export class PostgresSurveyAnswerRepository
     widget: BaseWidgetWithData,
     filters: WidgetDataFilter[],
   ): Promise<void> {
-    const filterClauseWithParams =
-      this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
-    const [filterClause, queryParams] = filterClauseWithParams;
+    const { dataSourceFilter, scopeFilters } =
+      this.splitDataSourceFilter(filters);
 
-    const newParams = [...queryParams, widget.indicator];
-    const totalsSql = `SELECT answer as "key", count(answer)::integer as "count", SUM(COUNT(answer)) OVER ()::integer AS total 
-    FROM ${this.answersTable} 
-    WHERE survey_id IN (SELECT survey_id FROM ${this.answersTable} ${filterClause}) AND question_indicator = $${newParams.length}
-    GROUP BY answer ORDER BY answer`;
+    const [scopeClause, queryParams] =
+      this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(scopeFilters);
 
-    const totalsResult: { key: string; count: number; total: number }[] =
-      await this.dataSource.query(totalsSql, newParams);
+    queryParams.push(widget.indicator);
+    const indicatorParamIdx = queryParams.length;
 
-    const arr: WidgetChartData = [];
-    for (let rowIdx = 0; rowIdx < totalsResult.length; rowIdx++) {
-      const res = totalsResult[rowIdx];
-      arr.push({ label: res.key, value: res.count, total: res.total });
-    }
-    if (totalsResult.length > 3) {
+    // data-source describes the answer row, not the respondent, so it narrows the
+    // outer rows instead of the set of surveys — matching the map, counter and
+    // breakdown paths.
+    const [dataSourcePredicate] =
+      this.sqlAdapter.generatePredicateFromWidgetDataFilters(
+        dataSourceFilter === undefined ? undefined : [dataSourceFilter],
+        { queryParams },
+      );
+    const dataSourceClause =
+      dataSourcePredicate === '' ? '' : ` AND ${dataSourcePredicate}`;
+
+    const totalsSql = `SELECT answer as "key", data_source as "source", count(answer)::integer as "count", SUM(COUNT(answer)) OVER (PARTITION BY data_source)::integer AS total
+    FROM ${this.answersTable}
+    WHERE survey_id IN (SELECT survey_id FROM ${this.answersTable} ${scopeClause}) AND question_indicator = $${indicatorParamIdx}${dataSourceClause}
+    GROUP BY answer, data_source ORDER BY answer`;
+
+    const totalsResult: {
+      key: string;
+      source: string;
+      count: number;
+      total: number;
+    }[] = await this.dataSource.query(totalsSql, queryParams);
+
+    const merged = mergeChartRowsBySource(totalsResult);
+
+    if (merged.length > 3) {
       widget.visualisations = widget.visualisations.filter(
         (v) => v !== WIDGET_VISUALIZATIONS.AREA_GRAPH,
       );
     }
 
-    widget.data.chart = arr;
+    widget.data.chart = merged;
+
+    if (this.isSourceComparison(dataSourceFilter)) {
+      const grouped = groupChartRowsBySource(totalsResult);
+      // Iterate the requested sources, not the returned ones, so a source with no
+      // matching rows still gets a panel instead of silently disappearing.
+      for (const source of dataSourceFilter.values) {
+        this.appendSourceData(widget, source, {
+          chart: grouped.get(source) ?? [],
+        });
+      }
+    }
   }
 
   private async addMapDataToWidget(
@@ -241,6 +308,42 @@ ORDER BY ac.country;`;
       this.dataSource.query(totalCount),
     ]);
     widget.data.counter = { value, total };
+
+    const { dataSourceFilter } = this.splitDataSourceFilter(filters);
+    if (this.isSourceComparison(dataSourceFilter)) {
+      const perSource = `SELECT data_source as source, COUNT(*)::integer as count
+      FROM (SELECT DISTINCT survey_id, data_source FROM ${this.answersTable} ${filterClause}) AS surveys_per_source
+      GROUP BY data_source`;
+      await this.addCounterSplit(
+        widget,
+        dataSourceFilter,
+        perSource,
+        queryParams,
+        total,
+      );
+    }
+  }
+
+  /**
+   * Runs a `source, count` query and attaches one counter per requested source,
+   * all sharing the widget's unfiltered denominator so the panels stay comparable.
+   */
+  private async addCounterSplit(
+    widget: BaseWidgetWithData,
+    dataSourceFilter: WidgetDataFilter,
+    sql: string,
+    queryParams: unknown[],
+    total: number,
+  ): Promise<void> {
+    const rows: { source: string; count: number }[] =
+      await this.dataSource.query(sql, queryParams);
+    const countBySource = new Map(rows.map((r) => [r.source, r.count]));
+
+    for (const source of dataSourceFilter.values) {
+      this.appendSourceData(widget, source, {
+        counter: { value: countBySource.get(source) ?? 0, total },
+      });
+    }
   }
 
   private async addTotalCountriesDataToWidget(
@@ -258,6 +361,22 @@ ORDER BY ac.country;`;
       this.dataSource.query(totalCount),
     ]);
     widget.data.counter = { value, total };
+
+    const { dataSourceFilter } = this.splitDataSourceFilter(filters);
+    if (this.isSourceComparison(dataSourceFilter)) {
+      // Distinct counts per source do not sum to the merged value — the same
+      // country can appear in both. Each panel is correct on its own.
+      const perSource = `SELECT data_source as source, COUNT(DISTINCT country_code)::integer as count
+      FROM ${this.answersTable} ${filterClause}
+      GROUP BY data_source`;
+      await this.addCounterSplit(
+        widget,
+        dataSourceFilter,
+        perSource,
+        queryParams,
+        total,
+      );
+    }
   }
 
   private async addBreakdownDataToWidget(
@@ -375,4 +494,46 @@ ORDER BY main_answer`;
 
     widget.data = { breakdown: processedBreakdown };
   }
+}
+
+type SourcedChartRow = {
+  key: string;
+  source: string;
+  count: number;
+  total: number;
+};
+
+function mergeChartRowsBySource(rows: SourcedChartRow[]): WidgetChartData {
+  const countByLabel = new Map<string, number>();
+
+  for (const row of rows) {
+    countByLabel.set(row.key, (countByLabel.get(row.key) ?? 0) + row.count);
+  }
+
+  let total = 0;
+  for (const count of countByLabel.values()) total += count;
+
+  return Array.from(countByLabel, ([label, value]) => ({
+    label,
+    value,
+    total,
+  }));
+}
+
+function groupChartRowsBySource(
+  rows: SourcedChartRow[],
+): Map<string, WidgetChartData> {
+  const bySource = new Map<string, WidgetChartData>();
+
+  for (const row of rows) {
+    const rowsForSource = bySource.get(row.source) ?? [];
+    rowsForSource.push({
+      label: row.key,
+      value: row.count,
+      total: row.total,
+    });
+    bySource.set(row.source, rowsForSource);
+  }
+
+  return bySource;
 }
