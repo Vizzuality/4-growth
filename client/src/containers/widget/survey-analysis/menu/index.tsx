@@ -34,6 +34,8 @@ const getMenuButtonText = (v: WidgetVisualizationsType): string => {
 interface WidgetMenuProps {
   visualisations?: WidgetVisualizationsType[];
   selectedVisualization: WidgetVisualizationsType;
+  /** Comparing sources restricts rendering to bars, so other options are inert */
+  disabledVisualisations?: WidgetVisualizationsType[];
   showCustomizeWidgetButton?: boolean;
   info?: { title: string; description: string };
   setSelectedVisualization: (visualization: WidgetVisualizationsType) => void;
@@ -49,6 +51,7 @@ interface WidgetMenuProps {
 const WidgetMenu: FC<WidgetMenuProps> = ({
   visualisations,
   selectedVisualization,
+  disabledVisualisations,
   showCustomizeWidgetButton,
   info,
   className,
@@ -115,16 +118,26 @@ const WidgetMenu: FC<WidgetMenuProps> = ({
             <div className="px-4 py-2">
               <Separator className="bg-[#627188]" />
             </div>
-            {visualisations.map((v) => (
-              <Button
-                key={`visualization-list-item-${v}`}
-                variant="clean"
-                className={btnClassName}
-                onClick={() => setSelectedVisualization(v)}
-              >
-                {getMenuButtonText(v)}
-              </Button>
-            ))}
+            {visualisations.map((v) => {
+              const disabled = disabledVisualisations?.includes(v) ?? false;
+
+              return (
+                <Button
+                  key={`visualization-list-item-${v}`}
+                  variant="clean"
+                  className={btnClassName}
+                  disabled={disabled}
+                  title={
+                    disabled
+                      ? "Not available while comparing data sources"
+                      : undefined
+                  }
+                  onClick={() => setSelectedVisualization(v)}
+                >
+                  {getMenuButtonText(v)}
+                </Button>
+              );
+            })}
           </>
         )}
       </MenuButton>
