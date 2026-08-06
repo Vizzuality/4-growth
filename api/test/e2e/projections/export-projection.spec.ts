@@ -193,5 +193,49 @@ describe('Projections CSV export', () => {
         ['unit', 'year', 'value'].sort(),
       );
     });
+
+    it('applies dataFilters to the exported data', async () => {
+      const listRes = await testManager
+        .request()
+        .get(c.getProjectionsWidgets.path);
+      const widgetId = (listRes.body.data as Array<{ id: number }>)[0].id;
+
+      const exportForCategory = (category: string) =>
+        testManager
+          .request()
+          .get(
+            `/projections/widgets/${widgetId}/export?dataFilters[0][name]=category&dataFilters[0][operator]==&dataFilters[0][values][0]=${category}`,
+          );
+
+      const [forestry, agriculture, unfiltered] = await Promise.all([
+        exportForCategory('Forestry'),
+        exportForCategory('Agriculture'),
+        testManager.request().get(`/projections/widgets/${widgetId}/export`),
+      ]);
+
+      expect(forestry.status).toBe(200);
+      expect(agriculture.status).toBe(200);
+      expect(unfiltered.status).toBe(200);
+
+      // Aggregates are float8 sums, so identical requests differ in the last
+      // decimals. Compare magnitudes, not CSV text.
+      const firstYearValue = (csv: string): number => {
+        const rows = parse(csv, { columns: true }) as Array<{ value: string }>;
+        return Number(rows[0].value);
+      };
+      const relativeDiff = (a: number, b: number): number =>
+        Math.abs(a - b) / Math.max(Math.abs(a), Math.abs(b));
+
+      const forestryValue = firstYearValue(forestry.text);
+      const agricultureValue = firstYearValue(agriculture.text);
+      const unfilteredValue = firstYearValue(unfiltered.text);
+
+      expect(forestryValue).toBeGreaterThan(0);
+      expect(agricultureValue).toBeGreaterThan(0);
+      expect(relativeDiff(forestryValue, agricultureValue)).toBeGreaterThan(
+        0.01,
+      );
+      expect(relativeDiff(forestryValue, unfilteredValue)).toBeGreaterThan(0.01);
+    });
   });
 });
