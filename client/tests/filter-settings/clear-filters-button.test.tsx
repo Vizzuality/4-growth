@@ -42,6 +42,14 @@ describe("ClearFiltersButton", () => {
     expect(screen.queryByText("Clear all")).not.toBeInTheDocument();
   });
 
+  it("stays hidden when the sector is locked by an automated data source", () => {
+    renderWithQuery(
+      "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=automated&filters[1][name]=sector&filters[1][operator]==&filters[1][values][0]=Forestry",
+    );
+
+    expect(screen.queryByText("Clear all")).not.toBeInTheDocument();
+  });
+
   it("appears when a clearable filter sits alongside the data source", () => {
     renderWithQuery(
       "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=survey&filters[1][name]=sector&filters[1][operator]==&filters[1][values][0]=Retail",

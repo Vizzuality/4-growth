@@ -209,9 +209,11 @@ describe("useFilters", () => {
 
       const { result } = renderHook(() => useFilters());
 
-      expect(result.current.filters).toEqual([
-        { name: "data-source", operator: "=", values: ["survey", "automated"] },
-      ]);
+      expect(result.current.filters).toContainEqual({
+        name: "data-source",
+        operator: "=",
+        values: ["survey", "automated"],
+      });
     });
 
     it("never applies the data source default on projections", () => {
@@ -243,6 +245,71 @@ describe("useFilters", () => {
       expect(mockSetFiltersQuery).toHaveBeenCalledWith(
         "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=automated",
       );
+    });
+  });
+
+  describe("forestry lock", () => {
+    const FORESTRY_SECTOR = {
+      name: "sector",
+      operator: "=",
+      values: ["Forestry"],
+    };
+
+    const mockSetFiltersQuery = vi.fn();
+
+    beforeEach(() => {
+      vi.mocked(usePathname).mockReturnValue("/survey-analysis");
+    });
+
+    it("overwrites a conflicting sector when the data source is automated", () => {
+      vi.mocked(useQueryState).mockReturnValue([
+        "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=automated&filters[1][name]=sector&filters[1][operator]==&filters[1][values][0]=Agriculture",
+        mockSetFiltersQuery,
+      ]);
+
+      const { result } = renderHook(() => useFilters());
+
+      expect(result.current.filters).toEqual([
+        { name: "data-source", operator: "=", values: ["automated"] },
+        FORESTRY_SECTOR,
+      ]);
+    });
+
+    it("locks the sector in comparison mode so both sources share a population", () => {
+      vi.mocked(useQueryState).mockReturnValue([
+        "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=survey&filters[0][values][1]=automated&filters[1][name]=sector&filters[1][operator]==&filters[1][values][0]=Agriculture",
+        mockSetFiltersQuery,
+      ]);
+
+      const { result } = renderHook(() => useFilters());
+
+      expect(result.current.filters).toContainEqual(FORESTRY_SECTOR);
+    });
+
+    it("adds the locked sector when the query has none", () => {
+      vi.mocked(useQueryState).mockReturnValue([
+        "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=automated",
+        mockSetFiltersQuery,
+      ]);
+
+      const { result } = renderHook(() => useFilters());
+
+      expect(result.current.filters).toContainEqual(FORESTRY_SECTOR);
+    });
+
+    it("leaves the sector alone for survey-only data", () => {
+      vi.mocked(useQueryState).mockReturnValue([
+        "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=survey&filters[1][name]=sector&filters[1][operator]==&filters[1][values][0]=Agriculture",
+        mockSetFiltersQuery,
+      ]);
+
+      const { result } = renderHook(() => useFilters());
+
+      expect(result.current.filters).toContainEqual({
+        name: "sector",
+        operator: "=",
+        values: ["Agriculture"],
+      });
     });
   });
 });

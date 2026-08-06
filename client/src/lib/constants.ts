@@ -80,6 +80,16 @@ export const DATA_SOURCE_OPTIONS: { label: string; values: string[] }[] = [
 
 export const DEFAULT_DATA_SOURCE_VALUES = ["survey"];
 
+export const AUTOMATED_DATA_SOURCE_VALUE = "automated";
+
+/**
+ * Automated website analysis only covers forestry organisations, so any data
+ * source including it scopes results to that sector. The sidebar calls `sector`
+ * "operation areas" when nothing is selected; the page filter name is `sector`.
+ */
+export const SECTOR_FILTER_NAME = "sector";
+export const FORESTRY_SECTOR_VALUE = "Forestry";
+
 /**
  * Comparison series order. The chart fills the first source solid and hatches the
  * rest, so it and the sidebar legend that explains it both sort by this — pinning

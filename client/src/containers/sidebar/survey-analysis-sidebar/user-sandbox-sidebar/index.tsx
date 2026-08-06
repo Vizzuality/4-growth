@@ -19,8 +19,8 @@ import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filte
 import { SURVEY_ANALYSIS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
 import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import {
+  lockedSandboxFiltersAtom,
   sandboxBreakdownAtom,
-  sandboxFiltersAtom,
   sandboxIndicatorAtom,
   sandboxVisualizationAtom,
 } from "@/containers/sidebar/store";
@@ -34,7 +34,7 @@ import {
 } from "@/components/ui/accordion";
 
 const UserSandboxSidebar: FC = () => {
-  const [filters, setFilters] = useAtom(sandboxFiltersAtom);
+  const [filters, setFilters] = useAtom(lockedSandboxFiltersAtom);
   const [breakdown, setBreakdown] = useAtom(sandboxBreakdownAtom);
   const [indicator, setIndicator] = useAtom(sandboxIndicatorAtom);
   const [visualization, setVisualization] = useAtom(sandboxVisualizationAtom);

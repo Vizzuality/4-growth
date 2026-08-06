@@ -1,17 +1,21 @@
-import { FC, useState } from "react";
+import { FC, useId, useState } from "react";
 
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 
 import {
   DATA_SOURCE_FILTER_NAME,
+  SECTOR_FILTER_NAME,
   getDataSourceOptionLabel,
 } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+
+import { isSectorLocked } from "@/hooks/use-filters";
 
 import { useFilterSettings } from "@/containers/bottom-bar/filters-sheet/hooks";
 import DataSourceInfoButton from "@/containers/filter/data-source-info";
 import FilterSelect from "@/containers/filter/filter-select";
 import FilterItemButton from "@/containers/sidebar/filter-settings/button";
+import { LOCKED_SECTOR_REASON } from "@/containers/sidebar/filter-settings/constants";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -42,17 +46,27 @@ const FilterSettingsButton: FC<Props> = ({
   const { filters, removeFilterValue, addFilter } = useFilterSettings();
   const selectedFilter = filters.find((f) => f.name === name);
   const isDataSource = name === DATA_SOURCE_FILTER_NAME;
+  const locked = name === SECTOR_FILTER_NAME && isSectorLocked(filters);
+  const reasonId = useId();
 
   return (
     <>
       <div className="relative">
         <Button
           variant="clean"
+          aria-disabled={locked || undefined}
+          aria-describedby={locked ? reasonId : undefined}
+          title={locked ? LOCKED_SECTOR_REASON : undefined}
           className={cn(
             "inline-block h-full w-full whitespace-pre-wrap rounded-none px-4 py-3.5 text-left font-normal transition-colors hover:bg-secondary",
             isDataSource && "pr-10",
+            locked && "cursor-default opacity-60 hover:bg-transparent",
           )}
-          onClick={() => setShowFilterSelect(true)}
+          onClick={() => {
+            if (locked) return;
+
+            setShowFilterSelect(true);
+          }}
         >
           {selectedFilter ? (
             <>
@@ -67,7 +81,7 @@ const FilterSettingsButton: FC<Props> = ({
                       ? getDataSourceOptionLabel(selectedFilter.values)
                       : undefined
                   }
-                  removable={!isDataSource}
+                  removable={!isDataSource && !locked}
                   onClick={(value) => removeFilterValue(name, value)}
                 />
               </span>
@@ -90,6 +104,11 @@ const FilterSettingsButton: FC<Props> = ({
         </Button>
         {isDataSource && (
           <DataSourceInfoButton className="absolute right-4 top-1/2 -translate-y-1/2 text-white" />
+        )}
+        {locked && (
+          <span id={reasonId} className="sr-only">
+            {LOCKED_SECTOR_REASON}
+          </span>
         )}
       </div>
       <Sheet open={showFilterSelect} onOpenChange={setShowFilterSelect}>

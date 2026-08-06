@@ -1,20 +1,22 @@
-import { FC, useState } from "react";
+import { FC, useId, useState } from "react";
 
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { useSetAtom } from "jotai";
 
 import {
   DATA_SOURCE_FILTER_NAME,
+  SECTOR_FILTER_NAME,
   getDataSourceOptionLabel,
 } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
-import { FilterQueryParam } from "@/hooks/use-filters";
+import { FilterQueryParam, isSectorLocked } from "@/hooks/use-filters";
 
 import DataSourceInfoButton from "@/containers/filter/data-source-info";
 import FilterSelect from "@/containers/filter/filter-select";
 import { showOverlayAtom } from "@/containers/overlay/store";
 import FilterItemButton from "@/containers/sidebar/filter-settings/button";
+import { LOCKED_SECTOR_REASON } from "@/containers/sidebar/filter-settings/constants";
 import DataSourceFilterLabel from "@/containers/sidebar/filter-settings/data-source-label";
 
 import { Button } from "@/components/ui/button";
@@ -49,14 +51,19 @@ const FilterPopup: FC<FilterPopupProps> = ({
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const setShowOverlay = useSetAtom(showOverlayAtom);
-  const handleFiltersPopupChange = (open: boolean) => {
-    setShowPopup(open);
-    setShowOverlay(open);
-  };
   const selectedFilter = filterQueryParams.find((f) => f.name === name);
   const isDataSource = name === DATA_SOURCE_FILTER_NAME;
   const isComparingSources =
     isDataSource && (selectedFilter?.values.length ?? 0) > 1;
+  const locked =
+    name === SECTOR_FILTER_NAME && isSectorLocked(filterQueryParams);
+  const reasonId = useId();
+  const handleFiltersPopupChange = (open: boolean) => {
+    if (locked && open) return;
+
+    setShowPopup(open);
+    setShowOverlay(open);
+  };
 
   return (
     <div className="relative">
@@ -64,9 +71,13 @@ const FilterPopup: FC<FilterPopupProps> = ({
         <PopoverTrigger asChild>
           <Button
             variant="clean"
+            aria-disabled={locked || undefined}
+            aria-describedby={locked ? reasonId : undefined}
+            title={locked ? LOCKED_SECTOR_REASON : undefined}
             className={cn(
               "inline-block h-full w-full whitespace-pre-wrap rounded-none px-4 py-3.5 text-left font-normal transition-colors hover:bg-secondary",
               isDataSource && "pr-10",
+              locked && "cursor-default opacity-60 hover:bg-transparent",
             )}
           >
             {selectedFilter ? (
@@ -85,7 +96,7 @@ const FilterPopup: FC<FilterPopupProps> = ({
                           ? getDataSourceOptionLabel(selectedFilter.values)
                           : undefined
                       }
-                      removable={!isDataSource}
+                      removable={!isDataSource && !locked}
                       onClick={(value) => onRemoveFilterValue(name, value)}
                     />
                   )}
@@ -127,6 +138,11 @@ const FilterPopup: FC<FilterPopupProps> = ({
       </Popover>
       {isDataSource && (
         <DataSourceInfoButton className="absolute right-4 top-1/2 -translate-y-1/2 text-white" />
+      )}
+      {locked && (
+        <span id={reasonId} className="sr-only">
+          {LOCKED_SECTOR_REASON}
+        </span>
       )}
     </div>
   );

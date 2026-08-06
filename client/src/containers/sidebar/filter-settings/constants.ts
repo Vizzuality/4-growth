@@ -7,6 +7,9 @@ export const SURVEY_ANALYSIS_DEFAULT_FILTERS = [
   "sector",
 ];
 
+export const LOCKED_SECTOR_REASON =
+  "Automated website analysis covers forestry organisations only, so the sector is fixed to Forestry.";
+
 export const PROJECTIONS_DEFAULT_FILTERS = [
   "country",
   "technology-type",

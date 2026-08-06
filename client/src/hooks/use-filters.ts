@@ -11,8 +11,11 @@ import qs from "qs";
 
 import {
   ADD_FILTER_MODE,
+  AUTOMATED_DATA_SOURCE_VALUE,
   DATA_SOURCE_FILTER_NAME,
   DEFAULT_DATA_SOURCE_VALUES,
+  FORESTRY_SECTOR_VALUE,
+  SECTOR_FILTER_NAME,
 } from "@/lib/constants";
 import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 
@@ -35,8 +38,27 @@ const PRESERVED_FILTER_NAMES = [
 export const isPreservedFilter = (name: string) =>
   PRESERVED_FILTER_NAMES.includes(name);
 
-export const hasClearableFilters = (filters: FilterQueryParam[]) =>
-  filters.some((filter) => !isPreservedFilter(filter.name));
+/**
+ * Automated website analysis only covers forestry organisations. Any data source
+ * including it — the comparison mode included, or the two series would be scoped
+ * differently and read as a finding — pins the sector to forestry.
+ */
+export const isSectorLocked = (filters: FilterQueryParam[]) =>
+  filters.some(
+    (filter) =>
+      filter.name === DATA_SOURCE_FILTER_NAME &&
+      filter.values.includes(AUTOMATED_DATA_SOURCE_VALUE),
+  );
+
+export const hasClearableFilters = (filters: FilterQueryParam[]) => {
+  const sectorLocked = isSectorLocked(filters);
+
+  return filters.some(
+    (filter) =>
+      !isPreservedFilter(filter.name) &&
+      !(sectorLocked && filter.name === SECTOR_FILTER_NAME),
+  );
+};
 
 /**
  * Survey analysis always sends an explicit data source; absence of the filter
@@ -61,6 +83,24 @@ export function withDataSourceDefault(
   ];
 }
 
+export function withForestryLock(
+  filters: FilterQueryParam[],
+): FilterQueryParam[] {
+  if (!isSectorLocked(filters)) return filters;
+
+  const locked: FilterQueryParam = {
+    name: SECTOR_FILTER_NAME,
+    operator: "=",
+    values: [FORESTRY_SECTOR_VALUE],
+  };
+
+  return filters.some((filter) => filter.name === SECTOR_FILTER_NAME)
+    ? filters.map((filter) =>
+        filter.name === SECTOR_FILTER_NAME ? locked : filter,
+      )
+    : [...filters, locked];
+}
+
 type ParsedFilterObject = {
   [K in keyof FilterQueryParam]: K extends "values"
     ? string | string[]
@@ -73,7 +113,9 @@ function useFilters() {
   const filters = useMemo(() => {
     const isSurveyAnalysis = SURVEY_ANALYSIS_PATHNAME.test(pathname);
     const applyDefaults = (parsed: FilterQueryParam[]) =>
-      isSurveyAnalysis ? withDataSourceDefault(parsed) : parsed;
+      isSurveyAnalysis
+        ? withForestryLock(withDataSourceDefault(parsed))
+        : parsed;
 
     if (!filtersQuery)
       return PROJECTIONS_PATHNAME.test(pathname)
