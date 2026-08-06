@@ -4,7 +4,6 @@ import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import { useQueryState } from "nuqs";
 
-import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
 import useFilters from "@/hooks/use-filters";
 
 import {
@@ -23,13 +22,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const FiltersSheet: FC<PropsWithChildren> = ({ children }) => {
+type FiltersSheetProps = PropsWithChildren<{ disabled?: boolean }>;
+
+const FiltersSheet: FC<FiltersSheetProps> = ({ children, disabled }) => {
   const [open, setOpen] = useState(false);
   const { filters, setFilters } = useFilters();
   const [newFilters, setNewFilters] = useAtom(FilterSettingsAtom);
   const [newBreakdown, setNewBreakdown] = useAtom(breakdownAtom);
   const [breakdown, setBreakdown] = useQueryState("breakdown");
-  const { isCategorySelected } = useProjectionsCategoryFilter();
   const handleSubmitButtonClick = () => {
     setFilters(newFilters);
     setBreakdown(newBreakdown);
@@ -64,7 +64,7 @@ const FiltersSheet: FC<PropsWithChildren> = ({ children }) => {
       }}
     >
       <SheetTrigger asChild>
-        <Button disabled={!isCategorySelected} className="w-full">
+        <Button disabled={disabled} className="w-full">
           Filters
         </Button>
       </SheetTrigger>
