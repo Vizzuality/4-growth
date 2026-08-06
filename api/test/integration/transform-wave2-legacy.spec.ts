@@ -15,8 +15,9 @@ describe('Wave 2 OData Transformation', () => {
 
   describe('Loading Wave 2 JSON files', () => {
     it('should load all required entity files from wave2 directory', async () => {
-      const { loadWave2Entities } =
-        await import('../../data/surveys/transform-wave2');
+      const { loadWave2Entities } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       // Create mock entity files
       const wave2Dir = join(tmpDir, 'wave2');
@@ -46,8 +47,9 @@ describe('Wave 2 OData Transformation', () => {
     });
 
     it('should throw error if Root.json is missing', async () => {
-      const { loadWave2Entities } =
-        await import('../../data/surveys/transform-wave2');
+      const { loadWave2Entities } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       const emptyDir = join(tmpDir, 'empty-wave2');
       await mkdir(emptyDir, { recursive: true });
@@ -60,8 +62,9 @@ describe('Wave 2 OData Transformation', () => {
 
   describe('Joining data using RootID', () => {
     it('should join entity records using RootID as foreign key', async () => {
-      const { joinEntitiesByRootID } =
-        await import('../../data/surveys/transform-wave2');
+      const { joinEntitiesByRootID } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       const rootRecords = [
         { ID: 1, Identifier: 'SURVEY-001' },
@@ -82,8 +85,9 @@ describe('Wave 2 OData Transformation', () => {
     });
 
     it('should handle records with no matching Root', async () => {
-      const { joinEntitiesByRootID } =
-        await import('../../data/surveys/transform-wave2');
+      const { joinEntitiesByRootID } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       const rootRecords = [{ ID: 1, Identifier: 'SURVEY-001' }];
 
@@ -100,8 +104,9 @@ describe('Wave 2 OData Transformation', () => {
 
   describe('Variable to question mapping', () => {
     it('should map OData variables to question text', async () => {
-      const { WAVE2_VARIABLE_TO_QUESTION } =
-        await import('../../data/surveys/wave2-variable-mapping');
+      const { WAVE2_VARIABLE_TO_QUESTION } = await import(
+        '../../data/surveys/wave2-variable-mapping-legacy'
+      );
 
       // Test shared questions (normalized to W1 text)
       expect(WAVE2_VARIABLE_TO_QUESTION['Location_CountryRegion']).toBe(
@@ -118,8 +123,9 @@ describe('Wave 2 OData Transformation', () => {
     });
 
     it('should have mapping for core survey variables', async () => {
-      const { WAVE2_VARIABLE_TO_QUESTION } =
-        await import('../../data/surveys/wave2-variable-mapping');
+      const { WAVE2_VARIABLE_TO_QUESTION } = await import(
+        '../../data/surveys/wave2-variable-mapping-legacy'
+      );
 
       const coreVariables = [
         'Sector_AgriForestryBoth',
@@ -136,8 +142,9 @@ describe('Wave 2 OData Transformation', () => {
 
   describe('Country extraction and ISO3 conversion', () => {
     it('should extract country from Location_CountryRegion variable', async () => {
-      const { extractCountryFromSurvey } =
-        await import('../../data/surveys/transform-wave2');
+      const { extractCountryFromSurvey } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       const surveyRecords = [
         {
@@ -157,8 +164,9 @@ describe('Wave 2 OData Transformation', () => {
     });
 
     it('should convert country name to ISO3 code', async () => {
-      const { countryNameToISO3 } =
-        await import('../../data/surveys/transform-wave2');
+      const { countryNameToISO3 } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       expect(countryNameToISO3('Spain')).toBe('ESP');
       expect(countryNameToISO3('Germany')).toBe('DEU');
@@ -167,8 +175,9 @@ describe('Wave 2 OData Transformation', () => {
     });
 
     it('should return undefined for unknown countries', async () => {
-      const { countryNameToISO3 } =
-        await import('../../data/surveys/transform-wave2');
+      const { countryNameToISO3 } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       expect(countryNameToISO3('Unknown Country')).toBeUndefined();
       expect(countryNameToISO3('Mars')).toBeUndefined();
@@ -177,8 +186,9 @@ describe('Wave 2 OData Transformation', () => {
 
   describe('Filtering categorical responses', () => {
     it('should filter to only categorical_answer type records', async () => {
-      const { filterCategoricalAnswers } =
-        await import('../../data/surveys/transform-wave2');
+      const { filterCategoricalAnswers } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       const records = [
         { ID: 1, answer_type: 'categorical_answer', variable: 'Q1' },
@@ -196,8 +206,9 @@ describe('Wave 2 OData Transformation', () => {
     });
 
     it('should exclude records with empty descriptions', async () => {
-      const { filterValidAnswers } =
-        await import('../../data/surveys/transform-wave2');
+      const { filterValidAnswers } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       const records = [
         { ID: 1, Description: 'Valid answer' },
@@ -215,8 +226,9 @@ describe('Wave 2 OData Transformation', () => {
 
   describe('Answer text cleaning', () => {
     it('should remove language variants in parentheses from answers', async () => {
-      const { cleanAnswerText } =
-        await import('../../data/surveys/transform-wave2');
+      const { cleanAnswerText } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       expect(cleanAnswerText('Yes (English)')).toBe('Yes');
       expect(cleanAnswerText('Agriculture (Spanish)')).toBe('Agriculture');
@@ -224,16 +236,18 @@ describe('Wave 2 OData Transformation', () => {
     });
 
     it('should preserve answers without language variants', async () => {
-      const { cleanAnswerText } =
-        await import('../../data/surveys/transform-wave2');
+      const { cleanAnswerText } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       expect(cleanAnswerText('Yes')).toBe('Yes');
       expect(cleanAnswerText('Very reliable')).toBe('Very reliable');
     });
 
     it('should trim whitespace from answers', async () => {
-      const { cleanAnswerText } =
-        await import('../../data/surveys/transform-wave2');
+      const { cleanAnswerText } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       expect(cleanAnswerText('  Yes  ')).toBe('Yes');
       expect(cleanAnswerText('\tNo\n')).toBe('No');
@@ -242,8 +256,9 @@ describe('Wave 2 OData Transformation', () => {
 
   describe('Output format', () => {
     it('should produce correct SurveyAnswer format', async () => {
-      const { transformWave2FromOData } =
-        await import('../../data/surveys/transform-wave2');
+      const { transformWave2FromOData } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       // Create mock OData files
       const wave2Dir = join(tmpDir, 'wave2-output-test');
@@ -322,8 +337,9 @@ describe('Wave 2 OData Transformation', () => {
     });
 
     it('should include wave: 2 in all output records', async () => {
-      const { transformWave2FromOData } =
-        await import('../../data/surveys/transform-wave2');
+      const { transformWave2FromOData } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       // Create minimal mock data
       const wave2Dir = join(tmpDir, 'wave2-wave-test');
@@ -373,8 +389,9 @@ describe('Wave 2 OData Transformation', () => {
 
   describe('Survey ID extraction', () => {
     it('should use Root.Identifier as surveyId', async () => {
-      const { getSurveyId } =
-        await import('../../data/surveys/transform-wave2');
+      const { getSurveyId } = await import(
+        '../../data/surveys/transform-wave2-legacy'
+      );
 
       const rootRecord = { ID: 123, Identifier: 'UNIQUE-SURVEY-ID-456' };
 
