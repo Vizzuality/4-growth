@@ -22,6 +22,7 @@ export const WAVE2_ENTITIES = [
   'Future_outlook_4GROWTH', // Future plans
   'Associated_costs_and_prerequisites', // Costs (provider focus)
   'Additional_comments_4GROWTH',
+  'Consent_form_English', // Consent form — personal fields filtered during wrangle
 
   // Reference tables for categorical answer descriptions
   'European_countries',
