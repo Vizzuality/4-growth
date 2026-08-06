@@ -15,7 +15,12 @@ const FACT_ENTITIES = [
   'Future_outlook_4GROWTH',
   'Associated_costs_and_prerequisites',
   'Additional_comments_4GROWTH',
+  'Consent_form_English',
 ];
+
+// Consent form variable prefix — these columns contain personal data (names, emails)
+// and have no analytical value. Filtered out during melt.
+const EXCLUDED_VARIABLE_PREFIX = 'CF';
 
 const DIMENSION_ENTITIES = [
   'European_countries',
@@ -197,7 +202,7 @@ function meltFactTable(rows: Record<string, unknown>[], chapter: string): Melted
     const rootId = Number(row['RootID'] ?? 0);
 
     for (const [col, value] of Object.entries(row)) {
-      if (ID_COLUMNS.has(col) || value === null || value === undefined) continue;
+      if (ID_COLUMNS.has(col) || col.startsWith(EXCLUDED_VARIABLE_PREFIX) || value === null || value === undefined) continue;
       result.push({
         rowId,
         calendarId,
@@ -312,7 +317,7 @@ export async function wrangleWave2(
     }
   }
   const categoricalAnswersList = [
-    { Name: 'Unknown', ID: -1, Description: 'Unknown' },
+    { Name: 'No categorical answer', ID: -1, Description: 'No categorical answer' },
     ...Array.from(catAnswerEntries.entries()).map(([id, { Name, Description }]) => ({
       ID: id,
       Name,
