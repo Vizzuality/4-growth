@@ -22,8 +22,8 @@ import { withDataSourceDefault } from "@/hooks/use-filters";
 import { buildWidgetDownloadUrl } from "@/utils/download-url";
 
 import {
+  lockedSandboxFiltersAtom,
   sandboxBreakdownAtom,
-  sandboxFiltersAtom,
   sandboxIndicatorAtom,
   sandboxVisualizationAtom,
 } from "@/containers/sidebar/store";
@@ -47,7 +47,7 @@ const Sandbox: FC<SandboxProps> = ({ customWidgetId }) => {
   const { redirect } = useAuthRedirect();
   const [indicator, setIndicator] = useAtom(sandboxIndicatorAtom);
   const [visualization, setVisualization] = useAtom(sandboxVisualizationAtom);
-  const [filters, setFilters] = useAtom(sandboxFiltersAtom);
+  const [filters, setFilters] = useAtom(lockedSandboxFiltersAtom);
   const breakdown = useAtomValue(sandboxBreakdownAtom);
   const getCustomWidgetQuery = client.users.findCustomWidget.useQuery(
     queryKeys.users.userChart(customWidgetId).queryKey,

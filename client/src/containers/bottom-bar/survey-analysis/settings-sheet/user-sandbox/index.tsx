@@ -14,7 +14,7 @@ import { queryKeys } from "@/lib/queryKeys";
 
 import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import {
-  sandboxFiltersAtom,
+  lockedSandboxFiltersAtom,
   sandboxVisualizationAtom,
   sandboxIndicatorAtom,
   sandboxBreakdownAtom,
@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/sheet";
 
 const SettingsSheet: FC = () => {
-  const filters = useAtomValue(sandboxFiltersAtom);
+  const filters = useAtomValue(lockedSandboxFiltersAtom);
   const [indicator, setIndicator] = useAtom(sandboxIndicatorAtom);
   const breakdown = useAtomValue(sandboxBreakdownAtom);
   const [visualization, setVisualization] = useAtom(sandboxVisualizationAtom);

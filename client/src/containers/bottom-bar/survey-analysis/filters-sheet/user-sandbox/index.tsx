@@ -8,8 +8,8 @@ import {
   FilterSettingsAtom,
 } from "@/containers/bottom-bar/filters-sheet/store";
 import {
+  lockedSandboxFiltersAtom,
   sandboxBreakdownAtom,
-  sandboxFiltersAtom,
 } from "@/containers/sidebar/store";
 
 import { Button } from "@/components/ui/button";
@@ -25,7 +25,7 @@ import {
 
 const FiltersSheet: FC<PropsWithChildren> = ({ children }) => {
   const [open, setOpen] = useState(false);
-  const [filters, setFilters] = useAtom(sandboxFiltersAtom);
+  const [filters, setFilters] = useAtom(lockedSandboxFiltersAtom);
   const [newFilters, setNewFilters] = useAtom(FilterSettingsAtom);
   const [newBreakdown, setNewBreakdown] = useAtom(breakdownAtom);
   const [breakdown, setBreakdown] = useAtom(sandboxBreakdownAtom);
