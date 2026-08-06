@@ -15,13 +15,23 @@ export function buildWidgetDownloadUrl(
   )}`;
 }
 
+export function buildProjectionWidgetDownloadUrl(
+  id: number,
+  dataFilters: FilterQueryParam[],
+): string {
+  return `${env.NEXT_PUBLIC_API_URL}/projections/widgets/${id}/export?${qs.stringify(
+    { dataFilters },
+    { encode: false },
+  )}`;
+}
+
 export function buildProjectionDownloadUrl(
-  filters: FilterQueryParam[],
+  dataFilters: FilterQueryParam[],
   settings: Record<string, unknown> | null,
   othersAggregation: string,
 ): string {
   return `${env.NEXT_PUBLIC_API_URL}/projections/custom-widget/export?${qs.stringify(
-    { filters, settings, othersAggregation },
+    { dataFilters, settings, othersAggregation },
     { encode: false },
   )}`;
 }

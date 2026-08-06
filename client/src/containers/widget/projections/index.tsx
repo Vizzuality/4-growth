@@ -5,11 +5,11 @@ import { useEffect, useMemo, useState } from "react";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
 import { useAtom } from "jotai";
-import qs from "qs";
 
-import { env } from "@/env";
 import { cn } from "@/lib/utils";
 import useFilters from "@/hooks/use-filters";
+
+import { buildProjectionWidgetDownloadUrl } from "@/utils/download-url";
 
 import { focusedWidgetAtom } from "@/containers/explore/store";
 import NoData from "@/containers/no-data";
@@ -66,10 +66,7 @@ export default function Widget({
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
   const [focusedWidget, setFocusedWidget] = useAtom(focusedWidgetAtom);
   const { filters } = useFilters();
-  const downloadUrl = `${env.NEXT_PUBLIC_API_URL}/projections/widgets/${id}/export?${qs.stringify(
-    { filters },
-    { encode: false },
-  )}`;
+  const downloadUrl = buildProjectionWidgetDownloadUrl(id, filters);
   const highlightWidget = showOverlay && indicator === focusedWidget;
   const menuComponent = (
     <WidgetMenu
