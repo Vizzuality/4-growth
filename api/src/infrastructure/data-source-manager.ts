@@ -60,12 +60,12 @@ export class DataSourceManager {
       const { wrangleWave2 } = await import(
         `${__dirname}/../../data/surveys/wrangle-wave2`
       );
-      const { transformWave2v2 } = await import(
-        `${__dirname}/../../data/surveys/transform-wave2-v2`
+      const { transformWave2 } = await import(
+        `${__dirname}/../../data/surveys/transform-wave2`
       );
       await extractWave2();
       await wrangleWave2();
-      await transformWave2v2();
+      await transformWave2();
 
       await this.loadInitialData();
       this.logger.log(
