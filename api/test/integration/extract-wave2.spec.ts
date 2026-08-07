@@ -35,14 +35,15 @@ describe('Wave 2 OData Extraction', () => {
 
   describe('OAuth Token Request', () => {
     it('should request token with correct OAuth2 parameters', async () => {
-      const { getAccessToken } =
-        await import('../../data/surveys/odata-client');
+      const { getAccessToken, WAVE2_OAUTH_SCOPE } = await import(
+        '../../data/surveys/odata-client'
+      );
 
       mockedAxios.post.mockResolvedValueOnce({
         data: { access_token: 'mock-token-123' },
       });
 
-      await getAccessToken('test-client-id', 'test-client-secret');
+      await getAccessToken('test-client-id', 'test-client-secret', WAVE2_OAUTH_SCOPE);
 
       expect(mockedAxios.post).toHaveBeenCalledTimes(1);
 
@@ -56,7 +57,7 @@ describe('Wave 2 OData Extraction', () => {
       expect(params.toString()).toContain('client_id=test-client-id');
       expect(params.toString()).toContain('client_secret=test-client-secret');
       expect(params.toString()).toContain(
-        'scope=https%3A%2F%2Fwageningenur4.onmicrosoft.com%2FodataAPIPoc%2F.default',
+        'scope=https%3A%2F%2Fdataservices.wser.wur.nl%2F.default',
       );
       expect(params.toString()).toContain('grant_type=client_credentials');
 
