@@ -104,6 +104,17 @@ The ETL process runs automatically every Sunday at 3:00 AM via a scheduled cron 
 
 When the ETL process completes (successfully or with errors), email notifications are sent to configured recipients via the `ETL_PROCESS_EMAILS` environment variable.
 
+### Automated mock data
+
+`SEED_AUTOMATED_MOCK_DATA` controls two things together:
+
+1. Whether a sample of survey rows is cloned with `data_source = 'automated'` on initial data load.
+2. Whether the **Data source** page filter (`survey` / `automated`) is served by `GET /filters`, and therefore whether it appears in the client's filter UI.
+
+Both are driven by the same flag because the filter is only meaningful where the automated rows exist — otherwise selecting `automated` would return no results.
+
+It is enabled on dev and staging, and intentionally left unset in production, where it falls back to `false`.
+
 ### Manual ETL Execution
 
 You can run the ETL process manually using these scripts in the `api` package:

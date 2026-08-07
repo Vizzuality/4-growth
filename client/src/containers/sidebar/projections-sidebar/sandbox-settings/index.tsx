@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
@@ -16,11 +16,12 @@ import HorizontalSelect from "@/containers/sidebar/projections-sidebar/sandbox-s
 import SizeSelect from "@/containers/sidebar/projections-sidebar/sandbox-settings/size-select";
 import VerticalSelect from "@/containers/sidebar/projections-sidebar/sandbox-settings/vertical-select";
 import VisualizationSelect from "@/containers/sidebar/projections-sidebar/sandbox-settings/visualization-select";
+import OthersSelect from "@/containers/sidebar/projections-sidebar/sandbox-settings/others-select";
 
 const SandboxSettings: FC = () => {
-  const { settings } = useSettings();
+  const { settings, othersAggregation, setOthersAggregation } = useSettings();
   const { data } = client.projections.getCustomProjectionSettings.useQuery(
-    queryKeys.projections.settings.queryKey,
+    queryKeys.projections.settings(getSettingsFilters(settings)).queryKey,
     {
       query: {
         filters: getSettingsFilters(settings),
@@ -37,13 +38,24 @@ const SandboxSettings: FC = () => {
     [settings],
   );
 
+  useEffect(() => {
+    if (!data?.othersAggregation && othersAggregation) {
+      setOthersAggregation(null);
+    }
+  }, [data?.othersAggregation, othersAggregation, setOthersAggregation]);
+
   return (
     <>
       <VisualizationSelect options={data?.availableVisualizations || []} />
       {showSimpleChartSettings ? (
         <>
           <VerticalSelect options={data?.line_chart.vertical || []} />
-          <ColorSelect options={data?.line_chart.color || []} />
+          {!(settings && "table" in settings) && (
+            <ColorSelect options={data?.line_chart.color || []} />
+          )}
+          {!!data?.othersAggregation && (
+            <OthersSelect options={data?.othersAggregation} />
+          )}
         </>
       ) : showBubbleChartSettings ? (
         <>
@@ -52,6 +64,9 @@ const SandboxSettings: FC = () => {
           <HorizontalSelect options={data?.bubble_chart.horizontal || []} />
           <ColorSelect options={data?.bubble_chart.color || []} />
           <SizeSelect options={data?.bubble_chart.size || []} />
+          {!!data?.othersAggregation && (
+            <OthersSelect options={data?.othersAggregation} />
+          )}
         </>
       ) : null}
     </>

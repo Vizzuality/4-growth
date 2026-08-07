@@ -2,40 +2,36 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import Link from "next/link";
-
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 import { ProjectionWidgetData } from "@shared/dto/projections/projection-widget.entity";
 import { useAtom } from "jotai";
 
 import { cn } from "@/lib/utils";
+import useFilters from "@/hooks/use-filters";
+
+import { buildProjectionWidgetDownloadUrl } from "@/utils/download-url";
 
 import { focusedWidgetAtom } from "@/containers/explore/store";
-import MenuButton from "@/containers/menu-button";
 import NoData from "@/containers/no-data";
 import { showOverlayAtom } from "@/containers/overlay/store";
 import LineChart from "@/containers/widget/line-chart";
-import {
-  getMenuButtonText,
-  widgetDescriptionMap,
-} from "@/containers/widget/projections/utils";
+import WidgetMenu from "@/containers/widget/projections/menu";
+import { widgetDescriptionMap } from "@/containers/widget/projections/utils";
 import TableView from "@/containers/widget/table";
 import UnitSelect from "@/containers/widget/unit-select";
 import { getDefaultProjectionUnit } from "@/containers/widget/utils";
 import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { getRouteHref } from "@/utils/route-config";
 
 export interface WidgetProps {
+  id: number;
   indicator: string;
   visualization: ProjectionVisualizationsType;
   data?: ProjectionWidgetData;
   visualisations?: ProjectionVisualizationsType[];
-  menu?: React.ReactNode;
+  description?: string;
   className?: string;
   showCustomizeWidgetButton?: boolean;
   config?: {
@@ -50,11 +46,12 @@ export interface WidgetProps {
 }
 
 export default function Widget({
+  id,
   indicator,
   visualization,
   visualisations,
   data,
-  menu,
+  description,
   className,
   showCustomizeWidgetButton,
   config,
@@ -68,55 +65,25 @@ export default function Widget({
     useState<ProjectionVisualizationsType>(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
   const [focusedWidget, setFocusedWidget] = useAtom(focusedWidgetAtom);
+  const { filters } = useFilters();
+  const downloadUrl = buildProjectionWidgetDownloadUrl(id, filters);
   const highlightWidget = showOverlay && indicator === focusedWidget;
-  const menuComponent =
-    menu ||
-    (!visualisations && !showCustomizeWidgetButton ? undefined : (
-      <MenuButton
-        className={className}
-        onOpenChange={(open) => {
-          setShowOverlay(open);
-          if (open) {
-            setFocusedWidget(indicator);
-          } else {
-            setFocusedWidget(null);
-          }
-        }}
-        {...config?.menu}
-      >
-        {showCustomizeWidgetButton && (
-          <Button
-            variant="clean"
-            className="block rounded-none px-4 py-3.5 text-left text-xs font-medium transition-colors hover:bg-muted"
-            asChild
-          >
-            <Link
-              href={
-                getRouteHref("surveyAnalysis", "sandbox") +
-                `?visualization=${selectedVisualization}&indicator=${indicator}`
-              }
-            >
-              Customize chart
-            </Link>
-          </Button>
-        )}
-        {visualisations && (
-          <>
-            <Separator />
-            {visualisations.map((v) => (
-              <Button
-                key={`visualization-list-item-${v}`}
-                variant="clean"
-                className="block w-full rounded-none px-4 py-3.5 text-left text-xs font-medium transition-colors hover:bg-muted"
-                onClick={() => setSelectedVisualization(v)}
-              >
-                {getMenuButtonText(v)}
-              </Button>
-            ))}
-          </>
-        )}
-      </MenuButton>
-    ));
+  const menuComponent = (
+    <WidgetMenu
+      visualisations={visualisations}
+      info={description ? { title: indicator, description } : undefined}
+      selectedVisualization={selectedVisualization}
+      showCustomizeWidgetButton={showCustomizeWidgetButton}
+      setShowOverlay={setShowOverlay}
+      setFocusedWidget={setFocusedWidget}
+      setSelectedVisualization={setSelectedVisualization}
+      indicator={indicator}
+      chartTitle={indicator}
+      section="projections"
+      downloadUrl={downloadUrl}
+      className={config?.menu?.className}
+    />
+  );
   const selectComponent = (
     <UnitSelect
       id={indicator}

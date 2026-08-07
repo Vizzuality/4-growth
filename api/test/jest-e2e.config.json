@@ -1,0 +1,18 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "../",
+  "roots": ["<rootDir>/test/e2e/"],
+  "testEnvironment": "node",
+  "testRegex": ".spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "transformIgnorePatterns": ["node_modules/(?!.*uuid)"],
+  "moduleNameMapper": {
+    "^@api/(.*)$": "<rootDir>/src/$1",
+    "^@client/(.*)$": "<rootDir>/../client/src/$1",
+    "^@shared/(.*)$": "<rootDir>/../shared/$1"
+  },
+  "testTimeout": 60000,
+  "globalSetup": "<rootDir>/test/global-setup.ts"
+}

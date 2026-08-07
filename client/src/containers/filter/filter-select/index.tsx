@@ -4,6 +4,9 @@ import { FC } from "react";
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 import { Provider, useAtomValue } from "jotai";
 
+import { DATA_SOURCE_FILTER_NAME } from "@/lib/constants";
+
+import DataSourceSelect from "@/containers/filter/filter-select/data-source-select";
 import FilterSelectName from "@/containers/filter/filter-select/filter-select-name";
 import FilterSelectValues, {
   FilterSelectForm,
@@ -62,6 +65,19 @@ function FilterSelectSteps({
 
   if (currentStep === FilterSelectStep.name) {
     return <FilterSelectName items={items} maxHeight={maxHeight} />;
+  }
+
+  if (currentFilter?.name === DATA_SOURCE_FILTER_NAME) {
+    return (
+      <DataSourceSelect
+        defaultValues={defaultValues}
+        isFixedFilter={!!fixedFilter}
+        maxHeight={maxHeight}
+        onSubmit={(v) => {
+          onSubmit({ ...v, name: currentFilter.name });
+        }}
+      />
+    );
   }
 
   return (

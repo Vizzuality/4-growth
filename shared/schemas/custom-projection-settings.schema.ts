@@ -35,6 +35,12 @@ const BubbleChartSchema = z.object({
   size: IndicatorValue,
 });
 
+export const OthersAggregationValues = ['visible', 'hidden'] as const;
+export const OthersAggregationSchema = z
+  .enum(OthersAggregationValues)
+  .optional()
+  .default('visible');
+
 export const CustomProjectionSettingsSchema = z.object({
   settings: z.union([
     z.object({
@@ -46,7 +52,12 @@ export const CustomProjectionSettingsSchema = z.object({
     z.object({
       [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: BubbleChartSchema,
     }),
+    z.object({
+      [PROJECTION_VISUALIZATIONS.TABLE]: SimpleVisualizationSchema,
+    }),
   ]),
+  breakdown: AttributeValue.optional(),
+  othersAggregation: OthersAggregationSchema,
 });
 
 export type CustomProjectionSettingsSchemaType = z.infer<
@@ -55,3 +66,5 @@ export type CustomProjectionSettingsSchemaType = z.infer<
 
 export type CustomProjectionSettingsType =
   CustomProjectionSettingsSchemaType['settings'];
+
+export type OthersAggregationType = z.infer<typeof OthersAggregationSchema>;

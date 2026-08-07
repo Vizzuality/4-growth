@@ -24,29 +24,48 @@ import { useToast } from "@/components/ui/use-toast";
 import { getAuthHeader } from "@/utils/auth-header";
 
 import { CLASS } from "../";
+import { VisualizationTool } from "../../..";
 
-const DeleteVisualizationButton: FC<{ id: number }> = ({ id }) => {
+const DeleteVisualizationButton: FC<{
+  id: number;
+  tool: VisualizationTool;
+}> = ({ id, tool }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
   const handleDelete = useCallback(async () => {
-    const response = await client.users.deleteCustomWidget.mutation({
-      params: {
-        userId: session?.user.id as string,
-        id,
-      },
-      extraHeaders: {
-        ...getAuthHeader(session?.accessToken as string),
-      },
-    });
+    const response =
+      tool === "Survey Analysis"
+        ? await client.users.deleteCustomWidget.mutation({
+            params: {
+              userId: session?.user.id as string,
+              id,
+            },
+            extraHeaders: {
+              ...getAuthHeader(session?.accessToken as string),
+            },
+          })
+        : await client.savedProjections.deleteSavedProjection.mutation({
+            params: {
+              userId: session?.user.id as string,
+              id,
+            },
+            extraHeaders: {
+              ...getAuthHeader(session?.accessToken as string),
+            },
+          });
 
     if (response.status === 204) {
       queryClient.invalidateQueries(
         queryKeys.users.userCharts(session?.user.id as string, {}).queryKey,
-        {
-          exact: false,
-        },
+        { exact: false },
+      );
+      queryClient.invalidateQueries(
+        queryKeys.users
+          .savedProjections(session?.user.id as string, {})
+          .queryKey,
+        { exact: false },
       );
 
       toast({
@@ -58,7 +77,8 @@ const DeleteVisualizationButton: FC<{ id: number }> = ({ id }) => {
         description: "Something went wrong deleting the visualization.",
       });
     }
-  }, [id, queryClient, session?.accessToken, session?.user.id, toast]);
+  }, [id, tool, queryClient, session?.accessToken, session?.user.id, toast]);
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild onClick={(e) => e.stopPropagation()}>

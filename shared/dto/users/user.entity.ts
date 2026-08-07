@@ -25,4 +25,5 @@ export class User {
 
   @OneToMany(() => CustomWidget, (customWidget) => customWidget.user)
   customWidgets: CustomWidget[];
+
 }

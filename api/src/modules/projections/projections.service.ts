@@ -1,7 +1,12 @@
 import { Repository, SelectQueryBuilder } from 'typeorm';
 import { AppBaseService } from '@api/utils/app-base.service';
 import { AppInfoDTO } from '@api/utils/info.dto';
-import { Inject, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Projection } from '@shared/dto/projections/projection.entity';
@@ -23,6 +28,9 @@ import {
 } from '@shared/dto/projections/custom-projection-settings';
 import { CustomProjection } from '@shared/dto/projections/custom-projection.type';
 import { CustomProjectionSettingsSchemaType } from '@shared/schemas/custom-projection-settings.schema';
+import { NonExportableWidgetError } from '@api/modules/widgets/csv/widget-data.csv';
+import { serializeProjectionDataToCsv } from '@api/modules/widgets/csv/projection-data.csv';
+import { buildCsvFilename } from '@api/modules/widgets/csv/filename';
 @Injectable()
 export class ProjectionsService extends AppBaseService<
   Projection,
@@ -46,17 +54,35 @@ export class ProjectionsService extends AppBaseService<
   public async generateCustomProjection(
     query: SearchFiltersDTO & CustomProjectionSettingsSchemaType,
   ): Promise<CustomProjection> {
-    const { settings, dataFilters = [] } = query;
+    const { settings, dataFilters = [], breakdown, othersAggregation } = query;
     return this.projectionDataRepository.previewProjectionCustomWidget(
       dataFilters,
       settings,
+      breakdown,
+      othersAggregation,
     );
   }
 
-  public getCustomProjectionSettings(
+  public async getCustomProjectionSettings(
     query: SearchFiltersDTO,
-  ): CustomProjectionSettingsType {
-    return generateCustomProjectionSettings(query);
+  ): Promise<CustomProjectionSettingsType> {
+    const { filters, dataFilters = [] } = query;
+    const colorFilter = filters?.find((f) => f.name === 'color');
+    const colorAttribute = colorFilter?.values?.[0] as string | undefined;
+
+    let includeOthersAggregation = true;
+    if (colorAttribute) {
+      const distinctCount =
+        await this.projectionDataRepository.countDistinctColorValues(
+          colorAttribute,
+          dataFilters,
+        );
+      includeOthersAggregation = distinctCount > 9;
+    } else {
+      includeOthersAggregation = false;
+    }
+
+    return generateCustomProjectionSettings(query, includeOthersAggregation);
   }
 
   public async getProjectionsFilters(
@@ -112,5 +138,61 @@ export class ProjectionsService extends AppBaseService<
       fetchSpecification.filters,
       { alias: 'projection' },
     );
+  }
+
+  public async exportProjectionWidgetCsv(
+    id: number,
+    query: SearchFiltersDTO,
+    now: Date = new Date(),
+  ): Promise<{ csv: string; filename: string }> {
+    const widget = await this.projectionWidgetsRepository.findOneBy({ id });
+    if (widget === null) {
+      throw new NotFoundException(`Projection widget with id ${id} not found`);
+    }
+
+    const { dataFilters = [] } = query;
+    await this.projectionDataRepository.addDataToProjectionsWidgets(
+      [widget],
+      dataFilters,
+    );
+
+    if (!widget.data || Object.keys(widget.data).length === 0) {
+      throw new BadRequestException('Projection widget has no data to export');
+    }
+
+    return this.wrapCsv(
+      () => serializeProjectionDataToCsv(widget.data),
+      widget.title,
+      now,
+    );
+  }
+
+  public async exportCustomProjectionCsv(
+    query: SearchFiltersDTO & CustomProjectionSettingsSchemaType,
+    now: Date = new Date(),
+  ): Promise<{ csv: string; filename: string }> {
+    const projection = await this.generateCustomProjection(query);
+    return this.wrapCsv(
+      () => serializeProjectionDataToCsv(projection),
+      'custom-projection',
+      now,
+    );
+  }
+
+  private wrapCsv(
+    serialize: () => string,
+    titleForFilename: string,
+    now: Date,
+  ): { csv: string; filename: string } {
+    try {
+      const csv = serialize();
+      const filename = buildCsvFilename(titleForFilename, now);
+      return { csv, filename };
+    } catch (error) {
+      if (error instanceof NonExportableWidgetError) {
+        throw new BadRequestException(error.message);
+      }
+      throw error;
+    }
   }
 }

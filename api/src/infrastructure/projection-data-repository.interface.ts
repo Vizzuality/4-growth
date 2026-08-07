@@ -3,7 +3,10 @@ import { CustomProjection } from '@shared/dto/projections/custom-projection.type
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { ProjectionFilter } from '@shared/dto/projections/projection-filter.entity';
 import { ProjectionWidget } from '@shared/dto/projections/projection-widget.entity';
-import { CustomProjectionSettingsType } from '@shared/schemas/custom-projection-settings.schema';
+import {
+  CustomProjectionSettingsType,
+  OthersAggregationType,
+} from '@shared/schemas/custom-projection-settings.schema';
 import { Repository } from 'typeorm';
 
 export const ProjectionDataRepository = Symbol('IProjectionDataRepository');
@@ -17,8 +20,18 @@ export interface IProjectionDataRepository extends Repository<ProjectionData> {
     dataFilters: SearchFilterDTO[],
   ): Promise<void>;
   findProjectionWidgetData(dataFilters: SearchFilterDTO[]): Promise<any>;
+  countDistinctColorValues(
+    colorFieldName: string,
+    dataFilters: SearchFilterDTO[],
+  ): Promise<number>;
+  findProjectionTableData(
+    dataFilters: SearchFilterDTO[],
+    indicator: string,
+  ): Promise<CustomProjection>;
   previewProjectionCustomWidget(
     dataFilters: SearchFilterDTO[],
     settings: CustomProjectionSettingsType,
+    breakdown?: string,
+    othersAggregation?: OthersAggregationType,
   ): Promise<CustomProjection>;
 }

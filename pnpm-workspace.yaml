@@ -1,11 +1,71 @@
 packages:
-  - 'api/**'
-  - 'client/**'
-  - 'shared/**'
-  - 'e2e/**'
+  - "api/**"
+  - "client/**"
+  - "shared/**"
+  - "e2e/**"
+
+onlyBuiltDependencies:
+  - "@nestjs/core"
+
+overrides:
+  # d3-color: security fix — forces 3.1.0 across all d3 consumers
+  d3-color: 3.1.0
+  # qs: blanket override needed — express 4.21.2 (via nestjs-base-service) declares exact qs 6.13.0
+  # 6.15.2 fixes remotely-triggerable DoS in qs.stringify (GHSA-q8mj-m7cp-5q26)
+  qs: 6.15.2
+  # nestjs-base-service ships outdated transitive deps; scope overrides to that parent
+  "nestjs-base-service>express": "4.21.2"
+  "express>path-to-regexp": "0.1.13"
+  "nestjs-base-service>lodash": "4.18.1"
+  # Not a security fix. nestjs-base-service pins class-validator 0.14.0 exactly, and a
+  # second copy in the tree gets its own MetadataStorage singleton — decorators applied
+  # to shared/ DTOs become invisible to validate(), which then passes silently.
+  "nestjs-base-service>class-validator": "0.14.4"
+  # body-parser: invalid `limit` value silently disables size enforcement (GHSA-v422-hmwv-36x6)
+  # express 4.x pins body-parser exactly, so the patched 1.20.6 must be forced. express 5.x
+  # declares ^2.2.1 and resolves a patched 2.x unaided, so it needs no entry.
+  "express@4>body-parser": "1.20.6"
+  # @aws-sdk/xml-builder ships vulnerable fast-xml-parser <5.7.0 (GHSA-8gc5-j5rx-235r)
+  # 5.8.0 also pulls fast-xml-builder >=1.2.0 fixing GHSA-5wm8-gmm8-39j9
+  "@aws-sdk/xml-builder>fast-xml-parser": "5.8.0"
+  # next bundles postcss <8.5.18 (GHSA-r28c-9q8g-f849 — path traversal via sourceMappingURL disclosing arbitrary .map files)
+  "next>postcss": "8.5.23"
+  # @nestjs/platform-express ships multer <2.2.0 — DoS via nested fields and aborted uploads (GHSA-72gw-mp4g-v24j, GHSA-3p4h-7m6x-2hcm)
+  "@nestjs/platform-express>multer": "2.2.0"
+  # next ships sharp <0.35.0 — inherited libvips CVEs (GHSA-f88m-g3jw-g9cj)
+  "next>sharp": "0.35.3"
+  # brace-expansion GHSA-mh99-v99m-4gvg is patched only in 5.0.8; 5.x replaced the
+  # CJS default export with a named one, so minimatch 3.x (^1.1.7) and 9.x (^2.0.2)
+  # crash on it. No override: minimatch 10.x resolves the patched 5.0.8 from its own
+  # ^5.0.2 range, and the older two stay on unpatched-but-working releases. Their
+  # glob patterns are build config and typeorm entity paths, never user input.
+  # No parent upgrade clears it either — fork-ts-checker-webpack-plugin 9.1.0 and
+  # @jest/reporters 30.4.x are both current and pin minimatch ^3.0.4 / glob ^10.5.0.
+  # Both surviving paths are api devDependencies, so nothing ships to production.
 
 catalog:
-  zod: 3.23.8
-  "@types/node": 20.14.2
-  typescript: 5.4.5
-  typeorm: 0.3.20
+  # Core
+  zod: 3.25.76
+  "@types/node": 25.3.0
+  typescript: 5.9.3
+  typeorm: 0.3.31
+  bcrypt: 6.0.0
+  "@types/bcrypt": 6.0.0
+  # Linting & formatting
+  eslint: 10.2.0
+  eslint-config-prettier: 10.1.8
+  eslint-plugin-prettier: 5.5.5
+  prettier: 3.8.1
+  "@typescript-eslint/eslint-plugin": 8.56.1
+  "@typescript-eslint/parser": 8.56.1
+  # Testing
+  "@types/jest": 30.0.0
+  # Tooling
+  ts-node: 10.9.2
+  # Shared libraries
+  "@types/lodash": 4.17.24
+  lodash: 4.18.1
+  qs: 6.15.2
+  "@types/qs": 6.14.0
+  class-transformer: 0.5.1
+  class-validator: 0.14.4

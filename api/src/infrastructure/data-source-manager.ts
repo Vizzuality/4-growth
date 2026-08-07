@@ -127,6 +127,8 @@ export class DataSourceManager {
       this.generateProjectionsWidgets(),
     ]);
 
+    await this.seedAutomatedMockData();
+
     await configParamsRepo.save({
       param: 'data_version',
       value: latestDataVersion,
@@ -237,6 +239,7 @@ export class DataSourceManager {
             ...answer,
             questionIndicator: indicator,
             wave,
+            dataSource: 'survey',
           });
         }
       }
@@ -256,6 +259,41 @@ export class DataSourceManager {
     } finally {
       await queryRunner.release();
     }
+  }
+
+  public async seedAutomatedMockData(): Promise<void> {
+    if (!config.get<boolean>('etl.seedAutomatedMockData')) {
+      return;
+    }
+
+    const [{ count }] = await this.dataSource.query<{ count: string }[]>(
+      `SELECT COUNT(*)::text AS count FROM survey_answers WHERE data_source = 'automated'`,
+    );
+    if (parseInt(count) > 0) {
+      return;
+    }
+
+    this.logger.log('Seeding automated mock data', this.constructor.name);
+    await this.dataSource.query(`
+      INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code, wave, data_source)
+      SELECT
+        'auto_' || survey_id,
+        question_indicator,
+        question,
+        answer,
+        country_code,
+        wave,
+        'automated'
+      FROM survey_answers
+      WHERE survey_id IN (
+        SELECT DISTINCT survey_id FROM survey_answers
+        WHERE data_source = 'survey'
+        ORDER BY survey_id
+        LIMIT 100
+      )
+      ON CONFLICT DO NOTHING
+    `);
+    this.logger.log('Automated mock data seed complete', this.constructor.name);
   }
 
   public async loadProjectionTypes(

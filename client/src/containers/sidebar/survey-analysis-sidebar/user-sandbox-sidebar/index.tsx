@@ -8,7 +8,10 @@ import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
 
-import { FilterQueryParam } from "@/hooks/use-filters";
+import {
+  FilterQueryParam,
+  withDataSourceDefault,
+} from "@/hooks/use-filters";
 
 import BreakdownSelector from "@/containers/sidebar/breakdown-selector";
 import FilterSettings from "@/containers/sidebar/filter-settings";
@@ -16,8 +19,8 @@ import ClearFiltersButton from "@/containers/sidebar/filter-settings/clear-filte
 import { SURVEY_ANALYSIS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
 import IndicatorSelector from "@/containers/sidebar/indicator-seletor";
 import {
+  lockedSandboxFiltersAtom,
   sandboxBreakdownAtom,
-  sandboxFiltersAtom,
   sandboxIndicatorAtom,
   sandboxVisualizationAtom,
 } from "@/containers/sidebar/store";
@@ -31,7 +34,7 @@ import {
 } from "@/components/ui/accordion";
 
 const UserSandboxSidebar: FC = () => {
-  const [filters, setFilters] = useAtom(sandboxFiltersAtom);
+  const [filters, setFilters] = useAtom(lockedSandboxFiltersAtom);
   const [breakdown, setBreakdown] = useAtom(sandboxBreakdownAtom);
   const [indicator, setIndicator] = useAtom(sandboxIndicatorAtom);
   const [visualization, setVisualization] = useAtom(sandboxVisualizationAtom);
@@ -61,8 +64,12 @@ const UserSandboxSidebar: FC = () => {
         setFilters(
           addFilterQueryParam(filters, newFilter, ADD_FILTER_MODE.REPLACE),
         );
-      } else if (newFilter.values.length === 0) {
-        setFilters(filters.filter((filter) => filter.name !== newFilter.name));
+      } else {
+        setFilters(
+          withDataSourceDefault(
+            filters.filter((filter) => filter.name !== newFilter.name),
+          ),
+        );
       }
     },
     [filters, setFilters],

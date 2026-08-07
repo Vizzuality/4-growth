@@ -1,22 +1,23 @@
-import { CustomWidget } from "@shared/dto/widgets/custom-widget.entity";
-import { WIDGET_VISUALIZATIONS } from "@shared/dto/widgets/widget-visualizations.constants";
 import { ColumnDef } from "@tanstack/react-table";
 
 import ActionsButton from "./actions-button";
 import CellName from "./cell-name";
 import SortingButton from "./sorting-button";
 
-export interface ColumnsTable extends Partial<CustomWidget> {}
+export type VisualizationTool = "Survey Analysis" | "Projections";
 
-const WIDGET_VISUALIZATIONS_MAP: Record<string, string> = {
-  [WIDGET_VISUALIZATIONS.AREA_GRAPH]: "Area chart",
-  [WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART]: "Bar chart",
-  [WIDGET_VISUALIZATIONS.MAP]: "Map",
-  [WIDGET_VISUALIZATIONS.PIE_CHART]: "Pie chart",
-};
+export interface SavedVisualizationRow {
+  id: number;
+  name: string;
+  indicator: string;
+  tool: VisualizationTool;
+  visualization: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 const useColumns = () => {
-  const columns: ColumnDef<Partial<CustomWidget>>[] = [
+  const columns: ColumnDef<SavedVisualizationRow>[] = [
     {
       accessorKey: "name",
       header: (headerProps) => (
@@ -28,7 +29,7 @@ const useColumns = () => {
       cell: (cellProps) => <CellName {...cellProps} />,
     },
     {
-      accessorKey: "widget.title",
+      accessorKey: "indicator",
       header: (headerProps) => (
         <div className="flex space-x-2 text-slate-300">
           <span className="text-sm font-medium">Indicator</span>
@@ -38,18 +39,26 @@ const useColumns = () => {
       cell: ({ getValue }) => getValue(),
     },
     {
-      accessorKey: "defaultVisualization",
+      accessorKey: "tool",
       header: (headerProps) => (
         <div className="flex space-x-2 text-slate-300">
-          <span className="text-sm font-medium">Type of chart</span>
+          <span className="text-sm font-medium">Tool</span>
+          <SortingButton {...headerProps} />
+        </div>
+      ),
+      cell: ({ getValue }) => getValue(),
+    },
+    {
+      accessorKey: "visualization",
+      header: (headerProps) => (
+        <div className="flex space-x-2 text-slate-300">
+          <span className="text-sm font-medium">Visualization</span>
           <SortingButton {...headerProps} />
         </div>
       ),
       cell: (cellProps) => (
         <div className="flex items-center justify-between md:pr-6">
-          <span>
-            {WIDGET_VISUALIZATIONS_MAP[cellProps.getValue() as string]}
-          </span>
+          <span>{cellProps.getValue() as string}</span>
           <ActionsButton {...cellProps} />
         </div>
       ),

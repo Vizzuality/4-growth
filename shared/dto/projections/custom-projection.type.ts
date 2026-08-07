@@ -17,4 +17,31 @@ export type BubbleProjection = {
   }[];
 };
 
-export type CustomProjection = SimpleProjection | BubbleProjection;
+export type TableProjection = {
+  [unit: string]: {
+    year: number;
+    value: number;
+    scenario: string;
+    technology: string;
+    technologyType: string;
+    country: string;
+    category: string;
+  }[];
+};
+
+export type BreakdownProjection = {
+  [unit: string]: Array<{
+    label: string;
+    data: Array<{
+      label: string;
+      value: number;
+      total: number;
+    }>;
+  }>;
+};
+
+export type CustomProjection =
+  | SimpleProjection
+  | BubbleProjection
+  | TableProjection
+  | BreakdownProjection;

@@ -59,6 +59,8 @@ export class TestManager<FixtureType> {
       // Has to be called before init. Otherwise it has no effect.
       testApp.useLogger(options.logger);
     }
+    const expressApp = testApp.getHttpAdapter().getInstance();
+    expressApp.set('query parser', 'extended');
     testApp.useGlobalPipes(new ValidationPipe());
     if (options.initialize !== false) {
       await testApp.init();

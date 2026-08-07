@@ -1,5 +1,5 @@
 import { DataSource, Repository } from 'typeorm';
-import { Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Logger, NotFoundException } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { IProjectionDataRepository } from '@api/infrastructure/projection-data-repository.interface';
@@ -15,7 +15,10 @@ import {
   ProjectionFilter,
 } from '@shared/dto/projections/projection-filter.entity';
 import { CustomProjection } from '@shared/dto/projections/custom-projection.type';
-import { CustomProjectionSettingsType } from '@shared/schemas/custom-projection-settings.schema';
+import {
+  CustomProjectionSettingsType,
+  OthersAggregationType,
+} from '@shared/schemas/custom-projection-settings.schema';
 import {
   PROJECTION_VISUALIZATIONS,
   ProjectionVisualizationsType,
@@ -86,6 +89,26 @@ export class PostgresProjectionDataRepository
     // return result;
   }
 
+  public async countDistinctColorValues(
+    colorFieldName: string,
+    dataFilters: SearchFilterDTO[],
+  ): Promise<number> {
+    const fieldName =
+      PROJECTION_FILTER_NAME_TO_FIELD_NAME[colorFieldName] || colorFieldName;
+    const queryBuilder = this.dataSource
+      .getRepository(Projection)
+      .createQueryBuilder('projection')
+      .select(`COUNT(DISTINCT projection.${fieldName})`, 'count');
+
+    QueryBuilderUtils.applySearchFilters(queryBuilder, dataFilters, {
+      alias: 'projection',
+      filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
+    });
+
+    const result = await queryBuilder.getRawOne();
+    return parseInt(result?.count || '0', 10);
+  }
+
   public async addDataToProjectionsWidgets(
     projectionWidgets: ProjectionWidget[],
     dataFilters: SearchFilterDTO[],
@@ -154,10 +177,66 @@ export class PostgresProjectionDataRepository
     return result[0]?.data;
   }
 
+  public async findProjectionTableData(
+    dataFilters: SearchFilterDTO[],
+    indicator: string,
+  ): Promise<CustomProjection> {
+    const baseQueryBuilder = this.dataSource
+      .getRepository(Projection)
+      .createQueryBuilder('projection')
+      .select('projectionData.year', 'year')
+      .addSelect('projectionData.value', 'value')
+      .addSelect('projection.scenario', 'scenario')
+      .addSelect('projection.technology', 'technology')
+      .addSelect('projection.technologyType', 'technology_type')
+      .addSelect('projection.country', 'country')
+      .addSelect('projection.category', 'category')
+      .addSelect('projection.unit', 'unit')
+      .innerJoin('projection.projectionData', 'projectionData')
+      .where('projection.type = :type', { type: indicator })
+      .orderBy('projectionData.year', 'ASC');
+
+    QueryBuilderUtils.applySearchFilters(baseQueryBuilder, dataFilters, {
+      alias: 'projection',
+      filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
+    });
+
+    const finalQuery = `
+      SELECT
+        JSON_OBJECT_AGG(
+          unit,
+          unit_data
+        ) as data
+      FROM (
+        SELECT
+          unit,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'year', year,
+              'value', value,
+              'scenario', ${this.getConditionalHumanizationSql('scenario', 'scenario')},
+              'technology', ${this.getConditionalHumanizationSql('technology', 'technology')},
+              'technologyType', ${this.getConditionalHumanizationSql('technology_type', 'technology-type')},
+              'country', ${this.getConditionalHumanizationSql('country', 'country')},
+              'category', category
+            )
+            ORDER BY year ASC
+          ) as unit_data
+        FROM (${baseQueryBuilder.getSql()}) as base_data
+        GROUP BY unit
+      ) as grouped_data
+    `;
+
+    const parameters = Object.values(baseQueryBuilder.getParameters()).flat();
+    const result = await this.dataSource.query(finalQuery, parameters);
+    return result[0]?.data || {};
+  }
+
   public async findSimpleProjectionCustomWidgetData(
     widgetVisualization: ProjectionVisualizationsType,
     dataFilters: SearchFilterDTO[],
     settings: CustomProjectionSettingsType,
+    othersAggregation: OthersAggregationType = 'visible',
   ): Promise<CustomProjection> {
     const verticalAxis = settings[widgetVisualization].vertical;
     const colorAxis =
@@ -187,13 +266,16 @@ export class PostgresProjectionDataRepository
       filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
     });
 
+    const showOthers = othersAggregation !== 'hidden';
+    const rankLimit = showOthers ? 9 : 10;
+
     // Use database-level logic to handle top colors per unit
     const finalQuery = `
       WITH base_data AS (
         ${baseQueryBuilder.getSql()}
       ),
       unit_color_totals AS (
-        SELECT 
+        SELECT
           unit,
           color,
           SUM(vertical) as total_vertical
@@ -201,7 +283,7 @@ export class PostgresProjectionDataRepository
         GROUP BY unit, color
       ),
       ranked_colors AS (
-        SELECT 
+        SELECT
           unit,
           color,
           total_vertical,
@@ -209,39 +291,48 @@ export class PostgresProjectionDataRepository
         FROM unit_color_totals
       ),
       processed_data AS (
-        SELECT 
+        SELECT
           bd.unit,
           bd.year,
-          CASE 
-            WHEN rc.rank <= 9 THEN bd.color::text
+          ${
+            showOthers
+              ? `CASE
+            WHEN rc.rank <= ${rankLimit} THEN bd.color::text
             ELSE 'Others'
-          END as final_color,
+          END as final_color,`
+              : `bd.color::text as final_color,`
+          }
           SUM(bd.vertical) as vertical
         FROM base_data bd
         JOIN ranked_colors rc ON bd.unit = rc.unit AND bd.color = rc.color
-        GROUP BY bd.unit, bd.year, 
-                 CASE 
-                   WHEN rc.rank <= 9 THEN bd.color::text
+        ${!showOthers ? `WHERE rc.rank <= ${rankLimit}` : ''}
+        GROUP BY bd.unit, bd.year,
+                 ${
+                   showOthers
+                     ? `CASE
+                   WHEN rc.rank <= ${rankLimit} THEN bd.color::text
                    ELSE 'Others'
-                 END
+                 END`
+                     : `bd.color::text`
+                 }
       )
-      SELECT 
+      SELECT
         JSON_OBJECT_AGG(
           unit,
           unit_data
         ) as data
       FROM (
-        SELECT 
+        SELECT
           unit,
           JSON_AGG(
             JSON_BUILD_OBJECT(
               'year', year,
-              'color', CASE 
+              'color', CASE
                 WHEN final_color = 'Others' THEN 'Others'
                 ELSE ${this.getConditionalHumanizationSql('final_color', colorFieldName)}
               END,
               'vertical', vertical
-            ) 
+            )
             ORDER BY year ASC, final_color
           ) as unit_data
         FROM processed_data
@@ -258,11 +349,36 @@ export class PostgresProjectionDataRepository
   public async previewProjectionCustomWidget(
     dataFilters: SearchFilterDTO[],
     settings: CustomProjectionSettingsType,
+    breakdown?: string,
+    othersAggregation: OthersAggregationType = 'visible',
   ): Promise<CustomProjection> {
     const widgetVisualization = Object.keys(
       settings,
     )[0] as ProjectionVisualizationsType;
+
+    if (breakdown) {
+      if (widgetVisualization === PROJECTION_VISUALIZATIONS.BUBBLE_CHART) {
+        throw new BadRequestException(
+          'Breakdown is not supported for bubble chart visualizations',
+        );
+      }
+      return this.findBreakdownProjectionData(
+        widgetVisualization,
+        dataFilters,
+        settings,
+        breakdown,
+        othersAggregation,
+      );
+    }
+
     switch (widgetVisualization) {
+      case PROJECTION_VISUALIZATIONS.TABLE:
+        const tableSettings = (settings as { table: { vertical: string } })
+          .table;
+        return this.findProjectionTableData(
+          dataFilters,
+          tableSettings.vertical,
+        );
       case PROJECTION_VISUALIZATIONS.LINE_CHART:
       case PROJECTION_VISUALIZATIONS.BAR_CHART:
         // Only aggregate 'others' in findSimpleProjectionCustomWidgetData
@@ -270,6 +386,7 @@ export class PostgresProjectionDataRepository
           widgetVisualization,
           dataFilters,
           settings,
+          othersAggregation,
         );
       case PROJECTION_VISUALIZATIONS.BUBBLE_CHART:
         const bubble =
@@ -397,10 +514,13 @@ export class PostgresProjectionDataRepository
             return `$${Number(paramIndex) + sizeParams.length + verticalParams.length}`;
           });
 
+        const showOthers = othersAggregation !== 'hidden';
+        const rankLimit = showOthers ? 9 : 10;
+
         // Combined query that joins all three metrics and groups by unit
         const combinedQuery = `
           WITH combined_data AS (
-            SELECT 
+            SELECT
               size.unit,
               size.bubble,
               size.color,
@@ -410,18 +530,18 @@ export class PostgresProjectionDataRepository
               COALESCE(horizontal.horizontal, 0) AS horizontal
             FROM (${sizeQueryBuilder.getSql()}) AS size
             LEFT JOIN (${verticalSql}) AS vertical
-              ON size.color = vertical.color 
-              AND size.bubble = vertical.bubble 
+              ON size.color = vertical.color
+              AND size.bubble = vertical.bubble
               AND size.year = vertical.year
               AND size.unit = vertical.unit
             LEFT JOIN (${horizontalSql}) AS horizontal
-              ON size.color = horizontal.color 
-              AND size.bubble = horizontal.bubble 
+              ON size.color = horizontal.color
+              AND size.bubble = horizontal.bubble
               AND size.year = horizontal.year
               AND size.unit = horizontal.unit
           ),
           color_totals AS (
-            SELECT 
+            SELECT
               unit,
               bubble,
               color,
@@ -430,36 +550,45 @@ export class PostgresProjectionDataRepository
             GROUP BY unit, bubble, color
           ),
           ranked_colors AS (
-            SELECT 
+            SELECT
               unit,
               bubble,
               color,
               total_horizontal,
               ROW_NUMBER() OVER (
-                PARTITION BY unit, bubble 
+                PARTITION BY unit, bubble
                 ORDER BY total_horizontal DESC
               ) as rank
             FROM color_totals
           ),
           processed_data AS (
-            SELECT 
+            SELECT
               cd.unit,
               cd.bubble,
               cd.year,
-              CASE 
-                WHEN rc.rank <= 9 THEN cd.color::text
+              ${
+                showOthers
+                  ? `CASE
+                WHEN rc.rank <= ${rankLimit} THEN cd.color::text
                 ELSE 'Others'
-              END as final_color,
+              END as final_color,`
+                  : `cd.color::text as final_color,`
+              }
               SUM(cd.size) as size,
               SUM(cd.vertical) as vertical,
               SUM(cd.horizontal) as horizontal
             FROM combined_data cd
             JOIN ranked_colors rc ON cd.unit = rc.unit AND cd.bubble = rc.bubble AND cd.color = rc.color
-            GROUP BY cd.unit, cd.bubble, cd.year, 
-                     CASE 
-                       WHEN rc.rank <= 9 THEN cd.color::text
+            ${!showOthers ? `WHERE rc.rank <= ${rankLimit}` : ''}
+            GROUP BY cd.unit, cd.bubble, cd.year,
+                     ${
+                       showOthers
+                         ? `CASE
+                       WHEN rc.rank <= ${rankLimit} THEN cd.color::text
                        ELSE 'Others'
-                     END
+                     END`
+                         : `cd.color::text`
+                     }
           )
           SELECT 
             JSON_OBJECT_AGG(
@@ -500,5 +629,145 @@ export class PostgresProjectionDataRepository
           `Visualization type ${widgetVisualization} is not supported.`,
         );
     }
+  }
+
+  private async findBreakdownProjectionData(
+    widgetVisualization: ProjectionVisualizationsType,
+    dataFilters: SearchFilterDTO[],
+    settings: CustomProjectionSettingsType,
+    breakdown: string,
+    othersAggregation: OthersAggregationType = 'visible',
+  ): Promise<CustomProjection> {
+    const verticalAxis = settings[widgetVisualization].vertical;
+    const breakdownFieldName =
+      PROJECTION_FILTER_NAME_TO_FIELD_NAME[breakdown] || breakdown;
+
+    const baseQueryBuilder = this.dataSource
+      .getRepository(Projection)
+      .createQueryBuilder('projection')
+      .select('projectionData.year', 'year')
+      .addSelect(
+        `CASE
+          WHEN projection.unit = '%' THEN AVG(projectionData.value)
+          ELSE SUM(projectionData.value)
+        END`,
+        'value',
+      )
+      .addSelect('projection.unit', 'unit')
+      .addSelect(`projection.${breakdownFieldName}`, 'breakdown_group')
+      .innerJoin('projection.projectionData', 'projectionData')
+      .where('projection.type = :type', { type: verticalAxis })
+      .groupBy('projectionData.year')
+      .addGroupBy('projection.unit')
+      .addGroupBy(`projection.${breakdownFieldName}`)
+      .orderBy('projectionData.year', 'ASC');
+
+    QueryBuilderUtils.applySearchFilters(baseQueryBuilder, dataFilters, {
+      alias: 'projection',
+      filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
+    });
+
+    const showOthers = othersAggregation !== 'hidden';
+    const rankLimit = showOthers ? 9 : 10;
+
+    const finalQuery = `
+      WITH base_data AS (
+        ${baseQueryBuilder.getSql()}
+      ),
+      global_breakdown_totals AS (
+        SELECT
+          breakdown_group,
+          SUM(value) as total_value
+        FROM base_data
+        GROUP BY breakdown_group
+      ),
+      ranked_breakdown AS (
+        SELECT
+          breakdown_group,
+          total_value,
+          ROW_NUMBER() OVER (ORDER BY total_value DESC) as rank
+        FROM global_breakdown_totals
+      ),
+      processed_data AS (
+        SELECT
+          bd.unit,
+          bd.year,
+          ${
+            showOthers
+              ? `CASE
+            WHEN rb.rank <= ${rankLimit} THEN bd.breakdown_group::text
+            ELSE 'Others'
+          END as final_group,`
+              : `bd.breakdown_group::text as final_group,`
+          }
+          SUM(bd.value) as value
+        FROM base_data bd
+        JOIN ranked_breakdown rb ON bd.breakdown_group = rb.breakdown_group
+        ${!showOthers ? `WHERE rb.rank <= ${rankLimit}` : ''}
+        GROUP BY bd.unit, bd.year,
+                 ${
+                   showOthers
+                     ? `CASE
+                   WHEN rb.rank <= ${rankLimit} THEN bd.breakdown_group::text
+                   ELSE 'Others'
+                 END`
+                     : `bd.breakdown_group::text`
+                 }
+      ),
+      year_totals AS (
+        SELECT
+          unit,
+          year,
+          SUM(value) as total
+        FROM processed_data
+        GROUP BY unit, year
+      ),
+      breakdown_groups AS (
+        SELECT
+          pd.unit,
+          CASE
+            WHEN pd.final_group = 'Others' THEN 'Others'
+            ELSE ${this.getConditionalHumanizationSql('pd.final_group', breakdown)}
+          END as group_label,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'label', pd.year::text,
+              'value', pd.value,
+              'total', yt.total
+            )
+            ORDER BY pd.year ASC
+          ) as data
+        FROM processed_data pd
+        JOIN year_totals yt ON pd.unit = yt.unit AND pd.year = yt.year
+        GROUP BY pd.unit, pd.final_group,
+                 CASE
+                   WHEN pd.final_group = 'Others' THEN 'Others'
+                   ELSE ${this.getConditionalHumanizationSql('pd.final_group', breakdown)}
+                 END
+      )
+      SELECT
+        JSON_OBJECT_AGG(
+          unit,
+          unit_data
+        ) as data
+      FROM (
+        SELECT
+          unit,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'label', group_label,
+              'data', data
+            )
+            ORDER BY group_label
+          ) as unit_data
+        FROM breakdown_groups
+        GROUP BY unit
+      ) as grouped_data
+    `;
+
+    const parameters = Object.values(baseQueryBuilder.getParameters()).flat();
+    const result = await this.dataSource.query(finalQuery, parameters);
+
+    return result[0]?.data || {};
   }
 }

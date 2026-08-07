@@ -31,6 +31,8 @@ export const BUBBLE_CHART_ATTRIBUTE_TO_LABEL_MAP = {
   "technology-type": "Technology type",
   application: "Application",
   country: "Country",
+  unit: "Unit",
+  category: "Category",
 };
 
 export const BUBBLE_TOOLTIP_LABELS_MAP: { [key: string]: string } = {

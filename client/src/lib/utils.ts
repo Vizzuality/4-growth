@@ -105,6 +105,37 @@ export function formatNumber(
   }).format(value);
 }
 
+export function formatProjectionValue(value: number) {
+  const absValue = Math.abs(value);
+
+  if (absValue >= 1000) {
+    return formatNumber(value, {
+      notation: "compact",
+      compactDisplay: "short",
+      maximumFractionDigits: 1,
+    });
+  }
+
+  if (absValue >= 0) {
+    return formatNumber(value, { maximumFractionDigits: 2 });
+  }
+
+  return formatNumber(value, { maximumFractionDigits: 4 });
+}
+
+export function getYAxisTicks(domain: [number, number], tickCount = 5): number[] {
+  const [min, max] = domain;
+  const step = (max - min) / (tickCount - 1);
+  const candidates = Array.from({ length: tickCount }, (_, i) => min + i * step);
+  const seen = new Set<string>();
+  return candidates.filter((v) => {
+    const label = formatProjectionValue(v);
+    if (seen.has(label)) return false;
+    seen.add(label);
+    return true;
+  });
+}
+
 export function formatAndRoundUp(value: number) {
   if (value <= 0) return String(value);
 

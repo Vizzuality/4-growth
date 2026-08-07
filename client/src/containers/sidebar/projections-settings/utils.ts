@@ -13,11 +13,12 @@ export function isSimpleChartSettings(
   settings: CustomProjectionSettingsType | null | undefined,
 ): settings is
   | { line_chart: SimpleChartSettings }
-  | { bar_chart: SimpleChartSettings } {
+  | { bar_chart: SimpleChartSettings }
+  | { table: SimpleChartSettings } {
   return (
     !!settings &&
     typeof settings === "object" &&
-    ("line_chart" in settings || "bar_chart" in settings)
+    ("line_chart" in settings || "bar_chart" in settings || "table" in settings)
   );
 }
 

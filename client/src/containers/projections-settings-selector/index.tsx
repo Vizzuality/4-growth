@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ProjectionsSettingsSelectorProps<T> {
-  options: { label: string; value: T }[];
+  options: readonly { label: string; value: T }[];
   onItemClick: (value: T) => void;
 }
 

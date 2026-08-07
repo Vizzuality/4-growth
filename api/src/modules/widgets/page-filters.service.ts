@@ -13,6 +13,8 @@ import {
   ISurveyAnswerRepository,
   SurveyAnswerRepository,
 } from '@api/infrastructure/survey-answer-repository.interface';
+import { DATA_SOURCE_FILTER_NAME } from '@shared/constants/page-filters';
+import { AppConfig } from '@api/utils/app-config';
 
 @Injectable()
 export class PageFiltersService {
@@ -29,6 +31,14 @@ export class PageFiltersService {
     query: FetchSpecification & SearchFiltersDTO,
   ): Promise<PageFilter[]> {
     const availablePageFilters = await this.pageFilterRepository.find();
+
+    // The data-source filter is only meaningful where automated mock data was seeded.
+    if (!AppConfig.getBoolean('etl.seedAutomatedMockData', false)) {
+      return availablePageFilters.filter(
+        (f) => f.name !== DATA_SOURCE_FILTER_NAME,
+      );
+    }
+
     return availablePageFilters;
     // if (!query.filters) return availablePageFilters;
 

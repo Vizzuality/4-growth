@@ -26,7 +26,7 @@ const UnitSelect: FC<{
   >
     <SelectTrigger
       className={cn(
-        "min-w-fit flex-1 border-transparent bg-transparent disabled:cursor-default [&>span]:text-muted-foreground [&>svg]:opacity-100",
+        "min-w-fit flex-1 border-transparent bg-transparent disabled:cursor-default data-[disabled]:opacity-100 [&>span]:text-muted-foreground [&>svg]:opacity-100",
         className,
       )}
       disabled={items.length <= 1}

@@ -68,7 +68,7 @@
     "baseWidgets": [
       {
         "title": "Type of stakeholder",
-        "question": "Type of stakeholder",
+        "question": "What type of stakeholder the respondent identifies as within their respective sector?",
         "questionTitle": "Stakeholder type",
         "indicator": "type-of-stakeholder",
         "visualisations": [
@@ -81,7 +81,7 @@
       },
       {
         "title": "Location",
-        "question": "Location (country/region)",
+        "question": " What country the respondent’s primary area of operation is located within?",
         "questionTitle": "Location",
         "indicator": "location-country-region",
         "visualisations": [
@@ -94,7 +94,7 @@
       },
       {
         "title": "Primary Area of Operation in forestry",
-        "question": "Primary area of operation in forestry",
+        "question": "What application/primary sub-area of operation the respondent is active in within their respective sector?",
         "questionTitle": "Primary area (forestry)",
         "indicator": "primary-area-of-operation-in-forestry",
         "visualisations": [
@@ -106,8 +106,21 @@
         "description": ""
       },
       {
+        "title": "Primary Area of Operation in agriculture",
+        "question": "What application/primary sub-area of operation the respondent is active in within their respective sector?",
+        "questionTitle": "Primary area (agriculture)",
+        "indicator": "primary-area-of-operation-in-agriculture",
+        "visualisations": [
+          "horizontal_bar_chart",
+          "pie_chart"
+        ],
+        "defaultVisualization": "horizontal_bar_chart",
+        "sectionOrder": 4,
+        "description": ""
+      },
+      {
         "title": "Organisation size",
-        "question": "Agriculture/forestry organisation size",
+        "question": "How large is the respondent’s operation/organisation  in terms of personnel?",
         "questionTitle": "Organisation size",
         "indicator": "organisation-size",
         "visualisations": [
@@ -115,7 +128,7 @@
           "pie_chart"
         ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 4,
+        "sectionOrder": 5,
         "description": ""
       },
       {
@@ -128,7 +141,7 @@
           "pie_chart"
         ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 5,
+        "sectionOrder": 6,
         "description": ""
       },
       {
@@ -141,7 +154,7 @@
           "pie_chart"
         ],
         "defaultVisualization": "horizontal_bar_chart",
-        "sectionOrder": 6,
+        "sectionOrder": 7,
         "description": ""
       }
     ]

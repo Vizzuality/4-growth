@@ -13,6 +13,7 @@ import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { ProjectionFilter } from '@shared/dto/projections/projection-filter.entity';
 import { ProjectionType } from '@shared/dto/projections/projection-type.entity';
 import { ProjectionWidget } from '@shared/dto/projections/projection-widget.entity';
+import { SavedProjection } from '@shared/dto/projections/saved-projection.entity';
 import { ConfigurationParams } from '@shared/dto/global/configuration-params';
 
 export const DB_ENTITIES: MixedList<Function | string | EntitySchema> = [
@@ -30,5 +31,6 @@ export const DB_ENTITIES: MixedList<Function | string | EntitySchema> = [
   ProjectionWidget,
   ProjectionFilter,
   ProjectionType,
+  SavedProjection,
   ConfigurationParams,
 ];

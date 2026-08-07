@@ -138,6 +138,7 @@ jobs:
             DATA_EXTRACTION_CLIENT_ID=${{ secrets.DATA_EXTRACTION_CLIENT_ID }}
             DATA_EXTRACTION_CLIENT_SECRET=${{ secrets.DATA_EXTRACTION_CLIENT_SECRET }}
             ETL_PROCESS_EMAILS=${{ vars.ETL_PROCESS_EMAILS }}
+            SEED_AUTOMATED_MOCK_DATA=${{ vars.SEED_AUTOMATED_MOCK_DATA }}
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -197,7 +198,7 @@ jobs:
               ports:
                 - 4000:4000
             nginx:
-              image: nginx
+              image: nginx:1.30.1-alpine
               restart: always
               volumes:
                 - ./proxy/conf.d:/etc/nginx/conf.d

@@ -1,15 +1,24 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
+import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
 import useFilters from "@/hooks/use-filters";
 
+import NoData from "@/containers/no-data";
 import Widget from "@/containers/widget/projections";
 
+import { MenuPointer } from "@/components/icons/menu-pointer";
 import { Card } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
 import Title from "@/components/ui/title";
+
+const MoreInfoDialog = dynamic(() => import("@/containers/dialog/more-info"), {
+  ssr: false,
+});
 
 export default function Explore() {
   const { filters } = useFilters();
@@ -19,6 +28,23 @@ export default function Explore() {
       { query: { dataFilters: filters } },
       { select: (res) => res.body.data },
     );
+
+  const { isCategorySelected } = useProjectionsCategoryFilter();
+
+  if (!isCategorySelected) {
+    return (
+      <Card className="p-0">
+        <NoData icon={<MenuPointer />} className="m-6 gap-6">
+          <div className="text-center text-sm">
+            <p>
+              Select an <span className="font-bold">Operation area</span> to
+              start your custom visualization
+            </p>
+          </div>
+        </NoData>
+      </Card>
+    );
+  }
 
   if (isFetching)
     return (
@@ -36,8 +62,7 @@ export default function Explore() {
           </Title>
           <p className="text-muted-foreground">
             Explore how digital transformation could evolve across different
-            future scenarios for forestry - with agriculture projections to
-            follow soon.
+            future scenarios for forestry or agriculture.
           </p>
         </Card>
         <Card className="bg-lightgray bg-[url('/images/explore/overview-projections-bg.avif')] bg-cover bg-center bg-no-repeat lg:col-span-1" />
@@ -46,13 +71,16 @@ export default function Explore() {
         {data?.map((d) => (
           <Widget
             key={d.id}
+            id={d.id}
             indicator={d.title}
+            description={d.description}
             data={d.data}
             visualisations={d.visualizations}
             visualization={d.defaultVisualization}
           />
         ))}
       </div>
+      <MoreInfoDialog />
     </div>
   );
 }

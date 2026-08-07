@@ -8,8 +8,9 @@ import { ProjectionVisualizationsType } from "@shared/dto/projections/projection
 import {
   CustomProjectionSettingsSchema,
   CustomProjectionSettingsType,
+  OthersAggregationValues,
 } from "@shared/schemas/custom-projection-settings.schema";
-import { useQueryState } from "nuqs";
+import { parseAsStringLiteral, useQueryState } from "nuqs";
 import qs from "qs";
 
 import {
@@ -20,6 +21,10 @@ import {
 
 function useSettings() {
   const [settingsQuery, setSettingsQuery] = useQueryState("s");
+  const [othersAggregation, setOthersAggregation] = useQueryState(
+    "othersAggregation",
+    parseAsStringLiteral(OthersAggregationValues).withDefault("visible"),
+  );
   const settings: CustomProjectionSettingsType | null = useMemo(() => {
     if (!settingsQuery) return null;
     try {
@@ -55,6 +60,7 @@ function useSettings() {
       switch (visualization) {
         case "bar_chart":
         case "line_chart":
+        case "table":
           if (isSimpleChartSettings(settings)) {
             const currentVisualization: ProjectionVisualizationsType =
               getKeys(settings)[0];
@@ -119,6 +125,10 @@ function useSettings() {
               [key]: value,
             },
           });
+        } else if ("table" in settings) {
+          setSettings({
+            table: { ...settings.table, [key]: value },
+          });
         }
       }
 
@@ -159,6 +169,10 @@ function useSettings() {
           setSettings({
             bar_chart: { ...settings.bar_chart, [key]: value },
           });
+        } else if ("table" in settings) {
+          setSettings({
+            table: { ...settings.table, [key]: value },
+          });
         }
       }
     },
@@ -167,10 +181,12 @@ function useSettings() {
 
   return {
     settings,
+    othersAggregation,
     setVisualization,
     setBubbleChartIndicator,
     setBubbleChartAttribute,
     setChartAttribute,
+    setOthersAggregation,
   };
 }
 

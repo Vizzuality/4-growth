@@ -8,7 +8,6 @@ import { Repository } from 'typeorm';
 import { PaginationMeta } from '@shared/dto/global/api-response.dto';
 
 export abstract class AppBaseService<
-  // eslint-disable-next-line @typescript-eslint/ban-types
   Entity extends object,
   CreateModel,
   UpdateModel,

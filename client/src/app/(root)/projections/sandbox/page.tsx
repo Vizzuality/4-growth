@@ -4,8 +4,9 @@ import { client, QUERY_OPTIONS } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 
 import BottomBar from "@/containers/bottom-bar";
-import FiltersSheet from "@/containers/bottom-bar/filters-sheet";
+import CategorySheet from "@/containers/bottom-bar/category-sheet";
 import FilterSettings from "@/containers/bottom-bar/projections/filter-settings";
+import FiltersSheet from "@/containers/bottom-bar/projections/filters-sheet";
 import SettingsSheet from "@/containers/bottom-bar/projections/settings-sheet";
 import Sandbox from "@/containers/sandbox/projections-sandbox";
 import { PROJECTIONS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-settings/constants";
@@ -13,7 +14,7 @@ import { PROJECTIONS_DEFAULT_FILTERS } from "@/containers/sidebar/filter-setting
 export default async function ProjectionsSandboxPage() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: queryKeys.projections.settings.queryKey,
+    queryKey: queryKeys.projections.settings().queryKey,
     queryFn: async () =>
       client.projections.getCustomProjectionSettings.query(QUERY_OPTIONS),
   });
@@ -22,6 +23,7 @@ export default async function ProjectionsSandboxPage() {
     <Hydrate state={dehydrate(queryClient)}>
       <Sandbox />
       <BottomBar>
+        <CategorySheet />
         <SettingsSheet />
         <FiltersSheet>
           <FilterSettings defaultFilters={PROJECTIONS_DEFAULT_FILTERS} />

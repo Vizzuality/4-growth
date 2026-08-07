@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   BubbleProjection,
   CustomProjection,
+  SimpleProjection,
 } from "@shared/dto/projections/custom-projection.type";
 import { ProjectionVisualizationsType } from "@shared/dto/projections/projection-visualizations.constants";
 
@@ -23,12 +24,14 @@ import VerticalBarChart from "@/containers/widget/vertical-bar-chart";
 import WidgetHeader from "@/containers/widget/widget-header";
 
 import { Card } from "@/components/ui/card";
+import TableView from "@/containers/widget/table";
 
 export interface SandboxWidgetProps {
   indicator: string;
   visualization: ProjectionVisualizationsType;
   data: CustomProjection;
   className?: string;
+  menu?: React.ReactNode;
 }
 
 export default function SandboxWidget({
@@ -36,6 +39,7 @@ export default function SandboxWidget({
   visualization,
   data,
   className,
+  menu,
 }: SandboxWidgetProps) {
   const units = useMemo(() => (data ? Object.keys(data) : []), [data]);
   const [selectedUnit, setSelectedUnit] = useState(
@@ -44,7 +48,7 @@ export default function SandboxWidget({
   const simpleChartProps = useMemo(
     () => ({
       indicator,
-      ...getSimpleChartProps(data, selectedUnit),
+      ...getSimpleChartProps(data as SimpleProjection, selectedUnit),
     }),
     [indicator, selectedUnit, data],
   );
@@ -80,6 +84,7 @@ export default function SandboxWidget({
             title={indicator}
             className="pb-0"
             select={selectComponent}
+            menu={menu}
           />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
           <VerticalBarChart unit={selectedUnit} {...simpleChartProps} />
@@ -92,6 +97,7 @@ export default function SandboxWidget({
             title={indicator}
             className="pb-0"
             select={selectComponent}
+            menu={menu}
           />
           <WidgetLegend colors={simpleChartProps.colors} className="m-6" />
           <LineChart
@@ -109,12 +115,28 @@ export default function SandboxWidget({
               title={indicator}
               className="p-0"
               select={selectComponent}
+              menu={menu}
             />
             <BubbleChart data={data as BubbleProjection} unit={selectedUnit} />
           </Card>
         );
       }
       return null;
+    case "table":
+      return (
+        <Card className={cn("relative p-0", className)}>
+          <WidgetHeader
+            title={indicator}
+            className="pb-0"
+            select={selectComponent}
+            menu={menu}
+          />
+          <TableView
+            indicator={indicator}
+            data={data[selectedUnit] as Record<string, number>[]}
+          />
+        </Card>
+      );
     default:
       console.error(
         `Widget: Unsupported visualization type "${visualization}" for indicator "${indicator}".`,

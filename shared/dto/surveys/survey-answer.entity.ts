@@ -21,4 +21,7 @@ export class SurveyAnswer {
 
   @Column({ nullable: false, default: 1 })
   wave: number;
+
+  @Column({ name: 'data_source', nullable: false, default: 'survey' })
+  dataSource: string;
 }

@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import * as config from 'config';
+import type { StringValue } from 'ms';
 
 type APP_DB_CONFIG = {
   host: string;
@@ -11,8 +12,8 @@ type APP_DB_CONFIG = {
 
 type APP_JWT_CONFIG = {
   secret: string;
-  expiresIn: string;
-  passwordRecoveryExpiresIn: string;
+  expiresIn: StringValue;
+  passwordRecoveryExpiresIn: StringValue;
 };
 
 type APP_SES_MAIL_CONFIG = {

@@ -1,9 +1,10 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
-import { cn, formatAndRoundUp, formatNumber } from "@/lib/utils";
+import { getCssChartColor } from "@/lib/constants";
+import { cn, formatProjectionValue, getYAxisTicks } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
 import {
@@ -12,6 +13,7 @@ import {
   CHART_MARGIN,
   CHART_STYLES,
 } from "@/containers/widget/constants";
+import ProjectionsTooltip from "@/containers/widget/tooltip/projections";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 import {
@@ -45,6 +47,16 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
   enableHoverStyles,
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const yDomain = useMemo((): [number, number] => {
+    const keys = colors ? colors.map(String) : ["value"];
+    const values = data.flatMap((d) => keys.map((k) => d[k]).filter((v) => v != null));
+    if (values.length === 0) return [0, 1];
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const padding = (max - min) * 0.05 || 1;
+    return [min - padding, max + padding];
+  }, [data, colors]);
 
   if (!data || data.length === 0) {
     console.error(
@@ -86,28 +98,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
               className="rounded-2xl border-none px-4 py-2 [&>*:nth-child(2)]:hidden"
               formatter={() => null}
               labelFormatter={(_, payload) => (
-                <div className="space-y-2">
-                  <p className="grid grid-cols-2 gap-2">
-                    <span className="flex flex-1 justify-end">Year</span>
-                    <span className="flex flex-1 justify-start font-bold">
-                      {payload[0].payload.year}
-                    </span>
-                  </p>
-                  {payload.map((p) => (
-                    <p
-                      key={`tooltip-item-${p.name}-${p.value}`}
-                      className="grid grid-cols-2 gap-2"
-                    >
-                      <span className="flex flex-1 justify-end">{p.name}</span>
-                      <span className="flex flex-1 justify-start gap-1 font-bold">
-                        {formatNumber(Number(p.value), {
-                          maximumFractionDigits: 0,
-                        })}
-                        <span className="text-muted-foreground">{unit}</span>
-                      </span>
-                    </p>
-                  ))}
-                </div>
+                <ProjectionsTooltip payload={payload} unit={unit} />
               )}
             />
           }
@@ -140,7 +131,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
               return (
                 <Cell
                   key={`cell-${entry.year}-${index}`}
-                  fill={`hsl(var(--chart-${i + 1}))`}
+                  fill={getCssChartColor(c, i)}
                   // @ts-expect-error - Recharts Cell radius prop accepts [number, number, number, number] for corner radius
                   // but its type definition only allows string | number | undefined
                   radius={getRadius(index, data.length)}
@@ -185,12 +176,14 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
         <YAxis
           type="number"
           orientation="right"
+          domain={yDomain}
+          ticks={getYAxisTicks(yDomain)}
           axisLine={false}
           tickLine={false}
           style={{ transform: "translate(30px, -10px)" }}
           tick={({ x, y, payload }) => (
             <text x={x + 30} y={y} textAnchor="end" style={{ fontSize: 12 }}>
-              {formatAndRoundUp(payload.value)}
+              {formatProjectionValue(payload.value)}
             </text>
           )}
         />

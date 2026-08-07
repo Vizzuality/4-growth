@@ -2,6 +2,8 @@
 
 import { useMemo, useRef } from "react";
 
+import dynamic from "next/dynamic";
+
 import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
 
@@ -24,6 +26,10 @@ import Widget from "@/containers/widget/survey-analysis";
 import { Spinner } from "@/components/ui/spinner";
 import { TransformedWidget, TransformedWidgetData } from "@/types";
 import { useScrollSpy } from "tests/hooks/use-scroll-spy";
+
+const MoreInfoDialog = dynamic(() => import("@/containers/dialog/more-info"), {
+  ssr: false,
+});
 
 export default function Explore() {
   const { filters } = useFilters();
@@ -106,13 +112,15 @@ export default function Explore() {
                   visualization={w.defaultVisualization}
                   visualisations={w.visualisations}
                   indicator={w.indicator}
+                  description={w.description}
                   title={w.title}
+                  section={s.name}
                   question={w.question}
                   questionTitle={w.questionTitle}
                   data={w.data as TransformedWidgetData}
                   responseRate={w.responseRate}
                   absoluteValue={w.absoluteValue}
-                  className="md:col-span-1 md:last:odd:col-span-2"
+                  className="lg:col-span-1 lg:last:odd:col-span-2"
                   config={{
                     menu: { className: "flex flex-col gap-6" },
                     pieChart: {
@@ -128,6 +136,7 @@ export default function Explore() {
           </Section>
         );
       })}
+      <MoreInfoDialog />
     </div>
   );
 }

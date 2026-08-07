@@ -22,7 +22,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const FiltersSheet: FC<PropsWithChildren> = ({ children }) => {
+type FiltersSheetProps = PropsWithChildren<{ disabled?: boolean }>;
+
+const FiltersSheet: FC<FiltersSheetProps> = ({ children, disabled }) => {
   const [open, setOpen] = useState(false);
   const { filters, setFilters } = useFilters();
   const [newFilters, setNewFilters] = useAtom(FilterSettingsAtom);
@@ -62,7 +64,9 @@ const FiltersSheet: FC<PropsWithChildren> = ({ children }) => {
       }}
     >
       <SheetTrigger asChild>
-        <Button className="w-full">Filters</Button>
+        <Button disabled={disabled} className="w-full">
+          Filters
+        </Button>
       </SheetTrigger>
       <SheetContent
         className="flex h-full max-h-[80%] w-screen flex-col justify-between rounded-t-2xl border-t-navy-900 bg-navy-900 px-0 pb-0"

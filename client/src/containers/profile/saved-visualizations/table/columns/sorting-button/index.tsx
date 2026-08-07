@@ -1,9 +1,11 @@
 import { HeaderContext } from "@tanstack/react-table";
 import { ArrowUpDownIcon, ArrowUpIcon, ArrowDownIcon } from "lucide-react";
 
-import { ColumnsTable } from "..";
+import { SavedVisualizationRow } from "..";
 
-const SortingButton = ({ column }: HeaderContext<ColumnsTable, unknown>) => {
+const SortingButton = ({
+  column,
+}: HeaderContext<SavedVisualizationRow, unknown>) => {
   const isSorted = column.getIsSorted();
 
   return (

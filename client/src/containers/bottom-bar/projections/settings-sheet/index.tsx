@@ -1,6 +1,8 @@
 "use client";
 import { FC } from "react";
 
+import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
+
 import SandboxSettings from "@/containers/sidebar/projections-sidebar/sandbox-settings";
 
 import { Button } from "@/components/ui/button";
@@ -14,10 +16,13 @@ import {
 } from "@/components/ui/sheet";
 
 const SettingsSheet: FC = () => {
+  const { isCategorySelected } = useProjectionsCategoryFilter();
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="w-full">Settings</Button>
+        <Button disabled={!isCategorySelected} className="w-full">
+          Settings
+        </Button>
       </SheetTrigger>
       <SheetContent
         className="h-full max-h-[80%] w-screen rounded-t-2xl border-t-navy-900 bg-navy-900 px-0 pb-0"

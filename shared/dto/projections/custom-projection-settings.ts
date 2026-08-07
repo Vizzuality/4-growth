@@ -17,22 +17,36 @@ export const CHART_ATTRIBUTES = Object.keys(
   label: key.replace(/-/g, ' ').replace(/^\w/g, (char) => char.toUpperCase()),
 }));
 
+export const OTHERS_AGGREGATION_OPTIONS = [
+  { value: 'visible', label: 'Visible' },
+  { value: 'hidden', label: 'Hidden' },
+] as const;
+
+const NON_COLOR_ATTRIBUTES = ['unit', 'category'];
+export const CHART_COLOR_ATTRIBUTES = CHART_ATTRIBUTES.filter(
+  (attr) => !NON_COLOR_ATTRIBUTES.includes(attr.value),
+);
+
 export const CUSTOM_PROJECTION_SETTINGS = {
   availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
     vertical: CHART_INDICATORS,
-    color: CHART_ATTRIBUTES,
+    color: CHART_COLOR_ATTRIBUTES,
   },
   [PROJECTION_VISUALIZATIONS.BAR_CHART]: {
     vertical: CHART_INDICATORS,
-    color: CHART_ATTRIBUTES,
+    color: CHART_COLOR_ATTRIBUTES,
   },
   [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: {
     bubble: CHART_ATTRIBUTES,
     vertical: CHART_INDICATORS,
     horizontal: CHART_INDICATORS,
-    color: CHART_ATTRIBUTES,
+    color: CHART_COLOR_ATTRIBUTES,
     size: CHART_INDICATORS,
+  },
+  [PROJECTION_VISUALIZATIONS.TABLE]: {
+    vertical: CHART_INDICATORS,
+    color: CHART_ATTRIBUTES,
   },
 } as const;
 
@@ -40,6 +54,7 @@ type AxisSettingsType = { value: string; label: string }[];
 
 export type CustomProjectionSettingsType = {
   availableVisualizations: typeof AVAILABLE_PROJECTION_VISUALIZATIONS;
+  othersAggregation?: typeof OTHERS_AGGREGATION_OPTIONS;
   [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
     vertical: AxisSettingsType;
     color: AxisSettingsType;
@@ -55,20 +70,27 @@ export type CustomProjectionSettingsType = {
     color: AxisSettingsType;
     size: AxisSettingsType;
   };
+  [PROJECTION_VISUALIZATIONS.TABLE]: {
+    vertical: AxisSettingsType;
+    color: AxisSettingsType;
+  };
 };
 
 // Workaround to be able to generate custom projection settings removing selected indicator to prevent visualizing the same indicator in multiple axes
 export const generateCustomProjectionSettings = (
   query: SearchFiltersDTO = {},
-) => {
+  includeOthersAggregation = true,
+): CustomProjectionSettingsType => {
   const { filters } = query;
 
-  if (!filters) return CUSTOM_PROJECTION_SETTINGS;
+  let chartIndicators = CHART_INDICATORS;
+  let chartAttributes = CHART_ATTRIBUTES;
 
-  const usedValues = filters.reduce((acc, filter) => {
-    acc.push(...(filter.values as string[]));
-    return acc;
-  }, [] as string[]);
+  const usedValues =
+    filters?.reduce((acc, filter) => {
+      acc.push(...(filter.values as string[]));
+      return acc;
+    }, [] as string[]) || [];
 
   const filteredChartIndicators = CHART_INDICATORS.filter(
     (indicator) => !usedValues.includes(indicator.value),
@@ -76,23 +98,36 @@ export const generateCustomProjectionSettings = (
   const filteredChartAttributes = CHART_ATTRIBUTES.filter(
     (attribute) => !usedValues.includes(attribute.value),
   );
+  const filteredChartColorAttributes = CHART_COLOR_ATTRIBUTES.filter(
+    (attribute) => !usedValues.includes(attribute.value),
+  );
 
-  return {
+  const settings: CustomProjectionSettingsType = {
     availableVisualizations: AVAILABLE_PROJECTION_VISUALIZATIONS,
     [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
       vertical: filteredChartIndicators,
-      color: filteredChartAttributes,
+      color: filteredChartColorAttributes,
     },
     [PROJECTION_VISUALIZATIONS.BAR_CHART]: {
       vertical: filteredChartIndicators,
-      color: filteredChartAttributes,
+      color: filteredChartColorAttributes,
     },
     [PROJECTION_VISUALIZATIONS.BUBBLE_CHART]: {
       bubble: filteredChartAttributes,
       vertical: filteredChartIndicators,
       horizontal: filteredChartIndicators,
-      color: filteredChartAttributes,
+      color: filteredChartColorAttributes,
       size: filteredChartIndicators,
     },
-  } as CustomProjectionSettingsType;
+    [PROJECTION_VISUALIZATIONS.TABLE]: {
+      vertical: chartIndicators,
+      color: chartAttributes,
+    },
+  };
+
+  if (includeOthersAggregation) {
+    settings.othersAggregation = OTHERS_AGGREGATION_OPTIONS;
+  }
+
+  return settings;
 };
