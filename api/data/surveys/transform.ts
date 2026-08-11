@@ -96,6 +96,8 @@ export const transform = async (
   // Wave 2: Level3 is the canonical text for single-answer questions; for multi-select
   //         sub-options Level3 embeds "ParentQuestion - SubOption", so we extract before " - ".
   questionLevelStrategy: 'level2' | 'level3' = 'level2',
+  questionNormalizations: Map<string, string> = new Map(),
+  answerNormalizations: Map<string, Map<string, string>> = new Map(),
 ) => {
   const logger = new Logger('ETL');
 
@@ -194,7 +196,7 @@ export const transform = async (
       const question = StringUtils.capitalizeFirstLetter(
         rawQuestionText.replace(/:/g, '').trim(),
       ).replace(/\bTo who\b/g, 'To whom');
-      leftRow['question'] = question;
+      leftRow['question'] = questionNormalizations.get(question) ?? question;
       return leftRow;
     },
   );
@@ -211,7 +213,16 @@ export const transform = async (
     },
   );
 
-  const filteredAnswers = join3.where((row) => {
+  const join3Normalized = join3.select((row) => {
+    const answerMap = answerNormalizations.get(row['question']);
+    if (answerMap) {
+      const normalized = answerMap.get(row['answer']);
+      if (normalized !== undefined) row['answer'] = normalized;
+    }
+    return row;
+  });
+
+  const filteredAnswers = join3Normalized.where((row) => {
     return (
       row['answer'].startsWith('No categorical answer') === false &&
       row['question'] !==
