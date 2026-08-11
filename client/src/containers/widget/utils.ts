@@ -9,6 +9,41 @@ import { CustomProjectionSettingsType } from "@shared/schemas/custom-projection-
 
 import { isBubbleChartSettings } from "@/containers/sidebar/projections-settings/utils";
 
+/**
+ * Advance widths in px for Inter at 10px/900 under `tabular-nums`, measured with
+ * `getComputedTextLength`. Tabular figures give every digit one advance, so
+ * summing per-glyph widths reproduces the rendered width exactly rather than
+ * approximating it — which is what lets a percentage be laid out without
+ * measuring it in the DOM first.
+ */
+const PERCENT_GLYPH_WIDTH = {
+  digit: 6.445,
+  decimalSeparator: 2.688,
+  percentSign: 10.445,
+} as const;
+
+const measurePercent = (value: string): number =>
+  [...value].reduce<number>(
+    (width, char) =>
+      width +
+      (char >= "0" && char <= "9"
+        ? PERCENT_GLYPH_WIDTH.digit
+        : PERCENT_GLYPH_WIDTH.decimalSeparator),
+    PERCENT_GLYPH_WIDTH.percentSign,
+  );
+
+/**
+ * Where a label may start so it clears every percentage in the chart by `gap`.
+ * Sized to the widest value present rather than the widest value possible, and
+ * shared by every row, so the labels stay in one column.
+ */
+export function getPercentLabelInset(
+  values: string[],
+  { inset, gap }: { inset: number; gap: number },
+): number {
+  return Math.ceil(inset + Math.max(0, ...values.map(measurePercent)) + gap);
+}
+
 export function getIndexOfLargestValue(
   data: WidgetChartData | ProjectionWidgetData[""] | Record<string, number>[],
 ): number {

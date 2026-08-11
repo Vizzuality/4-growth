@@ -8,7 +8,10 @@ import { compareAnswerLabels } from "@/lib/constants";
 import { formatNumber } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
-import { getIndexOfLargestValue } from "@/containers/widget/utils";
+import {
+  getIndexOfLargestValue,
+  getPercentLabelInset,
+} from "@/containers/widget/utils";
 
 import { ChartContainer } from "@/components/ui/chart";
 
@@ -19,8 +22,8 @@ const BAR_SIZE = ROW_HEIGHT / 2;
 const PATTERN_SIZE = 48;
 /** Matches the 24px inset the design puts before the overlaid text */
 const TEXT_INSET = 24;
-/** Room for up to "100%" at 10px black, plus the 8px gap before the label */
-const LABEL_INSET = TEXT_INSET + 34;
+/** The gap the design leaves between a value and the answer label */
+const LABEL_GAP = 12;
 
 interface SourceComparisonChartProps {
   /** Percentage-normalized per source */
@@ -73,6 +76,12 @@ const SourceComparisonChart: FC<SourceComparisonChartProps> = ({ data }) => {
     rows.map(({ value }) => ({ value })),
   );
   const height = rows.length * (ROW_HEIGHT + ROW_GAP);
+  const percentFor = (row: ComparisonRow, source: string) =>
+    formatNumber(Number(row[source]));
+  const labelInset = getPercentLabelInset(
+    rows.flatMap((row) => sources.map((source) => percentFor(row, source))),
+    { inset: TEXT_INSET, gap: LABEL_GAP },
+  );
   const fillFor = (rowIndex: number) =>
     rowIndex === highestValueIndex
       ? "hsl(var(--accent))"
@@ -151,12 +160,13 @@ const SourceComparisonChart: FC<SourceComparisonChartProps> = ({ data }) => {
                             fontSize={10}
                             fontWeight={900}
                             dominantBaseline="central"
+                            style={{ fontVariantNumeric: "tabular-nums" }}
                           >
-                            {formatNumber(Number(row[s]))}%
+                            {percentFor(row, s)}%
                           </text>
                         ))}
                         <text
-                          x={LABEL_INSET}
+                          x={labelInset}
                           y={centerY}
                           fill="hsl(var(--foreground))"
                           fontSize={12}
