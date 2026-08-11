@@ -92,6 +92,10 @@ const EXCLUDED_QUESTIONS = new Set([
 export const transform = async (
   inputDir = 'data/surveys',
   outputPath = `${__dirname}/surveys.json`,
+  // Wave 1/3: Level2 is always the canonical question text.
+  // Wave 2: Level3 is the canonical text for single-answer questions; for multi-select
+  //         sub-options Level3 embeds "ParentQuestion - SubOption", so we extract before " - ".
+  questionLevelStrategy: 'level2' | 'level3' = 'level2',
 ) => {
   const logger = new Logger('ETL');
 
@@ -179,9 +183,16 @@ export const transform = async (
     (rightRow) => rightRow.Value['ID'],
     (leftRow, rightRow) => {
       leftRow['questionId'] = leftRow['question'];
-      const questionText = rightRow.Value['Level3'] || rightRow.Value['Level2'] || '';
+      let rawQuestionText: string;
+      if (questionLevelStrategy === 'level3') {
+        const l3 = rightRow.Value['Level3'] || '';
+        const l2 = rightRow.Value['Level2'] || '';
+        rawQuestionText = l3.includes(' - ') ? l3.split(' - ')[0].trim() : l3 || l2;
+      } else {
+        rawQuestionText = rightRow.Value['Level2'] || '';
+      }
       const question = StringUtils.capitalizeFirstLetter(
-        questionText.replace(/:/g, '').trim(),
+        rawQuestionText.replace(/:/g, '').trim(),
       ).replace(/\bTo who\b/g, 'To whom');
       leftRow['question'] = question;
       return leftRow;
