@@ -162,6 +162,45 @@ const LANG_MAP: Record<string, number[]> = {
 
 const ID_COLUMNS = new Set(['ID', 'CalendarID', 'RootID']);
 
+// Columns that store positional integers instead of OData entity IDs.
+// Each set gets remapped to globally unique IDs before the dimension lookup runs.
+
+const AGREEMENT_SCALE_COLUMNS = new Set([
+  'Digital_technologies_have_resulted_in_cost_savings_or_increased_efficiency_in_our_operations',
+  'Digital_technologies_have_positively_contributed_to_sustainability_and_environmental_practices_in_our_organization',
+  'Our_organization_plans_to_expand_or_upgrade_its_current_digital_infrastructure_in_the_near_future',
+  'Would_you_further_adopt_digital_technologies_if_you_had_better_network_connectivity',
+]);
+
+// Remap to Agreement_scale_5_point OData IDs (already in DIMENSION_ENTITIES)
+const AGREEMENT_SCALE_POSITIONAL_MAP: Record<number, number> = {
+  1: 2312667, // Strongly disagree
+  2: 2312668, // Disagree
+  3: 2312669, // Neither disagree nor agree
+  4: 2312670, // Agree
+  5: 2312671, // Strongly agree
+  6: 0,       // Not Applicable
+};
+
+// These yes/no questions store positional integers (1=Yes, 2=Not at all, 3=Don't know)
+// matching Wave 1 answer text. Use synthetic IDs 9001–9003 (added to dimensionLookup below).
+const YES_NO_COLUMNS = new Set([
+  'Has_your_organisation_integrated_digital_technologies_into_its_workflows',
+  'Do_you_pay_for_this_data',
+  'Do_you_share_the_data_you_have_collected_with_others',
+  'Do_you_have_network_connectivity',
+  'Can_you_provide_insights_into_the_cost_structure_associated_with_implementing_and_maintaining_your_technology',
+  'Do_you_conduct_market_research_or_needs_assessments_before_developing_digital_solutions_for_agriculture_and_forestry',
+  'Do_you_prioritize_user_needs_within_the_agricultural_and_forestry_sectors_during_the_development_phase',
+  'Do_you_employ_specific_strategies_to_penetrate_diverse_markets_within_agriculture_and_forestry',
+]);
+
+const YES_NO_POSITIONAL_MAP: Record<number, number> = {
+  1: 9001, // Yes
+  2: 9002, // Not at all
+  3: 9003, // Don't know
+};
+
 type AnswerType = 'categorical_answer' | 'open_answer';
 
 interface MeltedRow {
@@ -246,7 +285,20 @@ export async function wrangleWave2(
     logger.log(`Melted ${melted.length} rows from ${entity}`);
   }
 
-  // 2. Deduplicate on (rootId, variable, value) — mirrors Python drop_duplicates
+  // 2. Remap positional integers to globally unique IDs before the dimension lookup runs.
+  for (let i = 0; i < allMelted.length; i++) {
+    const row = allMelted[i];
+    if (row.answerType !== 'categorical_answer') continue;
+    if (AGREEMENT_SCALE_COLUMNS.has(row.variable)) {
+      const remapped = AGREEMENT_SCALE_POSITIONAL_MAP[Number(row.value)];
+      if (remapped !== undefined) allMelted[i] = { ...row, value: remapped };
+    } else if (YES_NO_COLUMNS.has(row.variable)) {
+      const remapped = YES_NO_POSITIONAL_MAP[Number(row.value)];
+      if (remapped !== undefined) allMelted[i] = { ...row, value: remapped };
+    }
+  }
+
+  // 4. Deduplicate on (rootId, variable, value) — mirrors Python drop_duplicates
   const seen = new Set<string>();
   const deduped = allMelted.filter((row) => {
     const key = `${row.rootId}:${row.variable}:${row.value}`;
@@ -255,7 +307,7 @@ export async function wrangleWave2(
     return true;
   });
 
-  // 3. Build dimension lookup: numeric ID → {Name, Description}
+  // 5. Build dimension lookup: numeric ID → {Name, Description}
   const dimensionLookup = new Map<number, { Name: string; Description: string }>();
   for (const entity of DIMENSION_ENTITIES) {
     const rows = await tryReadJson(path.join(inputDir, `${entity}.json`));
@@ -269,9 +321,13 @@ export async function wrangleWave2(
       });
     }
   }
+  // Synthetic entries matching Wave 1 answer text for yes/no questions
+  dimensionLookup.set(9001, { Name: 'Yes', Description: 'Yes' });
+  dimensionLookup.set(9002, { Name: 'Not at all', Description: 'Not at all' });
+  dimensionLookup.set(9003, { Name: "Don't know", Description: "Don't know" });
   logger.log(`Loaded ${dimensionLookup.size} dimension entries`);
 
-  // 4. Resolve categorical answer IDs against dimension lookup
+  // 6. Resolve categorical answer IDs against dimension lookup
   const resolved: ResolvedRow[] = deduped.map((row) => {
     if (row.answerType === 'categorical_answer') {
       const dim = dimensionLookup.get(Number(row.value));
@@ -280,7 +336,7 @@ export async function wrangleWave2(
     return { ...row, name: null, description: null };
   });
 
-  // 5. Assign stable numeric IDs to each unique variable (starting at 1000)
+  // 7. Assign stable numeric IDs to each unique variable (starting at 1000)
   const questionMapping = new Map<string, { chapter: string; id: number }>();
   let nextId = 1000;
   for (const row of resolved) {
@@ -289,7 +345,7 @@ export async function wrangleWave2(
     }
   }
 
-  // 6. Build Question_hierarchy.json
+  // 8. Build Question_hierarchy.json
   const questionHierarchyList = Array.from(questionMapping.entries()).map(
     ([variable, { chapter, id }]) => {
       const level2 = variable.replace(/_/g, ' ');
@@ -303,7 +359,7 @@ export async function wrangleWave2(
     },
   );
 
-  // 7. Build Categorical_Answers.json
+  // 9. Build Categorical_Answers.json
   const catAnswerEntries = new Map<number, { Name: string; Description: string }>();
   for (const row of resolved) {
     if (row.answerType === 'categorical_answer') {
@@ -325,7 +381,7 @@ export async function wrangleWave2(
     })),
   ];
 
-  // 8. Build Answer.json
+  // 10. Build Answer.json
   const variableToId = new Map(
     Array.from(questionMapping.entries()).map(([v, { id }]) => [v, id]),
   );
@@ -342,7 +398,7 @@ export async function wrangleWave2(
     return { ...base, Open_ended_answer: String(row.value), Categorical_Answer: -1 };
   });
 
-  // 9. Build Survey_metadata.json — one entry per unique RootID
+  // 11. Build Survey_metadata.json — one entry per unique RootID
   const langLookup = buildLangLookup(LANG_MAP);
   const surveyMetaMap = new Map<number, { calendarId: number; rowId: string }>();
   for (const row of resolved) {
@@ -362,7 +418,7 @@ export async function wrangleWave2(
     }),
   );
 
-  // 10. Write 4 output JSON files in OData envelope format (expected by transform.ts)
+  // 12. Write 4 output JSON files in OData envelope format (expected by transform.ts)
   const saveODataJson = (filename: string, data: unknown[]) => {
     const payload = {
       '@odata.context': `https://mocked.odata/$metadata#${filename.replace('.json', '')}`,
