@@ -4,6 +4,7 @@ import { FC, useId, useMemo } from "react";
 import { WidgetSourceSplit } from "@shared/dto/widgets/base-widget-data.interface";
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
+import { compareAnswerLabels } from "@/lib/constants";
 import { formatNumber } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
@@ -51,13 +52,17 @@ const SourceComparisonChart: FC<SourceComparisonChartProps> = ({ data }) => {
       }
     }
 
-    return Array.from(byLabel.values()).map((row) => {
+    const merged = Array.from(byLabel.values()).map((row) => {
       // A label missing from one source still renders, with that series at zero
       for (const source of sources) row[source] ??= 0;
       // Drives the highlighted row, so leading in either source wins
       row.value = Math.max(...sources.map((s) => Number(row[s])));
       return row;
     });
+
+    // Sorted after the merge rather than per source: a label only the second
+    // source has arrives last, and would otherwise sit below the pinned rows
+    return merged.sort((a, b) => compareAnswerLabels(a.label, b.label));
   }, [data, sources]);
 
   if (rows.length === 0 || sources.length === 0) {

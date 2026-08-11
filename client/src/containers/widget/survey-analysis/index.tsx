@@ -11,7 +11,11 @@ import useFilters from "@/hooks/use-filters";
 
 import { buildWidgetDownloadUrl } from "@/utils/download-url";
 
-import { compareDataSources, DATA_SOURCE_FILTER_NAME } from "@/lib/constants";
+import {
+  compareAnswerLabels,
+  compareDataSources,
+  DATA_SOURCE_FILTER_NAME,
+} from "@/lib/constants";
 import { removeNaLabels } from "@/lib/normalize-widget-data";
 import { cn, isEmptyWidget } from "@/lib/utils";
 
@@ -240,7 +244,9 @@ export default function Widget({
             absoluteValue={absoluteValue}
           />
           <HorizontalBarChart
-            data={removeNaLabels(data.raw.chart)}
+            data={[...removeNaLabels(data.raw.chart)].sort((a, b) =>
+              compareAnswerLabels(a.label, b.label),
+            )}
             {...config?.horizontalBarChart}
           />
         </Card>

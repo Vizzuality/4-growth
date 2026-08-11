@@ -50,6 +50,26 @@ export function getCssChartColor(
     : CSS_CHART_COLORS[index];
 }
 
+/**
+ * Catch-all answers summarise the options listed above them, so they read as a
+ * closing row rather than an alphabetical peer. Order within the list is the
+ * order they appear in.
+ */
+export const PINNED_LAST_LABELS = ["Both", "Other", OTHERS_LABEL];
+
+/**
+ * Sorts pinned labels last and leaves everything else in the order it arrived,
+ * which for survey answers is the alphabetical order the API sends.
+ */
+export function compareAnswerLabels(a: string, b: string): number {
+  const rank = (label: string) => {
+    const index = PINNED_LAST_LABELS.indexOf(label);
+    return index === -1 ? 0 : index + 1;
+  };
+
+  return rank(a) - rank(b);
+}
+
 export const EXTERNAL_LINKS = [
   {
     label: "Feedback",
