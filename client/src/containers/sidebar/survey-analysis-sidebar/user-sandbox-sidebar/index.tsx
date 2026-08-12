@@ -7,6 +7,7 @@ import { normalizeWidgetData } from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
 import { addFilterQueryParam, removeFilterQueryParamValue } from "@/lib/utils";
+import { hasMultipleDataSources } from "@/lib/visualization-availability";
 
 import {
   FilterQueryParam,
@@ -96,6 +97,8 @@ const UserSandboxSidebar: FC = () => {
             indicator={indicator}
             visualization={visualization}
             widget={getWidgetQuery.data}
+            breakdown={breakdown}
+            hasMultipleSources={hasMultipleDataSources(filters)}
             onVisualizationSelected={setVisualization}
           />
           <IndicatorSelector

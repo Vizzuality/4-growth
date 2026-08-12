@@ -11,13 +11,13 @@ import useFilters from "@/hooks/use-filters";
 
 import { buildWidgetDownloadUrl } from "@/utils/download-url";
 
-import {
-  compareAnswerLabels,
-  compareDataSources,
-  DATA_SOURCE_FILTER_NAME,
-} from "@/lib/constants";
+import { compareAnswerLabels, compareDataSources } from "@/lib/constants";
 import { removeNaLabels } from "@/lib/normalize-widget-data";
 import { cn, isEmptyWidget } from "@/lib/utils";
+import {
+  getVisualizationAvailability,
+  hasMultipleDataSources,
+} from "@/lib/visualization-availability";
 
 import { focusedWidgetAtom } from "@/containers/explore/store";
 import NoData from "@/containers/no-data";
@@ -102,20 +102,20 @@ export default function Widget({
     );
   }, [data.percentages.bySource]);
   const isComparingSources = (bySource?.length ?? 0) > 1;
-  const disabledVisualisations = isComparingSources
-    ? visualisations?.filter(
-        (v) => v !== WIDGET_VISUALIZATIONS.HORIZONTAL_BAR_CHART,
-      )
-    : undefined;
+  const { disabled: disabledVisualisations } = getVisualizationAvailability({
+    candidates: visualisations ?? [],
+    visualisations,
+    selectedVisualization,
+    breakdown,
+    hasMultipleSources: isComparingSources,
+  });
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
   const [focusedWidget, setFocusedWidget] = useAtom(focusedWidgetAtom);
   const highlightWidget = showOverlay && indicator === focusedWidget;
   const { filters } = useFilters();
   // The breakdown response carries no bySource — that path replaces the whole
   // payload — so the combined-sources note reads the filter instead.
-  const hasMultipleSourcesSelected =
-    (filters.find((f) => f.name === DATA_SOURCE_FILTER_NAME)?.values.length ??
-      0) > 1;
+  const hasMultipleSourcesSelected = hasMultipleDataSources(filters);
   const downloadUrl = buildWidgetDownloadUrl(indicator, filters, breakdown);
   const defaultMenu = (
     <WidgetMenu

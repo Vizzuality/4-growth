@@ -3,6 +3,7 @@ import { FC } from "react";
 import { useQueryState } from "nuqs";
 
 import { ADD_FILTER_MODE } from "@/lib/constants";
+import { hasMultipleDataSources } from "@/lib/visualization-availability";
 
 import useFilters from "@/hooks/use-filters";
 import useSandboxWidget from "@/hooks/use-sandbox-widget";
@@ -46,6 +47,8 @@ const SandboxSidebar: FC = () => {
             indicator={indicator}
             visualization={visualization}
             widget={widget}
+            breakdown={breakdown}
+            hasMultipleSources={hasMultipleDataSources(filters)}
             onVisualizationSelected={setVisualization}
           />
           <IndicatorSelector

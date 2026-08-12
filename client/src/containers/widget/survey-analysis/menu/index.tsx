@@ -11,6 +11,10 @@ import DownloadCsvLink from "@/containers/widget/download-csv-link";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import {
+  DisabledVisualization,
+  VISUALIZATION_RESTRICTION_COPY,
+} from "@/lib/visualization-availability";
 import { getRouteHref } from "@/utils/route-config";
 
 const btnClassName =
@@ -35,7 +39,7 @@ interface WidgetMenuProps {
   visualisations?: WidgetVisualizationsType[];
   selectedVisualization: WidgetVisualizationsType;
   /** Comparing sources restricts rendering to bars, so other options are inert */
-  disabledVisualisations?: WidgetVisualizationsType[];
+  disabledVisualisations?: DisabledVisualization[];
   showCustomizeWidgetButton?: boolean;
   info?: { title: string; description: string };
   setSelectedVisualization: (visualization: WidgetVisualizationsType) => void;
@@ -119,18 +123,18 @@ const WidgetMenu: FC<WidgetMenuProps> = ({
               <Separator className="bg-[#627188]" />
             </div>
             {visualisations.map((v) => {
-              const disabled = disabledVisualisations?.includes(v) ?? false;
+              const reason = disabledVisualisations?.find(
+                ({ visualization }) => visualization === v,
+              )?.reason;
 
               return (
                 <Button
                   key={`visualization-list-item-${v}`}
                   variant="clean"
                   className={btnClassName}
-                  disabled={disabled}
+                  disabled={!!reason}
                   title={
-                    disabled
-                      ? "Not available while comparing data sources"
-                      : undefined
+                    reason ? VISUALIZATION_RESTRICTION_COPY[reason] : undefined
                   }
                   onClick={() => setSelectedVisualization(v)}
                 >
