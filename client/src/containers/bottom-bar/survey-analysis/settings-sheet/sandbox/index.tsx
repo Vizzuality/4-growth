@@ -10,6 +10,7 @@ import {
 } from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
+import { hasMultipleDataSources } from "@/lib/visualization-availability";
 
 import useFilters from "@/hooks/use-filters";
 import useSandboxWidget from "@/hooks/use-sandbox-widget";
@@ -122,6 +123,8 @@ const SettingsSheet: FC = () => {
             indicator={newIndicator}
             visualization={newVisualization}
             widget={widget}
+            breakdown={breakdown}
+            hasMultipleSources={hasMultipleDataSources(filters)}
             onVisualizationSelected={setNewVisualization}
           />
           <IndicatorSelector
