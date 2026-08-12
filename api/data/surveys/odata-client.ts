@@ -29,10 +29,7 @@ export interface OAuth2TokenResponse {
 
 export const OAUTH_TOKEN_URL =
   'https://login.microsoftonline.com/27d137e5-761f-4dc1-af88-d26430abb18f/oauth2/v2.0/token';
-export const OAUTH_SCOPE =
-  'https://wageningenur4.onmicrosoft.com/odataAPIPoc/.default';
-
-export const WAVE2_OAUTH_SCOPE = 'https://dataservices.wser.wur.nl/.default';
+export const OAUTH_SCOPE = 'https://dataservices.wser.wur.nl/.default';
 
 export const WAVE2_BASE_URL =
   'https://dataservices.wser.wur.nl/odata/FOURGROWTH%20Wave%20Two';
