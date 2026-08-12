@@ -101,6 +101,22 @@ export class PostgresSurveyAnswerRepository
   }
 
   /**
+   * A counter's denominator is the population its value is measured against.
+   * `data-source` picks which population that is, so it belongs in the
+   * denominator; every other filter narrows within the population and must stay
+   * out of it, or the two counts describe different things. Hence a "total"
+   * query that still carries a WHERE clause.
+   */
+  private dataSourceScopeClause(
+    filters?: WidgetDataFilter[],
+  ): FilterClauseWithParams {
+    const { dataSourceFilter } = this.splitDataSourceFilter(filters);
+    return this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(
+      dataSourceFilter === undefined ? undefined : [dataSourceFilter],
+    );
+  }
+
+  /**
    * Only an explicit multi-value data-source filter is a comparison. Omitting the
    * filter still means "all sources", but it keeps the legacy merged-only response
    * so existing API consumers see no change.
@@ -300,12 +316,13 @@ ORDER BY ac.country;`;
     const filterClauseWithParams =
       this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
     const [filterClause, queryParams] = filterClauseWithParams;
+    const [scopeClause, scopeParams] = this.dataSourceScopeClause(filters);
 
     const filteredCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM ${this.answersTable} ${filterClause} GROUP BY survey_id) AS survey_count`;
-    const totalCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM ${this.answersTable} GROUP BY survey_id) AS survey_count`;
+    const totalCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM ${this.answersTable} ${scopeClause} GROUP BY survey_id) AS survey_count`;
     const [[{ count: value }], [{ count: total }]] = await Promise.all([
       this.dataSource.query(filteredCount, queryParams),
-      this.dataSource.query(totalCount),
+      this.dataSource.query(totalCount, scopeParams),
     ]);
     widget.data.counter = { value, total };
 
@@ -353,12 +370,13 @@ ORDER BY ac.country;`;
     const filterClauseWithParams =
       this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
     const [filterClause, queryParams] = filterClauseWithParams;
+    const [scopeClause, scopeParams] = this.dataSourceScopeClause(filters);
 
     const filteredCount = `SELECT COUNT(DISTINCT country_code)::integer as "count" FROM ${this.answersTable} ${filterClause}`;
-    const totalCount = `SELECT COUNT(DISTINCT country_code)::integer as "count" FROM ${this.answersTable};`;
+    const totalCount = `SELECT COUNT(DISTINCT country_code)::integer as "count" FROM ${this.answersTable} ${scopeClause}`;
     const [[{ count: value }], [{ count: total }]] = await Promise.all([
       this.dataSource.query(filteredCount, queryParams),
-      this.dataSource.query(totalCount),
+      this.dataSource.query(totalCount, scopeParams),
     ]);
     widget.data.counter = { value, total };
 
