@@ -11,6 +11,7 @@ describe('data-source filter — API', () => {
 
   // Must be present in the test surveys JSON so loadSurveyData populates it.
   const TEST_INDICATOR = 'sector';
+  const COUNTER_INDICATOR = 'total-surveys';
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({ logger: false });
@@ -43,6 +44,9 @@ describe('data-source filter — API', () => {
     `);
 
     await testManager.mocks().createBaseWidget({ indicator: TEST_INDICATOR });
+    await testManager
+      .mocks()
+      .createBaseWidget({ indicator: COUNTER_INDICATOR });
   });
 
   afterAll(async () => {
@@ -166,6 +170,51 @@ describe('data-source filter — API', () => {
       expect(res.status).toBe(200);
       // No automated rows in France → empty chart
       expect(res.body.data.data.chart).toEqual([]);
+    });
+  });
+
+  describe(`GET /widgets/${COUNTER_INDICATOR} counter denominator`, () => {
+    const countDistinctSurveys = async (where = ''): Promise<number> => {
+      const [{ count }] = await testManager
+        .getDataSource()
+        .query(
+          `SELECT COUNT(DISTINCT survey_id)::integer AS count FROM survey_answers ${where}`,
+        );
+      return count;
+    };
+
+    it('should measure the value against the selected data source only', async () => {
+      const surveyOnly = await countDistinctSurveys(
+        `WHERE data_source = 'survey'`,
+      );
+      // Without automated surveys in the fixture the assertion below is vacuous
+      expect(await countDistinctSurveys()).toBeGreaterThan(surveyOnly);
+
+      const res = await testManager
+        .request()
+        .get(
+          `/widgets/${COUNTER_INDICATOR}?filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=survey`,
+        );
+
+      expect(res.status).toBe(200);
+      expect(res.body.data.data.counter).toEqual({
+        value: surveyOnly,
+        total: surveyOnly,
+      });
+    });
+
+    it('should measure the value against every source when no data-source filter is sent', async () => {
+      const allSources = await countDistinctSurveys();
+
+      const res = await testManager
+        .request()
+        .get(`/widgets/${COUNTER_INDICATOR}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.data.data.counter).toEqual({
+        value: allSources,
+        total: allSources,
+      });
     });
   });
 
