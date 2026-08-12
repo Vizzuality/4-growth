@@ -38,17 +38,19 @@ const PRESERVED_FILTER_NAMES = [
 export const isPreservedFilter = (name: string) =>
   PRESERVED_FILTER_NAMES.includes(name);
 
-/**
- * Automated website analysis only covers forestry organisations. Any data source
- * including it — the comparison mode included, or the two series would be scoped
- * differently and read as a finding — pins the sector to forestry.
- */
-export const isSectorLocked = (filters: FilterQueryParam[]) =>
+export const includesAutomatedSource = (filters: FilterQueryParam[]) =>
   filters.some(
     (filter) =>
       filter.name === DATA_SOURCE_FILTER_NAME &&
       filter.values.includes(AUTOMATED_DATA_SOURCE_VALUE),
   );
+
+/**
+ * Automated website analysis only covers forestry organisations. Any data source
+ * including it — the comparison mode included, or the two series would be scoped
+ * differently and read as a finding — pins the sector to forestry.
+ */
+export const isSectorLocked = includesAutomatedSource;
 
 export const hasClearableFilters = (filters: FilterQueryParam[]) => {
   const sectorLocked = isSectorLocked(filters);

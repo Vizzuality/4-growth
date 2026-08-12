@@ -4,6 +4,8 @@ import {
   WidgetMapData,
 } from "@shared/dto/widgets/base-widget-data.interface";
 
+import { NA_ANSWER_LABEL } from "@/lib/constants";
+
 /**
  * Function that transforms raw count values into percentages
  */
@@ -24,7 +26,7 @@ function normalizeWidgetData(widgetData: WidgetData): WidgetData {
         ...b,
         data: normalizeChartData(b.data),
       }))
-      .filter((d) => d.label !== "N/A");
+      .filter((d) => d.label !== NA_ANSWER_LABEL);
   }
 
   // Normalized per source, so each one sums to 100% against its own total rather
@@ -88,7 +90,7 @@ function calculateMapTotal(mapData: WidgetMapData): number {
  */
 function calculateTotalWithoutNA(chartData: WidgetChartData): number {
   return chartData.reduce(
-    (acc, curr) => (curr.label !== "N/A" ? acc + curr.value : acc),
+    (acc, curr) => (curr.label !== NA_ANSWER_LABEL ? acc + curr.value : acc),
     0,
   );
 }
@@ -117,7 +119,7 @@ function normalizeChartData(chartData: WidgetChartData): WidgetChartData {
  * @returns Filtered chart data without N/A entries
  */
 function removeNaLabels(data?: WidgetChartData): WidgetChartData {
-  return data?.filter((c) => c.label !== "N/A") || [];
+  return data?.filter((c) => c.label !== NA_ANSWER_LABEL) || [];
 }
 
 /**
