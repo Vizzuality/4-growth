@@ -14,6 +14,7 @@ import {
 } from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
+import { getVisibleWidgets } from "@/lib/widget-visibility";
 
 import useFilters from "@/hooks/use-filters";
 import { useScrollToHash } from "@/hooks/use-scroll-to-hash";
@@ -106,7 +107,7 @@ export default function Explore() {
                 }))}
               />
             ) : (
-              s.baseWidgets.map((w) => (
+              getVisibleWidgets(s.baseWidgets, filters).map((w) => (
                 <Widget
                   key={`widget-${w.indicator}`}
                   visualization={w.defaultVisualization}

@@ -1,14 +1,17 @@
 import { CountryISOMap } from "@shared/constants/country-iso.map";
 import { SearchFilterOperatorType } from "@shared/dto/global/search-filters";
 import { ProjectionFilter } from "@shared/dto/projections/projection-filter.entity";
-import { BaseWidgetWithData } from "@shared/dto/widgets/base-widget-data.interface";
+import {
+  BaseWidgetWithData,
+  WidgetChartData,
+} from "@shared/dto/widgets/base-widget-data.interface";
 import { CustomProjectionSettingsType } from "@shared/schemas/custom-projection-settings.schema";
 import { SearchFilterSchema } from "@shared/schemas/search-filters.schema";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
-import { ADD_FILTER_MODE } from "@/lib/constants";
+import { ADD_FILTER_MODE, NA_ANSWER_LABEL } from "@/lib/constants";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
@@ -20,14 +23,22 @@ export const getSidebarLinkId = (slug?: string): string =>
   `sidebar-${slug}-link`;
 export const getInPageLinkId = (slug?: string): string => `inPage-${slug}-link`;
 
+/**
+ * An all-`N/A` chart counts as empty: every display and metric path strips those
+ * answers, so the card would render a 0% response rate above a blank chart.
+ */
 export function isEmptyWidget(data: BaseWidgetWithData["data"]): boolean {
   return (
     !data.counter &&
     !data.breakdown &&
     !data.navigation &&
-    !data.chart?.length &&
+    !hasAnswers(data.chart) &&
     !data.map?.length
   );
+}
+
+function hasAnswers(chart: WidgetChartData | undefined): boolean {
+  return !!chart?.some((entry) => entry.label !== NA_ANSWER_LABEL);
 }
 
 export function addFilterQueryParam(
@@ -123,10 +134,16 @@ export function formatProjectionValue(value: number) {
   return formatNumber(value, { maximumFractionDigits: 4 });
 }
 
-export function getYAxisTicks(domain: [number, number], tickCount = 5): number[] {
+export function getYAxisTicks(
+  domain: [number, number],
+  tickCount = 5,
+): number[] {
   const [min, max] = domain;
   const step = (max - min) / (tickCount - 1);
-  const candidates = Array.from({ length: tickCount }, (_, i) => min + i * step);
+  const candidates = Array.from(
+    { length: tickCount },
+    (_, i) => min + i * step,
+  );
   const seen = new Set<string>();
   return candidates.filter((v) => {
     const label = formatProjectionValue(v);

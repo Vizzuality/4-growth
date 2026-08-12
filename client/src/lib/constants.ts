@@ -110,6 +110,20 @@ export const AUTOMATED_DATA_SOURCE_VALUE = "automated";
 export const SECTOR_FILTER_NAME = "sector";
 export const FORESTRY_SECTOR_VALUE = "Forestry";
 
+export const NA_ANSWER_LABEL = "N/A";
+
+/**
+ * Questions only an agriculture respondent can answer. Automated web analysis
+ * covers forestry organisations, so these are withheld from any view including
+ * it — a stray agriculture answer from a forestry respondent is a data-quality
+ * artifact, not a finding, and one response would otherwise render a single bar
+ * at 100%.
+ */
+export const AGRICULTURE_ONLY_INDICATORS = [
+  "primary-area-of-operation-in-agriculture",
+  "technology-type-agriculture",
+];
+
 /**
  * Comparison series order. The chart fills the first source solid and hatches the
  * rest, so it and the sidebar legend that explains it both sort by this — pinning
