@@ -219,7 +219,13 @@ export class DataSourceManager {
     const queryRunner = this.dataSource.createQueryRunner();
     try {
       await queryRunner.startTransaction();
-      const answersRepository = this.dataSource.getRepository(SurveyAnswer);
+      const answersRepository = queryRunner.manager.getRepository(SurveyAnswer);
+
+      await queryRunner.query(
+        `DELETE FROM survey_answers WHERE wave = $1 AND data_source = 'survey'`,
+        [wave],
+      );
+
       // Use Map to deduplicate exact duplicates (same surveyId + indicator + answer)
       // but preserve different answers for the same surveyId + indicator (multi-select)
       const deduped = new Map<string, SurveyAnswer>();
@@ -246,11 +252,7 @@ export class DataSourceManager {
       const batch = Array.from(deduped.values());
       const CHUNK_SIZE = 500;
       for (let i = 0; i < batch.length; i += CHUNK_SIZE) {
-        await answersRepository.upsert(batch.slice(i, i + CHUNK_SIZE), [
-          'surveyId',
-          'questionIndicator',
-          'answer',
-        ]);
+        await answersRepository.insert(batch.slice(i, i + CHUNK_SIZE));
       }
       await queryRunner.commitTransaction();
     } catch (err) {
