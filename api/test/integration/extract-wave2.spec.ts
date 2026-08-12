@@ -35,7 +35,7 @@ describe('Wave 2 OData Extraction', () => {
 
   describe('OAuth Token Request', () => {
     it('should request token with correct OAuth2 parameters', async () => {
-      const { getAccessToken, WAVE2_OAUTH_SCOPE } = await import(
+      const { getAccessToken, OAUTH_SCOPE } = await import(
         '../../data/surveys/odata-client'
       );
 
@@ -43,7 +43,7 @@ describe('Wave 2 OData Extraction', () => {
         data: { access_token: 'mock-token-123' },
       });
 
-      await getAccessToken('test-client-id', 'test-client-secret', WAVE2_OAUTH_SCOPE);
+      await getAccessToken('test-client-id', 'test-client-secret', OAUTH_SCOPE);
 
       expect(mockedAxios.post).toHaveBeenCalledTimes(1);
 

@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: envFilePath });
 }
 
-import { WAVE2_BASE_URL, WAVE2_OAUTH_SCOPE } from './odata-client';
+import { WAVE2_BASE_URL, OAUTH_SCOPE } from './odata-client';
 import { extractWave } from './extract-wave';
 
 export const WAVE2_ENTITIES = [
@@ -60,7 +60,7 @@ export const extractWave2 = async (): Promise<void> => {
     baseUrl: WAVE2_BASE_URL,
     entities: WAVE2_ENTITIES,
     outputDir: OUTPUT_DIR,
-    scope: WAVE2_OAUTH_SCOPE,
+    scope: OAUTH_SCOPE,
   });
 };
 
