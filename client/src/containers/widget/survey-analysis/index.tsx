@@ -188,8 +188,12 @@ export default function Widget({
 
     if (isCounterWidget) {
       return (
-        <Card className="p-0">
-          <SingleValueBySource title={title} data={bySource} />
+        <Card className={cn("p-0", className)}>
+          <SingleValueBySource
+            title={title}
+            data={bySource}
+            {...config?.singleValue}
+          />
         </Card>
       );
     }
