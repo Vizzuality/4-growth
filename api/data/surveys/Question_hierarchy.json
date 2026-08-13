@@ -688,6 +688,13 @@
   {
     "Level1": "General information",
     "Level2": "Primary Area of Operation in Agriculture",
+    "Level3": "Mixed farming (crops and animals)",
+    "Level4": "Mixed farming (crops and animals)",
+    "ID": 2312727
+  },
+  {
+    "Level1": "General information",
+    "Level2": "Primary Area of Operation in Agriculture",
     "Level3": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "Level4": "Primary Area of Operation in Agriculture - Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc. (fr) (w3)",
     "ID": 2446399
@@ -709,7 +716,7 @@
   {
     "Level1": "General information",
     "Level2": "Primary Area of Operation in Agriculture",
-    "Level3": "Mixed farming (crops and animals)",
+    "Level3": "Primary Area of Operation in Agriculture - Mixed farming (crops and animal)",
     "Level4": "Primary Area of Operation in Agriculture - Mixed farming (crops and animals) (fr) (w3)",
     "ID": 2446402
   },
@@ -726,6 +733,13 @@
     "Level3": "Primary Area of Operation in Agriculture - Other namely",
     "Level4": "Primary Area of Operation in Agriculture - Other namely (fr) (w3)",
     "ID": 2446404
+  },
+  {
+    "Level1": "General information",
+    "Level2": "Primary Area of Operation in Agriculture",
+    "Level3": "Primary Area of Operation in Agriculture - Other namely",
+    "Level4": "Other namelyText subquestion 13 (en/fr)",
+    "ID": 2446625
   },
   {
     "Level1": "General information",
@@ -1272,6 +1286,13 @@
     "Level3": "Primary Area of Operation in forestry - Other namely",
     "Level4": "Primary Area of Operation in forestry - Other namely (fr) (w3)",
     "ID": 2446413
+  },
+  {
+    "Level1": "General information",
+    "Level2": "Primary Area of Operation in forestry",
+    "Level3": "Primary Area of Operation in forestry - Other namely",
+    "Level4": "Other namelyText subquestion 14 (en/fr)",
+    "ID": 2446626
   },
   {
     "Level1": "General information",
@@ -2126,6 +2147,13 @@
     "Level3": "What is the geographical reach of the services that you offer? (fr) (w3)",
     "Level4": "What is the geographical reach of the services that you offer? (fr) (w3)",
     "ID": 2446416
+  },
+  {
+    "Level1": "General information",
+    "Level2": "What type of organisation are you?",
+    "Level3": "Other namelyText subquestion 12 (en/fr)",
+    "Level4": "Other namelyText subquestion 12 (en/fr)",
+    "ID": 2446624
   },
   {
     "Level1": "General information",
@@ -3025,6 +3053,13 @@
   },
   {
     "Level1": "Adoption of digital technologies and technology integration",
+    "Level2": "What type of digital technology has been used for forestry?",
+    "Level3": "Other namelyText subquestion 2",
+    "Level4": "Other namelyText subquestion 10 (en/fr)",
+    "ID": 2446622
+  },
+  {
+    "Level1": "Adoption of digital technologies and technology integration",
     "Level2": "Has your organisation integrated digital technologies into its workflows?",
     "Level3": "Has your organisation integrated digital technologies into its workflows? subquestion",
     "Level4": "Has your organisation integrated digital technologies into its workflows? (all but fr) (w3)",
@@ -3505,41 +3540,6 @@
     "Level3": "Other namely 1",
     "Level4": "What type of digital technology has been used for agriculture? - Other namely (fr) (w3)",
     "ID": 2446424
-  },
-  {
-    "Level1": "Adoption of digital technologies and technology integration",
-    "Level2": "What type of digital technology has been used for agriculture?",
-    "Level3": "Other namelyText subquestion 1",
-    "Level4": "Other namelyText subquestion 10 (en/fr)",
-    "ID": 2446622
-  },
-  {
-    "Level1": "Adoption of digital technologies and technology integration",
-    "Level2": "What type of digital technology has been used for agriculture?",
-    "Level3": "Other namelyText subquestion 1",
-    "Level4": "Other namelyText subquestion 11 (en/fr)",
-    "ID": 2446623
-  },
-  {
-    "Level1": "Adoption of digital technologies and technology integration",
-    "Level2": "What type of digital technology has been used for agriculture?",
-    "Level3": "Other namelyText subquestion 1",
-    "Level4": "Other namelyText subquestion 12 (en/fr)",
-    "ID": 2446624
-  },
-  {
-    "Level1": "Adoption of digital technologies and technology integration",
-    "Level2": "What type of digital technology has been used for agriculture?",
-    "Level3": "Other namelyText subquestion 1",
-    "Level4": "Other namelyText subquestion 13 (en/fr)",
-    "ID": 2446625
-  },
-  {
-    "Level1": "Adoption of digital technologies and technology integration",
-    "Level2": "What type of digital technology has been used for agriculture?",
-    "Level3": "Other namelyText subquestion 1",
-    "Level4": "Other namelyText subquestion 14 (en/fr)",
-    "ID": 2446626
   },
   {
     "Level1": "Adoption of digital technologies and technology integration",
@@ -7344,6 +7344,454 @@
   },
   {
     "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "On-premises servers/local storage facilities",
+    "Level4": "On-premises servers/local storage facilities (en)",
+    "ID": 2045532
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Cloud-based platforms",
+    "Level4": "Cloud-based platforms (en)",
+    "ID": 2045533
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Data warehouses",
+    "Level4": "Data warehouses (en)",
+    "ID": 2045534
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Agricultural information management systems",
+    "Level4": "Agricultural information management systems (en)",
+    "ID": 2045535
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Geographic Information Systems (GIS)",
+    "Level4": "Geographic Information Systems (GIS) (en)",
+    "ID": 2045536
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Hybrid storage solutions (on-premises and cloud)",
+    "Level4": "Hybrid storage solutions (on-premises and cloud) (en)",
+    "ID": 2045537
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Secure data centres (advanced security measures)",
+    "Level4": "Secure data centres (advanced security measures) (en)",
+    "ID": 2045538
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "On-premises servers/local storage facilities",
+    "Level4": "On-premises servers/local storage facilities (fr)",
+    "ID": 2045744
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Cloud-based platforms",
+    "Level4": "Cloud-based platforms (fr)",
+    "ID": 2045745
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Data warehouses",
+    "Level4": "Data warehouses (fr)",
+    "ID": 2045746
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Agricultural information management systems",
+    "Level4": "Agricultural information management systems (fr)",
+    "ID": 2045747
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Geographic Information Systems (GIS)",
+    "Level4": "Geographic Information Systems (GIS) (fr)",
+    "ID": 2045748
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Hybrid storage solutions (on-premises and cloud)",
+    "Level4": "Hybrid storage solutions (on-premises and cloud) (fr)",
+    "ID": 2045749
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Secure data centres (advanced security measures)",
+    "Level4": "Secure data centres (advanced security measures) (fr)",
+    "ID": 2045750
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "On-premises servers/local storage facilities",
+    "Level4": "On-premises servers/local storage facilities (es)",
+    "ID": 2050701
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Cloud-based platforms",
+    "Level4": "Cloud-based platforms (es)",
+    "ID": 2050702
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Data warehouses",
+    "Level4": "Data warehouses (es)",
+    "ID": 2050703
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Agricultural information management systems",
+    "Level4": "Agricultural information management systems (es)",
+    "ID": 2050704
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Geographic Information Systems (GIS)",
+    "Level4": "Geographic Information Systems (GIS) (es)",
+    "ID": 2050705
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Hybrid storage solutions (on-premises and cloud)",
+    "Level4": "Hybrid storage solutions (on-premises and cloud) (es)",
+    "ID": 2050706
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Secure data centres (advanced security measures)",
+    "Level4": "Secure data centres (advanced security measures) (es)",
+    "ID": 2050707
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "On-premises servers/local storage facilities",
+    "Level4": "On-premises servers/local storage facilities (lt)",
+    "ID": 2051495
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Cloud-based platforms",
+    "Level4": "Cloud-based platforms (lt)",
+    "ID": 2051496
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Data warehouses",
+    "Level4": "Data warehouses (lt)",
+    "ID": 2051497
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Agricultural information management systems",
+    "Level4": "Agricultural information management systems (lt)",
+    "ID": 2051498
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Geographic Information Systems (GIS)",
+    "Level4": "Geographic Information Systems (GIS) (lt)",
+    "ID": 2051499
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Hybrid storage solutions (on-premises and cloud)",
+    "Level4": "Hybrid storage solutions (on-premises and cloud) (lt)",
+    "ID": 2051500
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Secure data centres (advanced security measures)",
+    "Level4": "Secure data centres (advanced security measures) (lt)",
+    "ID": 2051501
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "On-premises servers/local storage facilities",
+    "Level4": "On-premises servers/local storage facilities (el)",
+    "ID": 2051698
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Cloud-based platforms",
+    "Level4": "Cloud-based platforms (el)",
+    "ID": 2051699
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Data warehouses",
+    "Level4": "Data warehouses (el)",
+    "ID": 2051700
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Agricultural information management systems",
+    "Level4": "Agricultural information management systems (el)",
+    "ID": 2051701
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Geographic Information Systems (GIS)",
+    "Level4": "Geographic Information Systems (GIS) (el)",
+    "ID": 2051702
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Hybrid storage solutions (on-premises and cloud)",
+    "Level4": "Hybrid storage solutions (on-premises and cloud) (el)",
+    "ID": 2051703
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Secure data centres (advanced security measures)",
+    "Level4": "Secure data centres (advanced security measures) (el)",
+    "ID": 2051704
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "On-premises servers/local storage facilities",
+    "Level4": "On-premises servers/local storage facilities (fi)",
+    "ID": 2051901
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Cloud-based platforms",
+    "Level4": "Cloud-based platforms (fi)",
+    "ID": 2051902
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Data warehouses",
+    "Level4": "Data warehouses (fi)",
+    "ID": 2051903
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Agricultural information management systems",
+    "Level4": "Agricultural information management systems (fi)",
+    "ID": 2051904
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Geographic Information Systems (GIS)",
+    "Level4": "Geographic Information Systems (GIS) (fi)",
+    "ID": 2051905
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Hybrid storage solutions (on-premises and cloud)",
+    "Level4": "Hybrid storage solutions (on-premises and cloud) (fi)",
+    "ID": 2051906
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Secure data centres (advanced security measures)",
+    "Level4": "Secure data centres (advanced security measures) (fi)",
+    "ID": 2051907
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "On-premises servers/local storage facilities",
+    "Level4": "On-premises servers/local storage facilities (nl)",
+    "ID": 2052104
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Cloud-based platforms",
+    "Level4": "Cloud-based platforms (nl)",
+    "ID": 2052105
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Data warehouses",
+    "Level4": "Data warehouses (nl)",
+    "ID": 2052106
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Agricultural information management systems",
+    "Level4": "Agricultural information management systems (nl)",
+    "ID": 2052107
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Geographic Information Systems (GIS)",
+    "Level4": "Geographic Information Systems (GIS) (nl)",
+    "ID": 2052108
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Hybrid storage solutions (on-premises and cloud)",
+    "Level4": "Hybrid storage solutions (on-premises and cloud) (nl)",
+    "ID": 2052109
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Secure data centres (advanced security measures)",
+    "Level4": "Secure data centres (advanced security measures) (nl)",
+    "ID": 2052110
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "On-premises servers/local storage facilities",
+    "Level4": "Where and how do you store this data? - On-premises servers/local storage facilities (fr) (w3)",
+    "ID": 2446480
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Cloud-based platforms",
+    "Level4": "Where and how do you store this data? - Cloud-based platforms (fr) (w3)",
+    "ID": 2446481
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Data warehouses",
+    "Level4": "Where and how do you store this data? - Data warehouses (fr) (w3)",
+    "ID": 2446482
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Agricultural information management systems",
+    "Level4": "Where and how do you store this data? - Agricultural information management systems (fr) (w3)",
+    "ID": 2446483
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Geographic Information Systems (GIS)",
+    "Level4": "Where and how do you store this data? - Geographic Information Systems (GIS) (fr) (w3)",
+    "ID": 2446484
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Hybrid storage solutions (on-premises and cloud)",
+    "Level4": "Where and how do you store this data? - Hybrid storage solutions (on-premises and cloud) (fr) (w3)",
+    "ID": 2446485
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Other storage technology",
+    "Level4": "Where and how do you store this data? - Other, namely (fr) (w3)",
+    "ID": 2446486
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Other storage technology",
+    "Level4": "Other namelyText subquestion 11 (en/fr)",
+    "ID": 2446623
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "On-premises servers/local storage facilities",
+    "Level4": "Where and how do you store this data? - On-premises servers/local storage facilities (all but fr) (w3)",
+    "ID": 2448103
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Cloud-based platforms",
+    "Level4": "Where and how do you store this data? - Cloud-based platforms (all but fr) (w3)",
+    "ID": 2448104
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Data warehouses",
+    "Level4": "Where and how do you store this data? - Data warehouses (all but fr) (w3)",
+    "ID": 2448105
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Agricultural information management systems",
+    "Level4": "Where and how do you store this data? - Agricultural information management systems (all but fr) (w3)",
+    "ID": 2448106
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Geographic Information Systems (GIS)",
+    "Level4": "Where and how do you store this data? - Geographic Information Systems (GIS) (all but fr) (w3)",
+    "ID": 2448107
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Hybrid storage solutions (on-premises and cloud)",
+    "Level4": "Where and how do you store this data? - Hybrid storage solutions (on-premises and cloud) (all but fr) (w3)",
+    "ID": 2448108
+  },
+  {
+    "Level1": "Data storage and data flows",
+    "Level2": "Where and how do you store this data?",
+    "Level3": "Other storage technology",
+    "Level4": "Where and how do you store this data? - Other, namely (all but fr) (w3)",
+    "ID": 2448109
+  },
+  {
+    "Level1": "Data storage and data flows",
     "Level2": "Do you use cloud services/data centres?",
     "Level3": "Do you use cloud services/data centres? subquestion",
     "Level4": "Do you use cloud services/data centres? subquestion (en)",
@@ -7439,55 +7887,6 @@
     "Level3": "If yes please specify (type/amount) subquestion",
     "Level4": "If yes please specify (type/amount) subquestion (en)",
     "ID": 2045531
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "On-premises servers/local storage facilities",
-    "Level4": "On-premises servers/local storage facilities (en)",
-    "ID": 2045532
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Cloud-based platforms",
-    "Level4": "Cloud-based platforms (en)",
-    "ID": 2045533
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Data warehouses",
-    "Level4": "Data warehouses (en)",
-    "ID": 2045534
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Agricultural information management systems",
-    "Level4": "Agricultural information management systems (en)",
-    "ID": 2045535
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Geographic Information Systems (GIS)",
-    "Level4": "Geographic Information Systems (GIS) (en)",
-    "ID": 2045536
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Hybrid storage solutions (on-premises and cloud)",
-    "Level4": "Hybrid storage solutions (on-premises and cloud) (en)",
-    "ID": 2045537
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Secure data centres (advanced security measures)",
-    "Level4": "Secure data centres (advanced security measures) (en)",
-    "ID": 2045538
   },
   {
     "Level1": "Data storage and data flows",
@@ -7603,55 +8002,6 @@
   },
   {
     "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "On-premises servers/local storage facilities",
-    "Level4": "On-premises servers/local storage facilities (fr)",
-    "ID": 2045744
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Cloud-based platforms",
-    "Level4": "Cloud-based platforms (fr)",
-    "ID": 2045745
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Data warehouses",
-    "Level4": "Data warehouses (fr)",
-    "ID": 2045746
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Agricultural information management systems",
-    "Level4": "Agricultural information management systems (fr)",
-    "ID": 2045747
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Geographic Information Systems (GIS)",
-    "Level4": "Geographic Information Systems (GIS) (fr)",
-    "ID": 2045748
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Hybrid storage solutions (on-premises and cloud)",
-    "Level4": "Hybrid storage solutions (on-premises and cloud) (fr)",
-    "ID": 2045749
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Secure data centres (advanced security measures)",
-    "Level4": "Secure data centres (advanced security measures) (fr)",
-    "ID": 2045750
-  },
-  {
-    "Level1": "Data storage and data flows",
     "Level2": "What do you do with this data?",
     "Level3": "What do you do with this data? subquestion",
     "Level4": "What do you do with this data? subquestion (fr)",
@@ -7761,55 +8111,6 @@
     "Level3": "If yes please specify (type/amount) subquestion",
     "Level4": "If yes please specify (type/amount) subquestion (es)",
     "ID": 2050700
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "On-premises servers/local storage facilities",
-    "Level4": "On-premises servers/local storage facilities (es)",
-    "ID": 2050701
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Cloud-based platforms",
-    "Level4": "Cloud-based platforms (es)",
-    "ID": 2050702
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Data warehouses",
-    "Level4": "Data warehouses (es)",
-    "ID": 2050703
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Agricultural information management systems",
-    "Level4": "Agricultural information management systems (es)",
-    "ID": 2050704
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Geographic Information Systems (GIS)",
-    "Level4": "Geographic Information Systems (GIS) (es)",
-    "ID": 2050705
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Hybrid storage solutions (on-premises and cloud)",
-    "Level4": "Hybrid storage solutions (on-premises and cloud) (es)",
-    "ID": 2050706
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Secure data centres (advanced security measures)",
-    "Level4": "Secure data centres (advanced security measures) (es)",
-    "ID": 2050707
   },
   {
     "Level1": "Data storage and data flows",
@@ -7925,55 +8226,6 @@
   },
   {
     "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "On-premises servers/local storage facilities",
-    "Level4": "On-premises servers/local storage facilities (lt)",
-    "ID": 2051495
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Cloud-based platforms",
-    "Level4": "Cloud-based platforms (lt)",
-    "ID": 2051496
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Data warehouses",
-    "Level4": "Data warehouses (lt)",
-    "ID": 2051497
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Agricultural information management systems",
-    "Level4": "Agricultural information management systems (lt)",
-    "ID": 2051498
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Geographic Information Systems (GIS)",
-    "Level4": "Geographic Information Systems (GIS) (lt)",
-    "ID": 2051499
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Hybrid storage solutions (on-premises and cloud)",
-    "Level4": "Hybrid storage solutions (on-premises and cloud) (lt)",
-    "ID": 2051500
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Secure data centres (advanced security measures)",
-    "Level4": "Secure data centres (advanced security measures) (lt)",
-    "ID": 2051501
-  },
-  {
-    "Level1": "Data storage and data flows",
     "Level2": "What do you do with this data?",
     "Level3": "What do you do with this data? subquestion",
     "Level4": "What do you do with this data? subquestion (lt)",
@@ -8083,55 +8335,6 @@
     "Level3": "If yes please specify (type/amount) subquestion",
     "Level4": "If yes please specify (type/amount) subquestion (el)",
     "ID": 2051686
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "On-premises servers/local storage facilities",
-    "Level4": "On-premises servers/local storage facilities (el)",
-    "ID": 2051698
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Cloud-based platforms",
-    "Level4": "Cloud-based platforms (el)",
-    "ID": 2051699
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Data warehouses",
-    "Level4": "Data warehouses (el)",
-    "ID": 2051700
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Agricultural information management systems",
-    "Level4": "Agricultural information management systems (el)",
-    "ID": 2051701
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Geographic Information Systems (GIS)",
-    "Level4": "Geographic Information Systems (GIS) (el)",
-    "ID": 2051702
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Hybrid storage solutions (on-premises and cloud)",
-    "Level4": "Hybrid storage solutions (on-premises and cloud) (el)",
-    "ID": 2051703
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Secure data centres (advanced security measures)",
-    "Level4": "Secure data centres (advanced security measures) (el)",
-    "ID": 2051704
   },
   {
     "Level1": "Data storage and data flows",
@@ -8247,55 +8450,6 @@
   },
   {
     "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "On-premises servers/local storage facilities",
-    "Level4": "On-premises servers/local storage facilities (fi)",
-    "ID": 2051901
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Cloud-based platforms",
-    "Level4": "Cloud-based platforms (fi)",
-    "ID": 2051902
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Data warehouses",
-    "Level4": "Data warehouses (fi)",
-    "ID": 2051903
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Agricultural information management systems",
-    "Level4": "Agricultural information management systems (fi)",
-    "ID": 2051904
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Geographic Information Systems (GIS)",
-    "Level4": "Geographic Information Systems (GIS) (fi)",
-    "ID": 2051905
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Hybrid storage solutions (on-premises and cloud)",
-    "Level4": "Hybrid storage solutions (on-premises and cloud) (fi)",
-    "ID": 2051906
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Secure data centres (advanced security measures)",
-    "Level4": "Secure data centres (advanced security measures) (fi)",
-    "ID": 2051907
-  },
-  {
-    "Level1": "Data storage and data flows",
     "Level2": "What do you do with this data?",
     "Level3": "What do you do with this data? subquestion",
     "Level4": "What do you do with this data? subquestion (fi)",
@@ -8408,55 +8562,6 @@
   },
   {
     "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "On-premises servers/local storage facilities",
-    "Level4": "On-premises servers/local storage facilities (nl)",
-    "ID": 2052104
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Cloud-based platforms",
-    "Level4": "Cloud-based platforms (nl)",
-    "ID": 2052105
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Data warehouses",
-    "Level4": "Data warehouses (nl)",
-    "ID": 2052106
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Agricultural information management systems",
-    "Level4": "Agricultural information management systems (nl)",
-    "ID": 2052107
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Geographic Information Systems (GIS)",
-    "Level4": "Geographic Information Systems (GIS) (nl)",
-    "ID": 2052108
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Hybrid storage solutions (on-premises and cloud)",
-    "Level4": "Hybrid storage solutions (on-premises and cloud) (nl)",
-    "ID": 2052109
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Secure data centres (advanced security measures)",
-    "Level4": "Secure data centres (advanced security measures) (nl)",
-    "ID": 2052110
-  },
-  {
-    "Level1": "Data storage and data flows",
     "Level2": "What do you do with this data?",
     "Level3": "What do you do with this data? subquestion",
     "Level4": "What do you do with this data? subquestion (nl)",
@@ -8478,55 +8583,6 @@
   },
   {
     "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "On-premises servers/local storage facilities",
-    "Level4": "Where and how do you store this data? - On-premises servers/local storage facilities (fr) (w3)",
-    "ID": 2446480
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Cloud-based platforms",
-    "Level4": "Where and how do you store this data? - Cloud-based platforms (fr) (w3)",
-    "ID": 2446481
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Data warehouses",
-    "Level4": "Where and how do you store this data? - Data warehouses (fr) (w3)",
-    "ID": 2446482
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Agricultural information management systems",
-    "Level4": "Where and how do you store this data? - Agricultural information management systems (fr) (w3)",
-    "ID": 2446483
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Geographic Information Systems (GIS)",
-    "Level4": "Where and how do you store this data? - Geographic Information Systems (GIS) (fr) (w3)",
-    "ID": 2446484
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Hybrid storage solutions (on-premises and cloud)",
-    "Level4": "Where and how do you store this data? - Hybrid storage solutions (on-premises and cloud) (fr) (w3)",
-    "ID": 2446485
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Other storage technology",
-    "Level4": "Where and how do you store this data? - Other, namely (fr) (w3)",
-    "ID": 2446486
-  },
-  {
-    "Level1": "Data storage and data flows",
     "Level2": "To who and where do you send derived information or data?",
     "Level3": "To who and where do you send derived information or data? subquestion",
     "Level4": "To who and where do you send this data? (fr) (w3)",
@@ -8538,55 +8594,6 @@
     "Level3": "Would you be able to operate without this data? (all but fr) (w3)",
     "Level4": "Would you be able to operate without this data? (all but fr) (w3)",
     "ID": 2448037
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "On-premises servers/local storage facilities",
-    "Level4": "Where and how do you store this data? - On-premises servers/local storage facilities (all but fr) (w3)",
-    "ID": 2448103
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Cloud-based platforms",
-    "Level4": "Where and how do you store this data? - Cloud-based platforms (all but fr) (w3)",
-    "ID": 2448104
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Data warehouses",
-    "Level4": "Where and how do you store this data? - Data warehouses (all but fr) (w3)",
-    "ID": 2448105
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Agricultural information management systems",
-    "Level4": "Where and how do you store this data? - Agricultural information management systems (all but fr) (w3)",
-    "ID": 2448106
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Geographic Information Systems (GIS)",
-    "Level4": "Where and how do you store this data? - Geographic Information Systems (GIS) (all but fr) (w3)",
-    "ID": 2448107
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Hybrid storage solutions (on-premises and cloud)",
-    "Level4": "Where and how do you store this data? - Hybrid storage solutions (on-premises and cloud) (all but fr) (w3)",
-    "ID": 2448108
-  },
-  {
-    "Level1": "Data storage and data flows",
-    "Level2": "Where and how do you store this data?",
-    "Level3": "Other storage technology",
-    "Level4": "Where and how do you store this data? - Other, namely (all but fr) (w3)",
-    "ID": 2448109
   },
   {
     "Level1": "Data storage and data flows",
@@ -11513,13 +11520,6 @@
     "Level3": "Livestock farming (meat, dairy, other)",
     "Level4": "Livestock farming (meat, dairy, other)",
     "ID": 2312726
-  },
-  {
-    "Level1": "General information",
-    "Level2": "Primary Area of Operation in Agriculture",
-    "Level3": "Mixed farming (crops and animals)",
-    "Level4": "Mixed farming (crops and animals)",
-    "ID": 2312727
   },
   {
     "Level1": "General information",
