@@ -34,6 +34,9 @@ const WAVE2_ANSWER_NORMALIZATIONS = new Map([
   ['Have digital technologies resulted in cost savings or increased efficiency?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Would you further adopt digital technologies if you had better network connectivity?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Are there specific barriers hindering further integration?', NO_TO_NOT_AT_ALL],
+  ['What network connectivity do you use?', new Map([
+    ['Private networks', 'Private networks (e.g. corporate or organizational networks)'],
+  ])],
 ]);
 
 export const transformWave2 = () =>

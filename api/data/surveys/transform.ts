@@ -146,6 +146,17 @@ const TOOLS_SHORT_TO_LONG = new Map([
   ['Traceability systems', 'Traceability and Supply Chain Systems (e.g., blockchain for tracking produce, timber certification systems)'],
 ]);
 
+const NETWORK_CONNECTIVITY_NORMALIZATIONS = new Map([
+  ['Cellular networks', 'Cellular networks (e.g. 3G, 4G, 5G)'],
+  ['What network connectivity do you use? - Cullular networks (e.g. 3G, 4G, 5G)', 'Cellular networks (e.g. 3G, 4G, 5G)'],
+  ['IoT networks', 'IoT specific Networks (e.g. LPWAN, LoRaWan, Zigbee)'],
+  ['Low-power Wide-area network', 'IoT specific Networks (e.g. LPWAN, LoRaWan, Zigbee)'],
+  ['Private networks', 'Private networks (e.g. corporate or organizational networks)'],
+  ['Sattelite internet', 'Satellite internet'],
+  ['Wired internet', 'Wired internet (e.g. DSL, Ethernet)'],
+  ['Wireless internet', 'Wireless internet (Wi-Fi)'],
+]);
+
 const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['Are there plans to expand or upgrade your current digital infrastructure?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Would you further adopt digital technologies if you had better network connectivity?', LIKERT_TO_YES_NO_DONTKNOW],
@@ -154,6 +165,7 @@ const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['What type of data do you collect?', DATA_TYPES_SHORT_TO_LONG],
   ['What are the primary functions of these technologies in the agriculture or forestry value chain?', TECH_FUNCTIONS_SHORT_TO_LONG],
   ['What type of tools or platforms do you use to collect data?', TOOLS_SHORT_TO_LONG],
+  ['What network connectivity do you use?', NETWORK_CONNECTIVITY_NORMALIZATIONS],
 ]);
 
 export const transform = async (
