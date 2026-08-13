@@ -102,6 +102,21 @@ const EXCLUDED_QUESTIONS = new Set([
   'I agree to be contacted again by the researchers for clarification or elaboration on my input in the discussion (optional)',
 ]);
 
+const LIKERT_TO_YES_NO_DONTKNOW = new Map([
+  ['Strongly agree', 'Yes'],
+  ['Agree', 'Yes'],
+  ['Strongly disagree', 'Not at all'],
+  ['Disagree', 'Not at all'],
+  ['Neither disagree nor agree', "Don't know"],
+]);
+
+const WAVE1_ANSWER_NORMALIZATIONS = new Map([
+  ['Are there plans to expand or upgrade your current digital infrastructure?', LIKERT_TO_YES_NO_DONTKNOW],
+  ['Would you further adopt digital technologies if you had better network connectivity?', LIKERT_TO_YES_NO_DONTKNOW],
+  ['Have digital technologies contributed to sustainability and environmental practices?', LIKERT_TO_YES_NO_DONTKNOW],
+  ['Have digital technologies resulted in cost savings or increased efficiency?', LIKERT_TO_YES_NO_DONTKNOW],
+]);
+
 export const transform = async (
   inputDir = 'data/surveys',
   outputPath = `${__dirname}/surveys.json`,
@@ -110,7 +125,7 @@ export const transform = async (
   //         sub-options Level3 embeds "ParentQuestion - SubOption", so we extract before " - ".
   questionLevelStrategy: 'level2' | 'level3' = 'level2',
   questionNormalizations: Map<string, string> = new Map(),
-  answerNormalizations: Map<string, Map<string, string>> = new Map(),
+  answerNormalizations: Map<string, Map<string, string>> = WAVE1_ANSWER_NORMALIZATIONS,
 ) => {
   const logger = new Logger('ETL');
 
