@@ -1962,141 +1962,6 @@
     "countryCode": "FRA"
   },
   {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "FR",
-    "questionId": 2446486,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2312727,
-    "question": "Primary area of operation in agriculture",
-    "answer": "Mixed farming",
-    "language": "FR",
-    "questionId": 2446402,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2312659,
-    "question": "What type of tools or platforms do you use to collect data?",
-    "answer": "Field Data Collection Tools (e.g., mobile apps, handheld devices)",
-    "language": "FR",
-    "questionId": 2446471,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2312649,
-    "question": "What type of data do you collect?",
-    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
-    "language": "FR",
-    "questionId": 2446462,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2045286,
-    "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Negligible impact",
-    "language": "FR",
-    "questionId": 2446502,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2045286,
-    "question": "Would you further adopt digital technologies if you had better network connectivity?",
-    "answer": "Negligible impact",
-    "language": "FR",
-    "questionId": 2446499,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2446504,
-    "question": "Would you be able to operate without this data?",
-    "answer": "Agree",
-    "language": "FR",
-    "questionId": 2446479,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2312742,
-    "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
-    "language": "FR",
-    "questionId": 2446414,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2045165,
-    "question": "Sector (agri/forestry/both)",
-    "answer": "Agriculture",
-    "language": "FR",
-    "questionId": 2446396,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2312677,
-    "question": "Type of stakeholder",
-    "answer": "Producer (Farmer/Forest Owner/Forester)",
-    "language": "FR",
-    "questionId": 2446397,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2045238,
-    "question": "Location (country/region)",
-    "answer": "France",
-    "language": "FR",
-    "questionId": 2446398,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2045288,
-    "question": "Has your organisation integrated digital technologies into its workflows?",
-    "answer": "Not at all",
-    "language": "FR",
-    "questionId": 2446417,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2045288,
-    "question": "Do you have network connectivity?",
-    "answer": "Not at all",
-    "language": "FR",
-    "questionId": 2446490,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2045288,
-    "question": "Do you pay for this data?",
-    "answer": "Not at all",
-    "language": "FR",
-    "questionId": 2446478,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "answerId": 2045288,
-    "question": "Do you share this data?",
-    "answer": "Not at all",
-    "language": "FR",
-    "questionId": 2446487,
-    "countryCode": "FRA"
-  },
-  {
     "surveyId": "D4BA28258D6854E035F21D3C1398979FA52706B2",
     "answerId": 2312612,
     "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
@@ -4776,6 +4641,132 @@
     "answer": "Yes",
     "language": "FR",
     "questionId": 2446490,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2312727,
+    "question": "Primary area of operation in agriculture",
+    "answer": "Mixed farming",
+    "language": "FR",
+    "questionId": 2446402,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2312659,
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "Field Data Collection Tools (e.g., mobile apps, handheld devices)",
+    "language": "FR",
+    "questionId": 2446471,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2312649,
+    "question": "What type of data do you collect?",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
+    "language": "FR",
+    "questionId": 2446462,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2045286,
+    "question": "Are there plans to expand or upgrade your current digital infrastructure?",
+    "answer": "Negligible impact",
+    "language": "FR",
+    "questionId": 2446502,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2045286,
+    "question": "Would you further adopt digital technologies if you had better network connectivity?",
+    "answer": "Negligible impact",
+    "language": "FR",
+    "questionId": 2446499,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2446504,
+    "question": "Would you be able to operate without this data?",
+    "answer": "Agree",
+    "language": "FR",
+    "questionId": 2446479,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2312742,
+    "question": "Agriculture/forestry organisation size",
+    "answer": "Micro (1-9 employees)",
+    "language": "FR",
+    "questionId": 2446414,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2045165,
+    "question": "Sector (agri/forestry/both)",
+    "answer": "Agriculture",
+    "language": "FR",
+    "questionId": 2446396,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2312677,
+    "question": "Type of stakeholder",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
+    "language": "FR",
+    "questionId": 2446397,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2045238,
+    "question": "Location (country/region)",
+    "answer": "France",
+    "language": "FR",
+    "questionId": 2446398,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2045288,
+    "question": "Has your organisation integrated digital technologies into its workflows?",
+    "answer": "Not at all",
+    "language": "FR",
+    "questionId": 2446417,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2045288,
+    "question": "Do you have network connectivity?",
+    "answer": "Not at all",
+    "language": "FR",
+    "questionId": 2446490,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2045288,
+    "question": "Do you pay for this data?",
+    "answer": "Not at all",
+    "language": "FR",
+    "questionId": 2446478,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "answerId": 2045288,
+    "question": "Do you share this data?",
+    "answer": "Not at all",
+    "language": "FR",
+    "questionId": 2446487,
     "countryCode": "FRA"
   },
   {
@@ -14068,15 +14059,6 @@
   },
   {
     "surveyId": "10EAF251F3629FE3BE7BEA8F69C882584E35FCD1",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "FR",
-    "questionId": 2446486,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "10EAF251F3629FE3BE7BEA8F69C882584E35FCD1",
     "answerId": 2312609,
     "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
     "answer": "Production phase enhancement (e.g. optimizing yields, resource efficiency)",
@@ -20169,231 +20151,6 @@
     "countryCode": "FRA"
   },
   {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "FR",
-    "questionId": 2446486,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312609,
-    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
-    "answer": "Production phase enhancement (e.g. optimizing yields, resource efficiency)",
-    "language": "FR",
-    "questionId": 2446430,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312598,
-    "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Guidance and Controlled Vehicle Technologies (e.g., vehicle guidance services or automatic steering etc.)",
-    "language": "FR",
-    "questionId": 2446419,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312597,
-    "question": "What type of tools or platforms do you use to collect data?",
-    "answer": "Farm and Forest Management Software (e.g., FMIS, forest management system)",
-    "language": "FR",
-    "questionId": 2446418,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312599,
-    "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Map or Sensor-based Variable Rate Technologies (e.g., advice or automatic variable application of fertilizers, persiticides, or irrigation etc.)",
-    "language": "FR",
-    "questionId": 2446420,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312764,
-    "question": "What network connectivity do you use?",
-    "answer": "Wired internet (e.g. DSL, Ethernet)",
-    "language": "FR",
-    "questionId": 2446491,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312657,
-    "question": "What type of data do you collect?",
-    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
-    "language": "FR",
-    "questionId": 2446470,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312614,
-    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
-    "answer": "Crop/Forest Health and disease detection (e.g. early detection via sensors or drones)",
-    "language": "FR",
-    "questionId": 2446435,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312724,
-    "question": "Primary area of operation in agriculture",
-    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
-    "language": "FR",
-    "questionId": 2446399,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312659,
-    "question": "What type of tools or platforms do you use to collect data?",
-    "answer": "Field Data Collection Tools (e.g., mobile apps, handheld devices)",
-    "language": "FR",
-    "questionId": 2446471,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045286,
-    "question": "Would you further adopt digital technologies if you had better network connectivity?",
-    "answer": "Negligible impact",
-    "language": "FR",
-    "questionId": 2446499,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045316,
-    "question": "What type of data sharing practices related to digital technology does your organisation use?",
-    "answer": "Restricted sharing",
-    "language": "FR",
-    "questionId": 2446488,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312781,
-    "question": "To whom and where do you send this data?",
-    "answer": "Research organisations",
-    "language": "FR",
-    "questionId": 2446489,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045198,
-    "question": "Has your organisation integrated digital technologies into its workflows?",
-    "answer": "Don't know",
-    "language": "FR",
-    "questionId": 2446417,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045018,
-    "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
-    "answer": "3",
-    "language": "FR",
-    "questionId": 2446498,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2446506,
-    "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not at all",
-    "language": "FR",
-    "questionId": 2446502,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2446504,
-    "question": "Would you be able to operate without this data?",
-    "answer": "Agree",
-    "language": "FR",
-    "questionId": 2446479,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312742,
-    "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
-    "language": "FR",
-    "questionId": 2446414,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045165,
-    "question": "Sector (agri/forestry/both)",
-    "answer": "Agriculture",
-    "language": "FR",
-    "questionId": 2446396,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2312677,
-    "question": "Type of stakeholder",
-    "answer": "Producer (Farmer/Forest Owner/Forester)",
-    "language": "FR",
-    "questionId": 2446397,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045238,
-    "question": "Location (country/region)",
-    "answer": "France",
-    "language": "FR",
-    "questionId": 2446398,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045347,
-    "question": "Do you pay for this data?",
-    "answer": "Yes",
-    "language": "FR",
-    "questionId": 2446478,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045347,
-    "question": "Do you share this data?",
-    "answer": "Yes",
-    "language": "FR",
-    "questionId": 2446487,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045347,
-    "question": "Are there specific barriers hindering further integration?",
-    "answer": "Yes",
-    "language": "FR",
-    "questionId": 2446438,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "answerId": 2045347,
-    "question": "Do you have network connectivity?",
-    "answer": "Yes",
-    "language": "FR",
-    "questionId": 2446490,
-    "countryCode": "FRA"
-  },
-  {
     "surveyId": "45E7CE0AB3479F02389F7C1584798E29716D8387",
     "answerId": 2312764,
     "question": "What network connectivity do you use?",
@@ -21088,6 +20845,222 @@
   },
   {
     "surveyId": "EEBBD7543B061043F447F318A1E3DBF2CA5F01E7",
+    "answerId": 2045347,
+    "question": "Do you have network connectivity?",
+    "answer": "Yes",
+    "language": "FR",
+    "questionId": 2446490,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312609,
+    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
+    "answer": "Production phase enhancement (e.g. optimizing yields, resource efficiency)",
+    "language": "FR",
+    "questionId": 2446430,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312598,
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "Guidance and Controlled Vehicle Technologies (e.g., vehicle guidance services or automatic steering etc.)",
+    "language": "FR",
+    "questionId": 2446419,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312597,
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "Farm and Forest Management Software (e.g., FMIS, forest management system)",
+    "language": "FR",
+    "questionId": 2446418,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312599,
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "Map or Sensor-based Variable Rate Technologies (e.g., advice or automatic variable application of fertilizers, persiticides, or irrigation etc.)",
+    "language": "FR",
+    "questionId": 2446420,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312764,
+    "question": "What network connectivity do you use?",
+    "answer": "Wired internet (e.g. DSL, Ethernet)",
+    "language": "FR",
+    "questionId": 2446491,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312657,
+    "question": "What type of data do you collect?",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
+    "language": "FR",
+    "questionId": 2446470,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312614,
+    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
+    "answer": "Crop/Forest Health and disease detection (e.g. early detection via sensors or drones)",
+    "language": "FR",
+    "questionId": 2446435,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312724,
+    "question": "Primary area of operation in agriculture",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
+    "language": "FR",
+    "questionId": 2446399,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312659,
+    "question": "What type of tools or platforms do you use to collect data?",
+    "answer": "Field Data Collection Tools (e.g., mobile apps, handheld devices)",
+    "language": "FR",
+    "questionId": 2446471,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2045286,
+    "question": "Would you further adopt digital technologies if you had better network connectivity?",
+    "answer": "Negligible impact",
+    "language": "FR",
+    "questionId": 2446499,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2045316,
+    "question": "What type of data sharing practices related to digital technology does your organisation use?",
+    "answer": "Restricted sharing",
+    "language": "FR",
+    "questionId": 2446488,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312781,
+    "question": "To whom and where do you send this data?",
+    "answer": "Research organisations",
+    "language": "FR",
+    "questionId": 2446489,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2045198,
+    "question": "Has your organisation integrated digital technologies into its workflows?",
+    "answer": "Don't know",
+    "language": "FR",
+    "questionId": 2446417,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2045018,
+    "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
+    "answer": "3",
+    "language": "FR",
+    "questionId": 2446498,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2446506,
+    "question": "Are there plans to expand or upgrade your current digital infrastructure?",
+    "answer": "Not at all",
+    "language": "FR",
+    "questionId": 2446502,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2446504,
+    "question": "Would you be able to operate without this data?",
+    "answer": "Agree",
+    "language": "FR",
+    "questionId": 2446479,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312742,
+    "question": "Agriculture/forestry organisation size",
+    "answer": "Micro (1-9 employees)",
+    "language": "FR",
+    "questionId": 2446414,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2045165,
+    "question": "Sector (agri/forestry/both)",
+    "answer": "Agriculture",
+    "language": "FR",
+    "questionId": 2446396,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2312677,
+    "question": "Type of stakeholder",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
+    "language": "FR",
+    "questionId": 2446397,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2045238,
+    "question": "Location (country/region)",
+    "answer": "France",
+    "language": "FR",
+    "questionId": 2446398,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2045347,
+    "question": "Do you pay for this data?",
+    "answer": "Yes",
+    "language": "FR",
+    "questionId": 2446478,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2045347,
+    "question": "Do you share this data?",
+    "answer": "Yes",
+    "language": "FR",
+    "questionId": 2446487,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "answerId": 2045347,
+    "question": "Are there specific barriers hindering further integration?",
+    "answer": "Yes",
+    "language": "FR",
+    "questionId": 2446438,
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
     "answerId": 2045347,
     "question": "Do you have network connectivity?",
     "answer": "Yes",
@@ -32226,15 +32199,6 @@
     "answer": "Field Data Collection Tools (e.g., mobile apps, handheld devices)",
     "language": "FR",
     "questionId": 2446471,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "460BC6896324EC1A54BA6607786FA9EB541BA690",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "FR",
-    "questionId": 2446486,
     "countryCode": "FRA"
   },
   {
@@ -85879,15 +85843,6 @@
   },
   {
     "surveyId": "1B933609C19D8571FD094EC6EA4DDA8115DF1758",
-    "answerId": 2034594,
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448042,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "1B933609C19D8571FD094EC6EA4DDA8115DF1758",
     "answerId": 2312638,
     "question": "What sales model do you primarily use for your products/services?",
     "answer": "Licensing",
@@ -89794,15 +89749,6 @@
   },
   {
     "surveyId": "5A63EE15F5F5F32F163C8793539F83991A8199F8",
-    "answerId": 2034594,
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448042,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "5A63EE15F5F5F32F163C8793539F83991A8199F8",
     "answerId": 2312630,
     "question": "What types of data do your products or services generate or rely on?",
     "answer": "Crop yield data",
@@ -90865,15 +90811,6 @@
   },
   {
     "surveyId": "A5ACDFE6C58E22F8EECF860180A0FA130BB01C09",
-    "answerId": 2034594,
-    "question": "What type of organisation are you?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448039,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "A5ACDFE6C58E22F8EECF860180A0FA130BB01C09",
     "answerId": 2045169,
     "question": "Location (country/region)",
     "answer": "Belgium",
@@ -91671,15 +91608,6 @@
     "answer": "90%",
     "language": "EN",
     "questionId": 2448041,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "B527A6DA026D49DC2A55631DB928FA7650795A0F",
-    "answerId": 2034594,
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448042,
     "countryCode": "BEL"
   },
   {
@@ -92652,15 +92580,6 @@
     "answer": "Open sharing",
     "language": "EN",
     "questionId": 2448076,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "8CB2C6B41C30DEBFAA6A06986EA7ED5F4DC3E3E5",
-    "answerId": 2034594,
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448042,
     "countryCode": "BEL"
   },
   {
@@ -94465,15 +94384,6 @@
   },
   {
     "surveyId": "BC48417C1A2E5F794014D31CBDF14BC32D6EC08D",
-    "answerId": 2034594,
-    "question": "What type of organisation are you?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448039,
-    "countryCode": "CYP"
-  },
-  {
-    "surveyId": "BC48417C1A2E5F794014D31CBDF14BC32D6EC08D",
     "answerId": 2312610,
     "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
     "answer": "Monitoring and surveillance (e.g. crop/forest health, pest detection, environmental conditions)",
@@ -94636,15 +94546,6 @@
   },
   {
     "surveyId": "BC48417C1A2E5F794014D31CBDF14BC32D6EC08D",
-    "answerId": 2034594,
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448042,
-    "countryCode": "CYP"
-  },
-  {
-    "surveyId": "BC48417C1A2E5F794014D31CBDF14BC32D6EC08D",
     "answerId": 2312605,
     "question": "What type of digital technology has been used for forestry?",
     "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
@@ -94776,15 +94677,6 @@
     "answer": "Global",
     "language": "EN",
     "questionId": 2448040,
-    "countryCode": "NLD"
-  },
-  {
-    "surveyId": "C1AAF64E5D8E9295D7DFE2E780237B745DFCC239",
-    "answerId": 2034594,
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448042,
     "countryCode": "NLD"
   },
   {
@@ -96697,15 +96589,6 @@
   },
   {
     "surveyId": "95910DF41E406390B1A70E1D6619FC5EA0A947E2",
-    "answerId": 2034594,
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448042,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "95910DF41E406390B1A70E1D6619FC5EA0A947E2",
     "answerId": 2312753,
     "question": "What is the geographical reach of the services that you offer?",
     "answer": "National",
@@ -98583,15 +98466,6 @@
     "answer": "IoT Devices and Sensors (e.g., soil moisture sensors, weather stations, livestock trackers)",
     "language": "EN",
     "questionId": 2448098,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "A4769F3269CB0E83E633E9565D7CF9D3E7808342",
-    "answerId": 2034594,
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448042,
     "countryCode": "ESP"
   },
   {
@@ -108451,15 +108325,6 @@
   },
   {
     "surveyId": "D00A46567B3F6F79B69866BCF9576338A236D2AC",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "D00A46567B3F6F79B69866BCF9576338A236D2AC",
     "answerId": 2446506,
     "question": "Would you be able to operate without this data?",
     "answer": "Disagree",
@@ -109909,15 +109774,6 @@
   },
   {
     "surveyId": "78B36A1A29E1C4CB4A5B8966FB5D7B1E18335616",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "78B36A1A29E1C4CB4A5B8966FB5D7B1E18335616",
     "answerId": 2045362,
     "question": "What type of digital technology has been used for agriculture?",
     "answer": "Other namely",
@@ -110517,15 +110373,6 @@
     "answer": "Micro (1-9 employees)",
     "language": "EN",
     "questionId": 2448063,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "46ADCC11C2E656079E32E981618B03DB2D376DC7",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
     "countryCode": "BEL"
   },
   {
@@ -111777,15 +111624,6 @@
     "answer": "Monitoring and surveillance (e.g. crop/forest health, pest detection, environmental conditions)",
     "language": "EN",
     "questionId": 2448128,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "9DE3C9C64425AAF07B203D30607F49CA1953E604",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
     "countryCode": "ESP"
   },
   {
@@ -115597,15 +115435,6 @@
   },
   {
     "surveyId": "61E10AFF897621DBD27BE8E6C93DF679A2C874AD",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "NLD"
-  },
-  {
-    "surveyId": "61E10AFF897621DBD27BE8E6C93DF679A2C874AD",
     "answerId": 2045170,
     "question": "Sector (agri/forestry/both)",
     "answer": "Both",
@@ -116871,15 +116700,6 @@
     "answer": "Farm and Forest Management Software (e.g., FMIS, forest management system)",
     "language": "EN",
     "questionId": 2448100,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "98E3CEDA630E1F697F278E81EEE4F5D6D2C6E58F",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
     "countryCode": "ESP"
   },
   {
@@ -120601,15 +120421,6 @@
   },
   {
     "surveyId": "46AD4B3DB62DB0F374F55D8008BD519994DF1141",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "46AD4B3DB62DB0F374F55D8008BD519994DF1141",
     "answerId": 2312654,
     "question": "What type of data do you collect?",
     "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
@@ -135964,15 +135775,6 @@
   },
   {
     "surveyId": "6D78DAAFC61835E2DD972DEC29AC2DF6A4AA7CE3",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "6D78DAAFC61835E2DD972DEC29AC2DF6A4AA7CE3",
     "answerId": 2312726,
     "question": "Primary area of operation in agriculture",
     "answer": "Livestock farming (meat, dairy, other)",
@@ -137836,15 +137638,6 @@
   },
   {
     "surveyId": "2BE6C471CC634B4838F8CC8E1D536C461A1619E2",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "2BE6C471CC634B4838F8CC8E1D536C461A1619E2",
     "answerId": 2045288,
     "question": "Do you share this data?",
     "answer": "Not at all",
@@ -139020,15 +138813,6 @@
     "answer": "Fiber optic networks",
     "language": "EN",
     "questionId": 2448083,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "4A9DBABDDA8E0CE8377DF0A6BB286E71FC3114C8",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
     "countryCode": "BEL"
   },
   {
@@ -140878,15 +140662,6 @@
   },
   {
     "surveyId": "11CA72862676FAB1A9BCF622F07B9DC94201E14B",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "11CA72862676FAB1A9BCF622F07B9DC94201E14B",
     "answerId": 2312764,
     "question": "What network connectivity do you use?",
     "answer": "Wired internet (e.g. DSL, Ethernet)",
@@ -142323,15 +142098,6 @@
     "answer": "Yes",
     "language": "EN",
     "questionId": 2448036,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "9738F64168DB2524860D56066B5C4848A18EBE3A",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
     "countryCode": "ESP"
   },
   {
@@ -144474,15 +144240,6 @@
     "answer": "Supply chain optimisation (e.g. logistics, traceability, post-harvest handling)",
     "language": "EN",
     "questionId": 2448129,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "16234E5E02A3D14BE9B367AA425F28D7FF5CAAFB",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
     "countryCode": "ESP"
   },
   {
@@ -185734,15 +185491,6 @@
   },
   {
     "surveyId": "03D0072A90A7FA319058E69BEF7086E78FBD835F",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "03D0072A90A7FA319058E69BEF7086E78FBD835F",
     "answerId": 2045169,
     "question": "Location (country/region)",
     "answer": "Belgium",
@@ -190023,15 +189771,6 @@
     "answer": "Data or Information Sharing Applications/Platforms",
     "language": "EN",
     "questionId": 2448120,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "45C18E89A913ABDCFD4E081BB64AF9B14D605F34",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
     "countryCode": "ESP"
   },
   {
@@ -217036,15 +216775,6 @@
   },
   {
     "surveyId": "6DB0F2700434DDAF6B076805C764109F556BE3F6",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "6DB0F2700434DDAF6B076805C764109F556BE3F6",
     "answerId": 2312650,
     "question": "What type of data do you collect?",
     "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
@@ -239374,15 +239104,6 @@
   },
   {
     "surveyId": "89021A2F0E398E940B64BF885BAD2BCA3B7AC9FA",
-    "answerId": 2034594,
-    "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448035,
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "89021A2F0E398E940B64BF885BAD2BCA3B7AC9FA",
     "answerId": 2312630,
     "question": "What types of data do your products or services generate or rely on?",
     "answer": "Crop yield data",
@@ -240414,15 +240135,6 @@
     "answer": "Livestock farming (meat, dairy, other)",
     "language": "EN",
     "questionId": 2448050,
-    "countryCode": "ESP"
-  },
-  {
-    "surveyId": "5707B7D673D7ABB0DF6C63016AB2C24817D4E543",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
     "countryCode": "ESP"
   },
   {
@@ -244396,15 +244108,6 @@
   },
   {
     "surveyId": "21F422AE5720A402A3AFEC080AC63A0849A5BFD6",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "21F422AE5720A402A3AFEC080AC63A0849A5BFD6",
     "answerId": 2312685,
     "question": "Type of stakeholder",
     "answer": "Agriculture/Forest Operator (e.g., agriculture or forestry machine operator)",
@@ -246736,15 +246439,6 @@
   },
   {
     "surveyId": "0BE2737A0AC450C2869C5EA086EC582D42290D1D",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "0BE2737A0AC450C2869C5EA086EC582D42290D1D",
     "answerId": 2312654,
     "question": "What type of data do you collect?",
     "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
@@ -247362,15 +247056,6 @@
     "answer": "Micro (1-9 employees)",
     "language": "EN",
     "questionId": 2448063,
-    "countryCode": "BEL"
-  },
-  {
-    "surveyId": "EC0FF6A54EE6B8EB9EE7CFB138F6EA7481C7305C",
-    "answerId": 2034594,
-    "question": "Where and how do you store this data?",
-    "answer": "blank",
-    "language": "EN",
-    "questionId": 2448109,
     "countryCode": "BEL"
   },
   {
@@ -250023,348 +249708,6 @@
     "countryCode": "FRA"
   },
   {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What is the overall social impact of adopting digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What type of data sharing practices related to digital technology does your organisation use?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Is data collected from your farming/forestry activities?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Organic farming operation",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have digital technologies contributed to sustainability and environmental practices?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Approximately what percentage of overall decisions made are based on data analytics in your organisation?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Unexpected or hidden costs?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have you observed positive impacts on resource conservation or environmental footprint?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have digital technologies contributed to energy efficiency?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have you identified organisational prerequisites (skills, workforce, education) necessary for successful technology integration?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Do you use cloud services/data centres?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What type of data do you receive or provide?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have you encountered challenges in the adoption of digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What type of digital technology has been used for agriculture?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What type of digital technology has been used for forestry?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What is the adoption level of these technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What is the overall economic impact of implementing digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Are there economic implications associated with data flows in these sectors?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Are there specific barriers hindering further integration?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What network connectivity do you use?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What would help facilitate the expansion/upgrade of digital infrastructure in the future?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have you seen savings in inputs due to digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What type of governance model do you operate under?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Do you use data analytics for decision-making?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "To what extent do digital technologies meet evolving user needs within your organization?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What are the advantages of the used technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What type of devices are commonly used to access the network?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "How have digital technologies impacted job creation?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have you experienced social benefits through the use of digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What is the level of direct costs?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What type of developments do you anticipate in the near future?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Primary area of operation in forestry",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Can you provide insights into the cost structure associated with implementing and maintaining your technology?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Do you conduct market research or needs assessments before developing digital solutions for agriculture and forestry?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "Do you prioritize user needs within the agricultural and forestry sectors during the development phase?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "To whom and where do you send this data?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What is the geographical reach of the services that you offer?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What sales model do you primarily use for your products/services?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What type of organisation are you?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
-    "question": "What types of data do your products or services generate or rely on?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
     "surveyId": "D4BA28258D6854E035F21D3C1398979FA52706B2",
     "question": "What is the overall social impact of adopting digital technologies?",
     "answer": "N/A",
@@ -253426,6 +252769,354 @@
   },
   {
     "surveyId": "87AA4C997A4AF5D2A04E696CB727614537C26AC7",
+    "question": "What types of data do your products or services generate or rely on?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What is the overall social impact of adopting digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What type of data sharing practices related to digital technology does your organisation use?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Is data collected from your farming/forestry activities?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Organic farming operation",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have digital technologies contributed to sustainability and environmental practices?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Approximately what percentage of overall decisions made are based on data analytics in your organisation?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Unexpected or hidden costs?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have you observed positive impacts on resource conservation or environmental footprint?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have digital technologies contributed to energy efficiency?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have you identified organisational prerequisites (skills, workforce, education) necessary for successful technology integration?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Do you use cloud services/data centres?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What type of data do you receive or provide?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have you encountered challenges in the adoption of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What type of digital technology has been used for agriculture?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What type of digital technology has been used for forestry?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What is the adoption level of these technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What is the overall economic impact of implementing digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Are there economic implications associated with data flows in these sectors?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Are there specific barriers hindering further integration?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What network connectivity do you use?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What would help facilitate the expansion/upgrade of digital infrastructure in the future?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have you seen savings in inputs due to digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What type of governance model do you operate under?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Do you use data analytics for decision-making?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "To what extent do digital technologies meet evolving user needs within your organization?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What are the advantages of the used technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What type of devices are commonly used to access the network?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "How reliable is the current network connectivity? (1 being not reliable, 5 being very reliable)",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "How have digital technologies impacted job creation?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have you experienced social benefits through the use of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What is the level of direct costs?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What type of developments do you anticipate in the near future?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Have digital technologies resulted in cost savings or increased efficiency?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Primary area of operation in forestry",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Can you provide insights into the cost structure associated with implementing and maintaining your technology?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Do you conduct market research or needs assessments before developing digital solutions for agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "Do you prioritize user needs within the agricultural and forestry sectors during the development phase?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "To whom and where do you send this data?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What is the geographical reach of the services that you offer?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What sales model do you primarily use for your products/services?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What type of organisation are you?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
+    "question": "What type of users do you primarily provide your technology to?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
     "question": "What types of data do your products or services generate or rely on?",
     "answer": "N/A",
     "countryCode": "FRA"
@@ -265660,6 +265351,12 @@
   },
   {
     "surveyId": "10EAF251F3629FE3BE7BEA8F69C882584E35FCD1",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "10EAF251F3629FE3BE7BEA8F69C882584E35FCD1",
     "question": "What type of data sharing practices related to digital technology does your organisation use?",
     "answer": "N/A",
     "countryCode": "FRA"
@@ -273765,306 +273462,6 @@
     "countryCode": "FRA"
   },
   {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What is the overall social impact of adopting digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Is data collected from your farming/forestry activities?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Organic farming operation",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have digital technologies contributed to sustainability and environmental practices?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Approximately what percentage of overall decisions made are based on data analytics in your organisation?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Unexpected or hidden costs?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have you observed positive impacts on resource conservation or environmental footprint?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have digital technologies contributed to energy efficiency?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have you identified organisational prerequisites (skills, workforce, education) necessary for successful technology integration?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Do you use cloud services/data centres?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What type of data do you receive or provide?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have you encountered challenges in the adoption of digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What type of digital technology has been used for forestry?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What is the adoption level of these technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What is the overall economic impact of implementing digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Are there economic implications associated with data flows in these sectors?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What would help facilitate the expansion/upgrade of digital infrastructure in the future?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have you seen savings in inputs due to digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What type of governance model do you operate under?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Do you use data analytics for decision-making?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "To what extent do digital technologies meet evolving user needs within your organization?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What are the advantages of the used technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What type of devices are commonly used to access the network?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "How have digital technologies impacted job creation?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have you experienced social benefits through the use of digital technologies?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What is the level of direct costs?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What type of developments do you anticipate in the near future?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Primary area of operation in forestry",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Can you provide insights into the cost structure associated with implementing and maintaining your technology?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Do you conduct market research or needs assessments before developing digital solutions for agriculture and forestry?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "Do you prioritize user needs within the agricultural and forestry sectors during the development phase?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What is the geographical reach of the services that you offer?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What sales model do you primarily use for your products/services?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What type of organisation are you?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What type of users do you primarily provide your technology to?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
-    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
-    "question": "What types of data do your products or services generate or rely on?",
-    "answer": "N/A",
-    "countryCode": "FRA"
-  },
-  {
     "surveyId": "45E7CE0AB3479F02389F7C1584798E29716D8387",
     "question": "What are the primary functions of these technologies in the agriculture or forestry value chain?",
     "answer": "N/A",
@@ -274990,6 +274387,312 @@
   },
   {
     "surveyId": "EEBBD7543B061043F447F318A1E3DBF2CA5F01E7",
+    "question": "What types of data do your products or services generate or rely on?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What is the overall social impact of adopting digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Is data collected from your farming/forestry activities?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Organic farming operation",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have digital technologies contributed to sustainability and environmental practices?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Do you use digital technologies to track and ensure adherence to sustainable farming practices and forestry activities?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Approximately what percentage of overall decisions made are based on data analytics in your organisation?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Unexpected or hidden costs?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have you observed positive impacts on resource conservation or environmental footprint?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have digital technologies contributed to energy efficiency?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have you identified organisational prerequisites (skills, workforce, education) necessary for successful technology integration?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "How would you rate the level of digitalization in your farming/forestry practices on a scale of 1 to 5 (1 being low, 5 being high)",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Do you use cloud services/data centres?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What type of data do you receive or provide?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have you encountered challenges in the adoption of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What type of digital technology has been used for forestry?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What is the adoption level of these technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Do challenges exist in sharing and interoperability of agricultural and forestry data?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What is the overall economic impact of implementing digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Are there economic implications associated with data flows in these sectors?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Were there specific goals or challenges that prompted the adoption of digital tools?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What would help facilitate the expansion/upgrade of digital infrastructure in the future?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have you seen savings in inputs due to digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What type of governance model do you operate under?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have you encountered any perceived limitations or challenges in utilising these technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have you observed any positive or negative effects on biodiversity in agricultural and forestry areas due to digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Do you use data analytics for decision-making?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "To what extent do digital technologies meet evolving user needs within your organization?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What are the advantages of the used technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "How do these practices contribute to or impede the overall effectiveness of technology adoption?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What type of devices are commonly used to access the network?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "How have digital technologies impacted job creation?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have you experienced social benefits through the use of digital technologies?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What is the level of direct costs?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What type of developments do you anticipate in the near future?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Do data flows enhance productivity and efficiency in agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Have digital technologies resulted in cost savings or increased efficiency?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Primary area of operation in forestry",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Can you provide insights into the cost structure associated with implementing and maintaining your technology?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Do you conduct market research or needs assessments before developing digital solutions for agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "Do you prioritize user needs within the agricultural and forestry sectors during the development phase?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What is the geographical reach of the services that you offer?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What sales model do you primarily use for your products/services?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What type of organisation are you?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
+    "question": "What type of users do you primarily provide your technology to?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
     "question": "What types of data do your products or services generate or rely on?",
     "answer": "N/A",
     "countryCode": "FRA"
@@ -289571,6 +289274,12 @@
   {
     "surveyId": "460BC6896324EC1A54BA6607786FA9EB541BA690",
     "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "460BC6896324EC1A54BA6607786FA9EB541BA690",
+    "question": "Where and how do you store this data?",
     "answer": "N/A",
     "countryCode": "FRA"
   },
@@ -321568,6 +321277,12 @@
   },
   {
     "surveyId": "1B933609C19D8571FD094EC6EA4DDA8115DF1758",
+    "question": "What type of users do you primarily provide your technology to?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "1B933609C19D8571FD094EC6EA4DDA8115DF1758",
     "question": "Would you further adopt digital technologies if you had better network connectivity?",
     "answer": "N/A",
     "countryCode": "FRA"
@@ -324389,6 +324104,12 @@
   {
     "surveyId": "5A63EE15F5F5F32F163C8793539F83991A8199F8",
     "question": "Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?",
+    "answer": "N/A",
+    "countryCode": "ESP"
+  },
+  {
+    "surveyId": "5A63EE15F5F5F32F163C8793539F83991A8199F8",
+    "question": "What type of users do you primarily provide your technology to?",
     "answer": "N/A",
     "countryCode": "ESP"
   },
@@ -325264,6 +324985,12 @@
   },
   {
     "surveyId": "A5ACDFE6C58E22F8EECF860180A0FA130BB01C09",
+    "question": "What type of organisation are you?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "A5ACDFE6C58E22F8EECF860180A0FA130BB01C09",
     "question": "What type of users do you primarily provide your technology to?",
     "answer": "N/A",
     "countryCode": "BEL"
@@ -326152,6 +325879,12 @@
   },
   {
     "surveyId": "B527A6DA026D49DC2A55631DB928FA7650795A0F",
+    "question": "What type of users do you primarily provide your technology to?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "B527A6DA026D49DC2A55631DB928FA7650795A0F",
     "question": "Would you further adopt digital technologies if you had better network connectivity?",
     "answer": "N/A",
     "countryCode": "BEL"
@@ -326999,6 +326732,12 @@
   {
     "surveyId": "8CB2C6B41C30DEBFAA6A06986EA7ED5F4DC3E3E5",
     "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "8CB2C6B41C30DEBFAA6A06986EA7ED5F4DC3E3E5",
+    "question": "What type of users do you primarily provide your technology to?",
     "answer": "N/A",
     "countryCode": "BEL"
   },
@@ -328408,6 +328147,18 @@
   },
   {
     "surveyId": "BC48417C1A2E5F794014D31CBDF14BC32D6EC08D",
+    "question": "What type of organisation are you?",
+    "answer": "N/A",
+    "countryCode": "CYP"
+  },
+  {
+    "surveyId": "BC48417C1A2E5F794014D31CBDF14BC32D6EC08D",
+    "question": "What type of users do you primarily provide your technology to?",
+    "answer": "N/A",
+    "countryCode": "CYP"
+  },
+  {
+    "surveyId": "BC48417C1A2E5F794014D31CBDF14BC32D6EC08D",
     "question": "Would you further adopt digital technologies if you had better network connectivity?",
     "answer": "N/A",
     "countryCode": "CYP"
@@ -328684,6 +328435,12 @@
   },
   {
     "surveyId": "C1AAF64E5D8E9295D7DFE2E780237B745DFCC239",
+    "question": "What type of users do you primarily provide your technology to?",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "C1AAF64E5D8E9295D7DFE2E780237B745DFCC239",
     "question": "Would you further adopt digital technologies if you had better network connectivity?",
     "answer": "N/A",
     "countryCode": "NLD"
@@ -330442,6 +330199,12 @@
   },
   {
     "surveyId": "95910DF41E406390B1A70E1D6619FC5EA0A947E2",
+    "question": "What type of users do you primarily provide your technology to?",
+    "answer": "N/A",
+    "countryCode": "ESP"
+  },
+  {
+    "surveyId": "95910DF41E406390B1A70E1D6619FC5EA0A947E2",
     "question": "Would you further adopt digital technologies if you had better network connectivity?",
     "answer": "N/A",
     "countryCode": "ESP"
@@ -332429,6 +332192,12 @@
   {
     "surveyId": "A4769F3269CB0E83E633E9565D7CF9D3E7808342",
     "question": "What sales model do you primarily use for your products/services?",
+    "answer": "N/A",
+    "countryCode": "ESP"
+  },
+  {
+    "surveyId": "A4769F3269CB0E83E633E9565D7CF9D3E7808342",
+    "question": "What type of users do you primarily provide your technology to?",
     "answer": "N/A",
     "countryCode": "ESP"
   },
@@ -338734,6 +338503,12 @@
   },
   {
     "surveyId": "D00A46567B3F6F79B69866BCF9576338A236D2AC",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "D00A46567B3F6F79B69866BCF9576338A236D2AC",
     "question": "What type of data sharing practices related to digital technology does your organisation use?",
     "answer": "N/A",
     "countryCode": "BEL"
@@ -341549,6 +341324,12 @@
   {
     "surveyId": "46ADCC11C2E656079E32E981618B03DB2D376DC7",
     "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "46ADCC11C2E656079E32E981618B03DB2D376DC7",
+    "question": "Where and how do you store this data?",
     "answer": "N/A",
     "countryCode": "BEL"
   },
@@ -346949,6 +346730,12 @@
   {
     "surveyId": "61E10AFF897621DBD27BE8E6C93DF679A2C874AD",
     "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "NLD"
+  },
+  {
+    "surveyId": "61E10AFF897621DBD27BE8E6C93DF679A2C874AD",
+    "question": "Where and how do you store this data?",
     "answer": "N/A",
     "countryCode": "NLD"
   },
@@ -369598,6 +369385,12 @@
   },
   {
     "surveyId": "2BE6C471CC634B4838F8CC8E1D536C461A1619E2",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "2BE6C471CC634B4838F8CC8E1D536C461A1619E2",
     "question": "What type of data sharing practices related to digital technology does your organisation use?",
     "answer": "N/A",
     "countryCode": "FRA"
@@ -371165,6 +370958,12 @@
   {
     "surveyId": "4A9DBABDDA8E0CE8377DF0A6BB286E71FC3114C8",
     "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "4A9DBABDDA8E0CE8377DF0A6BB286E71FC3114C8",
+    "question": "Where and how do you store this data?",
     "answer": "N/A",
     "countryCode": "BEL"
   },
@@ -374783,6 +374582,12 @@
   {
     "surveyId": "9738F64168DB2524860D56066B5C4848A18EBE3A",
     "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "ESP"
+  },
+  {
+    "surveyId": "9738F64168DB2524860D56066B5C4848A18EBE3A",
+    "question": "Where and how do you store this data?",
     "answer": "N/A",
     "countryCode": "ESP"
   },
@@ -412342,6 +412147,12 @@
   },
   {
     "surveyId": "03D0072A90A7FA319058E69BEF7086E78FBD835F",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "03D0072A90A7FA319058E69BEF7086E78FBD835F",
     "question": "What type of data sharing practices related to digital technology does your organisation use?",
     "answer": "N/A",
     "countryCode": "BEL"
@@ -446146,6 +445957,12 @@
   },
   {
     "surveyId": "6DB0F2700434DDAF6B076805C764109F556BE3F6",
+    "question": "Where and how do you store this data?",
+    "answer": "N/A",
+    "countryCode": "ESP"
+  },
+  {
+    "surveyId": "6DB0F2700434DDAF6B076805C764109F556BE3F6",
     "question": "What type of data sharing practices related to digital technology does your organisation use?",
     "answer": "N/A",
     "countryCode": "ESP"
@@ -468089,6 +467906,12 @@
   {
     "surveyId": "89021A2F0E398E940B64BF885BAD2BCA3B7AC9FA",
     "question": "Are there regulatory considerations influencing the governance of digital technology adoption?",
+    "answer": "N/A",
+    "countryCode": "FRA"
+  },
+  {
+    "surveyId": "89021A2F0E398E940B64BF885BAD2BCA3B7AC9FA",
+    "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
     "answer": "N/A",
     "countryCode": "FRA"
   },
@@ -469415,6 +469238,12 @@
   {
     "surveyId": "5707B7D673D7ABB0DF6C63016AB2C24817D4E543",
     "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "ESP"
+  },
+  {
+    "surveyId": "5707B7D673D7ABB0DF6C63016AB2C24817D4E543",
+    "question": "Where and how do you store this data?",
     "answer": "N/A",
     "countryCode": "ESP"
   },
@@ -476279,6 +476108,12 @@
   {
     "surveyId": "21F422AE5720A402A3AFEC080AC63A0849A5BFD6",
     "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "21F422AE5720A402A3AFEC080AC63A0849A5BFD6",
+    "question": "Where and how do you store this data?",
     "answer": "N/A",
     "countryCode": "BEL"
   },
@@ -479891,6 +479726,12 @@
   {
     "surveyId": "0BE2737A0AC450C2869C5EA086EC582D42290D1D",
     "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "0BE2737A0AC450C2869C5EA086EC582D42290D1D",
+    "question": "Where and how do you store this data?",
     "answer": "N/A",
     "countryCode": "BEL"
   },
@@ -480869,6 +480710,12 @@
   {
     "surveyId": "EC0FF6A54EE6B8EB9EE7CFB138F6EA7481C7305C",
     "question": "What are the most significant costs associated with the adoption of digital technologies in your organisation",
+    "answer": "N/A",
+    "countryCode": "BEL"
+  },
+  {
+    "surveyId": "EC0FF6A54EE6B8EB9EE7CFB138F6EA7481C7305C",
+    "question": "Where and how do you store this data?",
     "answer": "N/A",
     "countryCode": "BEL"
   },
