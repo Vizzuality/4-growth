@@ -122,12 +122,38 @@ const DATA_TYPES_SHORT_TO_LONG = new Map([
   ['Weather and environmental data', 'Weather and Environmental Data (e.g., temperature, precipitation, air quality)'],
 ]);
 
+const TECH_FUNCTIONS_SHORT_TO_LONG = new Map([
+  ['Crop health and disease detection', 'Crop/Forest Health and disease detection (e.g. early detection via sensors or drones)'],
+  ['Data management', 'Data collection and Management (e.g. data storage, analytics, dashboards)'],
+  ['Decision-making', 'Decision-making Support (e.g. AI/ML models for recommendations)'],
+  ['Harvesting and distribution', 'Harvesting and distribution (e.g. automated machinery, tranportation tracking)'],
+  ['Monitoring', 'Monitoring and surveillance (e.g. crop/forest health, pest detection, environmental conditions)'],
+  ['Planning and Management', 'Planning and Management (e.g. Resource allocation, inventory management)'],
+  ['Production phase', 'Production phase enhancement (e.g. optimizing yields, resource efficiency)'],
+  ['Supply chain optimisation', 'Supply chain optimisation (e.g. logistics, traceability, post-harvest handling)'],
+]);
+
+const FARM_MGMT_SOFTWARE = 'Farm and Forest Management Software (e.g., FMIS, forest management system)';
+const TOOLS_SHORT_TO_LONG = new Map([
+  ['Farm Management Software', FARM_MGMT_SOFTWARE],
+  ['Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)', FARM_MGMT_SOFTWARE],
+  ['Forest Management Software', FARM_MGMT_SOFTWARE],
+  ['Field Data Collection Apps', 'Field Data Collection Tools (e.g., mobile apps, handheld devices)'],
+  ['IoT Devices', 'IoT Devices and Sensors (e.g., soil moisture sensors, weather stations, livestock trackers)'],
+  ['Precision Agriculture Technology', 'Precision Agriculture and Forestry Technology (e.g., variable rate technology, GPS-guided equipment)'],
+  ['Remote sensing platforms', 'Remote Sensing Platforms (e.g., drones, satellites)'],
+  ['Research Databases', 'Research Data platforms (e.g., academic databases)'],
+  ['Traceability systems', 'Traceability and Supply Chain Systems (e.g., blockchain for tracking produce, timber certification systems)'],
+]);
+
 const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['Are there plans to expand or upgrade your current digital infrastructure?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Would you further adopt digital technologies if you had better network connectivity?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Have digital technologies contributed to sustainability and environmental practices?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Have digital technologies resulted in cost savings or increased efficiency?', LIKERT_TO_YES_NO_DONTKNOW],
   ['What type of data do you collect?', DATA_TYPES_SHORT_TO_LONG],
+  ['What are the primary functions of these technologies in the agriculture or forestry value chain?', TECH_FUNCTIONS_SHORT_TO_LONG],
+  ['What type of tools or platforms do you use to collect data?', TOOLS_SHORT_TO_LONG],
 ]);
 
 export const transform = async (
