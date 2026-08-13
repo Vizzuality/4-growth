@@ -3225,7 +3225,7 @@
     "surveyId": "318EB35459A40B0C71A0AC66E8C1A41D4486F491",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "FR",
     "questionId": 2446397,
     "countryCode": "FRA"
@@ -5745,7 +5745,7 @@
     "surveyId": "41EC0466A572A64D84D439C38F2DE6FDA94D0994",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "FR",
     "questionId": 2446397,
     "countryCode": "FRA"
@@ -44688,7 +44688,7 @@
     "surveyId": "5794B4DCDBEBEDA63F75825D420FB462DF02F0EB",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "FR",
     "questionId": 2446397,
     "countryCode": "FRA"
@@ -48891,7 +48891,7 @@
     "surveyId": "20633FF4C6A708EE11A283F6F80DF3F7BE2B07F1",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -49728,7 +49728,7 @@
     "surveyId": "4C414F1B9A39576A9075AF0E4BBF77CCCD5F663C",
     "answerId": 2089037,
     "question": "Type of stakeholder",
-    "answer": "Forest product processor",
+    "answer": "Processor (Forest/Agricultural products)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -50187,7 +50187,7 @@
     "surveyId": "4171195CF1AC25C07627C3FBF6F5DFD41E3646C0",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -50745,7 +50745,7 @@
     "surveyId": "E1C5400BB01077847C2BD6BB11A40853259A7279",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -51141,7 +51141,7 @@
     "surveyId": "1E09827C77AB581A5BA4738401FFEE46A9C9F33D",
     "answerId": 2089115,
     "question": "Type of stakeholder",
-    "answer": "Forestry association",
+    "answer": "Cooperative/Association",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -51924,7 +51924,7 @@
     "surveyId": "C8EBC0B73FEE55A9637634B011A2821FE15D5924",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -52401,7 +52401,7 @@
     "surveyId": "712E19132F84750E69CE79FFFBC01BCF2E9D3DDA",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -52743,7 +52743,7 @@
     "surveyId": "9348B3F4F2E1491B74FF286E29136D74E499A27B",
     "answerId": 2089131,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -53337,7 +53337,7 @@
     "surveyId": "97178C88D055E0B515C6D0CC5ADED1CE7896CE07",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -54588,7 +54588,7 @@
     "surveyId": "04FF8D10372712B97A9EEA277D93FEF2D1A3B006",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -55326,7 +55326,7 @@
     "surveyId": "554FCE8964411F37D0EFCDFE326D1872161DC2CD",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -55569,7 +55569,7 @@
     "surveyId": "AB4CBF214BE39F8F7DF949E713CB8FAE25DAF5CF",
     "answerId": 2089118,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -56109,7 +56109,7 @@
     "surveyId": "C85386F242F0DFC10C992922903FEEEEFF3A58C0",
     "answerId": 2089115,
     "question": "Type of stakeholder",
-    "answer": "Forestry association",
+    "answer": "Cooperative/Association",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -56739,7 +56739,7 @@
     "surveyId": "02040360930AF36F98423361C624462F8A956E10",
     "answerId": 2089037,
     "question": "Type of stakeholder",
-    "answer": "Forest product processor",
+    "answer": "Processor (Forest/Agricultural products)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "BEL"
@@ -57270,7 +57270,7 @@
     "surveyId": "5BF9768FEB99794EC2AB55AAC32EDCDA6F13DDB6",
     "answerId": 2089115,
     "question": "Type of stakeholder",
-    "answer": "Forestry association",
+    "answer": "Cooperative/Association",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -57783,7 +57783,7 @@
     "surveyId": "CC3AB22B0CA0C1D526E2BE6369D9F4946BE9A63E",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -58296,7 +58296,7 @@
     "surveyId": "1E5042D17AC94685CBFFA49CC7C6305CFEB4CFC3",
     "answerId": 2089117,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -58980,7 +58980,7 @@
     "surveyId": "343E02FB301EA2EEE9624CF0C342B426EF6F8D8E",
     "answerId": 2089058,
     "question": "Type of stakeholder",
-    "answer": "Service/information provider",
+    "answer": "Data/Technology/Service Provider",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -59556,7 +59556,7 @@
     "surveyId": "C795AE44BA9844E94ECA893285A29FC65FFD9852",
     "answerId": 2089119,
     "question": "Type of stakeholder",
-    "answer": "Forest operator",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EL",
     "questionId": 2051571,
     "countryCode": "GRC"
@@ -59718,7 +59718,7 @@
     "surveyId": "2F61A8383DC053DE1DD1CE8AFFD8C289EEBF287C",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -59781,7 +59781,7 @@
     "surveyId": "F2B39692BB7E529244C2DDFBD13FB7603DD5E38B",
     "answerId": 2051103,
     "question": "Type of stakeholder",
-    "answer": "Forest owner",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "BEL"
@@ -60969,7 +60969,7 @@
     "surveyId": "0FB6122D0CE07B0EF398747170CF2FD10EFD86C2",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -61329,7 +61329,7 @@
     "surveyId": "7713A50FFB71C16CAE5F7C8A0272BFF951BCF648",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -61806,7 +61806,7 @@
     "surveyId": "E03D039CE1D12B61A32078DD1DC45596C6877131",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -62238,7 +62238,7 @@
     "surveyId": "D47AA9974511635402253C1F34F540AF1194BA79",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -62679,7 +62679,7 @@
     "surveyId": "24DBB21F1CA37A4ED1E4A06AA4CBC88A98BB1224",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -63525,7 +63525,7 @@
     "surveyId": "087227FDE01399F368905F43C8779224984D26AA",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -63687,7 +63687,7 @@
     "surveyId": "17228C14ABF97C3425BA83B72B72758B14F87221",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -63939,7 +63939,7 @@
     "surveyId": "EFE7CABC38AC004FB6556EF666002A494788536C",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -64353,7 +64353,7 @@
     "surveyId": "62E2004C8BA6DAF81B9B9F99BE3ABBC789047383",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -64794,7 +64794,7 @@
     "surveyId": "B4EB066C99A93DB8BFF8C7C0AF1CBE78E027EA6C",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -65334,7 +65334,7 @@
     "surveyId": "6AA015FA2FA53CC8903736A3EE39E9DF60ABD44E",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -66054,7 +66054,7 @@
     "surveyId": "07A494CC5F462232976AA3403ACE560A89700B74",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -66378,7 +66378,7 @@
     "surveyId": "CCEBEFBC55670204C7E152D3557C1BB122FC7FE5",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -66783,7 +66783,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -67224,7 +67224,7 @@
     "surveyId": "C170838E1DB365FBD360E8A89CB609A1FB5773D4",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -67665,7 +67665,7 @@
     "surveyId": "5F85CB6CD666D174FB9B5811DE11568CF729E3D7",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -68169,7 +68169,7 @@
     "surveyId": "FFDEFFA0F14FD4BA8ACDFE7A4B556CB1EDC939C0",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -68475,7 +68475,7 @@
     "surveyId": "60C8B903113F513C263F74A696D24761791CD8BC",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -68826,7 +68826,7 @@
     "surveyId": "7CE847FD62977CA1C3284E3DB8AA117210D75C9E",
     "answerId": 2051073,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "ES",
     "questionId": 2050554,
     "countryCode": "ESP"
@@ -69096,7 +69096,7 @@
     "surveyId": "2ACF2FCB9FAED1F39E951050A4DC7DF6E7CA4709",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -69573,7 +69573,7 @@
     "surveyId": "C64DEE9633F6E011902E20B58292EFCBD1385DFE",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -70212,7 +70212,7 @@
     "surveyId": "FA907B515F96C91175AFC5CFB98B18AD4D873692",
     "answerId": 2045315,
     "question": "Type of stakeholder",
-    "answer": "Research institutes and research networks",
+    "answer": "Research/Academic organisation",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "ESP"
@@ -70446,7 +70446,7 @@
     "surveyId": "7EDC29969A367DBF0E8EAAF6101C72C8A7226B8F",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -71139,7 +71139,7 @@
     "surveyId": "A7CA125CA024F6628CBC091C54B4D3F66E600D7A",
     "answerId": 2045236,
     "question": "Type of stakeholder",
-    "answer": "Forestry association",
+    "answer": "Cooperative/Association",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -71562,7 +71562,7 @@
     "surveyId": "77D68935BDE41EB77F5B325E43F9430E06BFC06A",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -72165,7 +72165,7 @@
     "surveyId": "B0950A3B3AC69EF160B3C9D1F79C4AF64B4EDF0B",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -73497,7 +73497,7 @@
     "surveyId": "69D156224ED9B1C73178B0822F5A412DB91F6F18",
     "answerId": 2045232,
     "question": "Type of stakeholder",
-    "answer": "Forest owner",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "AUT"
@@ -73587,7 +73587,7 @@
     "surveyId": "74279490FBA27EAF40331C15233821C979CE1AB7",
     "answerId": 2045315,
     "question": "Type of stakeholder",
-    "answer": "Research institutes and research networks",
+    "answer": "Research/Academic organisation",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "PRT"
@@ -74190,7 +74190,7 @@
     "surveyId": "6AA337541B775CD44C270808D6E49FBE9CC347D2",
     "answerId": 2045215,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "ITA"
@@ -74919,7 +74919,7 @@
     "surveyId": "A04C167C7ED64EEDE8C6CDEEBD63E6EC29680DB8",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -75531,7 +75531,7 @@
     "surveyId": "269D1F01C1FA576E24573673B4CC86E89B958208",
     "answerId": 2045315,
     "question": "Type of stakeholder",
-    "answer": "Research institutes and research networks",
+    "answer": "Research/Academic organisation",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "FIN"
@@ -76017,7 +76017,7 @@
     "surveyId": "8DD980600ADB2B0314871A1963604E38F1A2032E",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -76530,7 +76530,7 @@
     "surveyId": "C8E473A039DFFBF24A3F603CCC0282313CA5A3DC",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -77160,7 +77160,7 @@
     "surveyId": "80EB6D8D4513E7DF56FDF44D2C6D4BB6713CCCE6",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -77538,7 +77538,7 @@
     "surveyId": "5A3AC44A3FBBF20CDD0323126F577128327DB5F8",
     "answerId": 2045234,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "GRC"
@@ -78195,7 +78195,7 @@
     "surveyId": "3B746ED387A8006203DD77F268E5E9703CAD66F3",
     "answerId": 2045215,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "EN",
     "questionId": 2045405,
     "countryCode": "BEL"
@@ -78897,7 +78897,7 @@
     "surveyId": "6969B2064BE2E75439D55FCCA383AA0820510D6B",
     "answerId": 2088858,
     "question": "Type of stakeholder",
-    "answer": "Forestry association",
+    "answer": "Cooperative/Association",
     "language": "FI",
     "questionId": 2051774,
     "countryCode": "FIN"
@@ -79536,7 +79536,7 @@
     "surveyId": "575456CCF0402FA91E4B1E775D16F22CA06A8BF9",
     "answerId": 2088856,
     "question": "Type of stakeholder",
-    "answer": "Forester",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "FI",
     "questionId": 2051774,
     "countryCode": "FIN"
@@ -79626,7 +79626,7 @@
     "surveyId": "B46AB465EE6AD223240655AD6A284DE3106EC0E4",
     "answerId": 2088854,
     "question": "Type of stakeholder",
-    "answer": "Forest owner",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "FI",
     "questionId": 2051774,
     "countryCode": "FIN"
@@ -80238,7 +80238,7 @@
     "surveyId": "90FEDAE7CF35CB3050083B8682F8064E51C4F739",
     "answerId": 2088854,
     "question": "Type of stakeholder",
-    "answer": "Forest owner",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "FI",
     "questionId": 2051774,
     "countryCode": "FIN"
@@ -80859,7 +80859,7 @@
     "surveyId": "8602A11E30FA406F17D87AB336F8FC702EE22A55",
     "answerId": 2088827,
     "question": "Type of stakeholder",
-    "answer": "Digital technology provider",
+    "answer": "Data/Technology/Service Provider",
     "language": "FI",
     "questionId": 2051774,
     "countryCode": "FIN"
@@ -81894,7 +81894,7 @@
     "surveyId": "F5F14D2969908A337B7B763CC4ECE2E9B4DFE343",
     "answerId": 2088858,
     "question": "Type of stakeholder",
-    "answer": "Forestry association",
+    "answer": "Cooperative/Association",
     "language": "FI",
     "questionId": 2051774,
     "countryCode": "FIN"
@@ -82416,7 +82416,7 @@
     "surveyId": "DC4A7FE5D802D7F85A8E64FE899925500DA35509",
     "answerId": 2088858,
     "question": "Type of stakeholder",
-    "answer": "Forestry association",
+    "answer": "Cooperative/Association",
     "language": "FI",
     "questionId": 2051774,
     "countryCode": "FIN"
@@ -83028,7 +83028,7 @@
     "surveyId": "BB6DDA6F75E5EBD47039EF492EF6899D08FE57F5",
     "answerId": 2088854,
     "question": "Type of stakeholder",
-    "answer": "Forest owner",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "FI",
     "questionId": 2051774,
     "countryCode": "FIN"
@@ -83343,7 +83343,7 @@
     "surveyId": "2EA6CA8CF2ABB3C32B78472C69B759C7C5A3A740",
     "answerId": 2045045,
     "question": "Type of stakeholder",
-    "answer": "Research institutes and research networks",
+    "answer": "Research/Academic organisation",
     "language": "FR",
     "questionId": 2045617,
     "countryCode": "FRA"
@@ -83919,7 +83919,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045145,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "FR",
     "questionId": 2045617,
     "countryCode": "FRA"
@@ -84639,7 +84639,7 @@
     "surveyId": "2BBAFA0062C735965EC3A87EF1DF3CD29DBC7C97",
     "answerId": 2045035,
     "question": "Type of stakeholder",
-    "answer": "Farming cooperative",
+    "answer": "Cooperative/Association",
     "language": "FR",
     "questionId": 2045617,
     "countryCode": "FRA"
@@ -85278,7 +85278,7 @@
     "surveyId": "4F513DBED8D2BFFB57DE01CDBCD240E53E43C701",
     "answerId": 2045045,
     "question": "Type of stakeholder",
-    "answer": "Research institutes and research networks",
+    "answer": "Research/Academic organisation",
     "language": "FR",
     "questionId": 2045617,
     "countryCode": "FRA"
@@ -85620,7 +85620,7 @@
     "surveyId": "A5233ED83EB362931B4477E24C72290DA1BEA59B",
     "answerId": 2045070,
     "question": "Type of stakeholder",
-    "answer": "Infrastructure provider",
+    "answer": "Data/Technology/Service Provider",
     "language": "FR",
     "questionId": 2045617,
     "countryCode": "BEL"
@@ -86250,7 +86250,7 @@
     "surveyId": "B011DE4F52AEEA5BF5D2549C220E1DB9FD2BA9AD",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -86664,7 +86664,7 @@
     "surveyId": "AC733EB8B07E4ECEC7E3A63694FF7DF8D4C06E41",
     "answerId": 2052623,
     "question": "Type of stakeholder",
-    "answer": "Infrastructure provider",
+    "answer": "Data/Technology/Service Provider",
     "language": "NL",
     "questionId": 2051977,
     "countryCode": "BEL"
@@ -87330,7 +87330,7 @@
     "surveyId": "6AD52FF68233038250CC9850EE6CD9E2005ABEEB",
     "answerId": 2052641,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "NL",
     "questionId": 2051977,
     "countryCode": "BEL"
@@ -87465,7 +87465,7 @@
     "surveyId": "CD0C7B2E28AC923FB5E2FFB75F566D5FDB066B96",
     "answerId": 2052641,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "NL",
     "questionId": 2051977,
     "countryCode": "BEL"
@@ -87933,7 +87933,7 @@
     "surveyId": "C97DCA5F31489B34740F4749EEF36B8095B92F22",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -88149,7 +88149,7 @@
     "surveyId": "12FC06448CD928750E9A576E731B6F90C6A08CD6",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -99912,7 +99912,7 @@
     "surveyId": "EA5DCE597F41BE52AA6965A1B4C9395DEE631316",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -101154,7 +101154,7 @@
     "surveyId": "3F5164DA8DE2B768E25E0828626131AE682A79EE",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -102315,7 +102315,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052615,
     "question": "Type of stakeholder",
-    "answer": "Research institutes and research networks",
+    "answer": "Research/Academic organisation",
     "language": "NL",
     "questionId": 2051977,
     "countryCode": "BEL"
@@ -102450,7 +102450,7 @@
     "surveyId": "6E37246C3B97DEAF551697932DEC3BF740849F84",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -102747,7 +102747,7 @@
     "surveyId": "6B77C2EE109D572D91EE2017C5DA2E80EA15F339",
     "answerId": 2097609,
     "question": "Type of stakeholder",
-    "answer": "Farming association",
+    "answer": "Cooperative/Association",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -103422,7 +103422,7 @@
     "surveyId": "0379BE0E8A76B8349C150E5BAF60E1FA1A418E94",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -104052,7 +104052,7 @@
     "surveyId": "9A9522020A63C4C35E33DA5383B6F6F7A6A9D4B1",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -104709,7 +104709,7 @@
     "surveyId": "F330F1CD7FEDE7969FCC07939099427FAABCF9BC",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -105195,7 +105195,7 @@
     "surveyId": "A8F904F5928161E1F861D3D9194914716A65E6A4",
     "answerId": 2099191,
     "question": "Type of stakeholder",
-    "answer": "Farmer/agricultural producers",
+    "answer": "Producer (Farmer/Forest Owner/Forester)",
     "language": "LT",
     "questionId": 2051368,
     "countryCode": "LTU"
@@ -107499,7 +107499,7 @@
     "surveyId": "B1ED07AB32F6949A1AE292F501EC63F05421ADD2",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "EN",
     "questionId": 2448046,
     "countryCode": "GRC"
@@ -111198,7 +111198,7 @@
     "surveyId": "C4AD356B176F881FD4AF1A59487CA0D3C4C5D4F8",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "EN",
     "questionId": 2448046,
     "countryCode": "BEL"
@@ -121764,7 +121764,7 @@
     "surveyId": "59E62975E1747F9D8971E9686E73084D8C327245",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "EN",
     "questionId": 2448046,
     "countryCode": "BEL"
@@ -130125,7 +130125,7 @@
     "surveyId": "303295B10154A7F80E54E89DC1B86BD961F2B298",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "EN",
     "questionId": 2448046,
     "countryCode": "NLD"
@@ -136794,7 +136794,7 @@
     "surveyId": "56F0481D646FF35F4066C8F0273BCB2A15072C7B",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "EN",
     "questionId": 2448046,
     "countryCode": "BEL"
@@ -153561,7 +153561,7 @@
     "surveyId": "77F9D97BDFC4B5B30CA310345F6DD5E280D6CE05",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "EN",
     "questionId": 2448046,
     "countryCode": "FRA"
@@ -183252,7 +183252,7 @@
     "surveyId": "4E025E5A7EF2CC645E9076E375CC3BAB88B4F491",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "EN",
     "questionId": 2448046,
     "countryCode": "GRC"
@@ -195996,7 +195996,7 @@
     "surveyId": "819437FA507400078DA11A8CBB47D2237DF5E21B",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "EN",
     "questionId": 2448046,
     "countryCode": "BEL"
@@ -214455,7 +214455,7 @@
     "surveyId": "6FBAD211A39E8E86EA2DEF028318297B91F63BF5",
     "answerId": 2446630,
     "question": "Type of stakeholder",
-    "answer": "Network organisation (National/European)",
+    "answer": "Network organisation",
     "language": "EN",
     "questionId": 2448046,
     "countryCode": "CYP"
