@@ -51186,7 +51186,7 @@
     "surveyId": "1E09827C77AB581A5BA4738401FFEE46A9C9F33D",
     "answerId": 2089153,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "EL",
     "questionId": 2051657,
     "countryCode": "GRC"
@@ -52797,7 +52797,7 @@
     "surveyId": "9348B3F4F2E1491B74FF286E29136D74E499A27B",
     "answerId": 2089154,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - fruits",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "EL",
     "questionId": 2051665,
     "countryCode": "GRC"
@@ -59574,7 +59574,7 @@
     "surveyId": "2F61A8383DC053DE1DD1CE8AFFD8C289EEBF287C",
     "answerId": 2051082,
     "question": "Primary area of operation in agriculture",
-    "answer": "Post-harvest handling services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "ES",
     "questionId": 2050568,
     "countryCode": "ESP"
@@ -59673,7 +59673,7 @@
     "surveyId": "2F61A8383DC053DE1DD1CE8AFFD8C289EEBF287C",
     "answerId": 2051019,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "ES",
     "questionId": 2050566,
     "countryCode": "ESP"
@@ -59727,7 +59727,7 @@
     "surveyId": "2F61A8383DC053DE1DD1CE8AFFD8C289EEBF287C",
     "answerId": 2051048,
     "question": "Primary area of operation in agriculture",
-    "answer": "Farm management services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "ES",
     "questionId": 2050567,
     "countryCode": "ESP"
@@ -59772,7 +59772,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051048,
     "question": "Primary area of operation in agriculture",
-    "answer": "Farm management services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "ES",
     "questionId": 2050567,
     "countryCode": "ESP"
@@ -59952,7 +59952,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051017,
     "question": "Primary area of operation in agriculture",
-    "answer": "Plant propagation",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050560,
     "countryCode": "ESP"
@@ -60186,7 +60186,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051123,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - other",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050563,
     "countryCode": "ESP"
@@ -60240,7 +60240,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051094,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - meat",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050561,
     "countryCode": "ESP"
@@ -60258,7 +60258,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051066,
     "question": "Primary area of operation in agriculture",
-    "answer": "Agricultural machinery and equipment services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "ES",
     "questionId": 2050565,
     "countryCode": "ESP"
@@ -60312,7 +60312,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051053,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - fruits",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050559,
     "countryCode": "ESP"
@@ -60420,7 +60420,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051108,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - dairy",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050562,
     "countryCode": "ESP"
@@ -60429,7 +60429,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051088,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050556,
     "countryCode": "ESP"
@@ -60663,7 +60663,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051126,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - horticulture",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050557,
     "countryCode": "ESP"
@@ -60789,7 +60789,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051082,
     "question": "Primary area of operation in agriculture",
-    "answer": "Post-harvest handling services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "ES",
     "questionId": 2050568,
     "countryCode": "ESP"
@@ -60816,7 +60816,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051019,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "ES",
     "questionId": 2050566,
     "countryCode": "ESP"
@@ -61275,7 +61275,7 @@
     "surveyId": "7713A50FFB71C16CAE5F7C8A0272BFF951BCF648",
     "answerId": 2051088,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050556,
     "countryCode": "ESP"
@@ -61635,7 +61635,7 @@
     "surveyId": "E03D039CE1D12B61A32078DD1DC45596C6877131",
     "answerId": 2051088,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050556,
     "countryCode": "ESP"
@@ -61986,7 +61986,7 @@
     "surveyId": "E03D039CE1D12B61A32078DD1DC45596C6877131",
     "answerId": 2051018,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - legumes",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050558,
     "countryCode": "ESP"
@@ -62454,7 +62454,7 @@
     "surveyId": "D47AA9974511635402253C1F34F540AF1194BA79",
     "answerId": 2051088,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050556,
     "countryCode": "ESP"
@@ -62823,7 +62823,7 @@
     "surveyId": "24DBB21F1CA37A4ED1E4A06AA4CBC88A98BB1224",
     "answerId": 2051088,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050556,
     "countryCode": "ESP"
@@ -62922,7 +62922,7 @@
     "surveyId": "24DBB21F1CA37A4ED1E4A06AA4CBC88A98BB1224",
     "answerId": 2051066,
     "question": "Primary area of operation in agriculture",
-    "answer": "Agricultural machinery and equipment services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "ES",
     "questionId": 2050565,
     "countryCode": "ESP"
@@ -63039,7 +63039,7 @@
     "surveyId": "24DBB21F1CA37A4ED1E4A06AA4CBC88A98BB1224",
     "answerId": 2051048,
     "question": "Primary area of operation in agriculture",
-    "answer": "Farm management services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "ES",
     "questionId": 2050567,
     "countryCode": "ESP"
@@ -63309,7 +63309,7 @@
     "surveyId": "087227FDE01399F368905F43C8779224984D26AA",
     "answerId": 2051053,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - fruits",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050559,
     "countryCode": "ESP"
@@ -63642,7 +63642,7 @@
     "surveyId": "17228C14ABF97C3425BA83B72B72758B14F87221",
     "answerId": 2051053,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - fruits",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050559,
     "countryCode": "ESP"
@@ -64722,7 +64722,7 @@
     "surveyId": "B4EB066C99A93DB8BFF8C7C0AF1CBE78E027EA6C",
     "answerId": 2051094,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - meat",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050561,
     "countryCode": "ESP"
@@ -65397,7 +65397,7 @@
     "surveyId": "6AA015FA2FA53CC8903736A3EE39E9DF60ABD44E",
     "answerId": 2051053,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - fruits",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "ES",
     "questionId": 2050559,
     "countryCode": "ESP"
@@ -65478,7 +65478,7 @@
     "surveyId": "6AA015FA2FA53CC8903736A3EE39E9DF60ABD44E",
     "answerId": 2051108,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - dairy",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050562,
     "countryCode": "ESP"
@@ -65712,7 +65712,7 @@
     "surveyId": "07A494CC5F462232976AA3403ACE560A89700B74",
     "answerId": 2051094,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - meat",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050561,
     "countryCode": "ESP"
@@ -65766,7 +65766,7 @@
     "surveyId": "07A494CC5F462232976AA3403ACE560A89700B74",
     "answerId": 2051108,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - dairy",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050562,
     "countryCode": "ESP"
@@ -66522,7 +66522,7 @@
     "surveyId": "CCEBEFBC55670204C7E152D3557C1BB122FC7FE5",
     "answerId": 2051094,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - meat",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050561,
     "countryCode": "ESP"
@@ -66837,7 +66837,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2051094,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - meat",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050561,
     "countryCode": "ESP"
@@ -67611,7 +67611,7 @@
     "surveyId": "5F85CB6CD666D174FB9B5811DE11568CF729E3D7",
     "answerId": 2051094,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - meat",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050561,
     "countryCode": "ESP"
@@ -68115,7 +68115,7 @@
     "surveyId": "FFDEFFA0F14FD4BA8ACDFE7A4B556CB1EDC939C0",
     "answerId": 2051094,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - meat",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050561,
     "countryCode": "ESP"
@@ -68493,7 +68493,7 @@
     "surveyId": "60C8B903113F513C263F74A696D24761791CD8BC",
     "answerId": 2051108,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - dairy",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050562,
     "countryCode": "ESP"
@@ -68781,7 +68781,7 @@
     "surveyId": "7CE847FD62977CA1C3284E3DB8AA117210D75C9E",
     "answerId": 2051123,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - other",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "ES",
     "questionId": 2050563,
     "countryCode": "ESP"
@@ -72444,7 +72444,7 @@
     "surveyId": "B0950A3B3AC69EF160B3C9D1F79C4AF64B4EDF0B",
     "answerId": 2045268,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - other",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "EN",
     "questionId": 2045572,
     "countryCode": "GRC"
@@ -74271,7 +74271,7 @@
     "surveyId": "6AA337541B775CD44C270808D6E49FBE9CC347D2",
     "answerId": 2045299,
     "question": "Primary area of operation in agriculture",
-    "answer": "Plant propagation",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "EN",
     "questionId": 2045569,
     "countryCode": "ITA"
@@ -78096,7 +78096,7 @@
     "surveyId": "3B746ED387A8006203DD77F268E5E9703CAD66F3",
     "answerId": 2045184,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - legumes",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "EN",
     "questionId": 2045567,
     "countryCode": "BEL"
@@ -83154,7 +83154,7 @@
     "surveyId": "2EA6CA8CF2ABB3C32B78472C69B759C7C5A3A740",
     "answerId": 2045047,
     "question": "Primary area of operation in agriculture",
-    "answer": "Plant propagation",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "FR",
     "questionId": 2045712,
     "countryCode": "FRA"
@@ -83370,7 +83370,7 @@
     "surveyId": "2EA6CA8CF2ABB3C32B78472C69B759C7C5A3A740",
     "answerId": 2045053,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "FR",
     "questionId": 2045705,
     "countryCode": "FRA"
@@ -84063,7 +84063,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045034,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "FR",
     "questionId": 2045703,
     "countryCode": "FRA"
@@ -84072,7 +84072,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045120,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - vegetables",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "FR",
     "questionId": 2045709,
     "countryCode": "FRA"
@@ -84333,7 +84333,7 @@
     "surveyId": "2BBAFA0062C735965EC3A87EF1DF3CD29DBC7C97",
     "answerId": 2045034,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "FR",
     "questionId": 2045703,
     "countryCode": "FRA"
@@ -85017,7 +85017,7 @@
     "surveyId": "4F513DBED8D2BFFB57DE01CDBCD240E53E43C701",
     "answerId": 2045120,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - vegetables",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "FR",
     "questionId": 2045709,
     "countryCode": "FRA"
@@ -85116,7 +85116,7 @@
     "surveyId": "4F513DBED8D2BFFB57DE01CDBCD240E53E43C701",
     "answerId": 2045140,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - fruits",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "FR",
     "questionId": 2045711,
     "countryCode": "FRA"
@@ -85350,7 +85350,7 @@
     "surveyId": "A5233ED83EB362931B4477E24C72290DA1BEA59B",
     "answerId": 2045074,
     "question": "Primary area of operation in agriculture",
-    "answer": "Agricultural machinery and equipment services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "FR",
     "questionId": 2045704,
     "countryCode": "BEL"
@@ -86466,7 +86466,7 @@
     "surveyId": "B011DE4F52AEEA5BF5D2549C220E1DB9FD2BA9AD",
     "answerId": 2097652,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - fruits",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "LT",
     "questionId": 2051462,
     "countryCode": "LTU"
@@ -86790,7 +86790,7 @@
     "surveyId": "AC733EB8B07E4ECEC7E3A63694FF7DF8D4C06E41",
     "answerId": 2052690,
     "question": "Primary area of operation in agriculture",
-    "answer": "Agricultural machinery and equipment services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "NL",
     "questionId": 2052064,
     "countryCode": "BEL"
@@ -86979,7 +86979,7 @@
     "surveyId": "6AD52FF68233038250CC9850EE6CD9E2005ABEEB",
     "answerId": 2052680,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - dairy",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "NL",
     "questionId": 2052074,
     "countryCode": "BEL"
@@ -87690,7 +87690,7 @@
     "surveyId": "C97DCA5F31489B34740F4749EEF36B8095B92F22",
     "answerId": 2097532,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "LT",
     "questionId": 2051454,
     "countryCode": "LTU"
@@ -87744,7 +87744,7 @@
     "surveyId": "C97DCA5F31489B34740F4749EEF36B8095B92F22",
     "answerId": 2097623,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - vegetables",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "LT",
     "questionId": 2051460,
     "countryCode": "LTU"
@@ -88113,7 +88113,7 @@
     "surveyId": "12FC06448CD928750E9A576E731B6F90C6A08CD6",
     "answerId": 2097623,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - vegetables",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "LT",
     "questionId": 2051460,
     "countryCode": "LTU"
@@ -100101,7 +100101,7 @@
     "surveyId": "EA5DCE597F41BE52AA6965A1B4C9395DEE631316",
     "answerId": 2097565,
     "question": "Primary area of operation in agriculture",
-    "answer": "Other namely 1",
+    "answer": "Other namely",
     "language": "LT",
     "questionId": 2051459,
     "countryCode": "LTU"
@@ -100758,7 +100758,7 @@
     "surveyId": "C337F782F7B7A6679B96A7BC5E95BD35DA0381F0",
     "answerId": 2099186,
     "question": "Primary area of operation in agriculture",
-    "answer": "Farm management services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "LT",
     "questionId": 2051457,
     "countryCode": "LTU"
@@ -101019,7 +101019,7 @@
     "surveyId": "3F5164DA8DE2B768E25E0828626131AE682A79EE",
     "answerId": 2097532,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "LT",
     "questionId": 2051454,
     "countryCode": "LTU"
@@ -101199,7 +101199,7 @@
     "surveyId": "3F5164DA8DE2B768E25E0828626131AE682A79EE",
     "answerId": 2097533,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - legumes",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "LT",
     "questionId": 2051461,
     "countryCode": "LTU"
@@ -101721,7 +101721,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052686,
     "question": "Primary area of operation in agriculture",
-    "answer": "Post-harvest handling services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "NL",
     "questionId": 2052067,
     "countryCode": "BEL"
@@ -101901,7 +101901,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052697,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - horticulture",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "NL",
     "questionId": 2052072,
     "countryCode": "BEL"
@@ -101919,7 +101919,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052690,
     "question": "Primary area of operation in agriculture",
-    "answer": "Agricultural machinery and equipment services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "NL",
     "questionId": 2052064,
     "countryCode": "BEL"
@@ -101991,7 +101991,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052680,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - dairy",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "NL",
     "questionId": 2052074,
     "countryCode": "BEL"
@@ -102054,7 +102054,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052664,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "NL",
     "questionId": 2052063,
     "countryCode": "BEL"
@@ -102117,7 +102117,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052728,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - other",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "NL",
     "questionId": 2052075,
     "countryCode": "BEL"
@@ -102126,7 +102126,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052639,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - legumes",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "NL",
     "questionId": 2052070,
     "countryCode": "BEL"
@@ -102378,7 +102378,7 @@
     "surveyId": "6E37246C3B97DEAF551697932DEC3BF740849F84",
     "answerId": 2097532,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "LT",
     "questionId": 2051454,
     "countryCode": "LTU"
@@ -102837,7 +102837,7 @@
     "surveyId": "6B77C2EE109D572D91EE2017C5DA2E80EA15F339",
     "answerId": 2099186,
     "question": "Primary area of operation in agriculture",
-    "answer": "Farm management services",
+    "answer": "Service and support (farm management services, crop services, post-harvesting handling services, etc.)",
     "language": "LT",
     "questionId": 2051457,
     "countryCode": "LTU"
@@ -103125,7 +103125,7 @@
     "surveyId": "0379BE0E8A76B8349C150E5BAF60E1FA1A418E94",
     "answerId": 2097591,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - dairy",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "LT",
     "questionId": 2051465,
     "countryCode": "LTU"
@@ -104079,7 +104079,7 @@
     "surveyId": "9A9522020A63C4C35E33DA5383B6F6F7A6A9D4B1",
     "answerId": 2097532,
     "question": "Primary area of operation in agriculture",
-    "answer": "Crop cultivation - grains",
+    "answer": "Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)",
     "language": "LT",
     "questionId": 2051454,
     "countryCode": "LTU"
@@ -104601,7 +104601,7 @@
     "surveyId": "F330F1CD7FEDE7969FCC07939099427FAABCF9BC",
     "answerId": 2097591,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - dairy",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "LT",
     "questionId": 2051465,
     "countryCode": "LTU"
@@ -105105,7 +105105,7 @@
     "surveyId": "A8F904F5928161E1F861D3D9194914716A65E6A4",
     "answerId": 2097591,
     "question": "Primary area of operation in agriculture",
-    "answer": "Livestock farming - dairy",
+    "answer": "Livestock farming (meat, dairy, other)",
     "language": "LT",
     "questionId": 2051465,
     "countryCode": "LTU"

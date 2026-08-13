@@ -198,6 +198,22 @@ const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['Type of stakeholder', STAKEHOLDER_NORMALIZATIONS],
   ['What type of digital technology has been used for agriculture?', DIGITAL_TECH_AGRICULTURE_NORMALIZATIONS],
   ['What type of digital technology has been used for forestry?', DIGITAL_TECH_FORESTRY_NORMALIZATIONS],
+  ['Primary area of operation in agriculture', new Map([
+    ['Crop cultivation - grains', 'Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)'],
+    ['Crop cultivation - fruits', 'Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)'],
+    ['Crop cultivation - legumes', 'Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)'],
+    ['Crop cultivation - vegetables', 'Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)'],
+    ['Crop cultivation - horticulture', 'Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)'],
+    ['Plant propagation', 'Arable farming (grains, vegetables, legumes, fruits, plant propagation, etc.)'],
+    ['Livestock farming - dairy', 'Livestock farming (meat, dairy, other)'],
+    ['Livestock farming - meat', 'Livestock farming (meat, dairy, other)'],
+    ['Livestock farming - other', 'Livestock farming (meat, dairy, other)'],
+    ['Farm management services', 'Service and support (farm management services, crop services, post-harvesting handling services, etc.)'],
+    ['Agricultural machinery and equipment services', 'Service and support (farm management services, crop services, post-harvesting handling services, etc.)'],
+    ['Post-harvest handling services', 'Service and support (farm management services, crop services, post-harvesting handling services, etc.)'],
+    ['Crop services', 'Service and support (farm management services, crop services, post-harvesting handling services, etc.)'],
+    ['Other namely 1', 'Other namely'],
+  ])],
 ]);
 
 export const transform = async (
