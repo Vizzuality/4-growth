@@ -217,6 +217,9 @@ const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['What type of organisation are you?', new Map([
     ['Small to Medium Entreprise', 'SME'],
   ])],
+  ['Would you be able to operate without this data?', new Map([
+    ['Negligible impact', 'Neither disagree nor agree'],
+  ])],
 ]);
 
 export const transform = async (
