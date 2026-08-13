@@ -214,6 +214,9 @@ const WAVE1_ANSWER_NORMALIZATIONS = new Map([
     ['Crop services', 'Service and support (farm management services, crop services, post-harvesting handling services, etc.)'],
     ['Other namely 1', 'Other namely'],
   ])],
+  ['What type of organisation are you?', new Map([
+    ['Small to Medium Entreprise', 'SME'],
+  ])],
 ]);
 
 export const transform = async (
