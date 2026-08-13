@@ -340,6 +340,7 @@ export const transform = async (
   const filteredAnswers = join3Normalized.where((row) => {
     return (
       row['answer'].startsWith('No categorical answer') === false &&
+      row['answer'] !== 'blank' &&
       row['question'] !==
         'Have specific governance models either facilitated or hindered the adoption of digital technologies in your organization?'
     );
