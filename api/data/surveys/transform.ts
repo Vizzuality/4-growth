@@ -66,8 +66,6 @@ const QUESTIONS = new Set([
   'Are there regulatory considerations influencing the governance of digital technology adoption?',
   // Wave 2/3 questions
   'Can you provide insights into the cost structure associated with implementing and maintaining your technology?',
-  'Digital technologies have positively contributed to sustainability and environmental practices in our organization.',
-  'Digital technologies have resulted in cost savings or increased efficiency in our operations.',
   'Do you conduct market research or needs assessments before developing digital solutions for agriculture and forestry?',
   'Do you employ specific strategies to penetrate diverse markets within agriculture and forestry?',
   'Do you offer any after-sales service, support, or warranty for your products or services?',
@@ -81,6 +79,21 @@ const QUESTIONS = new Set([
   'What types of data do your products or services generate or rely on?',
   'Would you be able to operate without this data?',
   'Would you further adopt digital technologies if you had better network connectivity?',
+]);
+
+const WAVE3_QUESTION_NORMALIZATIONS = new Map([
+  [
+    'Digital technologies have positively contributed to sustainability and environmental practices in our organization.',
+    'Have digital technologies contributed to sustainability and environmental practices?',
+  ],
+  [
+    'Digital technologies have resulted in cost savings or increased efficiency in our operations.',
+    'Have digital technologies resulted in cost savings or increased efficiency?',
+  ],
+  [
+    'To whom and where do you send derived information or data?',
+    'To whom and where do you send this data?',
+  ],
 ]);
 
 const EXCLUDED_QUESTIONS = new Set([
@@ -162,10 +175,13 @@ export const transform = async (
     dataForge.fromObject(await readJson(`${inputDir}/Categorical_Answers.json`)),
   ]);
 
-  logger.log(`Number of surveys: ${dateDf.count()}`);
+  // Exclude VTT surveys — these are test/validation entries not yet cleared for analysis
+  const filteredDateDf = dateDf.where((row) => row.Value['Name'] !== 'VTT');
+
+  logger.log(`Number of surveys: ${filteredDateDf.count()} (of ${dateDf.count()} total, VTT excluded)`);
 
   const join1 = answersDf.join(
-    dateDf,
+    filteredDateDf,
     (leftRow) => leftRow.Value['Survey_per_dayID'],
     (rightRow) => rightRow.Value['Survey_per_dayID'],
     (leftRow, rightRow) => {
@@ -196,7 +212,8 @@ export const transform = async (
       const question = StringUtils.capitalizeFirstLetter(
         rawQuestionText.replace(/:/g, '').trim(),
       ).replace(/\bTo who\b/g, 'To whom');
-      leftRow['question'] = questionNormalizations.get(question) ?? question;
+      const afterParamNorm = questionNormalizations.get(question) ?? question;
+      leftRow['question'] = WAVE3_QUESTION_NORMALIZATIONS.get(afterParamNorm) ?? afterParamNorm;
       return leftRow;
     },
   );
