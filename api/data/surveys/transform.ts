@@ -157,6 +157,22 @@ const NETWORK_CONNECTIVITY_NORMALIZATIONS = new Map([
   ['Wireless internet', 'Wireless internet (Wi-Fi)'],
 ]);
 
+const STAKEHOLDER_NORMALIZATIONS = new Map([
+  ['Farmer/agricultural producers', 'Producer (Farmer/Forest Owner/Forester)'],
+  ['Forest owner', 'Producer (Farmer/Forest Owner/Forester)'],
+  ['Forester', 'Producer (Farmer/Forest Owner/Forester)'],
+  ['Forest operator', 'Producer (Farmer/Forest Owner/Forester)'],
+  ['Research institutes and research networks', 'Research/Academic organisation'],
+  ['Digital technology provider', 'Data/Technology/Service Provider'],
+  ['Service/information provider', 'Data/Technology/Service Provider'],
+  ['Infrastructure provider', 'Data/Technology/Service Provider'],
+  ['Forest product processor', 'Processor (Forest/Agricultural products)'],
+  ['Farming cooperative', 'Cooperative/Association'],
+  ['Farming association', 'Cooperative/Association'],
+  ['Forestry association', 'Cooperative/Association'],
+  ['Network organisation (National/European)', 'Network organisation'],
+]);
+
 const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['Are there plans to expand or upgrade your current digital infrastructure?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Would you further adopt digital technologies if you had better network connectivity?', LIKERT_TO_YES_NO_DONTKNOW],
@@ -166,6 +182,7 @@ const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['What are the primary functions of these technologies in the agriculture or forestry value chain?', TECH_FUNCTIONS_SHORT_TO_LONG],
   ['What type of tools or platforms do you use to collect data?', TOOLS_SHORT_TO_LONG],
   ['What network connectivity do you use?', NETWORK_CONNECTIVITY_NORMALIZATIONS],
+  ['Type of stakeholder', STAKEHOLDER_NORMALIZATIONS],
 ]);
 
 export const transform = async (
