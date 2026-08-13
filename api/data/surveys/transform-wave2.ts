@@ -37,6 +37,12 @@ const WAVE2_ANSWER_NORMALIZATIONS = new Map([
   ['What network connectivity do you use?', new Map([
     ['Private networks', 'Private networks (e.g. corporate or organizational networks)'],
   ])],
+  ['What types of data do your products or services generate or rely on?', new Map([
+    ['Geo-spatial data', 'Geospatial data'],
+  ])],
+  ['Do you offer any after-sales service, support, or warranty for your products or services?', new Map([
+    ['No, we do not offer after-sales, service, support, or warranty', 'No, we do not offer after-sales service, support, or warranty'],
+  ])],
 ]);
 
 export const transformWave2 = () =>

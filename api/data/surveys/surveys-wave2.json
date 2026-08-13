@@ -11342,7 +11342,7 @@
     "surveyId": "2E7BD86E14BBE46325D3400E700CE249BC83608B",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "NL",
     "questionId": 1042,
     "countryCode": "NLD"
@@ -42625,7 +42625,7 @@
     "surveyId": "9B1D15A676B4EC2B0FD4040BB1108F0EC4021A45",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "LT",
     "questionId": 1042,
     "countryCode": "LTU"
@@ -54388,7 +54388,7 @@
     "surveyId": "C5895D4624774648DBB28EDE7565C1BCA853D560",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "FR",
     "questionId": 1020,
     "countryCode": "FRA"
@@ -54460,7 +54460,7 @@
     "surveyId": "C5895D4624774648DBB28EDE7565C1BCA853D560",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "FR",
     "questionId": 1042,
     "countryCode": "FRA"
@@ -72279,7 +72279,7 @@
     "surveyId": "FC95B5DC2DC38F7FB9CEEA81B59125A1F622C7FC",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "LT",
     "questionId": 1042,
     "countryCode": "LTU"
@@ -73872,7 +73872,7 @@
     "surveyId": "09ECFB6AAB647A12AFE59589B74A8D9B491A5398",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "LT",
     "questionId": 1020,
     "countryCode": "LTU"
@@ -80640,7 +80640,7 @@
     "surveyId": "6557B6ED9F568DF3C3364CC008464CB4D064766F",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "LT",
     "questionId": 1042,
     "countryCode": "LTU"
@@ -80910,7 +80910,7 @@
     "surveyId": "73672A80B5AFC1EE9E0E29BFB9338E1E1BFF009C",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "LT",
     "questionId": 1020,
     "countryCode": "LTU"
@@ -84492,7 +84492,7 @@
     "surveyId": "A3413118C60C7092D7C56A35C15FCF117DDBB7E7",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "LT",
     "questionId": 1042,
     "countryCode": "LTU"
@@ -84978,7 +84978,7 @@
     "surveyId": "A6FA147033979ADAF7BAD888AEB4C5320E79C98D",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "LT",
     "questionId": 1042,
     "countryCode": "LTU"
@@ -86705,7 +86705,7 @@
     "surveyId": "C44BDCF64FFD4ED5B65A6FEAB45D58C18196C652",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "LT",
     "questionId": 1042,
     "countryCode": "LTU"
@@ -88919,7 +88919,7 @@
     "surveyId": "01B0AF440DED383C491065E14FEEB132178F4378",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "LT",
     "questionId": 1042,
     "countryCode": "LTU"
@@ -131702,7 +131702,7 @@
     "surveyId": "312C906C0909F7F859524752F4B0CFF862277B4E",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -131747,7 +131747,7 @@
     "surveyId": "312C906C0909F7F859524752F4B0CFF862277B4E",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "EL",
     "questionId": 1042,
     "countryCode": "GRC"
@@ -132026,7 +132026,7 @@
     "surveyId": "3843DF64820F892FEDAA4DC55A2BE99D7FD365C6",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -132098,7 +132098,7 @@
     "surveyId": "3843DF64820F892FEDAA4DC55A2BE99D7FD365C6",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "EL",
     "questionId": 1042,
     "countryCode": "GRC"
@@ -132242,7 +132242,7 @@
     "surveyId": "3C7C825B71F199DF68400A957840A556F27069B9",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EN",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -132287,7 +132287,7 @@
     "surveyId": "3C7C825B71F199DF68400A957840A556F27069B9",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "EN",
     "questionId": 1042,
     "countryCode": "GRC"
@@ -135275,7 +135275,7 @@
     "surveyId": "547A94809EB52AAD1A3566C6B142CC116AC0A569",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -135320,7 +135320,7 @@
     "surveyId": "547A94809EB52AAD1A3566C6B142CC116AC0A569",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "EL",
     "questionId": 1042,
     "countryCode": "GRC"
@@ -140152,7 +140152,7 @@
     "surveyId": "96F3872992604E0DF79BA9DA93D3055E5EBF0F7D",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -152994,7 +152994,7 @@
     "surveyId": "2A52080B2FA56BA192D3150770F80A7420D27348",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -153183,7 +153183,7 @@
     "surveyId": "3458310873578E4D03470250E8C4D18ED03B2FAA",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EN",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -154316,7 +154316,7 @@
     "surveyId": "9DC6824DAD1F99725449322557F920C6894A52E5",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -158609,7 +158609,7 @@
     "surveyId": "256D352A4DF6CB7AA68CBB58592A55FCFC2B1FF0",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -159266,7 +159266,7 @@
     "surveyId": "450C82F6B3B62A41E70886C096BBAE0D3990C9FD",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -159302,7 +159302,7 @@
     "surveyId": "450C82F6B3B62A41E70886C096BBAE0D3990C9FD",
     "answerId": 2312643,
     "question": "Do you offer any after-sales service, support, or warranty for your products or services?",
-    "answer": "No, we do not offer after-sales, service, support, or warranty",
+    "answer": "No, we do not offer after-sales service, support, or warranty",
     "language": "EL",
     "questionId": 1042,
     "countryCode": "GRC"
@@ -159689,7 +159689,7 @@
     "surveyId": "5032C0F00778A2B2CF84FC35B75B3840466C0577",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EN",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -160238,7 +160238,7 @@
     "surveyId": "5F7EB06C7E3B0E1B261AE6764D0006EAB54F09EE",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -160571,7 +160571,7 @@
     "surveyId": "64CCD4B8927EA01F428F82174EE5D3071ABF0BA9",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -162767,7 +162767,7 @@
     "surveyId": "A371946078B9CD2EC6EB811077B830E025AAE9E7",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -162893,7 +162893,7 @@
     "surveyId": "A669512A42FA5E5139600ED740CC3B3A71909976",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EL",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -163046,7 +163046,7 @@
     "surveyId": "A72058F4A235F0ACCE6D700627ECE323860779BC",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "FI",
     "questionId": 1020,
     "countryCode": "FIN"
@@ -163244,7 +163244,7 @@
     "surveyId": "A89B97370C18F1259C667BC6AE5B2D35BC118822",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "EN",
     "questionId": 1020,
     "countryCode": "GRC"
@@ -165449,7 +165449,7 @@
     "surveyId": "F7707849EAAB1EE7068DA62896DC40C58C203F67",
     "answerId": 2312628,
     "question": "What types of data do your products or services generate or rely on?",
-    "answer": "Geo-spatial data",
+    "answer": "Geospatial data",
     "language": "FI",
     "questionId": 1020,
     "countryCode": "FIN"
