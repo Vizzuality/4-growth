@@ -48783,7 +48783,7 @@
     "surveyId": "20633FF4C6A708EE11A283F6F80DF3F7BE2B07F1",
     "answerId": 2089155,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EL",
     "questionId": 2051633,
     "countryCode": "GRC"
@@ -48864,7 +48864,7 @@
     "surveyId": "20633FF4C6A708EE11A283F6F80DF3F7BE2B07F1",
     "answerId": 2089075,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "EL",
     "questionId": 2051636,
     "countryCode": "GRC"
@@ -48873,7 +48873,7 @@
     "surveyId": "20633FF4C6A708EE11A283F6F80DF3F7BE2B07F1",
     "answerId": 2089126,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "EL",
     "questionId": 2051641,
     "countryCode": "GRC"
@@ -48927,7 +48927,7 @@
     "surveyId": "20633FF4C6A708EE11A283F6F80DF3F7BE2B07F1",
     "answerId": 2089052,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EL",
     "questionId": 2051634,
     "countryCode": "GRC"
@@ -49125,7 +49125,7 @@
     "surveyId": "20633FF4C6A708EE11A283F6F80DF3F7BE2B07F1",
     "answerId": 2089044,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EL",
     "questionId": 2051635,
     "countryCode": "GRC"
@@ -49134,7 +49134,7 @@
     "surveyId": "20633FF4C6A708EE11A283F6F80DF3F7BE2B07F1",
     "answerId": 2089102,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EL",
     "questionId": 2051637,
     "countryCode": "GRC"
@@ -49647,7 +49647,7 @@
     "surveyId": "4C414F1B9A39576A9075AF0E4BBF77CCCD5F663C",
     "answerId": 2089052,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EL",
     "questionId": 2051634,
     "countryCode": "GRC"
@@ -49674,7 +49674,7 @@
     "surveyId": "4C414F1B9A39576A9075AF0E4BBF77CCCD5F663C",
     "answerId": 2089044,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EL",
     "questionId": 2051635,
     "countryCode": "GRC"
@@ -49710,7 +49710,7 @@
     "surveyId": "4C414F1B9A39576A9075AF0E4BBF77CCCD5F663C",
     "answerId": 2089066,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EL",
     "questionId": 2051639,
     "countryCode": "GRC"
@@ -50223,7 +50223,7 @@
     "surveyId": "4171195CF1AC25C07627C3FBF6F5DFD41E3646C0",
     "answerId": 2089155,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EL",
     "questionId": 2051633,
     "countryCode": "GRC"
@@ -50286,7 +50286,7 @@
     "surveyId": "4171195CF1AC25C07627C3FBF6F5DFD41E3646C0",
     "answerId": 2089075,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "EL",
     "questionId": 2051636,
     "countryCode": "GRC"
@@ -50691,7 +50691,7 @@
     "surveyId": "E1C5400BB01077847C2BD6BB11A40853259A7279",
     "answerId": 2089066,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EL",
     "questionId": 2051639,
     "countryCode": "GRC"
@@ -51096,7 +51096,7 @@
     "surveyId": "1E09827C77AB581A5BA4738401FFEE46A9C9F33D",
     "answerId": 2089126,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "EL",
     "questionId": 2051641,
     "countryCode": "GRC"
@@ -51717,7 +51717,7 @@
     "surveyId": "C8EBC0B73FEE55A9637634B011A2821FE15D5924",
     "answerId": 2089066,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EL",
     "questionId": 2051639,
     "countryCode": "GRC"
@@ -52464,7 +52464,7 @@
     "surveyId": "712E19132F84750E69CE79FFFBC01BCF2E9D3DDA",
     "answerId": 2089066,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EL",
     "questionId": 2051639,
     "countryCode": "GRC"
@@ -52725,7 +52725,7 @@
     "surveyId": "9348B3F4F2E1491B74FF286E29136D74E499A27B",
     "answerId": 2089155,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EL",
     "questionId": 2051633,
     "countryCode": "GRC"
@@ -52761,7 +52761,7 @@
     "surveyId": "9348B3F4F2E1491B74FF286E29136D74E499A27B",
     "answerId": 2089126,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "EL",
     "questionId": 2051641,
     "countryCode": "GRC"
@@ -53571,7 +53571,7 @@
     "surveyId": "97178C88D055E0B515C6D0CC5ADED1CE7896CE07",
     "answerId": 2089066,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EL",
     "questionId": 2051639,
     "countryCode": "GRC"
@@ -54552,7 +54552,7 @@
     "surveyId": "04FF8D10372712B97A9EEA277D93FEF2D1A3B006",
     "answerId": 2089066,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EL",
     "questionId": 2051639,
     "countryCode": "GRC"
@@ -54930,7 +54930,7 @@
     "surveyId": "554FCE8964411F37D0EFCDFE326D1872161DC2CD",
     "answerId": 2089075,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "EL",
     "questionId": 2051636,
     "countryCode": "GRC"
@@ -55200,7 +55200,7 @@
     "surveyId": "554FCE8964411F37D0EFCDFE326D1872161DC2CD",
     "answerId": 2089102,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EL",
     "questionId": 2051637,
     "countryCode": "GRC"
@@ -55209,7 +55209,7 @@
     "surveyId": "554FCE8964411F37D0EFCDFE326D1872161DC2CD",
     "answerId": 2089044,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EL",
     "questionId": 2051635,
     "countryCode": "GRC"
@@ -55245,7 +55245,7 @@
     "surveyId": "554FCE8964411F37D0EFCDFE326D1872161DC2CD",
     "answerId": 2089066,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EL",
     "questionId": 2051639,
     "countryCode": "GRC"
@@ -55317,7 +55317,7 @@
     "surveyId": "554FCE8964411F37D0EFCDFE326D1872161DC2CD",
     "answerId": 2089052,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EL",
     "questionId": 2051634,
     "countryCode": "GRC"
@@ -55596,7 +55596,7 @@
     "surveyId": "AB4CBF214BE39F8F7DF949E713CB8FAE25DAF5CF",
     "answerId": 2089102,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EL",
     "questionId": 2051637,
     "countryCode": "GRC"
@@ -55605,7 +55605,7 @@
     "surveyId": "AB4CBF214BE39F8F7DF949E713CB8FAE25DAF5CF",
     "answerId": 2089155,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EL",
     "questionId": 2051633,
     "countryCode": "GRC"
@@ -55668,7 +55668,7 @@
     "surveyId": "AB4CBF214BE39F8F7DF949E713CB8FAE25DAF5CF",
     "answerId": 2089095,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "EL",
     "questionId": 2051638,
     "countryCode": "GRC"
@@ -56037,7 +56037,7 @@
     "surveyId": "C85386F242F0DFC10C992922903FEEEEFF3A58C0",
     "answerId": 2089155,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EL",
     "questionId": 2051633,
     "countryCode": "GRC"
@@ -56586,7 +56586,7 @@
     "surveyId": "02040360930AF36F98423361C624462F8A956E10",
     "answerId": 2089095,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "EL",
     "questionId": 2051638,
     "countryCode": "BEL"
@@ -56622,7 +56622,7 @@
     "surveyId": "02040360930AF36F98423361C624462F8A956E10",
     "answerId": 2089044,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EL",
     "questionId": 2051635,
     "countryCode": "BEL"
@@ -56649,7 +56649,7 @@
     "surveyId": "02040360930AF36F98423361C624462F8A956E10",
     "answerId": 2089075,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "EL",
     "questionId": 2051636,
     "countryCode": "BEL"
@@ -57054,7 +57054,7 @@
     "surveyId": "5BF9768FEB99794EC2AB55AAC32EDCDA6F13DDB6",
     "answerId": 2089052,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EL",
     "questionId": 2051634,
     "countryCode": "GRC"
@@ -57279,7 +57279,7 @@
     "surveyId": "5BF9768FEB99794EC2AB55AAC32EDCDA6F13DDB6",
     "answerId": 2089102,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EL",
     "questionId": 2051637,
     "countryCode": "GRC"
@@ -57360,7 +57360,7 @@
     "surveyId": "5BF9768FEB99794EC2AB55AAC32EDCDA6F13DDB6",
     "answerId": 2089044,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EL",
     "questionId": 2051635,
     "countryCode": "GRC"
@@ -57369,7 +57369,7 @@
     "surveyId": "5BF9768FEB99794EC2AB55AAC32EDCDA6F13DDB6",
     "answerId": 2089095,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "EL",
     "questionId": 2051638,
     "countryCode": "GRC"
@@ -57747,7 +57747,7 @@
     "surveyId": "CC3AB22B0CA0C1D526E2BE6369D9F4946BE9A63E",
     "answerId": 2089066,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EL",
     "questionId": 2051639,
     "countryCode": "GRC"
@@ -57855,7 +57855,7 @@
     "surveyId": "CC3AB22B0CA0C1D526E2BE6369D9F4946BE9A63E",
     "answerId": 2089052,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EL",
     "questionId": 2051634,
     "countryCode": "GRC"
@@ -58269,7 +58269,7 @@
     "surveyId": "1E5042D17AC94685CBFFA49CC7C6305CFEB4CFC3",
     "answerId": 2089102,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EL",
     "questionId": 2051637,
     "countryCode": "GRC"
@@ -58341,7 +58341,7 @@
     "surveyId": "1E5042D17AC94685CBFFA49CC7C6305CFEB4CFC3",
     "answerId": 2089126,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "EL",
     "questionId": 2051641,
     "countryCode": "GRC"
@@ -58404,7 +58404,7 @@
     "surveyId": "1E5042D17AC94685CBFFA49CC7C6305CFEB4CFC3",
     "answerId": 2089075,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "EL",
     "questionId": 2051636,
     "countryCode": "GRC"
@@ -58836,7 +58836,7 @@
     "surveyId": "343E02FB301EA2EEE9624CF0C342B426EF6F8D8E",
     "answerId": 2089102,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EL",
     "questionId": 2051637,
     "countryCode": "GRC"
@@ -58989,7 +58989,7 @@
     "surveyId": "343E02FB301EA2EEE9624CF0C342B426EF6F8D8E",
     "answerId": 2089066,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EL",
     "questionId": 2051639,
     "countryCode": "GRC"
@@ -59997,7 +59997,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051023,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "ES",
     "questionId": 2050668,
     "countryCode": "ESP"
@@ -60033,7 +60033,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051058,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "ES",
     "questionId": 2050664,
     "countryCode": "ESP"
@@ -60069,7 +60069,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2050999,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "ES",
     "questionId": 2050662,
     "countryCode": "ESP"
@@ -60285,7 +60285,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051091,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "ES",
     "questionId": 2050670,
     "countryCode": "ESP"
@@ -60402,7 +60402,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051033,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "ES",
     "questionId": 2050663,
     "countryCode": "ESP"
@@ -60492,7 +60492,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051038,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "ES",
     "questionId": 2050669,
     "countryCode": "ESP"
@@ -60672,7 +60672,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051064,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "ES",
     "questionId": 2050667,
     "countryCode": "ESP"
@@ -60915,7 +60915,7 @@
     "surveyId": "0FB6122D0CE07B0EF398747170CF2FD10EFD86C2",
     "answerId": 2050985,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "ES",
     "questionId": 2050665,
     "countryCode": "ESP"
@@ -60996,7 +60996,7 @@
     "surveyId": "0FB6122D0CE07B0EF398747170CF2FD10EFD86C2",
     "answerId": 2050999,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "ES",
     "questionId": 2050662,
     "countryCode": "ESP"
@@ -61023,7 +61023,7 @@
     "surveyId": "0FB6122D0CE07B0EF398747170CF2FD10EFD86C2",
     "answerId": 2051090,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "ES",
     "questionId": 2050666,
     "countryCode": "ESP"
@@ -61230,7 +61230,7 @@
     "surveyId": "7713A50FFB71C16CAE5F7C8A0272BFF951BCF648",
     "answerId": 2050999,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "ES",
     "questionId": 2050662,
     "countryCode": "ESP"
@@ -61680,7 +61680,7 @@
     "surveyId": "E03D039CE1D12B61A32078DD1DC45596C6877131",
     "answerId": 2050999,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "ES",
     "questionId": 2050662,
     "countryCode": "ESP"
@@ -62328,7 +62328,7 @@
     "surveyId": "D47AA9974511635402253C1F34F540AF1194BA79",
     "answerId": 2050999,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "ES",
     "questionId": 2050662,
     "countryCode": "ESP"
@@ -62724,7 +62724,7 @@
     "surveyId": "24DBB21F1CA37A4ED1E4A06AA4CBC88A98BB1224",
     "answerId": 2051091,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "ES",
     "questionId": 2050670,
     "countryCode": "ESP"
@@ -63030,7 +63030,7 @@
     "surveyId": "24DBB21F1CA37A4ED1E4A06AA4CBC88A98BB1224",
     "answerId": 2051090,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "ES",
     "questionId": 2050666,
     "countryCode": "ESP"
@@ -63039,7 +63039,7 @@
     "surveyId": "24DBB21F1CA37A4ED1E4A06AA4CBC88A98BB1224",
     "answerId": 2050999,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "ES",
     "questionId": 2050662,
     "countryCode": "ESP"
@@ -63849,7 +63849,7 @@
     "surveyId": "EFE7CABC38AC004FB6556EF666002A494788536C",
     "answerId": 2051091,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "ES",
     "questionId": 2050670,
     "countryCode": "ESP"
@@ -64245,7 +64245,7 @@
     "surveyId": "62E2004C8BA6DAF81B9B9F99BE3ABBC789047383",
     "answerId": 2050999,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "ES",
     "questionId": 2050662,
     "countryCode": "ESP"
@@ -64524,7 +64524,7 @@
     "surveyId": "62E2004C8BA6DAF81B9B9F99BE3ABBC789047383",
     "answerId": 2051064,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "ES",
     "questionId": 2050667,
     "countryCode": "ESP"
@@ -64722,7 +64722,7 @@
     "surveyId": "B4EB066C99A93DB8BFF8C7C0AF1CBE78E027EA6C",
     "answerId": 2051064,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "ES",
     "questionId": 2050667,
     "countryCode": "ESP"
@@ -64938,7 +64938,7 @@
     "surveyId": "B4EB066C99A93DB8BFF8C7C0AF1CBE78E027EA6C",
     "answerId": 2051091,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "ES",
     "questionId": 2050670,
     "countryCode": "ESP"
@@ -65010,7 +65010,7 @@
     "surveyId": "B4EB066C99A93DB8BFF8C7C0AF1CBE78E027EA6C",
     "answerId": 2051038,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "ES",
     "questionId": 2050669,
     "countryCode": "ESP"
@@ -65307,7 +65307,7 @@
     "surveyId": "6AA015FA2FA53CC8903736A3EE39E9DF60ABD44E",
     "answerId": 2050999,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "ES",
     "questionId": 2050662,
     "countryCode": "ESP"
@@ -65370,7 +65370,7 @@
     "surveyId": "6AA015FA2FA53CC8903736A3EE39E9DF60ABD44E",
     "answerId": 2051038,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "ES",
     "questionId": 2050669,
     "countryCode": "ESP"
@@ -65442,7 +65442,7 @@
     "surveyId": "6AA015FA2FA53CC8903736A3EE39E9DF60ABD44E",
     "answerId": 2051090,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "ES",
     "questionId": 2050666,
     "countryCode": "ESP"
@@ -65766,7 +65766,7 @@
     "surveyId": "07A494CC5F462232976AA3403ACE560A89700B74",
     "answerId": 2051038,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "ES",
     "questionId": 2050669,
     "countryCode": "ESP"
@@ -65775,7 +65775,7 @@
     "surveyId": "07A494CC5F462232976AA3403ACE560A89700B74",
     "answerId": 2051091,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "ES",
     "questionId": 2050670,
     "countryCode": "ESP"
@@ -66297,7 +66297,7 @@
     "surveyId": "CCEBEFBC55670204C7E152D3557C1BB122FC7FE5",
     "answerId": 2051038,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "ES",
     "questionId": 2050669,
     "countryCode": "ESP"
@@ -66531,7 +66531,7 @@
     "surveyId": "CCEBEFBC55670204C7E152D3557C1BB122FC7FE5",
     "answerId": 2051033,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "ES",
     "questionId": 2050663,
     "countryCode": "ESP"
@@ -66756,7 +66756,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2051090,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "ES",
     "questionId": 2050666,
     "countryCode": "ESP"
@@ -66774,7 +66774,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2051038,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "ES",
     "questionId": 2050669,
     "countryCode": "ESP"
@@ -66792,7 +66792,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2051064,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "ES",
     "questionId": 2050667,
     "countryCode": "ESP"
@@ -66846,7 +66846,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2051091,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "ES",
     "questionId": 2050670,
     "countryCode": "ESP"
@@ -66855,7 +66855,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2051023,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "ES",
     "questionId": 2050668,
     "countryCode": "ESP"
@@ -66918,7 +66918,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2051033,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "ES",
     "questionId": 2050663,
     "countryCode": "ESP"
@@ -66945,7 +66945,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2050999,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "ES",
     "questionId": 2050662,
     "countryCode": "ESP"
@@ -66972,7 +66972,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2050985,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "ES",
     "questionId": 2050665,
     "countryCode": "ESP"
@@ -66981,7 +66981,7 @@
     "surveyId": "363EF75BD74534F0CA8B9B5AE4AB4C6F98D6D5FA",
     "answerId": 2051058,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "ES",
     "questionId": 2050664,
     "countryCode": "ESP"
@@ -67287,7 +67287,7 @@
     "surveyId": "C170838E1DB365FBD360E8A89CB609A1FB5773D4",
     "answerId": 2050985,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "ES",
     "questionId": 2050665,
     "countryCode": "ESP"
@@ -68142,7 +68142,7 @@
     "surveyId": "FFDEFFA0F14FD4BA8ACDFE7A4B556CB1EDC939C0",
     "answerId": 2051038,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "ES",
     "questionId": 2050669,
     "countryCode": "ESP"
@@ -68511,7 +68511,7 @@
     "surveyId": "60C8B903113F513C263F74A696D24761791CD8BC",
     "answerId": 2051038,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "ES",
     "questionId": 2050669,
     "countryCode": "ESP"
@@ -68970,7 +68970,7 @@
     "surveyId": "2ACF2FCB9FAED1F39E951050A4DC7DF6E7CA4709",
     "answerId": 2045297,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "EN",
     "questionId": 2045496,
     "countryCode": "GRC"
@@ -69060,7 +69060,7 @@
     "surveyId": "2ACF2FCB9FAED1F39E951050A4DC7DF6E7CA4709",
     "answerId": 2045181,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EN",
     "questionId": 2045493,
     "countryCode": "GRC"
@@ -69474,7 +69474,7 @@
     "surveyId": "C64DEE9633F6E011902E20B58292EFCBD1385DFE",
     "answerId": 2045274,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "EN",
     "questionId": 2045498,
     "countryCode": "GRC"
@@ -69492,7 +69492,7 @@
     "surveyId": "C64DEE9633F6E011902E20B58292EFCBD1385DFE",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "GRC"
@@ -69564,7 +69564,7 @@
     "surveyId": "C64DEE9633F6E011902E20B58292EFCBD1385DFE",
     "answerId": 2045222,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "EN",
     "questionId": 2045501,
     "countryCode": "GRC"
@@ -70266,7 +70266,7 @@
     "surveyId": "FA907B515F96C91175AFC5CFB98B18AD4D873692",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "ESP"
@@ -70464,7 +70464,7 @@
     "surveyId": "7EDC29969A367DBF0E8EAAF6101C72C8A7226B8F",
     "answerId": 2045255,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EN",
     "questionId": 2045497,
     "countryCode": "GRC"
@@ -70671,7 +70671,7 @@
     "surveyId": "7EDC29969A367DBF0E8EAAF6101C72C8A7226B8F",
     "answerId": 2045342,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EN",
     "questionId": 2045495,
     "countryCode": "GRC"
@@ -70806,7 +70806,7 @@
     "surveyId": "7EDC29969A367DBF0E8EAAF6101C72C8A7226B8F",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "GRC"
@@ -71724,7 +71724,7 @@
     "surveyId": "77D68935BDE41EB77F5B325E43F9430E06BFC06A",
     "answerId": 2045255,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EN",
     "questionId": 2045497,
     "countryCode": "GRC"
@@ -72111,7 +72111,7 @@
     "surveyId": "B0950A3B3AC69EF160B3C9D1F79C4AF64B4EDF0B",
     "answerId": 2045255,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EN",
     "questionId": 2045497,
     "countryCode": "GRC"
@@ -72129,7 +72129,7 @@
     "surveyId": "B0950A3B3AC69EF160B3C9D1F79C4AF64B4EDF0B",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "GRC"
@@ -72345,7 +72345,7 @@
     "surveyId": "B0950A3B3AC69EF160B3C9D1F79C4AF64B4EDF0B",
     "answerId": 2045342,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EN",
     "questionId": 2045495,
     "countryCode": "GRC"
@@ -72399,7 +72399,7 @@
     "surveyId": "B0950A3B3AC69EF160B3C9D1F79C4AF64B4EDF0B",
     "answerId": 2045297,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "EN",
     "questionId": 2045496,
     "countryCode": "GRC"
@@ -72453,7 +72453,7 @@
     "surveyId": "B0950A3B3AC69EF160B3C9D1F79C4AF64B4EDF0B",
     "answerId": 2045265,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "EN",
     "questionId": 2045500,
     "countryCode": "GRC"
@@ -72795,7 +72795,7 @@
     "surveyId": "6D9B2992716565EDF0616A4AE7EE1E100CFABE11",
     "answerId": 2045181,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EN",
     "questionId": 2045493,
     "countryCode": "PRT"
@@ -72840,7 +72840,7 @@
     "surveyId": "6D9B2992716565EDF0616A4AE7EE1E100CFABE11",
     "answerId": 2045328,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EN",
     "questionId": 2045494,
     "countryCode": "PRT"
@@ -73182,7 +73182,7 @@
     "surveyId": "6D9B2992716565EDF0616A4AE7EE1E100CFABE11",
     "answerId": 2045222,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "EN",
     "questionId": 2045501,
     "countryCode": "PRT"
@@ -73209,7 +73209,7 @@
     "surveyId": "6D9B2992716565EDF0616A4AE7EE1E100CFABE11",
     "answerId": 2045297,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "EN",
     "questionId": 2045496,
     "countryCode": "PRT"
@@ -73749,7 +73749,7 @@
     "surveyId": "74279490FBA27EAF40331C15233821C979CE1AB7",
     "answerId": 2045342,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EN",
     "questionId": 2045495,
     "countryCode": "PRT"
@@ -73776,7 +73776,7 @@
     "surveyId": "74279490FBA27EAF40331C15233821C979CE1AB7",
     "answerId": 2045181,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EN",
     "questionId": 2045493,
     "countryCode": "PRT"
@@ -73785,7 +73785,7 @@
     "surveyId": "74279490FBA27EAF40331C15233821C979CE1AB7",
     "answerId": 2045297,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "EN",
     "questionId": 2045496,
     "countryCode": "PRT"
@@ -73794,7 +73794,7 @@
     "surveyId": "74279490FBA27EAF40331C15233821C979CE1AB7",
     "answerId": 2045255,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EN",
     "questionId": 2045497,
     "countryCode": "PRT"
@@ -73839,7 +73839,7 @@
     "surveyId": "74279490FBA27EAF40331C15233821C979CE1AB7",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "PRT"
@@ -73848,7 +73848,7 @@
     "surveyId": "74279490FBA27EAF40331C15233821C979CE1AB7",
     "answerId": 2045328,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EN",
     "questionId": 2045494,
     "countryCode": "PRT"
@@ -74109,7 +74109,7 @@
     "surveyId": "6AA337541B775CD44C270808D6E49FBE9CC347D2",
     "answerId": 2045181,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EN",
     "questionId": 2045493,
     "countryCode": "ITA"
@@ -74172,7 +74172,7 @@
     "surveyId": "6AA337541B775CD44C270808D6E49FBE9CC347D2",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "ITA"
@@ -74217,7 +74217,7 @@
     "surveyId": "6AA337541B775CD44C270808D6E49FBE9CC347D2",
     "answerId": 2045222,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "EN",
     "questionId": 2045501,
     "countryCode": "ITA"
@@ -74415,7 +74415,7 @@
     "surveyId": "6AA337541B775CD44C270808D6E49FBE9CC347D2",
     "answerId": 2045328,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EN",
     "questionId": 2045494,
     "countryCode": "ITA"
@@ -74469,7 +74469,7 @@
     "surveyId": "6AA337541B775CD44C270808D6E49FBE9CC347D2",
     "answerId": 2045342,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EN",
     "questionId": 2045495,
     "countryCode": "ITA"
@@ -74784,7 +74784,7 @@
     "surveyId": "A04C167C7ED64EEDE8C6CDEEBD63E6EC29680DB8",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "GRC"
@@ -74820,7 +74820,7 @@
     "surveyId": "A04C167C7ED64EEDE8C6CDEEBD63E6EC29680DB8",
     "answerId": 2045342,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EN",
     "questionId": 2045495,
     "countryCode": "GRC"
@@ -74838,7 +74838,7 @@
     "surveyId": "A04C167C7ED64EEDE8C6CDEEBD63E6EC29680DB8",
     "answerId": 2045328,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EN",
     "questionId": 2045494,
     "countryCode": "GRC"
@@ -75567,7 +75567,7 @@
     "surveyId": "269D1F01C1FA576E24573673B4CC86E89B958208",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "FIN"
@@ -75747,7 +75747,7 @@
     "surveyId": "8DD980600ADB2B0314871A1963604E38F1A2032E",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "GRC"
@@ -75999,7 +75999,7 @@
     "surveyId": "8DD980600ADB2B0314871A1963604E38F1A2032E",
     "answerId": 2045342,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "EN",
     "questionId": 2045495,
     "countryCode": "GRC"
@@ -76332,7 +76332,7 @@
     "surveyId": "C8E473A039DFFBF24A3F603CCC0282313CA5A3DC",
     "answerId": 2045328,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EN",
     "questionId": 2045494,
     "countryCode": "GRC"
@@ -77178,7 +77178,7 @@
     "surveyId": "80EB6D8D4513E7DF56FDF44D2C6D4BB6713CCCE6",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "GRC"
@@ -77295,7 +77295,7 @@
     "surveyId": "80EB6D8D4513E7DF56FDF44D2C6D4BB6713CCCE6",
     "answerId": 2045222,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "EN",
     "questionId": 2045501,
     "countryCode": "GRC"
@@ -77547,7 +77547,7 @@
     "surveyId": "5A3AC44A3FBBF20CDD0323126F577128327DB5F8",
     "answerId": 2045222,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "EN",
     "questionId": 2045501,
     "countryCode": "GRC"
@@ -77610,7 +77610,7 @@
     "surveyId": "5A3AC44A3FBBF20CDD0323126F577128327DB5F8",
     "answerId": 2045255,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "EN",
     "questionId": 2045497,
     "countryCode": "GRC"
@@ -77835,7 +77835,7 @@
     "surveyId": "5A3AC44A3FBBF20CDD0323126F577128327DB5F8",
     "answerId": 2045311,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "EN",
     "questionId": 2045499,
     "countryCode": "GRC"
@@ -78123,7 +78123,7 @@
     "surveyId": "3B746ED387A8006203DD77F268E5E9703CAD66F3",
     "answerId": 2045181,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "EN",
     "questionId": 2045493,
     "countryCode": "BEL"
@@ -78294,7 +78294,7 @@
     "surveyId": "3B746ED387A8006203DD77F268E5E9703CAD66F3",
     "answerId": 2045328,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "EN",
     "questionId": 2045494,
     "countryCode": "BEL"
@@ -78654,7 +78654,7 @@
     "surveyId": "6969B2064BE2E75439D55FCCA383AA0820510D6B",
     "answerId": 2088845,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "FI",
     "questionId": 2051844,
     "countryCode": "FIN"
@@ -78726,7 +78726,7 @@
     "surveyId": "6969B2064BE2E75439D55FCCA383AA0820510D6B",
     "answerId": 2088874,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "FI",
     "questionId": 2051840,
     "countryCode": "FIN"
@@ -79212,7 +79212,7 @@
     "surveyId": "575456CCF0402FA91E4B1E775D16F22CA06A8BF9",
     "answerId": 2088845,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "FI",
     "questionId": 2051844,
     "countryCode": "FIN"
@@ -80499,7 +80499,7 @@
     "surveyId": "90FEDAE7CF35CB3050083B8682F8064E51C4F739",
     "answerId": 2088845,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "FI",
     "questionId": 2051844,
     "countryCode": "FIN"
@@ -80994,7 +80994,7 @@
     "surveyId": "8602A11E30FA406F17D87AB336F8FC702EE22A55",
     "answerId": 2088934,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "FI",
     "questionId": 2051838,
     "countryCode": "FIN"
@@ -81084,7 +81084,7 @@
     "surveyId": "8602A11E30FA406F17D87AB336F8FC702EE22A55",
     "answerId": 2088913,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "FI",
     "questionId": 2051842,
     "countryCode": "FIN"
@@ -81201,7 +81201,7 @@
     "surveyId": "8602A11E30FA406F17D87AB336F8FC702EE22A55",
     "answerId": 2088874,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "FI",
     "questionId": 2051840,
     "countryCode": "FIN"
@@ -81336,7 +81336,7 @@
     "surveyId": "8602A11E30FA406F17D87AB336F8FC702EE22A55",
     "answerId": 2088903,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "FI",
     "questionId": 2051839,
     "countryCode": "FIN"
@@ -81354,7 +81354,7 @@
     "surveyId": "8602A11E30FA406F17D87AB336F8FC702EE22A55",
     "answerId": 2088924,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "FI",
     "questionId": 2051837,
     "countryCode": "FIN"
@@ -81417,7 +81417,7 @@
     "surveyId": "F5F14D2969908A337B7B763CC4ECE2E9B4DFE343",
     "answerId": 2088903,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "FI",
     "questionId": 2051839,
     "countryCode": "FIN"
@@ -81489,7 +81489,7 @@
     "surveyId": "F5F14D2969908A337B7B763CC4ECE2E9B4DFE343",
     "answerId": 2088883,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "FI",
     "questionId": 2051841,
     "countryCode": "FIN"
@@ -81624,7 +81624,7 @@
     "surveyId": "F5F14D2969908A337B7B763CC4ECE2E9B4DFE343",
     "answerId": 2088913,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "FI",
     "questionId": 2051842,
     "countryCode": "FIN"
@@ -81732,7 +81732,7 @@
     "surveyId": "F5F14D2969908A337B7B763CC4ECE2E9B4DFE343",
     "answerId": 2088924,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "FI",
     "questionId": 2051837,
     "countryCode": "FIN"
@@ -81840,7 +81840,7 @@
     "surveyId": "F5F14D2969908A337B7B763CC4ECE2E9B4DFE343",
     "answerId": 2088845,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "FI",
     "questionId": 2051844,
     "countryCode": "FIN"
@@ -81858,7 +81858,7 @@
     "surveyId": "F5F14D2969908A337B7B763CC4ECE2E9B4DFE343",
     "answerId": 2088874,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "FI",
     "questionId": 2051840,
     "countryCode": "FIN"
@@ -82353,7 +82353,7 @@
     "surveyId": "DC4A7FE5D802D7F85A8E64FE899925500DA35509",
     "answerId": 2088874,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "FI",
     "questionId": 2051840,
     "countryCode": "FIN"
@@ -82632,7 +82632,7 @@
     "surveyId": "DC4A7FE5D802D7F85A8E64FE899925500DA35509",
     "answerId": 2088903,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "FI",
     "questionId": 2051839,
     "countryCode": "FIN"
@@ -82704,7 +82704,7 @@
     "surveyId": "DC4A7FE5D802D7F85A8E64FE899925500DA35509",
     "answerId": 2088924,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "FI",
     "questionId": 2051837,
     "countryCode": "FIN"
@@ -82740,7 +82740,7 @@
     "surveyId": "DC4A7FE5D802D7F85A8E64FE899925500DA35509",
     "answerId": 2088913,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "FI",
     "questionId": 2051842,
     "countryCode": "FIN"
@@ -83199,7 +83199,7 @@
     "surveyId": "2EA6CA8CF2ABB3C32B78472C69B759C7C5A3A740",
     "answerId": 2045128,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "FR",
     "questionId": 2045679,
     "countryCode": "FRA"
@@ -83361,7 +83361,7 @@
     "surveyId": "2EA6CA8CF2ABB3C32B78472C69B759C7C5A3A740",
     "answerId": 2045031,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "FR",
     "questionId": 2045682,
     "countryCode": "FRA"
@@ -83424,7 +83424,7 @@
     "surveyId": "2EA6CA8CF2ABB3C32B78472C69B759C7C5A3A740",
     "answerId": 2045067,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "FR",
     "questionId": 2045681,
     "countryCode": "FRA"
@@ -83559,7 +83559,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045076,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "FR",
     "questionId": 2045680,
     "countryCode": "FRA"
@@ -83568,7 +83568,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045027,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "FR",
     "questionId": 2045684,
     "countryCode": "FRA"
@@ -83829,7 +83829,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045031,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "FR",
     "questionId": 2045682,
     "countryCode": "FRA"
@@ -84045,7 +84045,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045103,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "FR",
     "questionId": 2045683,
     "countryCode": "FRA"
@@ -84054,7 +84054,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045128,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "FR",
     "questionId": 2045679,
     "countryCode": "FRA"
@@ -84126,7 +84126,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045055,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "FR",
     "questionId": 2045687,
     "countryCode": "FRA"
@@ -84387,7 +84387,7 @@
     "surveyId": "2BBAFA0062C735965EC3A87EF1DF3CD29DBC7C97",
     "answerId": 2045128,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "FR",
     "questionId": 2045679,
     "countryCode": "FRA"
@@ -84405,7 +84405,7 @@
     "surveyId": "2BBAFA0062C735965EC3A87EF1DF3CD29DBC7C97",
     "answerId": 2045076,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "FR",
     "questionId": 2045680,
     "countryCode": "FRA"
@@ -84432,7 +84432,7 @@
     "surveyId": "2BBAFA0062C735965EC3A87EF1DF3CD29DBC7C97",
     "answerId": 2045111,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "FR",
     "questionId": 2045685,
     "countryCode": "FRA"
@@ -84756,7 +84756,7 @@
     "surveyId": "2BBAFA0062C735965EC3A87EF1DF3CD29DBC7C97",
     "answerId": 2045067,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "FR",
     "questionId": 2045681,
     "countryCode": "FRA"
@@ -84801,7 +84801,7 @@
     "surveyId": "2BBAFA0062C735965EC3A87EF1DF3CD29DBC7C97",
     "answerId": 2045031,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "FR",
     "questionId": 2045682,
     "countryCode": "FRA"
@@ -84972,7 +84972,7 @@
     "surveyId": "4F513DBED8D2BFFB57DE01CDBCD240E53E43C701",
     "answerId": 2045128,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "FR",
     "questionId": 2045679,
     "countryCode": "FRA"
@@ -85197,7 +85197,7 @@
     "surveyId": "4F513DBED8D2BFFB57DE01CDBCD240E53E43C701",
     "answerId": 2045067,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "FR",
     "questionId": 2045681,
     "countryCode": "FRA"
@@ -85206,7 +85206,7 @@
     "surveyId": "4F513DBED8D2BFFB57DE01CDBCD240E53E43C701",
     "answerId": 2045076,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "FR",
     "questionId": 2045680,
     "countryCode": "FRA"
@@ -85224,7 +85224,7 @@
     "surveyId": "4F513DBED8D2BFFB57DE01CDBCD240E53E43C701",
     "answerId": 2045031,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "FR",
     "questionId": 2045682,
     "countryCode": "FRA"
@@ -86322,7 +86322,7 @@
     "surveyId": "B011DE4F52AEEA5BF5D2549C220E1DB9FD2BA9AD",
     "answerId": 2097637,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "LT",
     "questionId": 2051438,
     "countryCode": "LTU"
@@ -87015,7 +87015,7 @@
     "surveyId": "6AD52FF68233038250CC9850EE6CD9E2005ABEEB",
     "answerId": 2052687,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "NL",
     "questionId": 2052047,
     "countryCode": "BEL"
@@ -87231,7 +87231,7 @@
     "surveyId": "6AD52FF68233038250CC9850EE6CD9E2005ABEEB",
     "answerId": 2052714,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "NL",
     "questionId": 2052046,
     "countryCode": "BEL"
@@ -87942,7 +87942,7 @@
     "surveyId": "C97DCA5F31489B34740F4749EEF36B8095B92F22",
     "answerId": 2097598,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "LT",
     "questionId": 2051431,
     "countryCode": "LTU"
@@ -87960,7 +87960,7 @@
     "surveyId": "C97DCA5F31489B34740F4749EEF36B8095B92F22",
     "answerId": 2097580,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "LT",
     "questionId": 2051430,
     "countryCode": "LTU"
@@ -88077,7 +88077,7 @@
     "surveyId": "12FC06448CD928750E9A576E731B6F90C6A08CD6",
     "answerId": 2097598,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "LT",
     "questionId": 2051431,
     "countryCode": "LTU"
@@ -88104,7 +88104,7 @@
     "surveyId": "12FC06448CD928750E9A576E731B6F90C6A08CD6",
     "answerId": 2097580,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "LT",
     "questionId": 2051430,
     "countryCode": "LTU"
@@ -99903,7 +99903,7 @@
     "surveyId": "EA5DCE597F41BE52AA6965A1B4C9395DEE631316",
     "answerId": 2097637,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "LT",
     "questionId": 2051438,
     "countryCode": "LTU"
@@ -100371,7 +100371,7 @@
     "surveyId": "EA5DCE597F41BE52AA6965A1B4C9395DEE631316",
     "answerId": 2051434,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "LT",
     "questionId": 2051434,
     "countryCode": "LTU"
@@ -100488,7 +100488,7 @@
     "surveyId": "C337F782F7B7A6679B96A7BC5E95BD35DA0381F0",
     "answerId": 2097598,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "LT",
     "questionId": 2051431,
     "countryCode": "LTU"
@@ -100704,7 +100704,7 @@
     "surveyId": "C337F782F7B7A6679B96A7BC5E95BD35DA0381F0",
     "answerId": 2097590,
     "question": "What type of data do you collect?",
-    "answer": "Market and economic data",
+    "answer": "Market and Economic Data (e.g., prices, demand trends, cost analysis)",
     "language": "LT",
     "questionId": 2051435,
     "countryCode": "LTU"
@@ -100713,7 +100713,7 @@
     "surveyId": "C337F782F7B7A6679B96A7BC5E95BD35DA0381F0",
     "answerId": 2051432,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "LT",
     "questionId": 2051432,
     "countryCode": "LTU"
@@ -100794,7 +100794,7 @@
     "surveyId": "C337F782F7B7A6679B96A7BC5E95BD35DA0381F0",
     "answerId": 2097580,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "LT",
     "questionId": 2051430,
     "countryCode": "LTU"
@@ -100974,7 +100974,7 @@
     "surveyId": "C337F782F7B7A6679B96A7BC5E95BD35DA0381F0",
     "answerId": 2097616,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "LT",
     "questionId": 2051437,
     "countryCode": "LTU"
@@ -101001,7 +101001,7 @@
     "surveyId": "C337F782F7B7A6679B96A7BC5E95BD35DA0381F0",
     "answerId": 2097596,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "LT",
     "questionId": 2051433,
     "countryCode": "LTU"
@@ -101037,7 +101037,7 @@
     "surveyId": "C337F782F7B7A6679B96A7BC5E95BD35DA0381F0",
     "answerId": 2097637,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "LT",
     "questionId": 2051438,
     "countryCode": "LTU"
@@ -101217,7 +101217,7 @@
     "surveyId": "3F5164DA8DE2B768E25E0828626131AE682A79EE",
     "answerId": 2051436,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "LT",
     "questionId": 2051436,
     "countryCode": "LTU"
@@ -101370,7 +101370,7 @@
     "surveyId": "3F5164DA8DE2B768E25E0828626131AE682A79EE",
     "answerId": 2097637,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "LT",
     "questionId": 2051438,
     "countryCode": "LTU"
@@ -101433,7 +101433,7 @@
     "surveyId": "3F5164DA8DE2B768E25E0828626131AE682A79EE",
     "answerId": 2097598,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "LT",
     "questionId": 2051431,
     "countryCode": "LTU"
@@ -101496,7 +101496,7 @@
     "surveyId": "3F5164DA8DE2B768E25E0828626131AE682A79EE",
     "answerId": 2051434,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "LT",
     "questionId": 2051434,
     "countryCode": "LTU"
@@ -101676,7 +101676,7 @@
     "surveyId": "3F5164DA8DE2B768E25E0828626131AE682A79EE",
     "answerId": 2097580,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "LT",
     "questionId": 2051430,
     "countryCode": "LTU"
@@ -101838,7 +101838,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052714,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "NL",
     "questionId": 2052046,
     "countryCode": "BEL"
@@ -101856,7 +101856,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052719,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "NL",
     "questionId": 2052043,
     "countryCode": "BEL"
@@ -101919,7 +101919,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052620,
     "question": "What type of data do you collect?",
-    "answer": "Soil data",
+    "answer": "Soil Data (e.g., pH levels, nutrient content, moisture)",
     "language": "NL",
     "questionId": 2052040,
     "countryCode": "BEL"
@@ -101973,7 +101973,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052618,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "NL",
     "questionId": 2052039,
     "countryCode": "BEL"
@@ -102063,7 +102063,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052687,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "NL",
     "questionId": 2052047,
     "countryCode": "BEL"
@@ -102099,7 +102099,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052611,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "NL",
     "questionId": 2052042,
     "countryCode": "BEL"
@@ -102153,7 +102153,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052693,
     "question": "What type of data do you collect?",
-    "answer": "Remote sensing and geospatial data",
+    "answer": "Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)",
     "language": "NL",
     "questionId": 2052045,
     "countryCode": "BEL"
@@ -102288,7 +102288,7 @@
     "surveyId": "E540B57FFCC379CE6B27F932A1CF54171668535C",
     "answerId": 2052661,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "NL",
     "questionId": 2052041,
     "countryCode": "BEL"
@@ -102495,7 +102495,7 @@
     "surveyId": "6E37246C3B97DEAF551697932DEC3BF740849F84",
     "answerId": 2097580,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "LT",
     "questionId": 2051430,
     "countryCode": "LTU"
@@ -102729,7 +102729,7 @@
     "surveyId": "6B77C2EE109D572D91EE2017C5DA2E80EA15F339",
     "answerId": 2097580,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "LT",
     "questionId": 2051430,
     "countryCode": "LTU"
@@ -102756,7 +102756,7 @@
     "surveyId": "6B77C2EE109D572D91EE2017C5DA2E80EA15F339",
     "answerId": 2051434,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "LT",
     "questionId": 2051434,
     "countryCode": "LTU"
@@ -103026,7 +103026,7 @@
     "surveyId": "6B77C2EE109D572D91EE2017C5DA2E80EA15F339",
     "answerId": 2097637,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "LT",
     "questionId": 2051438,
     "countryCode": "LTU"
@@ -103269,7 +103269,7 @@
     "surveyId": "0379BE0E8A76B8349C150E5BAF60E1FA1A418E94",
     "answerId": 2097616,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "LT",
     "questionId": 2051437,
     "countryCode": "LTU"
@@ -103377,7 +103377,7 @@
     "surveyId": "0379BE0E8A76B8349C150E5BAF60E1FA1A418E94",
     "answerId": 2097596,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "LT",
     "questionId": 2051433,
     "countryCode": "LTU"
@@ -103521,7 +103521,7 @@
     "surveyId": "0379BE0E8A76B8349C150E5BAF60E1FA1A418E94",
     "answerId": 2051434,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "LT",
     "questionId": 2051434,
     "countryCode": "LTU"
@@ -103665,7 +103665,7 @@
     "surveyId": "0379BE0E8A76B8349C150E5BAF60E1FA1A418E94",
     "answerId": 2097637,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "LT",
     "questionId": 2051438,
     "countryCode": "LTU"
@@ -104025,7 +104025,7 @@
     "surveyId": "9A9522020A63C4C35E33DA5383B6F6F7A6A9D4B1",
     "answerId": 2051434,
     "question": "What type of data do you collect?",
-    "answer": "Inventory and equipment data",
+    "answer": "Inventory and Equipment Data (e.g., machinery status, stock levels)",
     "language": "LT",
     "questionId": 2051434,
     "countryCode": "LTU"
@@ -104043,7 +104043,7 @@
     "surveyId": "9A9522020A63C4C35E33DA5383B6F6F7A6A9D4B1",
     "answerId": 2097580,
     "question": "What type of data do you collect?",
-    "answer": "Crop and yield data",
+    "answer": "Crop and Yield Data (e.g., production quantities, quality metrics)",
     "language": "LT",
     "questionId": 2051430,
     "countryCode": "LTU"
@@ -104097,7 +104097,7 @@
     "surveyId": "9A9522020A63C4C35E33DA5383B6F6F7A6A9D4B1",
     "answerId": 2097596,
     "question": "What type of data do you collect?",
-    "answer": "Pest and disease data",
+    "answer": "Pest and Disease Data (e.g., infestations, outbreaks, treatments)",
     "language": "LT",
     "questionId": 2051433,
     "countryCode": "LTU"
@@ -104178,7 +104178,7 @@
     "surveyId": "9A9522020A63C4C35E33DA5383B6F6F7A6A9D4B1",
     "answerId": 2051432,
     "question": "What type of data do you collect?",
-    "answer": "Weather and environmental data",
+    "answer": "Weather and Environmental Data (e.g., temperature, precipitation, air quality)",
     "language": "LT",
     "questionId": 2051432,
     "countryCode": "LTU"
@@ -104493,7 +104493,7 @@
     "surveyId": "9A9522020A63C4C35E33DA5383B6F6F7A6A9D4B1",
     "answerId": 2097637,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "LT",
     "questionId": 2051438,
     "countryCode": "LTU"
@@ -104655,7 +104655,7 @@
     "surveyId": "F330F1CD7FEDE7969FCC07939099427FAABCF9BC",
     "answerId": 2097616,
     "question": "What type of data do you collect?",
-    "answer": "Livestock data",
+    "answer": "Livestock Data (e.g., health, productivity, breeding)",
     "language": "LT",
     "questionId": 2051437,
     "countryCode": "LTU"
@@ -105015,7 +105015,7 @@
     "surveyId": "F330F1CD7FEDE7969FCC07939099427FAABCF9BC",
     "answerId": 2097637,
     "question": "What type of data do you collect?",
-    "answer": "Financial and operational data",
+    "answer": "Financial and Operational Data (e.g., expenses, profits, workflow efficiency)",
     "language": "LT",
     "questionId": 2051438,
     "countryCode": "LTU"
