@@ -110,11 +110,24 @@ const LIKERT_TO_YES_NO_DONTKNOW = new Map([
   ['Neither disagree nor agree', "Don't know"],
 ]);
 
+const DATA_TYPES_SHORT_TO_LONG = new Map([
+  ['Crop and yield data', 'Crop and Yield Data (e.g., production quantities, quality metrics)'],
+  ['Financial and operational data', 'Financial and Operational Data (e.g., expenses, profits, workflow efficiency)'],
+  ['Inventory and equipment data', 'Inventory and Equipment Data (e.g., machinery status, stock levels)'],
+  ['Livestock data', 'Livestock Data (e.g., health, productivity, breeding)'],
+  ['Market and economic data', 'Market and Economic Data (e.g., prices, demand trends, cost analysis)'],
+  ['Pest and disease data', 'Pest and Disease Data (e.g., infestations, outbreaks, treatments)'],
+  ['Remote sensing and geospatial data', 'Remote Sensing and Geospatial Data (e.g., satellite imagery, GIS mapping)'],
+  ['Soil data', 'Soil Data (e.g., pH levels, nutrient content, moisture)'],
+  ['Weather and environmental data', 'Weather and Environmental Data (e.g., temperature, precipitation, air quality)'],
+]);
+
 const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['Are there plans to expand or upgrade your current digital infrastructure?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Would you further adopt digital technologies if you had better network connectivity?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Have digital technologies contributed to sustainability and environmental practices?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Have digital technologies resulted in cost savings or increased efficiency?', LIKERT_TO_YES_NO_DONTKNOW],
+  ['What type of data do you collect?', DATA_TYPES_SHORT_TO_LONG],
 ]);
 
 export const transform = async (
