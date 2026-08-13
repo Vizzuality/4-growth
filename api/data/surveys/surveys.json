@@ -51672,7 +51672,7 @@
     "surveyId": "C8EBC0B73FEE55A9637634B011A2821FE15D5924",
     "answerId": 2089123,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Forest Fire Prediction and Monitoring systems",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EL",
     "questionId": 2051563,
     "countryCode": "GRC"
@@ -56091,7 +56091,7 @@
     "surveyId": "C85386F242F0DFC10C992922903FEEEEFF3A58C0",
     "answerId": 2089142,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EL",
     "questionId": 2051565,
     "countryCode": "GRC"
@@ -57558,7 +57558,7 @@
     "surveyId": "CC3AB22B0CA0C1D526E2BE6369D9F4946BE9A63E",
     "answerId": 2089142,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EL",
     "questionId": 2051565,
     "countryCode": "GRC"
@@ -58863,7 +58863,7 @@
     "surveyId": "343E02FB301EA2EEE9624CF0C342B426EF6F8D8E",
     "answerId": 2089142,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EL",
     "questionId": 2051565,
     "countryCode": "GRC"
@@ -59637,7 +59637,7 @@
     "surveyId": "2F61A8383DC053DE1DD1CE8AFFD8C289EEBF287C",
     "answerId": 2051124,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Automated machinery and robotics",
+    "answer": "Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)",
     "language": "ES",
     "questionId": 2050588,
     "countryCode": "ESP"
@@ -59664,7 +59664,7 @@
     "surveyId": "2F61A8383DC053DE1DD1CE8AFFD8C289EEBF287C",
     "answerId": 2051029,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "ES",
     "questionId": 2050587,
     "countryCode": "ESP"
@@ -59880,7 +59880,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051124,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Automated machinery and robotics",
+    "answer": "Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)",
     "language": "ES",
     "questionId": 2050588,
     "countryCode": "ESP"
@@ -60357,7 +60357,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051092,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "ES",
     "questionId": 2050595,
     "countryCode": "ESP"
@@ -60519,7 +60519,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051008,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Monitoring and tracking of livestock/crops",
+    "answer": "Recording and Mapping Technologies (e.g., mapping or sensor-based monitoring of crops/soil/animals/weather conditions etc.)",
     "language": "ES",
     "questionId": 2050590,
     "countryCode": "ESP"
@@ -60573,7 +60573,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051029,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "ES",
     "questionId": 2050587,
     "countryCode": "ESP"
@@ -60654,7 +60654,7 @@
     "surveyId": "0AA6A75CDF37E767240F0232A491405580D23CA1",
     "answerId": 2051087,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Smart irrigation systems",
+    "answer": "Map or Sensor-based Variable Rate Technologies (e.g., advice or automatic variable application of fertilizers, persiticides, or irrigation etc.)",
     "language": "ES",
     "questionId": 2050589,
     "countryCode": "ESP"
@@ -62058,7 +62058,7 @@
     "surveyId": "D47AA9974511635402253C1F34F540AF1194BA79",
     "answerId": 2051029,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "ES",
     "questionId": 2050587,
     "countryCode": "ESP"
@@ -62805,7 +62805,7 @@
     "surveyId": "24DBB21F1CA37A4ED1E4A06AA4CBC88A98BB1224",
     "answerId": 2051124,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Automated machinery and robotics",
+    "answer": "Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)",
     "language": "ES",
     "questionId": 2050588,
     "countryCode": "ESP"
@@ -64470,7 +64470,7 @@
     "surveyId": "62E2004C8BA6DAF81B9B9F99BE3ABBC789047383",
     "answerId": 2051124,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Automated machinery and robotics",
+    "answer": "Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)",
     "language": "ES",
     "questionId": 2050588,
     "countryCode": "ESP"
@@ -65208,7 +65208,7 @@
     "surveyId": "6AA015FA2FA53CC8903736A3EE39E9DF60ABD44E",
     "answerId": 2051029,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "ES",
     "questionId": 2050587,
     "countryCode": "ESP"
@@ -65928,7 +65928,7 @@
     "surveyId": "07A494CC5F462232976AA3403ACE560A89700B74",
     "answerId": 2051008,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Monitoring and tracking of livestock/crops",
+    "answer": "Recording and Mapping Technologies (e.g., mapping or sensor-based monitoring of crops/soil/animals/weather conditions etc.)",
     "language": "ES",
     "questionId": 2050590,
     "countryCode": "ESP"
@@ -66045,7 +66045,7 @@
     "surveyId": "07A494CC5F462232976AA3403ACE560A89700B74",
     "answerId": 2051029,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "ES",
     "questionId": 2050587,
     "countryCode": "ESP"
@@ -66459,7 +66459,7 @@
     "surveyId": "CCEBEFBC55670204C7E152D3557C1BB122FC7FE5",
     "answerId": 2051029,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "ES",
     "questionId": 2050587,
     "countryCode": "ESP"
@@ -68205,7 +68205,7 @@
     "surveyId": "FFDEFFA0F14FD4BA8ACDFE7A4B556CB1EDC939C0",
     "answerId": 2051008,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Monitoring and tracking of livestock/crops",
+    "answer": "Recording and Mapping Technologies (e.g., mapping or sensor-based monitoring of crops/soil/animals/weather conditions etc.)",
     "language": "ES",
     "questionId": 2050590,
     "countryCode": "ESP"
@@ -70635,7 +70635,7 @@
     "surveyId": "7EDC29969A367DBF0E8EAAF6101C72C8A7226B8F",
     "answerId": 2045226,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Forest Fire Prediction and Monitoring systems",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EN",
     "questionId": 2045424,
     "countryCode": "GRC"
@@ -72273,7 +72273,7 @@
     "surveyId": "B0950A3B3AC69EF160B3C9D1F79C4AF64B4EDF0B",
     "answerId": 2045199,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EN",
     "questionId": 2045426,
     "countryCode": "GRC"
@@ -72435,7 +72435,7 @@
     "surveyId": "B0950A3B3AC69EF160B3C9D1F79C4AF64B4EDF0B",
     "answerId": 2045281,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Monitoring and tracking of livestock/crops",
+    "answer": "Recording and Mapping Technologies (e.g., mapping or sensor-based monitoring of crops/soil/animals/weather conditions etc.)",
     "language": "EN",
     "questionId": 2045420,
     "countryCode": "GRC"
@@ -73488,7 +73488,7 @@
     "surveyId": "69D156224ED9B1C73178B0822F5A412DB91F6F18",
     "answerId": 2045226,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Forest Fire Prediction and Monitoring systems",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EN",
     "questionId": 2045424,
     "countryCode": "AUT"
@@ -74370,7 +74370,7 @@
     "surveyId": "6AA337541B775CD44C270808D6E49FBE9CC347D2",
     "answerId": 2045199,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EN",
     "questionId": 2045426,
     "countryCode": "ITA"
@@ -74460,7 +74460,7 @@
     "surveyId": "6AA337541B775CD44C270808D6E49FBE9CC347D2",
     "answerId": 2045324,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Smart irrigation systems",
+    "answer": "Map or Sensor-based Variable Rate Technologies (e.g., advice or automatic variable application of fertilizers, persiticides, or irrigation etc.)",
     "language": "EN",
     "questionId": 2045419,
     "countryCode": "ITA"
@@ -75873,7 +75873,7 @@
     "surveyId": "8DD980600ADB2B0314871A1963604E38F1A2032E",
     "answerId": 2045199,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EN",
     "questionId": 2045426,
     "countryCode": "GRC"
@@ -76836,7 +76836,7 @@
     "surveyId": "80EB6D8D4513E7DF56FDF44D2C6D4BB6713CCCE6",
     "answerId": 2045226,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Forest Fire Prediction and Monitoring systems",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "EN",
     "questionId": 2045424,
     "countryCode": "GRC"
@@ -78159,7 +78159,7 @@
     "surveyId": "3B746ED387A8006203DD77F268E5E9703CAD66F3",
     "answerId": 2045324,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Smart irrigation systems",
+    "answer": "Map or Sensor-based Variable Rate Technologies (e.g., advice or automatic variable application of fertilizers, persiticides, or irrigation etc.)",
     "language": "EN",
     "questionId": 2045419,
     "countryCode": "BEL"
@@ -80967,7 +80967,7 @@
     "surveyId": "8602A11E30FA406F17D87AB336F8FC702EE22A55",
     "answerId": 2088849,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Forest Fire Prediction and Monitoring systems",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "FI",
     "questionId": 2051766,
     "countryCode": "FIN"
@@ -81129,7 +81129,7 @@
     "surveyId": "8602A11E30FA406F17D87AB336F8FC702EE22A55",
     "answerId": 2088829,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "FI",
     "questionId": 2051768,
     "countryCode": "FIN"
@@ -82065,7 +82065,7 @@
     "surveyId": "F5F14D2969908A337B7B763CC4ECE2E9B4DFE343",
     "answerId": 2088829,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "FI",
     "questionId": 2051768,
     "countryCode": "FIN"
@@ -83739,7 +83739,7 @@
     "surveyId": "1E90F341CAE48A7F4BC3D595F0338B4338A7E409",
     "answerId": 2045123,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "FR",
     "questionId": 2045602,
     "countryCode": "FRA"
@@ -84504,7 +84504,7 @@
     "surveyId": "2BBAFA0062C735965EC3A87EF1DF3CD29DBC7C97",
     "answerId": 2045123,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "FR",
     "questionId": 2045602,
     "countryCode": "FRA"
@@ -85584,7 +85584,7 @@
     "surveyId": "A5233ED83EB362931B4477E24C72290DA1BEA59B",
     "answerId": 2045069,
     "question": "What type of digital technology has been used for forestry?",
-    "answer": "Drones for Forest Monitoring",
+    "answer": "Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)",
     "language": "FR",
     "questionId": 2045611,
     "countryCode": "BEL"
@@ -86628,7 +86628,7 @@
     "surveyId": "AC733EB8B07E4ECEC7E3A63694FF7DF8D4C06E41",
     "answerId": 2052722,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "NL",
     "questionId": 2051962,
     "countryCode": "BEL"
@@ -86691,7 +86691,7 @@
     "surveyId": "AC733EB8B07E4ECEC7E3A63694FF7DF8D4C06E41",
     "answerId": 2052636,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Monitoring and tracking of livestock/crops",
+    "answer": "Recording and Mapping Technologies (e.g., mapping or sensor-based monitoring of crops/soil/animals/weather conditions etc.)",
     "language": "NL",
     "questionId": 2051965,
     "countryCode": "BEL"
@@ -86925,7 +86925,7 @@
     "surveyId": "AC733EB8B07E4ECEC7E3A63694FF7DF8D4C06E41",
     "answerId": 2052710,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Automated machinery and robotics",
+    "answer": "Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)",
     "language": "NL",
     "questionId": 2051963,
     "countryCode": "BEL"
@@ -87456,7 +87456,7 @@
     "surveyId": "CD0C7B2E28AC923FB5E2FFB75F566D5FDB066B96",
     "answerId": 2052710,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Automated machinery and robotics",
+    "answer": "Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)",
     "language": "NL",
     "questionId": 2051963,
     "countryCode": "BEL"
@@ -87546,7 +87546,7 @@
     "surveyId": "CD0C7B2E28AC923FB5E2FFB75F566D5FDB066B96",
     "answerId": 2052636,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Monitoring and tracking of livestock/crops",
+    "answer": "Recording and Mapping Technologies (e.g., mapping or sensor-based monitoring of crops/soil/animals/weather conditions etc.)",
     "language": "NL",
     "questionId": 2051965,
     "countryCode": "BEL"
@@ -100434,7 +100434,7 @@
     "surveyId": "EA5DCE597F41BE52AA6965A1B4C9395DEE631316",
     "answerId": 2097634,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Smart irrigation systems",
+    "answer": "Map or Sensor-based Variable Rate Technologies (e.g., advice or automatic variable application of fertilizers, persiticides, or irrigation etc.)",
     "language": "LT",
     "questionId": 2051355,
     "countryCode": "LTU"
@@ -100893,7 +100893,7 @@
     "surveyId": "C337F782F7B7A6679B96A7BC5E95BD35DA0381F0",
     "answerId": 2097595,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "LT",
     "questionId": 2051353,
     "countryCode": "LTU"
@@ -101208,7 +101208,7 @@
     "surveyId": "3F5164DA8DE2B768E25E0828626131AE682A79EE",
     "answerId": 2097595,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "LT",
     "questionId": 2051353,
     "countryCode": "LTU"
@@ -102945,7 +102945,7 @@
     "surveyId": "6B77C2EE109D572D91EE2017C5DA2E80EA15F339",
     "answerId": 2097595,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "LT",
     "questionId": 2051353,
     "countryCode": "LTU"
@@ -103260,7 +103260,7 @@
     "surveyId": "0379BE0E8A76B8349C150E5BAF60E1FA1A418E94",
     "answerId": 2097601,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Monitoring and tracking of livestock/crops",
+    "answer": "Recording and Mapping Technologies (e.g., mapping or sensor-based monitoring of crops/soil/animals/weather conditions etc.)",
     "language": "LT",
     "questionId": 2051356,
     "countryCode": "LTU"
@@ -103629,7 +103629,7 @@
     "surveyId": "0379BE0E8A76B8349C150E5BAF60E1FA1A418E94",
     "answerId": 2097551,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Automated machinery and robotics 1",
+    "answer": "Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)",
     "language": "LT",
     "questionId": 2051354,
     "countryCode": "LTU"
@@ -104268,7 +104268,7 @@
     "surveyId": "9A9522020A63C4C35E33DA5383B6F6F7A6A9D4B1",
     "answerId": 2097595,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "LT",
     "questionId": 2051353,
     "countryCode": "LTU"
@@ -104475,7 +104475,7 @@
     "surveyId": "9A9522020A63C4C35E33DA5383B6F6F7A6A9D4B1",
     "answerId": 2097551,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Automated machinery and robotics 1",
+    "answer": "Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)",
     "language": "LT",
     "questionId": 2051354,
     "countryCode": "LTU"
@@ -104862,7 +104862,7 @@
     "surveyId": "F330F1CD7FEDE7969FCC07939099427FAABCF9BC",
     "answerId": 2097601,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Monitoring and tracking of livestock/crops",
+    "answer": "Recording and Mapping Technologies (e.g., mapping or sensor-based monitoring of crops/soil/animals/weather conditions etc.)",
     "language": "LT",
     "questionId": 2051356,
     "countryCode": "LTU"
@@ -105330,7 +105330,7 @@
     "surveyId": "A8F904F5928161E1F861D3D9194914716A65E6A4",
     "answerId": 2097595,
     "question": "What type of digital technology has been used for agriculture?",
-    "answer": "Farm Management Information Systems",
+    "answer": "Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)",
     "language": "LT",
     "questionId": 2051353,
     "countryCode": "LTU"

@@ -173,6 +173,19 @@ const STAKEHOLDER_NORMALIZATIONS = new Map([
   ['Network organisation (National/European)', 'Network organisation'],
 ]);
 
+const DIGITAL_TECH_AGRICULTURE_NORMALIZATIONS = new Map([
+  ['Automated machinery and robotics', 'Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)'],
+  ['Automated machinery and robotics 1', 'Robotic Systems or Smart Machines (e.g., drones or harvesting/weeding/planting/milking robots etc.)'],
+  ['Farm Management Information Systems', 'Farm Management Software (e.g., digital tools for holistic practical, operational or financial management of a farm etc.)'],
+  ['Monitoring and tracking of livestock/crops', 'Recording and Mapping Technologies (e.g., mapping or sensor-based monitoring of crops/soil/animals/weather conditions etc.)'],
+  ['Smart irrigation systems', 'Map or Sensor-based Variable Rate Technologies (e.g., advice or automatic variable application of fertilizers, persiticides, or irrigation etc.)'],
+]);
+
+const DIGITAL_TECH_FORESTRY_NORMALIZATIONS = new Map([
+  ['Drones for Forest Monitoring', 'Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)'],
+  ['Forest Fire Prediction and Monitoring systems', 'Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)'],
+]);
+
 const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['Are there plans to expand or upgrade your current digital infrastructure?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Would you further adopt digital technologies if you had better network connectivity?', LIKERT_TO_YES_NO_DONTKNOW],
@@ -183,6 +196,8 @@ const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['What type of tools or platforms do you use to collect data?', TOOLS_SHORT_TO_LONG],
   ['What network connectivity do you use?', NETWORK_CONNECTIVITY_NORMALIZATIONS],
   ['Type of stakeholder', STAKEHOLDER_NORMALIZATIONS],
+  ['What type of digital technology has been used for agriculture?', DIGITAL_TECH_AGRICULTURE_NORMALIZATIONS],
+  ['What type of digital technology has been used for forestry?', DIGITAL_TECH_FORESTRY_NORMALIZATIONS],
 ]);
 
 export const transform = async (
