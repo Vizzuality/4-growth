@@ -1,5 +1,6 @@
 import * as dataForge from 'data-forge';
 import * as fs from 'fs/promises';
+import * as path from 'path';
 import { CountryISOMap } from '@shared/constants/country-iso.map';
 import { StringUtils } from '@api/utils/string.utils';
 import { Logger } from '@nestjs/common';
@@ -224,7 +225,7 @@ const WAVE1_ANSWER_NORMALIZATIONS = new Map([
 
 export const transform = async (
   inputDir = 'data/surveys',
-  outputPath = `${__dirname}/surveys.json`,
+  outputPath = path.join(process.cwd(), 'data/surveys/surveys.json'),
   // Wave 1/3: Level2 is always the canonical question text.
   // Wave 2: Level3 is the canonical text for single-answer questions; for multi-select
   //         sub-options Level3 embeds "ParentQuestion - SubOption", so we extract before " - ".

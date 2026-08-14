@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { transform } from './transform';
 
 const LIKERT_TO_YES_NO_DONTKNOW = new Map([
@@ -48,7 +49,7 @@ const WAVE2_ANSWER_NORMALIZATIONS = new Map([
 export const transformWave2 = () =>
   transform(
     'data/surveys/wave2',
-    `${__dirname}/surveys-wave2.json`,
+    path.join(process.cwd(), 'data/surveys/surveys-wave2.json'),
     'level3',
     WAVE2_QUESTION_NORMALIZATIONS,
     WAVE2_ANSWER_NORMALIZATIONS,
