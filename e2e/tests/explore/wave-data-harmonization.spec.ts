@@ -143,7 +143,7 @@ type SurveyRecord = { surveyId: string; question: string; answer: string };
 
 /** Compute question → answer → unique-survey-id-count from ETL JSON output files. */
 function buildEtlCounts(): Map<string, Map<string, number>> {
-  const surveysDir = path.resolve(__dirname, '../../../api/data/surveys');
+  const surveysDir = path.resolve(process.cwd(), '../api/data/surveys');
   const wave1: SurveyRecord[] = JSON.parse(
     fs.readFileSync(path.join(surveysDir, 'surveys.json'), 'utf-8'),
   );
