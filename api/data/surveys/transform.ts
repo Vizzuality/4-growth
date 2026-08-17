@@ -239,6 +239,7 @@ export const transform = async (
   questionLevelStrategy: 'level2' | 'level3' = 'level2',
   questionNormalizations: Map<string, string> = new Map(),
   answerNormalizations: Map<string, Map<string, string>> = WAVE1_ANSWER_NORMALIZATIONS,
+  extraExcludedQuestions: Set<string> = new Set(),
 ) => {
   const logger = new Logger('ETL');
 
@@ -428,11 +429,11 @@ export const transform = async (
     transformedAnswers.push(...answers);
   }
 
-  transformedAnswers = transformedAnswers.filter(
-    (e) => EXCLUDED_QUESTIONS.has(e.question) === false,
-  );
-
   ensureAllSurveyQuestionsHaveAnswers(transformedAnswers);
+
+  transformedAnswers = transformedAnswers.filter(
+    (e) => !EXCLUDED_QUESTIONS.has(e.question) && !extraExcludedQuestions.has(e.question),
+  );
 
   await fs.writeFile(
     outputPath,
