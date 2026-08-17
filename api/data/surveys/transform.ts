@@ -109,6 +109,7 @@ const LIKERT_TO_YES_NO_DONTKNOW = new Map([
   ['Strongly disagree', 'Not at all'],
   ['Disagree', 'Not at all'],
   ['Neither disagree nor agree', "Don't know"],
+  ['Negligible impact', 'Not at all'],
 ]);
 
 const DATA_TYPES_SHORT_TO_LONG = new Map([

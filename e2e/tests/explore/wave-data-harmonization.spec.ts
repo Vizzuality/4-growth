@@ -62,6 +62,10 @@ const FORBIDDEN_LABELS: Record<string, string[]> = {
     'Post-harvest handling services', 'Crop services', 'Plant propagation',
   ],
   'operate-without-data': ['Negligible impact'],
+  'further-adoption-with-connectivity': ['Negligible impact'],
+  'plans-to-expand-or-upgrade': ['Negligible impact'],
+  'sustainability': ['Negligible impact'],
+  'cost-savings-efficiency': ['Negligible impact'],
   'organisation-type': ['Small to Medium Entreprise'],
   'tech-provider-data-types': ['Geo-spatial data'],
 };
