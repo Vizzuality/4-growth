@@ -53,6 +53,12 @@ export class DataSourceManager {
       await extract();
       await transform();
 
+      // VTT: same Wave 1+3 source files, filter to VTT-only surveys → surveys-vtt.json
+      const { transformVTT } = await import(
+        `${__dirname}/../../data/surveys/transform-vtt`
+      );
+      await transformVTT();
+
       // Wave 2: extract OData entities → wrangle to 4 JSON files → transform to surveys-wave2.json
       const { extractWave2 } = await import(
         `${__dirname}/../../data/surveys/extract-wave2`
