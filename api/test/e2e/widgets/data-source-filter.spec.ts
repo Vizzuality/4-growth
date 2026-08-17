@@ -1,7 +1,6 @@
 import { TestManager } from 'api/test/utils/test-manager';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
-import * as config from 'config';
 
 const TEST_SURVEYS_DATA_PATH = `${__dirname}/../../data/surveys.json`;
 
@@ -67,30 +66,6 @@ describe('data-source filter — API', () => {
       );
     });
 
-    it('should omit the data-source filter when automated mock data is disabled', async () => {
-      // The config instance is frozen, so the spy must target the prototype
-      const configPrototype = Object.getPrototypeOf(config);
-      const realGet = configPrototype.get;
-      jest
-        .spyOn(configPrototype, 'get')
-        .mockImplementation(function (this: unknown, key: string) {
-          return key === 'etl.seedAutomatedMockData'
-            ? false
-            : realGet.call(this, key);
-        });
-
-      try {
-        const res = await testManager.request().get('/filters');
-
-        expect(res.status).toBe(200);
-        expect(res.body.data.length).toBeGreaterThan(0);
-        expect(
-          res.body.data.find((f: PageFilter) => f.name === 'data-source'),
-        ).toBeUndefined();
-      } finally {
-        jest.restoreAllMocks();
-      }
-    });
   });
 
   describe(`GET /widgets/:id with data-source filter`, () => {

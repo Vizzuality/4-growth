@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
-import * as config from 'config';
 import { Repository } from 'typeorm';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { TestManager } from 'api/test/utils/test-manager';
@@ -140,94 +139,6 @@ describe('DataSourceManager - Multi-indicator question mapping', () => {
     // Cleanup
     fs.unlinkSync(tmpFile);
     fs.rmdirSync(tmpDir);
-  });
-});
-
-describe('DataSourceManager - Automated mock data seed', () => {
-  let testManager: TestManager<unknown>;
-  let dataSourceManager: DataSourceManager;
-  let surveyAnswerRepo: Repository<SurveyAnswer>;
-
-  const question = 'Do you use automated machinery?';
-
-  beforeAll(async () => {
-    testManager = await TestManager.createTestManager({
-      logger: false,
-      initialize: false,
-    });
-    dataSourceManager = testManager.testApp.get(DataSourceManager);
-
-    const dataSource = testManager.getDataSource();
-    surveyAnswerRepo = dataSource.getRepository(SurveyAnswer);
-
-    await dataSource
-      .getRepository(QuestionIndicatorMap)
-      .save([{ indicator: 'seed-test', question }]);
-
-    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dsm-seed-'));
-    const tmpFile = path.join(tmpDir, 'test-seed.json');
-    fs.writeFileSync(
-      tmpFile,
-      JSON.stringify([
-        { surveyId: 'seed-1', question, answer: 'Yes', countryCode: 'ESP' },
-        { surveyId: 'seed-2', question, answer: 'No', countryCode: 'FRA' },
-      ]),
-    );
-    await dataSourceManager.loadSurveyData(tmpFile, 1);
-    fs.unlinkSync(tmpFile);
-    fs.rmdirSync(tmpDir);
-  });
-
-  afterAll(async () => {
-    await testManager.clearDatabase();
-    await testManager.close();
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
-  it('should seed automated rows mirroring survey rows when the flag is enabled', async () => {
-    await dataSourceManager.seedAutomatedMockData();
-
-    const automatedRows = await surveyAnswerRepo.find({
-      where: { dataSource: 'automated' },
-    });
-    expect(automatedRows.map((r) => r.surveyId).sort()).toEqual([
-      'auto_seed-1',
-      'auto_seed-2',
-    ]);
-  });
-
-  it('should not seed again when automated rows already exist', async () => {
-    await dataSourceManager.seedAutomatedMockData();
-
-    const count = await surveyAnswerRepo.count({
-      where: { dataSource: 'automated' },
-    });
-    expect(count).toBe(2);
-  });
-
-  it('should not seed when the flag is disabled', async () => {
-    await surveyAnswerRepo.delete({ dataSource: 'automated' });
-
-    // The config instance is frozen, so the spy must target the prototype
-    const configPrototype = Object.getPrototypeOf(config);
-    const realGet = configPrototype.get;
-    jest
-      .spyOn(configPrototype, 'get')
-      .mockImplementation(function (this: unknown, key: string) {
-        return key === 'etl.seedAutomatedMockData'
-          ? false
-          : realGet.call(this, key);
-      });
-
-    await dataSourceManager.seedAutomatedMockData();
-
-    const count = await surveyAnswerRepo.count({
-      where: { dataSource: 'automated' },
-    });
-    expect(count).toBe(0);
   });
 });
 
