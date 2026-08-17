@@ -12,21 +12,13 @@ overrides:
   # react-simple-maps tree pulls d3-interpolate 2.0.1, which declares `1 - 2` and so
   # resolves the vulnerable 2.0.0 unless every consumer is forced past the range.
   d3-color: 3.1.0
-  # qs: blanket override needed — express 4.21.2 (via nestjs-base-service) declares exact qs 6.13.0
-  # 6.15.2 fixes remotely-triggerable DoS in qs.stringify (GHSA-q8mj-m7cp-5q26)
-  qs: 6.15.2
   # nestjs-base-service ships outdated transitive deps; scope overrides to that parent
-  "nestjs-base-service>express": "4.21.2"
-  "express>path-to-regexp": "0.1.13"
+  "nestjs-base-service>express": "4.22.2"
   "nestjs-base-service>lodash": "4.18.1"
   # Not a security fix. nestjs-base-service pins class-validator 0.14.0 exactly, and a
   # second copy in the tree gets its own MetadataStorage singleton — decorators applied
   # to shared/ DTOs become invisible to validate(), which then passes silently.
   "nestjs-base-service>class-validator": "0.14.4"
-  # body-parser: invalid `limit` value silently disables size enforcement (GHSA-v422-hmwv-36x6)
-  # express 4.x pins body-parser exactly, so the patched 1.20.6 must be forced. express 5.x
-  # declares ^2.2.1 and resolves a patched 2.x unaided, so it needs no entry.
-  "express@4>body-parser": "1.20.6"
   # @aws-sdk/xml-builder ships vulnerable fast-xml-parser <5.7.0 (GHSA-8gc5-j5rx-235r)
   # 5.8.0 also pulls fast-xml-builder >=1.2.0 fixing GHSA-5wm8-gmm8-39j9
   "@aws-sdk/xml-builder>fast-xml-parser": "5.8.0"
