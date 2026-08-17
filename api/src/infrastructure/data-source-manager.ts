@@ -97,6 +97,7 @@ export class DataSourceManager {
       FSUtils.md5File(`data/question-indicators.sql`),
       FSUtils.md5File(`data/surveys/surveys.json`),
       FSUtils.md5File(`data/surveys/surveys-wave2.json`),
+      FSUtils.md5File(`data/surveys/surveys-vtt.json`),
       FSUtils.md5File(`data/sections/sections.json`),
       FSUtils.md5File(`data/projections/projections.json`),
       FSUtils.md5File(`data/projections/projection-types.json`),
@@ -121,6 +122,7 @@ export class DataSourceManager {
       this.loadPageSections(),
       this.loadSurveyData('data/surveys/surveys.json', 1),
       this.loadSurveyData('data/surveys/surveys-wave2.json', 2),
+      this.loadSurveyData('data/surveys/surveys-vtt.json', 1, 'automated'),
 
       // Projections
       this.loadProjections(),
@@ -130,8 +132,6 @@ export class DataSourceManager {
       this.generateProjectionsSettings(),
       this.generateProjectionsWidgets(),
     ]);
-
-    await this.seedAutomatedMockData();
 
     await configParamsRepo.save({
       param: 'data_version',
@@ -197,9 +197,10 @@ export class DataSourceManager {
   public async loadSurveyData(
     surveysfilePath: string = `data/surveys/surveys.json`,
     wave: number = 1,
+    dataSource: 'survey' | 'automated' = 'survey',
   ): Promise<void> {
     this.logger.log(
-      `Loading Wave ${wave} data from "${surveysfilePath}"`,
+      `Loading Wave ${wave} data from "${surveysfilePath}" (data_source=${dataSource})`,
       this.constructor.name,
     );
 
@@ -226,8 +227,8 @@ export class DataSourceManager {
       const answersRepository = queryRunner.manager.getRepository(SurveyAnswer);
 
       await queryRunner.query(
-        `DELETE FROM survey_answers WHERE wave = $1 AND data_source = 'survey'`,
-        [wave],
+        `DELETE FROM survey_answers WHERE wave = $1 AND data_source = $2`,
+        [wave, dataSource],
       );
 
       // Use Map to deduplicate exact duplicates (same surveyId + indicator + answer)
@@ -249,7 +250,7 @@ export class DataSourceManager {
             ...answer,
             questionIndicator: indicator,
             wave,
-            dataSource: 'survey',
+            dataSource,
           });
         }
       }
@@ -265,36 +266,6 @@ export class DataSourceManager {
     } finally {
       await queryRunner.release();
     }
-  }
-
-  public async seedAutomatedMockData(): Promise<void> {
-    if (!config.get<boolean>('etl.seedAutomatedMockData')) {
-      return;
-    }
-
-    this.logger.log('Seeding automated mock data', this.constructor.name);
-    await this.dataSource.query(
-      `DELETE FROM survey_answers WHERE data_source = 'automated'`,
-    );
-    await this.dataSource.query(`
-      INSERT INTO survey_answers (survey_id, question_indicator, question, answer, country_code, wave, data_source)
-      SELECT
-        'auto_' || survey_id,
-        question_indicator,
-        question,
-        answer,
-        country_code,
-        wave,
-        'automated'
-      FROM survey_answers
-      WHERE survey_id IN (
-        SELECT DISTINCT survey_id FROM survey_answers
-        WHERE data_source = 'survey'
-        ORDER BY survey_id
-        LIMIT 100
-      )
-    `);
-    this.logger.log('Automated mock data seed complete', this.constructor.name);
   }
 
   public async loadProjectionTypes(
