@@ -54,6 +54,10 @@ const WAVE2_ANSWER_NORMALIZATIONS = new Map([
   ])],
 ]);
 
+const WAVE2_EXCLUDED_QUESTIONS = new Set([
+  'What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?',
+]);
+
 export const transformWave2 = () =>
   transform(
     'data/surveys/wave2',
@@ -61,6 +65,7 @@ export const transformWave2 = () =>
     'level3',
     WAVE2_QUESTION_NORMALIZATIONS,
     WAVE2_ANSWER_NORMALIZATIONS,
+    WAVE2_EXCLUDED_QUESTIONS,
   );
 
 if (require.main === module) {
