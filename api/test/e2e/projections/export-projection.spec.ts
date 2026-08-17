@@ -1,6 +1,5 @@
 import { TestManager } from 'api/test/utils/test-manager';
 import { projectionsContract as c } from '@shared/contracts/projections.contract';
-import { ConfigurationParams } from '@shared/dto/global/configuration-params';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { PROJECTION_VISUALIZATIONS } from '@shared/dto/projections/projection-visualizations.constants';
 import { parse } from 'csv-parse/sync';
@@ -10,8 +9,14 @@ describe('Projections CSV export', () => {
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({ logger: false });
-    await testManager.dataSource.getRepository(ConfigurationParams).clear();
-    await testManager.getModule(DataSourceManager).loadInitialData();
+    const dsm = testManager.getModule(DataSourceManager);
+    await dsm.loadProjectionTypes();
+    await dsm.loadProjections();
+    await Promise.all([
+      dsm.generateProjectionsWidgets(),
+      dsm.generateProjectionsFilters(),
+      dsm.generateProjectionsSettings(),
+    ]);
   });
 
   afterAll(async () => {
