@@ -246,7 +246,7 @@
     "surveyId": "F46148634565D1CBA324245570D2FF1C88B524E8",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -453,7 +453,7 @@
     "surveyId": "DA0F37ED8C29FD090AE76242C54AD9F26CF0BD92",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -651,7 +651,7 @@
     "surveyId": "86041EA83E6DD5FB44AEE9BF03AEA725137CFCB0",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -1020,7 +1020,7 @@
     "surveyId": "1A89CF7935E4F37066B164BBFC9D47BAB1E6C8E9",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -1200,7 +1200,7 @@
     "surveyId": "50A098280AEF66FEF2A666EC1B0CF2ECF3241D3D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -1542,7 +1542,7 @@
     "surveyId": "BF4E432C517137EEBC317FF32007F70632B65D7C",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -2181,7 +2181,7 @@
     "surveyId": "D4BA28258D6854E035F21D3C1398979FA52706B2",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -2514,7 +2514,7 @@
     "surveyId": "B4DB34BFB08212E802F8C03FCD19FA41D53059C9",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -2712,7 +2712,7 @@
     "surveyId": "2F1C7B8221D5197342920E91165E03385C17C7EC",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -3072,7 +3072,7 @@
     "surveyId": "318EB35459A40B0C71A0AC66E8C1A41D4486F491",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -3351,7 +3351,7 @@
     "surveyId": "5091B3E30C3B317CFC4F3F9B80DE596A830336BE",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -3603,7 +3603,7 @@
     "surveyId": "3FE32A3A20307AC895AB2325A4B1EB4E2A07C970",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -3891,7 +3891,7 @@
     "surveyId": "0841FE01E59A46A74D374ED445EACFE762A4C549",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -4305,7 +4305,7 @@
     "surveyId": "34B9D7BF5FE215358D67A2D7DC317BE5082FF108",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -4566,7 +4566,7 @@
     "surveyId": "87AA4C997A4AF5D2A04E696CB727614537C26AC7",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -4701,7 +4701,7 @@
     "surveyId": "296D1EECCCF7535ACD4546688B1A810966F4C4DD",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -5043,7 +5043,7 @@
     "surveyId": "87EDB5A35AEE261AFA653881705FCCDC3476F05F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -5511,7 +5511,7 @@
     "surveyId": "520CC248662FED09B5EC701D9297B6B5E9A52C17",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -5718,7 +5718,7 @@
     "surveyId": "41EC0466A572A64D84D439C38F2DE6FDA94D0994",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -5925,7 +5925,7 @@
     "surveyId": "257E5E775AE85C68CBF047547EB24C88E6E0CE98",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -6474,7 +6474,7 @@
     "surveyId": "1DE352E19B58ED8264436D3B597AFEB17FD51AA0",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -6942,7 +6942,7 @@
     "surveyId": "696AB1DFEE7A1D6154A859DB7A796D7BD92C5EAD",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -7131,7 +7131,7 @@
     "surveyId": "B7F88839079CE4E75E79CF478D91CD57A1096E56",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -7446,7 +7446,7 @@
     "surveyId": "EE4704DC3BCE375F19DF712418821F2AAAD1837D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -7707,7 +7707,7 @@
     "surveyId": "B5F5523DEC13C136047F7B63EC71187F0E1CE921",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -8094,7 +8094,7 @@
     "surveyId": "51E04BCF81464F7C2791FC332ADB066FB764618E",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -8346,7 +8346,7 @@
     "surveyId": "9C745411E4DFD5A7CEF4009FFCBA5561ECE81BCF",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -8535,7 +8535,7 @@
     "surveyId": "7982E10327328376AA9C21D1409297096868A150",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -9165,7 +9165,7 @@
     "surveyId": "3D540A56FECAC34F96C5EF20DC33FC48D969A213",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -9615,7 +9615,7 @@
     "surveyId": "1ED886E590EB2D713A3607BE3D1A36CB9A1C937F",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -9795,7 +9795,7 @@
     "surveyId": "9A28F80B862118698EDA59D4E89789077993926B",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -10065,7 +10065,7 @@
     "surveyId": "42B4DA43F2AE23C31D49B500AE3030E198833FB6",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -10344,7 +10344,7 @@
     "surveyId": "CB8C3C53ECEC5D7B3E2768AAB3D5CB6E6E2FABB7",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -10668,7 +10668,7 @@
     "surveyId": "F19C6A7EC647A3B37C337377884C18AF20A58149",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -10839,7 +10839,7 @@
     "surveyId": "FC1BA879F1044F20FD057C65B41D45DD6BFDC01E",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -11109,7 +11109,7 @@
     "surveyId": "B4A7ED2E218D3C368837B56B657D36714E70D16E",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -11505,7 +11505,7 @@
     "surveyId": "00DAAB539F681BF27CCFD52438FB5F6F8BE8CF2F",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -11991,7 +11991,7 @@
     "surveyId": "EADA36DB3117458B89138B6BFBE7F6C4A5B67D2B",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -12657,7 +12657,7 @@
     "surveyId": "C678085C48E1AD9DEB6D6B5697045829EC69A5E4",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -12873,7 +12873,7 @@
     "surveyId": "F8E12C3067B30DA573677B3FFEBC2E25D0C95C98",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -13026,7 +13026,7 @@
     "surveyId": "25440275E992280976E69987F09EA30FEBBCF97F",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -13179,7 +13179,7 @@
     "surveyId": "6AA1CD6466CE9C474F1CF6904AA384BBDAFA4DA7",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -13548,7 +13548,7 @@
     "surveyId": "9EB696EA7EA1FE6F4A939E855EBB0D9604C09DA7",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -13701,7 +13701,7 @@
     "surveyId": "94B774624AC452D6DB486EC9873D34A6C20485F0",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -13962,7 +13962,7 @@
     "surveyId": "E30532662117BA6B24E2137EDFA1688110E0894B",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -14169,7 +14169,7 @@
     "surveyId": "10EAF251F3629FE3BE7BEA8F69C882584E35FCD1",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -14349,7 +14349,7 @@
     "surveyId": "F2C498D20EA584AC1B8ECFD1ACEF32D8B5403A31",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -14538,7 +14538,7 @@
     "surveyId": "FEB08718BAE45B71BEB15FFE24BB0498BDF69D15",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -14844,7 +14844,7 @@
     "surveyId": "6A11FD925CA3986E4278E684ADBBFD94397372BA",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -15051,7 +15051,7 @@
     "surveyId": "664A9D780BDC8F5581F66E169D127B0C98FFF5A1",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -15969,7 +15969,7 @@
     "surveyId": "C44E6CF560DC6D65925F46FC1895402FC6C9C97C",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -16257,7 +16257,7 @@
     "surveyId": "8A72FA9581D5D90EE3C5D569B24DA253EB32A735",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -16455,7 +16455,7 @@
     "surveyId": "AA9851FD29AFAECAEB9CC81360162BD5A2F58D13",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -17031,7 +17031,7 @@
     "surveyId": "6919FB25FBB17B70372A06CD06F98AC093AB991D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -17202,7 +17202,7 @@
     "surveyId": "CEC66EA89E358F06169F2A4373D732D8B0E1E61F",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -17382,7 +17382,7 @@
     "surveyId": "3CF2BB1B4138EDC42395880BB92AA3C6EA7C3D3C",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -17598,7 +17598,7 @@
     "surveyId": "A56FB06D1502C23FBF516AB7398732AEEF0D8AEB",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -18192,7 +18192,7 @@
     "surveyId": "ED8652240F5D6F5F299213C65C4F115D2990F408",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -18615,7 +18615,7 @@
     "surveyId": "6045EAE2C234274C6BA78985774CCB0035C72E91",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -18849,7 +18849,7 @@
     "surveyId": "45B37574F323BC970ECD19B0EF06550834077DDD",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -19182,7 +19182,7 @@
     "surveyId": "CCFBC4AA7B8E40BE78FA726C3ABE9AC32F922A86",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -19506,7 +19506,7 @@
     "surveyId": "0CE48CB321CEFB9FB9BF42FD995960BE0C84E963",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -19956,7 +19956,7 @@
     "surveyId": "F05E079ED485862ED7C086B5A772582E659CDC30",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -20226,7 +20226,7 @@
     "surveyId": "45E7CE0AB3479F02389F7C1584798E29716D8387",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -20532,7 +20532,7 @@
     "surveyId": "BB73A057CBEA1CFAF787266CD930B798E66C4C21",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -20775,7 +20775,7 @@
     "surveyId": "EEBBD7543B061043F447F318A1E3DBF2CA5F01E7",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -21000,7 +21000,7 @@
     "surveyId": "9482349F604488D5AE4154D79610CD76D90DEECB",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -21117,7 +21117,7 @@
     "surveyId": "0FDCDAEF9C1A926543469F6882C6FF47919A87B3",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -21369,7 +21369,7 @@
     "surveyId": "1723AB1F3B8DB5D6D8ED94E5EA462AEBA7B8838C",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -21612,7 +21612,7 @@
     "surveyId": "7F0BACA8CAC4C38228E67ABE258EE55E774CC001",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -21855,7 +21855,7 @@
     "surveyId": "F0C0F0A64FCDA0BBD31BFEC1500FFA876034C065",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -22359,7 +22359,7 @@
     "surveyId": "BCF254A3BBD3B21ADDAC696FDB298F00812AE8BA",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -22719,7 +22719,7 @@
     "surveyId": "6F11ED390381E7D2F2AA07CC015F8EF885D3CA12",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -22926,7 +22926,7 @@
     "surveyId": "F715A8992880E29F8824739622D2336188B00B37",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -23412,7 +23412,7 @@
     "surveyId": "EF3207A44D923C1934112F68E233BF9FD9B1BB2D",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -23655,7 +23655,7 @@
     "surveyId": "5F94D5878D11F55179D57CD850D542678E56A45D",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -23916,7 +23916,7 @@
     "surveyId": "75BE85D9366F5482F3FFF9FC896B67E882733E90",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -24132,7 +24132,7 @@
     "surveyId": "841E2579F7F1E6EAC87635BCDBCFFDB1EB1B2ACF",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -24438,7 +24438,7 @@
     "surveyId": "C92E1D74906B7616879B9FA6EE74AB6D551F3186",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -24609,7 +24609,7 @@
     "surveyId": "0C82AD1759367D4F78A3270C681BDB5BA3935B96",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -24816,7 +24816,7 @@
     "surveyId": "41DA6375453866F5C5B0D891F4B3B018E3BC6B12",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -25410,7 +25410,7 @@
     "surveyId": "693FEAAD554983E77B8AD31EE64E2967FD6B4212",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -25617,7 +25617,7 @@
     "surveyId": "D2E4D69645C7258F6AF35A5FA4BAD661AE2C7B90",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -26022,7 +26022,7 @@
     "surveyId": "1B2247B7CF1DF7D4F7F78D79D3D449E884174C71",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -26418,7 +26418,7 @@
     "surveyId": "D1D4CAA92CDF16AA3265F4733CB001CB71B3F022",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -26742,7 +26742,7 @@
     "surveyId": "CC67B17D0BB9A53015F96565A1955C18A2EFFD45",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -26904,7 +26904,7 @@
     "surveyId": "2871601D8497BB5BA6B470CEC61E575A2A96E34A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -27165,7 +27165,7 @@
     "surveyId": "3A02DEB669DAE7AC731F46F877269A11C30A9224",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -27525,7 +27525,7 @@
     "surveyId": "699D42389DEB87142E23AD6D0881B4D49D0CFBAB",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -28065,7 +28065,7 @@
     "surveyId": "D8EB2C2252F6EDACD18C074A1999EC2CEEBE32E5",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -28371,7 +28371,7 @@
     "surveyId": "F0968B33FC98CACA4DD92A311CC5F48697F92DDF",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -28578,7 +28578,7 @@
     "surveyId": "00B4BA6C4A9E27EE166E7A868D2B6EFD7367D3D4",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -28866,7 +28866,7 @@
     "surveyId": "DE24C15E548A7209FCEA5F0FF79E4997F24603A4",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -29064,7 +29064,7 @@
     "surveyId": "860323CC1BF83CB842A68E0A3F8C4733DFBD4D6C",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -29334,7 +29334,7 @@
     "surveyId": "068928DBEB7403DA1C2C0D39402B73860A491ECF",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -29559,7 +29559,7 @@
     "surveyId": "6CD65418DE5706A6C253B386F7D0B0FE2BBE2EA0",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -30108,7 +30108,7 @@
     "surveyId": "8C7DB46CFDD70949DA86E7442626B64CB37EF415",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -30306,7 +30306,7 @@
     "surveyId": "E8AC2D9078071A3F63C3207808A755F57A09B3DA",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -30666,7 +30666,7 @@
     "surveyId": "BDB59F39CFCCC65CE60CA5101AFEC7B692DB5AAF",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -30900,7 +30900,7 @@
     "surveyId": "726C6CE4890FABF98F3EAAA3097B22AC569F9384",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -31179,7 +31179,7 @@
     "surveyId": "B2BF3F2AC433E29CC117198F51798606BEF38378",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -31350,7 +31350,7 @@
     "surveyId": "41E98A6A2AF8633C5F5A6FC49D311DB239A68FA0",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -31809,7 +31809,7 @@
     "surveyId": "37BA5CF12F7AE9380670A7C0DA335DC43C7E45B4",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -31962,7 +31962,7 @@
     "surveyId": "394EA6762E2609559A88EFE3AA9D288A1621AB25",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -32115,7 +32115,7 @@
     "surveyId": "02C79988A3C914C08DBD4699DD382AF487D0E055",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -32259,7 +32259,7 @@
     "surveyId": "460BC6896324EC1A54BA6607786FA9EB541BA690",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -32484,7 +32484,7 @@
     "surveyId": "69620D6B939B3EDC0D15CFDC62E77E543F89E7B1",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -32871,7 +32871,7 @@
     "surveyId": "CBC64EB084B6263DAE032B4CA5C387D2A1CA5ACF",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -33330,7 +33330,7 @@
     "surveyId": "B3F3864C38BD7F7B09DDCE4C906B6B1CA60BC1EA",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -33591,7 +33591,7 @@
     "surveyId": "837D1D30D4F0CCD9AF7A3B16C32A0C7DDF0E8874",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -33888,7 +33888,7 @@
     "surveyId": "9D1D4D47852C426296A7E686ADE36FA9E0D87638",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -34221,7 +34221,7 @@
     "surveyId": "D0A197E607CE20B92F53262EC47B00443E58CEE1",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -34482,7 +34482,7 @@
     "surveyId": "09CF7F0D7B4578558B2C95B31F3E59FB5F8FC62D",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -34716,7 +34716,7 @@
     "surveyId": "F58FED1AC00467427F182A1E0C1CBF5DE57FA616",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -35184,7 +35184,7 @@
     "surveyId": "3D0E77F307D488C04B894E910C463586C72211FC",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -35346,7 +35346,7 @@
     "surveyId": "645030B252A73F275CF009E037C91F72D758BCD5",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -35616,7 +35616,7 @@
     "surveyId": "4B3A2F8013BEA11F04F3E859C0F8F85CDD2A717E",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -36129,7 +36129,7 @@
     "surveyId": "4094F4524A2E167975D774E3110076D886C62174",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -36723,7 +36723,7 @@
     "surveyId": "7D38FA2DD016F4A1D63FBE0BB88D09DCDF015324",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -36912,7 +36912,7 @@
     "surveyId": "16A7E2AD1537E126E177446FC0C03D2A2E4F126D",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -37146,7 +37146,7 @@
     "surveyId": "BFA3126F58B2FEA2891ECD5B7C2A1775DB4D3F32",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -37641,7 +37641,7 @@
     "surveyId": "55760ED2FFE264D6C75BD1408C1F4CC722B039A4",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -37866,7 +37866,7 @@
     "surveyId": "D6AC147E68ED5BF09173F52A24CD3C053E82D7CB",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -38136,7 +38136,7 @@
     "surveyId": "7C190412EC167A294981E11A25814D1A00E6CC0F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -38388,7 +38388,7 @@
     "surveyId": "4D361657E9D8516C11089D238750111E5B732054",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -39000,7 +39000,7 @@
     "surveyId": "4F7F481C7A0D3C56EEFF48B4676C4243F3F26CD9",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -39252,7 +39252,7 @@
     "surveyId": "37A5081679F28F58743E21D329ED0DAB199BCCB0",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -39441,7 +39441,7 @@
     "surveyId": "AC35A88D63466775DAC64142C9C31D94EB0CFC1A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -39594,7 +39594,7 @@
     "surveyId": "A113E63F8452D1619F001485CDB692A188DD2F89",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -39864,7 +39864,7 @@
     "surveyId": "F39BB97A17928BADB75177C915E882F89042FC44",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -40611,7 +40611,7 @@
     "surveyId": "0E6B3FCF8F0B22908EFBBBC4F75AE58CF5759BCB",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -40890,7 +40890,7 @@
     "surveyId": "B2DF45EB63984222C4EFAC15559D29041C23B428",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -41223,7 +41223,7 @@
     "surveyId": "FCB7459EC55260D655E21A659BE69D0206F9DFD5",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -41475,7 +41475,7 @@
     "surveyId": "EA5532D148670154F433416E8EAAF1CA796A00A6",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -41736,7 +41736,7 @@
     "surveyId": "F327168DF4F355065A6002E27DE998B5219A84E4",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -41952,7 +41952,7 @@
     "surveyId": "1766458AAC25907B92BD19BCB655AE66143C6DDD",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -42186,7 +42186,7 @@
     "surveyId": "49080658CE27DDA173E47E7EC714FF377AC907EE",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -42528,7 +42528,7 @@
     "surveyId": "E4A0B9C4EF7A1B371E8DFDDD20486638ED73983C",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -42744,7 +42744,7 @@
     "surveyId": "ADF3A54097B558862B2F055993DD92B7FE2D7B49",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -42915,7 +42915,7 @@
     "surveyId": "44F95A75D63CF83ACB07B2078A83BE84EE35D2A8",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -43131,7 +43131,7 @@
     "surveyId": "C01920279A19EA70C4381F5BAF82F56EAAC88620",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -43311,7 +43311,7 @@
     "surveyId": "23C1BF94D062D2C30F6E8171FA4F8E2657FF2BE7",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -43581,7 +43581,7 @@
     "surveyId": "0D1CFF308E9447D92ED69DBD5F9CAC9268BF7242",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -44031,7 +44031,7 @@
     "surveyId": "2086E3056288F3D6B3FE42CCC12A8F47AEF52390",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -44409,7 +44409,7 @@
     "surveyId": "5AA1BC2EA691FCEF6E569A406780B35BD2F32285",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -44634,7 +44634,7 @@
     "surveyId": "5794B4DCDBEBEDA63F75825D420FB462DF02F0EB",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -44922,7 +44922,7 @@
     "surveyId": "842349A78EC76B556133897FDC8EFD1653FD17AC",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -45219,7 +45219,7 @@
     "surveyId": "B9F3F79684CC543C31706215CB11B694421A8233",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -45471,7 +45471,7 @@
     "surveyId": "719B5D55AF1EE6AB877F2C50594C8346060F269D",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -45858,7 +45858,7 @@
     "surveyId": "448E8C2D240B4BEA11F94DED5CDC9265CC1F99B0",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -46200,7 +46200,7 @@
     "surveyId": "9B97CD2D4F62180E2BAC23060402230ADBAF1DE3",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -46425,7 +46425,7 @@
     "surveyId": "256954469D44B53D79B0E364CCF863695BA8199B",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -46659,7 +46659,7 @@
     "surveyId": "8A0B60221CAC8257FBE4F973D03BDBCF87AF0530",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -46974,7 +46974,7 @@
     "surveyId": "51B2A5715B6EF5C9545F7CFDDD37A9E42D129CE2",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -47253,7 +47253,7 @@
     "surveyId": "8C1D096F7048732EC0E6C932D2089E060302FBC6",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -47694,7 +47694,7 @@
     "surveyId": "1370FEB1CC6E5C622EF1C566763558E31C79F1A0",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -47910,7 +47910,7 @@
     "surveyId": "3594F57B742C8157687BF686905BAD805C604962",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -48315,7 +48315,7 @@
     "surveyId": "F7EEC79C03E49FBA298ED95A4A2002EF42967AD6",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -48657,7 +48657,7 @@
     "surveyId": "3021EF493D743CA5E9A506B071261DCB277C8B41",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "FR",
     "questionId": 2446414,
     "countryCode": "FRA"
@@ -85926,7 +85926,7 @@
     "surveyId": "1B933609C19D8571FD094EC6EA4DDA8115DF1758",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -88374,7 +88374,7 @@
     "surveyId": "35325FB92CC5D9C188DDEBE87779710C65B1B389",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -88644,7 +88644,7 @@
     "surveyId": "16FBF06C88A1A8AD23AA9133D5D0D525200E72EB",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -89256,7 +89256,7 @@
     "surveyId": "ACF773BB286EC6C2439222385C83556929188004",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -89679,7 +89679,7 @@
     "surveyId": "5D357FD42708B0BAEF8FA7496FA621FF30CED97D",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -90264,7 +90264,7 @@
     "surveyId": "9E9D42AE4904113B3C3F9FF1D82B817DC6F532DD",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -90759,7 +90759,7 @@
     "surveyId": "BD79E0D335D9A92F17BA5A16CD260E3E00149D34",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -91281,7 +91281,7 @@
     "surveyId": "8CAF596B4BEFE7D9A908F7F92A47F63C3699F373",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -91389,7 +91389,7 @@
     "surveyId": "7C95FEDEB85E2DBAC853B07A316D61C37219915A",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -91749,7 +91749,7 @@
     "surveyId": "B527A6DA026D49DC2A55631DB928FA7650795A0F",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -91992,7 +91992,7 @@
     "surveyId": "F8B6DFEB176ABEE2AA59D99F73175678A8AAA41B",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -92379,7 +92379,7 @@
     "surveyId": "CEDD89793EA2D132E753490358CAEDD6C045028B",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -93153,7 +93153,7 @@
     "surveyId": "CF4C28134010FE47D2718BFF430AC27C3970350F",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -93576,7 +93576,7 @@
     "surveyId": "1C2B34CD3BEB30B9D77245BD7233264EDCC9B491",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -93864,7 +93864,7 @@
     "surveyId": "298B05E4FCAE72214B58E6991475BB3363BE5F78",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -94260,7 +94260,7 @@
     "surveyId": "DF1DD758A87E35E286AFF1B9C5EDEEF947B9CBFA",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -94602,7 +94602,7 @@
     "surveyId": "BC48417C1A2E5F794014D31CBDF14BC32D6EC08D",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "CYP"
@@ -94710,7 +94710,7 @@
     "surveyId": "C1AAF64E5D8E9295D7DFE2E780237B745DFCC239",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "NLD"
@@ -95124,7 +95124,7 @@
     "surveyId": "6EC44262565278631386465F97922E05C2CB684B",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -95547,7 +95547,7 @@
     "surveyId": "CD53B21346F8CA8D7013625A31E9CB61634C81BA",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -95889,7 +95889,7 @@
     "surveyId": "E6199DC6E9160030BEF52F6D92DD79246FC4ABA5",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -96033,7 +96033,7 @@
     "surveyId": "7945F6B17C5A05AA9291848285BFF1AAEEFCFC1D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ALB"
@@ -96483,7 +96483,7 @@
     "surveyId": "9BFE93CE08B78C770433D550EF117F5EE36777C6",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -96636,7 +96636,7 @@
     "surveyId": "95910DF41E406390B1A70E1D6619FC5EA0A947E2",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -96969,7 +96969,7 @@
     "surveyId": "1E44AF693AB9BC69890A9BECEE9E92ACEA86BB08",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -97005,7 +97005,7 @@
     "surveyId": "C642F7AE9ACDBC1F7E7182790BEB8C0C3EBCADCD",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -97500,7 +97500,7 @@
     "surveyId": "2EA2CE92421A1FA0ABAC747E3B103B4FF6EEB2B5",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -98139,7 +98139,7 @@
     "surveyId": "F327C966B971CFBF7C59CCE4E4ABF3F3F463E170",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -98274,7 +98274,7 @@
     "surveyId": "9C520AFA52056B9913177B1897AA8CA51F010A27",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -98499,7 +98499,7 @@
     "surveyId": "A4769F3269CB0E83E633E9565D7CF9D3E7808342",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -98670,7 +98670,7 @@
     "surveyId": "10760582A039770CD3E8B30CBC27D15E6257C370",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ALB"
@@ -99237,7 +99237,7 @@
     "surveyId": "8C6D3C264077B4EAB261A242C5C7A8762D95123F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -99525,7 +99525,7 @@
     "surveyId": "1297628CF6271585FB9A8C2F2A3ED3D9BB5A409E",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -99678,7 +99678,7 @@
     "surveyId": "4AA013183A53940058CFF22174A0C80044665B80",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -105672,7 +105672,7 @@
     "surveyId": "D4BC6CC7127E76A8B606A47ECB194B81BE55C624",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -105942,7 +105942,7 @@
     "surveyId": "18FA0741FB8AEB5CE3A4261B0111415E90BEF704",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -106320,7 +106320,7 @@
     "surveyId": "3F92003E1EB8FB760AE32535A0C28301F4A9BC77",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -106491,7 +106491,7 @@
     "surveyId": "4688509CD1D90744FCEBBEB6EBCCEE70DC91C6B3",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -107310,7 +107310,7 @@
     "surveyId": "B1ED07AB32F6949A1AE292F501EC63F05421ADD2",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "GRC"
@@ -107787,7 +107787,7 @@
     "surveyId": "E0172C9DE22E67CB4DC4A24F6A9AD51B805FDAC9",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -108030,7 +108030,7 @@
     "surveyId": "FB06A9BEB3D3CBFB41C489E823EDF2962346F9A6",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -108453,7 +108453,7 @@
     "surveyId": "D00A46567B3F6F79B69866BCF9576338A236D2AC",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -108984,7 +108984,7 @@
     "surveyId": "026E95BF30A893A4FA8F679F01AEB65C6CFD45B1",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -109263,7 +109263,7 @@
     "surveyId": "F9EC590E866BCE9B96EC47D563C36D50C177A3BB",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -109542,7 +109542,7 @@
     "surveyId": "8CB6794C7244ECC7790747EAD285AEB39F1B8917",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -109911,7 +109911,7 @@
     "surveyId": "78B36A1A29E1C4CB4A5B8966FB5D7B1E18335616",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -110019,7 +110019,7 @@
     "surveyId": "948441B0AB37433B5D366A5FD73C3396C81CF5DE",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -110370,7 +110370,7 @@
     "surveyId": "46ADCC11C2E656079E32E981618B03DB2D376DC7",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -110847,7 +110847,7 @@
     "surveyId": "C90615132CA8187E95696F67A2A24D8EF2EF2FAA",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "CYP"
@@ -111054,7 +111054,7 @@
     "surveyId": "C4AD356B176F881FD4AF1A59487CA0D3C4C5D4F8",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -111873,7 +111873,7 @@
     "surveyId": "116CA26BB40D584B16785E87E8CA4BAF55A49D67",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -112674,7 +112674,7 @@
     "surveyId": "036A1EBD8A71175F1FAF166A4C8205C9CE8E4791",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -113007,7 +113007,7 @@
     "surveyId": "1CD4FE02A9311BD040FF7A3E7F74FFBF31023D08",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "CYP"
@@ -113403,7 +113403,7 @@
     "surveyId": "3F0D8186D8387434B2AF46B6E51C8D41FA65EB3A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -113916,7 +113916,7 @@
     "surveyId": "4D4874B33728F9F748085B1DC71C338F99AA615A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -114420,7 +114420,7 @@
     "surveyId": "49D85D763F92EBEB6DCBDBDCD8B29FF3BD819A01",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -114726,7 +114726,7 @@
     "surveyId": "352832AA87584251D86BC74FCE47BBDFA4448C4B",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -115122,7 +115122,7 @@
     "surveyId": "98A2B845F4B588C2422B8189F611E979FF5C8D29",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -115995,7 +115995,7 @@
     "surveyId": "67BEC8F9A502EA8F06FF85293EEA945E3FBF3539",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -116382,7 +116382,7 @@
     "surveyId": "C975A4B09F146818894D410419A55C760B780A8A",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -116508,7 +116508,7 @@
     "surveyId": "81D19A25129E9D372B9932E4ADC943F37EEB9F08",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -116805,7 +116805,7 @@
     "surveyId": "98E3CEDA630E1F697F278E81EEE4F5D6D2C6E58F",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -117444,7 +117444,7 @@
     "surveyId": "49E0FCFFB808919BB2321979CB7212AD5466BA11",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -117552,7 +117552,7 @@
     "surveyId": "B4B8FAD5CC565323948BE23ECF0A6FC6CA5A6B4F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -117876,7 +117876,7 @@
     "surveyId": "D6FEF971B13CA34EF3D27FE3C013CC27BB7AA040",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "CYP"
@@ -118083,7 +118083,7 @@
     "surveyId": "7D31590C11CED95ADC87F81A66F8C32E56AC9BAB",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -118479,7 +118479,7 @@
     "surveyId": "A04A18F073E3CF897F5268838774EFF127927D24",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -118749,7 +118749,7 @@
     "surveyId": "823BA3A03B42B15F3B1F33422ADA0643FF636E88",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -118983,7 +118983,7 @@
     "surveyId": "17246CBF16E7CDE79F158E01A4F6963B7F84D77C",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -119325,7 +119325,7 @@
     "surveyId": "CEC50CA1890A9E04295777A75B3F125A421A11E5",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "GRC"
@@ -119496,7 +119496,7 @@
     "surveyId": "72DC883C53FD0D460342AB25F60FC4ED04D713E5",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -119667,7 +119667,7 @@
     "surveyId": "D6CA79D4489804CFA918AC15F8966C818FDF9C0D",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -120513,7 +120513,7 @@
     "surveyId": "46AD4B3DB62DB0F374F55D8008BD519994DF1141",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -120711,7 +120711,7 @@
     "surveyId": "D82114172A1CEA81836F1F1FDE673052FA60BF43",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -120855,7 +120855,7 @@
     "surveyId": "76C2A37A1670900AEF29B036B09C729DBB33C49F",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -121359,7 +121359,7 @@
     "surveyId": "998614D73EA052F7349F5D5EFC2DD93D0AD0FFF2",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -121557,7 +121557,7 @@
     "surveyId": "59E62975E1747F9D8971E9686E73084D8C327245",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -121971,7 +121971,7 @@
     "surveyId": "8521F3B28774AE8A947DD35076A769E758556C3A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -122322,7 +122322,7 @@
     "surveyId": "7B52F0EB962FAAC98B28E41ED89BE3DDF3503644",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -122808,7 +122808,7 @@
     "surveyId": "784D78A2B03E030E3B4945F9703989BD1CA5AB1F",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -123123,7 +123123,7 @@
     "surveyId": "E426F606695D07F98490F33358E62FA10532760D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -123402,7 +123402,7 @@
     "surveyId": "294FE85387FAB366D8BAD3E334EA63D77E45EAED",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -123483,7 +123483,7 @@
     "surveyId": "326616CD3AEB57A8416C64B502DF15D4755C4CE6",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -123807,7 +123807,7 @@
     "surveyId": "6117594B2F020EE283C4A0AF461725EFF438F6BC",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -124266,7 +124266,7 @@
     "surveyId": "15BE48CDC77721BC66852E87E3C16D05FBEB3CD7",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -124545,7 +124545,7 @@
     "surveyId": "3890C246722AE9E1D78240B769461734003D1FD3",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -124842,7 +124842,7 @@
     "surveyId": "AF4CC123A541008225BD2193377977500759CF45",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -125049,7 +125049,7 @@
     "surveyId": "65DD3D747E894D65C8CCDCA94F3193C2B8620829",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -125328,7 +125328,7 @@
     "surveyId": "9544F605BFD83E92F44ABC653D24A25C146A93B1",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -125868,7 +125868,7 @@
     "surveyId": "89790592F53D803FC4DFC64FE6A03BE969B73144",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -126111,7 +126111,7 @@
     "surveyId": "B64821C0E0BFAF3E1D64602DA74E0D3BD978A0A8",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -126381,7 +126381,7 @@
     "surveyId": "483C2C21D8568D77155B7327A126186CE4220262",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -126651,7 +126651,7 @@
     "surveyId": "D7C761B80416D4BFFDE5600D692753E6A942C72F",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "NLD"
@@ -126912,7 +126912,7 @@
     "surveyId": "38F1595CD6598ADE3DEBC186ADE8466728B63098",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -127326,7 +127326,7 @@
     "surveyId": "6568F47D16A2ADE75220D7EB14AF46627906E4EC",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -127632,7 +127632,7 @@
     "surveyId": "E6314509AC6791D50126153E3E67173FAECABECA",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -127875,7 +127875,7 @@
     "surveyId": "654970C4F87ABF4FDB1D6473A35C524B7C84DFFA",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -128136,7 +128136,7 @@
     "surveyId": "8D9E109D5EEEBF14F4EA8D1FF2C6267D79EB68F1",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -128343,7 +128343,7 @@
     "surveyId": "7E00A4BADB8EFC998F3B300D1C803957DDD19216",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -128550,7 +128550,7 @@
     "surveyId": "2DDBA1424E1D36D140893E62AC225C2352ABACFA",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -128901,7 +128901,7 @@
     "surveyId": "CFF731520A7A93C8941C72FAAA72B3F252C9CFDE",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -129765,7 +129765,7 @@
     "surveyId": "303295B10154A7F80E54E89DC1B86BD961F2B298",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "NLD"
@@ -130143,7 +130143,7 @@
     "surveyId": "28E1394396AB2132CCC688F4BC845B326A07A5CC",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -130368,7 +130368,7 @@
     "surveyId": "194E0C5C3AD5A7BFE66CA3570125C8B0450D048D",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -130800,7 +130800,7 @@
     "surveyId": "4E3329F2D3DCBB8F83990C5D80ADFC3BD3D8A662",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -131187,7 +131187,7 @@
     "surveyId": "63488C15EDB58E791CAE2394439D9C13CF91ED03",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "CYP"
@@ -131412,7 +131412,7 @@
     "surveyId": "1FB0621CDA36E8ABBD80B3F66CC3B91E7878ACBA",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -132069,7 +132069,7 @@
     "surveyId": "65B72139425407E34EFF5822418C9B470F2A47FE",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FIN"
@@ -132240,7 +132240,7 @@
     "surveyId": "31E7EC98D61321C7D55C3F57B209466FE6709C98",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -132510,7 +132510,7 @@
     "surveyId": "9CE59BD7DF7FF25BA1A2AA7825B2CD668A9E6729",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -133149,7 +133149,7 @@
     "surveyId": "EAC55D55EBE49F0FCC50377D817E06B74A4CE68A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -133797,7 +133797,7 @@
     "surveyId": "E9FFA69FFA030A9613DBEAEB2B2DBF0CAF106C17",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -134193,7 +134193,7 @@
     "surveyId": "0CBD3A63F6C02EC3EED0A4950423367095E3009D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -134517,7 +134517,7 @@
     "surveyId": "078CD8DCA222CAD1CCA1187F4362342BC9E56F7F",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -135156,7 +135156,7 @@
     "surveyId": "ED3AAEC21E14952649CAC7DC00447A0ADE2782C0",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -135309,7 +135309,7 @@
     "surveyId": "39ADD0E08DE6FBB87F6CEED40853931702F2421D",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -136065,7 +136065,7 @@
     "surveyId": "EFF40992A45FB0479C4F34E25B833DAC1AB2C5F2",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -136515,7 +136515,7 @@
     "surveyId": "5ECC2C4ED12B7A0A19930F11AE92029B1CD5DFDB",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "NLD"
@@ -136641,7 +136641,7 @@
     "surveyId": "56F0481D646FF35F4066C8F0273BCB2A15072C7B",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -136920,7 +136920,7 @@
     "surveyId": "797DDF792EE74DD9BE4BD2C642D076AADF582A54",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -137505,7 +137505,7 @@
     "surveyId": "94EE8AC78C88E6CB8CA348B375A90DECFFE2D618",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FIN"
@@ -137613,7 +137613,7 @@
     "surveyId": "2BE6C471CC634B4838F8CC8E1D536C461A1619E2",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -137865,7 +137865,7 @@
     "surveyId": "2D1480466A46C59BDC7DF4EC6F9A9390BD7BD9CB",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -138252,7 +138252,7 @@
     "surveyId": "5E9215536AFB37F09AB0294CCD574D5563E722C3",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -138711,7 +138711,7 @@
     "surveyId": "AB2692DD56597CA41A0E47BA6DA368A9F21BFC8C",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -138837,7 +138837,7 @@
     "surveyId": "4A9DBABDDA8E0CE8377DF0A6BB286E71FC3114C8",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -139305,7 +139305,7 @@
     "surveyId": "6B4E8047B25E733A0152D7A6D8FBDA4990488305",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -139611,7 +139611,7 @@
     "surveyId": "2102F6E97464421AD160D21D9629D2F696F6EEED",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -140151,7 +140151,7 @@
     "surveyId": "B7BB481B083C9AC454A0B049F3CC6D0E30AC6549",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -140448,7 +140448,7 @@
     "surveyId": "91C7587AEDC8DA9D3BA7B3A0BCF29C965D92F67B",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -140808,7 +140808,7 @@
     "surveyId": "11CA72862676FAB1A9BCF622F07B9DC94201E14B",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -141564,7 +141564,7 @@
     "surveyId": "0C7C1F94CA033E8E81933C4FA56CFE7316C0A48F",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -141987,7 +141987,7 @@
     "surveyId": "D7CE33B2563BF74331756989688F3DB448AFC152",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -142185,7 +142185,7 @@
     "surveyId": "9738F64168DB2524860D56066B5C4848A18EBE3A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -142365,7 +142365,7 @@
     "surveyId": "0FF72D1239C1D4C772C009ECBA488C49CF337571",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -142671,7 +142671,7 @@
     "surveyId": "AA529E80CF5B307D95311E831CA65C291CD27C23",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -143067,7 +143067,7 @@
     "surveyId": "31962818C792A1660C95AF2502C2EBD3BE075718",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -143517,7 +143517,7 @@
     "surveyId": "9B24998309EB6F35B6D0C0085AB0226EA9D27661",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "SWE"
@@ -143832,7 +143832,7 @@
     "surveyId": "2D0B8FC79C5D527320D6B10F41CA4EC0EB00F2C8",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -144435,7 +144435,7 @@
     "surveyId": "16234E5E02A3D14BE9B367AA425F28D7FF5CAAFB",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -144642,7 +144642,7 @@
     "surveyId": "258CE865F223182B4C39DA5AF4F7FFA216A31EED",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -144786,7 +144786,7 @@
     "surveyId": "0E233D77FEB2BFD766003D5AA136509A50E1BD33",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -145209,7 +145209,7 @@
     "surveyId": "58CCEA1BFE78507129B3BE4FE7C9FF1891078706",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -145506,7 +145506,7 @@
     "surveyId": "FEFB6697EE07936CDCCB867AF762766C5B9285A8",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -145776,7 +145776,7 @@
     "surveyId": "6F43BF9E50E548EF7CFE1960F1A169F445046DC9",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -145866,7 +145866,7 @@
     "surveyId": "B77CF906D1EFCDD0C70993E1ECBD7C5DEB921B5E",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -146181,7 +146181,7 @@
     "surveyId": "C9D175A7AEB6F2E645812C2E41AEC60B580B3369",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -146415,7 +146415,7 @@
     "surveyId": "125DDA7EAA351A395145693EBE5F598D563E8078",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -146667,7 +146667,7 @@
     "surveyId": "0C80CBBB3D6B0B59AFBD29E8553D4E9F9BF3C19A",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -146856,7 +146856,7 @@
     "surveyId": "1F69C67D17B251EEAEFB5BC28479C3626E908C6E",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -147018,7 +147018,7 @@
     "surveyId": "196DCFD48A896343D5662EA8C1BE30605F97F37F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -147855,7 +147855,7 @@
     "surveyId": "10026DD8C32F45392620B33CA56AA0E72699F250",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -147972,7 +147972,7 @@
     "surveyId": "CE4559EC84F3A96EC708C9A5974D528BBAD81D1D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -148314,7 +148314,7 @@
     "surveyId": "B465F45E55DC8AD2B5A158B981B9FEE2A40A73CF",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -148710,7 +148710,7 @@
     "surveyId": "8897BB5D437FD85A19268B2C884DD6E34E885C97",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -149403,7 +149403,7 @@
     "surveyId": "4BCFCC84CCF69903A3A50EC9A4A5A2D7134294D9",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "SWE"
@@ -149718,7 +149718,7 @@
     "surveyId": "E1AE169D470AA0206E31AB10EAA2A4D55A856F0E",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -149925,7 +149925,7 @@
     "surveyId": "5184D9B576B4454DDEE63810459F8A5669006D36",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -150393,7 +150393,7 @@
     "surveyId": "D2985CF3BA88E7C235373DBC8FB8034B1D6F3A50",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -150672,7 +150672,7 @@
     "surveyId": "0396C6B304ACCEFC5226C8BF3EDB7697109D19CF",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -150816,7 +150816,7 @@
     "surveyId": "68D2756406E58297E5B94AA6CDA62638D7C1E96E",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -151383,7 +151383,7 @@
     "surveyId": "240D3E6BBB96C4A3BADE8F98015A03B2A6FB14FD",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -151761,7 +151761,7 @@
     "surveyId": "C58A482CE028CEAE5E31617012C0532BE402310E",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -152031,7 +152031,7 @@
     "surveyId": "46EC148E35AD9A5366F2067A9BDBE20529BA9C11",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -152400,7 +152400,7 @@
     "surveyId": "08BF75D474071DA959BF810615434C129C1C456C",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -152724,7 +152724,7 @@
     "surveyId": "5A60B7131B4D9B653BC5CA74E562838A4B4FB878",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -153291,7 +153291,7 @@
     "surveyId": "77F9D97BDFC4B5B30CA310345F6DD5E280D6CE05",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -153705,7 +153705,7 @@
     "surveyId": "843137C21F418DBAB8879E0A89ADEECBF593433A",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -154128,7 +154128,7 @@
     "surveyId": "3BC95F8B64746BF9E9977C282FC6D948091FF4A0",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -154479,7 +154479,7 @@
     "surveyId": "5C178C901D09871655A67B1306D332FCD9452A89",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -154785,7 +154785,7 @@
     "surveyId": "02EC8B1276D38A638DF4823EB78FCD5B36B2837F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -155208,7 +155208,7 @@
     "surveyId": "C954A213232FD1AB436B60C3DD0A77D97AF950C7",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -155604,7 +155604,7 @@
     "surveyId": "961EB3B9D2A871F8CCE08CBE34FD6EE33C07413C",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -155955,7 +155955,7 @@
     "surveyId": "CCE983115C322D40C6DAB098BFB5325923CDE553",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -156378,7 +156378,7 @@
     "surveyId": "DA1DDA7AB73770F5C8455557D043DEAB64112EA7",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -156819,7 +156819,7 @@
     "surveyId": "91F5E1D7C39F094B6C0456D9BCDE83C5045C97A3",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -157197,7 +157197,7 @@
     "surveyId": "3985F9FF2A1C3B5C2AFCDEAEC37A3F1D7486945C",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -157674,7 +157674,7 @@
     "surveyId": "22019AEDFD791127CD9FAAED6B4C6CD259A506E5",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -157980,7 +157980,7 @@
     "surveyId": "7766C8BA52C57A26E82E528F58439B9ED8E7A5A5",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -158367,7 +158367,7 @@
     "surveyId": "58E121A4DEB5104DD0722AEEEA23081BFB2B9641",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -158718,7 +158718,7 @@
     "surveyId": "5575BD7AECD90FF11386D39A8E3301655B37C687",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -159177,7 +159177,7 @@
     "surveyId": "BE237A1A92B30DCC53325C70DF37493CBFBE3BBD",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -159537,7 +159537,7 @@
     "surveyId": "0EC696BBA5ABE2248990877E2BC571190AC47E9A",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -160014,7 +160014,7 @@
     "surveyId": "1DD8979F628DBBF7F72574D7C284710A891A6EBF",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -160320,7 +160320,7 @@
     "surveyId": "D0378A84D7A775EEB360F9C1652E8B61922D2493",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -160644,7 +160644,7 @@
     "surveyId": "075786E917BA8E7B723ECF7FACD7753212A7572B",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -161040,7 +161040,7 @@
     "surveyId": "03DD8FFA406D3262418FE552A5BBC8D96DEF6093",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -161346,7 +161346,7 @@
     "surveyId": "DC140E0F7C01BF7734A75ED87DC22003083569F5",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -161769,7 +161769,7 @@
     "surveyId": "33E5242F70EC99C797C64842A5C2A3370AD57A6C",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -162147,7 +162147,7 @@
     "surveyId": "C994FC42487CBFCE6FD5D2916A52393EF16D3DEC",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -162516,7 +162516,7 @@
     "surveyId": "B1C3CA656992172F9656BD0B7C9A9E3275D086EE",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -162912,7 +162912,7 @@
     "surveyId": "07E88BACB0499AFF8F907A9C62EFF172B20D1C06",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -163335,7 +163335,7 @@
     "surveyId": "63EBE77C3255EB14E3A1CCB47C0298CAFC095176",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -163812,7 +163812,7 @@
     "surveyId": "BDAACC3852BDF8E7AAEC0617B2FC29023D2E1FCF",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -164163,7 +164163,7 @@
     "surveyId": "20E41D21F77E01207D46628F7F5F141953ABD374",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -164586,7 +164586,7 @@
     "surveyId": "F0B71C55212AB2F87BC33ECA1014A595ADA9554A",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -164955,7 +164955,7 @@
     "surveyId": "04980610E94C2FEBE0824A8B0ECB7289F0BE9CA6",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -165378,7 +165378,7 @@
     "surveyId": "9FA014B3752B0B359AAF929F7910E7CE9DC96CC3",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -165801,7 +165801,7 @@
     "surveyId": "3202BAEF6D244C089CA7035A055E440CA4C60EA3",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -166188,7 +166188,7 @@
     "surveyId": "2414B66221BED98DC954649E18E5DDC2E42DAE4D",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -166620,7 +166620,7 @@
     "surveyId": "0FE31D1600D6A4603376F04C63F924F2395871F7",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -167088,7 +167088,7 @@
     "surveyId": "57A785B5441FD117C61339F11940B36A3340DD0F",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -167565,7 +167565,7 @@
     "surveyId": "B5102ADA921DE205C193703147BC97F450C1ADA5",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -167988,7 +167988,7 @@
     "surveyId": "4B45A2C3F3FB8D6F3F12598C0610918F4109EDA4",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -168294,7 +168294,7 @@
     "surveyId": "CD4EA7098ADE5D53407A8F938750E4571F3E0F07",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -168645,7 +168645,7 @@
     "surveyId": "A95B47C38F8FFFA6CB1A3D63201B98C3E86E0F16",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -169059,7 +169059,7 @@
     "surveyId": "6C80715910FC22506BC25172302618017FA9B55F",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -169410,7 +169410,7 @@
     "surveyId": "2AA7318274F1FEA32B7E65B67494DADDD958A4E6",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -169725,7 +169725,7 @@
     "surveyId": "2C9C66AFAA2842D29CA757FDEA52187E6E03D0E2",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -170148,7 +170148,7 @@
     "surveyId": "DBA6FD785647B94EB7FDEFB5670D21A98DC4F11C",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -170544,7 +170544,7 @@
     "surveyId": "6BBD9609C959E8D397BEA0EC9487BBB45FCB7AF2",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -170949,7 +170949,7 @@
     "surveyId": "E34E9106BE5D6E12BBAB5AB6177EC7BA547B4BD9",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -171372,7 +171372,7 @@
     "surveyId": "2F2035CF3ABF97A0FD73D94A6D8FC6E4EA366425",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -171849,7 +171849,7 @@
     "surveyId": "1F0C349D3D4A169DCF5782BF0A7C1FF2A1E4CEC4",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -172146,7 +172146,7 @@
     "surveyId": "0EBF711F46BFD4AF48EF0D077300BFC4FD672B1E",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -172569,7 +172569,7 @@
     "surveyId": "12789BF94AD3B3C94C83F479033769B85F7C4AAB",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -172920,7 +172920,7 @@
     "surveyId": "50FEAFEA8C813273CC12E7DBEE72709913ECD9EE",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -173343,7 +173343,7 @@
     "surveyId": "2A9E13C489587A9A0B9FCD5EA6F5B75656EE47D6",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -173766,7 +173766,7 @@
     "surveyId": "393549F66AB87F21AB245755B5AC047841A33098",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -174234,7 +174234,7 @@
     "surveyId": "BEF3EEEE5E56A5988CA22FDB8876A4204CEB47F0",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -174549,7 +174549,7 @@
     "surveyId": "A9CACB9CE028C5D0EC21B313C1911D0930C7E507",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -174873,7 +174873,7 @@
     "surveyId": "7DBC5664C2407157036C17FA5F8FA02880C11A3E",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -175296,7 +175296,7 @@
     "surveyId": "1BA99D609D8648451603BEC48BF0AA2F9FD35487",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -175629,7 +175629,7 @@
     "surveyId": "DE0BA48A8E160E6474DC77C596886B3095E1ABFC",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -175971,7 +175971,7 @@
     "surveyId": "39246125F23BEC599D4F10D42A635CB8464D912C",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -176313,7 +176313,7 @@
     "surveyId": "6C6DD430B84447CCFCF21E7AA85AB4185C48FB56",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -176736,7 +176736,7 @@
     "surveyId": "ABDF9F81C39EF085829A07354489923EBEFAF60A",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -177123,7 +177123,7 @@
     "surveyId": "1E6B1E10B7D46EDEE3F8C0BCA377B4AEFE39BDAF",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -177465,7 +177465,7 @@
     "surveyId": "4F393C7CEAAACC22C6A067B765EFC4040EE97E23",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -177771,7 +177771,7 @@
     "surveyId": "2E15A452F5F8ABC224119ADDA9A388DA754D4CE4",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -178194,7 +178194,7 @@
     "surveyId": "445B1EFEB1B2A851F5AC5B21DD33C319B8DDED1C",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -178509,7 +178509,7 @@
     "surveyId": "B5D86E9ED4CF962B5EA5F579EEA375110392EF64",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -178806,7 +178806,7 @@
     "surveyId": "967065DDD92F95238CA89F7369A6001843FD5624",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -179229,7 +179229,7 @@
     "surveyId": "85F48C58BB86B6DB2EDEBF90C663470CA8166292",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -179364,7 +179364,7 @@
     "surveyId": "CD95C4190A1DC4646674CF048D0557F06653E4E5",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -179652,7 +179652,7 @@
     "surveyId": "618A0E83724DCB3A6DD54B6CBA4A03944F29E508",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -179958,7 +179958,7 @@
     "surveyId": "A684511052F0C31FECC2A7E0FAED1D1C4921C13C",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -180525,7 +180525,7 @@
     "surveyId": "4DA1CB8101D89D4933FB30C355F49435F5DE1A3C",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -180867,7 +180867,7 @@
     "surveyId": "9CE010C9179EC0D826BFA7A69878BE93A46FF31A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -181074,7 +181074,7 @@
     "surveyId": "F3D42F7D2123733FABB220C0BF4F67F7972016AA",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -181254,7 +181254,7 @@
     "surveyId": "4DF248A2B88A43A59A45F8D1D37A3977D1B08A42",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -181524,7 +181524,7 @@
     "surveyId": "052CC6E1BD10B8A089E236B4C0193920D715024E",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -181803,7 +181803,7 @@
     "surveyId": "2B139A31E2DAE3C485EA136B89A7EB1E5E2C3F70",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -182010,7 +182010,7 @@
     "surveyId": "DA0090B2DDAFDDC50C2E7656A070D5B57F9F118C",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -182442,7 +182442,7 @@
     "surveyId": "0307F0AFB45549FA218F44DB31EB57E8E3A4E523",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -182730,7 +182730,7 @@
     "surveyId": "BBC6D67F9C1ACAE5A9D19ECBDE603B76F9A3B193",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -182937,7 +182937,7 @@
     "surveyId": "4E025E5A7EF2CC645E9076E375CC3BAB88B4F491",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "GRC"
@@ -183288,7 +183288,7 @@
     "surveyId": "6A2B33B8950619EAB925CDEFD40FA19707577E0E",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -183783,7 +183783,7 @@
     "surveyId": "BC03A71BAF7AD5140A73073CB30A60F382D7203D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -183990,7 +183990,7 @@
     "surveyId": "C0E8567D6FF8873B56B102DE4304F9FCCEA719D9",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -184197,7 +184197,7 @@
     "surveyId": "89E02507310593D5EDD2697C650006152C89DE0F",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -184503,7 +184503,7 @@
     "surveyId": "B7557F545301906EFC85C8007B05F1124ED31CE4",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -184917,7 +184917,7 @@
     "surveyId": "5FA7F6A702004869AFD36F75B72715595DE1F945",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -185232,7 +185232,7 @@
     "surveyId": "42050CE40B65F6B18F224E9D6018E241C8A8F300",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -185547,7 +185547,7 @@
     "surveyId": "03D0072A90A7FA319058E69BEF7086E78FBD835F",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -186096,7 +186096,7 @@
     "surveyId": "D2AE171CFFC667CE396F636F7941FDFE15189067",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -186294,7 +186294,7 @@
     "surveyId": "27451BC0B7E9C766C7E20291EF43AC617FE25947",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -186906,7 +186906,7 @@
     "surveyId": "C262D8DE9825D646503DB2B3031473E60D4F957E",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "CYP"
@@ -187032,7 +187032,7 @@
     "surveyId": "A788D5337A7A3738CF51C96A3B56E0F3F3F3613D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -187347,7 +187347,7 @@
     "surveyId": "05FE6771F9FDC0DDC748FD74DD4F9E3919C3F034",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -187869,7 +187869,7 @@
     "surveyId": "01770075B5276CE54FB8E9E21A23D050EFFEE1E1",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -188040,7 +188040,7 @@
     "surveyId": "AE02F9BD4656FD30B25F6345B889D3E128F6B2BA",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -188580,7 +188580,7 @@
     "surveyId": "4F9A27D335AF36E78675F1D7C0D8D6E097DD1FE9",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -188994,7 +188994,7 @@
     "surveyId": "F5E8F9475165019EBE8AB3089B681564F40449E4",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -189246,7 +189246,7 @@
     "surveyId": "82DE65C2F46E6B70659E2BD8867C6F5CD1ABAED2",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -189426,7 +189426,7 @@
     "surveyId": "0824330B07BD3C8F648E4D2D9F8D45A2B90B46C4",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -189570,7 +189570,7 @@
     "surveyId": "8F9FECA38C7CF6CAEA3C42F665E8EEDF5403D9B2",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -189966,7 +189966,7 @@
     "surveyId": "7E7E775E14D5B20ECCE5AC05121885ACCD443027",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -190605,7 +190605,7 @@
     "surveyId": "D17A8F65D0B59F82496ADC5F41B2C8091D7971AB",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -191046,7 +191046,7 @@
     "surveyId": "735ACF7A01DBB1242A26B2533953B0B79DEE20FF",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "NLD"
@@ -191946,7 +191946,7 @@
     "surveyId": "6090434FCCFF26982AB4E5C56DF1162D83FA6181",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -192252,7 +192252,7 @@
     "surveyId": "42B781F88ECB3344C98F8BC1C359C107C7F0EDEF",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -192531,7 +192531,7 @@
     "surveyId": "EC4190DD7EC2FC175F71B0DA330CC2C81387ECA8",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -192819,7 +192819,7 @@
     "surveyId": "F79498449F41913EE474939EE3EACEC13F69BF99",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -193161,7 +193161,7 @@
     "surveyId": "55C88253EEC42AA0919FAE1E9A66D72C0F6906AA",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -193404,7 +193404,7 @@
     "surveyId": "F9018576F9C976175FF6AFCEE8880EF130EE93C3",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -193638,7 +193638,7 @@
     "surveyId": "26079BCAA19361A5FA2E7D68207A784169EB3C6E",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -193719,7 +193719,7 @@
     "surveyId": "5EB1AFBFA095B941A42D0A00EAC075A6EED50FBD",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -194142,7 +194142,7 @@
     "surveyId": "DDE445901EEB5423B307F12E05C824A4374529B7",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -194259,7 +194259,7 @@
     "surveyId": "62A4857CDA3C919349DF05C67334D1135B20A2C8",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -194565,7 +194565,7 @@
     "surveyId": "6D8B0E4446BABC2AC8B3F4E8DBA19B1F249C1181",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -194754,7 +194754,7 @@
     "surveyId": "DFDA40B1E2F67947EAB7A2211330CA692C46A7B8",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -195204,7 +195204,7 @@
     "surveyId": "39CE7317409AE8A2BA1F2C77B7191A4D01E92D51",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -195402,7 +195402,7 @@
     "surveyId": "4D96DD1261A48B76B0F3FA98FCC0AF017186E529",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -195771,7 +195771,7 @@
     "surveyId": "819437FA507400078DA11A8CBB47D2237DF5E21B",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -196248,7 +196248,7 @@
     "surveyId": "86E527A5582B4908C926C87CF6295DB3A741BC05",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -196671,7 +196671,7 @@
     "surveyId": "4034D8746BD2ADF71413C1456DF2C98FAE2C7A0D",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -197292,7 +197292,7 @@
     "surveyId": "9EB06B75099560676CBFD0BC73AB10CF617F387E",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -197670,7 +197670,7 @@
     "surveyId": "18002EEA93650DCF56B07D931C9DA192AF086940",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -198183,7 +198183,7 @@
     "surveyId": "C524919E9BE8D6F61E03727C9547739969AC0425",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -199047,7 +199047,7 @@
     "surveyId": "C13FB704BFE92D4ED91FA2C24822A489D3DCEEF1",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -199200,7 +199200,7 @@
     "surveyId": "3DAA4AA6E2E573BFBD0E2602860899A02600A4DE",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -199524,7 +199524,7 @@
     "surveyId": "4DFD72025EF9B4D08DC92CBB5380F390CA06F41A",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -199839,7 +199839,7 @@
     "surveyId": "572F667895E9F0DD0ABD6D6562D037978B120C5A",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -200109,7 +200109,7 @@
     "surveyId": "4A14EECCB02C857B2CE4B849266FF6062BE5C43F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -200685,7 +200685,7 @@
     "surveyId": "BC4B40E26C4101C73F0142F87FAC2671E92AB3E0",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -201117,7 +201117,7 @@
     "surveyId": "C7969EE26B8448B77391A6963843C5ACA0689F23",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -201414,7 +201414,7 @@
     "surveyId": "BF173CDA2B83EE5EF0E6BCD2CEE1535A49D710A9",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -201828,7 +201828,7 @@
     "surveyId": "27BC47EF9BA4DFFBFF0D038456AF797D318AEB9B",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -202188,7 +202188,7 @@
     "surveyId": "710192985C814A129AD42CEA3C6896A15F6D3E76",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -202269,7 +202269,7 @@
     "surveyId": "42E1114052A5876160137439A256FC782A534B07",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -203241,7 +203241,7 @@
     "surveyId": "147EC65D6494AA64DE98A346F7CDCEE395AE492A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "NLD"
@@ -203817,7 +203817,7 @@
     "surveyId": "43F07C5E8502B520E0062AB9B9A40C0948B5E5DA",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -203925,7 +203925,7 @@
     "surveyId": "DBFCF70E8C86D243362FD302E5A99E034C077367",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -204177,7 +204177,7 @@
     "surveyId": "D05B669B8C4EC9332476A9283BBEE9A8530CD41F",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -204546,7 +204546,7 @@
     "surveyId": "F4E62298050D8694656804C256E490E7219CB55B",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -204969,7 +204969,7 @@
     "surveyId": "EB0220BABA9317C9DA9FB7EE2E73BB0DD6271B1F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -205140,7 +205140,7 @@
     "surveyId": "9423438549B95907C0EF3A3DCBF0EC68935193E6",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -205572,7 +205572,7 @@
     "surveyId": "1BC1F6F8FB2480439461A58EACE08304C29D78D3",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -205869,7 +205869,7 @@
     "surveyId": "66DA401541A1926E3E0A8603401236F4DD8F9C0E",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -206022,7 +206022,7 @@
     "surveyId": "394BE5A2A7D809A2F9D250E225A318081DDBE2AC",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -206202,7 +206202,7 @@
     "surveyId": "63FDC59FB42CFAD5D40F8464ACC6614BF8933814",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -206544,7 +206544,7 @@
     "surveyId": "7EA1C45CFDB2AEEDAAD9A7BEE41DB077D28B658F",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -206886,7 +206886,7 @@
     "surveyId": "574A107792E5546456AAD593B574501B54B9556F",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -207354,7 +207354,7 @@
     "surveyId": "0D75C791EC023EBF4C4DC28A10451D80154CF283",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -207606,7 +207606,7 @@
     "surveyId": "5B5699D98168873C19F09B12248AAD45176A0833",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -207984,7 +207984,7 @@
     "surveyId": "79300A41B247626EDD732147564F5600EECA454C",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -208452,7 +208452,7 @@
     "surveyId": "6BD550BFFF69E131590D0996740E36D261585969",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "GRC"
@@ -208794,7 +208794,7 @@
     "surveyId": "2C607775281719EE536602E98C765CF2E34D20E1",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -209379,7 +209379,7 @@
     "surveyId": "C06F6E43474B655B40776DF163D453F055FC14FE",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -209703,7 +209703,7 @@
     "surveyId": "B3D80CCCCA370CB58A3B6BC2E31B4E4814F82DF3",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -209964,7 +209964,7 @@
     "surveyId": "D0A312A4D6CE50EC0BDC974327ACF49B4600A2D6",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -210171,7 +210171,7 @@
     "surveyId": "7703E1B4B5E8FC22615FC279007BAE3761E11993",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -210702,7 +210702,7 @@
     "surveyId": "E5803A6325E51A43A5DB1E29E6FE077560335E7C",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -211044,7 +211044,7 @@
     "surveyId": "608354C73848A303CA63B4440602C3E1EFFEB945",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -211341,7 +211341,7 @@
     "surveyId": "ECDA5745349DD8D8EEBBECC3CA17E51E7FF58F6B",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -211476,7 +211476,7 @@
     "surveyId": "208044787D6EF7A917474301C3C5F0ABFE2BD245",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -211908,7 +211908,7 @@
     "surveyId": "C28D8E6EFB345E0948871933BCE699AC24707C36",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -212007,7 +212007,7 @@
     "surveyId": "51AE5F10CDE87F2197CE74AA8D29F58BB807618A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -212385,7 +212385,7 @@
     "surveyId": "18D1A32D7214D087328671FFCCCE49343B43B9DB",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -212781,7 +212781,7 @@
     "surveyId": "16517BDF191653C4ECBD92664AE6DFE07E763E18",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -213060,7 +213060,7 @@
     "surveyId": "25E5F379272F36AD1A3F1FD21A4E2DF4DE17DBE2",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -213456,7 +213456,7 @@
     "surveyId": "75734F8897F9F85A87A0EDDA670F71237A037380",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -214167,7 +214167,7 @@
     "surveyId": "6FBAD211A39E8E86EA2DEF028318297B91F63BF5",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "CYP"
@@ -214824,7 +214824,7 @@
     "surveyId": "D0515C0EF66F44E95046D177A575D92DE6CAD389",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -215004,7 +215004,7 @@
     "surveyId": "D7751A2BB15010B277C9AD3258AF663FB2735C85",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -215733,7 +215733,7 @@
     "surveyId": "D8AAC7FA6C9570B32EB9D6106DCE219BAC6A336F",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -216084,7 +216084,7 @@
     "surveyId": "912434F19FA0D66FE17C2463CCFD32517D07725B",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -216912,7 +216912,7 @@
     "surveyId": "6DB0F2700434DDAF6B076805C764109F556BE3F6",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -217497,7 +217497,7 @@
     "surveyId": "73DAAE7D64F54C74CB7475D12BA441F208364F6A",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -218037,7 +218037,7 @@
     "surveyId": "30C095B13C8612E9F619CE503A865A4F121EE05C",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -218262,7 +218262,7 @@
     "surveyId": "E6B45A2EE9121F85438E12889D4F08DFEF6FC3E8",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -218631,7 +218631,7 @@
     "surveyId": "9195CE0FDE4FAEC66AC4C85A7B07B1DF2E131256",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -218910,7 +218910,7 @@
     "surveyId": "776C902060F922D6F77BDA5640698F3587B2B79B",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -219135,7 +219135,7 @@
     "surveyId": "09386672E2EA9CD62D7823B4C65A9ACE49B5D20C",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -219360,7 +219360,7 @@
     "surveyId": "B3291C2F8035B35BB241CBB584B010B663E53255",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -219702,7 +219702,7 @@
     "surveyId": "517483FF1E5F98254BC87708211E69D2F49DB189",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -220071,7 +220071,7 @@
     "surveyId": "48A4F71848AC0B76186BE6D4F9EA15B5977B601F",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -220440,7 +220440,7 @@
     "surveyId": "8FDB2FC874FF8853178FDD38E547096E7C0B03FA",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -220665,7 +220665,7 @@
     "surveyId": "E85D02D7B3DD48A9C86C205CD49B35C65DAA060D",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -221007,7 +221007,7 @@
     "surveyId": "A824CE423A8E5F1D6635EE22BB74E85CBE972D96",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -221376,7 +221376,7 @@
     "surveyId": "FADC0EA4B5ECC314E0E324C95416F4D063C8C19B",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -221682,7 +221682,7 @@
     "surveyId": "429D34348857F8A0C678C1CC9D6DE3BDFAD1059F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -222051,7 +222051,7 @@
     "surveyId": "F3D1124AB0FD69E9DD33C4B8BED33609CF5F7932",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -222276,7 +222276,7 @@
     "surveyId": "2D202B3E7D0995B85C28AC49FD431EFD4795349A",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -222645,7 +222645,7 @@
     "surveyId": "E90EF618774A0A1AC24F1D46C88760BFB82897F2",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -223023,7 +223023,7 @@
     "surveyId": "B00B2B6D59979D6EC492869D2965E46D17308BA4",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -223392,7 +223392,7 @@
     "surveyId": "F3A423206A037A829F0891E4D8A6D5CE049541F3",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -223761,7 +223761,7 @@
     "surveyId": "9320E452B051D562326769284DE8D0BF2BE8BC7B",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -223986,7 +223986,7 @@
     "surveyId": "000C490D8BF0108CD095416A552640BE96EBE92B",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -224355,7 +224355,7 @@
     "surveyId": "19D33D15A7DC32F2881AE91FDC934975D9125533",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -224724,7 +224724,7 @@
     "surveyId": "4134F9B779E1654B871D2B52C1ABFF9F0D996806",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -225066,7 +225066,7 @@
     "surveyId": "0F337AD591A19F17301689CBA6ED994AEBA6D2E3",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -225435,7 +225435,7 @@
     "surveyId": "0D2D5C71471E27BAA80B664E1A15CF0B404EFC44",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -225804,7 +225804,7 @@
     "surveyId": "115A809CC66988253E606D7609D32208BAF17A2D",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -226119,7 +226119,7 @@
     "surveyId": "46AE566516E76FA7318F971C43DC613E348AF8EA",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -226488,7 +226488,7 @@
     "surveyId": "F7E1794DBF1F8133E944E5C589D1A15417E5970C",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -226857,7 +226857,7 @@
     "surveyId": "C3C5247CB1A7EE466DF7C34CFE301769102EDC85",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -227163,7 +227163,7 @@
     "surveyId": "0FA8B2EAEEFD4F9BAFC4AB7226C64B393E37E7D9",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -227532,7 +227532,7 @@
     "surveyId": "78661774420ECE5C6A13BF18931C4A3797FAF4F2",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -227847,7 +227847,7 @@
     "surveyId": "22291358D12AE1D14C5C6B9E5ADE86811D371991",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -228216,7 +228216,7 @@
     "surveyId": "F8B1C9DA353541321E25E7F4C75F82D780D14666",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -228477,7 +228477,7 @@
     "surveyId": "7594A186D645FC3BBCF4347A3822CF60170823A7",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -228846,7 +228846,7 @@
     "surveyId": "CF5E61C118971AA353A98B8DBB4881449EBA5971",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -229224,7 +229224,7 @@
     "surveyId": "B469FA9D60F2B3D6EB70C2890D2FEA39B53909F6",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -229593,7 +229593,7 @@
     "surveyId": "5C9F20888B6D4315CFA430E7A832387281B1F13E",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -229962,7 +229962,7 @@
     "surveyId": "05FD35740020D4BDAF5A5548E5BE7EF41F5B0F1B",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -230331,7 +230331,7 @@
     "surveyId": "CA8EDC29F35F21A740F95B15DD5F85B0A0705BE6",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -230556,7 +230556,7 @@
     "surveyId": "AEE797E1D55D8563085790BB7AD6D08CF50F4D94",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -230826,7 +230826,7 @@
     "surveyId": "0F855A139F704BD26FF26B6B8F16819B44EE9563",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -231195,7 +231195,7 @@
     "surveyId": "DB7558CCE59EBF510297DBA6ACCB0D950580DA6A",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -231420,7 +231420,7 @@
     "surveyId": "70029BA5E217563FED3FC77B4BB552B81E9E9498",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -231681,7 +231681,7 @@
     "surveyId": "CE6758CF911BAAF77B68D25D1DE2F3A36AAE9725",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -231906,7 +231906,7 @@
     "surveyId": "4CF3F1E283B1E0D8ACD435F49E09D63445F0DACD",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -232176,7 +232176,7 @@
     "surveyId": "50CF7306D9C20E33B776E618CEF246D8E4B78D41",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -232401,7 +232401,7 @@
     "surveyId": "6747B9E22BF365D7680B092C19A5CF5BA1356999",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -232626,7 +232626,7 @@
     "surveyId": "9C676012840B8A4BFBA7B610CDDCD91CBC364E73",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -232887,7 +232887,7 @@
     "surveyId": "25C8AAFF60BC8F7B4D106DBD5F305A0DE862A7C4",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -233193,7 +233193,7 @@
     "surveyId": "16737AD5912498CB1E8F2FE8DA869BC158FC407B",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -233526,7 +233526,7 @@
     "surveyId": "46F6714F2CCB726E4491272F6AC5F4C8EB31E18D",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -233814,7 +233814,7 @@
     "surveyId": "E2EE57EBCC8A8138A8651078AEDAD82C2E1C6250",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -234183,7 +234183,7 @@
     "surveyId": "3FAC49FFB712BB819B99B83B032666F65E3112F6",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -234489,7 +234489,7 @@
     "surveyId": "BF46F5908D8E0317CE50F4FE117D979C9C2F1D46",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -234714,7 +234714,7 @@
     "surveyId": "32A251C6FB9E7B5884F3C701E953E96AFE3CBB9E",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -235083,7 +235083,7 @@
     "surveyId": "873AF5A7AA04206E137318526A1EB8B25E931174",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -235308,7 +235308,7 @@
     "surveyId": "A59D2A0675A05C3B196A7EB620D948159C928CBE",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -235533,7 +235533,7 @@
     "surveyId": "5ACCB0A64E170E933B294D7F4847DE565BC472E6",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -235758,7 +235758,7 @@
     "surveyId": "89B2442BE7E474CC44E2B81FA27FA74DFF7A2EB3",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -236127,7 +236127,7 @@
     "surveyId": "BFAC51EAAC09B26A22F0C3E8A7A0B21ACBB3A728",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -236352,7 +236352,7 @@
     "surveyId": "B9733003AD1667ED0815B09170C7840B0B87C41D",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -236640,7 +236640,7 @@
     "surveyId": "998EDCDCD396C318C8B0A0EDFA2B26D031869323",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -236910,7 +236910,7 @@
     "surveyId": "C64BE6678653B77813490F06DE8E8A4145A822FF",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -237234,7 +237234,7 @@
     "surveyId": "623B02ABD22B4FDF74CA9CA3A294EF9758F7F075",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -237459,7 +237459,7 @@
     "surveyId": "A391F495D819E6B8FA9D62589602E7B72678E58F",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -237828,7 +237828,7 @@
     "surveyId": "EB597386B46F0E328B229FB6CADD6F6CE2DF492D",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -238197,7 +238197,7 @@
     "surveyId": "B06CFD95D6431116CA25E7B78EC47D903AB3345A",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -238566,7 +238566,7 @@
     "surveyId": "D4813E47E554B58FAC0B14201B287BF96F88EC6D",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -238935,7 +238935,7 @@
     "surveyId": "642728C99F22DB7F43F85C2FE123A7559F6A6A46",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -239250,7 +239250,7 @@
     "surveyId": "89021A2F0E398E940B64BF885BAD2BCA3B7AC9FA",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -239691,7 +239691,7 @@
     "surveyId": "AB96A5570FAE93FE3941E7235901264CC6136271",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -240033,7 +240033,7 @@
     "surveyId": "9023115B03981CAD4063055756F968CD6D7BDF89",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -240303,7 +240303,7 @@
     "surveyId": "BBA7CB9DFCC8859BEC4F2489453666FB286C2CC2",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -240528,7 +240528,7 @@
     "surveyId": "34EB07D739779507DBAB3F0B34D491EA4BDB13BE",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -240636,7 +240636,7 @@
     "surveyId": "0370CD5B9521E977F951CED1D90A3C3C14F36ABD",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -240852,7 +240852,7 @@
     "surveyId": "C33B978A64A4FA4FFF367AC3BF175B001241DD21",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "GRC"
@@ -241293,7 +241293,7 @@
     "surveyId": "49CC65D764CF788165CFD28EDD16BB139A017261",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -241419,7 +241419,7 @@
     "surveyId": "B5746CC5FB991AD32C1388A35DB98F4FBA9D6F62",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -241635,7 +241635,7 @@
     "surveyId": "59292E9723704122626CDA57495499BC865113EF",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -241878,7 +241878,7 @@
     "surveyId": "E706DAE9DE7E126EA06FEB2ACAD5BE7E7F788D22",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -242526,7 +242526,7 @@
     "surveyId": "A39920E63675C05A94F25E701CE5EC827CB332BA",
     "answerId": 2312739,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Small (10-49 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "NLD"
@@ -242652,7 +242652,7 @@
     "surveyId": "899F37B82FF35E51426F2500754711B2681D46FB",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "ESP"
@@ -242832,7 +242832,7 @@
     "surveyId": "5E3212088DB2E38AEA0C627DDAE9B1C833EEA926",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -243183,7 +243183,7 @@
     "surveyId": "A004BA11734626CA1AF6F0B18CEF6CC1AD4C210A",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"
@@ -243435,7 +243435,7 @@
     "surveyId": "21C0FA891A516E46CA1DCF2D0A26FAFFA2A14381",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -243642,7 +243642,7 @@
     "surveyId": "A623E9E650F7989BF382A943411CEA6E8D1D1390",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FIN"
@@ -243714,7 +243714,7 @@
     "surveyId": "D545645AB23788F800C80689A58CDB1231A0C255",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "NLD"
@@ -244254,7 +244254,7 @@
     "surveyId": "80B18CA9EB0DC54E38E92B5B91EF1AB833125AC2",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -244758,7 +244758,7 @@
     "surveyId": "8F62793151C26EF98EA224419278667512F5A25B",
     "answerId": 2312740,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Medium (50-249 employees)",
+    "answer": "Medium-scale/Local-National",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -244920,7 +244920,7 @@
     "surveyId": "F0C55CC30D11CD3AA38AD2DD286DAE44B0EDC718",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -245982,7 +245982,7 @@
     "surveyId": "F6EF6BCC9C3F66DFE52AEA85A570B702A19886CE",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -246243,7 +246243,7 @@
     "surveyId": "97B4A5285FE2C6760FFB015A1BF30B25A081FC4E",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "FRA"
@@ -246684,7 +246684,7 @@
     "surveyId": "A38EAC3CF3097B9370043EAA2EB4F13367907C7D",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -246783,7 +246783,7 @@
     "surveyId": "B2874F18DB925081CFECFD644D5B44B353EC726C",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -247053,7 +247053,7 @@
     "surveyId": "EC0FF6A54EE6B8EB9EE7CFB138F6EA7481C7305C",
     "answerId": 2312742,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Micro (1-9 employees)",
+    "answer": "Small-scale/Local",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "BEL"
@@ -247539,7 +247539,7 @@
     "surveyId": "8A7506D9E5D6F3577752A256FEEBE340F22A7C18",
     "answerId": 2312741,
     "question": "Agriculture/forestry organisation size",
-    "answer": "Large (250+ employees)",
+    "answer": "Large-scale/National-International",
     "language": "EN",
     "questionId": 2448063,
     "countryCode": "HUN"

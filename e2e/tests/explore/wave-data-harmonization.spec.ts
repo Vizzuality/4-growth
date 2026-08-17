@@ -66,6 +66,10 @@ const FORBIDDEN_LABELS: Record<string, string[]> = {
   'plans-to-expand-or-upgrade': ['Negligible impact'],
   'sustainability': ['Negligible impact'],
   'cost-savings-efficiency': ['Negligible impact'],
+  'organisation-size': [
+    'Micro (1-9 employees)', 'Small (10-49 employees)',
+    'Medium (50-249 employees)', 'Large (250+ employees)', 'Not applicable*',
+  ],
   'organisation-type': ['Small to Medium Entreprise'],
   'tech-provider-data-types': ['Geo-spatial data'],
 };

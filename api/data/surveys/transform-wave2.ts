@@ -45,6 +45,13 @@ const WAVE2_ANSWER_NORMALIZATIONS = new Map([
   ['Do you offer any after-sales service, support, or warranty for your products or services?', new Map([
     ['No, we do not offer after-sales, service, support, or warranty', 'No, we do not offer after-sales service, support, or warranty'],
   ])],
+  ['Agriculture/forestry organisation size', new Map([
+    ['Micro (1-9 employees)', 'Small-scale/Local'],
+    ['Small (10-49 employees)', 'Small-scale/Local'],
+    ['Medium (50-249 employees)', 'Medium-scale/Local-National'],
+    ['Large (250+ employees)', 'Large-scale/National-International'],
+    ['Not applicable*', 'N/A'],
+  ])],
 ]);
 
 export const transformWave2 = () =>
