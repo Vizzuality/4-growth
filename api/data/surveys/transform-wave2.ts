@@ -7,6 +7,7 @@ const LIKERT_TO_YES_NO_DONTKNOW = new Map([
   ['Strongly disagree', 'Not at all'],
   ['Disagree', 'Not at all'],
   ['Neither disagree nor agree', "Don't know"],
+  ['Not Applicable', "Don't know"],
 ]);
 
 const WAVE2_QUESTION_NORMALIZATIONS = new Map([

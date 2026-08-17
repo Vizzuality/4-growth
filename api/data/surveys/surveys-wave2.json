@@ -417,7 +417,7 @@
     "surveyId": "01D3461F3352D41DB057149132DBED74E990E226",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -2433,7 +2433,7 @@
     "surveyId": "07B7CEE7AFC97C155D816CB428662E0439908546",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -2649,7 +2649,7 @@
     "surveyId": "07F55414AB8EEFC6033A9AF23EF86E64033FBD5D",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -6798,7 +6798,7 @@
     "surveyId": "182114487880D0D6A9398095B76ADFF7A9B0AA57",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -8066,7 +8066,7 @@
     "surveyId": "1C7C8021EA96A05D2D5B3DD4FB02500F3C3D2883",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -12044,7 +12044,7 @@
     "surveyId": "2F4D51DBEFAF19B03BA8B578DC8C5453C19FF17F",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -12314,7 +12314,7 @@
     "surveyId": "314F64D5D3B75CBFF8958B1E63BA6F5AF9862564",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -13799,7 +13799,7 @@
     "surveyId": "35DA773EF892AF49F07A34B2943F41CC64DC91BD",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EN",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -13817,7 +13817,7 @@
     "surveyId": "35DA773EF892AF49F07A34B2943F41CC64DC91BD",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EN",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -14861,7 +14861,7 @@
     "surveyId": "37742A3BA38639790F89FE5D938805B713D23B9F",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FR",
     "questionId": 1039,
     "countryCode": "FRA"
@@ -14879,7 +14879,7 @@
     "surveyId": "37742A3BA38639790F89FE5D938805B713D23B9F",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FR",
     "questionId": 1041,
     "countryCode": "FRA"
@@ -18866,7 +18866,7 @@
     "surveyId": "4635C8F3208848A338BBB27B52013C203D462EE5",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -19469,7 +19469,7 @@
     "surveyId": "4940BE23974E5E0955F66FB59A472604FD1968E5",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -21386,7 +21386,7 @@
     "surveyId": "51F00F4D2CA57260CE39F3F4E43DE12E05DB44BC",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -23276,7 +23276,7 @@
     "surveyId": "566221BB9AD7E68EC3B2AFBB7328CB42D8C5AB81",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -23294,7 +23294,7 @@
     "surveyId": "566221BB9AD7E68EC3B2AFBB7328CB42D8C5AB81",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1041,
     "countryCode": "LTU"
@@ -24688,7 +24688,7 @@
     "surveyId": "59F8D716A5C831C0234257D9CCDB79ED9E676A6E",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -24706,7 +24706,7 @@
     "surveyId": "59F8D716A5C831C0234257D9CCDB79ED9E676A6E",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -28855,7 +28855,7 @@
     "surveyId": "69FFC0A5A7F50A8BDD56D15DD21746A4E7CB450B",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -30781,7 +30781,7 @@
     "surveyId": "6E5FA40EA4AA81FFD5D033C5D6D4328ECE8E3FB3",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -31843,7 +31843,7 @@
     "surveyId": "6FEA1DA5651DA68741B335D42AC11E566653630E",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EN",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -39115,7 +39115,7 @@
     "surveyId": "8D8F7C32D2175A304D655A117E9F45B15D239881",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -39133,7 +39133,7 @@
     "surveyId": "8D8F7C32D2175A304D655A117E9F45B15D239881",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -40204,7 +40204,7 @@
     "surveyId": "9314982400D4279F0D08765BBA7E063378CA681C",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -41734,7 +41734,7 @@
     "surveyId": "9939F7E4530393DF959BD1D0E13B288AD6F8DD6C",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -42499,7 +42499,7 @@
     "surveyId": "9AF7C5B6A912779569A7623D0E290C365C4103F9",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -43390,7 +43390,7 @@
     "surveyId": "9CCCA5819656A5CAC49974FA2B86330EBE375260",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1041,
     "countryCode": "POL"
@@ -44596,7 +44596,7 @@
     "surveyId": "A15C3EEB92392B54099689C7F8747F863FDF09BD",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -44938,7 +44938,7 @@
     "surveyId": "A38BE2496557861DDA2EA996555E4A6DE3AD8BCC",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -47026,7 +47026,7 @@
     "surveyId": "AB33DD360A32B5A636248C1CC716D4DF866124A8",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -48097,7 +48097,7 @@
     "surveyId": "AD5EFDF7522FC83548D525CD0B4FC150937D8B79",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -50122,7 +50122,7 @@
     "surveyId": "B748C6E5D2B99EE6AF3FA1700062054337C2C405",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -51733,7 +51733,7 @@
     "surveyId": "BD594D7031C7CB4D20E16588DB97F14FF7A7F247",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -52660,7 +52660,7 @@
     "surveyId": "C095798954D524E2C1A7003773A2C70EA2ABAB14",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -54253,7 +54253,7 @@
     "surveyId": "C552A317C056C6182664E51A80A2AFCAC8D5BD8A",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1041,
     "countryCode": "LTU"
@@ -56358,7 +56358,7 @@
     "surveyId": "CBB0589540BE6D6F45170A4344C76FE6C2540782",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -57690,7 +57690,7 @@
     "surveyId": "CF64E6290FC6CD63275EDB7A12CE823BFE749AA6",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -59616,7 +59616,7 @@
     "surveyId": "D4F4CB34EEEF1FBA11AD0E534AF60F6A800C6855",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -59634,7 +59634,7 @@
     "surveyId": "D4F4CB34EEEF1FBA11AD0E534AF60F6A800C6855",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -59967,7 +59967,7 @@
     "surveyId": "D5577118E80811D4D3DD58C6D69279830AC21F2E",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -60579,7 +60579,7 @@
     "surveyId": "D6C140A024068E1C88A021B1714294A460D40DCA",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -64539,7 +64539,7 @@
     "surveyId": "E459B0EE7CE2C34658DC0884FB1309DBD3B53E05",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -64557,7 +64557,7 @@
     "surveyId": "E459B0EE7CE2C34658DC0884FB1309DBD3B53E05",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -65124,7 +65124,7 @@
     "surveyId": "E6CFBF7A94EE00EBA40202B33AB3CC6304781BD8",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -65511,7 +65511,7 @@
     "surveyId": "E7F05C2D3E6E145B08C13C8CEC9F1E0DBED3FA6D",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -71559,7 +71559,7 @@
     "surveyId": "FA0BAA718FDD2DC67FDCD5F903632FC2B6AE401F",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -71577,7 +71577,7 @@
     "surveyId": "FA0BAA718FDD2DC67FDCD5F903632FC2B6AE401F",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -74205,7 +74205,7 @@
     "surveyId": "1322167650C56DF650C60F3612884CCF29426155",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -75753,7 +75753,7 @@
     "surveyId": "1F1B5AABC96F07B7ADD128CA71BCF0895A2E3F02",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -76635,7 +76635,7 @@
     "surveyId": "28C8C78A694DCB31B86566D6B5A2716895610336",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "NL",
     "questionId": 1041,
     "countryCode": "NLD"
@@ -77643,7 +77643,7 @@
     "surveyId": "38107661ABC53DE743C151F40FBFE40097A43CC7",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -80145,7 +80145,7 @@
     "surveyId": "5AF8446859B9AB86FBF1E25EB0782DEBAAB62569",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -80163,7 +80163,7 @@
     "surveyId": "5AF8446859B9AB86FBF1E25EB0782DEBAAB62569",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -80496,7 +80496,7 @@
     "surveyId": "62475EF8062CC5E79B3F958B451AC55A4683E561",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -81270,7 +81270,7 @@
     "surveyId": "79E8F8BEB34BB4F0A67E3B05D756350730179D0F",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -82161,7 +82161,7 @@
     "surveyId": "8473CF98CC9A3586CD85B25C3525D3298AB907F4",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -82179,7 +82179,7 @@
     "surveyId": "8473CF98CC9A3586CD85B25C3525D3298AB907F4",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -82809,7 +82809,7 @@
     "surveyId": "93CCB7B877C81A58CEB4A22B0F517CA7336A45A8",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -83574,7 +83574,7 @@
     "surveyId": "9A2E22FB6DF84C82DB4B72C1E44E4C590D252E36",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -85653,7 +85653,7 @@
     "surveyId": "B879766499DEA5732C8F482FD2E96673A2AEDDB9",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -88352,7 +88352,7 @@
     "surveyId": "FB344C39BA353DE87EACC69EDB287D5104F2BDE8",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -88910,7 +88910,7 @@
     "surveyId": "01B0AF440DED383C491065E14FEEB132178F4378",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1041,
     "countryCode": "LTU"
@@ -89333,7 +89333,7 @@
     "surveyId": "054918096DCE40941DDC0B82777D2CFD96AC1EE1",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -93364,7 +93364,7 @@
     "surveyId": "633272C0BD4EFAD4ACDC61022466F523DBEEB11E",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -95929,7 +95929,7 @@
     "surveyId": "A4E42CAE854E36CBEDAFD15B39973A436BFCBB71",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -96595,7 +96595,7 @@
     "surveyId": "BD7279543462ADF02E2B202DFAC6FCE560E93B7D",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1041,
     "countryCode": "POL"
@@ -97000,7 +97000,7 @@
     "surveyId": "C2E8F9B9ED086B92A3714E77C9243946B38D3026",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -98593,7 +98593,7 @@
     "surveyId": "F6AECE79E54677723FF7816F38B9B83D3A4A1E57",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -98908,7 +98908,7 @@
     "surveyId": "080049CD409DB8B9A344AD6BBAE4F8C2E122FF46",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EN",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -99709,7 +99709,7 @@
     "surveyId": "1AB31E49D360E72A79FF51C6346378329FFC107C",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -100447,7 +100447,7 @@
     "surveyId": "385BBB4C2D2D3A87502AD1EDBD7227367205F567",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -103093,7 +103093,7 @@
     "surveyId": "6C968003D4B3BF12DBDED3F915E269E6C37D8A99",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -104704,7 +104704,7 @@
     "surveyId": "8C3BC753799C951328C955F0D245C581EBD78758",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -105514,7 +105514,7 @@
     "surveyId": "97391A471774C56ED717577E9947F07E51C44477",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1039,
     "countryCode": "POL"
@@ -109357,7 +109357,7 @@
     "surveyId": "01A8C930AFECF549ADB88CBECC6BFF9BD1947CF6",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -109537,7 +109537,7 @@
     "surveyId": "0605386FAFD1A3F4A863C5D4DA9D8184D74436B2",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1041,
     "countryCode": "LTU"
@@ -110851,7 +110851,7 @@
     "surveyId": "115A5BA29B9FC6BACA75D4C4B05BD94E5A8EBFA1",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1041,
     "countryCode": "POL"
@@ -111454,7 +111454,7 @@
     "surveyId": "129776D71B0DDC56011786C8DB207E7180660ED6",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -113956,7 +113956,7 @@
     "surveyId": "3EEBB4565C0D7005352FBAED14187921E7BEB502",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "LT",
     "questionId": 1039,
     "countryCode": "LTU"
@@ -116916,7 +116916,7 @@
     "surveyId": "651244DB3B4187EF4452F002409D10F8D2EE3F17",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -116934,7 +116934,7 @@
     "surveyId": "651244DB3B4187EF4452F002409D10F8D2EE3F17",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -117141,7 +117141,7 @@
     "surveyId": "677165C029F95C50CC2A0E1A0CE90352FF52AC9C",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -119904,7 +119904,7 @@
     "surveyId": "90D2CCEC67E28B3CD5E7A42B3A5E3829628088E1",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "PL",
     "questionId": 1041,
     "countryCode": "POL"
@@ -125672,7 +125672,7 @@
     "surveyId": "FC7A926E6FC6CFCA148D34B6DF64915FB6920BDE",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1039,
     "countryCode": "ESP"
@@ -125690,7 +125690,7 @@
     "surveyId": "FC7A926E6FC6CFCA148D34B6DF64915FB6920BDE",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
@@ -127634,7 +127634,7 @@
     "surveyId": "15748D86CFC23CD39064A1357534B36EFBA79A85",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EN",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -128156,7 +128156,7 @@
     "surveyId": "17A6A1F137C0A10CA0637017EC539D98E1197D39",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FI",
     "questionId": 1041,
     "countryCode": "FIN"
@@ -132089,7 +132089,7 @@
     "surveyId": "3843DF64820F892FEDAA4DC55A2BE99D7FD365C6",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -136400,7 +136400,7 @@
     "surveyId": "61C96DD3B37EF8408C6D0E0137DE7CBDDC5D6A58",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FI",
     "questionId": 1041,
     "countryCode": "FIN"
@@ -139145,7 +139145,7 @@
     "surveyId": "8A836F7D2C20AC89B5852D353AB76BAE66029422",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -140404,7 +140404,7 @@
     "surveyId": "97ACEACD1E17BA97832DEE7ED12C4C99C918A71C",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FI",
     "questionId": 1039,
     "countryCode": "FIN"
@@ -145066,7 +145066,7 @@
     "surveyId": "C248C6076E4AC6523D180C94565CF235103BAE51",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FI",
     "questionId": 1041,
     "countryCode": "FIN"
@@ -155279,7 +155279,7 @@
     "surveyId": "EF755D98B4F87639725FD12C4D3812EAEC56C764",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EN",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -155288,7 +155288,7 @@
     "surveyId": "EF755D98B4F87639725FD12C4D3812EAEC56C764",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EN",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -155891,7 +155891,7 @@
     "surveyId": "0A95A55F07EB3C946A9ECD458997762A6A8B7CAF",
     "answerId": 0,
     "question": "Have digital technologies contributed to sustainability and environmental practices?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FI",
     "questionId": 1040,
     "countryCode": "AUT"
@@ -157358,7 +157358,7 @@
     "surveyId": "01C07519488C39CA135F00C09A2753C0385668BA",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -158042,7 +158042,7 @@
     "surveyId": "12DB82024DA9B4B26DAA9D08832B4B2DF355C344",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -158492,7 +158492,7 @@
     "surveyId": "1E2FB77E670C4F4D585561ED2A5C49DC72A11A3E",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -158969,7 +158969,7 @@
     "surveyId": "3310E21D6426B94BEBF48C77DCA4CA28030EB93E",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1039,
     "countryCode": "GRC"
@@ -160886,7 +160886,7 @@
     "surveyId": "667924457DBDD1637FE096528AD81B2BCD994F6E",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FI",
     "questionId": 1039,
     "countryCode": "FIN"
@@ -160904,7 +160904,7 @@
     "surveyId": "667924457DBDD1637FE096528AD81B2BCD994F6E",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FI",
     "questionId": 1041,
     "countryCode": "FIN"
@@ -161255,7 +161255,7 @@
     "surveyId": "743617A59B72E67FBD62ECB26E67200805C7DF13",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EL",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -162542,7 +162542,7 @@
     "surveyId": "9CC00C88A73F1FD639BB8CEE2ABF64BFECD00866",
     "answerId": 0,
     "question": "Have digital technologies resulted in cost savings or increased efficiency?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EN",
     "questionId": 1039,
     "countryCode": "FIN"
@@ -163100,7 +163100,7 @@
     "surveyId": "A72058F4A235F0ACCE6D700627ECE323860779BC",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FI",
     "questionId": 1041,
     "countryCode": "FIN"
@@ -163298,7 +163298,7 @@
     "surveyId": "A89B97370C18F1259C667BC6AE5B2D35BC118822",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "EN",
     "questionId": 1041,
     "countryCode": "GRC"
@@ -165332,7 +165332,7 @@
     "surveyId": "E92DC19E0A53C28D368111525AB86BEAF8DDB4DA",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "FI",
     "questionId": 1041,
     "countryCode": "FIN"
@@ -167002,7 +167002,7 @@
     "surveyId": "2A1FF8FDCAB2C983DC67D12BCDB19CC1D6B7C495",
     "answerId": 0,
     "question": "Are there plans to expand or upgrade your current digital infrastructure?",
-    "answer": "Not Applicable",
+    "answer": "Don't know",
     "language": "ES-ES",
     "questionId": 1041,
     "countryCode": "ESP"
