@@ -240,6 +240,7 @@ export const transform = async (
   questionNormalizations: Map<string, string> = new Map(),
   answerNormalizations: Map<string, Map<string, string>> = WAVE1_ANSWER_NORMALIZATIONS,
   extraExcludedQuestions: Set<string> = new Set(),
+  filterMode: 'non-vtt' | 'vtt-only' = 'non-vtt',
 ) => {
   const logger = new Logger('ETL');
 
@@ -304,10 +305,17 @@ export const transform = async (
     dataForge.fromObject(await readJson(`${inputDir}/Categorical_Answers.json`)),
   ]);
 
-  // Exclude VTT surveys — these are test/validation entries not yet cleared for analysis
-  const filteredDateDf = dateDf.where((row) => row.Value['Name'] !== 'VTT');
+  const filteredDateDf = dateDf.where((row) =>
+    filterMode === 'vtt-only'
+      ? row.Value['Name'] === 'VTT'
+      : row.Value['Name'] !== 'VTT',
+  );
 
-  logger.log(`Number of surveys: ${filteredDateDf.count()} (of ${dateDf.count()} total, VTT excluded)`);
+  logger.log(
+    filterMode === 'vtt-only'
+      ? `Number of surveys: ${filteredDateDf.count()} (VTT only, of ${dateDf.count()} total)`
+      : `Number of surveys: ${filteredDateDf.count()} (of ${dateDf.count()} total, VTT excluded)`,
+  );
 
   const join1 = answersDf.join(
     filteredDateDf,
