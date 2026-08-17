@@ -8,7 +8,9 @@ onlyBuiltDependencies:
   - "@nestjs/core"
 
 overrides:
-  # d3-color: security fix — forces 3.1.0 across all d3 consumers
+  # d3-color ReDoS GHSA-36jr-mh4h-2g58 — patched >=3.1.0. Blanket is required: the
+  # react-simple-maps tree pulls d3-interpolate 2.0.1, which declares `1 - 2` and so
+  # resolves the vulnerable 2.0.0 unless every consumer is forced past the range.
   d3-color: 3.1.0
   # qs: blanket override needed — express 4.21.2 (via nestjs-base-service) declares exact qs 6.13.0
   # 6.15.2 fixes remotely-triggerable DoS in qs.stringify (GHSA-q8mj-m7cp-5q26)
@@ -34,14 +36,6 @@ overrides:
   "@nestjs/platform-express>multer": "2.2.0"
   # next ships sharp <0.35.0 — inherited libvips CVEs (GHSA-f88m-g3jw-g9cj)
   "next>sharp": "0.35.3"
-  # brace-expansion GHSA-mh99-v99m-4gvg (CVE-2026-69152) + GHSA-rgw5-rvv9-x895 (bypass):
-  # patches exist in every major: >=1.1.18, >=2.1.4, >=5.0.9. Version-specific overrides
-  # are safe here — each major stays in its own semver range so minimatch 3.x / 9.x / 10.x
-  # continue using their expected API. All three paths are api devDependencies only
-  # (fork-ts-checker-webpack-plugin, jest, @nestjs/cli glob) — nothing ships to production.
-  "brace-expansion@^1": "1.1.18"
-  "brace-expansion@^2": "2.1.4"
-  "brace-expansion@^5": "5.0.9"
 
 catalog:
   # Core
