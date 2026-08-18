@@ -325,14 +325,26 @@ test.describe('Wave data harmonization', () => {
   // ── Layer 3: counter widgets ─────────────────────────────────────────────
 
   test('total-surveys count is in expected range (1700–2000)', async ({ request }) => {
-    const res = await request.get('http://localhost:4000/widgets/total-surveys');
+    const res = await request.get('http://localhost:4000/widgets/total-surveys', {
+      params: {
+        'filters[0][name]': 'data-source',
+        'filters[0][operator]': '=',
+        'filters[0][values][0]': 'survey',
+      },
+    });
     const total = (await res.json())?.data?.data?.counter?.value as number;
     expect(total).toBeGreaterThanOrEqual(1700);
     expect(total).toBeLessThanOrEqual(2000);
   });
 
   test('total-countries is 20', async ({ request }) => {
-    const res = await request.get('http://localhost:4000/widgets/total-countries');
+    const res = await request.get('http://localhost:4000/widgets/total-countries', {
+      params: {
+        'filters[0][name]': 'data-source',
+        'filters[0][operator]': '=',
+        'filters[0][values][0]': 'survey',
+      },
+    });
     const count = (await res.json())?.data?.data?.counter?.value as number;
     expect(count).toBe(20);
   });
