@@ -2,7 +2,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 import { Repository } from 'typeorm';
+import { Test } from '@nestjs/testing';
+import { Logger } from '@nestjs/common';
+import { getDataSourceToken } from '@nestjs/typeorm';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
+import { EtlNotificationService } from '@api/infrastructure/etl-notification.service';
+import { FSUtils } from '@api/infrastructure/fs/fs.utils';
 import { TestManager } from 'api/test/utils/test-manager';
 import { Section } from '@shared/dto/sections/section.entity';
 import { BaseWidget } from '@shared/dto/widgets/base-widget.entity';
@@ -274,5 +279,232 @@ describe('DataSourceManager - Multi-select survey answers', () => {
     // Cleanup
     fs.unlinkSync(tmpFile);
     fs.rmdirSync(tmpDir);
+  });
+});
+
+describe('DataSourceManager - VTT automated data source tag', () => {
+  let testManager: TestManager<unknown>;
+  let dataSourceManager: DataSourceManager;
+  let surveyAnswerRepo: Repository<SurveyAnswer>;
+  let questionIndicatorMapRepo: Repository<QuestionIndicatorMap>;
+
+  beforeAll(async () => {
+    testManager = await TestManager.createTestManager({
+      logger: false,
+      initialize: false,
+    });
+    dataSourceManager = testManager.testApp.get(DataSourceManager);
+    const dataSource = testManager.getDataSource();
+    surveyAnswerRepo = dataSource.getRepository(SurveyAnswer);
+    questionIndicatorMapRepo = dataSource.getRepository(QuestionIndicatorMap);
+  });
+
+  afterAll(async () => {
+    await testManager.clearDatabase();
+    await testManager.close();
+  });
+
+  it('stores VTT rows with data_source=automated', async () => {
+    const question = 'Has your organisation integrated digital technologies?';
+    await questionIndicatorMapRepo.save([
+      { indicator: 'vtt-indicator-1', question },
+    ]);
+
+    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dsm-vtt-'));
+    const tmpFile = path.join(tmpDir, 'surveys-vtt.json');
+    fs.writeFileSync(
+      tmpFile,
+      JSON.stringify([
+        { surveyId: 'vtt-s1', question, answer: 'Yes', countryCode: 'FIN' },
+        { surveyId: 'vtt-s2', question, answer: 'No', countryCode: 'SWE' },
+      ]),
+    );
+
+    await dataSourceManager.loadSurveyData(tmpFile, 1, 'automated');
+
+    const rows = await surveyAnswerRepo.find({
+      where: { questionIndicator: 'vtt-indicator-1' },
+    });
+    expect(rows).toHaveLength(2);
+    expect(rows.every((r) => r.dataSource === 'automated')).toBe(true);
+    expect(rows.every((r) => r.wave === 1)).toBe(true);
+
+    fs.unlinkSync(tmpFile);
+    fs.rmdirSync(tmpDir);
+  });
+
+  it('reload is idempotent and scoped to (wave, data_source)', async () => {
+    const question = 'Has your organisation integrated digital technologies?';
+    await questionIndicatorMapRepo.save([
+      { indicator: 'vtt-idempotent', question },
+    ]);
+
+    // Seed a survey row to prove the delete scope is correct
+    await surveyAnswerRepo.save({
+      surveyId: 'survey-not-vtt',
+      questionIndicator: 'vtt-idempotent',
+      question,
+      answer: 'Yes',
+      countryCode: 'DEU',
+      wave: 1,
+      dataSource: 'survey',
+    });
+
+    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dsm-vtt-idem-'));
+    const tmpFile = path.join(tmpDir, 'surveys-vtt.json');
+    fs.writeFileSync(
+      tmpFile,
+      JSON.stringify([
+        {
+          surveyId: 'vtt-idem-1',
+          question,
+          answer: 'Yes',
+          countryCode: 'FIN',
+        },
+      ]),
+    );
+
+    await dataSourceManager.loadSurveyData(tmpFile, 1, 'automated');
+    await dataSourceManager.loadSurveyData(tmpFile, 1, 'automated');
+
+    const automatedRows = await surveyAnswerRepo.find({
+      where: {
+        questionIndicator: 'vtt-idempotent',
+        dataSource: 'automated' as any,
+      },
+    });
+    expect(automatedRows).toHaveLength(1);
+
+    // The survey row with data_source='survey' must be untouched
+    const surveyRows = await surveyAnswerRepo.find({
+      where: { surveyId: 'survey-not-vtt' },
+    });
+    expect(surveyRows).toHaveLength(1);
+    expect(surveyRows[0].dataSource).toBe('survey');
+
+    fs.unlinkSync(tmpFile);
+    fs.rmdirSync(tmpDir);
+  });
+
+  it('deduplicates exact (surveyId, indicator, answer) triples in the VTT file', async () => {
+    const question = 'Has your organisation integrated digital technologies?';
+    await questionIndicatorMapRepo.save([
+      { indicator: 'vtt-dedup', question },
+    ]);
+
+    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dsm-vtt-dedup-'));
+    const tmpFile = path.join(tmpDir, 'surveys-vtt.json');
+    fs.writeFileSync(
+      tmpFile,
+      JSON.stringify([
+        {
+          surveyId: 'vtt-dup-1',
+          question,
+          answer: 'Yes',
+          countryCode: 'FIN',
+        },
+        {
+          surveyId: 'vtt-dup-1',
+          question,
+          answer: 'Yes',
+          countryCode: 'FIN',
+        },
+      ]),
+    );
+
+    await dataSourceManager.loadSurveyData(tmpFile, 1, 'automated');
+
+    const rows = await surveyAnswerRepo.find({
+      where: { surveyId: 'vtt-dup-1', questionIndicator: 'vtt-dedup' },
+    });
+    expect(rows).toHaveLength(1);
+
+    fs.unlinkSync(tmpFile);
+    fs.rmdirSync(tmpDir);
+  });
+});
+
+describe('DataSourceManager - loadInitialData VTT wiring', () => {
+  let dsm: DataSourceManager;
+  let loadSurveyDataSpy: jest.SpyInstance;
+
+  beforeEach(async () => {
+    const fakeQueryRunner = {
+      startTransaction: jest.fn(),
+      commitTransaction: jest.fn(),
+      rollbackTransaction: jest.fn(),
+      release: jest.fn(),
+      query: jest.fn(),
+      manager: { getRepository: jest.fn() },
+    };
+    const fakeConfigRepo = {
+      findOne: jest.fn().mockResolvedValue(null),
+      save: jest.fn().mockResolvedValue(undefined),
+    };
+    const fakeDataSource = {
+      createQueryRunner: jest.fn().mockReturnValue(fakeQueryRunner),
+      getRepository: jest.fn().mockReturnValue(fakeConfigRepo),
+    };
+
+    const module = await Test.createTestingModule({
+      providers: [
+        DataSourceManager,
+        {
+          provide: Logger,
+          useValue: { log: jest.fn(), error: jest.fn(), warn: jest.fn() },
+        },
+        { provide: getDataSourceToken(), useValue: fakeDataSource },
+        {
+          provide: EtlNotificationService,
+          useValue: {
+            sendSuccessNotification: jest.fn(),
+            sendFailureNotification: jest.fn(),
+          },
+        },
+      ],
+    }).compile();
+
+    dsm = module.get<DataSourceManager>(DataSourceManager);
+
+    jest.spyOn(FSUtils, 'md5File').mockResolvedValue('deadbeef');
+    jest.spyOn(FSUtils, 'md5Directory').mockResolvedValue('cafecafe');
+    jest.spyOn(fs, 'existsSync').mockReturnValue(true);
+
+    jest.spyOn(dsm, 'loadQuestionIndicatorMap').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'loadProjectionTypes').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'loadPageFilters').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'loadPageSections').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'loadProjections').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'generateProjectionsFilters').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'generateProjectionsSettings').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'generateProjectionsWidgets').mockResolvedValue(undefined);
+    loadSurveyDataSpy = jest
+      .spyOn(dsm, 'loadSurveyData')
+      .mockResolvedValue(undefined);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('calls loadSurveyData with the VTT path and automated tag', async () => {
+    await dsm.loadInitialData();
+
+    expect(loadSurveyDataSpy).toHaveBeenCalledWith(
+      'data/surveys/surveys-vtt.json',
+      1,
+      'automated',
+    );
+  });
+
+  it('skips VTT loadSurveyData when surveys-vtt.json does not exist', async () => {
+    jest.spyOn(fs, 'existsSync').mockReturnValue(false);
+
+    await dsm.loadInitialData();
+
+    const vttCall = loadSurveyDataSpy.mock.calls.find(
+      (args) => args[0] === 'data/surveys/surveys-vtt.json',
+    );
+    expect(vttCall).toBeUndefined();
   });
 });

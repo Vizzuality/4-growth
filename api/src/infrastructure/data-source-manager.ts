@@ -92,12 +92,14 @@ export class DataSourceManager {
   }
 
   public async loadInitialData() {
+    const vttArtifactPath = `data/surveys/surveys-vtt.json`;
+    const vttExists = fs.existsSync(vttArtifactPath);
     const results = await Promise.all([
       FSUtils.md5File(`data/filters.sql`),
       FSUtils.md5File(`data/question-indicators.sql`),
       FSUtils.md5File(`data/surveys/surveys.json`),
       FSUtils.md5File(`data/surveys/surveys-wave2.json`),
-      FSUtils.md5File(`data/surveys/surveys-vtt.json`),
+      vttExists ? FSUtils.md5File(vttArtifactPath) : Promise.resolve(''),
       FSUtils.md5File(`data/sections/sections.json`),
       FSUtils.md5File(`data/projections/projections.json`),
       FSUtils.md5File(`data/projections/projection-types.json`),
@@ -122,7 +124,9 @@ export class DataSourceManager {
       this.loadPageSections(),
       this.loadSurveyData('data/surveys/surveys.json', 1),
       this.loadSurveyData('data/surveys/surveys-wave2.json', 2),
-      this.loadSurveyData('data/surveys/surveys-vtt.json', 1, 'automated'),
+      ...(vttExists
+        ? [this.loadSurveyData('data/surveys/surveys-vtt.json', 1, 'automated')]
+        : []),
 
       // Projections
       this.loadProjections(),
