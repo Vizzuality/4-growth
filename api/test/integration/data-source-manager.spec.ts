@@ -508,3 +508,316 @@ describe('DataSourceManager - loadInitialData VTT wiring', () => {
     expect(vttCall).toBeUndefined();
   });
 });
+
+describe('DataSourceManager - VTT file update replaces DB rows', () => {
+  let testManager: TestManager<unknown>;
+  let dataSourceManager: DataSourceManager;
+  let surveyAnswerRepo: Repository<SurveyAnswer>;
+  let questionIndicatorMapRepo: Repository<QuestionIndicatorMap>;
+  let tmpDir: string;
+  let tmpFile: string;
+  const question = 'Does your organisation use precision agriculture technologies?';
+
+  beforeAll(async () => {
+    testManager = await TestManager.createTestManager({
+      logger: false,
+      initialize: false,
+    });
+    dataSourceManager = testManager.testApp.get(DataSourceManager);
+    const dataSource = testManager.getDataSource();
+    surveyAnswerRepo = dataSource.getRepository(SurveyAnswer);
+    questionIndicatorMapRepo = dataSource.getRepository(QuestionIndicatorMap);
+
+    await questionIndicatorMapRepo.save([
+      { indicator: 'vtt-file-update', question },
+    ]);
+
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dsm-vtt-update-'));
+    tmpFile = path.join(tmpDir, 'surveys-vtt-update.json');
+  });
+
+  afterAll(async () => {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+    await testManager.clearDatabase();
+    await testManager.close();
+  });
+
+  it('drops removed surveys and adds new surveys when file is updated', async () => {
+    fs.writeFileSync(
+      tmpFile,
+      JSON.stringify([
+        { surveyId: 'vtt-upd-A', question, answer: 'Yes', countryCode: 'FIN' },
+        { surveyId: 'vtt-upd-B', question, answer: 'Yes', countryCode: 'SWE' },
+        { surveyId: 'vtt-upd-C', question, answer: 'Yes', countryCode: 'NOR' },
+      ]),
+    );
+
+    await dataSourceManager.loadSurveyData(tmpFile, 1, 'automated');
+
+    const afterV1 = await surveyAnswerRepo.find({
+      where: { questionIndicator: 'vtt-file-update', dataSource: 'automated' as any },
+    });
+    const idsAfterV1 = afterV1.map((r) => r.surveyId).sort();
+    expect(idsAfterV1).toEqual(['vtt-upd-A', 'vtt-upd-B', 'vtt-upd-C']);
+
+    // Update the file: remove A, add D
+    fs.writeFileSync(
+      tmpFile,
+      JSON.stringify([
+        { surveyId: 'vtt-upd-B', question, answer: 'Yes', countryCode: 'SWE' },
+        { surveyId: 'vtt-upd-C', question, answer: 'Yes', countryCode: 'NOR' },
+        { surveyId: 'vtt-upd-D', question, answer: 'No', countryCode: 'DNK' },
+      ]),
+    );
+
+    await dataSourceManager.loadSurveyData(tmpFile, 1, 'automated');
+
+    const afterV2 = await surveyAnswerRepo.find({
+      where: { questionIndicator: 'vtt-file-update', dataSource: 'automated' as any },
+    });
+    const idsAfterV2 = afterV2.map((r) => r.surveyId).sort();
+    expect(idsAfterV2).toEqual(['vtt-upd-B', 'vtt-upd-C', 'vtt-upd-D']);
+    expect(idsAfterV2).not.toContain('vtt-upd-A');
+  });
+
+  it('changing an existing survey answer overwrites cleanly with no stale row', async () => {
+    const tmpDir2 = fs.mkdtempSync(path.join(os.tmpdir(), 'dsm-vtt-answer-'));
+    const tmpFile2 = path.join(tmpDir2, 'surveys-vtt-answer.json');
+
+    const answerQuestion = 'Has your organisation adopted robotics in agriculture?';
+    await questionIndicatorMapRepo.save([
+      { indicator: 'vtt-answer-overwrite', question: answerQuestion },
+    ]);
+
+    fs.writeFileSync(
+      tmpFile2,
+      JSON.stringify([
+        { surveyId: 'vtt-ans-X', question: answerQuestion, answer: 'Yes', countryCode: 'FIN' },
+      ]),
+    );
+    await dataSourceManager.loadSurveyData(tmpFile2, 1, 'automated');
+
+    fs.writeFileSync(
+      tmpFile2,
+      JSON.stringify([
+        { surveyId: 'vtt-ans-X', question: answerQuestion, answer: 'No', countryCode: 'FIN' },
+      ]),
+    );
+    await dataSourceManager.loadSurveyData(tmpFile2, 1, 'automated');
+
+    const rows = await surveyAnswerRepo.find({
+      where: { surveyId: 'vtt-ans-X', questionIndicator: 'vtt-answer-overwrite' },
+    });
+    expect(rows).toHaveLength(1);
+    expect(rows[0].answer).toBe('No');
+
+    fs.rmSync(tmpDir2, { recursive: true, force: true });
+  });
+
+  it('sibling survey rows with data_source=survey survive VTT file updates', async () => {
+    const neighborQuestion = 'Is your farm certified organic?';
+    await questionIndicatorMapRepo.save([
+      { indicator: 'vtt-neighbor', question: neighborQuestion },
+    ]);
+
+    await surveyAnswerRepo.save({
+      surveyId: 'survey-neighbor-vtt',
+      questionIndicator: 'vtt-neighbor',
+      question: neighborQuestion,
+      answer: 'Yes',
+      countryCode: 'DEU',
+      wave: 1,
+      dataSource: 'survey',
+    });
+
+    const tmpDir3 = fs.mkdtempSync(path.join(os.tmpdir(), 'dsm-vtt-neighbor-'));
+    const tmpFile3 = path.join(tmpDir3, 'surveys-vtt-neighbor.json');
+
+    fs.writeFileSync(
+      tmpFile3,
+      JSON.stringify([
+        { surveyId: 'vtt-nbr-1', question: neighborQuestion, answer: 'No', countryCode: 'FIN' },
+      ]),
+    );
+    await dataSourceManager.loadSurveyData(tmpFile3, 1, 'automated');
+
+    // Update the VTT file
+    fs.writeFileSync(
+      tmpFile3,
+      JSON.stringify([
+        { surveyId: 'vtt-nbr-2', question: neighborQuestion, answer: 'No', countryCode: 'SWE' },
+      ]),
+    );
+    await dataSourceManager.loadSurveyData(tmpFile3, 1, 'automated');
+
+    // survey row must still exist unchanged
+    const surveyRows = await surveyAnswerRepo.find({
+      where: { surveyId: 'survey-neighbor-vtt' },
+    });
+    expect(surveyRows).toHaveLength(1);
+    expect(surveyRows[0].dataSource).toBe('survey');
+    expect(surveyRows[0].answer).toBe('Yes');
+
+    fs.rmSync(tmpDir3, { recursive: true, force: true });
+  });
+});
+
+describe('DataSourceManager - loadInitialData hash-based cache invalidation', () => {
+  const VTT_PATH = 'data/surveys/surveys-vtt.json';
+  const STABLE_HASH = 'aabbccdd';
+  const VTT_HASH_V1 = 'vtt-hash-v1';
+  const VTT_HASH_V2 = 'vtt-hash-v2';
+
+  function buildCombinedHash(vttSegment: string): string {
+    // Mirrors DataSourceManager: 8 artifact hashes + 1 directory hash joined and md5-ed.
+    // We mock all non-VTT slots to STABLE_HASH, and the VTT slot to the given segment.
+    const { createHash } = require('crypto');
+    const segments = [
+      STABLE_HASH, // filters.sql
+      STABLE_HASH, // question-indicators.sql
+      STABLE_HASH, // surveys.json
+      STABLE_HASH, // surveys-wave2.json
+      vttSegment,  // surveys-vtt.json (or '' if absent)
+      STABLE_HASH, // sections.json
+      STABLE_HASH, // projections.json
+      STABLE_HASH, // projection-types.json
+      STABLE_HASH, // migrations dir
+    ];
+    return createHash('md5').update(segments.join('')).digest('hex');
+  }
+
+  async function createDsm(opts: {
+    findOneValue: string | null;
+    vttMd5: string;
+    vttExists: boolean;
+  }) {
+    const savedValues: string[] = [];
+    const fakeQueryRunner = {
+      startTransaction: jest.fn(),
+      commitTransaction: jest.fn(),
+      rollbackTransaction: jest.fn(),
+      release: jest.fn(),
+      query: jest.fn(),
+      manager: { getRepository: jest.fn() },
+    };
+    const fakeConfigRepo = {
+      findOne: jest
+        .fn()
+        .mockResolvedValue(
+          opts.findOneValue !== null
+            ? { param: 'data_version', value: opts.findOneValue }
+            : null,
+        ),
+      save: jest.fn().mockImplementation(async (entity: { value: string }) => {
+        savedValues.push(entity.value);
+      }),
+    };
+    const fakeDataSource = {
+      createQueryRunner: jest.fn().mockReturnValue(fakeQueryRunner),
+      getRepository: jest.fn().mockReturnValue(fakeConfigRepo),
+    };
+
+    const module = await Test.createTestingModule({
+      providers: [
+        DataSourceManager,
+        {
+          provide: Logger,
+          useValue: { log: jest.fn(), error: jest.fn(), warn: jest.fn() },
+        },
+        { provide: getDataSourceToken(), useValue: fakeDataSource },
+        {
+          provide: EtlNotificationService,
+          useValue: {
+            sendSuccessNotification: jest.fn(),
+            sendFailureNotification: jest.fn(),
+          },
+        },
+      ],
+    }).compile();
+
+    const dsm = module.get<DataSourceManager>(DataSourceManager);
+
+    jest.spyOn(FSUtils, 'md5File').mockImplementation(async (p: string) =>
+      p === VTT_PATH ? opts.vttMd5 : STABLE_HASH,
+    );
+    jest.spyOn(FSUtils, 'md5Directory').mockResolvedValue(STABLE_HASH);
+    jest.spyOn(fs, 'existsSync').mockReturnValue(opts.vttExists);
+
+    jest.spyOn(dsm, 'loadQuestionIndicatorMap').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'loadProjectionTypes').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'loadPageFilters').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'loadPageSections').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'loadProjections').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'generateProjectionsFilters').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'generateProjectionsSettings').mockResolvedValue(undefined);
+    jest.spyOn(dsm, 'generateProjectionsWidgets').mockResolvedValue(undefined);
+    const loadSurveyDataSpy = jest
+      .spyOn(dsm, 'loadSurveyData')
+      .mockResolvedValue(undefined);
+
+    return { dsm, loadSurveyDataSpy, savedValues, fakeConfigRepo };
+  }
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('no cached version → full reload runs and the computed hash is persisted', async () => {
+    const { dsm, loadSurveyDataSpy, savedValues } = await createDsm({
+      findOneValue: null,
+      vttMd5: VTT_HASH_V1,
+      vttExists: true,
+    });
+
+    await dsm.loadInitialData();
+
+    expect(loadSurveyDataSpy).toHaveBeenCalledWith(VTT_PATH, 1, 'automated');
+    expect(savedValues).toHaveLength(1);
+    expect(savedValues[0]).toBe(buildCombinedHash(VTT_HASH_V1));
+  });
+
+  it('cached hash equals current hash → reload is skipped entirely', async () => {
+    const cachedHash = buildCombinedHash(VTT_HASH_V1);
+    const { dsm, loadSurveyDataSpy, fakeConfigRepo } = await createDsm({
+      findOneValue: cachedHash,
+      vttMd5: VTT_HASH_V1,
+      vttExists: true,
+    });
+
+    await dsm.loadInitialData();
+
+    expect(loadSurveyDataSpy).not.toHaveBeenCalled();
+    expect(fakeConfigRepo.save).not.toHaveBeenCalled();
+  });
+
+  it('VTT file hash changes → reload triggered and new hash is persisted', async () => {
+    const oldHash = buildCombinedHash(VTT_HASH_V1);
+    const { dsm, loadSurveyDataSpy, savedValues } = await createDsm({
+      findOneValue: oldHash,
+      vttMd5: VTT_HASH_V2, // file changed
+      vttExists: true,
+    });
+
+    await dsm.loadInitialData();
+
+    expect(loadSurveyDataSpy).toHaveBeenCalledWith(VTT_PATH, 1, 'automated');
+    expect(savedValues).toHaveLength(1);
+    expect(savedValues[0]).toBe(buildCombinedHash(VTT_HASH_V2));
+    expect(savedValues[0]).not.toBe(oldHash);
+  });
+
+  it('VTT absent with matching cached absent-hash → reload is still skipped', async () => {
+    // When VTT file is absent, its slot contributes '' to the combined hash.
+    const absentHash = buildCombinedHash('');
+    const { dsm, loadSurveyDataSpy, fakeConfigRepo } = await createDsm({
+      findOneValue: absentHash,
+      vttMd5: '', // won't be called when existsSync returns false
+      vttExists: false,
+    });
+
+    await dsm.loadInitialData();
+
+    expect(loadSurveyDataSpy).not.toHaveBeenCalled();
+    expect(fakeConfigRepo.save).not.toHaveBeenCalled();
+  });
+});
