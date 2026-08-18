@@ -22,6 +22,10 @@ jest.mock('../../data/surveys/wrangle-wave2', () => ({
   wrangleWave2: jest.fn(),
 }));
 
+jest.mock('../../data/surveys/transform-vtt', () => ({
+  transformVTT: jest.fn(),
+}));
+
 jest.mock('../../data/surveys/transform-wave2', () => ({
   transformWave2: jest.fn(),
 }));
@@ -32,6 +36,7 @@ describe('ETL Process Email', () => {
   let mockDataSource: jest.Mocked<DataSource>;
   let mockExtract: jest.Mock;
   let mockTransform: jest.Mock;
+  let mockTransformVTT: jest.Mock;
   let mockExtractWave2: jest.Mock;
   let mockWrangleWave2: jest.Mock;
   let mockTransformWave2: jest.Mock;
@@ -40,12 +45,14 @@ describe('ETL Process Email', () => {
     // Mock the imported functions
     const extractModule = await import('../../data/surveys/extract');
     const transformModule = await import('../../data/surveys/transform');
+    const transformVTTModule = await import('../../data/surveys/transform-vtt');
     const extractWave2Module = await import('../../data/surveys/extract-wave2');
     const wrangleWave2Module = await import('../../data/surveys/wrangle-wave2');
     const transformWave2Module =
       await import('../../data/surveys/transform-wave2');
     mockExtract = extractModule.extract as jest.Mock;
     mockTransform = transformModule.transform as jest.Mock;
+    mockTransformVTT = transformVTTModule.transformVTT as jest.Mock;
     mockExtractWave2 = extractWave2Module.extractWave2 as jest.Mock;
     mockWrangleWave2 = wrangleWave2Module.wrangleWave2 as jest.Mock;
     mockTransformWave2 = transformWave2Module.transformWave2 as jest.Mock;
@@ -112,6 +119,7 @@ describe('ETL Process Email', () => {
       // Arrange
       mockExtract.mockResolvedValue(undefined);
       mockTransform.mockResolvedValue(undefined);
+      mockTransformVTT.mockResolvedValue(undefined);
       mockExtractWave2.mockResolvedValue(undefined);
       mockWrangleWave2.mockResolvedValue(undefined);
       mockTransformWave2.mockResolvedValue(undefined);
@@ -126,6 +134,7 @@ describe('ETL Process Email', () => {
       // Assert
       expect(mockExtract).toHaveBeenCalledTimes(1);
       expect(mockTransform).toHaveBeenCalledTimes(1);
+      expect(mockTransformVTT).toHaveBeenCalledTimes(1);
       expect(mockExtractWave2).toHaveBeenCalledTimes(1);
       expect(mockWrangleWave2).toHaveBeenCalledTimes(1);
       expect(mockTransformWave2).toHaveBeenCalledTimes(1);
@@ -177,11 +186,34 @@ describe('ETL Process Email', () => {
       ).not.toHaveBeenCalled();
     });
 
+    it('should send failure notification when VTT transform fails', async () => {
+      // Arrange
+      const testError = new Error('VTT transform failed');
+      mockExtract.mockResolvedValue(undefined);
+      mockTransform.mockResolvedValue(undefined);
+      mockTransformVTT.mockRejectedValue(testError);
+      const sendFailureNotificationSpy = jest.spyOn(
+        etlNotificationService,
+        'sendFailureNotification',
+      );
+
+      // Act & Assert
+      await expect(dataSourceManager.performETL()).rejects.toThrow(
+        'VTT transform failed',
+      );
+      expect(sendFailureNotificationSpy).toHaveBeenCalledTimes(1);
+      expect(sendFailureNotificationSpy).toHaveBeenCalledWith(testError);
+      expect(
+        etlNotificationService.sendSuccessNotification,
+      ).not.toHaveBeenCalled();
+    });
+
     it('should send failure notification when Wave 2 extraction fails', async () => {
       // Arrange
       const testError = new Error('Wave 2 extract failed');
       mockExtract.mockResolvedValue(undefined);
       mockTransform.mockResolvedValue(undefined);
+      mockTransformVTT.mockResolvedValue(undefined);
       mockExtractWave2.mockRejectedValue(testError);
       const sendFailureNotificationSpy = jest.spyOn(
         etlNotificationService,
@@ -204,6 +236,7 @@ describe('ETL Process Email', () => {
       const testError = new Error('Wave 2 transform failed');
       mockExtract.mockResolvedValue(undefined);
       mockTransform.mockResolvedValue(undefined);
+      mockTransformVTT.mockResolvedValue(undefined);
       mockExtractWave2.mockResolvedValue(undefined);
       mockWrangleWave2.mockResolvedValue(undefined);
       mockTransformWave2.mockRejectedValue(testError);
@@ -228,6 +261,7 @@ describe('ETL Process Email', () => {
       const testError = new Error('Load initial data failed');
       mockExtract.mockResolvedValue(undefined);
       mockTransform.mockResolvedValue(undefined);
+      mockTransformVTT.mockResolvedValue(undefined);
       mockExtractWave2.mockResolvedValue(undefined);
       mockWrangleWave2.mockResolvedValue(undefined);
       mockTransformWave2.mockResolvedValue(undefined);
@@ -264,6 +298,11 @@ describe('ETL Process Email', () => {
         return Promise.resolve();
       });
 
+      mockTransformVTT.mockImplementation(() => {
+        callOrder.push('transformVTT');
+        return Promise.resolve();
+      });
+
       mockExtractWave2.mockImplementation(() => {
         callOrder.push('extractWave2');
         return Promise.resolve();
@@ -293,6 +332,7 @@ describe('ETL Process Email', () => {
       expect(callOrder).toEqual([
         'extract',
         'transform',
+        'transformVTT',
         'extractWave2',
         'wrangleWave2',
         'transformWave2',
@@ -306,6 +346,7 @@ describe('ETL Process Email', () => {
       // Arrange
       mockExtract.mockResolvedValue(undefined);
       mockTransform.mockResolvedValue(undefined);
+      mockTransformVTT.mockResolvedValue(undefined);
       mockExtractWave2.mockResolvedValue(undefined);
       mockWrangleWave2.mockResolvedValue(undefined);
       mockTransformWave2.mockResolvedValue(undefined);
