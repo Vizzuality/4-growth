@@ -125,7 +125,7 @@ export class DataSourceManager {
       this.loadSurveyData('data/surveys/surveys.json', 1),
       this.loadSurveyData('data/surveys/surveys-wave2.json', 2),
       ...(vttExists
-        ? [this.loadSurveyData('data/surveys/surveys-vtt.json', 1, 'automated')]
+        ? [this.loadSurveyData(vttArtifactPath, 1, 'automated')]
         : []),
 
       // Projections
