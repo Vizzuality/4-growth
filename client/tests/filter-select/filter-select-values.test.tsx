@@ -174,4 +174,27 @@ describe("FilterSelectValues", () => {
       });
     });
   });
+
+  it("never offers N/A as a value, and leaves it out of Select All", async () => {
+    const filterWithNa = {
+      name: "sector",
+      label: "Sector",
+      values: ["Agriculture", "Forestry", "Both", "N/A"],
+    };
+    (jotai.useAtomValue as jest.Mock).mockReturnValue(filterWithNa);
+
+    render(<FilterSelectValues {...mockProps} items={[filterWithNa]} />);
+
+    expect(screen.queryByLabelText("N/A")).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByLabelText("Select All"));
+    fireEvent.click(screen.getByText("Apply"));
+
+    await waitFor(() => {
+      expect(mockOnSubmit).toHaveBeenCalledWith({
+        values: ["Agriculture", "Forestry", "Both"],
+        operator: "=",
+      });
+    });
+  });
 });

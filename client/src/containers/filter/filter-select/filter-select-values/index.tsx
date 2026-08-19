@@ -8,6 +8,7 @@ import Fuse from "fuse.js";
 import { useAtomValue, useSetAtom } from "jotai";
 import { SearchIcon } from "lucide-react";
 
+import { NA_ANSWER_LABEL } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 import {
@@ -51,7 +52,9 @@ const FilterSelectValues: FC<FilterSelectValuesProps> = ({
   onSubmit,
 }) => {
   const filter = useAtomValue(currentFilterAtom);
-  const allValues = items.find((i) => i.name === filter?.name)?.values || [];
+  const allValues = (
+    items.find((i) => i.name === filter?.name)?.values || []
+  ).filter((v) => v !== NA_ANSWER_LABEL);
   const setCurrentStep = useSetAtom(currentStepAtom);
   const [selectAll, setSelectAll] = useState(false);
   const form = useForm<FilterSelectForm>({
