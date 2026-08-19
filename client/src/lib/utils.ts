@@ -46,6 +46,10 @@ export function addFilterQueryParam(
   newFilter: FilterQueryParam,
   mode: ADD_FILTER_MODE = ADD_FILTER_MODE.MERGE,
 ): FilterQueryParam[] {
+  if (newFilter.values.length === 0) {
+    return filters.filter((f) => f.name !== newFilter.name);
+  }
+
   let updatedFilters = filters.slice();
 
   if (!updatedFilters.some((filter) => filter.name === newFilter.name)) {
