@@ -8,6 +8,7 @@ import { queryKeys } from "@/lib/queryKeys";
 import { normalizeProjectionsFilterValues } from "@/lib/utils";
 
 import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
+import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
 import useSettings from "@/hooks/use-settings";
 
 import { SCENARIOS } from "@/containers/scenarios/constants";
@@ -39,6 +40,8 @@ const FilterSettings: FC<FilterSettingsProps> = ({
 }) => {
   const { filters } = useFilters();
   const { settings } = useSettings();
+  const { selectedCategories } = useProjectionsCategoryFilter();
+  const operationArea = selectedCategories[0];
   const isTableVisualization =
     type === "projections" && settings !== null && "table" in settings;
 
@@ -49,8 +52,16 @@ const FilterSettings: FC<FilterSettingsProps> = ({
   );
   const projectionsFiltersQuery =
     client.projections.getProjectionsFilters.useQuery(
-      queryKeys.projections.filters.queryKey,
-      {},
+      queryKeys.projections.filters(operationArea).queryKey,
+      {
+        query: operationArea
+          ? {
+              filters: [
+                { name: "category", operator: "=", values: [operationArea] },
+              ],
+            }
+          : {},
+      },
       {
         select: (res) => normalizeProjectionsFilterValues(res.body.data),
         enabled: type === "projections",

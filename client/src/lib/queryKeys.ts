@@ -64,7 +64,9 @@ export const projectionsKeys = createQueryKeys("projections", {
     { filters },
   ],
   settingsAll: null,
-  filters: null,
+  filters: (category?: string) => ({
+    queryKey: [{ category: category ?? null }],
+  }),
 });
 
 export const queryKeys = mergeQueryKeys(
