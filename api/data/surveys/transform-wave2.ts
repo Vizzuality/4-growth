@@ -30,7 +30,7 @@ const WAVE2_QUESTION_NORMALIZATIONS = new Map([
 
 const NO_TO_NOT_AT_ALL = new Map([['No', 'Not at all']]);
 
-const WAVE2_ANSWER_NORMALIZATIONS = new Map([
+export const WAVE2_ANSWER_NORMALIZATIONS = new Map([
   ['Are there plans to expand or upgrade your current digital infrastructure?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Have digital technologies contributed to sustainability and environmental practices?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Have digital technologies resulted in cost savings or increased efficiency?', LIKERT_TO_YES_NO_DONTKNOW],
@@ -54,9 +54,7 @@ const WAVE2_ANSWER_NORMALIZATIONS = new Map([
   ])],
 ]);
 
-const WAVE2_EXCLUDED_QUESTIONS = new Set([
-  'What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?',
-]);
+export const WAVE2_EXCLUDED_QUESTIONS = new Set<string>();
 
 export const transformWave2 = () =>
   transform(
