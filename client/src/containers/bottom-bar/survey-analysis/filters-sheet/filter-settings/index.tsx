@@ -24,7 +24,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({
   const surveyAnalysisFiltersQuery = client.pageFilter.searchFilters.useQuery(
     queryKeys.pageFilters.all(filters).queryKey,
     { query: { filters } },
-    { select: (res) => res.body.data },
+    { select: (res) => res.body.data, keepPreviousData: true },
   );
 
   const allFilters = useMemo(
