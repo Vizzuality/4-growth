@@ -229,8 +229,8 @@ describe('transform() pipeline — normalization applied end-to-end', () => {
     it(`normalizes Wave 1+3 answer "${raw}" → "${expected}" in ETL JSON output`, async () => {
       const { transform } = await import('../../data/surveys/transform');
 
-      const dir = await buildMockDir(`pipeline-${raw.replace('%', 'pct')}`, raw);
-      const outputPath = join(tmpDir, `output-${raw.replace('%', 'pct')}.json`);
+      const dir = await buildMockDir(`pipeline-${raw.replace(/%/g, 'pct')}`, raw);
+      const outputPath = join(tmpDir, `output-${raw.replace(/%/g, 'pct')}.json`);
 
       await transform(dir, outputPath);
 
