@@ -2,7 +2,9 @@ import { renderHook, act } from "@testing-library/react-hooks";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { useQueryState } from "nuqs";
 import { usePathname } from "next/navigation";
+import qs from "qs";
 import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
+import type { FilterQueryParam } from "@/hooks/use-filters";
 
 vi.mock("nuqs", () => ({
   useQueryState: vi.fn(),
@@ -15,6 +17,14 @@ vi.mock("@shared/dto/global/search-widget-data-params", () => ({
 vi.mock("next/navigation", () => ({
   usePathname: vi.fn(),
 }));
+
+const parseFilters = (serialized: string): Record<string, string[]> => {
+  const { filters } = qs.parse(serialized) as unknown as {
+    filters: FilterQueryParam[];
+  };
+
+  return Object.fromEntries(filters.map((f) => [f.name, f.values]));
+};
 
 describe("useProjectionsCategoryFilter", () => {
   const mockSetFiltersQuery = vi.fn();
@@ -45,9 +55,9 @@ describe("useProjectionsCategoryFilter", () => {
     expect(result.current.selectedCategories).toEqual(["Agriculture"]);
   });
 
-  it("clears technology and technology-type when the operation area changes", () => {
+  it("drops the category-scoped filters and keeps the rest when the operation area changes", () => {
     vi.mocked(useQueryState).mockReturnValue([
-      "filters[0][name]=category&filters[0][operator]==&filters[0][values][0]=Agriculture&filters[1][name]=technology-type&filters[1][operator]==&filters[1][values][0]=Hardware&filters[2][name]=technology&filters[2][operator]==&filters[2][values][0]=Robotics",
+      "filters[0][name]=category&filters[0][operator]==&filters[0][values][0]=Agriculture&filters[1][name]=technology-type&filters[1][operator]==&filters[1][values][0]=Hardware&filters[2][name]=technology&filters[2][operator]==&filters[2][values][0]=Robotics&filters[3][name]=country&filters[3][operator]==&filters[3][values][0]=Spain",
       mockSetFiltersQuery,
     ]);
 
@@ -57,28 +67,24 @@ describe("useProjectionsCategoryFilter", () => {
       result.current.toggleCategory("Forestry");
     });
 
-    const serialized = mockSetFiltersQuery.mock.calls[0][0] as string;
-    expect(serialized).toContain("category");
-    expect(serialized).toContain("Forestry");
-    expect(serialized).not.toContain("technology-type");
-    expect(serialized).not.toContain("technology");
+    expect(parseFilters(mockSetFiltersQuery.mock.calls[0][0])).toEqual({
+      country: ["Spain"],
+      category: ["Forestry"],
+    });
   });
 
-  it("switches to the new category while keeping unrelated filters", () => {
+  it("keeps the technology filters when the selected operation area is picked again", () => {
     vi.mocked(useQueryState).mockReturnValue([
-      "filters[0][name]=category&filters[0][operator]==&filters[0][values][0]=Agriculture&filters[1][name]=country&filters[1][operator]==&filters[1][values][0]=Spain",
+      "filters[0][name]=category&filters[0][operator]==&filters[0][values][0]=Agriculture&filters[1][name]=technology&filters[1][operator]==&filters[1][values][0]=Robotics",
       mockSetFiltersQuery,
     ]);
 
     const { result } = renderHook(() => useProjectionsCategoryFilter());
 
     act(() => {
-      result.current.toggleCategory("Forestry");
+      result.current.toggleCategory("Agriculture");
     });
 
-    const serialized = mockSetFiltersQuery.mock.calls[0][0] as string;
-    expect(serialized).toContain("Forestry");
-    expect(serialized).toContain("country");
-    expect(serialized).toContain("Spain");
+    expect(mockSetFiltersQuery).not.toHaveBeenCalled();
   });
 });
