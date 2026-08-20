@@ -45,7 +45,7 @@ const FilterSettings: FC<FilterSettingsProps> = ({
   const surveyAnalysisFiltersQuery = client.pageFilter.searchFilters.useQuery(
     queryKeys.pageFilters.all(filters).queryKey,
     { query: { filters } },
-    { select: (res) => res.body.data, enabled: type === "surveyAnalysis" },
+    { select: (res) => res.body.data, enabled: type === "surveyAnalysis", keepPreviousData: true },
   );
   const projectionsFiltersQuery = useProjectionsFilters({
     enabled: type === "projections",

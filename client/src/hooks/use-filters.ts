@@ -152,7 +152,7 @@ function useFilters() {
     (newFilters: FilterQueryParam[]) => {
       const stringified = qs.stringify(
         { filters: newFilters },
-        { encode: false },
+        { encode: true, encodeValuesOnly: true },
       );
       setFiltersQuery(stringified);
     },
