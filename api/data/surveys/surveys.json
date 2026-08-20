@@ -9129,7 +9129,7 @@
     "surveyId": "3D540A56FECAC34F96C5EF20DC33FC48D969A213",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "FR",
     "questionId": 2446439,
     "countryCode": "FRA"
@@ -22323,7 +22323,7 @@
     "surveyId": "BCF254A3BBD3B21ADDAC696FDB298F00812AE8BA",
     "answerId": 2045158,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "75%",
+    "answer": "<75%",
     "language": "FR",
     "questionId": 2446439,
     "countryCode": "FRA"
@@ -41430,7 +41430,7 @@
     "surveyId": "EA5532D148670154F433416E8EAAF1CA796A00A6",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "FR",
     "questionId": 2446439,
     "countryCode": "FRA"
@@ -45426,7 +45426,7 @@
     "surveyId": "719B5D55AF1EE6AB877F2C50594C8346060F269D",
     "answerId": 2045158,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "75%",
+    "answer": "<75%",
     "language": "FR",
     "questionId": 2446439,
     "countryCode": "FRA"
@@ -45804,7 +45804,7 @@
     "surveyId": "448E8C2D240B4BEA11F94DED5CDC9265CC1F99B0",
     "answerId": 2045158,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "75%",
+    "answer": "<75%",
     "language": "FR",
     "questionId": 2446439,
     "countryCode": "FRA"
@@ -85827,7 +85827,7 @@
     "surveyId": "1B933609C19D8571FD094EC6EA4DDA8115DF1758",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "FRA"
@@ -88293,7 +88293,7 @@
     "surveyId": "35325FB92CC5D9C188DDEBE87779710C65B1B389",
     "answerId": 2045156,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "25%",
+    "answer": "<25%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "BEL"
@@ -88698,7 +88698,7 @@
     "surveyId": "16FBF06C88A1A8AD23AA9133D5D0D525200E72EB",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -89013,7 +89013,7 @@
     "surveyId": "ACF773BB286EC6C2439222385C83556929188004",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -89472,7 +89472,7 @@
     "surveyId": "5D357FD42708B0BAEF8FA7496FA621FF30CED97D",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -89742,7 +89742,7 @@
     "surveyId": "5A63EE15F5F5F32F163C8793539F83991A8199F8",
     "answerId": 2045158,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "75%",
+    "answer": "<75%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -90012,7 +90012,7 @@
     "surveyId": "9E9D42AE4904113B3C3F9FF1D82B817DC6F532DD",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "BEL"
@@ -90606,7 +90606,7 @@
     "surveyId": "BD79E0D335D9A92F17BA5A16CD260E3E00149D34",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -90777,7 +90777,7 @@
     "surveyId": "A5ACDFE6C58E22F8EECF860180A0FA130BB01C09",
     "answerId": 2045156,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "25%",
+    "answer": "<25%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "BEL"
@@ -91065,7 +91065,7 @@
     "surveyId": "8CAF596B4BEFE7D9A908F7F92A47F63C3699F373",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -91353,7 +91353,7 @@
     "surveyId": "7C95FEDEB85E2DBAC853B07A316D61C37219915A",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -91605,7 +91605,7 @@
     "surveyId": "B527A6DA026D49DC2A55631DB928FA7650795A0F",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "BEL"
@@ -91938,7 +91938,7 @@
     "surveyId": "F8B6DFEB176ABEE2AA59D99F73175678A8AAA41B",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -92190,7 +92190,7 @@
     "surveyId": "CEDD89793EA2D132E753490358CAEDD6C045028B",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -92406,7 +92406,7 @@
     "surveyId": "8CB2C6B41C30DEBFAA6A06986EA7ED5F4DC3E3E5",
     "answerId": 2045156,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "25%",
+    "answer": "<25%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "BEL"
@@ -92883,7 +92883,7 @@
     "surveyId": "CF4C28134010FE47D2718BFF430AC27C3970350F",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -93261,7 +93261,7 @@
     "surveyId": "1C2B34CD3BEB30B9D77245BD7233264EDCC9B491",
     "answerId": 2045158,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "75%",
+    "answer": "<75%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -93594,7 +93594,7 @@
     "surveyId": "298B05E4FCAE72214B58E6991475BB3363BE5F78",
     "answerId": 2045156,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "25%",
+    "answer": "<25%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "FRA"
@@ -93999,7 +93999,7 @@
     "surveyId": "DF1DD758A87E35E286AFF1B9C5EDEEF947B9CBFA",
     "answerId": 2045158,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "75%",
+    "answer": "<75%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -94323,7 +94323,7 @@
     "surveyId": "BC48417C1A2E5F794014D31CBDF14BC32D6EC08D",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "CYP"
@@ -94899,7 +94899,7 @@
     "surveyId": "C1AAF64E5D8E9295D7DFE2E780237B745DFCC239",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "NLD"
@@ -94953,7 +94953,7 @@
     "surveyId": "6EC44262565278631386465F97922E05C2CB684B",
     "answerId": 2045156,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "25%",
+    "answer": "<25%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -95367,7 +95367,7 @@
     "surveyId": "CD53B21346F8CA8D7013625A31E9CB61634C81BA",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -95664,7 +95664,7 @@
     "surveyId": "E6199DC6E9160030BEF52F6D92DD79246FC4ABA5",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -96168,7 +96168,7 @@
     "surveyId": "9BFE93CE08B78C770433D550EF117F5EE36777C6",
     "answerId": 2045158,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "75%",
+    "answer": "<75%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -96501,7 +96501,7 @@
     "surveyId": "95910DF41E406390B1A70E1D6619FC5EA0A947E2",
     "answerId": 2045156,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "25%",
+    "answer": "<25%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -96825,7 +96825,7 @@
     "surveyId": "1E44AF693AB9BC69890A9BECEE9E92ACEA86BB08",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -96996,7 +96996,7 @@
     "surveyId": "C642F7AE9ACDBC1F7E7182790BEB8C0C3EBCADCD",
     "answerId": 2045156,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "25%",
+    "answer": "<25%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "FRA"
@@ -97329,7 +97329,7 @@
     "surveyId": "2EA2CE92421A1FA0ABAC747E3B103B4FF6EEB2B5",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -97581,7 +97581,7 @@
     "surveyId": "DF166505182AF44723784CE9A91F1063C93F6C34",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -97896,7 +97896,7 @@
     "surveyId": "F327C966B971CFBF7C59CCE4E4ABF3F3F463E170",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -98265,7 +98265,7 @@
     "surveyId": "9C520AFA52056B9913177B1897AA8CA51F010A27",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "BEL"
@@ -98436,7 +98436,7 @@
     "surveyId": "A4769F3269CB0E83E633E9565D7CF9D3E7808342",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -99138,7 +99138,7 @@
     "surveyId": "8C6D3C264077B4EAB261A242C5C7A8762D95123F",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -99372,7 +99372,7 @@
     "surveyId": "1297628CF6271585FB9A8C2F2A3ED3D9BB5A409E",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
@@ -99633,7 +99633,7 @@
     "surveyId": "4AA013183A53940058CFF22174A0C80044665B80",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -238539,7 +238539,7 @@
     "surveyId": "D4813E47E554B58FAC0B14201B287BF96F88EC6D",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "FRA"
@@ -238809,7 +238809,7 @@
     "surveyId": "642728C99F22DB7F43F85C2FE123A7559F6A6A46",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -239232,7 +239232,7 @@
     "surveyId": "89021A2F0E398E940B64BF885BAD2BCA3B7AC9FA",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "FRA"
@@ -239619,7 +239619,7 @@
     "surveyId": "AB96A5570FAE93FE3941E7235901264CC6136271",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "FRA"
@@ -240456,7 +240456,7 @@
     "surveyId": "34EB07D739779507DBAB3F0B34D491EA4BDB13BE",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -240717,7 +240717,7 @@
     "surveyId": "C33B978A64A4FA4FFF367AC3BF175B001241DD21",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "GRC"
@@ -240996,7 +240996,7 @@
     "surveyId": "49CC65D764CF788165CFD28EDD16BB139A017261",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "FRA"
@@ -241599,7 +241599,7 @@
     "surveyId": "59292E9723704122626CDA57495499BC865113EF",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "ESP"
@@ -243345,7 +243345,7 @@
     "surveyId": "21C0FA891A516E46CA1DCF2D0A26FAFFA2A14381",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "FRA"
@@ -245766,7 +245766,7 @@
     "surveyId": "F6EF6BCC9C3F66DFE52AEA85A570B702A19886CE",
     "answerId": 2045159,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "90%",
+    "answer": ">90%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "BEL"
@@ -247251,7 +247251,7 @@
     "surveyId": "8A7506D9E5D6F3577752A256FEEBE340F22A7C18",
     "answerId": 2045158,
     "question": "What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?",
-    "answer": "75%",
+    "answer": "<75%",
     "language": "EN",
     "questionId": 2448041,
     "countryCode": "HUN"
