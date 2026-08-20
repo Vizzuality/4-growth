@@ -236,15 +236,18 @@ The 82 Wave 1+3 answers already using the geographic scale labels are kept as-is
 
 ---
 
-### 2. Percentage of products targeted at agri/forestry — Wave 2 excluded for now
+### 2. Percentage of products targeted at agri/forestry — harmonized to Wave 2 bracket format
 
 **Question:** `What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?`
 
-**Decision:** Wave 2 answers are excluded from cross-wave comparison entirely. The two formats (exact values: 25%, 75%, 90% vs. bracket ranges: \<25%, \<50%, \<75%, \>90%) share no labels and cannot be mapped without making arbitrary interpretation calls.
+**Decision:** Wave 2 bracket ranges are the canonical format. Wave 1+3 exact values are normalized to their corresponding brackets in the ETL layer (`WAVE1_ANSWER_NORMALIZATIONS` in `transform.ts`). Wave 2 rows are no longer excluded from the DB — their bracket values pass through verbatim. All waves store bracket values in the `answer` column.
 
-Only Wave 1+3 exact values appear in the platform for this indicator.
-
-> **Note:** This is a provisional approach taken while awaiting partner feedback on the preferred canonical format. The decision may be revisited once the partner team confirms which scale should be treated as authoritative.
+| Wave 1+3 exact | Canonical (Wave 2 bracket) |
+| --- | --- |
+| `90%` | `>90%` |
+| `75%` | `<75%` |
+| `25%` | `<25%` |
+| — | `<50%` (Wave 2 only) |
 
 ---
 

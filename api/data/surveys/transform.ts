@@ -188,7 +188,7 @@ const DIGITAL_TECH_FORESTRY_NORMALIZATIONS = new Map([
   ['Forest Fire Prediction and Monitoring systems', 'Field Survey Technologies (e.g., drones, ground sensors for soil/weather/fire prediction, GPS devices, Geographic Information Systems Software etc.)'],
 ]);
 
-const WAVE1_ANSWER_NORMALIZATIONS = new Map([
+export const WAVE1_ANSWER_NORMALIZATIONS = new Map([
   ['Are there plans to expand or upgrade your current digital infrastructure?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Would you further adopt digital technologies if you had better network connectivity?', LIKERT_TO_YES_NO_DONTKNOW],
   ['Have digital technologies contributed to sustainability and environmental practices?', LIKERT_TO_YES_NO_DONTKNOW],
@@ -224,6 +224,11 @@ const WAVE1_ANSWER_NORMALIZATIONS = new Map([
     ['Small (10-49 employees)', 'Small-scale/Local'],
     ['Medium (50-249 employees)', 'Medium-scale/Local-National'],
     ['Large (250+ employees)', 'Large-scale/National-International'],
+  ])],
+  ['What percentage of your products or services are specifically targeted at the agricultural and forestry sectors?', new Map([
+    ['90%', '>90%'],
+    ['75%', '<75%'],
+    ['25%', '<25%'],
   ])],
   ['Would you be able to operate without this data?', new Map([
     ['Negligible impact', 'Neither disagree nor agree'],

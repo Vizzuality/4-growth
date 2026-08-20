@@ -72,7 +72,6 @@ const FORBIDDEN_LABELS: Record<string, string[]> = {
   ],
   'organisation-type': ['Small to Medium Entreprise'],
   'tech-provider-data-types': ['Geo-spatial data'],
-  'tech-provider-agri-forestry-percentage': ['>90%', '<75%', '<50%', '<25%'],
 };
 
 const REQUIRED_LABELS: Record<string, string[]> = {
