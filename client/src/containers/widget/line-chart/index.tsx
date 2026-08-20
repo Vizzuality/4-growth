@@ -32,7 +32,9 @@ const LineChart: FC<LineChartProps> = ({
 }) => {
   const yDomain = useMemo((): [number, number] => {
     const keys = colors?.map(String) ?? [String(dataKey)];
-    const values = data.flatMap((d) => keys.map((k) => d[k]).filter((v) => v != null));
+    const values = (data ?? []).flatMap((d) =>
+      keys.map((k) => d[k]).filter((v) => v != null),
+    );
     if (values.length === 0) return [0, 1];
     const min = Math.min(...values);
     const max = Math.max(...values);

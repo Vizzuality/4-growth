@@ -61,32 +61,37 @@ export class PostgresProjectionDataRepository
   }
 
   public async searchAvailableFilters(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     filters: SearchFilterDTO[] = [],
   ): Promise<ProjectionFilter[]> {
-    const repo = this.dataSource.getRepository(ProjectionFilter);
-    const result = await repo.find();
-    return result;
+    const filterRepo = this.dataSource.getRepository(ProjectionFilter);
+    const staticFilters = await filterRepo.find();
 
-    // Smart filters disabled
-    // const result: ProjectionFilter[] = [];
-    // const repo = this.dataSource.getRepository(Projection);
-    // for (const filterName of AVAILABLE_PROJECTION_FILTERS) {
-    //   const fieldName = PROJECTION_FILTER_NAME_TO_FIELD_NAME[filterName];
-    //   const queryBuilder = repo
-    //     .createQueryBuilder('projection')
-    //     .select(`JSON_AGG(DISTINCT projection.${fieldName})`, 'values');
-    //   QueryBuilderUtils.applySearchFilters(queryBuilder, filters, {
-    //     alias: 'projection',
-    //   });
-    //   const { values } = await queryBuilder.getRawOne();
-    //   result.push({
-    //     name: filterName,
-    //     label: '',
-    //     values: values ? values : [],
-    //   });
-    // }
-    // return result;
+    const operationAreaFilter = filters.find((f) => f.name === 'category');
+    if (!operationAreaFilter) {
+      return staticFilters;
+    }
+
+    const projectionRepo = this.dataSource.getRepository(Projection);
+    const dynamicByName: Record<string, string[]> = {};
+    for (const filterName of ['technology', 'technology-type'] as const) {
+      const fieldName = PROJECTION_FILTER_NAME_TO_FIELD_NAME[filterName];
+      const qb = projectionRepo
+        .createQueryBuilder('projection')
+        .select(`DISTINCT projection.${fieldName}`, fieldName)
+        .orderBy(`projection.${fieldName}`, 'ASC');
+      QueryBuilderUtils.applySearchFilters(qb, [operationAreaFilter], {
+        alias: 'projection',
+        filterNameToFieldNameMap: PROJECTION_FILTER_NAME_TO_FIELD_NAME,
+      });
+      const rows = await qb.getRawMany();
+      dynamicByName[filterName] = rows
+        .map((r) => r[fieldName])
+        .filter((v): v is string => typeof v === 'string');
+    }
+
+    return staticFilters.map((f) =>
+      dynamicByName[f.name] ? { ...f, values: dynamicByName[f.name] } : f,
+    );
   }
 
   public async countDistinctColorValues(

@@ -45,7 +45,7 @@ describe('Projections API', () => {
   //   ).toBeLessThan(Buffer.byteLength(JSON.stringify(allFiltersReqData)));
   // });
 
-  test(`${c.getProjectionsFilters.path} should return static projection filters`, async () => {
+  test(`${c.getProjectionsFilters.path} should return all projection filters when no operation area is provided`, async () => {
     const filtersReq = await testManager
       .request()
       .get(c.getProjectionsFilters.path);
@@ -55,7 +55,6 @@ describe('Projections API', () => {
     expect(filtersData).toBeDefined();
     expect(Array.isArray(filtersData)).toBe(true);
 
-    // Verify each filter has the expected structure
     if (filtersData.length > 0) {
       expect(filtersData[0].name).toBeDefined();
       expect(typeof filtersData[0].name).toBe('string');
@@ -64,18 +63,67 @@ describe('Projections API', () => {
       expect(Array.isArray(filtersData[0].values)).toBe(true);
     }
 
-    // Test that filters parameter doesn't affect the response (static filters)
-    const filtersReqWithParams = await testManager
+    // Non-category filters must not affect the response
+    const filtersReqWithOtherParams = await testManager
       .request()
       .get(
-        `${c.getProjectionsFilters.path}?filters[0][name]=application&filters[0][operator]==&filters[0][values][0]=test`,
+        `${c.getProjectionsFilters.path}?filters[0][name]=scenario&filters[0][operator]==&filters[0][values][0]=baseline`,
       );
+    expect(filtersReqWithOtherParams.status).toBe(200);
+    expect(filtersReqWithOtherParams.body.data).toEqual(filtersData);
+  });
 
-    expect(filtersReqWithParams.status).toBe(200);
-    const filtersDataWithParams = filtersReqWithParams.body.data;
+  test(`${c.getProjectionsFilters.path} should scope technology and technology-type lists to the selected operation area`, async () => {
+    const allFiltersReq = await testManager
+      .request()
+      .get(c.getProjectionsFilters.path);
+    expect(allFiltersReq.status).toBe(200);
+    const allFilters: { name: string; values: string[] }[] =
+      allFiltersReq.body.data;
 
-    // Static filters should return the same data regardless of filter parameters
-    expect(filtersDataWithParams).toEqual(filtersData);
+    const agricultureReq = await testManager
+      .request()
+      .get(
+        `${c.getProjectionsFilters.path}?filters[0][name]=category&filters[0][operator]==&filters[0][values][0]=Agriculture`,
+      );
+    expect(agricultureReq.status).toBe(200);
+    const agricultureFilters: { name: string; values: string[] }[] =
+      agricultureReq.body.data;
+
+    // Response must have the same filter names
+    expect(agricultureFilters.map((f) => f.name)).toEqual(
+      allFilters.map((f) => f.name),
+    );
+
+    const allTechValues = allFilters.find((f) => f.name === 'technology')!.values;
+    const agriTechValues = agricultureFilters.find(
+      (f) => f.name === 'technology',
+    )!.values;
+    // Agriculture technologies must be a subset of the combined list
+    expect(agriTechValues.length).toBeLessThan(allTechValues.length);
+    agriTechValues.forEach((v) => expect(allTechValues).toContain(v));
+
+    const allTechTypeValues = allFilters.find(
+      (f) => f.name === 'technology-type',
+    )!.values;
+    const agriTechTypeValues = agricultureFilters.find(
+      (f) => f.name === 'technology-type',
+    )!.values;
+    // Agriculture technology-types must be a subset and must not contain forestry-only values
+    agriTechTypeValues.forEach((v) => expect(allTechTypeValues).toContain(v));
+    expect(agriTechTypeValues).not.toContain('Satellite Imagery');
+
+    // Country and unit lists must be unchanged
+    const getValues = (
+      list: { name: string; values: string[] }[],
+      name: string,
+    ) => list.find((f) => f.name === name)!.values;
+    expect(getValues(agricultureFilters, 'country')).toEqual(
+      getValues(allFilters, 'country'),
+    );
+    expect(getValues(agricultureFilters, 'unit')).toEqual(
+      getValues(allFilters, 'unit'),
+    );
   });
 
   test(`${c.getProjectionsWidgets.path} should return projections depending on the provided 'filters'  and 'dataFilters' params`, async () => {

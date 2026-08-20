@@ -1,14 +1,17 @@
 import { useCallback, useMemo } from "react";
 
-import { ADD_FILTER_MODE } from "@/lib/constants";
+import {
+  CATEGORY_FILTER_NAME,
+  CATEGORY_SCOPED_FILTER_NAMES,
+} from "@/lib/constants";
 
 import useFilters from "@/hooks/use-filters";
 
 export default function useProjectionsCategoryFilter() {
-  const { filters, addFilter } = useFilters();
+  const { filters, setFilters } = useFilters();
 
   const { categoryFilter, selectedCategories } = useMemo(() => {
-    const categoryFilter = filters.find((f) => f.name === "category");
+    const categoryFilter = filters.find((f) => f.name === CATEGORY_FILTER_NAME);
 
     return {
       categoryFilter,
@@ -19,12 +22,19 @@ export default function useProjectionsCategoryFilter() {
 
   const toggleCategory = useCallback(
     (category: string) => {
-      addFilter(
-        { name: "category", operator: "=", values: [category] },
-        ADD_FILTER_MODE.REPLACE,
+      if (selectedCategories[0] === category) return;
+
+      const kept = filters.filter(
+        (f) =>
+          f.name !== CATEGORY_FILTER_NAME &&
+          !CATEGORY_SCOPED_FILTER_NAMES.includes(f.name),
       );
+      setFilters([
+        ...kept,
+        { name: CATEGORY_FILTER_NAME, operator: "=", values: [category] },
+      ]);
     },
-    [addFilter],
+    [filters, selectedCategories, setFilters],
   );
 
   return {

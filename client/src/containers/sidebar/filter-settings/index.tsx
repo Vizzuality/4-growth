@@ -5,9 +5,9 @@ import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
-import { normalizeProjectionsFilterValues } from "@/lib/utils";
 
 import useFilters, { FilterQueryParam } from "@/hooks/use-filters";
+import useProjectionsFilters from "@/hooks/use-projections-filters";
 import useSettings from "@/hooks/use-settings";
 
 import { SCENARIOS } from "@/containers/scenarios/constants";
@@ -47,15 +47,9 @@ const FilterSettings: FC<FilterSettingsProps> = ({
     { query: { filters } },
     { select: (res) => res.body.data, enabled: type === "surveyAnalysis" },
   );
-  const projectionsFiltersQuery =
-    client.projections.getProjectionsFilters.useQuery(
-      queryKeys.projections.filters.queryKey,
-      {},
-      {
-        select: (res) => normalizeProjectionsFilterValues(res.body.data),
-        enabled: type === "projections",
-      },
-    );
+  const projectionsFiltersQuery = useProjectionsFilters({
+    enabled: type === "projections",
+  });
   const selectedCustomFilters = filterQueryParams.filter((f) => {
     if (type === "projections" && f.name === "scenario") return false;
     if (type === "projections" && f.name === "category") return false;

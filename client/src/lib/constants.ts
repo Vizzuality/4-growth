@@ -110,6 +110,14 @@ export const AUTOMATED_DATA_SOURCE_VALUE = "automated";
 export const SECTOR_FILTER_NAME = "sector";
 export const FORESTRY_SECTOR_VALUE = "Forestry";
 
+export const CATEGORY_FILTER_NAME = "category";
+
+/**
+ * The API scopes these lists to the selected operation area, so a value picked
+ * under one area may not exist under another.
+ */
+export const CATEGORY_SCOPED_FILTER_NAMES = ["technology", "technology-type"];
+
 export const NA_ANSWER_LABEL = "N/A";
 
 /**

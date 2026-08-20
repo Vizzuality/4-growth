@@ -22,12 +22,6 @@ export default async function ProjectionsLayout({
     queryFn: async () =>
       client.projections.getProjectionsWidgets.query(QUERY_OPTIONS),
   });
-  await queryClient.prefetchQuery({
-    queryKey: queryKeys.projections.filters.queryKey,
-    queryFn: async () =>
-      client.projections.getProjectionsFilters.query(QUERY_OPTIONS),
-  });
-
   return (
     <Hydrate state={dehydrate(queryClient)}>
       <RootLayout>{children}</RootLayout>

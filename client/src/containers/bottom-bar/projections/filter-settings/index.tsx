@@ -3,10 +3,7 @@ import { FC, useMemo } from "react";
 
 import { PageFilter } from "@shared/dto/widgets/page-filter.entity";
 
-import { client } from "@/lib/queryClient";
-import { queryKeys } from "@/lib/queryKeys";
-import { normalizeProjectionsFilterValues } from "@/lib/utils";
-
+import useProjectionsFilters from "@/hooks/use-projections-filters";
 import useSettings from "@/hooks/use-settings";
 
 import FilterSettingsButton from "@/containers/bottom-bar/projections/filter-settings/button";
@@ -28,15 +25,7 @@ interface FilterSettingsProps {
 const FilterSettings: FC<FilterSettingsProps> = ({ defaultFilters }) => {
   const { settings } = useSettings();
   const isTableVisualization = settings !== null && "table" in settings;
-
-  const projectionsFiltersQuery =
-    client.projections.getProjectionsFilters.useQuery(
-      queryKeys.projections.filters.queryKey,
-      {},
-      {
-        select: (res) => normalizeProjectionsFilterValues(res.body.data),
-      },
-    );
+  const projectionsFiltersQuery = useProjectionsFilters();
 
   const allFilters = useMemo(
     () => filterProjectionsFilters(projectionsFiltersQuery?.data),
