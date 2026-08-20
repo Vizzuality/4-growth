@@ -86,7 +86,7 @@ describe("useFilters", () => {
     });
 
     expect(mockSetFiltersQuery).toHaveBeenCalledWith(
-      "filters[0][name]=sector&filters[0][operator]==&filters[0][values][0]=newValue",
+      "filters[0][name]=sector&filters[0][operator]=%3D&filters[0][values][0]=newValue",
     );
   });
 
@@ -243,7 +243,7 @@ describe("useFilters", () => {
       });
 
       expect(mockSetFiltersQuery).toHaveBeenCalledWith(
-        "filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=automated",
+        "filters[0][name]=data-source&filters[0][operator]=%3D&filters[0][values][0]=automated",
       );
     });
   });
