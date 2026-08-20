@@ -391,6 +391,7 @@ export const transform = async (
       const normalized = answerMap.get(row['answer']);
       if (normalized !== undefined) row['answer'] = normalized;
     }
+    if (row['answer'] === 'Other namely') row['answer'] = 'Other';
     return row;
   });
 
