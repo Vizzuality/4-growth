@@ -22,7 +22,7 @@
     "etlProcessEmails": "ETL_PROCESS_EMAILS"
   },
   "etl": {
-    "cronEnabled": "ETL_CRON_ENABLED",
+    "cronEnabled": { "__name": "ETL_CRON_ENABLED", "__format": "boolean" },
     "seedAutomatedMockData": {
       "__name": "SEED_AUTOMATED_MOCK_DATA",
       "__format": "boolean"

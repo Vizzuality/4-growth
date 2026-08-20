@@ -268,20 +268,33 @@ export const transform = async (
   };
 
   const ensureAllSurveyQuestionsHaveAnswers = (rows) => {
+    // Scope padding to questions actually asked in this cohort (any row with a real answer).
+    // Questions with zero real answers across all surveys were never asked; padding them would
+    // produce all-N/A columns that the UI renders as "0%".
+    const questionsWithRealAnswers = new Set(
+      rows.filter((r) => r.answer !== 'N/A').map((r) => r.question),
+    );
+
+    // Build a map of surveyId → countryCode to avoid an O(n) scan per survey.
+    const surveyCountryMap = new Map<string, string>();
+    for (const row of rows) {
+      if (!surveyCountryMap.has(row.surveyId)) {
+        surveyCountryMap.set(row.surveyId, row.countryCode);
+      }
+    }
+
     const surveyQuestionMap = generateSurveQuestionyMap(rows);
 
     for (const [surveyId, questions] of surveyQuestionMap) {
-      if (questions.size !== QUESTIONS.size) {
+      if (questions.size !== questionsWithRealAnswers.size) {
         logger.log(
-          `survey_id: ${surveyId} has ${questions.size} of ${QUESTIONS.size} questions answered`,
+          `survey_id: ${surveyId} has ${questions.size} of ${questionsWithRealAnswers.size} questions answered`,
         );
       }
 
-      const countryCode = rows.find(
-        (row) => row.surveyId === surveyId,
-      ).countryCode;
+      const countryCode = surveyCountryMap.get(surveyId);
 
-      for (const question of QUESTIONS) {
+      for (const question of questionsWithRealAnswers) {
         if (questions.has(question) === false) {
           rows.push({
             surveyId,
@@ -292,7 +305,7 @@ export const transform = async (
         }
       }
 
-      // Search for questions that are not in the QUESTIONS set
+      // Search for questions that are not in the known QUESTIONS set
       for (const question of questions) {
         if (QUESTIONS.has(question) === false) {
           console.error(
