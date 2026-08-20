@@ -61,6 +61,12 @@ export default function Widget({
   const [selectedUnit, setSelectedUnit] = useState(
     getDefaultProjectionUnit(data, indicator),
   );
+  // A cached query swaps `data` without remounting, so the unit held in state may
+  // not be a key of the new payload.
+  const unit =
+    data && selectedUnit in data
+      ? selectedUnit
+      : getDefaultProjectionUnit(data, indicator);
   const [selectedVisualization, setSelectedVisualization] =
     useState<ProjectionVisualizationsType>(visualization);
   const [showOverlay, setShowOverlay] = useAtom(showOverlayAtom);
@@ -88,7 +94,7 @@ export default function Widget({
     <UnitSelect
       id={indicator}
       items={units}
-      value={selectedUnit}
+      value={unit}
       onValueChange={setSelectedUnit}
     />
   );
@@ -96,10 +102,6 @@ export default function Widget({
   useEffect(() => {
     setSelectedVisualization(visualization);
   }, [visualization]);
-
-  useEffect(() => {
-    setSelectedUnit(getDefaultProjectionUnit(data, indicator));
-  }, [units, setSelectedUnit, data, indicator]);
 
   if (!data || Object.keys(data).length === 0) {
     return (
@@ -127,9 +129,9 @@ export default function Widget({
             select={selectComponent}
           />
           <VerticalBarChart
-            unit={selectedUnit}
+            unit={unit}
             indicator={indicator}
-            data={data[selectedUnit]}
+            data={data[unit]}
             enableHoverStyles
           />
         </Card>
@@ -147,8 +149,8 @@ export default function Widget({
           />
           <LineChart
             indicator={indicator}
-            unit={selectedUnit}
-            data={data[selectedUnit]}
+            unit={unit}
+            data={data[unit]}
             dataKey="value"
           />
         </Card>
@@ -164,7 +166,7 @@ export default function Widget({
             menu={menuComponent}
             select={selectComponent}
           />
-          <TableView indicator={indicator} data={data[selectedUnit]} />
+          <TableView indicator={indicator} data={data[unit]} />
         </Card>
       );
     case "bubble_chart":
