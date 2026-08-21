@@ -102,6 +102,13 @@ export const DEFAULT_DATA_SOURCE_VALUES = ["survey"];
 
 export const AUTOMATED_DATA_SOURCE_VALUE = "automated";
 
+// `order` is the sections primary key, seeded from api/data/sections/sections.json,
+// where the overview section is 1.
+export const OVERVIEW_SECTION_ORDER = 1;
+
+export const SECTION_UNAVAILABLE_REASON =
+  "No automated web data for this section.";
+
 /**
  * Automated website analysis only covers forestry organisations, so any data
  * source including it scopes results to that sector. The sidebar calls `sector`

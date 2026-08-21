@@ -4,17 +4,16 @@ import { useMemo, useRef } from "react";
 
 import dynamic from "next/dynamic";
 
-import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import { useSetAtom } from "jotai";
 
-import {
-  getAbsoluteValue,
-  getResponseRate,
-  normalizeWidgetData,
-} from "@/lib/normalize-widget-data";
+import { OVERVIEW_SECTION_ORDER } from "@/lib/constants";
+import { normalizeSections } from "@/lib/normalize-widget-data";
 import { client } from "@/lib/queryClient";
 import { queryKeys } from "@/lib/queryKeys";
-import { getVisibleWidgets } from "@/lib/widget-visibility";
+import {
+  getEmptySectionSlugs,
+  getVisibleWidgets,
+} from "@/lib/widget-visibility";
 
 import useFilters from "@/hooks/use-filters";
 import { useScrollToHash } from "@/hooks/use-scroll-to-hash";
@@ -25,7 +24,7 @@ import { intersectingAtom } from "@/containers/explore/store";
 import Widget from "@/containers/widget/survey-analysis";
 
 import { Spinner } from "@/components/ui/spinner";
-import { TransformedWidget, TransformedWidgetData } from "@/types";
+import { TransformedWidgetData } from "@/types";
 import { useScrollSpy } from "tests/hooks/use-scroll-spy";
 
 const MoreInfoDialog = dynamic(() => import("@/containers/dialog/more-info"), {
@@ -37,28 +36,22 @@ export default function Explore() {
   const { data, isFetching } = client.sections.getSections.useQuery(
     queryKeys.sections.all(filters).queryKey,
     { query: { filters } },
-    {
-      select: (res) =>
-        res.body.data.map((d) => ({
-          ...d,
-          baseWidgets: d.baseWidgets?.map((w) => ({
-            ...w,
-            data: {
-              raw: w.data,
-              percentages: normalizeWidgetData(w.data),
-            },
-            responseRate: getResponseRate(w.data),
-            absoluteValue: getAbsoluteValue(w.data),
-          })),
-        })),
-    },
+    { select: (res) => normalizeSections(res.body.data) },
   );
-  const sections = useMemo(
+  const sections = useMemo(() => data || [], [data]);
+  const emptySectionSlugs = useMemo(
+    () => getEmptySectionSlugs(sections, filters),
+    [sections, filters],
+  );
+  const tileMenuItems = useMemo(
     () =>
-      (data as (SectionWithDataWidget & {
-        baseWidgets: TransformedWidget[];
-      })[]) || [],
-    [data],
+      sections.map((s) => ({
+        name: s.name,
+        description: s.description,
+        slug: s.slug,
+        isEmpty: emptySectionSlugs.has(s.slug),
+      })),
+    [sections, emptySectionSlugs],
   );
   const ref = useRef<HTMLDivElement>(null);
   const setIntersecting = useSetAtom(intersectingAtom);
@@ -88,55 +81,54 @@ export default function Explore() {
       ref={ref}
       className="overflow-y-auto scroll-smooth pb-32"
     >
-      {sections.map((s) => {
-        const isOverview = s.order === 1;
-        return (
-          <Section
-            key={`section-container-${s.slug}`}
-            isOverview={isOverview}
-            data={s}
-            menuItems={sections}
-          >
-            {isOverview ? (
-              <OverviewSection
-                widgets={s.baseWidgets}
-                tileMenuItems={sections.map((s) => ({
-                  name: s.name,
-                  description: s.description,
-                  slug: s.slug,
-                }))}
-              />
-            ) : (
-              getVisibleWidgets(s.baseWidgets, filters).map((w) => (
-                <Widget
-                  key={`widget-${w.indicator}`}
-                  visualization={w.defaultVisualization}
-                  visualisations={w.visualisations}
-                  indicator={w.indicator}
-                  description={w.description}
-                  title={w.title}
-                  section={s.name}
-                  question={w.question}
-                  questionTitle={w.questionTitle}
-                  data={w.data as TransformedWidgetData}
-                  responseRate={w.responseRate}
-                  absoluteValue={w.absoluteValue}
-                  className="lg:col-span-1 lg:last:odd:col-span-2"
-                  config={{
-                    menu: { className: "flex flex-col gap-6" },
-                    pieChart: {
-                      className: "aspect-square min-h-[200px] max-w-[400px]",
-                      legendPosition: "right",
-                    },
-                    horizontalBarChart: { barSize: 47 },
-                  }}
-                  showCustomizeWidgetButton
+      {sections
+        .filter((s) => !emptySectionSlugs.has(s.slug))
+        .map((s) => {
+          const isOverview = s.order === OVERVIEW_SECTION_ORDER;
+          return (
+            <Section
+              key={`section-container-${s.slug}`}
+              isOverview={isOverview}
+              data={s}
+              menuItems={sections}
+              emptySlugs={emptySectionSlugs}
+            >
+              {isOverview ? (
+                <OverviewSection
+                  widgets={s.baseWidgets}
+                  tileMenuItems={tileMenuItems}
                 />
-              ))
-            )}
-          </Section>
-        );
-      })}
+              ) : (
+                getVisibleWidgets(s.baseWidgets, filters).map((w) => (
+                  <Widget
+                    key={`widget-${w.indicator}`}
+                    visualization={w.defaultVisualization}
+                    visualisations={w.visualisations}
+                    indicator={w.indicator}
+                    description={w.description}
+                    title={w.title}
+                    section={s.name}
+                    question={w.question}
+                    questionTitle={w.questionTitle}
+                    data={w.data as TransformedWidgetData}
+                    responseRate={w.responseRate}
+                    absoluteValue={w.absoluteValue}
+                    className="lg:col-span-1 lg:last:odd:col-span-2"
+                    config={{
+                      menu: { className: "flex flex-col gap-6" },
+                      pieChart: {
+                        className: "aspect-square min-h-[200px] max-w-[400px]",
+                        legendPosition: "right",
+                      },
+                      horizontalBarChart: { barSize: 47 },
+                    }}
+                    showCustomizeWidgetButton
+                  />
+                ))
+              )}
+            </Section>
+          );
+        })}
       <MoreInfoDialog />
     </div>
   );
