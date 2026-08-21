@@ -75,14 +75,18 @@ export class PostgresSurveyAnswerRepository
     if (breakdownIndicator === undefined) {
       await this.addDataToWidget(widget, filters);
     } else {
+      const { dataSourceFilter, scopeFilters } =
+        this.splitDataSourceFilter(filters);
       const filterClauseWithParams =
-        this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters, {
-          alias: 'main',
-        });
+        this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(
+          dataSourceFilter === undefined ? undefined : [dataSourceFilter],
+          { alias: 'main' },
+        );
       await this.addBreakdownDataToWidget(
         widget,
         breakdownIndicator,
         filterClauseWithParams,
+        scopeFilters,
       );
     }
     return widget;
@@ -177,8 +181,22 @@ export class PostgresSurveyAnswerRepository
     const { dataSourceFilter, scopeFilters } =
       this.splitDataSourceFilter(filters);
 
-    const [scopeClause, queryParams] =
-      this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(scopeFilters);
+    // Each per-question scope filter must be applied as its own survey_id IN
+    // subquery. Composing them on the same row (question_indicator = X AND
+    // question_indicator = Y) is always unsatisfiable in this EAV schema.
+    const queryParams: unknown[] = [];
+    const surveyIdSubclauses: string[] = [];
+    for (const filter of scopeFilters ?? []) {
+      const [clause] =
+        this.sqlAdapter.generateFilterClauseFromWidgetDataFilters([filter], {
+          queryParams,
+        });
+      if (clause !== '') {
+        surveyIdSubclauses.push(
+          `survey_id IN (SELECT survey_id FROM ${this.answersTable} ${clause})`,
+        );
+      }
+    }
 
     queryParams.push(widget.indicator);
     const indicatorParamIdx = queryParams.length;
@@ -194,9 +212,14 @@ export class PostgresSurveyAnswerRepository
     const dataSourceClause =
       dataSourcePredicate === '' ? '' : ` AND ${dataSourcePredicate}`;
 
+    const scopePredicate =
+      surveyIdSubclauses.length > 0
+        ? surveyIdSubclauses.join(' AND ') + ' AND '
+        : '';
+
     const totalsSql = `SELECT answer as "key", data_source as "source", count(answer)::integer as "count", SUM(COUNT(answer)) OVER (PARTITION BY data_source)::integer AS total
     FROM ${this.answersTable}
-    WHERE survey_id IN (SELECT survey_id FROM ${this.answersTable} ${scopeClause}) AND question_indicator = $${indicatorParamIdx}${dataSourceClause}
+    WHERE ${scopePredicate}question_indicator = $${indicatorParamIdx}${dataSourceClause}
     GROUP BY answer, data_source ORDER BY answer`;
 
     const totalsResult: {
@@ -402,6 +425,7 @@ ORDER BY ac.country;`;
     widget: BaseWidgetWithData,
     breakdownIndicator: string,
     filterClauseWithParams: FilterClauseWithParams,
+    scopeFilters?: WidgetDataFilter[],
   ): Promise<void> {
     const [filterClause, queryParams] =
       this.sqlAdapter.addExpressionToFilterClause(
@@ -410,8 +434,27 @@ ORDER BY ac.country;`;
         'main',
       );
 
+    // Each per-question scope filter needs its own survey_id IN subquery on the
+    // main alias — same reason as addChartDataToWidget.
+    const surveyIdSubclauses: string[] = [];
+    for (const filter of scopeFilters ?? []) {
+      const [clause] =
+        this.sqlAdapter.generateFilterClauseFromWidgetDataFilters([filter], {
+          queryParams,
+        });
+      if (clause !== '') {
+        surveyIdSubclauses.push(
+          `main.survey_id IN (SELECT survey_id FROM ${this.answersTable} ${clause})`,
+        );
+      }
+    }
+    const scopePredicate =
+      surveyIdSubclauses.length > 0
+        ? '\n    AND ' + surveyIdSubclauses.join('\n    AND ')
+        : '';
+
     const sqlCode = `WITH breakdown_counts AS (
-    SELECT 
+    SELECT
         main_answer,
         secondary_answer,
         COUNT(*)::integer AS count
@@ -419,13 +462,13 @@ ORDER BY ac.country;`;
         SELECT
             secondary.answer AS main_answer,
             main.answer AS secondary_answer
-        FROM 
+        FROM
             survey_answers AS main
-        JOIN 
+        JOIN
             survey_answers AS secondary
-        ON 
+        ON
             main.survey_id = secondary.survey_id AND secondary.question_indicator = $${queryParams.length + 1}
-        ${filterClause}
+        ${filterClause}${scopePredicate}
     ) AS s
     GROUP BY 
         main_answer, secondary_answer

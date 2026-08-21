@@ -503,3 +503,172 @@ describe('PostgresSurveyAnswerRepository - data-source filter', () => {
     expect(groupBEntry).toBeUndefined();
   });
 });
+
+describe('PostgresSurveyAnswerRepository - multi-scope filter (EAV bug regression)', () => {
+  let testManager: TestManager<unknown>;
+  let surveyAnswerRepo: ISurveyAnswerRepository;
+
+  const CHART_INDICATOR = 'ms-chart-indicator';
+  const SCOPE_INDICATOR = 'ms-scope-indicator';
+  const BREAKDOWN_INDICATOR = 'ms-breakdown-indicator';
+  const QUESTION = 'Multi-scope test question';
+
+  beforeAll(async () => {
+    testManager = await TestManager.createTestManager({ logger: false });
+    surveyAnswerRepo = testManager.getModule<ISurveyAnswerRepository>(
+      SurveyAnswerRepository,
+    );
+
+    const dataSource = testManager.getDataSource();
+    await testManager
+      .mocks()
+      .ensureQuestionIndicatorMapExists(dataSource, {
+        indicator: CHART_INDICATOR,
+        question: QUESTION,
+      });
+    await testManager
+      .mocks()
+      .ensureQuestionIndicatorMapExists(dataSource, {
+        indicator: SCOPE_INDICATOR,
+        question: 'Multi-scope scope filter question',
+      });
+    await testManager
+      .mocks()
+      .ensureQuestionIndicatorMapExists(dataSource, {
+        indicator: BREAKDOWN_INDICATOR,
+        question: 'Multi-scope breakdown question',
+      });
+
+    const answersRepo = dataSource.getRepository(SurveyAnswer);
+    await answersRepo.save([
+      // ms-1: automated, scope=Match, chart=Yes, breakdown=GroupA
+      {
+        surveyId: 'ms-1',
+        questionIndicator: CHART_INDICATOR,
+        question: QUESTION,
+        answer: 'Yes',
+        countryCode: 'ESP',
+        dataSource: 'automated',
+      },
+      {
+        surveyId: 'ms-1',
+        questionIndicator: SCOPE_INDICATOR,
+        question: 'Multi-scope scope filter question',
+        answer: 'Match',
+        countryCode: 'ESP',
+        dataSource: 'automated',
+      },
+      {
+        surveyId: 'ms-1',
+        questionIndicator: BREAKDOWN_INDICATOR,
+        question: 'Multi-scope breakdown question',
+        answer: 'GroupA',
+        countryCode: 'ESP',
+        dataSource: 'automated',
+      },
+      // ms-2: automated, scope=Match, chart=No (no breakdown row)
+      {
+        surveyId: 'ms-2',
+        questionIndicator: CHART_INDICATOR,
+        question: QUESTION,
+        answer: 'No',
+        countryCode: 'ESP',
+        dataSource: 'automated',
+      },
+      {
+        surveyId: 'ms-2',
+        questionIndicator: SCOPE_INDICATOR,
+        question: 'Multi-scope scope filter question',
+        answer: 'Match',
+        countryCode: 'ESP',
+        dataSource: 'automated',
+      },
+      // ms-3: automated, scope=Other — must be excluded by scope filter
+      {
+        surveyId: 'ms-3',
+        questionIndicator: CHART_INDICATOR,
+        question: QUESTION,
+        answer: 'Yes',
+        countryCode: 'ESP',
+        dataSource: 'automated',
+      },
+      {
+        surveyId: 'ms-3',
+        questionIndicator: SCOPE_INDICATOR,
+        question: 'Multi-scope scope filter question',
+        answer: 'Other',
+        countryCode: 'ESP',
+        dataSource: 'automated',
+      },
+    ]);
+  });
+
+  afterAll(async () => {
+    await testManager.clearDatabase();
+    await testManager.close();
+  });
+
+  it('returns chart data when data-source + per-question scope filter are combined (Symptom A)', async () => {
+    const widget = makeChartWidget(CHART_INDICATOR);
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {
+      filters: [
+        {
+          name: 'data-source',
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['automated'],
+        },
+        {
+          name: SCOPE_INDICATOR,
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['Match'],
+        },
+      ],
+    });
+
+    expect(widget.data.chart).toBeDefined();
+    // ms-1 (Yes) and ms-2 (No) match; ms-3 (Other scope) must be excluded
+    const total = widget.data.chart.reduce(
+      (sum: number, item: any) => sum + item.value,
+      0,
+    );
+    expect(total).toBe(2);
+    expect(widget.data.chart).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ label: 'Yes', value: 1 }),
+        expect.objectContaining({ label: 'No', value: 1 }),
+      ]),
+    );
+  });
+
+  it('returns breakdown data when data-source + per-question scope filter are combined (Symptom B)', async () => {
+    const widget = makeChartWidget(CHART_INDICATOR);
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {
+      filters: [
+        {
+          name: 'data-source',
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['automated'],
+        },
+        {
+          name: SCOPE_INDICATOR,
+          operator: SEARCH_WIDGET_DATA_OPERATORS.EQUALS,
+          values: ['Match'],
+        },
+      ],
+      breakdownIndicator: BREAKDOWN_INDICATOR,
+    });
+
+    expect(widget.data.breakdown).toBeDefined();
+    expect(widget.data.breakdown.length).toBeGreaterThan(0);
+    // ms-1 is the only survey with a BREAKDOWN_INDICATOR row inside the Match scope
+    const groupA = widget.data.breakdown.find(
+      (item: any) => item.label === 'GroupA',
+    );
+    expect(groupA).toBeDefined();
+    expect(groupA.data).toEqual(
+      expect.arrayContaining([expect.objectContaining({ label: 'Yes' })]),
+    );
+  });
+});
