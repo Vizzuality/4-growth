@@ -3,7 +3,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
-import { SearchFiltersDTO, SearchFilterDTO } from '@shared/dto/global/search-filters';
+import {
+  SearchFiltersDTO,
+  SearchFilterDTO,
+} from '@shared/dto/global/search-filters';
 import { WidgetDataFilter } from '@shared/dto/widgets/widget-data-filter';
 import { FetchSpecification } from 'nestjs-base-service';
 import { SQLAdapter } from '@api/infrastructure/sql-adapter';
@@ -32,7 +35,10 @@ export class PageFiltersService {
       seeded.map(async (filter) => {
         const otherFilters = filters.filter((f) => f.name !== filter.name);
         const liveValues = await this.getLiveValues(filter.name, otherFilters);
-        return { ...filter, values: filter.values.filter((v) => liveValues.has(v)) };
+        return {
+          ...filter,
+          values: filter.values.filter((v) => liveValues.has(v)),
+        };
       }),
     );
 
