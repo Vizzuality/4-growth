@@ -6,6 +6,8 @@ import { Pie, PieChart as RePieChart } from "recharts";
 
 import {
   getCssChartColor,
+  getSemanticAnswerCssColor,
+  getSemanticAnswerTwColor,
   getTwChartColor,
   MAX_PIE_CHART_LABELS_COUNT,
 } from "@/lib/constants";
@@ -40,12 +42,14 @@ interface PieChartProps {
   data?: WidgetChartData;
   legendPosition?: "bottom" | "right";
   className?: HTMLDivElement["className"];
+  indicator?: string;
 }
 
 const PieChart: FC<PieChartProps> = ({
   data,
   className,
   legendPosition = "right",
+  indicator,
 }) => {
   const normalizedData = useMemo(() => normalizePieChartData(data), [data]);
 
@@ -66,7 +70,9 @@ const PieChart: FC<PieChartProps> = ({
           <Pie
             data={normalizedData.map((d, i) => ({
               ...d,
-              fill: getCssChartColor(d.label, i),
+              fill:
+                getSemanticAnswerCssColor(indicator, d.label) ??
+                getCssChartColor(d.label, i),
             }))}
             dataKey="value"
             nameKey="label"
@@ -95,7 +101,8 @@ const PieChart: FC<PieChartProps> = ({
               <span
                 className={cn(
                   "block h-3 w-3 rounded-full",
-                  getTwChartColor(c.label, i),
+                  getSemanticAnswerTwColor(indicator, c.label) ??
+                    getTwChartColor(c.label, i),
                 )}
               ></span>
               <span className="font-black">{formatNumber(c.value)}%</span>

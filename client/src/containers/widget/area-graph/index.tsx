@@ -27,7 +27,8 @@ const getAreaGraphCategories = (
 
   data.forEach((item) => {
     if (item.label === "Yes") categories.yes = item;
-    else if (item.label === "No") categories.no = item;
+    else if (item.label === "No" || item.label === "Not at all")
+      categories.no = item;
     else categories.dontKnow = item;
   });
 
