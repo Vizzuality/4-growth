@@ -1,10 +1,13 @@
 import { describe, expect, it } from "vitest";
 
-import { getVisibleWidgets } from "@/lib/widget-visibility";
+import {
+  getEmptySectionSlugs,
+  getVisibleWidgets,
+} from "@/lib/widget-visibility";
 
 import { FilterQueryParam } from "@/hooks/use-filters";
 
-import { TransformedWidget } from "@/types";
+import { TransformedSection, TransformedWidget } from "@/types";
 
 const dataSource = (...values: string[]): FilterQueryParam[] => [
   { name: "data-source", operator: "=", values },
@@ -57,5 +60,41 @@ describe("getVisibleWidgets", () => {
         dataSource("survey", "automated"),
       ),
     ).toEqual([ANSWERED]);
+  });
+});
+
+const section = (
+  order: number,
+  slug: string,
+  baseWidgets: TransformedWidget[],
+) => ({ order, slug, baseWidgets }) as TransformedSection;
+
+describe("getEmptySectionSlugs", () => {
+  const SECTIONS = [
+    section(1, "overview", [UNANSWERED]),
+    section(2, "general-information", [UNANSWERED, ANSWERED]),
+    section(3, "technology-providers", [UNANSWERED]),
+    section(4, "future-outlook", [AGRICULTURE, ALL_NA]),
+  ];
+
+  it("hides nothing when the data source is survey only", () => {
+    expect(getEmptySectionSlugs(SECTIONS, dataSource("survey"))).toEqual(
+      new Set(),
+    );
+  });
+
+  it("collects only the sections left with no widget for automated data", () => {
+    expect(getEmptySectionSlugs(SECTIONS, dataSource("automated"))).toEqual(
+      new Set(["technology-providers", "future-outlook"]),
+    );
+  });
+
+  it("never collects the overview section, which renders its widgets unfiltered", () => {
+    expect(
+      getEmptySectionSlugs(
+        [section(1, "overview", [UNANSWERED])],
+        dataSource("automated"),
+      ),
+    ).toEqual(new Set());
   });
 });

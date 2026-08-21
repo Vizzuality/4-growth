@@ -1,3 +1,4 @@
+import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import {
   WidgetChartData,
   WidgetData,
@@ -5,6 +6,8 @@ import {
 } from "@shared/dto/widgets/base-widget-data.interface";
 
 import { NA_ANSWER_LABEL } from "@/lib/constants";
+
+import { TransformedSection } from "@/types";
 
 /**
  * Function that transforms raw count values into percentages
@@ -43,6 +46,28 @@ function normalizeWidgetData(widgetData: WidgetData): WidgetData {
   }
 
   return result;
+}
+
+/**
+ * Attaches the percentage view of every widget alongside its raw counts. Both the
+ * explore page and the sidebar section nav read from this, so they derive
+ * emptiness from the same shape.
+ */
+function normalizeSections(
+  sections: Partial<SectionWithDataWidget>[],
+): TransformedSection[] {
+  return sections.map((section) => ({
+    ...section,
+    baseWidgets: section.baseWidgets?.map((widget) => ({
+      ...widget,
+      data: {
+        raw: widget.data,
+        percentages: normalizeWidgetData(widget.data),
+      },
+      responseRate: getResponseRate(widget.data),
+      absoluteValue: getAbsoluteValue(widget.data),
+    })),
+  })) as TransformedSection[];
 }
 
 /**
@@ -140,6 +165,7 @@ function calculatePercentage(value: number, total: number): number {
 
 export {
   normalizeWidgetData,
+  normalizeSections,
   getResponseRate,
   removeNaLabels,
   getAbsoluteValue,

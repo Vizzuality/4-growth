@@ -1,10 +1,11 @@
 "use client";
-import { PropsWithChildren, useState } from "react";
+import { Fragment, PropsWithChildren, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
 import { Section as SectionEntity } from "@shared/dto/sections/section.entity";
 
+import { SECTION_UNAVAILABLE_REASON } from "@/lib/constants";
 import { getInPageLinkId, getSidebarLinkId } from "@/lib/utils";
 
 import SectionNavigator from "@/components/icons/section-navigator";
@@ -20,6 +21,7 @@ import Title from "@/components/ui/title";
 interface SectionProps {
   data: SectionEntity;
   menuItems: SectionEntity[];
+  emptySlugs?: Set<string>;
   isOverview?: boolean;
 }
 
@@ -27,6 +29,7 @@ const POPOVER_ID = "sections-menu-popover";
 const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   data,
   menuItems,
+  emptySlugs,
   isOverview,
   children,
 }) => {
@@ -82,18 +85,35 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
               </Button>
             </PopoverTrigger>
             <PopoverContent align="end" id={POPOVER_ID}>
-              {menuItems.map((s) => (
-                <Button
-                  key={`menu-item-${s.slug}`}
-                  variant="clean"
-                  className="block w-full p-4 text-left text-xs hover:bg-primary-foreground"
-                  onClick={() => {
-                    handleLinkClick(s.slug);
-                  }}
-                >
-                  {s.name}
-                </Button>
-              ))}
+              {menuItems.map((s) =>
+                emptySlugs?.has(s.slug) ? (
+                  <Fragment key={`menu-item-${s.slug}`}>
+                    <Button
+                      variant="clean"
+                      className="block w-full cursor-not-allowed p-4 text-left text-xs text-slate-400"
+                      aria-disabled="true"
+                      aria-describedby={`menu-item-${s.slug}-reason`}
+                      title={SECTION_UNAVAILABLE_REASON}
+                    >
+                      {s.name}
+                    </Button>
+                    <span id={`menu-item-${s.slug}-reason`} className="sr-only">
+                      {SECTION_UNAVAILABLE_REASON}
+                    </span>
+                  </Fragment>
+                ) : (
+                  <Button
+                    key={`menu-item-${s.slug}`}
+                    variant="clean"
+                    className="block w-full p-4 text-left text-xs hover:bg-primary-foreground"
+                    onClick={() => {
+                      handleLinkClick(s.slug);
+                    }}
+                  >
+                    {s.name}
+                  </Button>
+                ),
+              )}
             </PopoverContent>
           </Popover>
         </header>

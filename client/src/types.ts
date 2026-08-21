@@ -1,3 +1,4 @@
+import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import {
   BaseWidgetWithData,
   WidgetData,
@@ -10,4 +11,8 @@ export interface TransformedWidgetData {
 
 export type TransformedWidget = BaseWidgetWithData & {
   data: TransformedWidgetData;
+};
+
+export type TransformedSection = SectionWithDataWidget & {
+  baseWidgets: TransformedWidget[];
 };
