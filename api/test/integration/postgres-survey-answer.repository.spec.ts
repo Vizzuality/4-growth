@@ -157,6 +157,51 @@ describe('PostgresSurveyAnswerRepository - Map Data', () => {
     expect(Number(albEntry.value)).toBeCloseTo(66.67, 0);
   });
 
+  it('excludes N/A but counts "Not at all" and "Don\'t know" in the map denominator', async () => {
+    await testManager
+      .mocks()
+      .ensureQuestionIndicatorMapExists(testManager.getDataSource(), {
+        indicator: TEST_INDICATOR,
+        question: 'Test question for map',
+      });
+
+    const answersRepo = testManager.getDataSource().getRepository(SurveyAnswer);
+    const answer = (surveyId: string, answer: string) => ({
+      surveyId,
+      questionIndicator: TEST_INDICATOR,
+      question: 'Test question for map',
+      answer,
+      countryCode: 'AUT',
+    });
+
+    await answersRepo.save([
+      answer('aut-1', 'Yes'),
+      answer('aut-2', 'Yes'),
+      answer('aut-3', 'Not at all'),
+      answer('aut-4', "Don't know"),
+      answer('aut-5', 'N/A'),
+      answer('aut-6', 'N/A'),
+      answer('aut-7', 'N/A'),
+    ]);
+
+    const widget: BaseWidgetWithData = {
+      indicator: TEST_INDICATOR,
+      visualisations: [WIDGET_VISUALIZATIONS.MAP],
+      defaultVisualization: WIDGET_VISUALIZATIONS.MAP,
+      data: {},
+      responseRate: 0,
+      absoluteValue: 0,
+    } as BaseWidgetWithData;
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {});
+
+    const autEntry = widget.data.map.find((entry) => entry.country === 'AUT');
+    // 2 Yes of the 4 answers given. The 3 N/A rows are non-response and stay
+    // out of the divisor; before the fix the divisor held only the Yes rows and
+    // every country came back as 100%.
+    expect(Number(autEntry.value)).toBeCloseTo(50, 0);
+  });
+
   it('should return chart and map data for adoption-of-technology-by-country indicator directly', async () => {
     const INDICATOR = 'adoption-of-technology-by-country';
 
