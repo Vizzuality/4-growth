@@ -241,7 +241,7 @@ export class PostgresSurveyAnswerRepository
       {
         name: 'answer',
         operator: SEARCH_FILTERS_OPERATORS.EQUALS,
-        values: ['Yes', 'No'],
+        values: ['Yes', 'No', 'Not at all', "Don't know"],
       },
     ];
 
@@ -272,7 +272,7 @@ WITH all_countries AS (
   FROM ${this.answersTable}
 ),
 
--- 2) Count Yes/No per country for the given question
+-- 2) Count each answer per country for the given question
 answer_counts AS (
   SELECT
     sa.country_code,
@@ -298,7 +298,8 @@ SELECT
   ac.country,
   CASE
     WHEN bc.total_cnt > 0
-      THEN 100.0 * bc.yes_cnt / bc.total_cnt   -- proportion (0-1)
+      THEN 100.0 * bc.yes_cnt / bc.total_cnt   -- percent Yes of answers given; N/A is
+                                               -- excluded by the answer filter above
     ELSE NULL                                  -- no data for this question -> gray
   END AS value
 FROM all_countries ac
