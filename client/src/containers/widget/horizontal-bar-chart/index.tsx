@@ -4,8 +4,6 @@ import { CSSProperties, FC } from "react";
 import { WidgetChartData } from "@shared/dto/widgets/base-widget-data.interface";
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 
-import { getSemanticAnswerCssColor } from "@/lib/constants";
-
 import NoData from "@/containers/no-data";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
@@ -13,14 +11,9 @@ import { ChartContainer } from "@/components/ui/chart";
 interface HorizontalBarChartProps {
   data?: WidgetChartData;
   barSize?: number;
-  indicator?: string;
 }
 
-const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
-  data,
-  barSize,
-  indicator,
-}) => {
+const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, barSize }) => {
   if (!data || data.length === 0) {
     console.error(
       `HorizontalBarChart: Expected at least 1 data point, but received 0.`,
@@ -81,10 +74,9 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
             <Cell
               key={`cell-${entry.label}-${index}`}
               fill={
-                getSemanticAnswerCssColor(indicator, entry.label) ??
-                (index === highestValueIndex
+                index === highestValueIndex
                   ? "hsl(var(--accent))"
-                  : "hsl(var(--secondary))")
+                  : "hsl(var(--secondary))"
               }
             />
           ))}

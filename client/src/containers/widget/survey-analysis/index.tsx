@@ -248,7 +248,6 @@ export default function Widget({
             absoluteValue={absoluteValue}
           />
           <HorizontalBarChart
-            indicator={indicator}
             data={[...removeNaLabels(data.raw.chart)].sort((a, b) =>
               compareAnswerLabels(a.label, b.label),
             )}
@@ -273,7 +272,6 @@ export default function Widget({
             absoluteValue={absoluteValue}
           />
           <PieChart
-            indicator={indicator}
             data={data.percentages.chart}
             className="min-h-0 w-full flex-1"
             legendPosition="bottom"

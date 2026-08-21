@@ -23,6 +23,23 @@ describe("AreaGraph", () => {
     expect(screen.getByText("Maybe 50%")).toBeInTheDocument();
   });
 
+  it("keeps the negative row separate when the negative label is 'Not at all'", () => {
+    render(
+      <AreaGraph
+        {...mockProps}
+        data={[
+          { label: "Yes", value: 30, total: 30 },
+          { label: "Not at all", value: 20, total: 20 },
+          { label: "Don't know", value: 50, total: 50 },
+        ]}
+      />,
+    );
+
+    expect(screen.getByText("Not at all 20%")).toBeInTheDocument();
+    expect(screen.getByText("Don't know 50%")).toBeInTheDocument();
+    expect(screen.getAllByTestId("area-graph-segment")).toHaveLength(3);
+  });
+
   it("renders the correct main value", () => {
     render(<AreaGraph {...mockProps} />);
     expect(screen.getByText("30%")).toHaveClass("text-2xl");
