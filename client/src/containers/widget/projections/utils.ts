@@ -16,8 +16,6 @@ export const getMenuButtonText = (v: ProjectionVisualizationsType): string => {
 };
 
 export const widgetDescriptionMap: Record<string, string> = {
-  "Market Potential":
-    "Maximum possible reach a product could have within its market.",
   "Addressable Market":
     "Portion of the total market potential that can realistically be addressed or reached.",
   Penetration:

@@ -15,7 +15,6 @@ export const VISUALIZATION_TO_LABEL_MAP = {
 };
 
 export const PROJECTION_TYPE_TO_LABEL_MAP = {
-  "market-potential": "Market potential",
   "addressable-market": "Addressable market",
   penetration: "Penetration",
   shipments: "Shipments",

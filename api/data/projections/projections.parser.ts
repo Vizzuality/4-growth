@@ -10,7 +10,6 @@ import { parse } from 'csv-parse/sync';
 
 const mapIndicatorToType = (indicator: string): ProjectionType | null => {
   const map: Record<string, ProjectionType> = {
-    market_potential: PROJECTION_TYPES.MARKET_POTENTIAL,
     addressable_market: PROJECTION_TYPES.ADDRESSABLE_MARKET,
     penetration: PROJECTION_TYPES.PENETRATION,
     shipments: PROJECTION_TYPES.SHIPMENTS,
@@ -39,7 +38,6 @@ const DEFAULT_UNIT_BY_TYPE: Record<string, string> = {
   [PROJECTION_TYPES.ADDRESSABLE_MARKET]: 'Units',
   [PROJECTION_TYPES.SHIPMENTS]: 'Units',
   [PROJECTION_TYPES.INSTALLED_BASE]: 'Units',
-  [PROJECTION_TYPES.MARKET_POTENTIAL]: 'Units',
 };
 
 const parseFromFile = async (
@@ -55,39 +53,23 @@ const parseFromFile = async (
   });
 
   const result: Projection[] = [];
+  const unknownIndicators: string[] = [];
+  const unknownCountries: string[] = [];
   let currentId = startId;
 
-  // Detect format from header row content.
-  // Forestry: 30 cols (Tech#, Technology, Subseg#, Subsegment, TechType, Region, Country, Unit, 2020..2040, Indicator)
-  // Agriculture: 29 cols (Tech#, Technology, TechSubcategory, TechType, Units, Region, Country, 2020..2040, Indicator)
-  const header = lines[0];
-  const colCount = header?.length ?? 0;
-  const isForestry = colCount >= 30;
-
-  // Build column index map based on detected format
-  const col = isForestry
-    ? {
-        subsegment: 3,
-        techType: 4,
-        unit: 7,
-        region: 5,
-        country: 6,
-        yearStart: 8,
-        yearEnd: 28,
-        indicator: 29,
-        minCols: 30,
-      }
-    : {
-        subsegment: 2,
-        techType: 3,
-        unit: 4,
-        region: 5,
-        country: 6,
-        yearStart: 7,
-        yearEnd: 27,
-        indicator: 28,
-        minCols: 29,
-      };
+  // Both Agriculture and Forestry share the same 29-column flat layout (D3.4 onwards):
+  // Tech #, Technology, Technology subcategory, Technology type, Unit, Region, Country, 2020..2040, Indicator
+  const col = {
+    subsegment: 2,
+    techType: 3,
+    unit: 4,
+    region: 5,
+    country: 6,
+    yearStart: 7,
+    yearEnd: 27,
+    indicator: 28,
+    minCols: 29,
+  };
 
   // Skip header row (index 0), iterate data rows
   for (let idx = 1; idx < lines.length; idx++) {
@@ -96,11 +78,17 @@ const parseFromFile = async (
 
     const indicatorRaw = row[col.indicator];
     const type = mapIndicatorToType(indicatorRaw);
-    if (!type) continue;
+    if (!type) {
+      unknownIndicators.push(indicatorRaw.trim());
+      continue;
+    }
 
     const countryName = row[col.country]?.trim();
     const country = CountryISOMap.getISO3ByCountryName(countryName);
-    if (!country) continue;
+    if (!country) {
+      unknownCountries.push(countryName);
+      continue;
+    }
 
     const rawUnit = row[col.unit];
     const unit =
@@ -138,7 +126,7 @@ const parseFromFile = async (
     });
   }
 
-  return { projections: result, nextId: currentId };
+  return { projections: result, nextId: currentId, unknownIndicators, unknownCountries };
 };
 
 export const ProjectionsParser = {
