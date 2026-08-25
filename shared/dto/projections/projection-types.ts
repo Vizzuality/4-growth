@@ -9,7 +9,6 @@ export type ProjectionScenarios =
   (typeof ProjectionScenarios)[keyof typeof ProjectionScenarios];
 
 export const PROJECTION_TYPES = {
-  MARKET_POTENTIAL: 'market-potential',
   ADDRESSABLE_MARKET: 'addressable-market',
   PENETRATION: 'penetration',
   SHIPMENTS: 'shipments',
