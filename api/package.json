@@ -26,8 +26,7 @@
     "extract:surveys:wave3": "ts-node -r tsconfig-paths/register data/surveys/extract-wave3.ts",
     "transform:surveys:wave3": "ts-node -r tsconfig-paths/register data/surveys/transform-wave3.ts",
     "transform:surveys:vtt": "ts-node -r tsconfig-paths/register data/surveys/transform-vtt.ts",
-    "transform:projections": "ts-node -r tsconfig-paths/register data/projections/transform.ts",
-    "transform:projectionsWithScenarios": "ts-node -r tsconfig-paths/register data/projections/mock-projections-with-scenarios.ts"
+    "transform:projections": "ts-node -r tsconfig-paths/register data/projections/transform.ts"
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "3.999.0",

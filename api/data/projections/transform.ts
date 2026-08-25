@@ -1,105 +1,77 @@
 import * as fs from 'fs';
+import * as path from 'path';
 import { ProjectionsParser } from 'api/data/projections/projections.parser';
-import { ProjectionScenarios } from '@shared/dto/projections/projection-types';
+import {
+  ProjectionScenarios,
+  PROJECTION_TYPES,
+} from '@shared/dto/projections/projection-types';
 import { Projection } from '@shared/dto/projections/projection.entity';
 
-const main = async () => {
+export const runTransform = async (
+  csvDir: string,
+  outPath: string,
+): Promise<void> => {
   const projections: Projection[] = [];
   let nextId = 1;
+  const unknownIndicators = new Set<string>();
+  const unknownCountries = new Set<string>();
 
-  const forestryBaseline = await ProjectionsParser.parseFromFile(
-    __dirname + '/forestry-baseline.csv',
-    {
-      category: 'Forestry',
-      scenario: ProjectionScenarios.BASELINE,
-      startId: nextId,
-    },
-  );
-  projections.push(...forestryBaseline.projections);
-  nextId = forestryBaseline.nextId;
+  const parse = async (
+    file: string,
+    category: string,
+    scenario: string,
+  ): Promise<void> => {
+    const result = await ProjectionsParser.parseFromFile(
+      path.join(csvDir, file),
+      { category, scenario, startId: nextId },
+    );
+    projections.push(...result.projections);
+    nextId = result.nextId;
+    result.unknownIndicators.forEach((s) => unknownIndicators.add(s));
+    result.unknownCountries.forEach((s) => unknownCountries.add(s));
+  };
 
-  const forestryScenario1 = await ProjectionsParser.parseFromFile(
-    __dirname + '/forestry-reimagining-progress.csv',
-    {
-      category: 'Forestry',
-      scenario: ProjectionScenarios.REIMAGINING_PROGRESS,
-      startId: nextId,
-    },
-  );
-  projections.push(...forestryScenario1.projections);
-  nextId = forestryScenario1.nextId;
+  await parse('forestry-baseline.csv', 'Forestry', ProjectionScenarios.BASELINE);
+  await parse('forestry-reimagining-progress.csv', 'Forestry', ProjectionScenarios.REIMAGINING_PROGRESS);
+  await parse('forestry-fractured-continent.csv', 'Forestry', ProjectionScenarios.THE_FRACTURED_CONTINENT);
+  await parse('forestry-corporate-epoch.csv', 'Forestry', ProjectionScenarios.THE_CORPORATE_EPOCH);
+  await parse('agriculture-baseline.csv', 'Agriculture', ProjectionScenarios.BASELINE);
+  await parse('agriculture-reimagining-progress.csv', 'Agriculture', ProjectionScenarios.REIMAGINING_PROGRESS);
+  await parse('agriculture-fractured-continent.csv', 'Agriculture', ProjectionScenarios.THE_FRACTURED_CONTINENT);
+  await parse('agriculture-corporate-epoch.csv', 'Agriculture', ProjectionScenarios.THE_CORPORATE_EPOCH);
 
-  const forestryScenario2 = await ProjectionsParser.parseFromFile(
-    __dirname + '/forestry-fractured-continent.csv',
-    {
-      category: 'Forestry',
-      scenario: ProjectionScenarios.THE_FRACTURED_CONTINENT,
-      startId: nextId,
-    },
+  const emptyTypes = Object.values(PROJECTION_TYPES).filter(
+    (type) => !projections.some((p) => p.type === type),
   );
-  projections.push(...forestryScenario2.projections);
-  nextId = forestryScenario2.nextId;
+  if (emptyTypes.length > 0) {
+    if (unknownIndicators.size > 0) {
+      console.error('Unknown indicators (discarded):', [...unknownIndicators]);
+    }
+    if (unknownCountries.size > 0) {
+      console.error('Unknown countries (discarded):', [...unknownCountries]);
+    }
+    throw new Error(`Zero rows for projection types: ${emptyTypes.join(', ')}`);
+  }
 
-  const forestryScenario3 = await ProjectionsParser.parseFromFile(
-    __dirname + '/forestry-corporate-epoch.csv',
-    {
-      category: 'Forestry',
-      scenario: ProjectionScenarios.THE_CORPORATE_EPOCH,
-      startId: nextId,
-    },
-  );
-  projections.push(...forestryScenario3.projections);
-  nextId = forestryScenario3.nextId;
+  if (unknownIndicators.size > 0) {
+    console.warn('Unknown indicators (discarded):', [...unknownIndicators]);
+  }
+  if (unknownCountries.size > 0) {
+    console.warn('Unknown countries (discarded):', [...unknownCountries]);
+  }
 
-  const agricultureBaseline = await ProjectionsParser.parseFromFile(
-    __dirname + '/agriculture-baseline.csv',
-    {
-      category: 'Agriculture',
-      scenario: ProjectionScenarios.BASELINE,
-      startId: nextId,
-    },
-  );
-  projections.push(...agricultureBaseline.projections);
-  nextId = agricultureBaseline.nextId;
+  const jsonString = JSON.stringify(projections);
+  await fs.promises.writeFile(outPath, jsonString);
+  console.log(`Data written to ${outPath} with ${projections.length} projections`);
+};
 
-  const agricultureScenario1 = await ProjectionsParser.parseFromFile(
-    __dirname + '/agriculture-reimagining-progress.csv',
-    {
-      category: 'Agriculture',
-      scenario: ProjectionScenarios.REIMAGINING_PROGRESS,
-      startId: nextId,
-    },
-  );
-  projections.push(...agricultureScenario1.projections);
-  nextId = agricultureScenario1.nextId;
-
-  const agricultureScenario2 = await ProjectionsParser.parseFromFile(
-    __dirname + '/agriculture-fractured-continent.csv',
-    {
-      category: 'Agriculture',
-      scenario: ProjectionScenarios.THE_FRACTURED_CONTINENT,
-      startId: nextId,
-    },
-  );
-  projections.push(...agricultureScenario2.projections);
-  nextId = agricultureScenario2.nextId;
-
-  const agricultureScenario3 = await ProjectionsParser.parseFromFile(
-    __dirname + '/agriculture-corporate-epoch.csv',
-    {
-      category: 'Agriculture',
-      scenario: ProjectionScenarios.THE_CORPORATE_EPOCH,
-      startId: nextId,
-    },
-  );
-  projections.push(...agricultureScenario3.projections);
-
-  const jsonString = JSON.stringify(projections, null, 2);
-  const filePath = __dirname + '/projections.json';
-  await fs.promises.writeFile(filePath, jsonString);
-  console.log(
-    `Data written to ${filePath} with ${projections.length} projections`,
-  );
+const main = async () => {
+  try {
+    await runTransform(__dirname, path.join(__dirname, 'projections.json'));
+  } catch (err) {
+    console.error('Transform failed:', err);
+    process.exit(1);
+  }
 };
 
 if (require.main === module) {

@@ -1,7 +1,7 @@
 {
   "moduleFileExtensions": ["js", "json", "ts"],
   "rootDir": "../",
-  "roots": ["<rootDir>/src/"],
+  "roots": ["<rootDir>/src/", "<rootDir>/data/"],
   "testEnvironment": "node",
   "testRegex": ".spec.ts$",
   "transform": {
@@ -11,7 +11,8 @@
   "moduleNameMapper": {
     "^@api/(.*)$": "<rootDir>/src/$1",
     "^@client/(.*)$": "<rootDir>/../client/src/$1",
-    "^@shared/(.*)$": "<rootDir>/../shared/$1"
+    "^@shared/(.*)$": "<rootDir>/../shared/$1",
+    "^api/(.*)$": "<rootDir>/$1"
   },
   "testTimeout": 5000
 }
