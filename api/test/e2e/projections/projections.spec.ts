@@ -149,6 +149,42 @@ describe('Projections API', () => {
     ).toBeLessThan(Buffer.byteLength(JSON.stringify(allFiltersReqData)));
   });
 
+  test(`${c.getProjectionsWidgets.path} returns exactly 6 widgets, none of type market-potential`, async () => {
+    const res = await testManager.request().get(c.getProjectionsWidgets.path);
+    expect(res.status).toBe(200);
+    const widgets = res.body.data as Array<{ id: number; type: string }>;
+    expect(widgets).toHaveLength(6);
+    const types = widgets.map((w) => w.type).sort();
+    expect(types).toEqual([
+      'addressable-market',
+      'installed-base',
+      'penetration',
+      'prices',
+      'revenues',
+      'shipments',
+    ]);
+    expect(widgets.map((w) => w.id).sort((a, b) => a - b)).toEqual([
+      1, 2, 3, 4, 5, 6,
+    ]);
+  });
+
+  test(`${c.getProjectionsFilters.path} returns both categories and all four D3.4 scenarios`, async () => {
+    const res = await testManager.request().get(c.getProjectionsFilters.path);
+    expect(res.status).toBe(200);
+    const filters = res.body.data as Array<{ name: string; values: string[] }>;
+
+    const categoryValues = filters.find((f) => f.name === 'category')!.values;
+    expect([...categoryValues].sort()).toEqual(['Agriculture', 'Forestry']);
+
+    const scenarioValues = filters.find((f) => f.name === 'scenario')!.values;
+    expect([...scenarioValues].sort()).toEqual([
+      'baseline',
+      'reimagining_progress',
+      'the_corporate_epoch',
+      'the_fractured_continent',
+    ]);
+  });
+
   afterAll(async () => {
     await testManager.clearDatabase();
     await testManager.close();

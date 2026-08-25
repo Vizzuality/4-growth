@@ -109,7 +109,7 @@ const Sandbox: FC<SandboxProps> = ({ savedProjectionId }) => {
           ? settings
           : {
               line_chart: {
-                vertical: "market-potential",
+                vertical: "addressable-market",
                 color: "application",
               },
             },

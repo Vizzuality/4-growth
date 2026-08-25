@@ -61,7 +61,7 @@ describe('Custom Projection API', () => {
       .query({
         settings: {
           [PROJECTION_VISUALIZATIONS.TABLE]: {
-            vertical: 'market-potential',
+            vertical: 'installed-base',
             color: 'country',
           },
         },
@@ -152,7 +152,7 @@ describe('Custom Projection API', () => {
         .query({
           settings: {
             [PROJECTION_VISUALIZATIONS.TABLE]: {
-              vertical: 'market-potential',
+              vertical: 'installed-base',
               color: 'country',
             },
           },
