@@ -14,6 +14,11 @@ import {
   PROJECTION_FILTER_NAME_TO_FIELD_NAME,
   ProjectionFilter,
 } from '@shared/dto/projections/projection-filter.entity';
+import {
+  PROJECTION_RATIO_CONFIG,
+  ProjectionRatioConfig,
+  ProjectionType,
+} from '@shared/dto/projections/projection-types';
 import { CustomProjection } from '@shared/dto/projections/custom-projection.type';
 import {
   CustomProjectionSettingsType,
@@ -33,6 +38,23 @@ export class PostgresProjectionDataRepository
     @InjectDataSource() private readonly dataSource: DataSource,
   ) {
     super(ProjectionData, dataSource.manager);
+  }
+
+  /**
+   * Builds a SQL aggregate expression for ratio-based indicators
+   * (e.g. Penetration = Σ Installed Base / Σ Addressable Market × 100).
+   *
+   * Values come from the compile-time PROJECTION_RATIO_CONFIG — never user input.
+   * The query must filter `projection.type IN (numerator, denominator)` before
+   * this expression is evaluated, so both types are present in the grouped rows.
+   */
+  private buildRatioSelectExpression(ratioConfig: ProjectionRatioConfig): string {
+    return `COALESCE(
+      SUM(CASE WHEN projection.type = '${ratioConfig.numerator}' THEN projectionData.value END)
+      / NULLIF(SUM(CASE WHEN projection.type = '${ratioConfig.denominator}' THEN projectionData.value END), 0)
+      * ${ratioConfig.multiplier},
+      0
+    )`;
   }
 
   /**
@@ -120,10 +142,18 @@ export class PostgresProjectionDataRepository
   ): Promise<void> {
     await Promise.all(
       projectionWidgets.map(async (widget) => {
-        widget.data = await this.findProjectionWidgetData([
-          ...dataFilters,
-          { name: 'type', operator: '=', values: [widget.type] },
-        ]);
+        const ratioConfig = PROJECTION_RATIO_CONFIG[widget.type as ProjectionType];
+        const typeFilter: SearchFilterDTO = ratioConfig
+          ? {
+              name: 'type',
+              operator: '=',
+              values: [ratioConfig.numerator, ratioConfig.denominator],
+            }
+          : { name: 'type', operator: '=', values: [widget.type] };
+        widget.data = await this.findProjectionWidgetData(
+          [...dataFilters, typeFilter],
+          ratioConfig,
+        );
         return widget;
       }),
     );
@@ -131,24 +161,37 @@ export class PostgresProjectionDataRepository
 
   public async findProjectionWidgetData(
     dataFilters: SearchFilterDTO[],
+    ratioConfig?: ProjectionRatioConfig,
   ): Promise<ProjectionWidgetData> {
-    // First, build the base query with filters to get the aggregated data per year and unit
+    // Build the base query with filters to get the aggregated data per year and unit.
+    // Ratio types (Penetration, Prices) use a conditional-SUM ratio expression instead
+    // of a plain SUM/AVG so that multi-technology/region selections yield the correct
+    // weighted result rather than a sum of per-technology values.
     const baseQueryBuilder = this.dataSource
       .getRepository(Projection)
       .createQueryBuilder('projection')
       .select('projectionData.year', 'year')
-      .addSelect(
-        `CASE 
-          WHEN projection.unit = '%' THEN AVG(projectionData.value)
-          ELSE SUM(projectionData.value)
-        END`,
-        'value',
-      )
-      .addSelect('projection.unit', 'unit')
       .innerJoin('projection.projectionData', 'projectionData')
-      .groupBy('projectionData.year')
-      .addGroupBy('projection.unit')
       .orderBy('projectionData.year', 'ASC');
+
+    if (ratioConfig) {
+      baseQueryBuilder
+        .addSelect(this.buildRatioSelectExpression(ratioConfig), 'value')
+        .addSelect(`'${ratioConfig.unit}'::text`, 'unit')
+        .groupBy('projectionData.year');
+    } else {
+      baseQueryBuilder
+        .addSelect(
+          `CASE
+            WHEN projection.unit = '%' THEN AVG(projectionData.value)
+            ELSE SUM(projectionData.value)
+          END`,
+          'value',
+        )
+        .addSelect('projection.unit', 'unit')
+        .groupBy('projectionData.year')
+        .addGroupBy('projection.unit');
+    }
 
     QueryBuilderUtils.applySearchFilters(baseQueryBuilder, dataFilters, {
       alias: 'projection',
@@ -247,24 +290,37 @@ export class PostgresProjectionDataRepository
     const colorAxis =
       PROJECTION_FILTER_NAME_TO_FIELD_NAME[settings[widgetVisualization].color];
     const colorFieldName = settings[widgetVisualization].color;
+    const ratioConfig = PROJECTION_RATIO_CONFIG[verticalAxis as ProjectionType];
 
-    // Base query with all necessary groupings and filters
+    // Base query with all necessary groupings and filters.
+    // Ratio types use a conditional-SUM ratio instead of a plain SUM.
     const baseQueryBuilder = this.dataSource
       .getRepository(Projection)
       .createQueryBuilder('projection')
       .select('projectionData.year', 'year')
-      .addSelect('SUM(projectionData.value)', 'vertical')
       .addSelect(`projection.${colorAxis}`, 'color')
-      .addSelect('projection.unit', 'unit')
       .innerJoin('projection.projectionData', 'projectionData')
-      .where('projection.type = :type', { type: verticalAxis })
       .groupBy('projectionData.year')
-      .addGroupBy('projection.type')
       .addGroupBy(`projection.${colorAxis}`)
-      .addGroupBy('projection.unit')
       .orderBy('projectionData.year')
-      .addOrderBy('projection.type')
       .addOrderBy(`projection.${colorAxis}`);
+
+    if (ratioConfig) {
+      baseQueryBuilder
+        .addSelect(this.buildRatioSelectExpression(ratioConfig), 'vertical')
+        .addSelect(`'${ratioConfig.unit}'::text`, 'unit')
+        .where('projection.type IN (:...ratioTypes)', {
+          ratioTypes: [ratioConfig.numerator, ratioConfig.denominator],
+        });
+    } else {
+      baseQueryBuilder
+        .addSelect('SUM(projectionData.value)', 'vertical')
+        .addSelect('projection.unit', 'unit')
+        .where('projection.type = :type', { type: verticalAxis })
+        .addGroupBy('projection.type')
+        .addGroupBy('projection.unit')
+        .addOrderBy('projection.type');
+    }
 
     QueryBuilderUtils.applySearchFilters(baseQueryBuilder, dataFilters, {
       alias: 'projection',
@@ -410,26 +466,41 @@ export class PostgresProjectionDataRepository
         const bubbleFieldName = settings[widgetVisualization].bubble;
         const colorFieldName = settings[widgetVisualization].color;
 
-        // Build base queries with unit grouping
+        const sizeRatio = PROJECTION_RATIO_CONFIG[size as ProjectionType];
+        const verticalRatio = PROJECTION_RATIO_CONFIG[vertical as ProjectionType];
+        const horizontalRatio = PROJECTION_RATIO_CONFIG[horizontal as ProjectionType];
+
+        // Build base queries — each axis independently may be a ratio type.
         const sizeQueryBuilder = this.dataSource
           .getRepository(Projection)
           .createQueryBuilder('projection')
           .select('projectionData.year', 'year')
-          .addSelect('SUM(projectionData.value)', 'size')
           .addSelect(`projection.${bubble}`, 'bubble')
           .addSelect(`projection.${color}`, 'color')
-          .addSelect('projection.unit', 'unit')
           .innerJoin('projection.projectionData', 'projectionData')
-          .where('projection.type = :type', { type: size })
           .groupBy('projectionData.year')
-          .addGroupBy('projection.type')
           .addGroupBy(`projection.${bubble}`)
           .addGroupBy(`projection.${color}`)
-          .addGroupBy('projection.unit')
           .orderBy('projectionData.year')
-          .addOrderBy('projection.type')
           .addOrderBy(`projection.${bubble}`)
           .addOrderBy(`projection.${color}`);
+
+        if (sizeRatio) {
+          sizeQueryBuilder
+            .addSelect(this.buildRatioSelectExpression(sizeRatio), 'size')
+            .addSelect(`'${sizeRatio.unit}'::text`, 'unit')
+            .where('projection.type IN (:...sizeTypes)', {
+              sizeTypes: [sizeRatio.numerator, sizeRatio.denominator],
+            });
+        } else {
+          sizeQueryBuilder
+            .addSelect('SUM(projectionData.value)', 'size')
+            .addSelect('projection.unit', 'unit')
+            .where('projection.type = :type', { type: size })
+            .addGroupBy('projection.type')
+            .addGroupBy('projection.unit')
+            .addOrderBy('projection.type');
+        }
 
         QueryBuilderUtils.applySearchFilters(sizeQueryBuilder, dataFilters, {
           alias: 'projection',
@@ -440,21 +511,32 @@ export class PostgresProjectionDataRepository
           .getRepository(Projection)
           .createQueryBuilder('projection')
           .select('projectionData.year', 'year')
-          .addSelect('SUM(projectionData.value)', 'vertical')
           .addSelect(`projection.${bubble}`, 'bubble')
           .addSelect(`projection.${color}`, 'color')
-          .addSelect('projection.unit', 'unit')
           .innerJoin('projection.projectionData', 'projectionData')
-          .where('projection.type = :type', { type: vertical })
           .groupBy('projectionData.year')
-          .addGroupBy('projection.type')
           .addGroupBy(`projection.${bubble}`)
           .addGroupBy(`projection.${color}`)
-          .addGroupBy('projection.unit')
           .orderBy('projectionData.year')
-          .addOrderBy('projection.type')
           .addOrderBy(`projection.${bubble}`)
           .addOrderBy(`projection.${color}`);
+
+        if (verticalRatio) {
+          verticalQueryBuilder
+            .addSelect(this.buildRatioSelectExpression(verticalRatio), 'vertical')
+            .addSelect(`'${verticalRatio.unit}'::text`, 'unit')
+            .where('projection.type IN (:...verticalTypes)', {
+              verticalTypes: [verticalRatio.numerator, verticalRatio.denominator],
+            });
+        } else {
+          verticalQueryBuilder
+            .addSelect('SUM(projectionData.value)', 'vertical')
+            .addSelect('projection.unit', 'unit')
+            .where('projection.type = :type', { type: vertical })
+            .addGroupBy('projection.type')
+            .addGroupBy('projection.unit')
+            .addOrderBy('projection.type');
+        }
 
         QueryBuilderUtils.applySearchFilters(
           verticalQueryBuilder,
@@ -469,21 +551,32 @@ export class PostgresProjectionDataRepository
           .getRepository(Projection)
           .createQueryBuilder('projection')
           .select('projectionData.year', 'year')
-          .addSelect('SUM(projectionData.value)', 'horizontal')
           .addSelect(`projection.${bubble}`, 'bubble')
           .addSelect(`projection.${color}`, 'color')
-          .addSelect('projection.unit', 'unit')
           .innerJoin('projection.projectionData', 'projectionData')
-          .where('projection.type = :type', { type: horizontal })
           .groupBy('projectionData.year')
-          .addGroupBy('projection.type')
           .addGroupBy(`projection.${bubble}`)
           .addGroupBy(`projection.${color}`)
-          .addGroupBy('projection.unit')
           .orderBy('projectionData.year')
-          .addOrderBy('projection.type')
           .addOrderBy(`projection.${bubble}`)
           .addOrderBy(`projection.${color}`);
+
+        if (horizontalRatio) {
+          horizontalQueryBuilder
+            .addSelect(this.buildRatioSelectExpression(horizontalRatio), 'horizontal')
+            .addSelect(`'${horizontalRatio.unit}'::text`, 'unit')
+            .where('projection.type IN (:...horizontalTypes)', {
+              horizontalTypes: [horizontalRatio.numerator, horizontalRatio.denominator],
+            });
+        } else {
+          horizontalQueryBuilder
+            .addSelect('SUM(projectionData.value)', 'horizontal')
+            .addSelect('projection.unit', 'unit')
+            .where('projection.type = :type', { type: horizontal })
+            .addGroupBy('projection.type')
+            .addGroupBy('projection.unit')
+            .addOrderBy('projection.type');
+        }
 
         QueryBuilderUtils.applySearchFilters(
           horizontalQueryBuilder,
@@ -646,26 +739,38 @@ export class PostgresProjectionDataRepository
     const verticalAxis = settings[widgetVisualization].vertical;
     const breakdownFieldName =
       PROJECTION_FILTER_NAME_TO_FIELD_NAME[breakdown] || breakdown;
+    const ratioConfig = PROJECTION_RATIO_CONFIG[verticalAxis as ProjectionType];
 
     const baseQueryBuilder = this.dataSource
       .getRepository(Projection)
       .createQueryBuilder('projection')
       .select('projectionData.year', 'year')
-      .addSelect(
-        `CASE
-          WHEN projection.unit = '%' THEN AVG(projectionData.value)
-          ELSE SUM(projectionData.value)
-        END`,
-        'value',
-      )
-      .addSelect('projection.unit', 'unit')
       .addSelect(`projection.${breakdownFieldName}`, 'breakdown_group')
       .innerJoin('projection.projectionData', 'projectionData')
-      .where('projection.type = :type', { type: verticalAxis })
       .groupBy('projectionData.year')
-      .addGroupBy('projection.unit')
       .addGroupBy(`projection.${breakdownFieldName}`)
       .orderBy('projectionData.year', 'ASC');
+
+    if (ratioConfig) {
+      baseQueryBuilder
+        .addSelect(this.buildRatioSelectExpression(ratioConfig), 'value')
+        .addSelect(`'${ratioConfig.unit}'::text`, 'unit')
+        .where('projection.type IN (:...ratioTypes)', {
+          ratioTypes: [ratioConfig.numerator, ratioConfig.denominator],
+        });
+    } else {
+      baseQueryBuilder
+        .addSelect(
+          `CASE
+            WHEN projection.unit = '%' THEN AVG(projectionData.value)
+            ELSE SUM(projectionData.value)
+          END`,
+          'value',
+        )
+        .addSelect('projection.unit', 'unit')
+        .where('projection.type = :type', { type: verticalAxis })
+        .addGroupBy('projection.unit');
+    }
 
     QueryBuilderUtils.applySearchFilters(baseQueryBuilder, dataFilters, {
       alias: 'projection',
