@@ -3,6 +3,7 @@ import { CustomProjection } from '@shared/dto/projections/custom-projection.type
 import { ProjectionData } from '@shared/dto/projections/projection-data.entity';
 import { ProjectionFilter } from '@shared/dto/projections/projection-filter.entity';
 import { ProjectionWidget } from '@shared/dto/projections/projection-widget.entity';
+import { ProjectionRatioConfig } from '@shared/dto/projections/projection-types';
 import {
   CustomProjectionSettingsType,
   OthersAggregationType,
@@ -19,7 +20,7 @@ export interface IProjectionDataRepository extends Repository<ProjectionData> {
     projectionWidgets: ProjectionWidget[],
     dataFilters: SearchFilterDTO[],
   ): Promise<void>;
-  findProjectionWidgetData(dataFilters: SearchFilterDTO[]): Promise<any>;
+  findProjectionWidgetData(dataFilters: SearchFilterDTO[], ratioConfig?: ProjectionRatioConfig): Promise<any>;
   countDistinctColorValues(
     colorFieldName: string,
     dataFilters: SearchFilterDTO[],
