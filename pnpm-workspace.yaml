@@ -28,6 +28,10 @@ overrides:
   "@nestjs/platform-express>multer": "2.2.0"
   # next ships sharp <0.35.0 — inherited libvips CVEs (GHSA-f88m-g3jw-g9cj)
   "next>sharp": "0.35.3"
+  # brace-expansion 1.x DoS trio (CVE-2026-13149, CVE-2026-14257, CVE-2026-69152) —
+  # GHSA-3jxr-9vmj-r5cp / GHSA-mh99-v99m-4gvg / GHSA-rgw5-rvv9-x895. Patched >=1.1.18.
+  # Only the 1.x line is affected; scope by version so 2.x (minimatch@9) and 5.x (minimatch@10) are untouched.
+  "brace-expansion@<1.1.18": "1.1.18"
 
 catalog:
   # Core
