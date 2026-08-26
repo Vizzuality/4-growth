@@ -4,6 +4,7 @@ import { CUSTOM_PROJECTION_SETTINGS } from '@shared/dto/projections/custom-proje
 import { PROJECTION_VISUALIZATIONS } from '@shared/dto/projections/projection-visualizations.constants';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
 import { ConfigurationParams } from '@shared/dto/global/configuration-params';
+import { PROJECTION_TYPES } from '@shared/dto/projections/projection-types';
 
 describe('Custom Projection API', () => {
   let testManager: TestManager<unknown>;
@@ -375,6 +376,63 @@ describe('Custom Projection API', () => {
         expect(labels).not.toContain('Others');
       }
     });
+  });
+
+  test(`${c.getCustomProjection.path} penetration as vertical axis uses ratio formula, not plain SUM`, async () => {
+    // Scope to baseline + one technology-type so there is exactly one color group per year.
+    // Pick the first technology-type available in the DB.
+    const techTypeRows: Array<{ technology_type: string }> =
+      await testManager.dataSource.query(
+        `SELECT DISTINCT technology_type FROM projections WHERE scenario = 'baseline' LIMIT 1`,
+      );
+    expect(techTypeRows.length).toBeGreaterThan(0);
+    const techType = techTypeRows[0].technology_type;
+
+    // Compute expected penetration for this (baseline, techType, year 2025) group
+    const rawRatio: Array<{ ib: string; am: string }> =
+      await testManager.dataSource.query(`
+        SELECT
+          SUM(CASE WHEN p.type = '${PROJECTION_TYPES.INSTALLED_BASE}' THEN pd.value END) AS ib,
+          SUM(CASE WHEN p.type = '${PROJECTION_TYPES.ADDRESSABLE_MARKET}' THEN pd.value END) AS am
+        FROM projections p
+        JOIN projection_data pd ON pd.projection_id = p.id
+        WHERE p.scenario = 'baseline'
+          AND p.technology_type = '${techType}'
+          AND pd.year = 2025
+      `);
+    const ib = Number(rawRatio[0].ib);
+    const am = Number(rawRatio[0].am);
+    expect(am).toBeGreaterThan(0);
+    const expectedPenetration = (ib / am) * 100;
+
+    const res = await testManager
+      .request()
+      .get(c.getCustomProjection.path)
+      .query({
+        settings: {
+          [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
+            vertical: PROJECTION_TYPES.PENETRATION,
+            color: 'technology-type',
+          },
+        },
+        'dataFilters[0][name]': 'scenario',
+        'dataFilters[0][operator]': '=',
+        'dataFilters[0][values][0]': 'baseline',
+        'dataFilters[1][name]': 'technology-type',
+        'dataFilters[1][operator]': '=',
+        'dataFilters[1][values][0]': techType,
+      });
+
+    expect(res.status).toBe(200);
+    const resData = res.body?.data as Record<string, Array<{ year: number; vertical: number; color: string }>>;
+
+    // The result must be keyed by '%' (the penetration unit from the ratio config), not 'Units'
+    expect(Object.keys(resData)).toContain('%');
+    // One color group filtered → one entry per year
+    const year2025 = resData['%']?.find((d) => d.year === 2025);
+    expect(year2025).toBeDefined();
+    // Value must match Σ IB / Σ AM × 100, not a plain SUM of penetration rows
+    expect(year2025!.vertical).toBeCloseTo(expectedPenetration, 4);
   });
 
   afterAll(async () => {
