@@ -1,6 +1,7 @@
 import { TestManager } from 'api/test/utils/test-manager';
 import { projectionsContract as c } from '@shared/contracts/projections.contract';
 import { DataSourceManager } from '@api/infrastructure/data-source-manager';
+import { PROJECTION_TYPES } from '@shared/dto/projections/projection-types';
 
 describe('Projections API', () => {
   let testManager: TestManager<unknown>;
@@ -183,6 +184,115 @@ describe('Projections API', () => {
       'the_corporate_epoch',
       'the_fractured_continent',
     ]);
+  });
+
+  test('Penetration widget uses ratio formula (Σ Installed Base / Σ Addressable Market × 100)', async () => {
+    // Compute the expected value from raw DB data for a concrete year
+    const rawRatio: Array<{ ib: string; am: string }> =
+      await testManager.dataSource.query(`
+        SELECT
+          SUM(CASE WHEN p.type = '${PROJECTION_TYPES.INSTALLED_BASE}' THEN pd.value END) AS ib,
+          SUM(CASE WHEN p.type = '${PROJECTION_TYPES.ADDRESSABLE_MARKET}' THEN pd.value END) AS am
+        FROM projections p
+        JOIN projection_data pd ON pd.projection_id = p.id
+        WHERE p.scenario = 'baseline' AND pd.year = 2025
+      `);
+    const ib = Number(rawRatio[0].ib);
+    const am = Number(rawRatio[0].am);
+    expect(am).toBeGreaterThan(0);
+    const expectedPenetration = (ib / am) * 100;
+
+    const res = await testManager
+      .request()
+      .get(c.getProjectionsWidgets.path)
+      .query({
+        'filters[0][name]': 'type',
+        'filters[0][operator]': '=',
+        'filters[0][values][0]': PROJECTION_TYPES.PENETRATION,
+        'dataFilters[0][name]': 'scenario',
+        'dataFilters[0][operator]': '=',
+        'dataFilters[0][values][0]': 'baseline',
+      });
+
+    expect(res.status).toBe(200);
+    const penetrationWidget = (res.body.data as Array<{ type: string; data: Record<string, Array<{ year: number; value: number }>> }>).find(
+      (w) => w.type === PROJECTION_TYPES.PENETRATION,
+    );
+    expect(penetrationWidget).toBeDefined();
+    expect(penetrationWidget!.data).toBeDefined();
+    const seriesForYear = penetrationWidget!.data['%']?.find((d) => d.year === 2025);
+    expect(seriesForYear).toBeDefined();
+    expect(seriesForYear!.value).toBeCloseTo(expectedPenetration, 4);
+  });
+
+  test('Prices widget uses ratio formula (Σ Revenues / Σ Shipments)', async () => {
+    const rawRatio: Array<{ rev: string; ship: string }> =
+      await testManager.dataSource.query(`
+        SELECT
+          SUM(CASE WHEN p.type = '${PROJECTION_TYPES.REVENUES}' THEN pd.value END) AS rev,
+          SUM(CASE WHEN p.type = '${PROJECTION_TYPES.SHIPMENTS}' THEN pd.value END) AS ship
+        FROM projections p
+        JOIN projection_data pd ON pd.projection_id = p.id
+        WHERE p.scenario = 'baseline' AND pd.year = 2025
+      `);
+    const rev = Number(rawRatio[0].rev);
+    const ship = Number(rawRatio[0].ship);
+    expect(ship).toBeGreaterThan(0);
+    const expectedPrice = rev / ship;
+
+    const res = await testManager
+      .request()
+      .get(c.getProjectionsWidgets.path)
+      .query({
+        'filters[0][name]': 'type',
+        'filters[0][operator]': '=',
+        'filters[0][values][0]': PROJECTION_TYPES.PRICES,
+        'dataFilters[0][name]': 'scenario',
+        'dataFilters[0][operator]': '=',
+        'dataFilters[0][values][0]': 'baseline',
+      });
+
+    expect(res.status).toBe(200);
+    const pricesWidget = (res.body.data as Array<{ type: string; data: Record<string, Array<{ year: number; value: number }>> }>).find(
+      (w) => w.type === PROJECTION_TYPES.PRICES,
+    );
+    expect(pricesWidget).toBeDefined();
+    const seriesForYear = pricesWidget!.data['EUR']?.find((d) => d.year === 2025);
+    expect(seriesForYear).toBeDefined();
+    expect(seriesForYear!.value).toBeCloseTo(expectedPrice, 4);
+  });
+
+  test('Non-ratio widgets (Addressable Market, Shipments) still return SUM values', async () => {
+    const rawSum: Array<{ am_sum: string; ship_sum: string }> =
+      await testManager.dataSource.query(`
+        SELECT
+          SUM(CASE WHEN p.type = '${PROJECTION_TYPES.ADDRESSABLE_MARKET}' THEN pd.value END) AS am_sum,
+          SUM(CASE WHEN p.type = '${PROJECTION_TYPES.SHIPMENTS}' THEN pd.value END) AS ship_sum
+        FROM projections p
+        JOIN projection_data pd ON pd.projection_id = p.id
+        WHERE p.scenario = 'baseline' AND pd.year = 2025
+      `);
+    const expectedAM = Number(rawSum[0].am_sum);
+    const expectedShipments = Number(rawSum[0].ship_sum);
+
+    const res = await testManager
+      .request()
+      .get(c.getProjectionsWidgets.path)
+      .query({
+        'dataFilters[0][name]': 'scenario',
+        'dataFilters[0][operator]': '=',
+        'dataFilters[0][values][0]': 'baseline',
+      });
+    expect(res.status).toBe(200);
+    const widgets = res.body.data as Array<{ type: string; data: Record<string, Array<{ year: number; value: number }>> }>;
+
+    const amWidget = widgets.find((w) => w.type === PROJECTION_TYPES.ADDRESSABLE_MARKET)!;
+    const amForYear = amWidget.data['Units']?.find((d) => d.year === 2025);
+    expect(amForYear!.value).toBeCloseTo(expectedAM, 4);
+
+    const shipWidget = widgets.find((w) => w.type === PROJECTION_TYPES.SHIPMENTS)!;
+    const shipForYear = shipWidget.data['Units']?.find((d) => d.year === 2025);
+    expect(shipForYear!.value).toBeCloseTo(expectedShipments, 4);
   });
 
   afterAll(async () => {
