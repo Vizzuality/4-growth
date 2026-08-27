@@ -435,6 +435,143 @@ describe('Custom Projection API', () => {
     expect(year2025!.vertical).toBeCloseTo(expectedPenetration, 4);
   });
 
+  describe('Others bucket aggregation', () => {
+    test(`${c.getCustomProjection.path} Others penetration uses ratio formula (Σ IB / Σ AM), not SUM of per-color ratios`, async () => {
+      // Find the top-9 countries by aggregate penetration ratio in the test DB.
+      const top9Rows: Array<{ country: string }> = await testManager.dataSource.query(`
+        SELECT p.country
+        FROM projections p
+        JOIN projection_data pd ON pd.projection_id = p.id
+        WHERE p.scenario = 'baseline'
+        GROUP BY p.country
+        ORDER BY
+          COALESCE(
+            SUM(CASE WHEN p.type = '${PROJECTION_TYPES.INSTALLED_BASE}' THEN pd.value END)
+            / NULLIF(SUM(CASE WHEN p.type = '${PROJECTION_TYPES.ADDRESSABLE_MARKET}' THEN pd.value END), 0),
+            0
+          ) DESC
+        LIMIT 9
+      `);
+
+      // Compute expected Others value: Σ IB / Σ AM × 100 for countries outside the top 9.
+      const top9Countries = top9Rows.map((r) => r.country);
+      const othersRaw: Array<{ ib: string; am: string }> =
+        await testManager.dataSource.query(
+          `
+          SELECT
+            SUM(CASE WHEN p.type = '${PROJECTION_TYPES.INSTALLED_BASE}' THEN pd.value END) AS ib,
+            SUM(CASE WHEN p.type = '${PROJECTION_TYPES.ADDRESSABLE_MARKET}' THEN pd.value END) AS am
+          FROM projections p
+          JOIN projection_data pd ON pd.projection_id = p.id
+          WHERE p.scenario = 'baseline'
+            AND pd.year = 2025
+            AND p.country NOT IN (${top9Countries.map((_, i) => `$${i + 1}`).join(', ')})
+        `,
+          top9Countries,
+        );
+
+      const othersIb = Number(othersRaw[0].ib);
+      const othersAm = Number(othersRaw[0].am);
+
+      // Skip if there are fewer than 10 distinct countries in the test DB.
+      if (top9Rows.length < 9 || othersAm === 0) {
+        return;
+      }
+
+      const expectedOthersPenetration = (othersIb / othersAm) * 100;
+
+      const res = await testManager
+        .request()
+        .get(c.getCustomProjection.path)
+        .query({
+          settings: {
+            [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
+              vertical: PROJECTION_TYPES.PENETRATION,
+              color: 'country',
+            },
+          },
+          'dataFilters[0][name]': 'scenario',
+          'dataFilters[0][operator]': '=',
+          'dataFilters[0][values][0]': 'baseline',
+          othersAggregation: 'visible',
+        });
+
+      expect(res.status).toBe(200);
+      const resData = res.body?.data as Record<
+        string,
+        Array<{ year: number; vertical: number; color: string }>
+      >;
+      expect(Object.keys(resData)).toContain('%');
+
+      const othersEntry = resData['%']?.find(
+        (d) => d.color === 'Others' && d.year === 2025,
+      );
+      expect(othersEntry).toBeDefined();
+      expect(othersEntry!.vertical).toBeCloseTo(expectedOthersPenetration, 4);
+    });
+
+    test(`${c.getCustomProjection.path} Others installed-base uses SUM (non-ratio regression)`, async () => {
+      const top9Rows: Array<{ country: string }> = await testManager.dataSource.query(`
+        SELECT p.country
+        FROM projections p
+        JOIN projection_data pd ON pd.projection_id = p.id
+        WHERE p.scenario = 'baseline' AND p.type = '${PROJECTION_TYPES.INSTALLED_BASE}'
+        GROUP BY p.country
+        ORDER BY SUM(pd.value) DESC
+        LIMIT 9
+      `);
+
+      const top9Countries = top9Rows.map((r) => r.country);
+      const othersRaw: Array<{ total: string }> =
+        await testManager.dataSource.query(
+          `
+          SELECT SUM(pd.value) AS total
+          FROM projections p
+          JOIN projection_data pd ON pd.projection_id = p.id
+          WHERE p.scenario = 'baseline'
+            AND p.type = '${PROJECTION_TYPES.INSTALLED_BASE}'
+            AND pd.year = 2025
+            AND p.country NOT IN (${top9Countries.map((_, i) => `$${i + 1}`).join(', ')})
+        `,
+          top9Countries,
+        );
+
+      if (top9Rows.length < 9 || !othersRaw[0].total) {
+        return;
+      }
+
+      const expectedOthersIb = Number(othersRaw[0].total);
+
+      const res = await testManager
+        .request()
+        .get(c.getCustomProjection.path)
+        .query({
+          settings: {
+            [PROJECTION_VISUALIZATIONS.LINE_CHART]: {
+              vertical: PROJECTION_TYPES.INSTALLED_BASE,
+              color: 'country',
+            },
+          },
+          'dataFilters[0][name]': 'scenario',
+          'dataFilters[0][operator]': '=',
+          'dataFilters[0][values][0]': 'baseline',
+          othersAggregation: 'visible',
+        });
+
+      expect(res.status).toBe(200);
+      const resData = res.body?.data as Record<
+        string,
+        Array<{ year: number; vertical: number; color: string }>
+      >;
+
+      const othersEntry = Object.values(resData)
+        .flat()
+        .find((d) => d.color === 'Others' && d.year === 2025);
+      expect(othersEntry).toBeDefined();
+      expect(othersEntry!.vertical).toBeCloseTo(expectedOthersIb, 4);
+    });
+  });
+
   afterAll(async () => {
     await testManager.clearDatabase();
     await testManager.close();
