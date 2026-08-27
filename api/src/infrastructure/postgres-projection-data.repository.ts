@@ -57,6 +57,25 @@ export class PostgresProjectionDataRepository
     )`;
   }
 
+  // Raw conditional sums for carrying numerator/denominator through CTEs.
+  // Used when aggregation happens in multiple stages (e.g. Others bucket),
+  // so the ratio is computed once at the last stage rather than summed.
+  private buildRatioNumeratorSumExpression(cfg: ProjectionRatioConfig): string {
+    return `SUM(CASE WHEN projection.type = '${cfg.numerator}' THEN projectionData.value END)`;
+  }
+
+  private buildRatioDenominatorSumExpression(cfg: ProjectionRatioConfig): string {
+    return `SUM(CASE WHEN projection.type = '${cfg.denominator}' THEN projectionData.value END)`;
+  }
+
+  private buildRatioFromSumsExpression(
+    numSql: string,
+    denSql: string,
+    multiplier: number,
+  ): string {
+    return `COALESCE(${numSql} / NULLIF(${denSql}, 0) * ${multiplier}, 0)`;
+  }
+
   /**
    * Generates a SQL expression to humanize any dimension values
    * Transforms values like 'market-potential', 'reimagining_progress', 'technology-type'
@@ -306,8 +325,10 @@ export class PostgresProjectionDataRepository
       .addOrderBy(`projection.${colorAxis}`);
 
     if (ratioConfig) {
+      // Carry raw sums so Others bucket is computed as Σnum/Σden, not SUM(ratio).
       baseQueryBuilder
-        .addSelect(this.buildRatioSelectExpression(ratioConfig), 'vertical')
+        .addSelect(this.buildRatioNumeratorSumExpression(ratioConfig), 'num_sum')
+        .addSelect(this.buildRatioDenominatorSumExpression(ratioConfig), 'den_sum')
         .addSelect(`'${ratioConfig.unit}'::text`, 'unit')
         .where('projection.type IN (:...ratioTypes)', {
           ratioTypes: [ratioConfig.numerator, ratioConfig.denominator],
@@ -329,9 +350,67 @@ export class PostgresProjectionDataRepository
 
     const showOthers = othersAggregation !== 'hidden';
     const rankLimit = showOthers ? 9 : 10;
+    const finalColorCase = showOthers
+      ? `CASE WHEN rc.rank <= ${rankLimit} THEN bd.color::text ELSE 'Others' END`
+      : `bd.color::text`;
 
-    // Use database-level logic to handle top colors per unit
-    const finalQuery = `
+    // Use database-level logic to handle top colors per unit.
+    // Ratio types carry raw num/den through all CTEs and compute the ratio
+    // only at the JSON build stage, so the Others bucket is correct.
+    const finalQuery = ratioConfig
+      ? `
+      WITH base_data AS (
+        ${baseQueryBuilder.getSql()}
+      ),
+      unit_color_totals AS (
+        SELECT
+          unit,
+          color,
+          ${this.buildRatioFromSumsExpression('SUM(num_sum)', 'SUM(den_sum)', ratioConfig.multiplier)} as total_vertical
+        FROM base_data
+        GROUP BY unit, color
+      ),
+      ranked_colors AS (
+        SELECT
+          unit,
+          color,
+          total_vertical,
+          ROW_NUMBER() OVER (PARTITION BY unit ORDER BY total_vertical DESC) as rank
+        FROM unit_color_totals
+      ),
+      processed_data AS (
+        SELECT
+          bd.unit,
+          bd.year,
+          ${finalColorCase} as final_color,
+          SUM(bd.num_sum) as num_sum,
+          SUM(bd.den_sum) as den_sum
+        FROM base_data bd
+        JOIN ranked_colors rc ON bd.unit = rc.unit AND bd.color = rc.color
+        ${!showOthers ? `WHERE rc.rank <= ${rankLimit}` : ''}
+        GROUP BY bd.unit, bd.year, ${finalColorCase}
+      )
+      SELECT
+        JSON_OBJECT_AGG(unit, unit_data) as data
+      FROM (
+        SELECT
+          unit,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'year', year,
+              'color', CASE
+                WHEN final_color = 'Others' THEN 'Others'
+                ELSE ${this.getConditionalHumanizationSql('final_color', colorFieldName)}
+              END,
+              'vertical', ${this.buildRatioFromSumsExpression('num_sum', 'den_sum', ratioConfig.multiplier)}
+            )
+            ORDER BY year ASC, final_color
+          ) as unit_data
+        FROM processed_data
+        GROUP BY unit
+      ) as grouped_data
+      `
+      : `
       WITH base_data AS (
         ${baseQueryBuilder.getSql()}
       ),
@@ -355,33 +434,15 @@ export class PostgresProjectionDataRepository
         SELECT
           bd.unit,
           bd.year,
-          ${
-            showOthers
-              ? `CASE
-            WHEN rc.rank <= ${rankLimit} THEN bd.color::text
-            ELSE 'Others'
-          END as final_color,`
-              : `bd.color::text as final_color,`
-          }
+          ${finalColorCase} as final_color,
           SUM(bd.vertical) as vertical
         FROM base_data bd
         JOIN ranked_colors rc ON bd.unit = rc.unit AND bd.color = rc.color
         ${!showOthers ? `WHERE rc.rank <= ${rankLimit}` : ''}
-        GROUP BY bd.unit, bd.year,
-                 ${
-                   showOthers
-                     ? `CASE
-                   WHEN rc.rank <= ${rankLimit} THEN bd.color::text
-                   ELSE 'Others'
-                 END`
-                     : `bd.color::text`
-                 }
+        GROUP BY bd.unit, bd.year, ${finalColorCase}
       )
       SELECT
-        JSON_OBJECT_AGG(
-          unit,
-          unit_data
-        ) as data
+        JSON_OBJECT_AGG(unit, unit_data) as data
       FROM (
         SELECT
           unit,
@@ -399,7 +460,7 @@ export class PostgresProjectionDataRepository
         FROM processed_data
         GROUP BY unit
       ) as grouped_data
-    `;
+      `;
 
     const parameters = Object.values(baseQueryBuilder.getParameters()).flat();
     const result = await this.dataSource.query(finalQuery, parameters);
@@ -487,7 +548,8 @@ export class PostgresProjectionDataRepository
 
         if (sizeRatio) {
           sizeQueryBuilder
-            .addSelect(this.buildRatioSelectExpression(sizeRatio), 'size')
+            .addSelect(this.buildRatioNumeratorSumExpression(sizeRatio), 'size_num')
+            .addSelect(this.buildRatioDenominatorSumExpression(sizeRatio), 'size_den')
             .addSelect(`'${sizeRatio.unit}'::text`, 'unit')
             .where('projection.type IN (:...sizeTypes)', {
               sizeTypes: [sizeRatio.numerator, sizeRatio.denominator],
@@ -523,7 +585,8 @@ export class PostgresProjectionDataRepository
 
         if (verticalRatio) {
           verticalQueryBuilder
-            .addSelect(this.buildRatioSelectExpression(verticalRatio), 'vertical')
+            .addSelect(this.buildRatioNumeratorSumExpression(verticalRatio), 'vertical_num')
+            .addSelect(this.buildRatioDenominatorSumExpression(verticalRatio), 'vertical_den')
             .addSelect(`'${verticalRatio.unit}'::text`, 'unit')
             .where('projection.type IN (:...verticalTypes)', {
               verticalTypes: [verticalRatio.numerator, verticalRatio.denominator],
@@ -563,7 +626,8 @@ export class PostgresProjectionDataRepository
 
         if (horizontalRatio) {
           horizontalQueryBuilder
-            .addSelect(this.buildRatioSelectExpression(horizontalRatio), 'horizontal')
+            .addSelect(this.buildRatioNumeratorSumExpression(horizontalRatio), 'horizontal_num')
+            .addSelect(this.buildRatioDenominatorSumExpression(horizontalRatio), 'horizontal_den')
             .addSelect(`'${horizontalRatio.unit}'::text`, 'unit')
             .where('projection.type IN (:...horizontalTypes)', {
               horizontalTypes: [horizontalRatio.numerator, horizontalRatio.denominator],
@@ -615,7 +679,12 @@ export class PostgresProjectionDataRepository
         const showOthers = othersAggregation !== 'hidden';
         const rankLimit = showOthers ? 9 : 10;
 
-        // Combined query that joins all three metrics and groups by unit
+        const bubbleColorCase = showOthers
+          ? `CASE WHEN rc.rank <= ${rankLimit} THEN cd.color::text ELSE 'Others' END`
+          : `cd.color::text`;
+
+        // Combined query — each axis carries raw num/den when it is a ratio type,
+        // so the Others bucket is computed as Σnum/Σden rather than SUM(ratio).
         const combinedQuery = `
           WITH combined_data AS (
             SELECT
@@ -623,9 +692,15 @@ export class PostgresProjectionDataRepository
               size.bubble,
               size.color,
               size.year,
-              size.size,
-              COALESCE(vertical.vertical, 0) AS vertical,
-              COALESCE(horizontal.horizontal, 0) AS horizontal
+              ${sizeRatio
+                ? `COALESCE(size.size_num, 0) AS size_num, COALESCE(size.size_den, 0) AS size_den`
+                : `COALESCE(size.size, 0) AS size`},
+              ${verticalRatio
+                ? `COALESCE(vertical.vertical_num, 0) AS vertical_num, COALESCE(vertical.vertical_den, 0) AS vertical_den`
+                : `COALESCE(vertical.vertical, 0) AS vertical`},
+              ${horizontalRatio
+                ? `COALESCE(horizontal.horizontal_num, 0) AS horizontal_num, COALESCE(horizontal.horizontal_den, 0) AS horizontal_den`
+                : `COALESCE(horizontal.horizontal, 0) AS horizontal`}
             FROM (${sizeQueryBuilder.getSql()}) AS size
             LEFT JOIN (${verticalSql}) AS vertical
               ON size.color = vertical.color
@@ -643,7 +718,9 @@ export class PostgresProjectionDataRepository
               unit,
               bubble,
               color,
-              SUM(horizontal) as total_horizontal
+              ${horizontalRatio
+                ? `${this.buildRatioFromSumsExpression('SUM(horizontal_num)', 'SUM(horizontal_den)', horizontalRatio.multiplier)} as total_horizontal`
+                : `SUM(horizontal) as total_horizontal`}
             FROM combined_data
             GROUP BY unit, bubble, color
           ),
@@ -664,50 +741,38 @@ export class PostgresProjectionDataRepository
               cd.unit,
               cd.bubble,
               cd.year,
-              ${
-                showOthers
-                  ? `CASE
-                WHEN rc.rank <= ${rankLimit} THEN cd.color::text
-                ELSE 'Others'
-              END as final_color,`
-                  : `cd.color::text as final_color,`
-              }
-              SUM(cd.size) as size,
-              SUM(cd.vertical) as vertical,
-              SUM(cd.horizontal) as horizontal
+              ${bubbleColorCase} as final_color,
+              ${sizeRatio
+                ? `SUM(cd.size_num) as size_num, SUM(cd.size_den) as size_den`
+                : `SUM(cd.size) as size`},
+              ${verticalRatio
+                ? `SUM(cd.vertical_num) as vertical_num, SUM(cd.vertical_den) as vertical_den`
+                : `SUM(cd.vertical) as vertical`},
+              ${horizontalRatio
+                ? `SUM(cd.horizontal_num) as horizontal_num, SUM(cd.horizontal_den) as horizontal_den`
+                : `SUM(cd.horizontal) as horizontal`}
             FROM combined_data cd
             JOIN ranked_colors rc ON cd.unit = rc.unit AND cd.bubble = rc.bubble AND cd.color = rc.color
             ${!showOthers ? `WHERE rc.rank <= ${rankLimit}` : ''}
-            GROUP BY cd.unit, cd.bubble, cd.year,
-                     ${
-                       showOthers
-                         ? `CASE
-                       WHEN rc.rank <= ${rankLimit} THEN cd.color::text
-                       ELSE 'Others'
-                     END`
-                         : `cd.color::text`
-                     }
+            GROUP BY cd.unit, cd.bubble, cd.year, ${bubbleColorCase}
           )
-          SELECT 
-            JSON_OBJECT_AGG(
-              unit,
-              unit_data
-            ) as data
+          SELECT
+            JSON_OBJECT_AGG(unit, unit_data) as data
           FROM (
-            SELECT 
+            SELECT
               unit,
               JSON_AGG(
                 JSON_BUILD_OBJECT(
                   'year', year,
                   'bubble', ${this.getConditionalHumanizationSql('bubble', bubbleFieldName)},
-                  'color', CASE 
+                  'color', CASE
                     WHEN final_color = 'Others' THEN 'Others'
                     ELSE ${this.getConditionalHumanizationSql('final_color', colorFieldName)}
                   END,
-                  'size', size,
-                  'vertical', vertical,
-                  'horizontal', horizontal
-                ) 
+                  'size', ${sizeRatio ? this.buildRatioFromSumsExpression('size_num', 'size_den', sizeRatio.multiplier) : 'size'},
+                  'vertical', ${verticalRatio ? this.buildRatioFromSumsExpression('vertical_num', 'vertical_den', verticalRatio.multiplier) : 'vertical'},
+                  'horizontal', ${horizontalRatio ? this.buildRatioFromSumsExpression('horizontal_num', 'horizontal_den', horizontalRatio.multiplier) : 'horizontal'}
+                )
                 ORDER BY year ASC, bubble, final_color
               ) as unit_data
             FROM processed_data
@@ -752,8 +817,10 @@ export class PostgresProjectionDataRepository
       .orderBy('projectionData.year', 'ASC');
 
     if (ratioConfig) {
+      // Carry raw sums so Others bucket is computed as Σnum/Σden, not SUM(ratio).
       baseQueryBuilder
-        .addSelect(this.buildRatioSelectExpression(ratioConfig), 'value')
+        .addSelect(this.buildRatioNumeratorSumExpression(ratioConfig), 'num_sum')
+        .addSelect(this.buildRatioDenominatorSumExpression(ratioConfig), 'den_sum')
         .addSelect(`'${ratioConfig.unit}'::text`, 'unit')
         .where('projection.type IN (:...ratioTypes)', {
           ratioTypes: [ratioConfig.numerator, ratioConfig.denominator],
@@ -779,8 +846,86 @@ export class PostgresProjectionDataRepository
 
     const showOthers = othersAggregation !== 'hidden';
     const rankLimit = showOthers ? 9 : 10;
+    const finalGroupCase = showOthers
+      ? `CASE WHEN rb.rank <= ${rankLimit} THEN bd.breakdown_group::text ELSE 'Others' END`
+      : `bd.breakdown_group::text`;
 
-    const finalQuery = `
+    const finalQuery = ratioConfig
+      ? `
+      WITH base_data AS (
+        ${baseQueryBuilder.getSql()}
+      ),
+      global_breakdown_totals AS (
+        SELECT
+          breakdown_group,
+          ${this.buildRatioFromSumsExpression('SUM(num_sum)', 'SUM(den_sum)', ratioConfig.multiplier)} as total_value
+        FROM base_data
+        GROUP BY breakdown_group
+      ),
+      ranked_breakdown AS (
+        SELECT
+          breakdown_group,
+          total_value,
+          ROW_NUMBER() OVER (ORDER BY total_value DESC) as rank
+        FROM global_breakdown_totals
+      ),
+      processed_data AS (
+        SELECT
+          bd.unit,
+          bd.year,
+          ${finalGroupCase} as final_group,
+          SUM(bd.num_sum) as num_sum,
+          SUM(bd.den_sum) as den_sum
+        FROM base_data bd
+        JOIN ranked_breakdown rb ON bd.breakdown_group = rb.breakdown_group
+        ${!showOthers ? `WHERE rb.rank <= ${rankLimit}` : ''}
+        GROUP BY bd.unit, bd.year, ${finalGroupCase}
+      ),
+      year_totals AS (
+        SELECT
+          unit,
+          year,
+          ${this.buildRatioFromSumsExpression('SUM(num_sum)', 'SUM(den_sum)', ratioConfig.multiplier)} as total
+        FROM processed_data
+        GROUP BY unit, year
+      ),
+      breakdown_groups AS (
+        SELECT
+          pd.unit,
+          CASE
+            WHEN pd.final_group = 'Others' THEN 'Others'
+            ELSE ${this.getConditionalHumanizationSql('pd.final_group', breakdown)}
+          END as group_label,
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'label', pd.year::text,
+              'value', ${this.buildRatioFromSumsExpression('pd.num_sum', 'pd.den_sum', ratioConfig.multiplier)},
+              'total', yt.total
+            )
+            ORDER BY pd.year ASC
+          ) as data
+        FROM processed_data pd
+        JOIN year_totals yt ON pd.unit = yt.unit AND pd.year = yt.year
+        GROUP BY pd.unit, pd.final_group,
+                 CASE
+                   WHEN pd.final_group = 'Others' THEN 'Others'
+                   ELSE ${this.getConditionalHumanizationSql('pd.final_group', breakdown)}
+                 END
+      )
+      SELECT
+        JSON_OBJECT_AGG(unit, unit_data) as data
+      FROM (
+        SELECT
+          unit,
+          JSON_AGG(
+            JSON_BUILD_OBJECT('label', group_label, 'data', data)
+            ORDER BY group_label
+          ) as unit_data
+        FROM breakdown_groups
+        GROUP BY unit
+      ) as grouped_data
+      `
+      : `
       WITH base_data AS (
         ${baseQueryBuilder.getSql()}
       ),
@@ -802,27 +947,12 @@ export class PostgresProjectionDataRepository
         SELECT
           bd.unit,
           bd.year,
-          ${
-            showOthers
-              ? `CASE
-            WHEN rb.rank <= ${rankLimit} THEN bd.breakdown_group::text
-            ELSE 'Others'
-          END as final_group,`
-              : `bd.breakdown_group::text as final_group,`
-          }
+          ${finalGroupCase} as final_group,
           SUM(bd.value) as value
         FROM base_data bd
         JOIN ranked_breakdown rb ON bd.breakdown_group = rb.breakdown_group
         ${!showOthers ? `WHERE rb.rank <= ${rankLimit}` : ''}
-        GROUP BY bd.unit, bd.year,
-                 ${
-                   showOthers
-                     ? `CASE
-                   WHEN rb.rank <= ${rankLimit} THEN bd.breakdown_group::text
-                   ELSE 'Others'
-                 END`
-                     : `bd.breakdown_group::text`
-                 }
+        GROUP BY bd.unit, bd.year, ${finalGroupCase}
       ),
       year_totals AS (
         SELECT
@@ -856,24 +986,18 @@ export class PostgresProjectionDataRepository
                  END
       )
       SELECT
-        JSON_OBJECT_AGG(
-          unit,
-          unit_data
-        ) as data
+        JSON_OBJECT_AGG(unit, unit_data) as data
       FROM (
         SELECT
           unit,
           JSON_AGG(
-            JSON_BUILD_OBJECT(
-              'label', group_label,
-              'data', data
-            )
+            JSON_BUILD_OBJECT('label', group_label, 'data', data)
             ORDER BY group_label
           ) as unit_data
         FROM breakdown_groups
         GROUP BY unit
       ) as grouped_data
-    `;
+      `;
 
     const parameters = Object.values(baseQueryBuilder.getParameters()).flat();
     const result = await this.dataSource.query(finalQuery, parameters);
