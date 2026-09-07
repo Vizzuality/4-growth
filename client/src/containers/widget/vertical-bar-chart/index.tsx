@@ -12,6 +12,9 @@ import {
   CHART_CONTAINER_CLASS_NAME,
   CHART_MARGIN,
   CHART_STYLES,
+  Y_AXIS_LABEL_LIFT,
+  Y_AXIS_TICK_MARGIN,
+  Y_AXIS_WIDTH,
 } from "@/containers/widget/constants";
 import ProjectionsTooltip from "@/containers/widget/tooltip/projections";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
@@ -182,9 +185,16 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({
           ticks={getYAxisTicks(yDomain)}
           axisLine={false}
           tickLine={false}
-          style={{ transform: "translate(30px, -10px)" }}
+          tickSize={0}
+          tickMargin={Y_AXIS_TICK_MARGIN}
+          width={Y_AXIS_WIDTH}
           tick={({ x, y, payload }) => (
-            <text x={x + 30} y={y} textAnchor="end" style={{ fontSize: 12 }}>
+            <text
+              x={x}
+              y={y - Y_AXIS_LABEL_LIFT}
+              textAnchor="start"
+              style={{ fontSize: 12 }}
+            >
               {formatProjectionValue(payload.value)}
             </text>
           )}
