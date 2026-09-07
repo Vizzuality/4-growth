@@ -11,7 +11,7 @@ export const DATA_SOURCE_INFO_SECTIONS: {
   },
   {
     heading: "Automated website analysis",
-    body: "Automated website analysis uses web scraping and AI-based information extraction to identify digital technology use in forestry from company websites. Results are evaluated for relevance, grounding, and consistency to ensure they reflect the original website content. The dataset contains observations from 2,438 organisations across 24 European countries.",
+    body: "Automated website analysis uses web scraping and AI-based information extraction to identify digital technology use in forestry from company websites. Results are evaluated for relevance, grounding, and consistency to ensure they reflect the original website content. The dataset contains observations from 2,438 organisations across 24 European countries. The analysis was conducted in compliance with GDPR requirements, and no sensitive personal data was collected. When interpreting binary responses, “Don’t know” means no relevant website content was found, which may indicate either absence or non-disclosure.",
   },
   {
     heading: "Survey and automated comparison",
