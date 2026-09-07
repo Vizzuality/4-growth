@@ -7,7 +7,11 @@ import { getCssChartColor } from "@/lib/constants";
 import { cn, formatProjectionValue, getYAxisTicks } from "@/lib/utils";
 
 import NoData from "@/containers/no-data";
-import { CHART_CONTAINER_CLASS_NAME } from "@/containers/widget/constants";
+import {
+  CHART_CONTAINER_CLASS_NAME,
+  Y_AXIS_TICK_MARGIN,
+  Y_AXIS_WIDTH,
+} from "@/containers/widget/constants";
 import ProjectionsTooltip from "@/containers/widget/tooltip/projections";
 
 import {
@@ -120,8 +124,11 @@ const LineChart: FC<LineChartProps> = ({
           ticks={getYAxisTicks(yDomain)}
           axisLine={false}
           tickLine={false}
+          tickSize={0}
+          tickMargin={Y_AXIS_TICK_MARGIN}
+          width={Y_AXIS_WIDTH}
           tick={({ x, y, payload }) => (
-            <text x={x + 30} y={y} textAnchor="end" style={{ fontSize: 12 }}>
+            <text x={x} y={y} textAnchor="start" style={{ fontSize: 12 }}>
               {formatProjectionValue(payload.value)}
             </text>
           )}
