@@ -3,7 +3,7 @@ export const ProjectionScenarios = {
   REIMAGINING_PROGRESS: 'reimagining_progress',
   THE_FRACTURED_CONTINENT: 'the_fractured_continent',
   THE_CORPORATE_EPOCH: 'the_corporate_epoch',
-};
+} as const;
 
 export type ProjectionScenarios =
   (typeof ProjectionScenarios)[keyof typeof ProjectionScenarios];

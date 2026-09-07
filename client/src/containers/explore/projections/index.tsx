@@ -9,6 +9,7 @@ import useProjectionsCategoryFilter from "@/hooks/use-category-filter";
 import useFilters from "@/hooks/use-filters";
 
 import NoData from "@/containers/no-data";
+import ScenarioDescriptions from "@/containers/scenarios/descriptions";
 import Widget from "@/containers/widget/projections";
 
 import { MenuPointer } from "@/components/icons/menu-pointer";
@@ -46,15 +47,8 @@ export default function Explore() {
     );
   }
 
-  if (isFetching)
-    return (
-      <div className="flex h-full flex-col items-center justify-center">
-        <Spinner className="size-10" />
-      </div>
-    );
-
   return (
-    <div className="overflow-y-auto pb-32">
+    <div className="space-y-20 overflow-y-auto pb-32">
       <div className="grid grid-cols-1 grid-rows-[auto_250px] gap-0.5 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-3">
         <Card className="space-y-4 bg-secondary lg:col-span-2">
           <Title as="h2" className="text-xl">
@@ -67,19 +61,26 @@ export default function Explore() {
         </Card>
         <Card className="bg-lightgray bg-[url('/images/explore/overview-projections-bg.avif')] bg-cover bg-center bg-no-repeat lg:col-span-1" />
       </div>
-      <div className="grid auto-rows-[400px] grid-cols-1 gap-0.5 lg:grid-cols-2 [&>*:last-child:nth-child(odd)]:col-span-2">
-        {data?.map((d) => (
-          <Widget
-            key={d.id}
-            id={d.id}
-            indicator={d.title}
-            description={d.description}
-            data={d.data}
-            visualisations={d.visualizations}
-            visualization={d.defaultVisualization}
-          />
-        ))}
-      </div>
+      <ScenarioDescriptions />
+      {isFetching ? (
+        <div className="flex min-h-[400px] flex-col items-center justify-center">
+          <Spinner className="size-10" />
+        </div>
+      ) : (
+        <div className="grid auto-rows-[400px] grid-cols-1 gap-0.5 lg:grid-cols-2 [&>*:last-child:nth-child(odd)]:col-span-2">
+          {data?.map((d) => (
+            <Widget
+              key={d.id}
+              id={d.id}
+              indicator={d.title}
+              description={d.description}
+              data={d.data}
+              visualisations={d.visualizations}
+              visualization={d.defaultVisualization}
+            />
+          ))}
+        </div>
+      )}
       <MoreInfoDialog />
     </div>
   );
