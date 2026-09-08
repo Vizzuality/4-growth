@@ -2,8 +2,15 @@ import { WidgetMapData } from "@shared/dto/widgets/base-widget-data.interface";
 
 type MapScale = 0 | 1 | 2 | 3 | 4 | 5;
 
+interface MapEntry {
+  scale: MapScale;
+  value: number | null;
+  count: number | null;
+  total: number | null;
+}
+
 interface MapData {
-  [key: string]: MapScale;
+  [key: string]: MapEntry;
 }
 
 const FILL_MAP = {
@@ -35,11 +42,25 @@ const getScaleFromPercentage = (percentage: unknown): MapScale => {
   return 5;
 };
 
+// `value` arrives as a string: the percentage is Postgres numeric.
+const toNumber = (input: unknown): number | null => {
+  if (input == null) return null;
+
+  const value = Number(input);
+  return Number.isNaN(value) === true ? null : value;
+};
+
 const transformMapData = (data: WidgetMapData): MapData => {
-  return data.reduce((acc, { country, value }) => {
-    acc[country] = getScaleFromPercentage(value);
+  return data.reduce((acc, { country, value, count, total }) => {
+    acc[country] = {
+      scale: getScaleFromPercentage(value),
+      value: toNumber(value),
+      count: toNumber(count),
+      total: toNumber(total),
+    };
     return acc;
   }, {} as MapData);
 };
 
+export type { MapEntry };
 export { FILL_MAP, BG_MAP, getScaleFromPercentage, transformMapData };

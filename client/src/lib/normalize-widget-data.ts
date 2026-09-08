@@ -2,7 +2,6 @@ import { SectionWithDataWidget } from "@shared/dto/sections/section.entity";
 import {
   WidgetChartData,
   WidgetData,
-  WidgetMapData,
 } from "@shared/dto/widgets/base-widget-data.interface";
 
 import { NA_ANSWER_LABEL } from "@/lib/constants";
@@ -14,10 +13,6 @@ import { TransformedSection } from "@/types";
  */
 function normalizeWidgetData(widgetData: WidgetData): WidgetData {
   const result = { ...widgetData };
-
-  if (result.map) {
-    result.map = normalizeMapData(result.map);
-  }
 
   if (result.chart) {
     result.chart = normalizeChartData(result.chart);
@@ -89,25 +84,6 @@ function getAbsoluteValue(data: WidgetData) {
   if (!data.chart || data.chart.length === 0) return 0;
 
   return calculateTotalWithoutNA(data.chart);
-}
-
-/**
- * Calculates percentage values for map data based on total count
- */
-function normalizeMapData(mapData: WidgetMapData): WidgetMapData {
-  const totalCount = calculateMapTotal(mapData);
-
-  return mapData.map((entry) => ({
-    ...entry,
-    value: calculatePercentage(entry.value, totalCount),
-  }));
-}
-
-/**
- * Calculates the total sum of values in map data
- */
-function calculateMapTotal(mapData: WidgetMapData): number {
-  return mapData.reduce((sum, entry) => sum + entry.value, 0);
 }
 
 /**

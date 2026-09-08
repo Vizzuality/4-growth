@@ -32,7 +32,7 @@ export function serializeWidgetDataToCsv(
     case 'map':
       return stringify(data.map!, {
         header: true,
-        columns: ['country', 'value'],
+        columns: ['country', 'value', 'count', 'total'],
       });
 
     case 'breakdown': {

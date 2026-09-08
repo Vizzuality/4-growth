@@ -41,40 +41,41 @@ describe("transformMapData", () => {
     expect(transformMapData([])).toEqual({});
   });
 
-  it("should transform single country data correctly", () => {
-    const input = [{ country: "USA", value: 75 }];
-    expect(transformMapData(input)).toEqual({ USA: 4 });
-  });
+  it("should key the scale and both counts by ISO3", () => {
+    const input = [{ country: "USA", value: 75, count: 30, total: 40 }];
 
-  it("should transform multiple countries data correctly", () => {
-    const input = [
-      { country: "BEL", value: 85 },
-      { country: "NED", value: 45 },
-      { country: "ESP", value: 15 },
-    ];
     expect(transformMapData(input)).toEqual({
-      BEL: 5,
-      NED: 3,
-      ESP: 1,
+      USA: { scale: 4, value: 75, count: 30, total: 40 },
     });
   });
 
-  it("should handle boundary values correctly", () => {
+  it("should keep each country's counts with its own scale", () => {
     const input = [
-      { country: "A", value: 0 },
-      { country: "B", value: 20 },
-      { country: "C", value: 40 },
-      { country: "D", value: 60 },
-      { country: "E", value: 80 },
-      { country: "F", value: 100 },
+      { country: "BEL", value: 85, count: 17, total: 20 },
+      { country: "NED", value: 45, count: 9, total: 20 },
+      { country: "ESP", value: 15, count: 3, total: 20 },
     ];
+
     expect(transformMapData(input)).toEqual({
-      A: 1,
-      B: 1,
-      C: 2,
-      D: 3,
-      E: 4,
-      F: 5,
+      BEL: { scale: 5, value: 85, count: 17, total: 20 },
+      NED: { scale: 3, value: 45, count: 9, total: 20 },
+      ESP: { scale: 1, value: 15, count: 3, total: 20 },
+    });
+  });
+
+  it("should keep null counts null for a country with no answers", () => {
+    const input = [{ country: "SRB", value: null, count: null, total: null }];
+
+    expect(transformMapData(input as never)).toEqual({
+      SRB: { scale: 0, value: null, count: null, total: null },
+    });
+  });
+
+  it("should coerce the numeric percentage Postgres returns as a string", () => {
+    const input = [{ country: "FIN", value: "31.7", count: 55, total: 173 }];
+
+    expect(transformMapData(input as never)).toEqual({
+      FIN: { scale: 2, value: 31.7, count: 55, total: 173 },
     });
   });
 });

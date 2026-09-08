@@ -89,6 +89,7 @@ describe('PostgresSurveyAnswerRepository - Map Data', () => {
   let surveyAnswerRepo: ISurveyAnswerRepository;
 
   const TEST_INDICATOR = 'test-map-indicator';
+  const OTHER_INDICATOR = 'test-other-indicator';
 
   beforeAll(async () => {
     testManager = await TestManager.createTestManager({ logger: false });
@@ -155,6 +156,8 @@ describe('PostgresSurveyAnswerRepository - Map Data', () => {
     expect(albEntry).toBeDefined();
     // 2 Yes out of 3 total = 66.67%
     expect(Number(albEntry.value)).toBeCloseTo(66.67, 0);
+    expect(albEntry.count).toBe(2);
+    expect(albEntry.total).toBe(3);
   });
 
   it('excludes N/A but counts "Not at all" and "Don\'t know" in the map denominator', async () => {
@@ -200,6 +203,61 @@ describe('PostgresSurveyAnswerRepository - Map Data', () => {
     // out of the divisor; before the fix the divisor held only the Yes rows and
     // every country came back as 100%.
     expect(Number(autEntry.value)).toBeCloseTo(50, 0);
+    expect(autEntry.count).toBe(2);
+    expect(autEntry.total).toBe(4);
+  });
+
+  it('reports null counts for a country with no answers to the question', async () => {
+    const dataSource = testManager.getDataSource();
+    await testManager.mocks().ensureQuestionIndicatorMapExists(dataSource, {
+      indicator: TEST_INDICATOR,
+      question: 'Test question for map',
+    });
+    await testManager.mocks().ensureQuestionIndicatorMapExists(dataSource, {
+      indicator: OTHER_INDICATOR,
+      question: 'Another test question',
+    });
+
+    const answersRepo = dataSource.getRepository(SurveyAnswer);
+    await answersRepo.save([
+      {
+        surveyId: 'hrv-null-case-1',
+        questionIndicator: TEST_INDICATOR,
+        question: 'Test question for map',
+        answer: 'Yes',
+        countryCode: 'HRV',
+      },
+      {
+        surveyId: 'srb-1',
+        questionIndicator: OTHER_INDICATOR,
+        question: 'Another test question',
+        answer: 'Yes',
+        countryCode: 'SRB',
+      },
+    ]);
+
+    const widget: BaseWidgetWithData = {
+      indicator: TEST_INDICATOR,
+      visualisations: [WIDGET_VISUALIZATIONS.MAP],
+      defaultVisualization: WIDGET_VISUALIZATIONS.MAP,
+      data: {},
+      responseRate: 0,
+      absoluteValue: 0,
+    } as BaseWidgetWithData;
+
+    await surveyAnswerRepo.addSurveyDataToBaseWidget(widget, {});
+
+    // Serbia is in survey_answers, so it is in the payload, but it answered a
+    // different question. Null is what separates that from a real zero.
+    const srbEntry = widget.data.map.find((entry) => entry.country === 'SRB');
+    expect(srbEntry).toBeDefined();
+    expect(srbEntry.value).toBeNull();
+    expect(srbEntry.count).toBeNull();
+    expect(srbEntry.total).toBeNull();
+
+    const hrvEntry = widget.data.map.find((entry) => entry.country === 'HRV');
+    expect(hrvEntry.count).toBe(1);
+    expect(hrvEntry.total).toBe(1);
   });
 
   it('should return chart and map data for adoption-of-technology-by-country indicator directly', async () => {

@@ -324,7 +324,9 @@ SELECT
       THEN 100.0 * bc.yes_cnt / bc.total_cnt   -- percent Yes of answers given; N/A is
                                                -- excluded by the answer filter above
     ELSE NULL                                  -- no data for this question -> gray
-  END AS value
+  END AS value,
+  bc.yes_cnt::integer   AS count,             -- null when the country has no answers here
+  bc.total_cnt::integer AS total
 FROM all_countries ac
 LEFT JOIN by_country bc
   ON bc.country_code = ac.country
