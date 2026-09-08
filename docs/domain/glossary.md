@@ -1,5 +1,19 @@
 # Glossary
 
+## Responses
+
+The number of answers a figure was computed from. On the country map it is the per-country
+denominator, and the tooltip states it as a fraction — `55 of 173 responses` beside `32%`.
+
+It counts answers to one question, not surveys and not respondents. Answers of `Yes`, `No`,
+`Not at all` and `Don't know` are counted; `N/A` is not, because it is a non-response rather than an
+opinion. So a country's response count is lower than the number of surveys it returned, and two
+questions can report different counts for the same country.
+
+"Responses" is the word users see and the word partners use. In data and code the map payload calls
+the numerator `count` and the denominator `total`. The widget header's `Response rate` pill counts
+the same way — the chart total minus its `N/A` row — so the pill and the map are the same unit.
+
 ## Data source
 
 Where a figure came from. Two values: **Survey** (answers people gave) and **Automated** (data

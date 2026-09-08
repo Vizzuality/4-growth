@@ -22,12 +22,12 @@ describe('serializeWidgetDataToCsv', () => {
   it('serializes a map widget', () => {
     const data: WidgetData = {
       map: [
-        { country: 'Belgium', value: 40 },
-        { country: 'Spain', value: 60 },
+        { country: 'Belgium', value: 40, count: 8, total: 20 },
+        { country: 'Spain', value: 60, count: 30, total: 50 },
       ],
     };
     expect(serializeWidgetDataToCsv(data)).toBe(
-      'country,value\nBelgium,40\nSpain,60\n',
+      'country,value,count,total\nBelgium,40,8,20\nSpain,60,30,50\n',
     );
   });
 
@@ -71,7 +71,9 @@ describe('serializeWidgetDataToCsv', () => {
 
   it('returns header only when chart/breakdown/map is empty', () => {
     expect(serializeWidgetDataToCsv({ chart: [] })).toBe('label,value,total\n');
-    expect(serializeWidgetDataToCsv({ map: [] })).toBe('country,value\n');
+    expect(serializeWidgetDataToCsv({ map: [] })).toBe(
+      'country,value,count,total\n',
+    );
     expect(serializeWidgetDataToCsv({ breakdown: [] })).toBe(
       'breakdown_label,label,value,total\n',
     );

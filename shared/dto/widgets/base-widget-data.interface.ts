@@ -32,6 +32,12 @@ export type WidgetSourceSplit = Array<{
 export type WidgetMapData = Array<{
   country: string;
   value: number;
+  /**
+   * Both null when the country has no answers for the question, which is a
+   * different state from zero and is rendered differently.
+   */
+  count: number | null;
+  total: number | null;
 }>;
 
 /**
