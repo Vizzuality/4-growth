@@ -52,8 +52,10 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - images, maps, videos (public/ assets — the image optimizer refetches
+     *   these through the server without the caller's Authorization header)
      * - health (health check endpoint)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico|health).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|images|maps|videos|health).*)",
   ],
 };
