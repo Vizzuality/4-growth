@@ -9,6 +9,7 @@ import { queryKeys } from "@/lib/queryKeys";
 import { auth } from "@/app/auth/api/[...nextauth]/config";
 
 import BottomBar from "@/containers/bottom-bar";
+import DataSourceLegend from "@/containers/bottom-bar/data-source-legend/user-sandbox";
 import FilterSettings from "@/containers/bottom-bar/survey-analysis/filters-sheet/filter-settings";
 import FiltersSheet from "@/containers/bottom-bar/survey-analysis/filters-sheet/user-sandbox";
 import SettingsSheet from "@/containers/bottom-bar/survey-analysis/settings-sheet/user-sandbox";
@@ -63,14 +64,14 @@ export default async function SandboxPage({
   return (
     <Hydrate state={dehydrate(queryClient)}>
       <Sandbox customWidgetId={id} />
-      <BottomBar>
-        <SettingsSheet />
+      <BottomBar legend={<DataSourceLegend />} inlineExternalLinks>
         <FiltersSheet>
           <FilterSettings
             defaultFilters={SURVEY_ANALYSIS_DEFAULT_FILTERS}
             withDataBreakdown
           />
         </FiltersSheet>
+        <SettingsSheet />
       </BottomBar>
     </Hydrate>
   );

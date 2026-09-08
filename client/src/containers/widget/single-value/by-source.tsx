@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { WidgetSourceSplit } from "@shared/dto/widgets/base-widget-data.interface";
 
-import { getDataSourceOptionLabel } from "@/lib/constants";
+import { DATA_SOURCE_SHORT_LABELS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 import { barWidthPercentage } from "@/containers/widget/single-value/utils";
@@ -42,21 +42,28 @@ const SingleValueBySource: FC<SingleValueBySourceProps> = ({
           const value = sourceData.counter?.value ?? 0;
 
           return (
-            <div key={`single-value-source-${source}`}>
-              <dt className="sr-only">
-                {getDataSourceOptionLabel([source]) ?? source}
+            <div
+              key={`single-value-source-${source}`}
+              className="relative isolate flex h-[78px] items-center"
+            >
+              <dt className="order-last pr-6 text-base">
+                {DATA_SOURCE_SHORT_LABELS[source] ?? source}
               </dt>
-              <dd
-                className={cn(
-                  "flex h-[78px] min-w-max items-center rounded-r-lg px-6 text-[40px] font-semibold leading-none text-foreground",
-                  fill,
-                  index > 0 &&
-                    "bg-[url('/images/bar-pattern.png')] bg-[length:48px_48px] bg-repeat bg-blend-multiply",
-                )}
-                style={{
-                  width: `${barWidthPercentage(value, sourceData.counter?.total ?? 0)}%`,
-                }}
-              >
+              <dd className="min-w-max pl-6 pr-2 text-[40px] font-semibold leading-none text-foreground">
+                {/* The label sits beside the figure, not at the bar's edge, so the
+                    bar has to be its own layer rather than the text's container */}
+                <span
+                  aria-hidden
+                  className={cn(
+                    "absolute inset-y-0 left-0 -z-10 rounded-r-lg",
+                    fill,
+                    index > 0 &&
+                      "bg-[url('/images/bar-pattern.png')] bg-[length:48px_48px] bg-repeat bg-blend-multiply",
+                  )}
+                  style={{
+                    width: `${barWidthPercentage(value, sourceData.counter?.total ?? 0)}%`,
+                  }}
+                />
                 {value}
               </dd>
             </div>

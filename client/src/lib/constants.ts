@@ -146,7 +146,7 @@ export const AGRICULTURE_ONLY_INDICATORS = [
  */
 export const DATA_SOURCE_ORDER = ["survey", "automated"];
 
-/** Legend-length names; the option labels are too long to underline inline */
+/** Legend-length names; the option labels are too long to fit a pill or a bar */
 export const DATA_SOURCE_SHORT_LABELS: Record<string, string> = {
   survey: "Survey",
   automated: "Automated",
