@@ -23,8 +23,8 @@ describe("SingleValueBySource", () => {
       />,
     );
 
-    expect(screen.getByText("Survey responses")).toBeInTheDocument();
-    expect(screen.getByText("Automated web data")).toBeInTheDocument();
+    expect(screen.getByText("Survey")).toBeInTheDocument();
+    expect(screen.getByText("Automated")).toBeInTheDocument();
     expect(screen.getByText("1266")).toBeInTheDocument();
     expect(screen.getByText("2055")).toBeInTheDocument();
   });
@@ -37,7 +37,7 @@ describe("SingleValueBySource", () => {
       />,
     );
 
-    expect(screen.getByText("Automated web data")).toBeInTheDocument();
+    expect(screen.getByText("Automated")).toBeInTheDocument();
     expect(screen.getByText("0")).toBeInTheDocument();
   });
 });

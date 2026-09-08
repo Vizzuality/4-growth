@@ -1,4 +1,5 @@
 import BottomBar from "@/containers/bottom-bar";
+import DataSourceLegend from "@/containers/bottom-bar/data-source-legend";
 import FiltersSheet from "@/containers/bottom-bar/filters-sheet";
 import FilterSettings from "@/containers/bottom-bar/survey-analysis/filters-sheet/filter-settings";
 import SettingsSheet from "@/containers/bottom-bar/survey-analysis/settings-sheet/sandbox";
@@ -9,14 +10,14 @@ export default async function SandboxPage() {
   return (
     <>
       <Sandbox />
-      <BottomBar>
-        <SettingsSheet />
+      <BottomBar legend={<DataSourceLegend />} inlineExternalLinks>
         <FiltersSheet>
           <FilterSettings
             defaultFilters={SURVEY_ANALYSIS_DEFAULT_FILTERS}
             withDataBreakdown
           />
         </FiltersSheet>
+        <SettingsSheet />
       </BottomBar>
     </>
   );
