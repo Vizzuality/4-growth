@@ -40,8 +40,10 @@ Thumbs.db
 # Data files located in data-processing
 data-processing/data/**
 
-# Docs (generated specs, design docs)
-docs/
+# Docs (generated specs, design docs) - except ADRs and the domain glossary
+docs/*
+!docs/adr/
+!docs/domain/
 
 # Claude
 .claude/
