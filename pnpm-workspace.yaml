@@ -26,8 +26,6 @@ overrides:
   "next>postcss": "8.5.23"
   # @nestjs/platform-express ships multer <2.2.0 — DoS via nested fields and aborted uploads (GHSA-72gw-mp4g-v24j, GHSA-3p4h-7m6x-2hcm)
   "@nestjs/platform-express>multer": "2.2.0"
-  # next ships sharp <0.35.0 — inherited libvips CVEs (GHSA-f88m-g3jw-g9cj)
-  "next>sharp": "0.35.3"
 
 catalog:
   # Core
