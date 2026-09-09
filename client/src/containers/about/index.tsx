@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { ExternalLinkIcon } from "lucide-react";
 
+import EUFunding from "@/containers/about/eu-funding";
 import Header from "@/containers/header";
 
 import { Button } from "@/components/ui/button";
@@ -174,6 +175,7 @@ const About: FC = () => {
         </Card>
         <Card className="relative order-5 min-h-[275px] bg-[url('/images/about/hands.avif')] bg-cover bg-center bg-no-repeat p-0 md:order-6 md:min-h-fit" />
       </div>
+      <EUFunding />
     </div>
   );
 };
