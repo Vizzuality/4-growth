@@ -60,3 +60,28 @@ Two different texts describe a scenario, and they are not interchangeable:
 - **Scenario narrative** — what the world looks like in 2040 under that scenario. Independent of
   operation area, so there are four. Reached through the `?` button beside the sidebar Scenarios
   selector.
+
+## Primary
+
+The darkest brand navy, `#162568`. It fills cards, dialogs, sheets and primary buttons — the
+surfaces content sits on rather than the marks inside a chart.
+
+It is defined twice, and the two definitions do not reference each other: `--primary` in
+`client/src/app/globals.css` (an HSL triple) and `navy-900` in `client/tailwind.config.ts` (a hex).
+Both must be edited together or the app renders two different navies — cards read `navy-900`,
+buttons and checkboxes read `bg-primary`. `navy-900` is also the map's "no data" country fill, which
+needs a real hex because it is an SVG fill.
+
+## Secondary
+
+The mid brand blue, `#3048B5`. It is the default fill for bars, lines and areas in every chart, and
+the background of the section header cards.
+
+Secondary **is** `navy-700` — the same value under two names, by rule rather than by accident. The
+colour was moved onto that rung deliberately, in preference to adding the `navy-600` the scale is
+missing, so a later change to either one must move both. `--secondary` lives in `globals.css` and
+`navy-700` in `tailwind.config.ts`.
+
+It is also within a hair of `--chart-2`. Nothing renders the two together — a chart draws either the
+Secondary fill or the chart scale, never both — so the near-match is accepted. `--chart-2` is not
+free to move: the chart scale was chosen for colour-blind accessibility.
