@@ -45,6 +45,9 @@ overrides:
   # are affected; patched at 3.15.2 and 4.3.2. Scoped to the single consumer of each.
   "@istanbuljs/load-nyc-config>js-yaml": "3.15.2"
   "cosmiconfig>js-yaml": "4.3.2"
+  # @humanfs/node <0.16.8 follows symlinked files during a recursive copy, so it copies
+  # data from outside the source tree (GHSA-p498-v437-472g). eslint declares ^0.16.6.
+  "eslint>@humanfs/node": "0.16.8"
 
 catalog:
   # Core
