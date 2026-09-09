@@ -40,6 +40,11 @@ overrides:
   # four consumers sit on the 4.x line and accept 4.28.9 — @babel/helper-compilation-targets
   # (^4.24.0), autoprefixer (^4.23.0), update-browserslist-db (>=4.21.0), webpack (^4.28.1).
   browserslist: 4.28.9
+  # js-yaml's maxTotalMergeKeys does not cap CPU use when merge sources are empty, so a
+  # crafted document stalls the parser (GHSA-2883-xcg3-v3hh). Both major lines in the tree
+  # are affected; patched at 3.15.2 and 4.3.2. Scoped to the single consumer of each.
+  "@istanbuljs/load-nyc-config>js-yaml": "3.15.2"
+  "cosmiconfig>js-yaml": "4.3.2"
 
 catalog:
   # Core
