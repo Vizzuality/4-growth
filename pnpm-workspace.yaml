@@ -34,6 +34,12 @@ overrides:
   # scheme-relative references (GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf,
   # GHSA-jqff-g426-hqxp, GHSA-5jgf-p345-68v8). Patched >=3.1.6.
   "ajv>fast-uri": "3.1.7"
+  # browserslist <=4.28.6 crashes or writes to a prototype on untrusted custom stats in
+  # normalizeStats, and never evicts its query cache, so memory grows until the process
+  # dies (GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx). Patched >=4.28.7. Blanket because all
+  # four consumers sit on the 4.x line and accept 4.28.9 — @babel/helper-compilation-targets
+  # (^4.24.0), autoprefixer (^4.23.0), update-browserslist-db (>=4.21.0), webpack (^4.28.1).
+  browserslist: 4.28.9
 
 catalog:
   # Core
