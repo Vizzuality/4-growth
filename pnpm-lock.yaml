@@ -81,6 +81,7 @@ overrides:
   cosmiconfig>js-yaml: 4.3.2
   eslint>@humanfs/node: 0.16.8
   superagent>qs: 6.16.0
+  express@5>qs: 6.16.0
 
 importers:
 
@@ -12645,7 +12646,7 @@ snapshots:
       once: 1.4.0
       parseurl: 1.3.3
       proxy-addr: 2.0.7
-      qs: 6.15.2
+      qs: 6.16.0
       range-parser: 1.2.1
       router: 2.2.0
       send: 1.2.1
