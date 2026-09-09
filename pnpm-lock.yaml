@@ -76,7 +76,6 @@ overrides:
   next>postcss: 8.5.23
   '@nestjs/platform-express>multer': 2.2.0
   next>sharp: 0.35.3
-  brace-expansion@<1.1.18: 1.1.18
 
 importers:
 
