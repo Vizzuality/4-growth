@@ -53,3 +53,33 @@ Do not try to move the labels with a `transform` on `YAxis`. Recharts drops the
 `style` prop on that component: the element renders with no inline style and a
 computed `transform` of `none`. A `translate(30px, -10px)` sat there for a while
 doing nothing at all.
+
+## The label inside the horizontal bar
+
+`horizontal-bar-chart` centres its in-bar label by putting the text's alphabetic
+baseline at `barCentre + LABEL_CAP_CENTER_OFFSET`, half of Inter's cap height
+below the bar's midpoint. It deliberately sets no `dominantBaseline`. Putting
+`dominantBaseline="central"` back — which reads as the simpler way to say the
+same thing — reintroduces a Safari bug.
+
+`central` derives its offset from a baseline table inside the font file,
+preferring that table's `ideographic` entry. Inter has no such entry, and the
+spec then lets each engine fall back to a heuristic of its own choosing.
+Measured at `font-size: 12` with Inter loaded, the two engines disagree by
+4.1px: Blink puts the text's layout box top at 26.0, WebKit at 21.9. In a 47px
+bar that is plainly off centre in Safari while looking correct in Chrome.
+`hanging` and `middle` read the same missing table and diverge the same way.
+
+With the offset applied to `y` instead, the engines agree to within 0.4px, and
+Blink's own result moves by only 0.13px — so the Chrome rendering the design was
+approved against is unchanged.
+
+`0.364` is Inter's cap height halved. Re-measure it if the label font changes:
+
+    const c = document.createElement("canvas").getContext("2d");
+    c.font = "12px Inter";
+    c.measureText("H").actualBoundingBoxAscent / 12; // 0.7275 Blink, 0.7266 WebKit
+
+The offset is baked into `y` rather than set as `dy="0.364em"` so that the
+element carries one plain numeric position, with no per-character `dy` list
+semantics to reason about alongside the `<tspan dx="8">` that follows.
