@@ -75,7 +75,7 @@
     "@types/passport-jwt": "4.0.1",
     "@types/passport-local": "1.0.38",
     "@types/supertest": "7.2.0",
-    "csv-parse": "6.1.0",
+    "csv-parse": "7.0.2",
     "data-forge": "1.10.4",
     "dotenv": "17.3.1",
     "eslint": "catalog:",
