@@ -28,6 +28,12 @@ overrides:
   # multipart field names, oversized array indexes, and a file descriptor leak on aborted
   # uploads (GHSA-wc9g-mqfw-jrwm, GHSA-535w-7cp7-47q4, GHSA-qfvm-cv95-jqjf, GHSA-qvfw-j98x-7q72)
   "@nestjs/platform-express>multer": "2.3.0"
+  # ajv declares fast-uri ^3.0.1 but the lockfile holds 3.1.5 — SSRF via malformed IPv6
+  # normalization and repeated hostname percent-decoding, plus host confusion via
+  # percent-encoded scheme normalization and skipped IDN canonicalization on
+  # scheme-relative references (GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf,
+  # GHSA-jqff-g426-hqxp, GHSA-5jgf-p345-68v8). Patched >=3.1.6.
+  "ajv>fast-uri": "3.1.7"
 
 catalog:
   # Core
