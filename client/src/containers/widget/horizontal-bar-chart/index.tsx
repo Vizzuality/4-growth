@@ -8,6 +8,14 @@ import NoData from "@/containers/no-data";
 import { getIndexOfLargestValue } from "@/containers/widget/utils";
 
 import { ChartContainer } from "@/components/ui/chart";
+
+const LABEL_FONT_SIZE = 12;
+/**
+ * Half of Inter's cap height, so the label's caps centre on the bar's midpoint.
+ * Only correct while the label font is Inter — see ./README.md to re-measure.
+ */
+const LABEL_CAP_CENTER_OFFSET = LABEL_FONT_SIZE * 0.364;
+
 interface HorizontalBarChartProps {
   data?: WidgetChartData;
   barSize?: number;
@@ -58,11 +66,10 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, barSize }) => {
             return (
               <text
                 x={x + 24}
-                y={y + height / 2}
+                y={y + height / 2 + LABEL_CAP_CENTER_OFFSET}
                 fill="#ffffff"
                 textAnchor="start"
-                dominantBaseline="central"
-                fontSize={12}
+                fontSize={LABEL_FONT_SIZE}
               >
                 <tspan fontWeight="bold">{value}</tspan>
                 <tspan dx="8">{entry.label}</tspan>
