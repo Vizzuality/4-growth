@@ -48,6 +48,11 @@ overrides:
   # @humanfs/node <0.16.8 follows symlinked files during a recursive copy, so it copies
   # data from outside the source tree (GHSA-p498-v437-472g). eslint declares ^0.16.6.
   "eslint>@humanfs/node": "0.16.8"
+  # supertest > superagent resolves qs 6.15.2 — DoS via an attacker-controlled isBuffer and
+  # an array-limit bypass through bracket keys containing commas (GHSA-4mjr-xmp4-gh2g,
+  # GHSA-x5fp-wj9c-mxmx). superagent declares ^6.14.1. Scoped to superagent: the other qs
+  # 6.15.2 copy sits under express 4.22.2, which pins ~6.15.1 deliberately.
+  "superagent>qs": "6.16.0"
 
 catalog:
   # Core
