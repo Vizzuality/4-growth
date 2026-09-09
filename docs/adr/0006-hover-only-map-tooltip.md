@@ -41,4 +41,4 @@ Nothing about the colour encoding changed. A country's fill still says only "thi
 and a reader who does not hover still cannot tell 100%-of-one-response from 100%-of-two-hundred. The
 ticket's own suggestions for fixing that in the visual — fading, or hatching — are both unavailable:
 hatching already means "Automated data source" in comparison mode, and fading moves a country toward
-`#050D35` and `#1D2757`, the two fills that already mean "no data".
+`navy-950` and `navy-900`, the two fills that already mean "no data".

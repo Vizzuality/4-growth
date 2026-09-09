@@ -12,7 +12,7 @@ const HATCH_STYLE = {
   backgroundImage:
     "repeating-linear-gradient(135deg, hsl(var(--accent)) 0 5px, transparent 5px 8px)",
   WebkitTextStrokeWidth: "1px",
-  WebkitTextStrokeColor: "#162568",
+  WebkitTextStrokeColor: "hsl(var(--primary))",
   // Without this the stroke paints over the fill and eats the glyphs at 12px
   paintOrder: "stroke fill",
 };
