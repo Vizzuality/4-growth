@@ -24,8 +24,10 @@ overrides:
   "@aws-sdk/xml-builder>fast-xml-parser": "5.8.0"
   # next bundles postcss <8.5.18 (GHSA-r28c-9q8g-f849 — path traversal via sourceMappingURL disclosing arbitrary .map files)
   "next>postcss": "8.5.23"
-  # @nestjs/platform-express ships multer <2.2.0 — DoS via nested fields and aborted uploads (GHSA-72gw-mp4g-v24j, GHSA-3p4h-7m6x-2hcm)
-  "@nestjs/platform-express>multer": "2.2.0"
+  # @nestjs/platform-express pins multer 2.1.1 exactly; <2.3.0 allows DoS via crafted
+  # multipart field names, oversized array indexes, and a file descriptor leak on aborted
+  # uploads (GHSA-wc9g-mqfw-jrwm, GHSA-535w-7cp7-47q4, GHSA-qfvm-cv95-jqjf, GHSA-qvfw-j98x-7q72)
+  "@nestjs/platform-express>multer": "2.3.0"
 
 catalog:
   # Core
