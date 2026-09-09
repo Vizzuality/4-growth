@@ -53,6 +53,10 @@ overrides:
   # GHSA-x5fp-wj9c-mxmx). superagent declares ^6.14.1. Scoped to superagent: the other qs
   # 6.15.2 copy sits under express 4.22.2, which pins ~6.15.1 deliberately.
   "superagent>qs": "6.16.0"
+  # express 5.2.1 serves the api and resolves qs 6.15.2 for req.query parsing. Version-scoped
+  # so express 4.22.2 under nestjs-base-service keeps 6.15.2, which is all its ~6.15.1 pin
+  # allows (GHSA-4mjr-xmp4-gh2g, GHSA-x5fp-wj9c-mxmx). express 5 declares ^6.14.0.
+  "express@5>qs": "6.16.0"
 
 catalog:
   # Core
