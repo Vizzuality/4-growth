@@ -12,8 +12,11 @@ overrides:
   # react-simple-maps tree pulls d3-interpolate 2.0.1, which declares `1 - 2` and so
   # resolves the vulnerable 2.0.0 unless every consumer is forced past the range.
   d3-color: 3.1.0
-  # nestjs-base-service ships outdated transitive deps; scope overrides to that parent
-  "nestjs-base-service>express": "4.22.2"
+  # nestjs-base-service ships outdated transitive deps; scope overrides to that parent.
+  # express 4.22.3 (and body-parser 1.20.8 under it) pin qs ~6.16.0, past the isBuffer DoS
+  # and the array-limit bypass through bracket keys containing commas (GHSA-4mjr-xmp4-gh2g,
+  # GHSA-x5fp-wj9c-mxmx).
+  "nestjs-base-service>express": "4.22.3"
   "nestjs-base-service>lodash": "4.18.1"
   # Not a security fix. nestjs-base-service pins class-validator 0.14.0 exactly, and a
   # second copy in the tree gets its own MetadataStorage singleton — decorators applied
@@ -46,12 +49,10 @@ overrides:
   "eslint>@humanfs/node": "0.16.8"
   # supertest > superagent resolves qs 6.15.2 — DoS via an attacker-controlled isBuffer and
   # an array-limit bypass through bracket keys containing commas (GHSA-4mjr-xmp4-gh2g,
-  # GHSA-x5fp-wj9c-mxmx). superagent declares ^6.14.1. Scoped to superagent: the other qs
-  # 6.15.2 copy sits under express 4.22.2, which pins ~6.15.1 deliberately.
+  # GHSA-x5fp-wj9c-mxmx). superagent declares ^6.14.1.
   "superagent>qs": "6.16.0"
-  # express 5.2.1 serves the api and resolves qs 6.15.2 for req.query parsing. Version-scoped
-  # so express 4.22.2 under nestjs-base-service keeps 6.15.2, which is all its ~6.15.1 pin
-  # allows (GHSA-4mjr-xmp4-gh2g, GHSA-x5fp-wj9c-mxmx). express 5 declares ^6.14.0.
+  # express 5.2.1 serves the api and resolves qs 6.15.2 for req.query parsing
+  # (GHSA-4mjr-xmp4-gh2g, GHSA-x5fp-wj9c-mxmx). express 5 declares ^6.14.0.
   "express@5>qs": "6.16.0"
 
 catalog:
