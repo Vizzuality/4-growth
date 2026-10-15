@@ -1,5 +1,6 @@
 import { QuestionIndicatorMap } from '@shared/dto/surveys/question-widget-map.entity';
 import { PageFilter } from '@shared/dto/widgets/page-filter.entity';
+import { SurveyAnswer } from '@shared/dto/surveys/survey-answer.entity';
 import { TestManager } from 'api/test/utils/test-manager';
 
 describe('Page Filters API', () => {
@@ -38,39 +39,55 @@ describe('Page Filters API', () => {
     expect(res.body.data.length).toBeGreaterThan(0);
   });
 
-  // it('Should allow users to retrieve page filters dynamically depending on the filters applied', async () => {
-  //   // Given
-  //   const filters = [
-  //     {
-  //       name: 'sector',
-  //       operator: SEARCH_FILTERS_OPERATORS.EQUALS,
-  //       values: ['Forestry'],
-  //     },
-  //     {
-  //       name: 'location-country-region',
-  //       operator: SEARCH_FILTERS_OPERATORS.EQUALS,
-  //       values: ['Spain'],
-  //     },
-  //   ];
-  //   const queryString = qs.stringify({ filters }, { encode: false });
+  describe.each([
+    ['without filters', '/filters'],
+    [
+      'with filters',
+      '/filters?filters[0][name]=data-source&filters[0][operator]==&filters[0][values][0]=survey',
+    ],
+  ])('GET /filters %s', (scope, url) => {
+    const seedFilterWithAnswers = async (
+      indicator: string,
+      seededValues: string[],
+      answers: string[],
+    ) => {
+      const question = `${indicator}-question`;
+      await testManager.dataSource
+        .getRepository(QuestionIndicatorMap)
+        .save({ question, indicator });
+      await testManager.dataSource
+        .getRepository(PageFilter)
+        .save({ name: indicator, values: seededValues, label: indicator });
+      await testManager.dataSource.getRepository(SurveyAnswer).save(
+        answers.map((answer, i) => ({
+          surveyId: `${indicator}-survey-${i}`,
+          questionIndicator: indicator,
+          question,
+          answer,
+          countryCode: 'ESP',
+        })),
+      );
+    };
 
-  //   // When
-  //   const res = await testManager.request().get(`/filters?${queryString}`);
+    const getFilterValues = async (indicator: string) => {
+      const res = await testManager.request().get(url);
+      expect(res.status).toBe(200);
+      return res.body.data.find((f: PageFilter) => f.name === indicator)
+        ?.values;
+    };
 
-  //   // Then
-  //   expect(res.status).toBe(200);
-  //   expect(res.body.data.length).toBeGreaterThan(0);
+    it('offers the answers present in the data, not the seeded labels', async () => {
+      const indicator = `stale-seed-${scope.replace(' ', '-')}`;
+      await seedFilterWithAnswers(indicator, ['Old label'], ['New A', 'New B']);
 
-  //   const sectorFilterValues = res.body.data.find(
-  //     (filter: { name: string }) => filter.name === 'sector',
-  //   );
-  //   expect(sectorFilterValues.values).toHaveLength(1);
-  //   expect(sectorFilterValues.values.includes('Forestry')).toBe(true);
+      expect(await getFilterValues(indicator)).toEqual(['New A', 'New B']);
+    });
 
-  //   const locationFilterValues = res.body.data.find(
-  //     (filter: { name: string }) => filter.name === 'location-country-region',
-  //   );
-  //   expect(locationFilterValues.values).toHaveLength(1);
-  //   expect(locationFilterValues.values.includes('Spain')).toBe(true);
-  // });
+    it('orders seeded values first, then unseeded values alphabetically', async () => {
+      const indicator = `order-hint-${scope.replace(' ', '-')}`;
+      await seedFilterWithAnswers(indicator, ['Z', 'B'], ['A', 'B', 'Z']);
+
+      expect(await getFilterValues(indicator)).toEqual(['Z', 'B', 'A']);
+    });
+  });
 });

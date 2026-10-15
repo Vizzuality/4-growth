@@ -28,21 +28,30 @@ export class PageFiltersService {
     query: FetchSpecification & SearchFiltersDTO,
   ): Promise<PageFilter[]> {
     const seeded = await this.pageFilterRepository.find();
-    const filters = query.filters;
-    if (!filters || filters.length === 0) return seeded;
+    const filters = query.filters ?? [];
 
-    const pruned = await Promise.all(
+    return Promise.all(
       seeded.map(async (filter) => {
         const otherFilters = filters.filter((f) => f.name !== filter.name);
         const liveValues = await this.getLiveValues(filter.name, otherFilters);
         return {
           ...filter,
-          values: filter.values.filter((v) => liveValues.has(v)),
+          values: this.orderLiveValues(liveValues, filter.values),
         };
       }),
     );
+  }
 
-    return pruned;
+  private orderLiveValues(
+    liveValues: Set<string>,
+    seededOrder: string[],
+  ): string[] {
+    const seededSet = new Set(seededOrder);
+    const known = seededOrder.filter((v) => liveValues.has(v));
+    const unknown = [...liveValues]
+      .filter((v) => !seededSet.has(v))
+      .sort((a, b) => a.localeCompare(b));
+    return [...known, ...unknown];
   }
 
   private async getLiveValues(
