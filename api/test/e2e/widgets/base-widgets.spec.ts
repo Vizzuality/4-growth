@@ -266,6 +266,78 @@ describe('Base Widgets', () => {
 
       expect(returnedWidget).toStrictEqual(createdWidgetWithData);
     });
+
+    describe('Counters with two question filters', () => {
+      let sector: string;
+      let stakeholder: string;
+      let expectedSurveys: number;
+      let expectedCountries: number;
+
+      const twoQuestionFilters = () =>
+        `filters[0][name]=sector&filters[0][operator]==&filters[0][values][0]=${encodeURIComponent(sector)}` +
+        `&filters[1][name]=type-of-stakeholder&filters[1][operator]==&filters[1][values][0]=${encodeURIComponent(stakeholder)}`;
+
+      beforeAll(async () => {
+        const dataSource = testManager.getDataSource();
+        [{ sector, stakeholder }] = await dataSource.query(`
+          SELECT s.answer AS sector, t.answer AS stakeholder
+          FROM survey_answers s
+          JOIN survey_answers t
+            ON t.survey_id = s.survey_id AND t.question_indicator = 'type-of-stakeholder'
+          WHERE s.question_indicator = 'sector'
+          LIMIT 1
+        `);
+        [{ surveys: expectedSurveys, countries: expectedCountries }] =
+          await dataSource.query(
+            `
+          WITH matching AS (
+            SELECT survey_id FROM survey_answers WHERE question_indicator = 'sector' AND answer = $1
+            INTERSECT
+            SELECT survey_id FROM survey_answers WHERE question_indicator = 'type-of-stakeholder' AND answer = $2
+          )
+          SELECT COUNT(DISTINCT sa.survey_id)::integer AS surveys,
+                 COUNT(DISTINCT sa.country_code)::integer AS countries
+          FROM survey_answers sa
+          WHERE sa.survey_id IN (SELECT survey_id FROM matching)
+        `,
+            [sector, stakeholder],
+          );
+      });
+
+      it('total-surveys counts the surveys that match both filters', async () => {
+        await mocks.createBaseWidget({ indicator: 'total-surveys' });
+
+        const result = await testManager
+          .request()
+          .get(`/widgets/total-surveys?${twoQuestionFilters()}`);
+
+        expect(expectedSurveys).toBeGreaterThan(0);
+        expect(result.body.data.data.counter.value).toBe(expectedSurveys);
+      });
+
+      it('total-countries counts the countries of the surveys that match both filters', async () => {
+        await mocks.createBaseWidget({ indicator: 'total-countries' });
+
+        const result = await testManager
+          .request()
+          .get(`/widgets/total-countries?${twoQuestionFilters()}`);
+
+        expect(expectedCountries).toBeGreaterThan(0);
+        expect(result.body.data.data.counter.value).toBe(expectedCountries);
+      });
+
+      it('total-surveys combines the data-source filter with both question filters', async () => {
+        await mocks.createBaseWidget({ indicator: 'total-surveys' });
+
+        const result = await testManager
+          .request()
+          .get(
+            `/widgets/total-surveys?${twoQuestionFilters()}&filters[2][name]=data-source&filters[2][operator]==&filters[2][values][0]=survey`,
+          );
+
+        expect(result.body.data.data.counter.value).toBe(expectedSurveys);
+      });
+    });
   });
 
   describe('Tests without survey data', () => {
