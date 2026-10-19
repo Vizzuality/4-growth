@@ -104,6 +104,48 @@ export class PostgresSurveyAnswerRepository
     };
   }
 
+  // In the EAV schema a row holds one question, so each question filter needs its own subquery.
+  private surveyScopePredicates(
+    scopeFilters: WidgetDataFilter[] | undefined,
+    queryParams: unknown[],
+    alias?: string,
+  ): string[] {
+    const column = alias === undefined ? 'survey_id' : `${alias}.survey_id`;
+    const predicates: string[] = [];
+    for (const filter of scopeFilters ?? []) {
+      const [clause] =
+        this.sqlAdapter.generateFilterClauseFromWidgetDataFilters([filter], {
+          queryParams,
+        });
+      if (clause !== '') {
+        predicates.push(
+          `${column} IN (SELECT survey_id FROM ${this.answersTable} ${clause})`,
+        );
+      }
+    }
+    return predicates;
+  }
+
+  private counterFilterClause(
+    filters?: WidgetDataFilter[],
+  ): FilterClauseWithParams {
+    const { dataSourceFilter, scopeFilters } =
+      this.splitDataSourceFilter(filters);
+    const queryParams: unknown[] = [];
+    const predicates = this.surveyScopePredicates(scopeFilters, queryParams);
+    const [dataSourcePredicate] =
+      this.sqlAdapter.generatePredicateFromWidgetDataFilters(
+        dataSourceFilter === undefined ? undefined : [dataSourceFilter],
+        { queryParams },
+      );
+    if (dataSourcePredicate !== '') {
+      predicates.push(dataSourcePredicate);
+    }
+    const clause =
+      predicates.length === 0 ? '' : `WHERE ${predicates.join(' AND ')}`;
+    return [clause, queryParams];
+  }
+
   /**
    * A counter's denominator is the population its value is measured against.
    * `data-source` picks which population that is, so it belongs in the
@@ -181,22 +223,11 @@ export class PostgresSurveyAnswerRepository
     const { dataSourceFilter, scopeFilters } =
       this.splitDataSourceFilter(filters);
 
-    // Each per-question scope filter must be applied as its own survey_id IN
-    // subquery. Composing them on the same row (question_indicator = X AND
-    // question_indicator = Y) is always unsatisfiable in this EAV schema.
     const queryParams: unknown[] = [];
-    const surveyIdSubclauses: string[] = [];
-    for (const filter of scopeFilters ?? []) {
-      const [clause] =
-        this.sqlAdapter.generateFilterClauseFromWidgetDataFilters([filter], {
-          queryParams,
-        });
-      if (clause !== '') {
-        surveyIdSubclauses.push(
-          `survey_id IN (SELECT survey_id FROM ${this.answersTable} ${clause})`,
-        );
-      }
-    }
+    const surveyIdSubclauses = this.surveyScopePredicates(
+      scopeFilters,
+      queryParams,
+    );
 
     queryParams.push(widget.indicator);
     const indicatorParamIdx = queryParams.length;
@@ -339,12 +370,10 @@ ORDER BY ac.country;`;
     widget: BaseWidgetWithData,
     filters: WidgetDataFilter[],
   ): Promise<void> {
-    const filterClauseWithParams =
-      this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
-    const [filterClause, queryParams] = filterClauseWithParams;
+    const [filterClause, queryParams] = this.counterFilterClause(filters);
     const [scopeClause, scopeParams] = this.dataSourceScopeClause(filters);
 
-    const filteredCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM ${this.answersTable} ${filterClause} GROUP BY survey_id) AS survey_count`;
+    const filteredCount = `SELECT COUNT(DISTINCT survey_id)::integer as count FROM ${this.answersTable} ${filterClause}`;
     const totalCount = `SELECT COUNT(count)::integer as count FROM (SELECT COUNT(DISTINCT survey_id) FROM ${this.answersTable} ${scopeClause} GROUP BY survey_id) AS survey_count`;
     const [[{ count: value }], [{ count: total }]] = await Promise.all([
       this.dataSource.query(filteredCount, queryParams),
@@ -393,9 +422,7 @@ ORDER BY ac.country;`;
     widget: BaseWidgetWithData,
     filters: WidgetDataFilter[],
   ): Promise<void> {
-    const filterClauseWithParams =
-      this.sqlAdapter.generateFilterClauseFromWidgetDataFilters(filters);
-    const [filterClause, queryParams] = filterClauseWithParams;
+    const [filterClause, queryParams] = this.counterFilterClause(filters);
     const [scopeClause, scopeParams] = this.dataSourceScopeClause(filters);
 
     const filteredCount = `SELECT COUNT(DISTINCT country_code)::integer as "count" FROM ${this.answersTable} ${filterClause}`;
@@ -436,20 +463,11 @@ ORDER BY ac.country;`;
         'main',
       );
 
-    // Each per-question scope filter needs its own survey_id IN subquery on the
-    // main alias — same reason as addChartDataToWidget.
-    const surveyIdSubclauses: string[] = [];
-    for (const filter of scopeFilters ?? []) {
-      const [clause] =
-        this.sqlAdapter.generateFilterClauseFromWidgetDataFilters([filter], {
-          queryParams,
-        });
-      if (clause !== '') {
-        surveyIdSubclauses.push(
-          `main.survey_id IN (SELECT survey_id FROM ${this.answersTable} ${clause})`,
-        );
-      }
-    }
+    const surveyIdSubclauses = this.surveyScopePredicates(
+      scopeFilters,
+      queryParams,
+      'main',
+    );
     const scopePredicate =
       surveyIdSubclauses.length > 0
         ? '\n    AND ' + surveyIdSubclauses.join('\n    AND ')
