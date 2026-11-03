@@ -60,6 +60,8 @@ overrides:
   # body-parser <1.20.9 and 2.x <2.4.0 hang on trailing bytes after a compressed body (GHSA-27r3-jxmh-p828); express 4.22.3 and 5.2.1 are both latest.
   "express@5>body-parser": "2.4.0"
   "express@4>body-parser": "1.20.9"
+  # @nestjs/platform-express pins multer 2.4.0 exactly, which leaks requests when a pending async fileFilter outlives teardown (GHSA-q7qp-rjg7-q26m).
+  "@nestjs/platform-express>multer": "2.5.0"
 
 catalog:
   # Core
