@@ -86,6 +86,6 @@
     "ts-node": "catalog:",
     "typescript": "catalog:",
     "vite": "8.3.5",
-    "vitest": "4.1.11"
+    "vitest": "4.1.12"
   }
 }
