@@ -32,8 +32,10 @@ overrides:
   # percent-encoded scheme normalization and skipped IDN canonicalization on
   # scheme-relative references (GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf,
   # GHSA-jqff-g426-hqxp, GHSA-5jgf-p345-68v8). Patched >=3.1.6. 3.1.8 also fixes host case
-  # normalization via percent-encoded octets (GHSA-hrr3-gc8f-f4qj).
-  "ajv>fast-uri": "3.1.8"
+  # normalization via percent-encoded octets (GHSA-hrr3-gc8f-f4qj). 3.1.9 fixes scheme
+  # spoofing, host confusion, path equivalence and scheme injection (GHSA-w74x-v6f9-j3xg,
+  # GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h, GHSA-333x-w4r6-6crp).
+  "ajv>fast-uri": "3.1.9"
   # browserslist <=4.28.6 crashes or writes to a prototype on untrusted custom stats in
   # normalizeStats, and never evicts its query cache, so memory grows until the process
   # dies (GHSA-73wf-gq98-2v4g, GHSA-c83g-rgw3-j3cx). Patched >=4.28.7. Blanket because all
