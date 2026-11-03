@@ -7,6 +7,11 @@ packages:
 onlyBuiltDependencies:
   - "@nestjs/core"
 
+auditConfig:
+  ignoreGhsas:
+    # Not reachable: we only import zod v3.
+    - GHSA-mrhx-c7xc-m3w5
+
 overrides:
   # d3-color ReDoS GHSA-36jr-mh4h-2g58 — patched >=3.1.0. Blanket is required: the
   # react-simple-maps tree pulls d3-interpolate 2.0.1, which declares `1 - 2` and so
