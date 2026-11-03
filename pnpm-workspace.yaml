@@ -66,6 +66,8 @@ overrides:
   "@nestjs/platform-express>multer": "2.5.0"
   # jsdom declares undici ^7.25.0; <7.30.1 has TLS validation bypass, cache poisoning via redirects and several DoS bugs (GHSA-2m5v-pch6-74hx and others).
   "jsdom>undici": "7.30.1"
+  # @tailwindcss/typography pins postcss-selector-parser 6.0.10 exactly; <6.1.5 has quadratic flat-selector parsing (GHSA-rj75-hqrm-r3gf).
+  "@tailwindcss/typography>postcss-selector-parser": "6.1.5"
 
 catalog:
   # Core
