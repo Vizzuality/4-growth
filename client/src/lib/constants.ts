@@ -127,6 +127,8 @@ export const CATEGORY_SCOPED_FILTER_NAMES = ["technology", "technology-type"];
 
 export const NA_ANSWER_LABEL = "N/A";
 
+export const NA_SELECTABLE_FILTER_NAMES = [SECTOR_FILTER_NAME];
+
 /**
  * Questions only an agriculture respondent can answer. Automated web analysis
  * covers forestry organisations, so these are withheld from any view including

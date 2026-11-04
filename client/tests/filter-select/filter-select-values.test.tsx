@@ -175,11 +175,34 @@ describe("FilterSelectValues", () => {
     });
   });
 
-  it("never offers N/A as a value, and leaves it out of Select All", async () => {
-    const filterWithNa = {
+  it("offers N/A for sector, and includes it in Select All", async () => {
+    const sectorFilter = {
       name: "sector",
       label: "Sector",
       values: ["Agriculture", "Forestry", "Both", "N/A"],
+    };
+    (jotai.useAtomValue as jest.Mock).mockReturnValue(sectorFilter);
+
+    render(<FilterSelectValues {...mockProps} items={[sectorFilter]} />);
+
+    expect(screen.getByLabelText("N/A")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByLabelText("Select All"));
+    fireEvent.click(screen.getByText("Apply"));
+
+    await waitFor(() => {
+      expect(mockOnSubmit).toHaveBeenCalledWith({
+        values: ["Agriculture", "Forestry", "Both", "N/A"],
+        operator: "=",
+      });
+    });
+  });
+
+  it("never offers N/A for other filters, and leaves it out of Select All", async () => {
+    const filterWithNa = {
+      name: "organisation-size",
+      label: "Organisation size",
+      values: ["Small", "Medium", "Large", "N/A"],
     };
     (jotai.useAtomValue as jest.Mock).mockReturnValue(filterWithNa);
 
@@ -192,7 +215,7 @@ describe("FilterSelectValues", () => {
 
     await waitFor(() => {
       expect(mockOnSubmit).toHaveBeenCalledWith({
-        values: ["Agriculture", "Forestry", "Both"],
+        values: ["Small", "Medium", "Large"],
         operator: "=",
       });
     });
