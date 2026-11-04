@@ -44,10 +44,15 @@ const DataSourceInfoButton: FC<DataSourceInfoButtonProps> = ({ className }) => {
         </DialogHeader>
         <DialogDescription asChild>
           <div className="space-y-2 overflow-y-auto text-xs text-[#627188]">
-            {DATA_SOURCE_INFO_SECTIONS.map(({ heading, body }) => (
-              <Fragment key={heading ?? "intro"}>
-                {heading && <p className="font-bold text-navy-950">{heading}</p>}
-                <p className="text-[#627188]">{body}</p>
+            {DATA_SOURCE_INFO_SECTIONS.map(({ heading, label, body }) => (
+              <Fragment key={heading ?? label ?? "intro"}>
+                {heading && (
+                  <p className="font-bold text-navy-950">{heading}</p>
+                )}
+                <p className="text-[#627188]">
+                  {label && <strong className="text-navy-950">{label} </strong>}
+                  {body}
+                </p>
               </Fragment>
             ))}
           </div>

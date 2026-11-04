@@ -1,5 +1,6 @@
 export const DATA_SOURCE_INFO_SECTIONS: {
   heading?: string;
+  label?: string;
   body: string;
 }[] = [
   {
@@ -16,5 +17,9 @@ export const DATA_SOURCE_INFO_SECTIONS: {
   {
     heading: "Survey and automated comparison",
     body: "This comparison shows where survey responses and automated website analysis align or provide complementary insights. It is available only for forestry data and selected themes, including stakeholder profiles, adoption of digital technologies, technology integration, data management, and data sharing practices.",
+  },
+  {
+    label: "Disclaimer:",
+    body: "Numbers may change as data cleaning continues. Some surveys may not have all categories registered, so totals can vary with the filters applied.",
   },
 ];
