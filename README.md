@@ -100,20 +100,19 @@ The ETL process consists of three main steps:
 
 ### Automated ETL
 
-The ETL process runs automatically every Sunday at 3:00 AM via a scheduled cron job. This can be controlled using the `ETL_CRON_ENABLED` environment variable.
+A scheduled job can run the ETL process every Sunday at 3:00 AM. It is disabled by default (`etl.cronEnabled` is `false`) and is not enabled in production.
 
-When the ETL process completes (successfully or with errors), email notifications are sent to configured recipients via the `ETL_PROCESS_EMAILS` environment variable.
+Production data is refreshed manually: run the ETL locally (see [Manual ETL Execution](#manual-etl-execution)), commit the updated data files in `api/data/`, and deploy. On start, the API compares a hash of the data files with the one stored in the database and reloads the data when it differs.
 
-### Automated mock data
+When the scheduled ETL process completes (successfully or with errors), email notifications are sent to configured recipients via the `ETL_PROCESS_EMAILS` environment variable.
 
-`SEED_AUTOMATED_MOCK_DATA` controls two things together:
+### Automated data source
 
-1. Whether a sample of survey rows is cloned with `data_source = 'automated'` on initial data load.
-2. Whether the **Data source** page filter (`survey` / `automated`) is served by `GET /filters`, and therefore whether it appears in the client's filter UI.
+Survey answers have a data source, `survey` or `automated`. The `automated` rows are the VTT organisation-website analysis. The transform splits them out of the Wave 1 extract into `api/data/surveys/surveys-vtt.json`, and they are loaded in every environment, including production.
 
-Both are driven by the same flag because the filter is only meaningful where the automated rows exist — otherwise selecting `automated` would return no results.
+The **Data source** page filter (`survey` / `automated`) is always served by `GET /filters`.
 
-It is enabled on dev and staging, and intentionally left unset in production, where it falls back to `false`.
+`SEED_AUTOMATED_MOCK_DATA` no longer has any effect. It used to seed mock automated rows and gate the filter, but that code was removed when the VTT data was added.
 
 ### Manual ETL Execution
 
