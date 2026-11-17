@@ -634,9 +634,9 @@ The survey was collected in three waves. They are loaded as two groups:
 | Wave 2 | 910 |
 
 Waves 1 and 3 arrive from WUR as one dataset in the same format, so they are processed and stored
-together and cannot be told apart. Wave 2 arrives as a separate dataset in a different format,
-with some questions and answers worded differently. It has its own processing step, which
-converts it to the same questions and answer labels as the other waves.
+together and cannot be told apart. Wave 2 was collected by WUR with a different methodology, so it arrives as a separate dataset in
+a different format, with some questions and answers worded differently. It has its own processing
+step, which converts it to the same questions and answer labels as the other waves.
 
 Each answer is stored with its group, but the API does not use it. There is no wave filter
 because the waves are aligned to be read as one dataset, and because waves 1 and 3 cannot be
