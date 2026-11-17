@@ -100,11 +100,11 @@ The ETL process consists of three main steps:
 
 ### Automated ETL
 
-A scheduled job can run the ETL process every Sunday at 3:00 AM. It is disabled by default (`etl.cronEnabled` is `false`) and is not enabled in production.
+The ETL process runs automatically every Sunday at 3:00 AM via a scheduled cron job. This can be controlled using the `ETL_CRON_ENABLED` environment variable.
 
-Production data is refreshed manually: run the ETL locally (see [Manual ETL Execution](#manual-etl-execution)), commit the updated data files in `api/data/`, and deploy. On start, the API compares a hash of the data files with the one stored in the database and reloads the data when it differs.
+The data files in `api/data/` are also loaded when the API starts: it compares a hash of the files with the one stored in the database and reloads the data when it differs.
 
-When the scheduled ETL process completes (successfully or with errors), email notifications are sent to configured recipients via the `ETL_PROCESS_EMAILS` environment variable.
+When the ETL process completes (successfully or with errors), email notifications are sent to configured recipients via the `ETL_PROCESS_EMAILS` environment variable.
 
 ### Automated data source
 

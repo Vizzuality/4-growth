@@ -687,10 +687,10 @@ too unless you want agriculture and forestry added together.
 - **Survey data** is extracted from the survey database kept by Wageningen University & Research,
   the project coordinator. **Projection data** is loaded from the project's market model files
   (deliverable D3.4).
-- Production data is not refreshed automatically, and there is no fixed schedule. To update it,
-  the platform team runs the extraction and processing, adds the resulting data files to the
-  platform's code, and releases a new version. The platform loads the new files when it starts.
-- Survey data was last updated on 20 August 2026 and projection data on 25 August 2026.
+- Survey data is refreshed every week. A scheduled process runs every Sunday at 03:00, extracts
+  the answers from WUR again, processes them and loads the result.
+- Projection data is not part of the weekly process. It changes only when new model files are
+  released with a new version of the platform, and was last updated on 25 August 2026.
 - The API always serves the current data. It has no dataset version number, no "last updated"
   date and no access to earlier versions. The `createdAt` and `updatedAt` fields describe the
   indicator's record, not the survey data.
