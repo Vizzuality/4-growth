@@ -561,7 +561,11 @@ both are combined.
 | `survey` | Answers people gave to the 4Growth survey, collected in three waves between 2024 and 2026 through seven regional observatories | 1,723 surveys |
 | `automated` | Data extracted from the websites of organisations, covering forestry only | 2,438 organisations in 24 countries |
 
-The API does not say which wave an answer belongs to, and waves cannot be filtered.
+Both sources are served in production. The `automated` data is real data, loaded in every
+environment, and does not depend on any setting.
+
+The API does not say which wave an answer belongs to, and waves cannot be filtered. See
+[Survey waves](#survey-waves).
 
 Each indicator is one survey question. Its `question` field holds the question text.
 
@@ -594,6 +598,49 @@ The API applies no weighting, no rounding and no minimum number of responses. Sm
 returned as they are, so check `total` before publishing a share. Figures can change as data
 cleaning continues, and not every survey answers every question, so totals vary with the filters
 applied.
+
+#### How survey data is processed
+
+The platform does not serve the raw survey export. Before the data is loaded, it goes through
+these steps:
+
+1. **Extract.** Answers are downloaded from the survey database kept by Wageningen University &
+   Research (WUR). Only answers chosen from a list of options are downloaded. Free-text answers
+   and personal data, such as names, emails and consent fields, are left out.
+2. **Join.** Each answer is joined to its survey, its question text and its answer label. Answers
+   that cannot be matched to all three are dropped.
+3. **Clean.** Question texts are tidied, and answer labels are aligned so that the same answer
+   reads the same way in every wave. For example, agreement scales are mapped to `Yes`,
+   `Not at all` and `Don't know`, and `Other namely` becomes `Other`. Blank answers are dropped.
+4. **Assign a country.** The country comes from the survey's location question. If that answer is
+   missing, it is taken from the language of the survey. A survey whose country cannot be
+   identified is dropped.
+5. **Add `N/A`.** When a survey skipped a question that other surveys in the same group answered,
+   it gets an `N/A` answer for it. The groups are waves 1 and 3, wave 2, and the automated data.
+   Questions that nobody in a group answered get no `N/A` rows.
+6. **Keep the mapped questions.** Each question is assigned to one or more indicators, and only
+   those questions are loaded. The consent and contact questions and two other questions are left
+   out. Repeated answers within a survey are removed.
+
+The `automated` data goes through the same steps.
+
+#### Survey waves
+
+The survey was collected in three waves. They are loaded as two groups:
+
+| Group | Surveys on 16 November 2026 |
+| :--- | :--- |
+| Waves 1 and 3 | 813 |
+| Wave 2 | 910 |
+
+Waves 1 and 3 arrive from WUR as one dataset in the same format, so they are processed and stored
+together and cannot be told apart. Wave 2 arrives as a separate dataset in a different format,
+with some questions and answers worded differently. It has its own processing step, which
+converts it to the same questions and answer labels as the other waves.
+
+Each answer is stored with its group, but the API does not use it. There is no wave filter
+because the waves are aligned to be read as one dataset, and because waves 1 and 3 cannot be
+separated.
 
 ### Projection data
 
@@ -640,9 +687,10 @@ too unless you want agriculture and forestry added together.
 - **Survey data** is extracted from the survey database kept by Wageningen University & Research,
   the project coordinator. **Projection data** is loaded from the project's market model files
   (deliverable D3.4).
-- Data is updated by releasing a new version of the platform. There is no fixed schedule. Survey
-  data changes when new answers are loaded or cleaned; the current projection dataset was loaded
-  in August 2026.
+- Production data is not refreshed automatically, and there is no fixed schedule. To update it,
+  the platform team runs the extraction and processing, adds the resulting data files to the
+  platform's code, and releases a new version. The platform loads the new files when it starts.
+- Survey data was last updated on 20 August 2026 and projection data on 25 August 2026.
 - The API always serves the current data. It has no dataset version number, no "last updated"
   date and no access to earlier versions. The `createdAt` and `updatedAt` fields describe the
   indicator's record, not the survey data.
