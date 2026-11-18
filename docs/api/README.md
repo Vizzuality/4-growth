@@ -38,8 +38,10 @@ curl https://visualisation.4growth-project.eu/api/health
 {"status":"ok","info":{"database":{"status":"up"}},"error":{},"details":{"database":{"status":"up"}}}
 ```
 
-The API also has `/auth/*` and `/users/*` routes. They serve the platform's user accounts, need a
-login token, and are not part of the data API.
+The API also has `/auth/*` and `/users/*` routes. They serve the platform's user accounts and are
+not part of the data API. The `/auth/*` routes (`sign-up`, `sign-in` and `recover-password`) are
+public, because they are how an account is created and a login token obtained. The `/users/*`
+routes need that login token.
 
 ## Endpoints
 
