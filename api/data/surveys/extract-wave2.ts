@@ -52,7 +52,7 @@ export const WAVE2_ENTITIES = [
   'After_sales_support',
 ];
 
-const OUTPUT_DIR = `${__dirname}/wave2`;
+const OUTPUT_DIR = `${process.cwd()}/data/surveys/wave2`;
 
 export const extractWave2 = async (): Promise<void> => {
   await extractWave({

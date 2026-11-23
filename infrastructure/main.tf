@@ -200,6 +200,10 @@ module "production" {
   data_extraction_client_id                     = var.data_extraction_client_id
   data_extraction_client_secret                 = var.data_extraction_client_secret
   etl_process_emails                            = var.etl_process_emails
+
+  github_additional_environment_variables = {
+    ETL_CRON_ENABLED = "true"
+  }
 }
 
 module "github" {

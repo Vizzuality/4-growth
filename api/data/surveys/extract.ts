@@ -64,7 +64,7 @@ export const extract = async () => {
 
   for (const entity of WAVE1_ENTITIES) {
     const { url, fileName } = entity;
-    const outputPath = `${__dirname}/${fileName}`;
+    const outputPath = `${process.cwd()}/data/surveys/${fileName}`;
 
     logger.log(`Extracting: ${fileName}`);
 
