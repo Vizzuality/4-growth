@@ -265,8 +265,8 @@ async function tryReadJson(filePath: string): Promise<Record<string, unknown>[] 
 }
 
 export async function wrangleWave2(
-  inputDir = `${__dirname}/wave2`,
-  outputDir = `${__dirname}/wave2`,
+  inputDir = `${process.cwd()}/data/surveys/wave2`,
+  outputDir = `${process.cwd()}/data/surveys/wave2`,
 ): Promise<void> {
   const logger = new Logger('ETL-Wave2-Wrangle');
   logger.log('Starting Wave 2 wrangling...');
