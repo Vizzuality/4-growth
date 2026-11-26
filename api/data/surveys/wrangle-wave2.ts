@@ -412,7 +412,10 @@ export async function wrangleWave2(
       Survey_per_dayID: rootId,
       ID: rowId,
       Finished: 'True',
-      Survey_language: langLookup.get(rootId) ?? 'EN',
+      // Unknown language stays empty. A survey with no country answer and no
+      // known language is then skipped by the transform step instead of being
+      // assigned to a country by default.
+      Survey_language: langLookup.get(rootId) ?? '',
       Duration: 100,
       Survey_record_ID: `mocked_${rootId}`,
     }),
