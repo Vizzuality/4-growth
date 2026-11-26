@@ -188,12 +188,12 @@ describe('Wave 2 Wrangle', () => {
       expect(rootIds).toContain(200);
     });
 
-    it('defaults Survey_language to EN for RootIDs not in LANG_MAP', async () => {
+    it('leaves Survey_language empty for RootIDs not in LANG_MAP', async () => {
       await writeMinimalFixture(); // RootID=100 is not in any LANG_MAP group
       await wrangleWave2(inputDir, outputDir);
 
       const meta = await readOutput('Survey_metadata.json');
-      expect(meta[0].Survey_language).toBe('EN');
+      expect(meta[0].Survey_language).toBe('');
     });
 
     it('assigns correct language for RootIDs present in LANG_MAP', async () => {
