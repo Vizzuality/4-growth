@@ -19,6 +19,18 @@ const ScenariosInfo: FC = () => {
         explore potential futures up to 2040, which can be viewed under
         different scenarios.
       </p>
+      <p className="mb-4">
+        Learn more about the 4Growth projections in the report{" "}
+        <a
+          href="https://4growth-project.eu/wp-content/uploads/2026/11/Understanding_the_4Growth_projections_final.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="italic text-secondary underline"
+        >
+          &quot;Understanding the 4Growth projections&quot;
+        </a>
+        .
+      </p>
       <div className="space-y-2">
         {SCENARIOS.map((s) => (
           <ScenarioInfoCard
